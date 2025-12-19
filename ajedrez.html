@@ -16,6 +16,106 @@
                 font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             }
 
+            /* =========================
+               ✅ RESPONSIVE BOOST (NO BORRA NADA)
+               ========================= */
+            :root{
+                /* escala global */
+                --app-max: 540px;
+                --app-pad: clamp(14px, 3.2vw, 24px);
+                --radius: clamp(18px, 4vw, 24px);
+
+                /* tablero */
+                --board-max: min(92vw, 420px); /* evita que sea gigante en tablet */
+                --coords-gap: clamp(16px, 4vw, 22px);
+
+                /* textos */
+                --h1: clamp(1.2rem, 3.2vw, 1.55rem);
+                --sub: clamp(0.85rem, 2.4vw, 0.95rem);
+                --btn: clamp(0.9rem, 2.6vw, 0.95rem);
+                --piece: clamp(2.0rem, 8vw, 2.6rem);
+            }
+
+            html { -webkit-text-size-adjust: 100%; }
+
+            body {
+                /* respeta notch / safe areas */
+                padding:
+                  calc(14px + env(safe-area-inset-top))
+                  calc(14px + env(safe-area-inset-right))
+                  calc(14px + env(safe-area-inset-bottom))
+                  calc(14px + env(safe-area-inset-left));
+            }
+
+            .app {
+                max-width: var(--app-max);
+                padding: var(--app-pad);
+                border-radius: var(--radius);
+            }
+
+            h1 { font-size: var(--h1); }
+            .subtitle { font-size: var(--sub); }
+
+            /* nav botones más flexibles */
+            .nav-btn{
+                font-size: var(--btn);
+                min-width: clamp(110px, 30vw, 160px);
+            }
+
+            /* status bar no se aprieta */
+            .status-bar{
+                gap: 10px;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+
+            /* opciones y controles: mejor en móvil */
+            .options, .controls{
+                gap: clamp(8px, 2.4vw, 10px);
+            }
+
+            .option-btn, button.main-btn{
+                font-size: var(--btn);
+            }
+
+            /* tablero: ancho controlado y siempre centrado */
+            .board-frame{
+                width: var(--board-max);
+                max-width: 100%;
+                margin-inline: auto;
+            }
+
+            .board{
+                width: 100%;
+            }
+
+            .sq{
+                font-size: var(--piece);
+            }
+
+            /* coordenadas adaptables */
+            .file-labels{
+                bottom: calc(var(--coords-gap) * -1);
+                font-size: clamp(0.78rem, 2.8vw, 0.95rem);
+            }
+            .rank-labels{
+                left: calc(var(--coords-gap) * -1);
+                font-size: clamp(0.78rem, 2.8vw, 0.95rem);
+            }
+
+            /* pantallas MUY pequeñas */
+            @media (max-width: 360px){
+                .nav-btn{ min-width: 46%; }
+                .goal-row{ justify-content: center; }
+                .kids-title{ font-size: 1.35rem; }
+                .kids-badge{ width: 48px; height: 48px; }
+            }
+
+            /* pantallas medianas: que no se vea “demasiado grande” */
+            @media (min-width: 700px){
+                .board-frame{ width: min(420px, 100%); }
+            }
+
             /* ======= MENÚ (igual al otro) ======= */
             .nav {
                 display: flex;
@@ -622,7 +722,7 @@
     <body>
         <div class="app">
             <nav class="nav" aria-label="Cursos">
-                <a class="nav-btn" href="index.html">🇺🇸 Inglés</a>
+                <a class="nav-btn" href="ingles.html">🇺🇸 Inglés</a>
                 <a class="nav-btn active" href="ajedrez.html">♟️ Ajedrez</a>
                 <a class="nav-btn" href="#">➗ Matemáticas</a>
             </nav>
@@ -1105,6 +1205,5 @@
             }
         </script>
     </body>
-
 
 </html>
