@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mini Cursos • Inglés, Ajedrez, Matemáticas</title>
+
+        <!-- PWA -->
+        <link rel="manifest" href="manifest.json">
+        <meta name="theme-color" content="#1976d2">
+        <style>
+            * {
+                box-sizing: border-box;
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            }
+
+            body {
+                margin: 0;
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: linear-gradient(145deg, #dbeafe, #e0f2fe);
+                padding: 18px;
+            }
+
+            .app {
+                background: #ffffff;
+                width: 100%;
+                max-width: 520px;
+                padding: 18px;
+                border-radius: 24px;
+                box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+                border: 3px solid #2563eb;
+            }
+
+            /* NAV */
+            .nav {
+                display: flex;
+                gap: 10px;
+                background: #eff6ff;
+                border: 1px solid #bfdbfe;
+                padding: 10px;
+                border-radius: 18px;
+                margin-bottom: 14px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-btn {
+                border: 1px solid #bfdbfe;
+                background: #ffffff;
+                border-radius: 999px;
+                padding: 8px 12px;
+                cursor: pointer;
+                font-weight: 700;
+                font-size: 0.95rem;
+                transition: transform 0.1s ease, background 0.15s ease, border-color 0.15s ease, opacity 0.1s ease;
+                min-width: 120px;
+            }
+
+            .nav-btn:hover {
+                transform: translateY(-1px);
+                background: #e0f2fe;
+                border-color: #93c5fd;
+            }
+
+            .nav-btn.active {
+                background: linear-gradient(90deg, #60a5fa, #2563eb);
+                color: #fff;
+                border-color: transparent;
+            }
+
+            h1 {
+                margin: 0 0 4px 0;
+                text-align: center;
+                font-size: 1.5rem;
+            }
+
+            .subtitle {
+                text-align: center;
+                font-size: 0.9rem;
+                color: #6b7280;
+                margin-bottom: 14px;
+            }
+
+            .status-bar {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 8px;
+                padding: 8px 12px;
+                border-radius: 999px;
+                background: #eff6ff;
+                border: 1px solid #bfdbfe;
+                font-size: 0.9rem;
+            }
+
+            .xp,
+            .hearts {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                font-weight: 600;
+            }
+
+            .xp span {
+                color: #16a34a;
+            }
+
+            .hearts span {
+                color: #f97316;
+            }
+
+            .progress-wrapper {
+                margin-bottom: 14px;
+            }
+
+            .progress-label {
+                display: flex;
+                justify-content: space-between;
+                font-size: 0.8rem;
+                color: #6b7280;
+                margin-bottom: 4px;
+            }
+
+            .progress {
+                width: 100%;
+                height: 10px;
+                background: #e5e7eb;
+                border-radius: 999px;
+                overflow: hidden;
+            }
+
+            .progress-inner {
+                height: 100%;
+                width: 0%;
+                border-radius: 999px;
+                background: linear-gradient(90deg, #60a5fa, #2563eb);
+                transition: width 0.2s ease;
+            }
+
+            .card {
+                border-radius: 20px;
+                padding: 18px;
+                background: #f9fafb;
+                border: 1px solid #e5e7eb;
+                margin-bottom: 16px;
+                transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+            }
+
+            .card.correct {
+                animation: pulse 0.4s ease;
+                border-color: #2563eb;
+                box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
+            }
+
+            .card.wrong {
+                animation: shake 0.3s ease;
+                border-color: #ef4444;
+                box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3);
+            }
+
+            @keyframes pulse {
+                0% {
+                    transform: scale(1)
+                }
+
+                50% {
+                    transform: scale(1.03)
+                }
+
+                100% {
+                    transform: scale(1)
+                }
+            }
+
+            @keyframes shake {
+
+                0%,
+                100% {
+                    transform: translateX(0)
+                }
+
+                20% {
+                    transform: translateX(-4px)
+                }
+
+                40% {
+                    transform: translateX(4px)
+                }
+
+                60% {
+                    transform: translateX(-4px)
+                }
+
+                80% {
+                    transform: translateX(4px)
+                }
+            }
+
+            .emoji-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 12px;
+                margin-bottom: 6px;
+            }
+
+            .emoji {
+                font-size: 5rem;
+                text-align: center;
+            }
+
+            .speak-btn {
+                font-size: 1.6rem;
+                cursor: pointer;
+                background: #eff6ff;
+                border-radius: 999px;
+                border: 1px solid #bfdbfe;
+                padding: 6px 10px;
+                transition: transform 0.1s ease, background 0.15s ease, border-color 0.15s ease;
+            }
+
+            .speak-btn:hover {
+                transform: scale(1.1);
+                background: #dbeafe;
+                border-color: #93c5fd;
+            }
+
+            .word {
+                text-align: center;
+                font-size: 1.6rem;
+                font-weight: 700;
+                margin-bottom: 2px;
+            }
+
+            .translation {
+                text-align: center;
+                font-size: 0.95rem;
+                color: #6b7280;
+                margin-bottom: 12px;
+            }
+
+            .example-en,
+            .example-es,
+            .question {
+                font-size: 0.98rem;
+                margin: 6px 0;
+            }
+
+            .label {
+                font-weight: 600;
+            }
+
+            .question {
+                margin-top: 12px;
+                font-weight: 700;
+                color: #111827;
+            }
+
+            .controls {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-top: 10px;
+            }
+
+            button.main-btn {
+                flex: 1;
+                border: none;
+                padding: 10px 12px;
+                border-radius: 999px;
+                font-size: 0.95rem;
+                cursor: pointer;
+                background: linear-gradient(90deg, #60a5fa, #2563eb);
+                color: #ffffff;
+                font-weight: 600;
+                letter-spacing: 0.02em;
+                transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.15s ease;
+                min-width: 120px;
+            }
+
+            button.main-btn:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+                filter: brightness(1.05);
+            }
+
+            .feedback {
+                margin-top: 10px;
+                font-size: 0.95rem;
+                text-align: center;
+                min-height: 20px;
+                font-weight: 600;
+            }
+
+            .feedback.good {
+                color: #16a34a;
+            }
+
+            .feedback.bad {
+                color: #ef4444;
+            }
+
+            .options {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                margin-top: 12px;
+            }
+
+            .option-btn {
+                flex: 1;
+                min-width: 80px;
+                border-radius: 14px;
+                border: 1px solid #d1d5db;
+                background: #ffffff;
+                padding: 8px 10px;
+                font-size: 0.9rem;
+                cursor: pointer;
+                transition: background 0.15s ease, transform 0.1s ease, border 0.1s ease, opacity 0.1s ease;
+                font-weight: 600;
+            }
+
+            .option-btn:hover:not(:disabled) {
+                background: #e0f2fe;
+                transform: translateY(-1px);
+                border-color: #93c5fd;
+            }
+
+            .option-btn:disabled {
+                cursor: default;
+                opacity: 0.6;
+            }
+
+            /* Secciones */
+            .section {
+                display: none;
+            }
+
+            .section.active {
+                display: block;
+            }
+
+            /* Tarjetas placeholder */
+            .placeholder-title {
+                text-align: center;
+                font-size: 1.2rem;
+                font-weight: 800;
+                margin: 6px 0 2px;
+            }
+
+            .placeholder-text {
+                text-align: center;
+                color: #6b7280;
+                margin: 0;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="app">
+
+            <!-- Menú de navegación -->
+            <div class="nav" role="navigation" aria-label="Cursos">
+                <button class="nav-btn active" id="tabEnglish" onclick="switchCourse('english')">🇺🇸 Inglés</button>
+                <button class="nav-btn" onclick="location.href='ajedrez.html'">♟️ Ajedrez</button>
+
+                <button class="nav-btn" id="tabMath" onclick="switchCourse('math')">➗ Matemáticas</button>
+            </div>
+
+            <!-- ================== INGLÉS ================== -->
+            <section class="section active" id="courseEnglish">
+                <h1>Living Room • Sala de la casa</h1>
+                <p class="subtitle">Mira el emoji, escucha la palabra y elige el objeto correcto en inglés. 🛋️</p>
+
+                <div class="status-bar">
+                    <div class="xp">✅ Correctas: <span id="xpValue">0</span></div>
+                    <div class="hearts">🧠 Por mejorar: <span id="heartsValue">0</span></div>
+                </div>
+
+                <div class="progress-wrapper">
+                    <div class="progress-label">
+                        <span>Progreso de la lección</span>
+                        <span id="progressText">0/10</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-inner" id="progressBar"></div>
+                    </div>
+                </div>
+
+                <div class="card" id="lessonCard">
+                    <div class="emoji-container">
+                        <div class="emoji" id="emoji">🛋️</div>
+                        <button class="speak-btn" aria-label="Escuchar pronunciación" onclick="speakWord()">🔊</button>
+                    </div>
+
+                    <div class="word" id="wordEn">sofa</div>
+                    <div class="translation" id="wordEs">sofá</div>
+
+                    <p class="example-en"><span class="label">Inglés:</span> <span id="exampleEn">This is a sofa.</span>
+                    </p>
+                    <p class="example-es"><span class="label">Español:</span> <span id="exampleEs">Este es un
+                            sofá.</span></p>
+
+                    <p class="question" id="question">What is this?</p>
+
+                    <div class="options" id="optionsContainer"></div>
+                    <div class="feedback" id="feedback"></div>
+                </div>
+
+                <div class="controls">
+                    <button class="main-btn" onclick="nextLesson()">Next</button>
+                </div>
+            </section>
+
+            <!-- ================== AJEDREZ ================== -->
+            <section class="section" id="courseChess">
+                <h1>Ajedrez</h1>
+                <p class="subtitle">Aquí puedes poner tus ejercicios de ajedrez. ♟️</p>
+
+                <div class="card">
+                    <div class="placeholder-title">En construcción</div>
+                    <p class="placeholder-text">¿Quieres que sea “adivina la pieza”, “mate en 1”, o “movimientos
+                        legales”?</p>
+                </div>
+            </section>
+
+            <!-- ================== MATEMÁTICAS ================== -->
+            <section class="section" id="courseMath">
+                <h1>Matemáticas</h1>
+                <p class="subtitle">Aquí puedes poner tus ejercicios de matemáticas. ➗</p>
+
+                <div class="card">
+                    <div class="placeholder-title">En construcción</div>
+                    <p class="placeholder-text">¿Quieres sumas/restas, multiplicación, fracciones o problemas?</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- Sonidos -->
+        <audio id="sound-correct" src="correct.mp3" preload="auto"></audio>
+        <audio id="sound-wrong" src="wrong.mp3" preload="auto"></audio>
+        <audio id="sound-levelup" src="levelup.mp3" preload="auto"></audio>
+
+        <script>
+            // ====== NAVEGACIÓN DE CURSOS ======
+            function switchCourse(course) {
+                // activar secciones
+                document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
+                document.getElementById("courseEnglish").classList.toggle("active", course === "english");
+                document.getElementById("courseChess").classList.toggle("active", course === "chess");
+                document.getElementById("courseMath").classList.toggle("active", course === "math");
+
+                // activar tabs
+                document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
+                document.getElementById("tabEnglish").classList.toggle("active", course === "english");
+                document.getElementById("tabChess").classList.toggle("active", course === "chess");
+                document.getElementById("tabMath").classList.toggle("active", course === "math");
+            }
+
+            // ====== INGLÉS (tu código, sin cambiar lógica) ======
+            const itemsData = [
+                {
+                    emoji: "🛋️", en: "sofa", es: "sofá",
+                    examplesEn: ["This is a sofa.", "I sit on the sofa.", "The sofa is in the living room."],
+                    examplesEs: ["Este es un sofá.", "Yo me siento en el sofá.", "El sofá está en la sala."],
+                    questions: ["What is this?", "What is it?", "What can you see in the living room?"]
+                },
+                {
+                    emoji: "🪑", en: "chair", es: "silla",
+                    examplesEn: ["This is a chair.", "I sit on the chair.", "The chair is next to the sofa."],
+                    examplesEs: ["Esta es una silla.", "Yo me siento en la silla.", "La silla está al lado del sofá."],
+                    questions: ["What is this?", "Is this a chair or a sofa?", "What can you see?"]
+                },
+                {
+                    emoji: "📺", en: "TV", es: "televisión",
+                    examplesEn: ["This is a TV.", "I watch TV in the living room.", "The TV is on the wall."],
+                    examplesEs: ["Esta es una televisión.", "Veo televisión en la sala.", "La televisión está en la pared."],
+                    questions: ["What is this?", "What do you watch?", "Is this a TV?"]
+                },
+                {
+                    emoji: "🪟", en: "window", es: "ventana",
+                    examplesEn: ["This is a window.", "I open the window.", "The window is big."],
+                    examplesEs: ["Esta es una ventana.", "Yo abro la ventana.", "La ventana es grande."],
+                    questions: ["What is this?", "What can you open?", "What is in the living room?"]
+                },
+                {
+                    emoji: "🚪", en: "door", es: "puerta",
+                    examplesEn: ["This is a door.", "I close the door.", "The door is brown."],
+                    examplesEs: ["Esta es una puerta.", "Yo cierro la puerta.", "La puerta es marrón."],
+                    questions: ["What is this?", "What do you close?", "Is this a door?"]
+                },
+                {
+                    emoji: "💡", en: "lamp", es: "lámpara",
+                    examplesEn: ["This is a lamp.", "The lamp is on the table.", "The lamp is bright."],
+                    examplesEs: ["Esta es una lámpara.", "La lámpara está sobre la mesa.", "La lámpara es brillante."],
+                    questions: ["What is this?", "What gives light?", "Is this a lamp?"]
+                },
+                {
+                    emoji: "🧶", en: "rug", es: "alfombra",
+                    examplesEn: ["This is a rug.", "The rug is on the floor.", "The rug is soft."],
+                    examplesEs: ["Esta es una alfombra.", "La alfombra está en el piso.", "La alfombra es suave."],
+                    questions: ["What is this?", "What is on the floor?", "Is this a rug?"]
+                },
+                {
+                    emoji: "🖼️", en: "picture", es: "cuadro",
+                    examplesEn: ["This is a picture.", "The picture is on the wall.", "I like this picture."],
+                    examplesEs: ["Este es un cuadro.", "El cuadro está en la pared.", "Me gusta este cuadro."],
+                    questions: ["What is this?", "What is on the wall?", "Is this a picture?"]
+                },
+                {
+                    emoji: "📚", en: "bookshelf", es: "librero",
+                    examplesEn: ["This is a bookshelf.", "The books are on the bookshelf.", "The bookshelf is in the living room."],
+                    examplesEs: ["Este es un librero.", "Los libros están en el librero.", "El librero está en la sala."],
+                    questions: ["What is this?", "Where are the books?", "Is this a bookshelf?"]
+                },
+                {
+                    emoji: "🎛️", en: "remote control", es: "control remoto",
+                    examplesEn: ["This is a remote control.", "I use the remote control for the TV.", "The remote control is on the sofa."],
+                    examplesEs: ["Este es un control remoto.", "Uso el control remoto para la televisión.", "El control remoto está en el sofá."],
+                    questions: ["What is this?", "What do you use for the TV?", "Is this a remote control?"]
+                }
+            ];
+
+            let currentItem = null;
+            let correctCount = 0;
+            let wrongCount = 0;
+            let answeredCorrectly = false;
+
+            let progress = 0;
+            const maxProgress = 10;
+
+            const correctSpan = document.getElementById("xpValue");
+            const wrongSpan = document.getElementById("heartsValue");
+            const feedbackEl = document.getElementById("feedback");
+            const lessonCard = document.getElementById("lessonCard");
+            const progressBar = document.getElementById("progressBar");
+            const progressText = document.getElementById("progressText");
+
+            const soundCorrect = document.getElementById("sound-correct");
+            const soundWrong = document.getElementById("sound-wrong");
+            const soundLevelup = document.getElementById("sound-levelup");
+
+            function updateProgressBar() {
+                const percent = (progress / maxProgress) * 100;
+                progressBar.style.width = percent + "%";
+                progressText.textContent = `${progress}/${maxProgress}`;
+            }
+
+            function getRandomItem() {
+                return itemsData[Math.floor(Math.random() * itemsData.length)];
+            }
+            function randomFromArray(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+            function generateLesson() {
+                const item = getRandomItem();
+                const idx = Math.floor(Math.random() * item.examplesEn.length);
+                return {
+                    data: item,
+                    emoji: item.emoji,
+                    word: item.en,
+                    translation: item.es,
+                    exampleEn: item.examplesEn[idx],
+                    exampleEs: item.examplesEs[idx],
+                    question: randomFromArray(item.questions)
+                };
+            }
+
+            function renderLesson() {
+                answeredCorrectly = false;
+                const lesson = generateLesson();
+                currentItem = lesson.data;
+
+                document.getElementById("emoji").textContent = lesson.emoji;
+                document.getElementById("wordEn").textContent = lesson.word;
+                document.getElementById("wordEs").textContent = lesson.translation;
+                document.getElementById("exampleEn").textContent = lesson.exampleEn;
+                document.getElementById("exampleEs").textContent = lesson.exampleEs;
+                document.getElementById("question").textContent = lesson.question;
+
+                feedbackEl.textContent = "";
+                feedbackEl.classList.remove("good", "bad");
+                lessonCard.classList.remove("correct", "wrong");
+
+                createOptions();
+            }
+
+            function createOptions() {
+                const container = document.getElementById("optionsContainer");
+                container.innerHTML = "";
+
+                const correct = currentItem;
+                const others = itemsData.filter(i => i.en !== correct.en);
+                shuffleArray(others);
+
+                const options = [correct.en, others[0].en, others[1].en];
+                shuffleArray(options);
+
+                options.forEach(optionText => {
+                    const btn = document.createElement("button");
+                    btn.textContent = optionText;
+                    btn.className = "option-btn";
+                    btn.onclick = () => checkAnswer(optionText, btn);
+                    container.appendChild(btn);
+                });
+            }
+
+            function speakFeedbackCorrect() {
+                const phrases = ["Great job!", "Awesome!", "Perfect!", "Nice work!"];
+                speakText(randomFromArray(phrases));
+            }
+            function speakFeedbackWrong() {
+                const phrases = ["Not yet, try again.", "Almost, try again.", "Keep trying.", "Don't give up."];
+                speakText(randomFromArray(phrases));
+            }
+
+            function speakText(text) {
+                if (!("speechSynthesis" in window)) return;
+                const utter = new SpeechSynthesisUtterance(text);
+                utter.lang = "en-US";
+                utter.rate = 0.95;
+                utter.pitch = 1.02;
+                window.speechSynthesis.cancel();
+                window.speechSynthesis.speak(utter);
+            }
+
+            function checkAnswer(answer, clickedBtn) {
+                if (!currentItem) return;
+                if (answeredCorrectly) return;
+
+                if (answer === currentItem.en) {
+                    answeredCorrectly = true;
+
+                    correctCount++;
+                    correctSpan.textContent = correctCount;
+
+                    if (progress < maxProgress) {
+                        progress += 1;
+                        updateProgressBar();
+                    }
+
+                    feedbackEl.textContent = randomFromArray(["✅ Great job!", "✅ Awesome!", "✅ Perfect!", "✅ Nice!"]);
+                    feedbackEl.classList.remove("bad");
+                    feedbackEl.classList.add("good");
+
+                    playSound(soundCorrect);
+                    speakFeedbackCorrect();
+
+                    lessonCard.classList.remove("wrong");
+                    lessonCard.classList.add("correct");
+
+                    document.querySelectorAll(".option-btn").forEach(b => { b.disabled = true; });
+
+                    if (correctCount > 0 && correctCount % 5 === 0) playSound(soundLevelup);
+
+                    if (progress >= maxProgress) {
+                        feedbackEl.textContent = "🎉 Lesson complete! Keep practicing.";
+                        feedbackEl.classList.add("good");
+                        playSound(soundLevelup);
+                    }
+                } else {
+                    wrongCount++;
+                    wrongSpan.textContent = wrongCount;
+
+                    feedbackEl.textContent = `❌ Not yet. Try again.`;
+                    feedbackEl.classList.remove("good");
+                    feedbackEl.classList.add("bad");
+
+                    playSound(soundWrong);
+                    speakFeedbackWrong();
+
+                    lessonCard.classList.remove("correct");
+                    lessonCard.classList.add("wrong");
+
+                    if (clickedBtn) clickedBtn.disabled = true;
+                }
+            }
+
+            function shuffleArray(arr) {
+                for (let i = arr.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [arr[i], arr[j]] = [arr[j], arr[i]];
+                }
+            }
+
+            function nextLesson() { renderLesson(); }
+
+            function speakWord() {
+                const word = document.getElementById("wordEn").textContent;
+                if (!("speechSynthesis" in window)) return;
+                const utter = new SpeechSynthesisUtterance(word);
+                utter.lang = "en-US";
+                utter.rate = 0.9;
+                window.speechSynthesis.cancel();
+                window.speechSynthesis.speak(utter);
+            }
+
+            function playSound(audioElement) {
+                if (!audioElement) return;
+                audioElement.currentTime = 0;
+                audioElement.play().catch(() => { });
+            }
+
+            updateProgressBar();
+            renderLesson();
+        </script>
+
+        <script>
+            // Registrar Service Worker (PWA)
+            if ("serviceWorker" in navigator) {
+                window.addEventListener("load", () => {
+                    navigator.serviceWorker.register("./service-worker.js").catch(() => { });
+                });
+            }
+        </script>
+    </body>
+
+</html>
