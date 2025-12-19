@@ -1,33 +1,22 @@
-const CACHE_NAME = "mariekids-v1";
+const CACHE_NAME = 'mariekids-v1';
 
-const ASSETS = [
-  "./",
-  "./index.html",
-  "./manifest.json",
-  "./service-worker.js",
-  "./correct.mp3",
-  "./wrong.mp3",
-  "./levelup.mp3",
-  "./icons/icon-192.png",
-  "./icons/icon-512.png"
+const ARCHIVOS_CACHE = [
+  '/',
+  '/ingles.html',
+  '/ajedrez.html',
+  '/css/estilos.css'
 ];
 
-self.addEventListener("install", (event) => {
-  event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS)));
-  self.skipWaiting();
-});
-
-self.addEventListener("activate", (event) => {
+self.addEventListener('install', event => {
   event.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(keys.map((k) => (k !== CACHE_NAME ? caches.delete(k) : null)))
-    )
+    caches.open(CACHE_NAME)
+      .then(cache => cache.addAll(ARCHIVOS_CACHE))
   );
-  self.clients.claim();
 });
 
-self.addEventListener("fetch", (event) => {
+self.addEventListener('fetch', event => {
   event.respondWith(
-    caches.match(event.request).then((cached) => cached || fetch(event.request))
+    caches.match(event.request)
+      .then(response => response || fetch(event.request))
   );
 });
