@@ -2,7 +2,7 @@ const CACHE_NAME = 'mariekids-v1';
 
 const ARCHIVOS_CACHE = [
   '/',
-  '/ingles.html',
+  '/index.html',
   '/ajedrez.html',
   '/css/estilos.css'
 ];
@@ -20,3 +20,4 @@ self.addEventListener('fetch', event => {
       .then(response => response || fetch(event.request))
   );
 });
+
