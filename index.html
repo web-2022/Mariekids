@@ -413,6 +413,8 @@
 
                 <div class="controls">
                     <button class="main-btn" onclick="nextLesson()">Next</button>
+                    <button class="main-btn" onclick="shareApp()">📤 Compartir app</button>
+
                 </div>
             </section>
 
@@ -716,6 +718,25 @@
                 });
             }
         </script>
+        <script>
+function shareApp() {
+    const shareData = {
+        title: "Mini Cursos",
+        text: "📚 Aprende inglés, ajedrez y matemáticas con esta app educativa",
+        url: window.location.href
+    };
+
+    if (navigator.share) {
+        navigator.share(shareData)
+            .catch(() => {});
+    } else {
+        // Fallback para navegadores que no soportan Web Share
+        navigator.clipboard.writeText(shareData.url);
+        alert("🔗 Link copiado para compartir");
+    }
+}
+</script>
+
     </body>
 
 </html>
