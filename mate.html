@@ -18,12 +18,16 @@
 
             body {
                 margin: 0;
-                min-height: 100vh;
+                min-height: 100dvh;
+                /* mejor que 100vh en celular */
                 display: flex;
                 justify-content: center;
-                align-items: center;
+                align-items: flex-start;
+                /* en vez de center */
                 background: linear-gradient(145deg, #dbeafe, #e0f2fe);
-                padding: 18px;
+                padding: 12px;
+                overflow-y: auto;
+                /* permite scroll si falta espacio */
             }
 
             /* NAV */
@@ -61,6 +65,156 @@
                 background: linear-gradient(90deg, #60a5fa, #2563eb);
                 color: #fff;
                 border-color: transparent;
+            }
+
+            /* 🌟 Encabezado infantil */
+            .brand-header-kids {
+                position: relative;
+                overflow: hidden;
+                padding: 14px 14px 12px;
+                border-radius: 22px;
+                margin-bottom: 12px;
+                background: linear-gradient(135deg, #93c5fd, #60a5fa, #2563eb);
+                border: 2px solid rgba(255, 255, 255, .65);
+                box-shadow: 0 14px 28px rgba(37, 99, 235, .25);
+                color: #fff;
+            }
+
+            .brand-row {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+
+            .kids-badge {
+                width: 52px;
+                height: 52px;
+                border-radius: 18px;
+                display: grid;
+                place-items: center;
+                font-size: 1.55rem;
+                background: rgba(255, 255, 255, .22);
+                border: 1px solid rgba(255, 255, 255, .35);
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35);
+            }
+
+            .kids-title {
+                font-weight: 950;
+                font-size: 1.55rem;
+                letter-spacing: .02em;
+                line-height: 1.05;
+                text-shadow: 0 2px 0 rgba(0, 0, 0, .12);
+            }
+
+            .kids-subtitle {
+                margin-top: 4px;
+                font-size: .9rem;
+                font-weight: 750;
+                opacity: .95;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                flex-wrap: wrap;
+            }
+
+            .kids-pill {
+                background: rgba(255, 255, 255, .22);
+                border: 1px solid rgba(255, 255, 255, .35);
+                padding: 4px 10px;
+                border-radius: 999px;
+                font-size: .82rem;
+                font-weight: 850;
+            }
+
+            .star {
+                position: absolute;
+                opacity: .9;
+                filter: drop-shadow(0 2px 0 rgba(0, 0, 0, .12));
+                animation: twinkle 2.8s ease-in-out infinite;
+                pointer-events: none;
+            }
+
+            .star.s1 {
+                top: 8px;
+                right: 18px;
+                font-size: 1.15rem;
+                animation-delay: 0s;
+            }
+
+            .star.s2 {
+                top: 40px;
+                right: 60px;
+                font-size: .95rem;
+                animation-delay: .6s;
+            }
+
+            .star.s3 {
+                bottom: 12px;
+                right: 26px;
+                font-size: 1.25rem;
+                animation-delay: 1.1s;
+            }
+
+            .bubble {
+                position: absolute;
+                width: 64px;
+                height: 64px;
+                border-radius: 999px;
+                background: rgba(255, 255, 255, .22);
+                border: 1px solid rgba(255, 255, 255, .28);
+                box-shadow: inset 0 2px 0 rgba(255, 255, 255, .45);
+                backdrop-filter: blur(2px);
+                pointer-events: none;
+                animation: floaty 6s ease-in-out infinite;
+            }
+
+            .b1 {
+                left: -16px;
+                top: -18px;
+                animation-delay: 0s;
+                transform: rotate(5deg);
+            }
+
+            .b2 {
+                left: 40px;
+                bottom: -22px;
+                width: 52px;
+                height: 52px;
+                animation-delay: .8s;
+            }
+
+            .b3 {
+                right: -22px;
+                bottom: -26px;
+                width: 76px;
+                height: 76px;
+                animation-delay: 1.3s;
+            }
+
+            @keyframes floaty {
+
+                0%,
+                100% {
+                    transform: translateY(0) scale(1);
+                }
+
+                50% {
+                    transform: translateY(-8px) scale(1.03);
+                }
+            }
+
+            @keyframes twinkle {
+
+                0%,
+                100% {
+                    transform: scale(1) rotate(0deg);
+                    opacity: .9;
+                }
+
+                50% {
+                    transform: scale(1.12) rotate(6deg);
+                    opacity: 1;
+                }
             }
 
 
@@ -148,10 +302,10 @@
 
             .card {
                 border-radius: 20px;
-                padding: 18px;
+                padding: 5px;
                 background: #f9fafb;
                 border: 1px solid #e5e7eb;
-                margin-bottom: 16px;
+                margin-bottom: 1px;
                 transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
             }
 
@@ -236,7 +390,7 @@
 
             .title-line {
                 text-align: center;
-                font-size: 1.15rem;
+                font-size: 1.5rem;
                 font-weight: 1000;
                 margin: 2px 0 10px;
             }
@@ -288,8 +442,8 @@
             }
 
             .options {
-                display: flex;
-                flex-direction: column;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
                 gap: 8px;
                 margin-top: 12px;
             }
@@ -302,7 +456,7 @@
                 font-size: 1rem;
                 cursor: pointer;
                 font-weight: 900;
-                text-align: left;
+                text-align: center;
                 transition: background 0.15s ease, transform 0.1s ease, border 0.1s ease, opacity 0.1s ease;
             }
 
@@ -318,10 +472,10 @@
             }
 
             .feedback {
-                margin-top: 10px;
+                margin-top: 1px;
                 font-size: 0.98rem;
                 text-align: center;
-                min-height: 22px;
+                min-height: 1px;
                 font-weight: 1000;
             }
 
@@ -434,12 +588,26 @@
             }
 
             @media (max-width: 480px) {
+                body {
+                    padding: 8px;
+                }
+
                 .app {
-                    padding: 18px;
+                    padding: 14px;
                 }
 
                 .emoji {
-                    font-size: 4.6rem;
+                    font-size: 4.2rem;
+                }
+
+                .card {
+                    padding: 7px;
+                    margin-bottom: 6px;
+                }
+
+                .nav {
+                    padding: 8px;
+                    margin-bottom: 10px;
                 }
             }
         </style>
@@ -453,6 +621,29 @@
                 <button class="nav-btn" onclick="location.href='index.html'">🇺🇸 Inglés</button>
                 <button class="nav-btn" onclick="location.href='ajedrez.html'">♟️ Ajedrez</button>
                 <button class="nav-btn active" onclick="location.href='matematicas.html'">➗ Matemáticas</button>
+            </div>
+
+            <!-- 🌟 Encabezado infantil: Marie Kids -->
+            <div class="brand-header-kids" aria-label="Marie Kids">
+                <div class="bubble b1"></div>
+                <div class="bubble b2"></div>
+                <div class="bubble b3"></div>
+
+                <div class="star s1">⭐</div>
+                <div class="star s2">✨</div>
+                <div class="star s3">🌟</div>
+
+                <div class="brand-row">
+                    <div class="kids-badge" aria-hidden="true">♟️</div>
+                    <div>
+                        <div class="kids-title">Marie Kids</div>
+                        <div class="kids-subtitle">
+                            Matemáticas paso a paso...
+                            <span class="kids-pill">Observa</span>
+                            <span class="kids-pill">👉 Practica</span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
 
@@ -476,7 +667,7 @@
 
             <div class="card" id="lessonCard">
                 <div class="emoji-container">
-                    <div class="emoji" id="emoji">🧮</div>
+                    <div class="emoji" id="emoji"></div>
                     <button class="speak-btn" onclick="speakCurrent()" aria-label="Escuchar">🔊</button>
                 </div>
 
@@ -495,8 +686,8 @@
             </div>
 
             <div class="controls">
-                <button class="main-btn secondary" onclick="resetLesson()">Reiniciar</button>
                 <button class="main-btn" onclick="nextLesson()">Next</button>
+                <button class="main-btn" onclick="shareApp()">📤 Compartir app</button>
             </div>
         </div>
 
@@ -894,6 +1085,25 @@ Sigue practicando, cada intento te hace mejor 🚀`;
                 window.addEventListener("load", () => {
                     navigator.serviceWorker.register("./service-worker.js").catch(() => { });
                 });
+            }
+        </script>
+
+        <script>
+            function shareApp() {
+                const shareData = {
+                    title: "Mini Cursos",
+                    text: "📚 Aprende inglés, ajedrez y matemáticas con esta app educativa",
+                    url: window.location.href
+                };
+
+                if (navigator.share) {
+                    navigator.share(shareData)
+                        .catch(() => { });
+                } else {
+                    // Fallback para navegadores que no soportan Web Share
+                    navigator.clipboard.writeText(shareData.url);
+                    alert("🔗 Link copiado para compartir");
+                }
             }
         </script>
     </body>
