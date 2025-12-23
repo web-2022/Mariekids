@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Marie Kids • Ruta de Aprendizaje</title>
+
+        <!-- PWA -->
+        <link rel="manifest" href="manifest.json">
+        <meta name="theme-color" content="#1976d2">
+
+        <style>
+            * {
+                box-sizing: border-box;
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif
+            }
+
+            html {
+                -webkit-text-size-adjust: 100%
+            }
+
+            body {
+                margin: 0;
+                min-height: 100dvh;
+                background:
+                    radial-gradient(1200px 800px at 10% 10%, #dbeafe 0%, transparent 60%),
+                    radial-gradient(900px 700px at 90% 20%, #e0f2fe 0%, transparent 55%),
+                    linear-gradient(145deg, #dbeafe, #e0f2fe);
+                padding: calc(10px + env(safe-area-inset-top)) calc(10px + env(safe-area-inset-right)) calc(12px + env(safe-area-inset-bottom)) calc(10px + env(safe-area-inset-left));
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+            }
+
+            :root {
+                --app-max: 980px;
+                --pad: clamp(12px, 3.2vw, 22px);
+                --radius: clamp(18px, 3.8vw, 26px);
+                --h1: clamp(1.25rem, 3.4vw, 1.7rem);
+                --sub: clamp(.9rem, 2.4vw, 1rem);
+                --btn: clamp(.92rem, 2.6vw, 1rem);
+
+                --blue: #2563eb;
+                --shadow: rgba(0, 0, 0, .14);
+            }
+
+            .app {
+                width: 100%;
+                max-width: var(--app-max);
+                background: #fff;
+                border-radius: var(--radius);
+                border: 3px solid var(--blue);
+                padding: var(--pad);
+                box-shadow: 0 18px 55px var(--shadow);
+                overflow: hidden;
+            }
+
+            /* ===== HERO ===== */
+            .hero {
+                position: relative;
+                overflow: hidden;
+                border-radius: calc(var(--radius) - 6px);
+                padding: clamp(14px, 3.2vw, 18px);
+                background: linear-gradient(135deg, #93c5fd 0%, #60a5fa 40%, #2563eb 100%);
+                border: 2px solid rgba(255, 255, 255, .65);
+                box-shadow: 0 16px 36px rgba(37, 99, 235, .28);
+                color: #fff;
+            }
+
+            .hero::after {
+                content: "";
+                position: absolute;
+                inset: -2px;
+                pointer-events: none;
+                background:
+                    radial-gradient(600px 200px at 20% 10%, rgba(255, 255, 255, .22), transparent 60%),
+                    radial-gradient(500px 240px at 85% 15%, rgba(255, 255, 255, .18), transparent 62%);
+            }
+
+            .hero-row {
+                position: relative;
+                z-index: 2;
+                display: flex;
+                gap: 12px;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: center
+            }
+
+            .hero-left {
+                display: flex;
+                gap: 12px;
+                align-items: center;
+                min-width: 240px;
+                flex: 1
+            }
+
+            .badge {
+                width: clamp(52px, 10vw, 62px);
+                height: clamp(52px, 10vw, 62px);
+                border-radius: 18px;
+                display: grid;
+                place-items: center;
+                font-size: clamp(1.6rem, 4vw, 2rem);
+                background: rgba(255, 255, 255, .22);
+                border: 1px solid rgba(255, 255, 255, .35);
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35);
+            }
+
+            .hero-title {
+                margin: 0;
+                font-weight: 1000;
+                letter-spacing: .02em;
+                line-height: 1.05;
+                font-size: var(--h1);
+                text-shadow: 0 2px 0 rgba(0, 0, 0, .12)
+            }
+
+            .hero-sub {
+                margin: 6px 0 0;
+                font-size: var(--sub);
+                font-weight: 800;
+                opacity: .95;
+                display: flex;
+                gap: 8px;
+                flex-wrap: wrap
+            }
+
+            .pill {
+                background: rgba(255, 255, 255, .22);
+                border: 1px solid rgba(255, 255, 255, .35);
+                padding: 6px 10px;
+                border-radius: 999px;
+                font-size: clamp(.78rem, 2.2vw, .88rem);
+                font-weight: 950;
+                backdrop-filter: blur(2px);
+                -webkit-backdrop-filter: blur(2px);
+                white-space: nowrap;
+            }
+
+            /* ===== TOOLBAR ===== */
+            .toolbar {
+                margin-top: 12px;
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .search {
+                flex: 1;
+                min-width: min(100%, 340px);
+                display: flex;
+                gap: 8px;
+                align-items: center;
+                padding: 10px 12px;
+                border-radius: 999px;
+                background: #eff6ff;
+                border: 1px solid #bfdbfe;
+            }
+
+            .search input {
+                width: 100%;
+                border: none;
+                outline: none;
+                background: transparent;
+                font-weight: 900;
+                font-size: var(--btn)
+            }
+
+            /* ===== LINKS (chips) ===== */
+            .chips {
+                display: flex;
+                gap: 8px;
+                flex-wrap: wrap;
+                justify-content: flex-end
+            }
+
+            .chip {
+                border: 1px solid #bfdbfe;
+                background: #fff;
+                border-radius: 999px;
+                padding: 8px 12px;
+                cursor: pointer;
+                font-weight: 950;
+                font-size: clamp(.85rem, 2.4vw, .95rem);
+                transition: transform .1s ease, background .15s ease, border-color .15s ease;
+                white-space: nowrap;
+                text-decoration: none;
+                color: #111827;
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+            }
+
+            .chip:hover {
+                transform: translateY(-1px);
+                background: #e0f2fe;
+                border-color: #93c5fd
+            }
+
+            .chip.active {
+                background: linear-gradient(90deg, #60a5fa, #2563eb);
+                color: #fff;
+                border-color: transparent
+            }
+
+            /* ===== PROGRESS ===== */
+            .progress-wrap {
+                margin-top: 12px;
+                background: #eff6ff;
+                border: 1px solid #bfdbfe;
+                border-radius: 18px;
+                padding: 12px;
+            }
+
+            .progress-row {
+                display: flex;
+                justify-content: space-between;
+                gap: 10px;
+                flex-wrap: wrap;
+                font-weight: 1000;
+                color: #1f2937;
+                margin-bottom: 8px
+            }
+
+            .progress-tag {
+                display: inline-flex;
+                gap: 6px;
+                align-items: center;
+                padding: 6px 10px;
+                border-radius: 999px;
+                background: #eff6ff;
+                border: 1px solid #bfdbfe;
+                font-weight: 1000;
+                color: #1e3a8a;
+                font-size: clamp(.82rem, 2.3vw, .9rem);
+            }
+
+            .bar {
+                width: 100%;
+                height: 10px;
+                background: #e5e7eb;
+                border-radius: 999px;
+                overflow: hidden
+            }
+
+            .bar>div {
+                width: 0%;
+                height: 100%;
+                background: linear-gradient(90deg, #60a5fa, #2563eb);
+                border-radius: 999px;
+                transition: width .2s ease
+            }
+
+            /* ===== GRID ===== */
+            .grid {
+                margin-top: 12px;
+                display: grid;
+                grid-template-columns: repeat(12, 1fr);
+                gap: 12px;
+            }
+
+            @media (min-width: 860px) {
+                .topic {
+                    grid-column: span 4;
+                }
+            }
+
+            @media (min-width: 560px) and (max-width: 859px) {
+                .topic {
+                    grid-column: span 6;
+                }
+            }
+
+            @media (max-width: 559px) {
+                .topic {
+                    grid-column: span 12;
+                }
+            }
+
+            .topic {
+                background: #f9fafb;
+                border: 1px solid #e5e7eb;
+                border-radius: 18px;
+                padding: 14px;
+                box-shadow: 0 10px 22px rgba(0, 0, 0, .06);
+                transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease, opacity .12s ease;
+                position: relative;
+                overflow: hidden;
+                border-left: 6px solid rgba(37, 99, 235, .35);
+            }
+
+            .topic:hover {
+                transform: translateY(-2px);
+                border-color: #93c5fd;
+                box-shadow: 0 16px 30px rgba(0, 0, 0, .09)
+            }
+
+            .topic a {
+                display: block;
+                text-decoration: none;
+                color: inherit
+            }
+
+            .topic.cat-Matemáticas {
+                border-left-color: rgba(37, 99, 235, .75)
+            }
+
+            .topic.cat-Inglés {
+                border-left-color: rgba(6, 182, 212, .75)
+            }
+
+            .topic.cat-Ajedrez {
+                border-left-color: rgba(168, 85, 247, .75)
+            }
+
+            .topic.cat-General {
+                border-left-color: rgba(249, 115, 22, .75)
+            }
+
+            /* NUMERO BONITO */
+            .num {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                width: 40px;
+                height: 40px;
+                border-radius: 999px;
+                display: grid;
+                place-items: center;
+                font-weight: 1000;
+                font-size: 1.05rem;
+                color: #fff;
+                background: linear-gradient(135deg, #60a5fa, #2563eb);
+                box-shadow: 0 12px 22px rgba(37, 99, 235, .25);
+                border: 2px solid rgba(255, 255, 255, .75);
+            }
+
+            .num::after {
+                content: "";
+                position: absolute;
+                inset: -14px;
+                background:
+                    radial-gradient(circle at 30% 30%, rgba(96, 165, 250, .22), transparent 55%),
+                    radial-gradient(circle at 70% 70%, rgba(37, 99, 235, .18), transparent 55%);
+                border-radius: 999px;
+                z-index: -1;
+            }
+
+            .topic-tag {
+                display: inline-flex;
+                gap: 6px;
+                align-items: center;
+                padding: 6px 10px;
+                border-radius: 999px;
+                background: #eff6ff;
+                border: 1px solid #bfdbfe;
+                font-weight: 1000;
+                color: #1e3a8a;
+                font-size: clamp(.82rem, 2.3vw, .9rem);
+            }
+
+            .title {
+                margin: 10px 0 6px;
+                font-weight: 1000;
+                color: #111827;
+                font-size: clamp(1.05rem, 2.9vw, 1.15rem)
+            }
+
+            .desc {
+                margin: 0;
+                color: #6b7280;
+                font-weight: 780;
+                line-height: 1.35;
+                font-size: clamp(.92rem, 2.4vw, .98rem)
+            }
+
+            .meta {
+                margin-top: 12px;
+                display: flex;
+                justify-content: space-between;
+                gap: 10px;
+                flex-wrap: wrap;
+                align-items: center
+            }
+
+            .status {
+                display: inline-flex;
+                gap: 8px;
+                align-items: center;
+                padding: 7px 10px;
+                border-radius: 999px;
+                border: 1px solid #e5e7eb;
+                background: #fff;
+                font-weight: 1000;
+                font-size: clamp(.84rem, 2.3vw, .92rem)
+            }
+
+            .status.done {
+                border-color: #86efac;
+                background: #f0fdf4;
+                color: #166534
+            }
+
+            /* BOTON */
+            .mark {
+                border: none;
+                border-radius: 999px;
+                padding: 9px 12px;
+                font-weight: 1000;
+                cursor: pointer;
+                background: #e5e7eb;
+                color: #111827;
+                transition: transform .1s ease, filter .15s ease, background .15s ease, color .15s ease;
+            }
+
+            .mark:hover {
+                transform: translateY(-1px);
+                filter: brightness(1.02)
+            }
+
+            /* Botón DONE: VERDE */
+            .mark.done {
+                background: linear-gradient(90deg, #22c55e, #16a34a);
+                color: #fff;
+                box-shadow: 0 10px 18px rgba(34, 197, 94, .28);
+                border: 1px solid rgba(255, 255, 255, .55);
+            }
+
+            .mark.done:hover {
+                filter: brightness(1.06)
+            }
+
+            /* TARJETA HECHA: TODO GRIS, EXCEPTO BOTON VERDE */
+            .topic.done {
+                background: linear-gradient(145deg, #f3f4f6, #eef2f7);
+                border-color: #d1d5db;
+                box-shadow: 0 8px 18px rgba(0, 0, 0, .05);
+            }
+
+            .topic.done:hover {
+                transform: none;
+                border-color: #cbd5e1;
+                box-shadow: 0 8px 18px rgba(0, 0, 0, .05);
+            }
+
+            .topic.done .topic-tag,
+            .topic.done .title,
+            .topic.done .desc,
+            .topic.done .status,
+            .topic.done .num {
+                filter: grayscale(1);
+                opacity: .55;
+            }
+
+            .topic.done .mark.done {
+                filter: none !important;
+                opacity: 1 !important;
+            }
+
+            /* siguiente recomendado */
+            .topic.next {
+                border-color: rgba(37, 99, 235, .55);
+                box-shadow: 0 0 0 3px rgba(37, 99, 235, .16), 0 16px 30px rgba(0, 0, 0, .09);
+                background: linear-gradient(145deg, #f9fafb, #eff6ff);
+            }
+
+            .topic.done.next {
+                box-shadow: 0 8px 18px rgba(0, 0, 0, .05);
+                border-color: #d1d5db;
+                background: linear-gradient(145deg, #f3f4f6, #eef2f7);
+            }
+
+            .note {
+                margin-top: 12px;
+                text-align: center;
+                color: #6b7280;
+                font-weight: 800;
+                font-size: clamp(.85rem, 2.3vw, .95rem);
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="app">
+
+            <header class="hero" aria-label="Ruta de Aprendizaje">
+                <div class="hero-row">
+                    <div class="hero-left">
+                        <div class="badge" aria-hidden="true">🗺️</div>
+                        <div>
+                            <h1 class="hero-title">Ruta de Aprendizaje</h1>
+                            <div class="hero-sub">
+                                <span class="pill">🔢 1 → 25</span>
+                                <span class="pill">✅ Guarda progreso</span>
+                                <span class="pill">📱 Responsive</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="toolbar">
+                <div class="search" role="search" aria-label="Buscar temas">
+                    🔎 <input id="q" type="text" placeholder="Buscar: ecuaciones, fracciones, ajedrez..." />
+                </div>
+
+                <!-- ✅ Estos son los links a tus HTML por materia -->
+                <div class="chips" role="navigation" aria-label="Rutas por materia">
+                    <!-- Cambia los nombres de archivo si quieres -->
+                    <a class="chip active" href="ruta-todos.html">🌟 Todos</a>
+                    <a class="chip" href="ruta-mate.html">➗ Matemáticas</a>
+                    <a class="chip" href="index.html">🇺🇸 Inglés</a>
+                    <a class="chip" href="ajedrez.html">♟️ Ajedrez</a>
+                    <a class="chip" href="#">🏁 ??</a>
+                </div>
+            </div>
+
+            <section class="progress-wrap" aria-label="Progreso general">
+                <div class="progress-row">
+                    <div>Progreso: <span id="doneCount">0</span>/<span id="totalCount">25</span></div>
+                    <div class="progress-tag">📚 Temas</div>
+                </div>
+                <div class="bar">
+                    <div id="barInner"></div>
+                </div>
+            </section>
+
+            <main class="grid" id="grid" aria-label="Lista de temas"></main>
+
+            <p class="note">Usa el buscador arriba para filtrar. Haz click en “Realizado” para marcar o desmarcar un
+                tema.</p>
+        </div>
+
+        <script>
+            const STORAGE_KEY = "mk_learning_path_done_realizado_v3";
+
+            // ✅ AQUÍ LINKEAS cada uno de tus 25 HTML:
+            //    Edita el campo href: "tema01.html", "tema02.html", etc.
+            const topics = [
+                { id: 1, emoji: "🧮", title: "Ecuaciones (Nivel 1)", desc: "Ecuaciones de primer grado", href: "mate.html", category: "Matemáticas" },
+                { id: 2, emoji: "🧮", title: "Ecuaciones (Nivel 2)", desc: "Mover términos y dividir.", href: "tema02.html", category: "Matemáticas" },
+                { id: 3, emoji: "🧮", title: "Ecuaciones (Nivel 3)", desc: "Paréntesis y simplificación.", href: "tema03.html", category: "Matemáticas" },
+                { id: 4, emoji: "➗", title: "Fracciones básicas", desc: "Mitades, tercios, cuartos.", href: "tema04.html", category: "Matemáticas" },
+                { id: 5, emoji: "➕", title: "Suma y resta", desc: "Cálculo rápido con ejemplos.", href: "tema05.html", category: "Matemáticas" },
+
+                { id: 6, emoji: "🇺🇸", title: "Vocabulario 1", desc: "Objetos del hogar.", href: "tema06.html", category: "Inglés" },
+                { id: 7, emoji: "🗣️", title: "Pronunciación 1", desc: "Escucha y repite.", href: "tema07.html", category: "Inglés" },
+                { id: 8, emoji: "🔤", title: "Verbo To Be", desc: "I am / You are / He is...", href: "tema08.html", category: "Inglés" },
+                { id: 9, emoji: "📖", title: "Lectura corta", desc: "Mini historia con preguntas.", href: "tema09.html", category: "Inglés" },
+                { id: 10, emoji: "✍️", title: "Escritura simple", desc: "Completa oraciones.", href: "tema10.html", category: "Inglés" },
+
+                { id: 11, emoji: "♟️", title: "Ajedrez: piezas", desc: "Cómo se mueven.", href: "tema11.html", category: "Ajedrez" },
+                { id: 12, emoji: "♟️", title: "Ajedrez: mate en 1", desc: "Encuentra el mate.", href: "tema12.html", category: "Ajedrez" },
+                { id: 13, emoji: "♟️", title: "Ajedrez: tácticas", desc: "Clavada, doble ataque.", href: "tema13.html", category: "Ajedrez" },
+                { id: 14, emoji: "♟️", title: "Ajedrez: aperturas", desc: "Principios básicos.", href: "tema14.html", category: "Ajedrez" },
+                { id: 15, emoji: "♟️", title: "Ajedrez: finales", desc: "Rey y peones.", href: "tema15.html", category: "Ajedrez" },
+
+                { id: 16, emoji: "📐", title: "Geometría 1", desc: "Figuras y perímetro.", href: "tema16.html", category: "Matemáticas" },
+                { id: 17, emoji: "📊", title: "Gráficas 1", desc: "Leer gráficos simples.", href: "tema17.html", category: "Matemáticas" },
+                { id: 18, emoji: "🔢", title: "Números y comparación", desc: "Mayor / menor / igual.", href: "tema18.html", category: "Matemáticas" },
+                { id: 19, emoji: "🧠", title: "Problemas cortos", desc: "Problemas con lógica.", href: "tema19.html", category: "Matemáticas" },
+                { id: 20, emoji: "⏱️", title: "Retos rápidos", desc: "Mini retos cronometrados.", href: "tema20.html", category: "General" },
+
+                { id: 21, emoji: "🎧", title: "Listening 1", desc: "Escucha y elige.", href: "tema21.html", category: "Inglés" },
+                { id: 22, emoji: "🧩", title: "Matching", desc: "Empareja palabra e imagen.", href: "tema22.html", category: "Inglés" },
+                { id: 23, emoji: "📚", title: "Story time", desc: "Historia + comprensión.", href: "tema23.html", category: "Inglés" },
+                { id: 24, emoji: "🧮", title: "Ecuaciones mixtas", desc: "Mezcla de niveles para repasar.", href: "tema24.html", category: "Matemáticas" },
+                { id: 25, emoji: "🏁", title: "Evaluación final", desc: "Prueba general de temas.", href: "tema25.html", category: "General" }
+            ];
+
+            // Total
+            const totalEl = document.getElementById("totalCount");
+            totalEl.textContent = topics.length;
+
+            function loadDoneSet() {
+                try {
+                    const raw = localStorage.getItem(STORAGE_KEY);
+                    const arr = raw ? JSON.parse(raw) : [];
+                    return new Set(arr.map(Number));
+                } catch {
+                    return new Set();
+                }
+            }
+
+            function saveDoneSet(doneSet) {
+                try {
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify([...doneSet]));
+                } catch { }
+            }
+
+            function updateProgress(doneSet) {
+                const done = doneSet.size;
+                const total = topics.length;
+                document.getElementById("doneCount").textContent = done;
+                const pct = total === 0 ? 0 : (done / total) * 100;
+                document.getElementById("barInner").style.width = pct + "%";
+            }
+
+            function cssSafeCat(cat) {
+                return String(cat).replace(/\s+/g, "-");
+            }
+
+            function renderGrid(queryText, doneSet) {
+                const grid = document.getElementById("grid");
+                grid.innerHTML = "";
+
+                const q = String(queryText || "").trim().toLowerCase();
+
+                // ✅ FILTRO SOLO POR BUSCADOR (esta página es "Todos")
+                const filtered = topics.filter(t => {
+                    if (!q) return true;
+                    const hay = (t.title + " " + t.desc + " " + t.category).toLowerCase();
+                    return hay.includes(q);
+                });
+
+                // recomendado: primer no hecho dentro del filtrado
+                const nextId = filtered.find(t => !doneSet.has(t.id))?.id ?? null;
+
+                // si no hay resultados
+                if (filtered.length === 0) {
+                    const empty = document.createElement("div");
+                    empty.style.gridColumn = "1 / -1";
+                    empty.style.textAlign = "center";
+                    empty.style.padding = "18px";
+                    empty.style.fontWeight = "900";
+                    empty.style.color = "#6b7280";
+                    empty.textContent = "No encontré temas con esa búsqueda 🙂";
+                    grid.appendChild(empty);
+                    return;
+                }
+
+                filtered.forEach(t => {
+                    const isDone = doneSet.has(t.id);
+                    const isNext = nextId !== null && t.id === nextId;
+
+                    const card = document.createElement("article");
+                    card.className =
+                        "topic " +
+                        "cat-" + cssSafeCat(t.category) +
+                        (isNext ? " next" : "") +
+                        (isDone ? " done" : "");
+
+                    card.innerHTML = `
+          <div class="num" aria-label="Tema ${t.id}">${t.id}</div>
+
+          <a href="${t.href}" aria-label="Abrir ${t.title}">
+            <div class="topic-tag">${t.emoji} ${t.category}${isNext ? " • ⭐ Recomendado" : ""}</div>
+            <div class="title">${t.title}</div>
+            <p class="desc">${t.desc}</p>
+          </a>
+
+          <div class="meta">
+            <div class="status ${isDone ? "done" : ""}">
+              ${isDone ? "✅ Realizado" : (isNext ? "👉 Recomendado" : "🔁 Practicar nuevamente")}
+            </div>
+
+            <button class="mark ${isDone ? "done" : ""}" type="button" data-id="${t.id}">
+              ${isDone ? "Realizado ✅" : "Realizado"}
+            </button>
+          </div>
+        `;
+
+                    grid.appendChild(card);
+                });
+
+                grid.querySelectorAll(".mark").forEach(btn => {
+                    btn.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        const id = Number(btn.dataset.id);
+                        if (!Number.isFinite(id)) return;
+
+                        if (doneSet.has(id)) doneSet.delete(id);
+                        else doneSet.add(id);
+
+                        saveDoneSet(doneSet);
+                        updateProgress(doneSet);
+
+                        const currentQuery = document.getElementById("q").value;
+                        renderGrid(currentQuery, doneSet);
+                    });
+                });
+            }
+
+            // INIT
+            const doneSet = loadDoneSet();
+            updateProgress(doneSet);
+            renderGrid("", doneSet);
+
+            // ✅ BUSCADOR FUNCIONA AQUÍ
+            const input = document.getElementById("q");
+            input.addEventListener("input", () => {
+                renderGrid(input.value, doneSet);
+            });
+        </script>
+
+        <script>
+            // Registrar Service Worker (PWA)
+            if ("serviceWorker" in navigator) {
+                window.addEventListener("load", () => {
+                    navigator.serviceWorker.register("./service-worker.js").catch(() => { });
+                });
+            }
+        </script>
+    </body>
+
+</html>
