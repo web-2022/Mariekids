@@ -954,7 +954,7 @@
     function speakText(text) {
       if (!("speechSynthesis" in window)) return;
       const utter = new SpeechSynthesisUtterance(text);
-      utter.lang = "en-US";
+      utter.lang = "es-PE";
       utter.rate = 0.95;
       utter.pitch = 1.02;
       window.speechSynthesis.cancel();
