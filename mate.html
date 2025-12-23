@@ -1,1111 +1,1135 @@
 <!DOCTYPE html>
 <html lang="es">
 
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>C3 • Ecuaciones de primer grado (paso a paso)</title>
-
-        <!-- PWA -->
-        <link rel="manifest" href="manifest.json">
-        <meta name="theme-color" content="#1976d2">
-
-        <style>
-            * {
-                box-sizing: border-box;
-                font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            }
-
-            body {
-                margin: 0;
-                min-height: 100dvh;
-                /* mejor que 100vh en celular */
-                display: flex;
-                justify-content: center;
-                align-items: flex-start;
-                /* en vez de center */
-                background: linear-gradient(145deg, #dbeafe, #e0f2fe);
-                padding: 12px;
-                overflow-y: auto;
-                /* permite scroll si falta espacio */
-            }
-
-            /* NAV */
-            .nav {
-                display: flex;
-                gap: 10px;
-                background: #eff6ff;
-                border: 1px solid #bfdbfe;
-                padding: 10px;
-                border-radius: 18px;
-                margin-bottom: 14px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .nav-btn {
-                border: 1px solid #bfdbfe;
-                background: #ffffff;
-                border-radius: 999px;
-                padding: 8px 12px;
-                cursor: pointer;
-                font-weight: 700;
-                font-size: 0.95rem;
-                transition: transform 0.1s ease, background 0.15s ease, border-color 0.15s ease, opacity 0.1s ease;
-                min-width: 120px;
-            }
-
-            .nav-btn:hover {
-                transform: translateY(-1px);
-                background: #e0f2fe;
-                border-color: #93c5fd;
-            }
-
-            .nav-btn.active {
-                background: linear-gradient(90deg, #60a5fa, #2563eb);
-                color: #fff;
-                border-color: transparent;
-            }
-
-            /* 🌟 Encabezado infantil */
-            .brand-header-kids {
-                position: relative;
-                overflow: hidden;
-                padding: 14px 14px 12px;
-                border-radius: 22px;
-                margin-bottom: 12px;
-                background: linear-gradient(135deg, #93c5fd, #60a5fa, #2563eb);
-                border: 2px solid rgba(255, 255, 255, .65);
-                box-shadow: 0 14px 28px rgba(37, 99, 235, .25);
-                color: #fff;
-            }
-
-            .brand-row {
-                display: flex;
-                align-items: center;
-                gap: 12px;
-            }
-
-            .kids-badge {
-                width: 52px;
-                height: 52px;
-                border-radius: 18px;
-                display: grid;
-                place-items: center;
-                font-size: 1.55rem;
-                background: rgba(255, 255, 255, .22);
-                border: 1px solid rgba(255, 255, 255, .35);
-                box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35);
-            }
-
-            .kids-title {
-                font-weight: 950;
-                font-size: 1.55rem;
-                letter-spacing: .02em;
-                line-height: 1.05;
-                text-shadow: 0 2px 0 rgba(0, 0, 0, .12);
-            }
-
-            .kids-subtitle {
-                margin-top: 4px;
-                font-size: .9rem;
-                font-weight: 750;
-                opacity: .95;
-                display: flex;
-                align-items: center;
-                gap: 8px;
-                flex-wrap: wrap;
-            }
-
-            .kids-pill {
-                background: rgba(255, 255, 255, .22);
-                border: 1px solid rgba(255, 255, 255, .35);
-                padding: 4px 10px;
-                border-radius: 999px;
-                font-size: .82rem;
-                font-weight: 850;
-            }
-
-            .star {
-                position: absolute;
-                opacity: .9;
-                filter: drop-shadow(0 2px 0 rgba(0, 0, 0, .12));
-                animation: twinkle 2.8s ease-in-out infinite;
-                pointer-events: none;
-            }
-
-            .star.s1 {
-                top: 8px;
-                right: 18px;
-                font-size: 1.15rem;
-                animation-delay: 0s;
-            }
-
-            .star.s2 {
-                top: 40px;
-                right: 60px;
-                font-size: .95rem;
-                animation-delay: .6s;
-            }
-
-            .star.s3 {
-                bottom: 12px;
-                right: 26px;
-                font-size: 1.25rem;
-                animation-delay: 1.1s;
-            }
-
-            .bubble {
-                position: absolute;
-                width: 64px;
-                height: 64px;
-                border-radius: 999px;
-                background: rgba(255, 255, 255, .22);
-                border: 1px solid rgba(255, 255, 255, .28);
-                box-shadow: inset 0 2px 0 rgba(255, 255, 255, .45);
-                backdrop-filter: blur(2px);
-                pointer-events: none;
-                animation: floaty 6s ease-in-out infinite;
-            }
-
-            .b1 {
-                left: -16px;
-                top: -18px;
-                animation-delay: 0s;
-                transform: rotate(5deg);
-            }
-
-            .b2 {
-                left: 40px;
-                bottom: -22px;
-                width: 52px;
-                height: 52px;
-                animation-delay: .8s;
-            }
-
-            .b3 {
-                right: -22px;
-                bottom: -26px;
-                width: 76px;
-                height: 76px;
-                animation-delay: 1.3s;
-            }
-
-            @keyframes floaty {
-
-                0%,
-                100% {
-                    transform: translateY(0) scale(1);
-                }
-
-                50% {
-                    transform: translateY(-8px) scale(1.03);
-                }
-            }
-
-            @keyframes twinkle {
-
-                0%,
-                100% {
-                    transform: scale(1) rotate(0deg);
-                    opacity: .9;
-                }
-
-                50% {
-                    transform: scale(1.12) rotate(6deg);
-                    opacity: 1;
-                }
-            }
-
-
-            .app {
-                background: #fff;
-                width: 100%;
-                max-width: 520px;
-                padding: 24px;
-                border-radius: 24px;
-                box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
-                border: 3px solid #2563eb;
-            }
-
-            h1 {
-                margin: 0 0 4px 0;
-                text-align: center;
-                font-size: 1.5rem;
-            }
-
-            .subtitle {
-                text-align: center;
-                font-size: 0.9rem;
-                color: #6b7280;
-                margin-bottom: 14px;
-            }
-
-            .status-bar {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 8px;
-                padding: 8px 12px;
-                border-radius: 999px;
-                background: #eff6ff;
-                border: 1px solid #bfdbfe;
-                font-size: 0.9rem;
-            }
-
-            .stat {
-                display: flex;
-                align-items: center;
-                gap: 6px;
-                font-weight: 800;
-            }
-
-            .stat .value {
-                font-weight: 1000;
-            }
-
-            .stat.correct .value {
-                color: #16a34a;
-            }
-
-            .stat.improve .value {
-                color: #f97316;
-            }
-
-            .progress-wrapper {
-                margin-bottom: 14px;
-            }
-
-            .progress-label {
-                display: flex;
-                justify-content: space-between;
-                font-size: 0.8rem;
-                color: #6b7280;
-                margin-bottom: 4px;
-            }
-
-            .progress {
-                width: 100%;
-                height: 10px;
-                background: #e5e7eb;
-                border-radius: 999px;
-                overflow: hidden;
-            }
-
-            .progress-inner {
-                height: 100%;
-                width: 0%;
-                border-radius: 999px;
-                background: linear-gradient(90deg, #60a5fa, #2563eb);
-                transition: width 0.2s ease;
-            }
-
-            .card {
-                border-radius: 20px;
-                padding: 5px;
-                background: #f9fafb;
-                border: 1px solid #e5e7eb;
-                margin-bottom: 1px;
-                transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
-            }
-
-            .card.correct {
-                animation: pulse 0.4s ease;
-                border-color: #2563eb;
-                box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
-            }
-
-            .card.wrong {
-                animation: shake 0.3s ease;
-                border-color: #ef4444;
-                box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3);
-            }
-
-            @keyframes pulse {
-                0% {
-                    transform: scale(1)
-                }
-
-                50% {
-                    transform: scale(1.03)
-                }
-
-                100% {
-                    transform: scale(1)
-                }
-            }
-
-            @keyframes shake {
-
-                0%,
-                100% {
-                    transform: translateX(0)
-                }
-
-                20% {
-                    transform: translateX(-4px)
-                }
-
-                40% {
-                    transform: translateX(4px)
-                }
-
-                60% {
-                    transform: translateX(-4px)
-                }
-
-                80% {
-                    transform: translateX(4px)
-                }
-            }
-
-            .emoji-container {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 12px;
-                margin-bottom: 6px;
-            }
-
-            .emoji {
-                font-size: 5rem;
-                text-align: center;
-            }
-
-            .speak-btn {
-                font-size: 1.6rem;
-                cursor: pointer;
-                background: #eff6ff;
-                border-radius: 999px;
-                border: 1px solid #bfdbfe;
-                padding: 6px 10px;
-                transition: transform 0.1s ease, background 0.15s ease, border-color 0.15s ease;
-            }
-
-            .speak-btn:hover {
-                transform: scale(1.1);
-                background: #dbeafe;
-                border-color: #93c5fd;
-            }
-
-            .title-line {
-                text-align: center;
-                font-size: 1.5rem;
-                font-weight: 1000;
-                margin: 2px 0 10px;
-            }
-
-            .steps {
-                background: #ffffff;
-                border: 1px solid #e5e7eb;
-                border-radius: 16px;
-                padding: 12px;
-                margin-top: 10px;
-            }
-
-            .steps .steps-title {
-                font-weight: 1000;
-                color: #111827;
-                margin: 0 0 8px;
-                font-size: 0.95rem;
-                text-align: center;
-            }
-
-            .step-line {
-                font-size: 1.02rem;
-                font-weight: 900;
-                padding: 8px 10px;
-                border-radius: 12px;
-                background: #f8fafc;
-                border: 1px solid #e5e7eb;
-                margin: 8px 0;
-                text-align: center;
-            }
-
-            .step-line.final {
-                border-color: #bfdbfe;
-                background: #eff6ff;
-            }
-
-            .question {
-                margin-top: 12px;
-                font-weight: 1000;
-                color: #111827;
-                text-align: center;
-            }
-
-            .hint {
-                text-align: center;
-                color: #6b7280;
-                margin: 6px 0 0;
-                font-size: 0.9rem;
-            }
-
-            .options {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 8px;
-                margin-top: 12px;
-            }
-
-            .option-btn {
-                border-radius: 14px;
-                border: 1px solid #d1d5db;
-                background: #fff;
-                padding: 10px 12px;
-                font-size: 1rem;
-                cursor: pointer;
-                font-weight: 900;
-                text-align: center;
-                transition: background 0.15s ease, transform 0.1s ease, border 0.1s ease, opacity 0.1s ease;
-            }
-
-            .option-btn:hover:not(:disabled) {
-                background: #e0f2fe;
-                transform: translateY(-1px);
-                border-color: #93c5fd;
-            }
-
-            .option-btn:disabled {
-                cursor: default;
-                opacity: 0.6;
-            }
-
-            .feedback {
-                margin-top: 1px;
-                font-size: 0.98rem;
-                text-align: center;
-                min-height: 1px;
-                font-weight: 1000;
-            }
-
-            .feedback.good {
-                color: #16a34a;
-            }
-
-            .feedback.bad {
-                color: #ef4444;
-            }
-
-            .controls {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 10px;
-                margin-top: 10px;
-            }
-
-            button.main-btn {
-                flex: 1;
-                border: none;
-                padding: 10px 12px;
-                border-radius: 999px;
-                font-size: 0.95rem;
-                cursor: pointer;
-                background: linear-gradient(90deg, #60a5fa, #2563eb);
-                color: #fff;
-                font-weight: 1000;
-                letter-spacing: 0.02em;
-                transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.15s ease;
-                min-width: 140px;
-            }
-
-            button.main-btn:hover {
-                transform: translateY(-1px);
-                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-                filter: brightness(1.05);
-            }
-
-            button.main-btn.secondary {
-                background: #e5e7eb;
-                color: #111827;
-                box-shadow: none;
-            }
-
-            /* Modal final */
-            .overlay {
-                position: fixed;
-                inset: 0;
-                background: rgba(15, 23, 42, 0.55);
-                display: none;
-                align-items: center;
-                justify-content: center;
-                padding: 18px;
-            }
-
-            .overlay.show {
-                display: flex;
-            }
-
-            .modal {
-                width: 100%;
-                max-width: 520px;
-                background: #fff;
-                border-radius: 22px;
-                padding: 18px;
-                border: 2px solid #bfdbfe;
-                box-shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
-                text-align: center;
-            }
-
-            .modal .title {
-                font-size: 1.35rem;
-                font-weight: 1100;
-                margin: 6px 0 8px;
-            }
-
-            .modal .score {
-                font-size: 1.1rem;
-                font-weight: 1100;
-                margin: 0 0 10px;
-            }
-
-            .modal .msg {
-                color: #374151;
-                margin: 0 0 12px;
-                line-height: 1.35;
-                font-weight: 850;
-                white-space: pre-line;
-            }
-
-            .mistakes {
-                text-align: left;
-                background: #f8fafc;
-                border: 1px solid #e5e7eb;
-                border-radius: 16px;
-                padding: 12px;
-                margin: 12px 0;
-            }
-
-            .mistakes h3 {
-                margin: 0 0 8px;
-                font-size: 1rem;
-            }
-
-            .mistakes ul {
-                margin: 0;
-                padding-left: 18px;
-                color: #374151;
-            }
-
-            @media (max-width: 480px) {
-                body {
-                    padding: 8px;
-                }
-
-                .app {
-                    padding: 14px;
-                }
-
-                .emoji {
-                    font-size: 4.2rem;
-                }
-
-                .card {
-                    padding: 7px;
-                    margin-bottom: 6px;
-                }
-
-                .nav {
-                    padding: 8px;
-                    margin-bottom: 10px;
-                }
-            }
-        </style>
-    </head>
-
-    <body>
-        <div class="app">
-
-            <!-- Menú de navegación -->
-            <div class="nav" role="navigation" aria-label="Cursos">
-                <button class="nav-btn" onclick="location.href='index.html'">🇺🇸 Inglés</button>
-                <button class="nav-btn" onclick="location.href='ajedrez.html'">♟️ Ajedrez</button>
-                <button class="nav-btn active" onclick="location.href='ruta-mate.html'">➗ Matemáticas</button>
-            </div>
-
-            <!-- 🌟 Encabezado infantil: Marie Kids -->
-            <div class="brand-header-kids" aria-label="Marie Kids">
-                <div class="bubble b1"></div>
-                <div class="bubble b2"></div>
-                <div class="bubble b3"></div>
-
-                <div class="star s1">⭐</div>
-                <div class="star s2">✨</div>
-                <div class="star s3">🌟</div>
-
-                <div class="brand-row">
-                    <div class="kids-badge" aria-hidden="true">✖️</div>
-                    <div>
-                        <div class="kids-title">Marie Kids</div>
-                        <div class="kids-subtitle">
-                            Matemáticas paso a paso...
-                            <span class="kids-pill">Observa</span>
-                            <span class="kids-pill">👉 Practica</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <h1>Ecuaciones de primer grado</h1>
-            <p class="subtitle">Mira el paso a paso y luego elige el valor correcto de <b>x</b>. 🧠</p>
-
-            <div class="status-bar">
-                <div class="stat correct">✅ Correctas: <span class="value" id="correctValue">0</span></div>
-                <div class="stat improve">🧠 Por mejorar: <span class="value" id="improveValue">0</span></div>
-            </div>
-
-            <div class="progress-wrapper">
-                <div class="progress-label">
-                    <span>Progreso</span>
-                    <span id="progressText">0/10</span>
-                </div>
-                <div class="progress">
-                    <div class="progress-inner" id="progressBar"></div>
-                </div>
-            </div>
-
-            <div class="card" id="lessonCard">
-                <div class="emoji-container">
-                    <div class="emoji" id="emoji"></div>
-                    <button class="speak-btn" onclick="speakCurrent()" aria-label="Escuchar">🔊</button>
-                </div>
-
-                <div class="title-line" id="equationTitle">x + 8 = 10</div>
-
-                <div class="steps" aria-label="Solución paso a paso">
-                    <div class="steps-title">Solución paso a paso</div>
-                    <div id="stepsContainer"></div>
-                </div>
-
-                <div class="question">¿Cuál es el valor de <b>x</b>?</div>
-                <p class="hint" id="hint">Tip: lo que suma, pasa restando; lo que resta, pasa sumando.</p>
-
-                <div class="options" id="optionsContainer"></div>
-                <div class="feedback" id="feedback"></div>
-            </div>
-
-            <div class="controls">
-                <button class="main-btn" onclick="nextLesson()">Next</button>
-                <button class="main-btn" onclick="shareApp()">📤 Compartir app</button>
-            </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>C3 • Ecuaciones de primer grado (paso a paso)</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1976d2">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100dvh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      background: linear-gradient(145deg, #dbeafe, #e0f2fe);
+      padding: 12px;
+      overflow-y: auto;
+    }
+
+    /* NAV */
+    .nav {
+      display: flex;
+      gap: 10px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      padding: 10px;
+      border-radius: 18px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav-btn {
+      border: 1px solid #bfdbfe;
+      background: #ffffff;
+      border-radius: 999px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: transform 0.1s ease, background 0.15s ease, border-color 0.15s ease, opacity 0.1s ease;
+      min-width: 120px;
+    }
+
+    .nav-btn:hover {
+      transform: translateY(-1px);
+      background: #e0f2fe;
+      border-color: #93c5fd;
+    }
+
+    .nav-btn.active {
+      background: linear-gradient(90deg, #60a5fa, #2563eb);
+      color: #fff;
+      border-color: transparent;
+    }
+
+    /* 🌟 Encabezado infantil */
+    .brand-header-kids {
+      position: relative;
+      overflow: hidden;
+      padding: 14px 14px 12px;
+      border-radius: 22px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #93c5fd, #60a5fa, #2563eb);
+      border: 2px solid rgba(255, 255, 255, .65);
+      box-shadow: 0 14px 28px rgba(37, 99, 235, .25);
+      color: #fff;
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .kids-badge {
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      font-size: 1.55rem;
+      background: rgba(255, 255, 255, .22);
+      border: 1px solid rgba(255, 255, 255, .35);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35);
+    }
+
+    .kids-title {
+      font-weight: 950;
+      font-size: 1.55rem;
+      letter-spacing: .02em;
+      line-height: 1.05;
+      text-shadow: 0 2px 0 rgba(0, 0, 0, .12);
+    }
+
+    .kids-subtitle {
+      margin-top: 4px;
+      font-size: .9rem;
+      font-weight: 750;
+      opacity: .95;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .kids-pill {
+      background: rgba(255, 255, 255, .22);
+      border: 1px solid rgba(255, 255, 255, .35);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: .82rem;
+      font-weight: 850;
+    }
+
+    .star {
+      position: absolute;
+      opacity: .9;
+      filter: drop-shadow(0 2px 0 rgba(0, 0, 0, .12));
+      animation: twinkle 2.8s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .star.s1 {
+      top: 8px;
+      right: 18px;
+      font-size: 1.15rem;
+      animation-delay: 0s;
+    }
+
+    .star.s2 {
+      top: 40px;
+      right: 60px;
+      font-size: .95rem;
+      animation-delay: .6s;
+    }
+
+    .star.s3 {
+      bottom: 12px;
+      right: 26px;
+      font-size: 1.25rem;
+      animation-delay: 1.1s;
+    }
+
+    .bubble {
+      position: absolute;
+      width: 64px;
+      height: 64px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .22);
+      border: 1px solid rgba(255, 255, 255, .28);
+      box-shadow: inset 0 2px 0 rgba(255, 255, 255, .45);
+      backdrop-filter: blur(2px);
+      pointer-events: none;
+      animation: floaty 6s ease-in-out infinite;
+    }
+
+    .b1 {
+      left: -16px;
+      top: -18px;
+      animation-delay: 0s;
+      transform: rotate(5deg);
+    }
+
+    .b2 {
+      left: 40px;
+      bottom: -22px;
+      width: 52px;
+      height: 52px;
+      animation-delay: .8s;
+    }
+
+    .b3 {
+      right: -22px;
+      bottom: -26px;
+      width: 76px;
+      height: 76px;
+      animation-delay: 1.3s;
+    }
+
+    @keyframes floaty {
+
+      0%,
+      100% {
+        transform: translateY(0) scale(1);
+      }
+
+      50% {
+        transform: translateY(-8px) scale(1.03);
+      }
+    }
+
+    @keyframes twinkle {
+
+      0%,
+      100% {
+        transform: scale(1) rotate(0deg);
+        opacity: .9;
+      }
+
+      50% {
+        transform: scale(1.12) rotate(6deg);
+        opacity: 1;
+      }
+    }
+
+    .app {
+      background: #fff;
+      width: 100%;
+      max-width: 520px;
+      padding: 24px;
+      border-radius: 24px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+      border: 3px solid #2563eb;
+    }
+
+    h1 {
+      margin: 0 0 4px 0;
+      text-align: center;
+      font-size: 1.5rem;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #6b7280;
+      margin-bottom: 14px;
+    }
+
+    /* Botones de niveles */
+    .levels {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 10px 0 6px;
+    }
+
+    .level-btn {
+      border: 1px solid #bfdbfe;
+      background: #ffffff;
+      border-radius: 999px;
+      padding: 9px 12px;
+      cursor: pointer;
+      font-weight: 900;
+      font-size: .92rem;
+      transition: transform .1s ease, background .15s ease, border-color .15s ease, filter .15s ease;
+      min-width: 150px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .level-btn:hover {
+      transform: translateY(-1px);
+      background: #e0f2fe;
+      border-color: #93c5fd;
+    }
+
+    .level-btn.active {
+      background: linear-gradient(90deg, #60a5fa, #2563eb);
+      color: #fff;
+      border-color: transparent;
+    }
+
+    .level-hint {
+      text-align: center;
+      margin: 0 0 12px;
+      color: #6b7280;
+      font-weight: 800;
+      font-size: .9rem;
+    }
+
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      font-size: 0.9rem;
+    }
+
+    .stat {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 800;
+    }
+
+    .stat .value {
+      font-weight: 1000;
+    }
+
+    .stat.correct .value {
+      color: #16a34a;
+    }
+
+    .stat.improve .value {
+      color: #f97316;
+    }
+
+    .progress-wrapper {
+      margin-bottom: 14px;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: #6b7280;
+      margin-bottom: 4px;
+    }
+
+    .progress {
+      width: 100%;
+      height: 10px;
+      background: #e5e7eb;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-inner {
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #60a5fa, #2563eb);
+      transition: width 0.2s ease;
+    }
+
+    .card {
+      border-radius: 20px;
+      padding: 5px;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      margin-bottom: 1px;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+    }
+
+    .card.correct {
+      animation: pulse 0.4s ease;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
+    }
+
+    .card.wrong {
+      animation: shake 0.3s ease;
+      border-color: #ef4444;
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1) }
+      50% { transform: scale(1.03) }
+      100% { transform: scale(1) }
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0) }
+      20% { transform: translateX(-4px) }
+      40% { transform: translateX(4px) }
+      60% { transform: translateX(-4px) }
+      80% { transform: translateX(4px) }
+    }
+
+    .emoji-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+
+    .emoji {
+      font-size: 5rem;
+      text-align: center;
+    }
+
+    .speak-btn {
+      font-size: 1.6rem;
+      cursor: pointer;
+      background: #eff6ff;
+      border-radius: 999px;
+      border: 1px solid #bfdbfe;
+      padding: 6px 10px;
+      transition: transform 0.1s ease, background 0.15s ease, border-color 0.15s ease;
+    }
+
+    .speak-btn:hover {
+      transform: scale(1.1);
+      background: #dbeafe;
+      border-color: #93c5fd;
+    }
+
+    .title-line {
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 1000;
+      margin: 2px 0 10px;
+    }
+
+    .steps {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 12px;
+      margin-top: 10px;
+    }
+
+    .steps .steps-title {
+      font-weight: 1000;
+      color: #111827;
+      margin: 0 0 8px;
+      font-size: 0.95rem;
+      text-align: center;
+    }
+
+    .step-line {
+      font-size: 1.02rem;
+      font-weight: 900;
+      padding: 8px 10px;
+      border-radius: 12px;
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      margin: 8px 0;
+      text-align: center;
+    }
+
+    .step-line.final {
+      border-color: #bfdbfe;
+      background: #eff6ff;
+    }
+
+    .step-comment {
+      margin-top: 4px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: #9ca3af;
+      line-height: 1.15;
+    }
+
+    .question {
+      margin-top: 12px;
+      font-weight: 1000;
+      color: #111827;
+      text-align: center;
+    }
+
+    .hint {
+      text-align: center;
+      color: #6b7280;
+      margin: 6px 0 0;
+      font-size: 0.9rem;
+    }
+
+    .options {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .option-btn {
+      border-radius: 14px;
+      border: 1px solid #d1d5db;
+      background: #fff;
+      padding: 10px 12px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: 900;
+      text-align: center;
+      transition: background 0.15s ease, transform 0.1s ease, border 0.1s ease, opacity 0.1s ease;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      background: #e0f2fe;
+      transform: translateY(-1px);
+      border-color: #93c5fd;
+    }
+
+    .option-btn:disabled {
+      cursor: default;
+      opacity: 0.6;
+    }
+
+    .feedback {
+      margin-top: 1px;
+      font-size: 0.98rem;
+      text-align: center;
+      min-height: 1px;
+      font-weight: 1000;
+    }
+
+    .feedback.good { color: #16a34a; }
+    .feedback.bad { color: #ef4444; }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    button.main-btn {
+      flex: 1;
+      border: none;
+      padding: 10px 12px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      background: linear-gradient(90deg, #60a5fa, #2563eb);
+      color: #fff;
+      font-weight: 1000;
+      letter-spacing: 0.02em;
+      transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.15s ease;
+      min-width: 140px;
+    }
+
+    button.main-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      filter: brightness(1.05);
+    }
+
+    button.main-btn.secondary {
+      background: #e5e7eb;
+      color: #111827;
+      box-shadow: none;
+    }
+
+    /* ✅ Botón practicar (diferente color, pero mismo estilo) */
+    button.main-btn.practice {
+      background: linear-gradient(90deg, #22c55e, #16a34a);
+    }
+    button.main-btn.practice:hover { filter: brightness(1.06); }
+
+    /* Modal final */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+    }
+
+    .overlay.show { display: flex; }
+
+    .modal {
+      width: 100%;
+      max-width: 520px;
+      background: #fff;
+      border-radius: 22px;
+      padding: 18px;
+      border: 2px solid #bfdbfe;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
+      text-align: center;
+    }
+
+    .modal .title {
+      font-size: 1.35rem;
+      font-weight: 1100;
+      margin: 6px 0 8px;
+    }
+
+    .modal .score {
+      font-size: 1.1rem;
+      font-weight: 1100;
+      margin: 0 0 10px;
+    }
+
+    .modal .msg {
+      color: #374151;
+      margin: 0 0 12px;
+      line-height: 1.35;
+      font-weight: 850;
+      white-space: pre-line;
+    }
+
+    .mistakes {
+      text-align: left;
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 12px;
+      margin: 12px 0;
+    }
+
+    .mistakes h3 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+    }
+
+    .mistakes ul {
+      margin: 0;
+      padding-left: 18px;
+      color: #374151;
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 8px; }
+      .app { padding: 14px; }
+      .emoji { font-size: 4.2rem; }
+      .card { padding: 7px; margin-bottom: 6px; }
+      .nav { padding: 8px; margin-bottom: 10px; }
+      .level-btn { min-width: 0; flex: 1; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+
+    <!-- Menú de navegación -->
+    <div class="nav" role="navigation" aria-label="Cursos">
+      <button class="nav-btn" onclick="location.href='index.html'">🇺🇸 Inglés</button>
+      <button class="nav-btn" onclick="location.href='ajedrez.html'">♟️ Ajedrez</button>
+      <button class="nav-btn active" onclick="location.href='ruta-mate.html'">➗ Matemáticas</button>
+    </div>
+
+    <!-- 🌟 Encabezado infantil: Marie Kids -->
+    <div class="brand-header-kids" aria-label="Marie Kids">
+      <div class="bubble b1"></div>
+      <div class="bubble b2"></div>
+      <div class="bubble b3"></div>
+
+      <div class="star s1">⭐</div>
+      <div class="star s2">✨</div>
+      <div class="star s3">🌟</div>
+
+      <div class="brand-row">
+        <div class="kids-badge" aria-hidden="true">✖️</div>
+        <div>
+          <div class="kids-title">Marie Kids</div>
+          <div class="kids-subtitle">
+            Matemáticas paso a paso...
+            <span class="kids-pill">Observa</span>
+            <span class="kids-pill">👉 Practica</span>
+          </div>
         </div>
+      </div>
+    </div>
 
-        <!-- Sonidos (pon los mp3 en la misma carpeta) -->
-        <audio id="sound-correct" src="correct.mp3" preload="auto"></audio>
-        <audio id="sound-wrong" src="wrong.mp3" preload="auto"></audio>
-        <audio id="sound-levelup" src="levelup.mp3" preload="auto"></audio>
+    <h1>Ecuaciones de primer grado</h1>
+    <p class="subtitle">Mira el paso a paso y luego elige el valor correcto de <b>x</b>. 🧠</p>
 
-        <!-- Modal final -->
-        <div class="overlay" id="overlay">
-            <div class="modal">
-                <div class="title">🎉 ¡Felicitaciones!</div>
-                <div class="score" id="finalScore">Hiciste 0 correctas de 0</div>
-                <p class="msg" id="finalMsg">¡Excelente trabajo! 💪✨</p>
+    <!-- 3 botones de nivel -->
+    <div class="levels" role="navigation" aria-label="Ejercicios resueltos por nivel">
+      <button class="level-btn active" id="btnBasic" type="button">✅ Básico</button>
+      <button class="level-btn" id="btnMid" type="button">✅ Intermedio</button>
+      <button class="level-btn" id="btnAdv" type="button">✅ Avanzado</button>
+    </div>
+    <p class="level-hint" id="levelHint">Nivel actual: <b>Básico</b> (más fácil)</p>
 
-                <div class="mistakes" id="mistakesBox" style="display:none;">
-                    <h3>Practica donde te equivocaste 👇</h3>
-                    <ul id="mistakesList"></ul>
-                </div>
+    <div class="status-bar">
+      <div class="stat correct">✅ Correctas: <span class="value" id="correctValue">0</span></div>
+      <div class="stat improve">🧠 Por mejorar: <span class="value" id="improveValue">0</span></div>
+    </div>
 
-                <div class="controls" style="margin-top:10px;">
-                    <button class="main-btn secondary" onclick="closeFinal()">Cerrar</button>
-                    <button class="main-btn" id="practiceMistakesBtn" onclick="practiceMistakes()"
-                        style="display:none;">
-                        Practicar donde me equivoqué
-                    </button>
-                </div>
-            </div>
-        </div>
+    <div class="progress-wrapper">
+      <div class="progress-label">
+        <span>Progreso</span>
+        <span id="progressText">0/10</span>
+      </div>
+      <div class="progress">
+        <div class="progress-inner" id="progressBar"></div>
+      </div>
+    </div>
 
-        <script>
-            /***************
-             * Sonidos
-             ***************/
-            const soundCorrectEl = document.getElementById("sound-correct");
-            const soundWrongEl = document.getElementById("sound-wrong");
-            const soundLevelupEl = document.getElementById("sound-levelup");
+    <div class="card" id="lessonCard">
+      <div class="emoji-container">
+        <div class="emoji" id="emoji"></div>
+        <button class="speak-btn" onclick="speakCurrent()" aria-label="Escuchar">🔊</button>
+      </div>
 
-            function playSound(audioElement) {
-                if (!audioElement) return;
-                audioElement.currentTime = 0;
-                audioElement.play().catch(() => { });
-            }
-            function soundCorrect() { playSound(soundCorrectEl); }
-            function soundWrong() { playSound(soundWrongEl); }
-            function soundLevelUp() { playSound(soundLevelupEl); }
+      <div class="title-line" id="equationTitle">x + 8 = 10</div>
 
-            /***************
-             * Datos: ecuación + pasos ya listos
-             ***************/
-            const pool = [
-                {
-                    id: 1,
-                    eq: "x + 8 = 10",
-                    x: 2,
-                    steps: ["x = 10 - 8", "x = 2"]
-                },
-                {
-                    id: 2,
-                    eq: "2x - 5 = 7",
-                    x: 6,
-                    steps: ["2x = 7 + 5", "2x = 12", "x = 12 / 2", "x = 6"]
-                },
-                {
-                    id: 3,
-                    eq: "3x + 4 = 19",
-                    x: 5,
-                    steps: ["3x = 19 - 4", "3x = 15", "x = 15 / 3", "x = 5"]
-                },
-                {
-                    id: 4,
-                    eq: "x/2 + 7 = 10",
-                    x: 6,
-                    steps: ["x/2 = 10 - 7", "x/2 = 3", "x = 3 × 2", "x = 6"]
-                },
-                {
-                    id: 5,
-                    eq: "5x = 25",
-                    x: 5,
-                    steps: ["x = 25 / 5", "x = 5"]
-                },
-                {
-                    id: 6,
-                    eq: "4x + 1 = 21",
-                    x: 5,
-                    steps: ["4x = 21 - 1", "4x = 20", "x = 20 / 4", "x = 5"]
-                },
-                {
-                    id: 7,
-                    eq: "7x + 2 = 30",
-                    x: 4,
-                    steps: ["7x = 30 - 2", "7x = 28", "x = 28 / 7", "x = 4"]
-                },
-                {
-                    id: 8,
-                    eq: "x + 5 = 2x - 1",
-                    x: 6,
-                    steps: ["x - 2x = -1 - 5", "-x = -6", "x = 6"]
-                },
-                {
-                    id: 9,
-                    eq: "3(x - 2) = 12",
-                    x: 6,
-                    steps: ["x - 2 = 12 / 3", "x - 2 = 4", "x = 4 + 2", "x = 6"]
-                },
-                {
-                    id: 10,
-                    eq: "2(x + 3) = 14",
-                    x: 4,
-                    steps: ["x + 3 = 14 / 2", "x + 3 = 7", "x = 7 - 3", "x = 4"]
-                },
-                {
-                    id: 11,
-                    eq: "9x - 18 = 45",
-                    x: 7,
-                    steps: ["9x = 45 + 18", "9x = 63", "x = 63 / 9", "x = 7"]
-                },
-                {
-                    id: 12,
-                    eq: "6x - 12 = 0",
-                    x: 2,
-                    steps: ["6x = 0 + 12", "6x = 12", "x = 12 / 6", "x = 2"]
-                }
-            ];
+      <div class="steps" aria-label="Solución paso a paso">
+        <div class="steps-title">Solución paso a paso</div>
+        <div id="stepsContainer"></div>
+      </div>
 
-            const TOTAL = 10;
+      <div class="question">¿Cuál es el valor de <b>x</b>?</div>
+      <p class="hint" id="hint">Tip: lo que suma, pasa restando; lo que resta, pasa sumando.</p>
 
-            // Estado
-            let lessonQueue = [];
-            let currentIndex = 0;
-            let current = null;
+      <div class="options" id="optionsContainer"></div>
+      <div class="feedback" id="feedback"></div>
+    </div>
 
-            let correctCount = 0;
-            let improveCount = 0;
+    <div class="controls">
+      <button class="main-btn" onclick="nextLesson()">Next</button>
 
-            // Control para no contar doble
-            let answeredCorrectly = false;
+      <!-- ✅ NUEVO BOTÓN: Practicar (cambia el href por tu html) -->
+      <button class="main-btn practice" onclick="location.href='practicar-ecuaciones.html'">📝 Practicar</button>
 
-            // Para practicar donde falló
-            const mistakesMap = new Map(); // id -> {eq,x,steps,wrongTries}
-            let isMistakesMode = false;
+      <button class="main-btn" onclick="shareApp()">📤 Compartir app</button>
+    </div>
+  </div>
 
-            // UI refs
-            const correctSpan = document.getElementById("correctValue");
-            const improveSpan = document.getElementById("improveValue");
-            const progressBar = document.getElementById("progressBar");
-            const progressText = document.getElementById("progressText");
-            const lessonCard = document.getElementById("lessonCard");
-            const feedbackEl = document.getElementById("feedback");
-            const stepsContainer = document.getElementById("stepsContainer");
-            const equationTitle = document.getElementById("equationTitle");
+  <!-- Sonidos (pon los mp3 en la misma carpeta) -->
+  <audio id="sound-correct" src="correct.mp3" preload="auto"></audio>
+  <audio id="sound-wrong" src="wrong.mp3" preload="auto"></audio>
+  <audio id="sound-levelup" src="levelup.mp3" preload="auto"></audio>
 
-            function shuffleArray(arr) {
-                for (let i = arr.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [arr[i], arr[j]] = [arr[j], arr[i]];
-                }
-            }
+  <!-- Modal final -->
+  <div class="overlay" id="overlay">
+    <div class="modal">
+      <div class="title">🎉 ¡Felicitaciones!</div>
+      <div class="score" id="finalScore">Hiciste 0 correctas de 0</div>
+      <p class="msg" id="finalMsg">¡Excelente trabajo! 💪✨</p>
 
-            function pickLessonQueue() {
-                const copy = pool.map(p => ({ ...p }));
-                shuffleArray(copy);
-                lessonQueue = copy.slice(0, TOTAL);
-                currentIndex = 0;
-            }
+      <div class="mistakes" id="mistakesBox" style="display:none;">
+        <h3>Practica donde te equivocaste 👇</h3>
+        <ul id="mistakesList"></ul>
+      </div>
 
-            function updateProgress() {
-                const done = currentIndex;
-                const max = lessonQueue.length;
-                const percent = max === 0 ? 0 : (done / max) * 100;
-                progressBar.style.width = percent + "%";
-                progressText.textContent = `${done}/${max}`;
-            }
+      <div class="controls" style="margin-top:10px;">
+        <button class="main-btn secondary" onclick="closeFinal()">Cerrar</button>
+        <button class="main-btn" id="practiceMistakesBtn" onclick="practiceMistakes()" style="display:none;">
+          Practicar donde me equivoqué
+        </button>
+      </div>
+    </div>
+  </div>
 
-            function renderSteps(steps) {
-                stepsContainer.innerHTML = "";
-                steps.forEach((s, idx) => {
-                    const div = document.createElement("div");
-                    div.className = "step-line" + (idx === steps.length - 1 ? " final" : "");
-                    div.textContent = s;
-                    stepsContainer.appendChild(div);
-                });
-            }
+  <script>
+    /***************
+     * Sonidos
+     ***************/
+    const soundCorrectEl = document.getElementById("sound-correct");
+    const soundWrongEl = document.getElementById("sound-wrong");
+    const soundLevelupEl = document.getElementById("sound-levelup");
 
-            function renderCurrent() {
-                if (currentIndex >= lessonQueue.length) {
-                    showFinal();
-                    return;
-                }
-                current = lessonQueue[currentIndex];
-                answeredCorrectly = false;
+    function playSound(audioElement) {
+      if (!audioElement) return;
+      audioElement.currentTime = 0;
+      audioElement.play().catch(() => { });
+    }
+    function soundCorrect() { playSound(soundCorrectEl); }
+    function soundWrong() { playSound(soundWrongEl); }
+    function soundLevelUp() { playSound(soundLevelupEl); }
 
-                updateProgress();
+    /***************
+     * Pools por nivel
+     ***************/
+    const POOL_BASIC = [
+      { id: 1, eq: "x + 8 = 10", x: 2, steps: ["x = 10 - 8", "x = 2"] },
+      { id: 5, eq: "5x = 25", x: 5, steps: ["x = 25 / 5", "x = 5"] },
+      { id: 12, eq: "6x - 12 = 0", x: 2, steps: ["6x = 0 + 12", "6x = 12", "x = 12 / 6", "x = 2"] },
+      { id: 3, eq: "3x + 4 = 19", x: 5, steps: ["3x = 19 - 4", "3x = 15", "x = 15 / 3", "x = 5"] },
+      { id: 6, eq: "4x + 1 = 21", x: 5, steps: ["4x = 21 - 1", "4x = 20", "x = 20 / 4", "x = 5"] },
+    ];
 
-                equationTitle.textContent = current.eq;
-                renderSteps(current.steps);
+    const POOL_INTERMEDIATE = [
+      { id: 2, eq: "2x - 5 = 7", x: 6, steps: ["2x = 7 + 5", "2x = 12", "x = 12 / 2", "x = 6"] },
+      { id: 4, eq: "x/2 + 7 = 10", x: 6, steps: ["x/2 = 10 - 7", "x/2 = 3", "x = 3 × 2", "x = 6"] },
+      { id: 7, eq: "7x + 2 = 30", x: 4, steps: ["7x = 30 - 2", "7x = 28", "x = 28 / 7", "x = 4"] },
+      { id: 11, eq: "9x - 18 = 45", x: 7, steps: ["9x = 45 + 18", "9x = 63", "x = 63 / 9", "x = 7"] },
+      { id: 10, eq: "2(x + 3) = 14", x: 4, steps: ["x + 3 = 14 / 2", "x + 3 = 7", "x = 7 - 3", "x = 4"] },
+    ];
 
-                feedbackEl.textContent = "";
-                feedbackEl.classList.remove("good", "bad");
-                lessonCard.classList.remove("correct", "wrong");
+    const POOL_ADVANCED = [
+      { id: 8, eq: "x + 5 = 2x - 1", x: 6, steps: ["x - 2x = -1 - 5", "-x = -6", "x = 6"] },
+      { id: 9, eq: "3(x - 2) = 12", x: 6, steps: ["x - 2 = 12 / 3", "x - 2 = 4", "x = 4 + 2", "x = 6"] },
+      { id: 101, eq: "2(x - 4) + 3 = 11", x: 8, steps: ["2x - 8 + 3 = 11", "2x - 5 = 11", "2x = 16", "x = 8"] },
+      { id: 102, eq: "5(x + 1) = 3x + 19", x: 7, steps: ["5x + 5 = 3x + 19", "5x - 3x = 19 - 5", "2x = 14", "x = 7"] },
+      { id: 103, eq: "4x/3 - 2 = 6", x: 6, steps: ["4x/3 = 6 + 2", "4x/3 = 8", "4x = 24", "x = 6"] },
+    ];
 
-                createOptions();
-            }
+    let currentLevel = "basic";
+    let pool = POOL_BASIC;
 
-            function createOptions() {
-                const container = document.getElementById("optionsContainer");
-                container.innerHTML = "";
+    const levelHint = document.getElementById("levelHint");
+    const btnBasic = document.getElementById("btnBasic");
+    const btnMid = document.getElementById("btnMid");
+    const btnAdv = document.getElementById("btnAdv");
 
-                const correct = current.x;
-                const candidates = new Set([correct]);
+    function setActiveLevelButton() {
+      [btnBasic, btnMid, btnAdv].forEach(b => b.classList.remove("active"));
+      if (currentLevel === "basic") btnBasic.classList.add("active");
+      if (currentLevel === "mid") btnMid.classList.add("active");
+      if (currentLevel === "adv") btnAdv.classList.add("active");
+    }
 
-                const deltas = [-3, -2, -1, 1, 2, 3, 4, -4, 5, -5];
-                shuffleArray(deltas);
-                for (const d of deltas) {
-                    if (candidates.size >= 3) break;
-                    candidates.add(correct + d);
-                }
+    function setLevel(level) {
+      currentLevel = level;
 
-                const options = Array.from(candidates).slice(0, 3);
-                shuffleArray(options);
+      if (level === "basic") {
+        pool = POOL_BASIC;
+        levelHint.innerHTML = 'Nivel actual: <b>Básico</b> (más fácil)';
+      } else if (level === "mid") {
+        pool = POOL_INTERMEDIATE;
+        levelHint.innerHTML = 'Nivel actual: <b>Intermedio</b> (un poco más retador)';
+      } else {
+        pool = POOL_ADVANCED;
+        levelHint.innerHTML = 'Nivel actual: <b>Avanzado</b> (más retador)';
+      }
 
-                options.forEach(v => {
-                    const btn = document.createElement("button");
-                    btn.className = "option-btn";
-                    btn.textContent = `x = ${v}`;
-                    btn.onclick = () => checkAnswer(v, btn);
-                    container.appendChild(btn);
-                });
-            }
+      setActiveLevelButton();
+      resetLesson();
+    }
 
-            function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+    btnBasic.addEventListener("click", () => setLevel("basic"));
+    btnMid.addEventListener("click", () => setLevel("mid"));
+    btnAdv.addEventListener("click", () => setLevel("adv"));
 
-            function speakText(text) {
-                if (!("speechSynthesis" in window)) return;
-                const utter = new SpeechSynthesisUtterance(text);
-                utter.lang = "en-US";
-                utter.rate = 0.95;
-                utter.pitch = 1.02;
-                window.speechSynthesis.cancel();
-                window.speechSynthesis.speak(utter);
-            }
-            function speakFeedbackCorrect() { speakText(pick(["Great job!", "Awesome!", "Perfect!", "Nice work!"])); }
-            function speakFeedbackWrong() { speakText(pick(["Not yet, try again.", "Almost, try again.", "Keep trying.", "Don't give up."])); }
+    /***************
+     * Comentarios por paso
+     ***************/
+    function commentForStep(stepText, isFinal) {
+      const s = String(stepText || "").toLowerCase();
+      if (isFinal) return "Listo: aquí está la respuesta.";
+      if (s.includes("(") || s.includes(")")) return "Primero quitamos paréntesis.";
+      if (s.includes("×") || s.includes("*")) return "Multiplicamos para despejar.";
+      if (s.includes("/")) return "Dividimos para dejar a x sola.";
+      if (s.includes("+") && s.includes("=")) return "Pasamos el número al otro lado.";
+      if (s.includes("-") && s.includes("=")) return "Movemos el término para aislar x.";
+      if (s.includes("=-") || s.includes("-x")) return "Cambiamos el signo al final.";
+      if (s.includes("x =")) return "Ya casi: solo calculamos.";
+      return "Vamos paso a paso.";
+    }
 
-            function checkAnswer(value, clickedBtn) {
-                if (!current) return;
-                if (answeredCorrectly) return;
+    /***************
+     * App original
+     ***************/
+    const TOTAL = 10;
 
-                if (value === current.x) {
-                    answeredCorrectly = true;
+    let lessonQueue = [];
+    let currentIndex = 0;
+    let current = null;
 
-                    correctCount++;
-                    correctSpan.textContent = correctCount;
+    let correctCount = 0;
+    let improveCount = 0;
 
-                    feedbackEl.textContent = pick(["✅ Perfect!", "✅ Good job!", "✅ Awesome!", "✅ Nice!"]);
-                    feedbackEl.classList.remove("bad");
-                    feedbackEl.classList.add("good");
+    let answeredCorrectly = false;
 
-                    lessonCard.classList.remove("wrong");
-                    lessonCard.classList.add("correct");
+    const mistakesMap = new Map();
+    let isMistakesMode = false;
 
-                    soundCorrect();
-                    speakFeedbackCorrect();
+    const correctSpan = document.getElementById("correctValue");
+    const improveSpan = document.getElementById("improveValue");
+    const progressBar = document.getElementById("progressBar");
+    const progressText = document.getElementById("progressText");
+    const lessonCard = document.getElementById("lessonCard");
+    const feedbackEl = document.getElementById("feedback");
+    const stepsContainer = document.getElementById("stepsContainer");
+    const equationTitle = document.getElementById("equationTitle");
 
-                    // Deshabilitar todas para evitar doble conteo
-                    document.querySelectorAll(".option-btn").forEach(b => b.disabled = true);
+    function shuffleArray(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+    }
 
-                    if (correctCount > 0 && correctCount % 5 === 0) soundLevelUp();
+    function pickLessonQueue() {
+      const copy = pool.map(p => ({ ...p }));
+      shuffleArray(copy);
+      lessonQueue = copy.slice(0, Math.min(TOTAL, copy.length));
+      currentIndex = 0;
+    }
 
-                } else {
-                    improveCount++;
-                    improveSpan.textContent = improveCount;
+    function updateProgress() {
+      const done = currentIndex;
+      const max = lessonQueue.length;
+      const percent = max === 0 ? 0 : (done / max) * 100;
+      progressBar.style.width = percent + "%";
+      progressText.textContent = `${done}/${max}`;
+    }
 
-                    feedbackEl.textContent = "❌ Not yet. Try again.";
-                    feedbackEl.classList.remove("good");
-                    feedbackEl.classList.add("bad");
+    function renderSteps(steps) {
+      stepsContainer.innerHTML = "";
+      steps.forEach((s, idx) => {
+        const isFinal = idx === steps.length - 1;
 
-                    lessonCard.classList.remove("correct");
-                    lessonCard.classList.add("wrong");
+        const div = document.createElement("div");
+        div.className = "step-line" + (isFinal ? " final" : "");
 
-                    soundWrong();
-                    speakFeedbackWrong();
+        const stepText = document.createElement("div");
+        stepText.textContent = s;
 
-                    // Guardar “por mejorar”
-                    if (!mistakesMap.has(current.id)) {
-                        mistakesMap.set(current.id, { id: current.id, eq: current.eq, x: current.x, steps: current.steps, wrongTries: 1 });
-                    } else {
-                        mistakesMap.get(current.id).wrongTries += 1;
-                    }
+        const comment = document.createElement("div");
+        comment.className = "step-comment";
+        comment.textContent = commentForStep(s, isFinal);
 
-                    // Deshabilitar solo el botón incorrecto
-                    if (clickedBtn) clickedBtn.disabled = true;
-                }
-            }
+        div.appendChild(stepText);
+        div.appendChild(comment);
+        stepsContainer.appendChild(div);
+      });
+    }
 
-            function nextLesson() {
-                // Solo avanzar si ya acertó
-                if (!answeredCorrectly) {
-                    feedbackEl.textContent = "👉 Primero acierta para pasar al siguiente.";
-                    feedbackEl.classList.remove("good");
-                    feedbackEl.classList.add("bad");
-                    lessonCard.classList.add("wrong");
-                    soundWrong();
-                    return;
-                }
-                currentIndex++;
-                renderCurrent();
-            }
+    function renderCurrent() {
+      if (currentIndex >= lessonQueue.length) {
+        showFinal();
+        return;
+      }
+      current = lessonQueue[currentIndex];
+      answeredCorrectly = false;
 
-            function resetLesson() {
-                isMistakesMode = false;
-                mistakesMap.clear();
+      updateProgress();
 
-                correctCount = 0; improveCount = 0;
-                correctSpan.textContent = "0";
-                improveSpan.textContent = "0";
+      equationTitle.textContent = current.eq;
+      renderSteps(current.steps);
 
-                pickLessonQueue();
-                updateProgress();
-                renderCurrent();
-            }
+      feedbackEl.textContent = "";
+      feedbackEl.classList.remove("good", "bad");
+      lessonCard.classList.remove("correct", "wrong");
 
-            function speakCurrent() {
-                const text = `Solve for x. ${equationTitle.textContent}`;
-                if (!("speechSynthesis" in window)) return;
-                const utter = new SpeechSynthesisUtterance(text);
-                utter.lang = "en-US";
-                utter.rate = 0.95;
-                window.speechSynthesis.cancel();
-                window.speechSynthesis.speak(utter);
-            }
+      createOptions();
+    }
 
-            /***************
-             * FINAL + practicar errores
-             ***************/
-            const overlay = document.getElementById("overlay");
-            const finalScore = document.getElementById("finalScore");
-            const finalMsg = document.getElementById("finalMsg");
-            const mistakesBox = document.getElementById("mistakesBox");
-            const mistakesList = document.getElementById("mistakesList");
-            const practiceMistakesBtn = document.getElementById("practiceMistakesBtn");
+    function createOptions() {
+      const container = document.getElementById("optionsContainer");
+      container.innerHTML = "";
 
-            function showFinal() {
-                updateProgress();
-                soundLevelUp();
+      const correct = current.x;
+      const candidates = new Set([correct]);
 
-                const total = lessonQueue.length;
-                finalScore.textContent = `Hiciste ${correctCount} correctas de ${total}`;
-                finalMsg.textContent =
-                    `¡Excelente trabajo! 💪✨
-Sigue practicando, cada intento te hace mejor 🚀`;
+      const deltas = [-3, -2, -1, 1, 2, 3, 4, -4, 5, -5];
+      shuffleArray(deltas);
+      for (const d of deltas) {
+        if (candidates.size >= 3) break;
+        candidates.add(correct + d);
+      }
 
-                const mistakes = Array.from(mistakesMap.values());
-                if (mistakes.length > 0) {
-                    mistakesBox.style.display = "block";
-                    practiceMistakesBtn.style.display = "inline-flex";
-                    mistakesList.innerHTML = "";
-                    mistakes
-                        .sort((a, b) => b.wrongTries - a.wrongTries)
-                        .forEach(m => {
-                            const li = document.createElement("li");
-                            li.textContent = `${m.eq}  (respuesta: x = ${m.x})`;
-                            mistakesList.appendChild(li);
-                        });
-                } else {
-                    mistakesBox.style.display = "none";
-                    practiceMistakesBtn.style.display = "none";
-                }
+      const options = Array.from(candidates).slice(0, 3);
+      shuffleArray(options);
 
-                overlay.classList.add("show");
-            }
+      options.forEach(v => {
+        const btn = document.createElement("button");
+        btn.className = "option-btn";
+        btn.textContent = `x = ${v}`;
+        btn.onclick = () => checkAnswer(v, btn);
+        container.appendChild(btn);
+      });
+    }
 
-            function closeFinal() { overlay.classList.remove("show"); }
+    function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
-            function practiceMistakes() {
-                const mistakes = Array.from(mistakesMap.values());
-                if (mistakes.length === 0) return;
+    function speakText(text) {
+      if (!("speechSynthesis" in window)) return;
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = "en-US";
+      utter.rate = 0.95;
+      utter.pitch = 1.02;
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utter);
+    }
+    function speakFeedbackCorrect() { speakText(pick(["Great job!", "Awesome!", "Perfect!", "Nice work!"])); }
+    function speakFeedbackWrong() { speakText(pick(["Not yet, try again.", "Almost, try again.", "Keep trying.", "Don't give up."])); }
 
-                isMistakesMode = true;
-                lessonQueue = mistakes.map(m => ({ id: m.id, eq: m.eq, x: m.x, steps: m.steps }));
-                currentIndex = 0;
+    function checkAnswer(value, clickedBtn) {
+      if (!current) return;
+      if (answeredCorrectly) return;
 
-                overlay.classList.remove("show");
-                updateProgress();
-                renderCurrent();
-            }
+      if (value === current.x) {
+        answeredCorrectly = true;
 
-            // Inicializar
-            resetLesson();
-        </script>
+        correctCount++;
+        correctSpan.textContent = correctCount;
 
-        <script>
-            // Registrar Service Worker (PWA)
-            if ("serviceWorker" in navigator) {
-                window.addEventListener("load", () => {
-                    navigator.serviceWorker.register("./service-worker.js").catch(() => { });
-                });
-            }
-        </script>
+        feedbackEl.textContent = pick(["✅ Perfect!", "✅ Good job!", "✅ Awesome!", "✅ Nice!"]);
+        feedbackEl.classList.remove("bad");
+        feedbackEl.classList.add("good");
 
-        <script>
-            function shareApp() {
-                const shareData = {
-                    title: "Mini Cursos",
-                    text: "📚 Aprende inglés, ajedrez y matemáticas con esta app educativa",
-                    url: window.location.href
-                };
+        lessonCard.classList.remove("wrong");
+        lessonCard.classList.add("correct");
 
-                if (navigator.share) {
-                    navigator.share(shareData)
-                        .catch(() => { });
-                } else {
-                    // Fallback para navegadores que no soportan Web Share
-                    navigator.clipboard.writeText(shareData.url);
-                    alert("🔗 Link copiado para compartir");
-                }
-            }
-        </script>
-    </body>
+        soundCorrect();
+        speakFeedbackCorrect();
+
+        document.querySelectorAll(".option-btn").forEach(b => b.disabled = true);
+
+        if (correctCount > 0 && correctCount % 5 === 0) soundLevelUp();
+      } else {
+        improveCount++;
+        improveSpan.textContent = improveCount;
+
+        feedbackEl.textContent = "❌ Not yet. Try again.";
+        feedbackEl.classList.remove("good");
+        feedbackEl.classList.add("bad");
+
+        lessonCard.classList.remove("correct");
+        lessonCard.classList.add("wrong");
+
+        soundWrong();
+        speakFeedbackWrong();
+
+        if (!mistakesMap.has(current.id)) {
+          mistakesMap.set(current.id, { id: current.id, eq: current.eq, x: current.x, steps: current.steps, wrongTries: 1 });
+        } else {
+          mistakesMap.get(current.id).wrongTries += 1;
+        }
+
+        if (clickedBtn) clickedBtn.disabled = true;
+      }
+    }
+
+    function nextLesson() {
+      if (!answeredCorrectly) {
+        feedbackEl.textContent = "👉 Primero acierta para pasar al siguiente.";
+        feedbackEl.classList.remove("good");
+        feedbackEl.classList.add("bad");
+        lessonCard.classList.add("wrong");
+        soundWrong();
+        return;
+      }
+      currentIndex++;
+      renderCurrent();
+    }
+
+    function resetLesson() {
+      isMistakesMode = false;
+      mistakesMap.clear();
+
+      correctCount = 0;
+      improveCount = 0;
+      correctSpan.textContent = "0";
+      improveSpan.textContent = "0";
+
+      pickLessonQueue();
+      updateProgress();
+      renderCurrent();
+    }
+
+    function speakCurrent() {
+      const text = `Solve for x. ${equationTitle.textContent}`;
+      if (!("speechSynthesis" in window)) return;
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = "en-US";
+      utter.rate = 0.95;
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utter);
+    }
+
+    /***************
+     * FINAL + practicar errores
+     ***************/
+    const overlay = document.getElementById("overlay");
+    const finalScore = document.getElementById("finalScore");
+    const finalMsg = document.getElementById("finalMsg");
+    const mistakesBox = document.getElementById("mistakesBox");
+    const mistakesList = document.getElementById("mistakesList");
+    const practiceMistakesBtn = document.getElementById("practiceMistakesBtn");
+
+    function showFinal() {
+      updateProgress();
+      soundLevelUp();
+
+      const total = lessonQueue.length;
+      finalScore.textContent = `Hiciste ${correctCount} correctas de ${total}`;
+      finalMsg.textContent = `¡Excelente trabajo! 💪✨\nSigue practicando, cada intento te hace mejor 🚀`;
+
+      const mistakes = Array.from(mistakesMap.values());
+      if (mistakes.length > 0) {
+        mistakesBox.style.display = "block";
+        practiceMistakesBtn.style.display = "inline-flex";
+        mistakesList.innerHTML = "";
+        mistakes
+          .sort((a, b) => b.wrongTries - a.wrongTries)
+          .forEach(m => {
+            const li = document.createElement("li");
+            li.textContent = `${m.eq}  (respuesta: x = ${m.x})`;
+            mistakesList.appendChild(li);
+          });
+      } else {
+        mistakesBox.style.display = "none";
+        practiceMistakesBtn.style.display = "none";
+      }
+
+      overlay.classList.add("show");
+    }
+
+    function closeFinal() { overlay.classList.remove("show"); }
+
+    function practiceMistakes() {
+      const mistakes = Array.from(mistakesMap.values());
+      if (mistakes.length === 0) return;
+
+      isMistakesMode = true;
+      lessonQueue = mistakes.map(m => ({ id: m.id, eq: m.eq, x: m.x, steps: m.steps }));
+      currentIndex = 0;
+
+      overlay.classList.remove("show");
+      updateProgress();
+      renderCurrent();
+    }
+
+    // Inicializar
+    setActiveLevelButton();
+    resetLesson();
+  </script>
+
+  <script>
+    // Registrar Service Worker (PWA)
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./service-worker.js").catch(() => { });
+      });
+    }
+  </script>
+
+  <script>
+    function shareApp() {
+      const shareData = {
+        title: "Mini Cursos",
+        text: "📚 Aprende inglés, ajedrez y matemáticas con esta app educativa",
+        url: window.location.href
+      };
+
+      if (navigator.share) {
+        navigator.share(shareData).catch(() => { });
+      } else {
+        navigator.clipboard.writeText(shareData.url);
+        alert("🔗 Link copiado para compartir");
+      }
+    }
+  </script>
+</body>
 
 </html>
