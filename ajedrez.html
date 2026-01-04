@@ -8,7 +8,6 @@
   <!-- PWA -->
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#1976d2">
-  
 
   <style>
     *{ box-sizing:border-box; font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
@@ -37,19 +36,38 @@
       --hintTo:#7dff7d;
     }
 
-    html{ -webkit-text-size-adjust:100%; }
-
-    body{
-      margin:0;
-      min-height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      background: linear-gradient(145deg,#dbeafe,#e0f2fe);
-      padding: calc(14px + env(safe-area-inset-top)) calc(14px + env(safe-area-inset-right))
-               calc(14px + env(safe-area-inset-bottom)) calc(14px + env(safe-area-inset-left));
+    html{
+      -webkit-text-size-adjust:100%;
+      height:100%;
+      /* ✅ permite scroll real en móviles */
+      overflow-y:auto;
     }
 
+    /* ✅ FIX SCROLL MOBILE: body NO debe quedar "bloqueado" por el flex centrado */
+    body{
+      margin:0;
+      min-height:100%;
+      /* antes: display:flex + align-items:center (esto suele romper scroll en móvil) */
+      display:flex;
+      justify-content:center;
+      align-items:flex-start; /* ✅ importante */
+      background: linear-gradient(145deg,#dbeafe,#e0f2fe);
+
+      /* ✅ padding con safe area */
+      padding:
+        calc(14px + env(safe-area-inset-top))
+        calc(14px + env(safe-area-inset-right))
+        calc(14px + env(safe-area-inset-bottom))
+        calc(14px + env(safe-area-inset-left));
+
+      /* ✅ fuerza scroll si el contenido excede */
+      overflow-y:auto;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-y: contain;
+      touch-action: pan-y; /* ✅ permite deslizar para scroll (el tablero mantiene touch-action:none) */
+    }
+
+    /* ✅ un "wrapper" que no rompe el scroll */
     .app{
       background:#fff;
       width:100%;
@@ -58,6 +76,10 @@
       border-radius:var(--radius);
       box-shadow:0 16px 40px rgba(0,0,0,.12);
       border:3px solid #2563eb;
+
+      /* ✅ separa del borde superior para que no quede pegado */
+      margin-top: 10px;
+      margin-bottom: 18px;
     }
 
     /* ======= MENÚ ======= */
@@ -193,7 +215,7 @@
       display:grid;
       grid-template-columns:repeat(8,1fr);
       grid-template-rows:repeat(8,1fr);
-      touch-action:none; /* ✅ dedo */
+      touch-action:none; /* ✅ dedo para arrastre en tablero */
       position:relative;
       background:transparent;
     }
@@ -503,19 +525,19 @@
           checkKing: "h8"
         },
 
-        // 2) único: Qb8#
+        // 2) 2 mates: Qb8# o Qb7#
         {
           name: "Mate #2 — 2 mates posibles",
           turn: "w",
           pieces: { c7: "wK", b6: "wQ", a8: "bK" },          
           solutions: [
             { from: "b6", to: "b8" }, // Qb8#
-            { from: "b6", to: "b7" }, // Qb7#            
+            { from: "b6", to: "b7" }, // Qb7#
           ],
           checkKing: "a8"
         },
 
-        // 3) 2 mates: Qh7# y Qg7#
+        // 3) 3 mates posibles
         {
           name: "Mate #3 — 3 mates posibles",
           turn: "w",
@@ -523,7 +545,7 @@
           solutions: [
             { from: "h6", to: "h7" }, // Qh7#
             { from: "h6", to: "g7" }, // Qg7#
-            { from: "h6", to: "f8" }, // Qg7#
+            { from: "h6", to: "f8" }, // Qf8#
           ],
           checkKing: "g8"
         },
@@ -549,9 +571,9 @@
           checkKing: "e8"
         },
 
-        // 6) único: Qb7#
+        // 6) tu puzzle “largo” (se mantiene tal cual lo mandaste)
         {
-          name: "Mate #6 — Qb7#",
+          name: "Mate #6 — (táctico)",
           turn: "w",
           pieces: { b7: "wR", c7: "wQ", e5: "wN", g6: "wB", e3: "wP", f4: "wP", g2: "wP", h3: "wP", f1: "bQ", e6: "bP", f5: "bP", g7: "bP", h6: "bP", g8: "bR", h8: "bK"},
           solutions: [{ from: "e5", to: "f7" }],
@@ -819,7 +841,6 @@
         frozen = true;
         render();
 
-        // progreso por sesión
         if(solved < maxProgress) solved++;
         updateProgressBar();
 
@@ -838,12 +859,11 @@
         }
 
       }else{
-        // modo aprendizaje siempre ON: no reinicia
         streak = 0;
         setFeedback("❌ No es mate. Mira la pista y vuelve a intentar.", "bad");
         frozen = false;
         hintLevel = 0;
-        showHint(); // pista automática nivel 1
+        showHint();
       }
     }
 
@@ -933,7 +953,6 @@
       renderCoords();
       buildBoard();
 
-      // selector
       puzzleSel.innerHTML = "";
       PUZZLES.forEach((p,i)=>{
         const opt = document.createElement("option");
