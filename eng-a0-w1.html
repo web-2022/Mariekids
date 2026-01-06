@@ -49,6 +49,29 @@
                 color: #fff;
             }
 
+            /* ✅ Clickable (ir a index.html) */
+            .brand-header-kids.clickable {
+                cursor: pointer;
+                user-select: none;
+                transition: transform 0.12s ease, filter 0.12s ease, box-shadow 0.12s ease;
+            }
+
+            .brand-header-kids.clickable:hover {
+                transform: translateY(-1px);
+                filter: brightness(1.02);
+                box-shadow: 0 18px 34px rgba(37, 99, 235, .28);
+            }
+
+            .brand-header-kids.clickable:active {
+                transform: translateY(0px) scale(0.995);
+            }
+
+            /* Para que el click funcione aunque toques estrellas/burbujas */
+            .brand-header-kids .bubble,
+            .brand-header-kids .star {
+                pointer-events: none;
+            }
+
             .brand-row {
                 position: relative;
                 z-index: 2;
@@ -151,6 +174,8 @@
                 top: -18px;
                 animation-delay: 0s;
                 transform: rotate(5deg);
+                width: 84px;
+                height: 84px;
             }
 
             .b2 {
@@ -169,9 +194,8 @@
                 animation-delay: 1.3s;
             }
 
-            /* EMovimiento flotante*/
+            /* Movimiento flotante*/
             @keyframes floaty {
-
                 0%,
                 100% {
                     transform: translateY(0) scale(1);
@@ -181,9 +205,6 @@
                     transform: translateY(-8px) scale(1.03);
                 }
             }
-
-
-
 
             /* NAV */
             .nav {
@@ -313,41 +334,17 @@
             }
 
             @keyframes pulse {
-                0% {
-                    transform: scale(1)
-                }
-
-                50% {
-                    transform: scale(1.03)
-                }
-
-                100% {
-                    transform: scale(1)
-                }
+                0% { transform: scale(1) }
+                50% { transform: scale(1.03) }
+                100% { transform: scale(1) }
             }
 
             @keyframes shake {
-
-                0%,
-                100% {
-                    transform: translateX(0)
-                }
-
-                20% {
-                    transform: translateX(-4px)
-                }
-
-                40% {
-                    transform: translateX(4px)
-                }
-
-                60% {
-                    transform: translateX(-4px)
-                }
-
-                80% {
-                    transform: translateX(4px)
-                }
+                0%, 100% { transform: translateX(0) }
+                20% { transform: translateX(-4px) }
+                40% { transform: translateX(4px) }
+                60% { transform: translateX(-4px) }
+                80% { transform: translateX(4px) }
             }
 
             .emoji-container {
@@ -486,13 +483,8 @@
             }
 
             /* Secciones */
-            .section {
-                display: none;
-            }
-
-            .section.active {
-                display: block;
-            }
+            .section { display: none; }
+            .section.active { display: block; }
 
             /* Tarjetas placeholder */
             .placeholder-title {
@@ -513,16 +505,13 @@
     <body>
         <div class="app">
 
-            <!-- Menú de navegación -->
-            <div class="nav" role="navigation" aria-label="Cursos">
-                <button class="nav-btn active" id="tabEnglish" onclick="switchCourse('english')">🇺🇸 Inglés</button>
-                <button class="nav-btn" onclick="location.href='ajedrez.html'">♟️ Ajedrez</button>
-                <button class="nav-btn" onclick="location.href='ruta-mate.html'">➗ Matemáticas</button>
-
-            </div>
-
-            <!-- 🌟 Encabezado infantil: Marie Kids -->
-            <div class="brand-header-kids" aria-label="Marie Kids">
+            <!-- 🌟 Encabezado infantil: Marie Kids (CLICK -> index.html) -->
+            <div class="brand-header-kids clickable"
+                 aria-label="Marie Kids"
+                 role="link"
+                 tabindex="0"
+                 onclick="goHome()"
+                 onkeydown="if(event.key==='Enter' || event.key===' '){ event.preventDefault(); goHome(); }">
                 <div class="bubble b1"></div>
                 <div class="bubble b2"></div>
                 <div class="bubble b3"></div>
@@ -532,7 +521,7 @@
                 <div class="star s3">🌟</div>
 
                 <div class="brand-row">
-                    <div class="kids-badge" aria-hidden="true">🌎</div>
+                    <div class="kids-badge" aria-hidden="true">🧸</div>
                     <div>
                         <div class="kids-title">Marie Kids</div>
                         <div class="kids-subtitle">
@@ -573,10 +562,8 @@
                     <div class="word" id="wordEn">sofa</div>
                     <div class="translation" id="wordEs">sofá</div>
 
-                    <p class="example-en"><span class="label">Inglés:</span> <span id="exampleEn">This is a sofa.</span>
-                    </p>
-                    <p class="example-es"><span class="label">Español:</span> <span id="exampleEs">Este es un
-                            sofá.</span></p>
+                    <p class="example-en"><span class="label">Inglés:</span> <span id="exampleEn">This is a sofa.</span></p>
+                    <p class="example-es"><span class="label">Español:</span> <span id="exampleEs">Este es un sofá.</span></p>
 
                     <p class="question" id="question">What is this?</p>
 
@@ -587,7 +574,6 @@
                 <div class="controls">
                     <button class="main-btn" onclick="nextLesson()">Next</button>
                     <button class="main-btn" onclick="shareApp()">📤 Compartir app</button>
-
                 </div>
             </section>
 
@@ -598,8 +584,7 @@
 
                 <div class="card">
                     <div class="placeholder-title">En construcción</div>
-                    <p class="placeholder-text">¿Quieres que sea “adivina la pieza”, “mate en 1”, o “movimientos
-                        legales”?</p>
+                    <p class="placeholder-text">¿Quieres que sea “adivina la pieza”, “mate en 1”, o “movimientos legales”?</p>
                 </div>
             </section>
 
@@ -621,22 +606,27 @@
         <audio id="sound-levelup" src="levelup.mp3" preload="auto"></audio>
 
         <script>
+            // ✅ IR A HOME (index.html)
+            function goHome() {
+                location.href = "index.html";
+            }
+        </script>
+
+        <script>
             // ====== NAVEGACIÓN DE CURSOS ======
             function switchCourse(course) {
-                // activar secciones
                 document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
                 document.getElementById("courseEnglish").classList.toggle("active", course === "english");
                 document.getElementById("courseChess").classList.toggle("active", course === "chess");
                 document.getElementById("courseMath").classList.toggle("active", course === "math");
 
-                // activar tabs
                 document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
                 document.getElementById("tabEnglish").classList.toggle("active", course === "english");
                 document.getElementById("tabChess").classList.toggle("active", course === "chess");
                 document.getElementById("tabMath").classList.toggle("active", course === "math");
             }
 
-            // ====== INGLÉS (tu código, sin cambiar lógica) ======
+            // ====== INGLÉS ======
             const itemsData = [
                 {
                     emoji: "🛋️", en: "sofa", es: "sofá",
@@ -891,6 +881,7 @@
                 });
             }
         </script>
+
         <script>
             function shareApp() {
                 const shareData = {
@@ -903,7 +894,6 @@
                     navigator.share(shareData)
                         .catch(() => { });
                 } else {
-                    // Fallback para navegadores que no soportan Web Share
                     navigator.clipboard.writeText(shareData.url);
                     alert("🔗 Link copiado para compartir");
                 }
@@ -913,5 +903,3 @@
     </body>
 
 </html>
-
-
