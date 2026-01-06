@@ -37,7 +37,6 @@
             }
 
             /* 🌟 Encabezado infantil */
-            /* Contenedor*/
             .brand-header-kids {
                 position: relative;
                 overflow: hidden;
@@ -108,16 +107,42 @@
                 pointer-events: none;
             }
 
-            .star.s1 { top: 8px; right: 18px; font-size: 1.15rem; animation-delay: 0s; }
-            .star.s2 { top: 40px; right: 60px; font-size: .95rem; animation-delay: .6s; }
-            .star.s3 { bottom: 12px; right: 26px; font-size: 1.25rem; animation-delay: 1.1s; }
-
-            @keyframes twinkle {
-                0%, 100% { transform: scale(1); opacity: .9; }
-                50% { transform: scale(1.08); opacity: 1; }
+            .star.s1 {
+                top: 8px;
+                right: 18px;
+                font-size: 1.15rem;
+                animation-delay: 0s;
             }
 
-            /* Estilo base de burbuja + animación*/
+            .star.s2 {
+                top: 40px;
+                right: 60px;
+                font-size: .95rem;
+                animation-delay: .6s;
+            }
+
+            .star.s3 {
+                bottom: 12px;
+                right: 26px;
+                font-size: 1.25rem;
+                animation-delay: 1.1s;
+            }
+
+            @keyframes twinkle {
+
+                0%,
+                100% {
+                    transform: scale(1);
+                    opacity: .9;
+                }
+
+                50% {
+                    transform: scale(1.08);
+                    opacity: 1;
+                }
+            }
+
+            /* Burbujas */
             .bubble {
                 position: absolute;
                 z-index: 0;
@@ -126,10 +151,8 @@
                 border: 1px solid rgba(255, 255, 255, .28);
                 box-shadow: inset 0 2px 0 rgba(255, 255, 255, .45);
                 pointer-events: none;
-
                 -webkit-backdrop-filter: blur(2px);
                 backdrop-filter: blur(2px);
-
                 animation: floaty 6s ease-in-out infinite;
             }
 
@@ -159,8 +182,15 @@
             }
 
             @keyframes floaty {
-                0%, 100% { transform: translateY(0) scale(1); }
-                50% { transform: translateY(-8px) scale(1.03); }
+
+                0%,
+                100% {
+                    transform: translateY(0) scale(1);
+                }
+
+                50% {
+                    transform: translateY(-8px) scale(1.03);
+                }
             }
 
             h1 {
@@ -197,7 +227,7 @@
 
             .tile:hover {
                 transform: translateY(-1px);
-                box-shadow: 0 10px 20px rgba(0,0,0,.10);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, .10);
                 border-color: #bfdbfe;
                 background: #ffffff;
             }
@@ -251,13 +281,42 @@
                 padding: 12px 14px;
                 line-height: 1.35;
             }
+
+            /* ===== BOTONES ===== */
+            .controls {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-top: 14px;
+            }
+
+            button.main-btn {
+                flex: 1;
+                border: none;
+                padding: 10px 12px;
+                border-radius: 999px;
+                font-size: 0.95rem;
+                cursor: pointer;
+                background: linear-gradient(90deg, #60a5fa, #2563eb);
+                color: #ffffff;
+                font-weight: 700;
+                letter-spacing: 0.02em;
+                transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.15s ease;
+                min-width: 160px;
+            }
+
+            button.main-btn:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+                filter: brightness(1.05);
+            }
         </style>
     </head>
 
     <body>
         <div class="app">
 
-            <!-- 🌟 Encabezado infantil: Marie Kids -->
+            <!-- 🌟 Encabezado infantil -->
             <div class="brand-header-kids" aria-label="Marie Kids">
                 <div class="bubble b1"></div>
                 <div class="bubble b2"></div>
@@ -268,9 +327,9 @@
                 <div class="star s3">🌟</div>
 
                 <div class="brand-row">
-                    <div class="kids-badge" aria-hidden="true">MC</div>
+                    <div class="kids-badge" aria-hidden="true">🧸</div>
                     <div>
-                        <div class="kids-title">Mini Cursos</div>
+                        <div class="kids-title">Cursos para crecer...</div>
                         <div class="kids-subtitle">
                             Elige un curso para empezar
                             <span class="kids-pill">👉 Toca</span>
@@ -285,7 +344,7 @@
 
             <div class="menu">
                 <!-- Cambia el href a tus archivos reales -->
-                <div class="tile" onclick="location.href='matematicas.html'">
+                <div class="tile" onclick="location.href='ruta-mate.html'">
                     <div class="icon">➗</div>
                     <div>
                         <p class="tile-title">Matemáticas</p>
@@ -294,7 +353,7 @@
                     </div>
                 </div>
 
-                <div class="tile" onclick="location.href='ingles.html'">
+                <div class="tile" onclick="location.href='ruta-ingles.html'">
                     <div class="icon">🇺🇸</div>
                     <div>
                         <p class="tile-title">Inglés</p>
@@ -303,7 +362,7 @@
                     </div>
                 </div>
 
-                <div class="tile" onclick="location.href='ajedrez.html'">
+                <div class="tile" onclick="location.href='ruta-chess.html'">
                     <div class="icon">♟️</div>
                     <div>
                         <p class="tile-title">Ajedrez</p>
@@ -312,7 +371,7 @@
                     </div>
                 </div>
 
-                <div class="tile" onclick="location.href='cuentos.html'">
+                <div class="tile" onclick="location.href='#'">
                     <div class="icon">📚</div>
                     <div>
                         <p class="tile-title">Cuentos</p>
@@ -321,7 +380,7 @@
                     </div>
                 </div>
 
-                <div class="tile" onclick="location.href='crece.html'">
+                <div class="tile" onclick="location.href='#'">
                     <div class="icon">🌱</div>
                     <div>
                         <p class="tile-title">Crece</p>
@@ -330,7 +389,7 @@
                     </div>
                 </div>
 
-                <div class="tile" onclick="location.href='matrimonio.html'">
+                <div class="tile" onclick="location.href='#'">
                     <div class="icon">💍</div>
                     <div>
                         <p class="tile-title">Matrimonio para siempre</p>
@@ -340,8 +399,13 @@
                 </div>
             </div>
 
+            <div class="controls">
+                <button class="main-btn" onclick="shareApp()">📤 Compartir app</button>
+            </div>
+
             <div class="note">
-                Tip: si alguna página aún no existe, crea el archivo vacío (por ejemplo <b>cuentos.html</b>) para que no dé error.
+                Tip: si alguna página aún no existe, crea el archivo vacío (por ejemplo <b>cuentos.html</b>) para que no
+                dé error.
             </div>
         </div>
 
@@ -351,6 +415,23 @@
                 window.addEventListener("load", () => {
                     navigator.serviceWorker.register("./service-worker.js").catch(() => { });
                 });
+            }
+        </script>
+
+        <script>
+            function shareApp() {
+                const shareData = {
+                    title: "Mini Cursos",
+                    text: "📚 Aprende inglés, ajedrez y matemáticas con esta app educativa",
+                    url: window.location.href
+                };
+
+                if (navigator.share) {
+                    navigator.share(shareData).catch(() => { });
+                } else {
+                    navigator.clipboard.writeText(shareData.url);
+                    alert("🔗 Link copiado para compartir");
+                }
             }
         </script>
 
