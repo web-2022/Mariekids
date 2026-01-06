@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marie Kids • Ajedrez • Clase 1: Tablero y Coordenadas</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1976d2">
+
+  <style>
+    * { box-sizing: border-box; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    body{
+      margin:0;
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background: linear-gradient(145deg,#dbeafe,#e0f2fe);
+      padding:18px;
+    }
+    .app{
+      background:#fff;
+      width:100%;
+      max-width:520px;
+      padding:18px;
+      border-radius:24px;
+      box-shadow:0 16px 40px rgba(0,0,0,.12);
+      border:3px solid #2563eb;
+    }
+
+    /* ===== ENCABEZADO ===== */
+    .brand-header-kids{
+      position:relative;
+      overflow:hidden;
+      padding:14px;
+      border-radius:22px;
+      margin-bottom:12px;
+      background: linear-gradient(135deg,#93c5fd,#60a5fa,#2563eb);
+      color:#fff;
+      cursor:pointer;
+    }
+    .brand-row{ display:flex; align-items:center; gap:12px; position:relative; z-index:2; }
+    .kids-badge{
+      width:52px;height:52px;border-radius:18px;
+      display:grid;place-items:center;
+      font-size:1.5rem;
+      background:rgba(255,255,255,.25);
+    }
+    .kids-title{ font-weight:900; font-size:1.5rem; }
+    .kids-subtitle{ font-size:.9rem; font-weight:700; opacity:.95; display:flex; gap:8px; flex-wrap:wrap; }
+    .kids-pill{ background:rgba(255,255,255,.25); padding:4px 10px; border-radius:999px; font-size:.8rem; }
+
+    h1{ text-align:center; margin:6px 0 4px; font-size:1.5rem; }
+    .subtitle{ text-align:center; font-size:.95rem; color:#6b7280; margin-bottom:12px; }
+
+    /* ===== PROGRESO ===== */
+    .status-bar{
+      display:flex; justify-content:space-between;
+      padding:8px 12px; border-radius:999px;
+      background:#eff6ff; border:1px solid #bfdbfe;
+      font-size:.9rem; margin-bottom:8px;
+    }
+    .xp span{ color:#16a34a; font-weight:800; }
+    .hearts span{ color:#f97316; font-weight:800; }
+
+    .progress-wrapper{ margin-bottom:14px; }
+    .progress-label{ display:flex; justify-content:space-between; font-size:.8rem; color:#6b7280; }
+    .progress{ height:10px; background:#e5e7eb; border-radius:999px; overflow:hidden; }
+    .progress-inner{
+      height:100%; width:0%;
+      background: linear-gradient(90deg,#60a5fa,#2563eb);
+      transition:width .2s ease;
+    }
+
+    /* ===== TABLERO ===== */
+    .card{
+      background:#f9fafb;
+      border:1px solid #e5e7eb;
+      border-radius:20px;
+      padding:16px;
+    }
+
+    .board-wrap{
+      display:grid;
+      grid-template-columns: 22px 1fr;
+      gap:8px;
+      justify-content:center;
+      margin-top:10px;
+    }
+    .ranks{
+      display:grid;
+      grid-template-rows:repeat(8,1fr);
+      font-weight:800;
+      font-size:.85rem;
+      color:#374151;
+    }
+    .rank{ display:flex; align-items:center; justify-content:center; height:38px; }
+
+    .board{
+      display:grid;
+      grid-template-columns:repeat(8,1fr);
+      aspect-ratio:1/1;
+      max-width:320px;
+      border-radius:18px;
+      overflow:hidden;
+      border:2px solid #bfdbfe;
+    }
+    .sq{
+      display:grid;
+      place-items:center;
+      position:relative;
+      font-size:.75rem;
+      font-weight:800;
+      cursor:pointer;
+    }
+    .sq.light{ background:#eff6ff; }
+    .sq.dark{ background:#93c5fd; }
+    .sq.target{
+      outline:3px solid #f59e0b;
+      outline-offset:-3px;
+    }
+    .mini{
+      position:absolute;
+      bottom:4px; right:6px;
+      font-size:.7rem;
+      opacity:.7;
+    }
+
+    .files{
+      display:grid;
+      grid-template-columns:22px repeat(8,1fr);
+      margin-top:8px;
+      font-weight:800;
+      font-size:.85rem;
+      color:#374151;
+    }
+    .file{ text-align:center; }
+
+    /* ===== INTERACCIÓN ===== */
+    .controls{ display:flex; gap:10px; margin-top:10px; }
+    .main-btn{
+      flex:1;
+      border:none;
+      padding:10px;
+      border-radius:999px;
+      font-weight:800;
+      background: linear-gradient(90deg,#60a5fa,#2563eb);
+      color:#fff;
+      cursor:pointer;
+    }
+
+    .options{ display:flex; gap:8px; margin-top:10px; }
+    .option-btn{
+      flex:1;
+      padding:10px;
+      border-radius:14px;
+      border:1px solid #d1d5db;
+      background:#fff;
+      font-weight:900;
+      cursor:pointer;
+    }
+    .option-btn:disabled{ opacity:.6; }
+
+    .feedback{
+      text-align:center;
+      font-weight:800;
+      margin-top:8px;
+      min-height:22px;
+    }
+    .good{ color:#16a34a; }
+    .bad{ color:#ef4444; }
+  </style>
+</head>
+
+<body>
+<div class="app">
+
+  <!-- ENCABEZADO -->
+  <div class="brand-header-kids" onclick="location.href='index.html'">
+    <div class="brand-row">
+      <div class="kids-badge">♟️</div>
+      <div>
+        <div class="kids-title">Marie Kids</div>
+        <div class="kids-subtitle">
+          <span class="kids-pill">Clase 1</span>
+          <span class="kids-pill">Tablero</span>
+          <span class="kids-pill">Coordenadas</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h1>Tablero y Coordenadas</h1>
+  <p class="subtitle">Aprende a leer casillas como <b>e4</b></p>
+
+  <div class="status-bar">
+    <div class="xp">✅ Bien: <span id="xpValue">0</span></div>
+    <div class="hearts">🧠 Intentos: <span id="heartsValue">0</span></div>
+  </div>
+
+  <div class="progress-wrapper">
+    <div class="progress-label">
+      <span>Progreso</span>
+      <span id="progressText">0/10</span>
+    </div>
+    <div class="progress"><div class="progress-inner" id="progressBar"></div></div>
+  </div>
+
+  <div class="card">
+    <button class="main-btn" onclick="speakHint()">🔊 Escuchar explicación</button>
+
+    <div class="board-wrap">
+      <div class="ranks" id="ranksCol"></div>
+      <div>
+        <div class="board" id="board"></div>
+        <div class="files" id="filesRow"><div></div></div>
+      </div>
+    </div>
+
+    <p class="subtitle"><b>¿Qué coordenada es la casilla marcada?</b></p>
+    <div class="options" id="optionsContainer"></div>
+    <div class="feedback" id="feedback"></div>
+  </div>
+
+  <div class="controls">
+    <button class="main-btn" onclick="newQuestion()">Siguiente</button>
+    <button class="main-btn" onclick="shareApp()">📤 Compartir</button>
+  </div>
+
+</div>
+
+<script>
+/* ===== VOZ EN ESPAÑOL ===== */
+function speakText(text){
+  if(!("speechSynthesis" in window)) return;
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = "es-ES";
+  u.rate = 0.9;
+  u.pitch = 1.05;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+
+function speakHint(){
+  speakText(
+    "En ajedrez, cada casilla tiene una coordenada. " +
+    "Primero va la letra de la columna, de a a h. " +
+    "Luego va el número de la fila, del uno al ocho. " +
+    "Por ejemplo, e cuatro."
+  );
+}
+
+/* ===== TABLERO ===== */
+const files=["a","b","c","d","e","f","g","h"];
+const ranks=[8,7,6,5,4,3,2,1];
+const boardEl=document.getElementById("board");
+const ranksCol=document.getElementById("ranksCol");
+const filesRow=document.getElementById("filesRow");
+
+let currentTarget="";
+let progress=0, correct=0, wrong=0;
+const maxProgress=10;
+
+function buildBoard(){
+  boardEl.innerHTML="";
+  for(let r=8;r>=1;r--){
+    for(let f=1;f<=8;f++){
+      const coord=files[f-1]+r;
+      const sq=document.createElement("div");
+      sq.className="sq "+(((f+r)%2)?"dark":"light");
+      sq.dataset.coord=coord;
+      sq.innerHTML=`<div class="mini">${coord}</div>`;
+      boardEl.appendChild(sq);
+    }
+  }
+}
+
+function buildLabels(){
+  ranksCol.innerHTML="";
+  ranks.forEach(r=>ranksCol.innerHTML+=`<div class="rank">${r}</div>`);
+  filesRow.innerHTML="<div></div>";
+  files.forEach(f=>filesRow.innerHTML+=`<div class="file">${f}</div>`);
+}
+
+function randomCoord(){
+  return files[Math.floor(Math.random()*8)]+(Math.floor(Math.random()*8)+1);
+}
+
+function newQuestion(){
+  document.querySelectorAll(".sq").forEach(s=>s.classList.remove("target"));
+  currentTarget=randomCoord();
+  document.querySelector(`.sq[data-coord="${currentTarget}"]`).classList.add("target");
+  renderOptions();
+}
+
+function renderOptions(){
+  const cont=document.getElementById("optionsContainer");
+  cont.innerHTML="";
+  const opts=new Set([currentTarget]);
+  while(opts.size<3) opts.add(randomCoord());
+  [...opts].sort(()=>Math.random()-0.5).forEach(o=>{
+    const b=document.createElement("button");
+    b.className="option-btn";
+    b.textContent=o;
+    b.onclick=()=>checkAnswer(o,b);
+    cont.appendChild(b);
+  });
+}
+
+function checkAnswer(ans,btn){
+  const fb=document.getElementById("feedback");
+  if(ans===currentTarget){
+    correct++; progress++;
+    fb.textContent="¡Muy bien!";
+    fb.className="feedback good";
+    speakText("¡Muy bien!");
+  }else{
+    wrong++;
+    fb.textContent="Inténtalo otra vez";
+    fb.className="feedback bad";
+    speakText("Inténtalo otra vez");
+    btn.disabled=true;
+  }
+  document.getElementById("xpValue").textContent=correct;
+  document.getElementById("heartsValue").textContent=wrong;
+  document.getElementById("progressText").textContent=`${progress}/${maxProgress}`;
+  document.getElementById("progressBar").style.width=(progress/maxProgress*100)+"%";
+}
+
+function shareApp(){
+  const data={title:"Marie Kids Ajedrez",text:"Clase 1: Tablero y Coordenadas",url:location.href};
+  if(navigator.share) navigator.share(data);
+  else{ navigator.clipboard.writeText(data.url); alert("Link copiado"); }
+}
+
+/* INIT */
+buildLabels();
+buildBoard();
+newQuestion();
+</script>
+
+</body>
+</html>
