@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="es">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Marie Kids • Suma Algebraica</title>
+
+        <!-- PWA -->
+        <link rel="manifest" href="manifest.json">
+        <meta name="theme-color" content="#1976d2">
+
+        <style>
+            :root {
+                --bg1: #dbeafe;
+                --bg2: #e0f2fe;
+                --card: #fff;
+                --radius: 22px;
+                --shadow: 0 18px 40px rgba(0, 0, 0, .14);
+                --ok: #16a34a;
+                --bad: #ef4444;
+                --muted: rgba(15, 23, 42, .62);
+            }
+
+            * {
+                box-sizing: border-box;
+                font-family: system-ui, -apple-system, "Segoe UI", sans-serif
+            }
+
+            body {
+                margin: 0;
+                min-height: 100dvh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: linear-gradient(145deg, var(--bg2), var(--bg1));
+                padding: 12px;
+            }
+
+            .app {
+                width: 100%;
+                max-width: 520px;
+                background: var(--card);
+                border-radius: var(--radius);
+                box-shadow: var(--shadow);
+                padding: 14px;
+            }
+
+            .header {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+                margin-bottom: 12px;
+            }
+
+            .logo {
+                width: 44px;
+                height: 44px;
+                border-radius: 14px;
+                background: linear-gradient(135deg, #2563eb, #6366f1);
+                color: #fff;
+                font-weight: 900;
+                display: grid;
+                place-items: center;
+                text-decoration: none;
+                flex: 0 0 auto;
+            }
+
+            .title {
+                font-weight: 950;
+                font-size: 18px;
+                line-height: 1.05
+            }
+
+            .sub {
+                font-size: 12px;
+                color: var(--muted);
+                font-weight: 800
+            }
+
+            .controls {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 12px;
+                align-items: center;
+                gap: 10px;
+                flex-wrap: wrap;
+            }
+
+            button.primary {
+                border: none;
+                border-radius: 14px;
+                padding: 10px 14px;
+                font-weight: 900;
+                cursor: pointer;
+                background: linear-gradient(135deg, #22c55e, #16a34a);
+                color: #fff;
+            }
+
+            .card {
+                background: #f9fafb;
+                border-radius: 20px;
+                padding: 18px;
+                border: 1px solid rgba(2, 6, 23, .1);
+                text-align: center;
+            }
+
+            .operation-row {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 14px;
+                margin: 18px 0 10px;
+                flex-wrap: wrap;
+            }
+
+            .num {
+                font-size: clamp(2.4rem, 8vw, 3.2rem);
+                font-weight: 1000;
+                background: linear-gradient(135deg, #93c5fd, #2563eb);
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+                text-shadow:
+                    -1px -1px 0 #1e3a8a,
+                    1px -1px 0 #1e3a8a,
+                    -1px 1px 0 #1e3a8a,
+                    1px 1px 0 #1e3a8a,
+                    0 8px 18px rgba(37, 99, 235, .35);
+                min-width: 64px;
+                text-align: center;
+            }
+
+            .sign {
+                font-size: 2.2rem;
+                font-weight: 900;
+                color: #1e3a8a;
+                min-width: 18px;
+                text-align: center;
+            }
+
+            .speak-btn {
+                font-size: 1.35rem;
+                border-radius: 999px;
+                border: 1px solid rgba(2, 6, 23, .15);
+                background: #eff6ff;
+                padding: 6px 10px;
+                cursor: pointer;
+            }
+
+            .speak-btn:hover {
+                background: #dbeafe
+            }
+
+            /* Botón ver solución */
+            .mini-btn {
+                border: 1px solid rgba(2, 6, 23, .14);
+                background: #fff;
+                color: #0f172a;
+                border-radius: 14px;
+                padding: 10px 12px;
+                font-weight: 950;
+                cursor: pointer;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                margin-top: 6px;
+            }
+
+            .mini-btn:hover {
+                background: #eef2ff;
+                border-color: rgba(37, 99, 235, .35)
+            }
+
+            .mini-btn:active {
+                transform: scale(.99)
+            }
+
+            /* Solución paso a paso */
+            .solution {
+                margin-top: 12px;
+                text-align: left;
+                background: #ffffff;
+                border: 1px solid rgba(2, 6, 23, .10);
+                border-radius: 16px;
+                padding: 12px;
+                display: none;
+            }
+
+            .solution.show {
+                display: block
+            }
+
+            .solution h3 {
+                margin: 0 0 8px;
+                font-size: 14px;
+                font-weight: 950;
+                color: #0f172a;
+            }
+
+            .steps {
+                margin: 0;
+                padding-left: 18px;
+                color: rgba(15, 23, 42, .86);
+                font-weight: 800;
+                font-size: 13px;
+                line-height: 1.35;
+            }
+
+            .steps li {
+                margin: 6px 0
+            }
+
+            .mathline {
+                font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+                font-weight: 950;
+                background: #f1f5f9;
+                border: 1px solid rgba(2, 6, 23, .08);
+                padding: 6px 10px;
+                border-radius: 12px;
+                display: inline-block;
+                margin-top: 8px;
+            }
+
+            .options {
+                display: flex;
+                gap: 10px;
+                margin-top: 16px;
+                flex-wrap: wrap;
+            }
+
+            .option {
+                flex: 1;
+                min-width: 80px;
+                border-radius: 14px;
+                border: 1px solid rgba(2, 6, 23, .15);
+                background: #fff;
+                padding: 10px;
+                font-size: 1.05rem;
+                font-weight: 900;
+                cursor: pointer;
+            }
+
+            .option:hover {
+                background: #e0f2fe
+            }
+
+            .feedback {
+                margin-top: 14px;
+                font-weight: 900;
+                min-height: 24px;
+            }
+
+            .good {
+                color: var(--ok)
+            }
+
+            .bad {
+                color: var(--bad)
+            }
+
+            .rule {
+                background: #eef2ff;
+                border-left: 4px solid #2563eb;
+                padding: 6px 10px;
+                border-radius: 10px;
+                font-weight: 900;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <div class="app">
+
+            <div class="header">
+                <a href="index.html" class="logo">MK</a>
+                <div>
+                    <div class="title">Suma algebraica</div>
+                    <div class="sub">Números enteros (+ y −)</div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <div class="sub">Escucha y responde</div>
+                <button class="primary" onclick="newExercise()">🔄 Nuevo</button>
+            </div>
+
+            <div class="card">
+
+                <div class="operation-row">
+                    <div class="num" id="a">-3</div>
+                    <div class="sign" id="sign">+</div>
+                    <div class="num" id="b">2</div>
+                    <button class="speak-btn" onclick="speakExercise()" aria-label="Escuchar ejercicio">🔊</button>
+                </div>
+
+                <!-- ✅ Botón ver solución -->
+                <button class="mini-btn" id="btnSolution" onclick="toggleSolution()">
+                    👀 Ver solución
+                </button>
+
+                <!-- ✅ Panel solución paso a paso -->
+                <div class="solution" id="solutionBox" aria-live="polite">
+                    <h3>Solución paso a paso</h3>
+                    <ol class="steps" id="stepsList"></ol>
+                    <div class="mathline" id="finalLine"></div>
+                </div>
+
+                <div class="options" id="options"></div>
+                <div class="feedback" id="feedback"></div>
+
+            </div>
+
+        </div>
+
+        <script>
+            /* ===============================
+               🔊 WEB AUDIO (SIN MP3)
+            =============================== */
+            let audioCtx = null;
+
+            function unlockAudioContext() {
+                if (audioCtx) return;
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            document.addEventListener("pointerdown", unlockAudioContext, { once: true });
+
+            function playSuccess() {
+                if (!audioCtx) return;
+                const o = audioCtx.createOscillator();
+                const g = audioCtx.createGain();
+                o.type = "sine";
+                o.frequency.setValueAtTime(720, audioCtx.currentTime);
+                o.frequency.exponentialRampToValueAtTime(1180, audioCtx.currentTime + 0.14);
+                g.gain.setValueAtTime(0.22, audioCtx.currentTime);
+                g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.18);
+                o.connect(g).connect(audioCtx.destination);
+                o.start();
+                o.stop(audioCtx.currentTime + 0.18);
+            }
+
+            function playError() {
+                if (!audioCtx) return;
+                const o = audioCtx.createOscillator();
+                const g = audioCtx.createGain();
+                o.type = "triangle";
+                o.frequency.setValueAtTime(260, audioCtx.currentTime);
+                o.frequency.exponentialRampToValueAtTime(120, audioCtx.currentTime + 0.22);
+                g.gain.setValueAtTime(0.22, audioCtx.currentTime);
+                g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.26);
+                o.connect(g).connect(audioCtx.destination);
+                o.start();
+                o.stop(audioCtx.currentTime + 0.26);
+            }
+
+            /* ===============================
+               🧠 LÓGICA
+            =============================== */
+            let current = {};
+            let solutionVisible = false;
+
+            function rand(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+
+            function formatOp(a, b) {
+                return `${a} ${b >= 0 ? "+" : "-"} ${Math.abs(b)}`;
+            }
+
+            function newExercise() {
+                let a = rand(-12, 12);
+                let b = rand(-12, 12);
+                if (a === 0 && b === 0) return newExercise();
+
+                current = { a, b, ans: a + b };
+
+                document.getElementById("a").textContent = a;
+                document.getElementById("b").textContent = Math.abs(b);
+                document.getElementById("sign").textContent = b >= 0 ? "+" : "-";
+
+                // opciones
+                const opts = new Set([current.ans]);
+                while (opts.size < 3) {
+                    const fake = current.ans + rand(-6, 6);
+                    if (fake !== current.ans) opts.add(fake);
+                }
+
+                const cont = document.getElementById("options");
+                cont.innerHTML = "";
+                [...opts].sort(() => Math.random() - 0.5).forEach(v => {
+                    const btn = document.createElement("button");
+                    btn.className = "option";
+                    btn.textContent = v;
+                    btn.onclick = () => check(v);
+                    cont.appendChild(btn);
+                });
+
+                // feedback
+                const fb = document.getElementById("feedback");
+                fb.textContent = "";
+                fb.className = "feedback";
+
+                // solución: se oculta y se regenera
+                solutionVisible = false;
+                document.getElementById("solutionBox").classList.remove("show");
+                document.getElementById("btnSolution").innerHTML = "👀 Ver solución";
+                renderSolutionSteps();
+            }
+
+            function check(val) {
+                const fb = document.getElementById("feedback");
+                if (val === current.ans) {
+                    fb.textContent = "✅ ¡Muy bien!";
+                    fb.className = "feedback good";
+                    playSuccess();
+                } else {
+                    fb.textContent = "❌ Incorrecto";
+                    fb.className = "feedback bad";
+                    playError();
+                }
+            }
+
+            /* ===============================
+               👀 SOLUCIÓN PASO A PASO
+            =============================== */
+            function toggleSolution() {
+                solutionVisible = !solutionVisible;
+                const box = document.getElementById("solutionBox");
+                const btn = document.getElementById("btnSolution");
+
+                if (solutionVisible) {
+                    box.classList.add("show");
+                    btn.innerHTML = "🙈 Ocultar solución";
+                } else {
+                    box.classList.remove("show");
+                    btn.innerHTML = "👀 Ver solución";
+                }
+            }
+
+            function addStep(text) {
+                const li = document.createElement("li");
+                li.textContent = text;
+                return li;
+            }
+
+
+            function renderSolutionSteps() {
+                const a = current.a;
+                const b = current.b;
+                const ans = current.ans;
+
+                const stepsList = document.getElementById("stepsList");
+                stepsList.innerHTML = "";
+
+                const absA = Math.abs(a);
+                const absB = Math.abs(b);
+                const sameSign = (a >= 0 && b >= 0) || (a < 0 && b < 0);
+
+                /* Paso 1: identificar signos */
+                stepsList.appendChild(
+                    addStep(`Identificamos los signos de los números: ${a} y ${b}.`)
+                );
+
+                /* Paso 2: regla principal (DESTACADA) */
+                const regla = addStep(
+                    sameSign
+                        ? "🔹 Regla: signos iguales → se suman los valores absolutos."
+                        : "🔹 Regla: signos diferentes → se restan los valores absolutos."
+                );
+                regla.classList.add("rule");
+                stepsList.appendChild(regla);
+
+                /* Paso 3: operar valores absolutos */
+                if (sameSign) {
+                    stepsList.appendChild(
+                        addStep(
+                            `Sumamos los valores absolutos: ${absA} + ${absB} = ${absA + absB}.`
+                        )
+                    );
+                } else {
+                    const mayor = Math.max(absA, absB);
+                    const menor = Math.min(absA, absB);
+                    stepsList.appendChild(
+                        addStep(
+                            `Restamos los valores absolutos: ${mayor} − ${menor} = ${mayor - menor}.`
+                        )
+                    );
+                }
+
+                /* Paso 4: signo del resultado */
+                if (sameSign) {
+                    stepsList.appendChild(
+                        addStep(
+                            "El resultado conserva el mismo signo de los números."
+                        )
+                    );
+                } else {
+                    const signoMayor =
+                        absA > absB
+                            ? (a < 0 ? "negativo" : "positivo")
+                            : (b < 0 ? "negativo" : "positivo");
+
+                    stepsList.appendChild(
+                        addStep(
+                            `El resultado toma el signo del número con mayor valor absoluto (${signoMayor}).`
+                        )
+                    );
+                }
+
+                /* Paso 5: conclusión */
+                stepsList.appendChild(
+                    addStep(`Resultado final: ${formatOp(a, b)} = ${ans}.`)
+                );
+
+                document.getElementById("finalLine").textContent =
+                    `${formatOp(a, b)} = ${ans}`;
+            }
+
+
+
+
+            /* ===============================
+               🔊 VOZ (ES-PE)
+            =============================== */
+            function speakExercise() {
+                if (!("speechSynthesis" in window)) return;
+                const a = current.a, b = current.b;
+                const txt = `${a < 0 ? "menos " + Math.abs(a) : a} ${b >= 0 ? "más" : "menos"} ${Math.abs(b)}`;
+                const u = new SpeechSynthesisUtterance(txt);
+                u.lang = "es-PE";
+                u.rate = 0.95;
+                u.pitch = 1.05;
+                speechSynthesis.cancel();
+                speechSynthesis.speak(u);
+            }
+
+            /* Init */
+            newExercise();
+        </script>
+
+        <script>
+            // Registrar Service Worker (PWA)
+            if ("serviceWorker" in navigator) {
+                window.addEventListener("load", () => {
+                    navigator.serviceWorker.register("./service-worker.js").catch(() => { });
+                });
+            }
+        </script>
+
+
+
+
+    </body>
+
+</html>
