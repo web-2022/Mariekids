@@ -344,7 +344,7 @@
 
             <div class="menu">
                 <!-- Cambia el href a tus archivos reales -->
-                                 <div class="tile" onclick="location.href='ruta-OperacionesBasicas.html'">
+                <div class="tile" onclick="location.href='ruta-OperacionesBasicas.html'">
                     <div class="icon">🔢</div>
                     <div>
                         <p class="tile-title">Operaciones básicas</p>
@@ -442,6 +442,16 @@
                 }
             }
         </script>
+
+        <script>
+            // Registrar Service Worker (PWA)
+            if ("serviceWorker" in navigator) {
+                window.addEventListener("load", () => {
+                    navigator.serviceWorker.register("./service-worker.js").catch(() => { });
+                });
+            }
+        </script>
+
 
     </body>
 
