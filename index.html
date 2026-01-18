@@ -344,7 +344,7 @@
 
             <div class="menu">
                 <!-- Cambia el href a tus archivos reales -->
-                <div class="tile" onclick="location.href='ruta-OperacionesBasicas.html'">
+                                 <div class="tile" onclick="location.href='ruta-OBasicas.html'">
                     <div class="icon">🔢</div>
                     <div>
                         <p class="tile-title">Operaciones básicas</p>
@@ -379,7 +379,7 @@
                     </div>
                 </div>
 
-                <div class="tile" onclick="location.href='#'">
+                <div class="tile" onclick="location.href='ruta-cuentos.html'">
                     <div class="icon">📚</div>
                     <div>
                         <p class="tile-title">Cuentos</p>
@@ -388,14 +388,14 @@
                     </div>
                 </div>
 
-                <div class="tile" onclick="location.href='#'">
+                <!-- <div class="tile" onclick="location.href='#'">
                     <div class="icon">🌱</div>
                     <div>
                         <p class="tile-title">Crece</p>
                         <p class="tile-desc">Hábitos, motivación y desarrollo personal.</p>
                         <span class="badge">Disponible</span>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="tile" onclick="location.href='ruta-EjerciosMentales.html'">
                     <div class="icon">🧠</div>
@@ -443,15 +443,7 @@
             }
         </script>
 
-        <script>
-            // Registrar Service Worker (PWA)
-            if ("serviceWorker" in navigator) {
-                window.addEventListener("load", () => {
-                    navigator.serviceWorker.register("./service-worker.js").catch(() => { });
-                });
-            }
-        </script>
-
+        
 
     </body>
 
