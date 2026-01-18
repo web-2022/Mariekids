@@ -103,7 +103,7 @@
                 display: grid;
                 place-items: center;
                 font-size: clamp(1.6rem, 4vw, 2rem);
-                background: rgba(255, 255, 255, .22);
+                background: linear-gradient(135deg, #2563eb, #6366f1);
                 border: 1px solid rgba(255, 255, 255, .35);
                 box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35);
             }
@@ -481,27 +481,103 @@
                 font-weight: 800;
                 font-size: clamp(.85rem, 2.3vw, .95rem);
             }
+
+            /*encabezado*/
+
+            /* ===============================
+   HERO CLICKABLE
+   =============================== */
+            .hero-link {
+                padding: 0;
+            }
+
+            .hero-click {
+                display: block;
+                text-decoration: none;
+                color: inherit;
+            }
+
+            /* separa izquierda y derecha */
+            .hero-space {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            /* ===============================
+   CURSO (DERECHA)
+   =============================== */
+            .hero-course {
+                font-family: "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
+                font-size: clamp(1.2rem, 3vw, 1.6rem);
+                font-weight: 700;
+                letter-spacing: .08em;
+                text-transform: uppercase;
+
+                color: rgba(255, 255, 255, 0.85);
+
+                padding: 10px 16px;
+                border-radius: 14px;
+
+                background: linear-gradient(135deg,
+                        rgba(255, 255, 255, 0.18),
+                        rgba(255, 255, 255, 0.05));
+
+                border: 1px solid rgba(255, 255, 255, 0.35);
+                backdrop-filter: blur(4px);
+                -webkit-backdrop-filter: blur(4px);
+
+                box-shadow: 0 10px 22px rgba(0, 0, 0, .18);
+
+                white-space: nowrap;
+            }
+
+            /* ===============================
+   EFECTO HOVER (FINO)
+   =============================== */
+            .hero-link:hover .hero-course {
+                transform: translateY(-1px);
+                filter: brightness(1.05);
+            }
+
+            .hero-link:hover .badge {
+                transform: scale(1.05);
+            }
         </style>
     </head>
 
     <body>
         <div class="app">
 
-            <header class="hero" aria-label="Ruta de Aprendizaje">
-                <div class="hero-row">
-                    <div class="hero-left">
-                        <div class="badge" aria-hidden="true">🗺️</div>
-                        <div>
-                            <h1 class="hero-title">Ruta de Aprendizaje</h1>
-                            <div class="hero-sub">
-                                <span class="pill">🔢 1 → 25</span>
-                                <span class="pill">✅ Guarda progreso</span>
-                                <span class="pill">📱 Responsive</span>
+            <header class="hero hero-link" aria-label="Ruta de Aprendizaje">
+                <a href="index.html" class="hero-click" aria-label="Volver al inicio">
+
+                    <div class="hero-row hero-space">
+
+                        <!-- IZQUIERDA -->
+                        <div class="hero-left">
+                            <div class="badge" aria-hidden="true">MK</div>
+
+                            <div>
+                                <h1 class="hero-title">Ruta de Aprendizaje</h1>
+                                <div class="hero-sub">
+                                    <span class="pill">🔢 1 → 25</span>
+                                    <!-- <span class="pill">✅ Guarda progreso</span> -->
+                                </div>
                             </div>
                         </div>
+
+                        <!-- DERECHA -->
+                        <div class="hero-course">
+                            🧠
+                            ELEVA TU IQ
+                        </div>
+
                     </div>
-                </div>
+
+                </a>
             </header>
+
 
             <div class="toolbar">
                 <div class="search" role="search" aria-label="Buscar temas">
@@ -511,11 +587,11 @@
                 <!-- ✅ Estos son los links a tus HTML por materia -->
                 <div class="chips" role="navigation" aria-label="Rutas por materia">
                     <!-- Cambia los nombres de archivo si quieres -->
-                    <a class="chip active" href="#">🌟 Todos</a>
-                    <a class="chip" href="ruta-mate.html">➗ Matemáticas</a>
+                    <a class="chip active" href="index.html">🌟 Cursos</a>
+                    <!-- <a class="chip" href="ruta-mate.html">➗ Matemáticas</a>
                     <a class="chip" href="index.html">🇺🇸 Inglés</a>
                     <a class="chip" href="ruta-chess.html">♟️ Ajedrez</a>
-                    <a class="chip" href="#">🏁 ??</a>
+                    <a class="chip" href="#">🏁 ??</a> -->
                 </div>
             </div>
 
@@ -539,7 +615,9 @@
             const STORAGE_KEY = "mk_learning_path_done_realizado_v3";
 
             // ✅ AQUÍ LINKEAS cada uno de tus 25 HTML:
-            //    Edita el campo href: "tema01.html", "tema02.html", etc.
+
+
+
             const topics = [
                 { id: 1, emoji: "🔢", title: "Series numéricas", desc: "Descubrir qué número sigue.", href: "EM-SeriesNumericas.html" },
                 { id: 2, emoji: "🧩", title: "Encuentra el intruso", desc: "Detectar el elemento diferente.", href: "EM-IntrusoLogico.html" },
@@ -648,7 +726,8 @@
                     card.innerHTML = `
           <div class="num" aria-label="Tema ${t.id}">${t.id}</div>
 
-          <a href="tema${String(t.id).padStart(2, '0')}.html" aria-label="Abrir ${t.title}">
+          <a href="${t.href}" aria-label="Abrir ${t.title}">
+
 
             <div class="topic-tag">${t.emoji} ${t.category}${isNext ? " • ⭐ Recomendado" : ""}</div>
             <div class="title">${t.title}</div>
