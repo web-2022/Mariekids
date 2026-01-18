@@ -31,10 +31,7 @@
       border:3px solid #2563eb;
     }
 
-    /* ===== ENCABEZADO ===== */
     .brand-header-kids{
-      position:relative;
-      overflow:hidden;
       padding:14px;
       border-radius:22px;
       margin-bottom:12px;
@@ -42,7 +39,7 @@
       color:#fff;
       cursor:pointer;
     }
-    .brand-row{ display:flex; align-items:center; gap:12px; position:relative; z-index:2; }
+    .brand-row{ display:flex; align-items:center; gap:12px; }
     .kids-badge{
       width:52px;height:52px;border-radius:18px;
       display:grid;place-items:center;
@@ -50,32 +47,22 @@
       background:rgba(255,255,255,.25);
     }
     .kids-title{ font-weight:900; font-size:1.5rem; }
-    .kids-subtitle{ font-size:.9rem; font-weight:700; opacity:.95; display:flex; gap:8px; flex-wrap:wrap; }
-    .kids-pill{ background:rgba(255,255,255,.25); padding:4px 10px; border-radius:999px; font-size:.8rem; }
+    .kids-subtitle{ font-size:.9rem; font-weight:700; display:flex; gap:8px; flex-wrap:wrap; }
+    .kids-pill{ background:rgba(255,255,255,.25); padding:4px 10px; border-radius:999px; }
 
     h1{ text-align:center; margin:6px 0 4px; font-size:1.5rem; }
-    .subtitle{ text-align:center; font-size:.95rem; color:#6b7280; margin-bottom:12px; }
+    .subtitle{ text-align:center; font-size:.95rem; color:#6b7280; }
 
-    /* ===== PROGRESO ===== */
     .status-bar{
       display:flex; justify-content:space-between;
       padding:8px 12px; border-radius:999px;
       background:#eff6ff; border:1px solid #bfdbfe;
       font-size:.9rem; margin-bottom:8px;
     }
-    .xp span{ color:#16a34a; font-weight:800; }
-    .hearts span{ color:#f97316; font-weight:800; }
 
-    .progress-wrapper{ margin-bottom:14px; }
-    .progress-label{ display:flex; justify-content:space-between; font-size:.8rem; color:#6b7280; }
     .progress{ height:10px; background:#e5e7eb; border-radius:999px; overflow:hidden; }
-    .progress-inner{
-      height:100%; width:0%;
-      background: linear-gradient(90deg,#60a5fa,#2563eb);
-      transition:width .2s ease;
-    }
+    .progress-inner{ height:100%; width:0%; background:#2563eb; transition:.3s; }
 
-    /* ===== TABLERO ===== */
     .card{
       background:#f9fafb;
       border:1px solid #e5e7eb;
@@ -83,27 +70,12 @@
       padding:16px;
     }
 
-    .board-wrap{
-      display:grid;
-      grid-template-columns: 22px 1fr;
-      gap:8px;
-      justify-content:center;
-      margin-top:10px;
-    }
-    .ranks{
-      display:grid;
-      grid-template-rows:repeat(8,1fr);
-      font-weight:800;
-      font-size:.85rem;
-      color:#374151;
-    }
-    .rank{ display:flex; align-items:center; justify-content:center; height:38px; }
-
     .board{
       display:grid;
       grid-template-columns:repeat(8,1fr);
       aspect-ratio:1/1;
       max-width:320px;
+      margin:auto;
       border-radius:18px;
       overflow:hidden;
       border:2px solid #bfdbfe;
@@ -112,45 +84,13 @@
       display:grid;
       place-items:center;
       position:relative;
-      font-size:.75rem;
       font-weight:800;
       cursor:pointer;
     }
-    .sq.light{ background:#eff6ff; }
-    .sq.dark{ background:#93c5fd; }
-    .sq.target{
-      outline:3px solid #f59e0b;
-      outline-offset:-3px;
-    }
-    .mini{
-      position:absolute;
-      bottom:4px; right:6px;
-      font-size:.7rem;
-      opacity:.7;
-    }
-
-    .files{
-      display:grid;
-      grid-template-columns:22px repeat(8,1fr);
-      margin-top:8px;
-      font-weight:800;
-      font-size:.85rem;
-      color:#374151;
-    }
-    .file{ text-align:center; }
-
-    /* ===== INTERACCIÓN ===== */
-    .controls{ display:flex; gap:10px; margin-top:10px; }
-    .main-btn{
-      flex:1;
-      border:none;
-      padding:10px;
-      border-radius:999px;
-      font-weight:800;
-      background: linear-gradient(90deg,#60a5fa,#2563eb);
-      color:#fff;
-      cursor:pointer;
-    }
+    .light{ background:#eff6ff; }
+    .dark{ background:#93c5fd; }
+    .target{ outline:3px solid #f59e0b; outline-offset:-3px; }
+    .mini{ position:absolute; bottom:4px; right:6px; font-size:.7rem; opacity:.7; }
 
     .options{ display:flex; gap:8px; margin-top:10px; }
     .option-btn{
@@ -164,29 +104,50 @@
     }
     .option-btn:disabled{ opacity:.6; }
 
-    .feedback{
-      text-align:center;
-      font-weight:800;
-      margin-top:8px;
-      min-height:22px;
-    }
+    .feedback{ text-align:center; font-weight:800; margin-top:8px; min-height:22px; }
     .good{ color:#16a34a; }
     .bad{ color:#ef4444; }
+
+    .main-btn{
+      width:100%;
+      border:none;
+      padding:10px;
+      border-radius:999px;
+      font-weight:800;
+      background:#2563eb;
+      color:#fff;
+      cursor:pointer;
+    }
+
+    /* 👉 CONTENEDOR HORIZONTAL */
+    .controls{
+      display:flex;
+      gap:10px;
+      margin-top:10px;
+    }
+
+    .listen-btn{
+  width:auto;
+  display:block;
+  margin:0 auto 10px;
+  padding:8px 18px;
+  font-size:.9rem;
+  background:#1d4ed8; /* un poco más sobrio */
+}
+
   </style>
 </head>
 
 <body>
 <div class="app">
 
-  <!-- ENCABEZADO -->
   <div class="brand-header-kids" onclick="location.href='index.html'">
     <div class="brand-row">
       <div class="kids-badge">♟️</div>
       <div>
-        <div class="kids-title">Marie Kids</div>
+        <div class="kids-title">MK</div>
         <div class="kids-subtitle">
           <span class="kids-pill">Clase 1</span>
-          <span class="kids-pill">Tablero</span>
           <span class="kids-pill">Coordenadas</span>
         </div>
       </div>
@@ -194,152 +155,137 @@
   </div>
 
   <h1>Tablero y Coordenadas</h1>
-  <p class="subtitle">Aprende a leer casillas como <b>e4</b></p>
+  <p class="subtitle">¿Qué coordenada es la casilla marcada?</p>
 
   <div class="status-bar">
-    <div class="xp">✅ Bien: <span id="xpValue">0</span></div>
-    <div class="hearts">🧠 Intentos: <span id="heartsValue">0</span></div>
+    <div>✅ Bien: <b id="xp">0</b></div>
+    <div>🧠 Intentos: <b id="tries">0</b></div>
   </div>
 
-  <div class="progress-wrapper">
-    <div class="progress-label">
-      <span>Progreso</span>
-      <span id="progressText">0/10</span>
-    </div>
-    <div class="progress"><div class="progress-inner" id="progressBar"></div></div>
-  </div>
+  <div class="progress"><div class="progress-inner" id="bar"></div></div>
 
   <div class="card">
-    <button class="main-btn" onclick="speakHint()">🔊 Escuchar explicación</button>
-
-    <div class="board-wrap">
-      <div class="ranks" id="ranksCol"></div>
-      <div>
-        <div class="board" id="board"></div>
-        <div class="files" id="filesRow"><div></div></div>
-      </div>
-    </div>
-
-    <p class="subtitle"><b>¿Qué coordenada es la casilla marcada?</b></p>
-    <div class="options" id="optionsContainer"></div>
+    <button class="main-btn listen-btn" onclick="speakHint()">🔊 Escuchar explicación</button>
+    <div class="board" id="board"></div>
+    <div class="options" id="options"></div>
     <div class="feedback" id="feedback"></div>
   </div>
 
+  <!-- 👉 BOTONES EN LA MISMA FILA -->
   <div class="controls">
-    <button class="main-btn" onclick="newQuestion()">Siguiente</button>
+    <button class="main-btn" onclick="next()">Siguiente</button>
     <button class="main-btn" onclick="shareApp()">📤 Compartir</button>
   </div>
 
 </div>
 
 <script>
-/* ===== VOZ EN ESPAÑOL ===== */
-function speakText(text){
-  if(!("speechSynthesis" in window)) return;
-  const u = new SpeechSynthesisUtterance(text);
-  u.lang = "es-ES";
-  u.rate = 0.9;
-  u.pitch = 1.05;
-  window.speechSynthesis.cancel();
-  window.speechSynthesis.speak(u);
+const files=["a","b","c","d","e","f","g","h"];
+let current="", last="";
+let ok=0, tries=0, total=0;
+
+function speakText(t){
+  const u=new SpeechSynthesisUtterance(t);
+  u.lang="es-ES"; u.rate=.9;
+  speechSynthesis.cancel(); speechSynthesis.speak(u);
 }
 
 function speakHint(){
-  speakText(
-    "En ajedrez, cada casilla tiene una coordenada. " +
-    "Primero va la letra de la columna, de a a h. " +
-    "Luego va el número de la fila, del uno al ocho. " +
-    "Por ejemplo, e cuatro."
-  );
+  speakText("Primero la letra de la columna, luego el número de la fila.");
 }
 
-/* ===== TABLERO ===== */
-const files=["a","b","c","d","e","f","g","h"];
-const ranks=[8,7,6,5,4,3,2,1];
-const boardEl=document.getElementById("board");
-const ranksCol=document.getElementById("ranksCol");
-const filesRow=document.getElementById("filesRow");
-
-let currentTarget="";
-let progress=0, correct=0, wrong=0;
-const maxProgress=10;
-
-function buildBoard(){
-  boardEl.innerHTML="";
-  for(let r=8;r>=1;r--){
-    for(let f=1;f<=8;f++){
-      const coord=files[f-1]+r;
-      const sq=document.createElement("div");
-      sq.className="sq "+(((f+r)%2)?"dark":"light");
-      sq.dataset.coord=coord;
-      sq.innerHTML=`<div class="mini">${coord}</div>`;
-      boardEl.appendChild(sq);
-    }
-  }
-}
-
-function buildLabels(){
-  ranksCol.innerHTML="";
-  ranks.forEach(r=>ranksCol.innerHTML+=`<div class="rank">${r}</div>`);
-  filesRow.innerHTML="<div></div>";
-  files.forEach(f=>filesRow.innerHTML+=`<div class="file">${f}</div>`);
+function speakCoord(c){
+  speakText(`La casilla marcada es ${c[0]} ${c[1]}`);
 }
 
 function randomCoord(){
-  return files[Math.floor(Math.random()*8)]+(Math.floor(Math.random()*8)+1);
+  let c;
+  do{
+    c = files[Math.floor(Math.random()*8)] + (Math.floor(Math.random()*8)+1);
+  } while(c===last);
+  last=c;
+  return c;
 }
 
-function newQuestion(){
+function buildBoard(){
+  const b=document.getElementById("board");
+  b.innerHTML="";
+  for(let r=8;r>=1;r--)
+    for(let f=0;f<8;f++){
+      const c=files[f]+r;
+      const d=document.createElement("div");
+      d.className="sq "+(((f+r)%2)?"dark":"light");
+      d.dataset.c=c;
+      d.innerHTML=`<div class="mini">${c}</div>`;
+      b.appendChild(d);
+    }
+}
+
+function next(){
   document.querySelectorAll(".sq").forEach(s=>s.classList.remove("target"));
-  currentTarget=randomCoord();
-  document.querySelector(`.sq[data-coord="${currentTarget}"]`).classList.add("target");
-  renderOptions();
+  current=randomCoord();
+  document.querySelector(`[data-c="${current}"]`).classList.add("target");
+  speakCoord(current);
+  options();
 }
 
-function renderOptions(){
-  const cont=document.getElementById("optionsContainer");
-  cont.innerHTML="";
-  const opts=new Set([currentTarget]);
-  while(opts.size<3) opts.add(randomCoord());
-  [...opts].sort(()=>Math.random()-0.5).forEach(o=>{
+function options(){
+  const o=document.getElementById("options");
+  o.innerHTML="";
+  const set=new Set([current]);
+  while(set.size<3) set.add(randomCoord());
+  [...set].sort(()=>Math.random()-.5).forEach(c=>{
     const b=document.createElement("button");
     b.className="option-btn";
-    b.textContent=o;
-    b.onclick=()=>checkAnswer(o,b);
-    cont.appendChild(b);
+    b.textContent=c;
+    b.onclick=()=>check(c,b);
+    o.appendChild(b);
   });
 }
 
-function checkAnswer(ans,btn){
-  const fb=document.getElementById("feedback");
-  if(ans===currentTarget){
-    correct++; progress++;
-    fb.textContent="¡Muy bien!";
-    fb.className="feedback good";
+function check(c,b){
+  const f=document.getElementById("feedback");
+  if(c===current){
+    ok++; total++;
+    f.textContent="¡Muy bien!";
+    f.className="feedback good";
     speakText("¡Muy bien!");
+    document.querySelectorAll(".option-btn").forEach(x=>x.disabled=true);
   }else{
-    wrong++;
-    fb.textContent="Inténtalo otra vez";
-    fb.className="feedback bad";
+    tries++;
+    f.textContent="Inténtalo otra vez";
+    f.className="feedback bad";
     speakText("Inténtalo otra vez");
-    btn.disabled=true;
+    b.disabled=true;
   }
-  document.getElementById("xpValue").textContent=correct;
-  document.getElementById("heartsValue").textContent=wrong;
-  document.getElementById("progressText").textContent=`${progress}/${maxProgress}`;
-  document.getElementById("progressBar").style.width=(progress/maxProgress*100)+"%";
+
+  document.getElementById("xp").textContent=ok;
+  document.getElementById("tries").textContent=tries;
+  document.getElementById("bar").style.width=(total/10*100)+"%";
+
+  if(total===10){
+    setTimeout(()=>{
+      speakText("¡Excelente! Completaste la clase uno");
+      alert("🎉 Clase completada");
+    },500);
+  }
 }
 
 function shareApp(){
-  const data={title:"Marie Kids Ajedrez",text:"Clase 1: Tablero y Coordenadas",url:location.href};
+  const data={
+    title:"Marie Kids • Ajedrez",
+    text:"Clase 1: Tablero y Coordenadas",
+    url:location.href
+  };
   if(navigator.share) navigator.share(data);
-  else{ navigator.clipboard.writeText(data.url); alert("Link copiado"); }
+  else{
+    navigator.clipboard.writeText(data.url);
+    alert("Link copiado");
+  }
 }
 
-/* INIT */
-buildLabels();
 buildBoard();
-newQuestion();
+next();
 </script>
 
 </body>
