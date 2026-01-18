@@ -1,580 +1,798 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Marie Kids • Ruta de Aprendizaje</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marie Kids • Ruta de Aprendizaje</title>
 
-  <!-- PWA -->
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#1976d2">
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1976d2">
 
-  <style>
-    * { box-sizing: border-box; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif }
-    html { -webkit-text-size-adjust: 100% }
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif
+      }
 
-    body {
-      margin: 0;
-      min-height: 100dvh;
-      background:
-        radial-gradient(1200px 800px at 10% 10%, #dbeafe 0%, transparent 60%),
-        radial-gradient(900px 700px at 90% 20%, #e0f2fe 0%, transparent 55%),
-        linear-gradient(145deg, #dbeafe, #e0f2fe);
-      padding: calc(10px + env(safe-area-inset-top)) calc(10px + env(safe-area-inset-right)) calc(12px + env(safe-area-inset-bottom)) calc(10px + env(safe-area-inset-left));
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-    }
+      html {
+        -webkit-text-size-adjust: 100%
+      }
 
-    :root {
-      --app-max: 980px;
-      --pad: clamp(12px, 3.2vw, 22px);
-      --radius: clamp(18px, 3.8vw, 26px);
-      --h1: clamp(1.25rem, 3.4vw, 1.7rem);
-      --sub: clamp(.9rem, 2.4vw, 1rem);
-      --btn: clamp(.92rem, 2.6vw, 1rem);
-      --blue: #2563eb;
-      --shadow: rgba(0, 0, 0, .14);
-    }
+      body {
+        margin: 0;
+        min-height: 100dvh;
+        background:
+          radial-gradient(1200px 800px at 10% 10%, #dbeafe 0%, transparent 60%),
+          radial-gradient(900px 700px at 90% 20%, #e0f2fe 0%, transparent 55%),
+          linear-gradient(145deg, #dbeafe, #e0f2fe);
+        padding: calc(10px + env(safe-area-inset-top)) calc(10px + env(safe-area-inset-right)) calc(12px + env(safe-area-inset-bottom)) calc(10px + env(safe-area-inset-left));
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+      }
 
-    .app {
-      width: 100%;
-      max-width: var(--app-max);
-      background: #fff;
-      border-radius: var(--radius);
-      border: 3px solid var(--blue);
-      padding: var(--pad);
-      box-shadow: 0 18px 55px var(--shadow);
-      overflow: hidden;
-    }
+      :root {
+        --app-max: 980px;
+        --pad: clamp(12px, 3.2vw, 22px);
+        --radius: clamp(18px, 3.8vw, 26px);
+        --h1: clamp(1.25rem, 3.4vw, 1.7rem);
+        --sub: clamp(.9rem, 2.4vw, 1rem);
+        --btn: clamp(.92rem, 2.6vw, 1rem);
 
-    /* ===== HERO ===== */
-    .hero {
-      position: relative;
-      overflow: hidden;
-      border-radius: calc(var(--radius) - 6px);
-      padding: clamp(14px, 3.2vw, 18px);
-      background: linear-gradient(135deg, #93c5fd 0%, #60a5fa 40%, #2563eb 100%);
-      border: 2px solid rgba(255, 255, 255, .65);
-      box-shadow: 0 16px 36px rgba(37, 99, 235, .28);
-      color: #fff;
-    }
+        --blue: #2563eb;
+        --shadow: rgba(0, 0, 0, .14);
+      }
 
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: -2px;
-      pointer-events: none;
-      background:
-        radial-gradient(600px 200px at 20% 10%, rgba(255, 255, 255, .22), transparent 60%),
-        radial-gradient(500px 240px at 85% 15%, rgba(255, 255, 255, .18), transparent 62%);
-    }
+      .app {
+        width: 100%;
+        max-width: var(--app-max);
+        background: #fff;
+        border-radius: var(--radius);
+        border: 3px solid var(--blue);
+        padding: var(--pad);
+        box-shadow: 0 18px 55px var(--shadow);
+        overflow: hidden;
+      }
 
-    .hero-row {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center
-    }
+      /* ===== HERO ===== */
+      .hero {
+        position: relative;
+        overflow: hidden;
+        border-radius: calc(var(--radius) - 6px);
+        padding: clamp(14px, 3.2vw, 18px);
+        background: linear-gradient(135deg, #93c5fd 0%, #60a5fa 40%, #2563eb 100%);
+        border: 2px solid rgba(255, 255, 255, .65);
+        box-shadow: 0 16px 36px rgba(37, 99, 235, .28);
+        color: #fff;
+      }
 
-    .hero-left {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      min-width: 240px;
-      flex: 1
-    }
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: -2px;
+        pointer-events: none;
+        background:
+          radial-gradient(600px 200px at 20% 10%, rgba(255, 255, 255, .22), transparent 60%),
+          radial-gradient(500px 240px at 85% 15%, rgba(255, 255, 255, .18), transparent 62%);
+      }
 
-    .badge {
-      width: clamp(52px, 10vw, 62px);
-      height: clamp(52px, 10vw, 62px);
-      border-radius: 18px;
-      display: grid;
-      place-items: center;
-      font-size: clamp(1.6rem, 4vw, 2rem);
-      background: rgba(255, 255, 255, .22);
-      border: 1px solid rgba(255, 255, 255, .35);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35);
-    }
+      .hero-row {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center
+      }
 
-    .hero-title {
-      margin: 0;
-      font-weight: 1000;
-      letter-spacing: .02em;
-      line-height: 1.05;
-      font-size: var(--h1);
-      text-shadow: 0 2px 0 rgba(0, 0, 0, .12)
-    }
+      .hero-left {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        min-width: 240px;
+        flex: 1
+      }
 
-    .hero-sub {
-      margin: 6px 0 0;
-      font-size: var(--sub);
-      font-weight: 800;
-      opacity: .95;
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap
-    }
+      .badge {
+        width: clamp(52px, 10vw, 62px);
+        height: clamp(52px, 10vw, 62px);
+        border-radius: 18px;
+        display: grid;
+        place-items: center;
+        font-size: clamp(1.6rem, 4vw, 2rem);
+        background: linear-gradient(135deg, #2563eb, #6366f1);
+        border: 1px solid rgba(255, 255, 255, .35);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35);
+      }
 
-    .pill {
-      background: rgba(255, 255, 255, .22);
-      border: 1px solid rgba(255, 255, 255, .35);
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-size: clamp(.78rem, 2.2vw, .88rem);
-      font-weight: 950;
-      backdrop-filter: blur(2px);
-      -webkit-backdrop-filter: blur(2px);
-      white-space: nowrap;
-    }
+      .hero-title {
+        margin: 0;
+        font-weight: 1000;
+        letter-spacing: .02em;
+        line-height: 1.05;
+        font-size: var(--h1);
+        text-shadow: 0 2px 0 rgba(0, 0, 0, .12)
+      }
 
-    /* ===== TOOLBAR ===== */
-    .toolbar {
-      margin-top: 12px;
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-    }
+      .hero-sub {
+        margin: 6px 0 0;
+        font-size: var(--sub);
+        font-weight: 800;
+        opacity: .95;
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap
+      }
 
-    .search {
-      flex: 1;
-      min-width: min(100%, 340px);
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      padding: 10px 12px;
-      border-radius: 999px;
-      background: #eff6ff;
-      border: 1px solid #bfdbfe;
-    }
+      .pill {
+        background: rgba(255, 255, 255, .22);
+        border: 1px solid rgba(255, 255, 255, .35);
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: clamp(.78rem, 2.2vw, .88rem);
+        font-weight: 950;
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+        white-space: nowrap;
+      }
 
-    .search input {
-      width: 100%;
-      border: none;
-      outline: none;
-      background: transparent;
-      font-weight: 900;
-      font-size: var(--btn)
-    }
+      /* ===== TOOLBAR ===== */
+      .toolbar {
+        margin-top: 12px;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+      }
 
-    /* ===== LINKS (chips) ===== */
-    .chips { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end }
-    .chip {
-      border: 1px solid #bfdbfe;
-      background: #fff;
-      border-radius: 999px;
-      padding: 8px 12px;
-      cursor: pointer;
-      font-weight: 950;
-      font-size: clamp(.85rem, 2.4vw, .95rem);
-      transition: transform .1s ease, background .15s ease, border-color .15s ease;
-      white-space: nowrap;
-      text-decoration: none;
-      color: #111827;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .chip:hover { transform: translateY(-1px); background: #e0f2fe; border-color: #93c5fd }
-    .chip.active { background: linear-gradient(90deg, #60a5fa, #2563eb); color: #fff; border-color: transparent }
+      .search {
+        flex: 1;
+        min-width: min(100%, 340px);
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        padding: 10px 12px;
+        border-radius: 999px;
+        background: #eff6ff;
+        border: 1px solid #bfdbfe;
+      }
 
-    /* ===== PROGRESS ===== */
-    .progress-wrap {
-      margin-top: 12px;
-      background: #eff6ff;
-      border: 1px solid #bfdbfe;
-      border-radius: 18px;
-      padding: 12px;
-    }
+      .search input {
+        width: 100%;
+        border: none;
+        outline: none;
+        background: transparent;
+        font-weight: 900;
+        font-size: var(--btn)
+      }
 
-    .progress-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      flex-wrap: wrap;
-      font-weight: 1000;
-      color: #1f2937;
-      margin-bottom: 8px
-    }
+      /* ===== LINKS (chips) ===== */
+      .chips {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: flex-end
+      }
 
-    .progress-tag {
-      display: inline-flex;
-      gap: 6px;
-      align-items: center;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: #eff6ff;
-      border: 1px solid #bfdbfe;
-      font-weight: 1000;
-      color: #1e3a8a;
-      font-size: clamp(.82rem, 2.3vw, .9rem);
-    }
+      .chip {
+        border: 1px solid #bfdbfe;
+        background: #fff;
+        border-radius: 999px;
+        padding: 8px 12px;
+        cursor: pointer;
+        font-weight: 950;
+        font-size: clamp(.85rem, 2.4vw, .95rem);
+        transition: transform .1s ease, background .15s ease, border-color .15s ease;
+        white-space: nowrap;
+        text-decoration: none;
+        color: #111827;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
 
-    .bar { width: 100%; height: 10px; background: #e5e7eb; border-radius: 999px; overflow: hidden }
-    .bar>div { width: 0%; height: 100%; background: linear-gradient(90deg, #60a5fa, #2563eb); border-radius: 999px; transition: width .2s ease }
+      .chip:hover {
+        transform: translateY(-1px);
+        background: #e0f2fe;
+        border-color: #93c5fd
+      }
 
-    /* ===== GRID ===== */
-    .grid { margin-top: 12px; display: grid; grid-template-columns: repeat(12, 1fr); gap: 12px; }
-    @media (min-width: 860px) { .topic { grid-column: span 4; } }
-    @media (min-width: 560px) and (max-width: 859px) { .topic { grid-column: span 6; } }
-    @media (max-width: 559px) { .topic { grid-column: span 12; } }
+      .chip.active {
+        background: linear-gradient(90deg, #60a5fa, #2563eb);
+        color: #fff;
+        border-color: transparent
+      }
 
-    .topic {
-      background: #f9fafb;
-      border: 1px solid #e5e7eb;
-      border-radius: 18px;
-      padding: 14px;
-      box-shadow: 0 10px 22px rgba(0, 0, 0, .06);
-      transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease, opacity .12s ease;
-      position: relative;
-      overflow: hidden;
-      border-left: 6px solid rgba(37, 99, 235, .85); /* INGLÉS */
-    }
+      /* ===== PROGRESS ===== */
+      .progress-wrap {
+        margin-top: 12px;
+        background: #eff6ff;
+        border: 1px solid #bfdbfe;
+        border-radius: 18px;
+        padding: 12px;
+      }
 
-    .topic:hover { transform: translateY(-2px); border-color: #93c5fd; box-shadow: 0 16px 30px rgba(0, 0, 0, .09) }
-    .topic a { display: block; text-decoration: none; color: inherit }
+      .progress-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        flex-wrap: wrap;
+        font-weight: 1000;
+        color: #1f2937;
+        margin-bottom: 8px
+      }
 
-    .num {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      width: 40px;
-      height: 40px;
-      border-radius: 999px;
-      display: grid;
-      place-items: center;
-      font-weight: 1000;
-      font-size: 1.05rem;
-      color: #fff;
-      background: linear-gradient(135deg, #60a5fa, #2563eb);
-      box-shadow: 0 12px 22px rgba(37, 99, 235, .25);
-      border: 2px solid rgba(255, 255, 255, .75);
-    }
+      .progress-tag {
+        display: inline-flex;
+        gap: 6px;
+        align-items: center;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: #eff6ff;
+        border: 1px solid #bfdbfe;
+        font-weight: 1000;
+        color: #1e3a8a;
+        font-size: clamp(.82rem, 2.3vw, .9rem);
+      }
 
-    .num::after {
-      content: "";
-      position: absolute;
-      inset: -14px;
-      background:
-        radial-gradient(circle at 30% 30%, rgba(96, 165, 250, .22), transparent 55%),
-        radial-gradient(circle at 70% 70%, rgba(37, 99, 235, .18), transparent 55%);
-      border-radius: 999px;
-      z-index: -1;
-    }
+      .bar {
+        width: 100%;
+        height: 10px;
+        background: #e5e7eb;
+        border-radius: 999px;
+        overflow: hidden
+      }
 
-    .topic-tag {
-      display: inline-flex;
-      gap: 6px;
-      align-items: center;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: #eff6ff;
-      border: 1px solid #bfdbfe;
-      font-weight: 1000;
-      color: #1e3a8a;
-      font-size: clamp(.82rem, 2.3vw, .9rem);
-    }
+      .bar>div {
+        width: 0%;
+        height: 100%;
+        background: linear-gradient(90deg, #60a5fa, #2563eb);
+        border-radius: 999px;
+        transition: width .2s ease
+      }
 
-    .title { margin: 10px 0 6px; font-weight: 1000; color: #111827; font-size: clamp(1.05rem, 2.9vw, 1.15rem) }
-    .desc { margin: 0; color: #6b7280; font-weight: 780; line-height: 1.35; font-size: clamp(.92rem, 2.4vw, .98rem) }
+      /* ===== GRID ===== */
+      .grid {
+        margin-top: 12px;
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 12px;
+      }
 
-    .meta { margin-top: 12px; display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; align-items: center }
+      @media (min-width: 860px) {
+        .topic {
+          grid-column: span 4;
+        }
+      }
 
-    .status {
-      display: inline-flex;
-      gap: 8px;
-      align-items: center;
-      padding: 7px 10px;
-      border-radius: 999px;
-      border: 1px solid #e5e7eb;
-      background: #fff;
-      font-weight: 1000;
-      font-size: clamp(.84rem, 2.3vw, .92rem)
-    }
+      @media (min-width: 560px) and (max-width: 859px) {
+        .topic {
+          grid-column: span 6;
+        }
+      }
 
-    .status.done { border-color: #86efac; background: #f0fdf4; color: #166534 }
+      @media (max-width: 559px) {
+        .topic {
+          grid-column: span 12;
+        }
+      }
 
-    .mark {
-      border: none;
-      border-radius: 999px;
-      padding: 9px 12px;
-      font-weight: 1000;
-      cursor: pointer;
-      background: #e5e7eb;
-      color: #111827;
-      transition: transform .1s ease, filter .15s ease, background .15s ease, color .15s ease;
-    }
+      .topic {
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
+        border-radius: 18px;
+        padding: 14px;
+        box-shadow: 0 10px 22px rgba(0, 0, 0, .06);
+        transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease, opacity .12s ease;
+        position: relative;
+        overflow: hidden;
+        border-left: 6px solid rgba(37, 99, 235, .35);
+      }
 
-    .mark:hover { transform: translateY(-1px); filter: brightness(1.02) }
+      .topic:hover {
+        transform: translateY(-2px);
+        border-color: #93c5fd;
+        box-shadow: 0 16px 30px rgba(0, 0, 0, .09)
+      }
 
-    .mark.done {
-      background: linear-gradient(90deg, #22c55e, #16a34a);
-      color: #fff;
-      box-shadow: 0 10px 18px rgba(34, 197, 94, .28);
-      border: 1px solid rgba(255, 255, 255, .55);
-    }
+      .topic a {
+        display: block;
+        text-decoration: none;
+        color: inherit
+      }
 
-    .topic.done {
-      background: linear-gradient(145deg, #f3f4f6, #eef2f7);
-      border-color: #d1d5db;
-      box-shadow: 0 8px 18px rgba(0, 0, 0, .05);
-    }
+      .topic.cat-Matemáticas {
+        border-left-color: rgba(37, 99, 235, .75)
+      }
 
-    .topic.done:hover { transform: none; border-color: #cbd5e1; box-shadow: 0 8px 18px rgba(0, 0, 0, .05); }
+      .topic.cat-Inglés {
+        border-left-color: rgba(6, 182, 212, .75)
+      }
 
-    .topic.done .topic-tag, .topic.done .title, .topic.done .desc, .topic.done .status, .topic.done .num {
-      filter: grayscale(1);
-      opacity: .55;
-    }
+      .topic.cat-Ajedrez {
+        border-left-color: rgba(168, 85, 247, .75)
+      }
 
-    .topic.done .mark.done { filter: none !important; opacity: 1 !important; }
+      .topic.cat-General {
+        border-left-color: rgba(249, 115, 22, .75)
+      }
 
-    .topic.next {
-      border-color: rgba(37, 99, 235, .55);
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, .16), 0 16px 30px rgba(0, 0, 0, .09);
-      background: linear-gradient(145deg, #f9fafb, #eff6ff);
-    }
+      /* NUMERO BONITO */
+      .num {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+        border-radius: 999px;
+        display: grid;
+        place-items: center;
+        font-weight: 1000;
+        font-size: 1.05rem;
+        color: #fff;
+        background: linear-gradient(135deg, #60a5fa, #2563eb);
+        box-shadow: 0 12px 22px rgba(37, 99, 235, .25);
+        border: 2px solid rgba(255, 255, 255, .75);
+      }
 
-    .topic.done.next { box-shadow: 0 8px 18px rgba(0, 0, 0, .05); border-color: #d1d5db; background: linear-gradient(145deg, #f3f4f6, #eef2f7); }
+      .num::after {
+        content: "";
+        position: absolute;
+        inset: -14px;
+        background:
+          radial-gradient(circle at 30% 30%, rgba(96, 165, 250, .22), transparent 55%),
+          radial-gradient(circle at 70% 70%, rgba(37, 99, 235, .18), transparent 55%);
+        border-radius: 999px;
+        z-index: -1;
+      }
 
-    .note {
-      margin-top: 12px;
-      text-align: center;
-      color: #6b7280;
-      font-weight: 800;
-      font-size: clamp(.85rem, 2.3vw, .95rem);
-    }
-  </style>
-</head>
+      .topic-tag {
+        display: inline-flex;
+        gap: 6px;
+        align-items: center;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: #eff6ff;
+        border: 1px solid #bfdbfe;
+        font-weight: 1000;
+        color: #1e3a8a;
+        font-size: clamp(.82rem, 2.3vw, .9rem);
+      }
 
-<body>
-  <div class="app">
+      .title {
+        margin: 10px 0 6px;
+        font-weight: 1000;
+        color: #111827;
+        font-size: clamp(1.05rem, 2.9vw, 1.15rem)
+      }
 
-    <header class="hero" aria-label="Ruta de Aprendizaje">
-      <div class="hero-row">
-        <div class="hero-left">
-          <div class="badge" aria-hidden="true">🇺🇸</div>
-          <div>
-            <h1 class="hero-title">Ruta de Inglés (A0 → C2)</h1>
-            <div class="hero-sub">
-              <span class="pill">🇺🇸 1 → 60</span>
-              <span class="pill">✅ Guarda progreso</span>
-              <span class="pill">📱 Responsive</span>
+      .desc {
+        margin: 0;
+        color: #6b7280;
+        font-weight: 780;
+        line-height: 1.35;
+        font-size: clamp(.92rem, 2.4vw, .98rem)
+      }
+
+      .meta {
+        margin-top: 12px;
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        flex-wrap: wrap;
+        align-items: center
+      }
+
+      .status {
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+        padding: 7px 10px;
+        border-radius: 999px;
+        border: 1px solid #e5e7eb;
+        background: #fff;
+        font-weight: 1000;
+        font-size: clamp(.84rem, 2.3vw, .92rem)
+      }
+
+      .status.done {
+        border-color: #86efac;
+        background: #f0fdf4;
+        color: #166534
+      }
+
+      /* BOTON */
+      .mark {
+        border: none;
+        border-radius: 999px;
+        padding: 9px 12px;
+        font-weight: 1000;
+        cursor: pointer;
+        background: #e5e7eb;
+        color: #111827;
+        transition: transform .1s ease, filter .15s ease, background .15s ease, color .15s ease;
+      }
+
+      .mark:hover {
+        transform: translateY(-1px);
+        filter: brightness(1.02)
+      }
+
+      /* Botón DONE: VERDE */
+      .mark.done {
+        background: linear-gradient(90deg, #22c55e, #16a34a);
+        color: #fff;
+        box-shadow: 0 10px 18px rgba(34, 197, 94, .28);
+        border: 1px solid rgba(255, 255, 255, .55);
+      }
+
+      .mark.done:hover {
+        filter: brightness(1.06)
+      }
+
+      /* TARJETA HECHA: TODO GRIS, EXCEPTO BOTON VERDE */
+      .topic.done {
+        background: linear-gradient(145deg, #f3f4f6, #eef2f7);
+        border-color: #d1d5db;
+        box-shadow: 0 8px 18px rgba(0, 0, 0, .05);
+      }
+
+      .topic.done:hover {
+        transform: none;
+        border-color: #cbd5e1;
+        box-shadow: 0 8px 18px rgba(0, 0, 0, .05);
+      }
+
+      .topic.done .topic-tag,
+      .topic.done .title,
+      .topic.done .desc,
+      .topic.done .status,
+      .topic.done .num {
+        filter: grayscale(1);
+        opacity: .55;
+      }
+
+      .topic.done .mark.done {
+        filter: none !important;
+        opacity: 1 !important;
+      }
+
+      /* siguiente recomendado */
+      .topic.next {
+        border-color: rgba(37, 99, 235, .55);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, .16), 0 16px 30px rgba(0, 0, 0, .09);
+        background: linear-gradient(145deg, #f9fafb, #eff6ff);
+      }
+
+      .topic.done.next {
+        box-shadow: 0 8px 18px rgba(0, 0, 0, .05);
+        border-color: #d1d5db;
+        background: linear-gradient(145deg, #f3f4f6, #eef2f7);
+      }
+
+      .note {
+        margin-top: 12px;
+        text-align: center;
+        color: #6b7280;
+        font-weight: 800;
+        font-size: clamp(.85rem, 2.3vw, .95rem);
+      }
+
+      /*encabezado*/
+
+      /* ===============================
+   HERO CLICKABLE
+   =============================== */
+      .hero-link {
+        padding: 0;
+      }
+
+      .hero-click {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      /* separa izquierda y derecha */
+      .hero-space {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      /* ===============================
+   CURSO (DERECHA)
+   =============================== */
+      .hero-course {
+        font-family: "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
+        font-size: clamp(1.2rem, 3vw, 1.6rem);
+        font-weight: 700;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+
+        color: rgba(255, 255, 255, 0.85);
+
+        padding: 10px 16px;
+        border-radius: 14px;
+
+        background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.18),
+            rgba(255, 255, 255, 0.05));
+
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+
+        box-shadow: 0 10px 22px rgba(0, 0, 0, .18);
+
+        white-space: nowrap;
+      }
+
+      /* ===============================
+   EFECTO HOVER (FINO)
+   =============================== */
+      .hero-link:hover .hero-course {
+        transform: translateY(-1px);
+        filter: brightness(1.05);
+      }
+
+      .hero-link:hover .badge {
+        transform: scale(1.05);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="app">
+
+      <header class="hero hero-link" aria-label="Ruta de Aprendizaje">
+        <a href="index.html" class="hero-click" aria-label="Volver al inicio">
+
+          <div class="hero-row hero-space">
+
+            <!-- IZQUIERDA -->
+            <div class="hero-left">
+              <div class="badge" aria-hidden="true">MK</div>
+
+              <div>
+                <h1 class="hero-title">Ruta de Aprendizaje</h1>
+                <div class="hero-sub">
+                  <span class="pill">🔢 1 → 60</span>
+                  <!-- <span class="pill">✅ Guarda progreso</span> -->
+                </div>
+              </div>
             </div>
+
+            <!-- DERECHA -->
+            <div class="hero-course">
+              🧠
+              INGLES
+            </div>
+
           </div>
+
+        </a>
+      </header>
+
+
+      <div class="toolbar">
+        <div class="search" role="search" aria-label="Buscar temas">
+          🔎 <input id="q" type="text" placeholder="Buscar: ecuaciones, fracciones, ajedrez..." />
+        </div>
+
+        <!-- ✅ Estos son los links a tus HTML por materia -->
+        <div class="chips" role="navigation" aria-label="Rutas por materia">
+          <!-- Cambia los nombres de archivo si quieres -->
+          <a class="chip active" href="index.html">🌟 Cursos</a>
+          <!-- <a class="chip" href="ruta-mate.html">➗ Matemáticas</a>
+                    <a class="chip" href="index.html">🇺🇸 Inglés</a>
+                    <a class="chip" href="ruta-chess.html">♟️ Ajedrez</a>
+                    <a class="chip" href="#">🏁 ??</a> -->
         </div>
       </div>
-    </header>
 
-    <div class="toolbar">
-      <div class="search" role="search" aria-label="Buscar temas">
-        🔎 <input id="q" type="text" placeholder="Buscar: saludos, rutina, pasado, present perfect..." />
-      </div>
+      <section class="progress-wrap" aria-label="Progreso general">
+        <div class="progress-row">
+          <div>Progreso: <span id="doneCount">0</span>/<span id="totalCount">60</span></div>
+          <div class="progress-tag">📚 Temas</div>
+        </div>
+        <div class="bar">
+          <div id="barInner"></div>
+        </div>
+      </section>
 
-      <div class="chips" role="navigation" aria-label="Rutas por materia">
-        <a class="chip" href="ruta-todos.html">🌟 Todos</a>
-        <a class="chip" href="ruta-mate.html">➗ Matemáticas</a>
-        <a class="chip active" href="index.html">🇺🇸 Inglés</a>
-        <a class="chip" href="ruta-chess.html">♟️ Ajedrez</a>
-        <a class="chip" href="#">🏁 ??</a>
-      </div>
+      <main class="grid" id="grid" aria-label="Lista de temas"></main>
+
+      <p class="note">Usa el buscador arriba para filtrar. Haz click en “Realizado” para marcar o desmarcar un
+        tema.</p>
     </div>
 
-    <section class="progress-wrap" aria-label="Progreso general">
-      <div class="progress-row">
-        <div>Progreso: <span id="doneCount">0</span>/<span id="totalCount">60</span></div>
-        <div class="progress-tag">🇺🇸 Programa</div>
-      </div>
-      <div class="bar">
-        <div id="barInner"></div>
-      </div>
-    </section>
+    <script>
+      const STORAGE_KEY = "mk_learning_path_done_realizado_v3";
 
-    <main class="grid" id="grid" aria-label="Lista de temas"></main>
+      // ✅ AQUÍ LINKEAS cada uno de tus 25 HTML:
 
-    <p class="note">Usa el buscador arriba para filtrar. Haz click en “Realizado” para marcar o desmarcar un tema.</p>
-  </div>
 
-  <script>
-    const STORAGE_KEY = "mk_english_path_done_v1";
 
-    // ✅ RUTA DE INGLÉS (A0→C2) — 60 items (10 por nivel aprox)
-    // Estructura: cada tarjeta es una "unidad" (semana o módulo). Puedes apuntar href a tus páginas.
-    const topics = [
-      // ======================
-      // A0 (6 semanas)
-      // ======================
-      { id: 1, emoji: "👋", title: "A0 • Semana 1: Saludos + Nombre + País", desc: "Hi/Hello/Bye. My name is __. I’m __. I’m from Peru. Where are you from? Nice to meet you.", href: "eng-a0-w1.html", category: "A0" },
-      { id: 2, emoji: "🔢", title: "A0 • Semana 2: Números + Edad + Familia", desc: "0–20. How old are you? I’m __ years old. This is my mom/dad. I have one brother.", href: "eng-a0-w2.html", category: "A0" },
-      { id: 3, emoji: "🎨", title: "A0 • Semana 3: Colores + Objetos", desc: "It’s red/blue… This is a red book. What color is it? – It’s blue.", href: "eng-a0-w3.html", category: "A0" },
-      { id: 4, emoji: "🍕", title: "A0 • Semana 4: Comida + Like/Don’t like", desc: "I like pizza. I don’t like milk. Do you like __? Yes, I do / No, I don’t.", href: "eng-a0-w4.html", category: "A0" },
-      { id: 5, emoji: "🏠", title: "A0 • Semana 5: Casa + Ciudad + Escuela", desc: "I am at home/school. This is my room. Park/store/hospital. Preposición at.", href: "eng-a0-w5.html", category: "A0" },
-      { id: 6, emoji: "✅", title: "A0 • Semana 6: Cierre A0 + Frases de supervivencia", desc: "Mini presentación completa + I don’t understand + Can you repeat, please?", href: "eng-a0-w6.html", category: "A0" },
+      const topics = [
+        // ======================
+        // A0 (6 semanas)
+        // ======================
+        { id: 1, emoji: "👋", title: "A0 • Semana 1: Saludos + Nombre + País", desc: "Hi/Hello/Bye. My name is __. I’m __. I’m from Peru. Where are you from? Nice to meet you.", href: "eng-a0-w1.html", category: "A0" },
+        { id: 2, emoji: "🔢", title: "A0 • Semana 2: Números + Edad + Familia", desc: "0–20. How old are you? I’m __ years old. This is my mom/dad. I have one brother.", href: "eng-a0-w2.html", category: "A0" },
+        { id: 3, emoji: "🎨", title: "A0 • Semana 3: Colores + Objetos", desc: "It’s red/blue… This is a red book. What color is it? – It’s blue.", href: "eng-a0-w3.html", category: "A0" },
+        { id: 4, emoji: "🍕", title: "A0 • Semana 4: Comida + Like/Don’t like", desc: "I like pizza. I don’t like milk. Do you like __? Yes, I do / No, I don’t.", href: "eng-a0-w4.html", category: "A0" },
+        { id: 5, emoji: "🏠", title: "A0 • Semana 5: Casa + Ciudad + Escuela", desc: "I am at home/school. This is my room. Park/store/hospital. Preposición at.", href: "eng-a0-w5.html", category: "A0" },
+        { id: 6, emoji: "✅", title: "A0 • Semana 6: Cierre A0 + Frases de supervivencia", desc: "Mini presentación completa + I don’t understand + Can you repeat, please?", href: "eng-a0-w6.html", category: "A0" },
 
-      // ======================
-      // A1 (8 semanas) — resumidas por semana
-      // ======================
-      { id: 7, emoji: "⏰", title: "A1 • Semana 1: Rutina diaria (Present Simple)", desc: "I wake up at… I have breakfast… I go to work/school… I go to bed…", href: "eng-a1-w1.html", category: "A1" },
-      { id: 8, emoji: "📆", title: "A1 • Semana 2: Frecuencia (always/usually/sometimes/never)", desc: "I always… I usually… I sometimes… I never… + preguntas simples.", href: "eng-a1-w2.html", category: "A1" },
-      { id: 9, emoji: "❤️", title: "A1 • Semana 3: Gustos y actividades", desc: "I like / I don’t like + Do you like…? + hobbies básicos.", href: "eng-a1-w3.html", category: "A1" },
-      { id: 10, emoji: "👨‍👩‍👧‍👦", title: "A1 • Semana 4: Familia + Descripciones", desc: "This is my… He is tall. She has long hair. Adjetivos básicos.", href: "eng-a1-w4.html", category: "A1" },
-      { id: 11, emoji: "🗺️", title: "A1 • Semana 5: Ciudad + Direcciones", desc: "There is/are. Next to. Go straight. Turn left/right. Lugares.", href: "eng-a1-w5.html", category: "A1" },
-      { id: 12, emoji: "🛒", title: "A1 • Semana 6: Compras / Pedir cosas", desc: "How much is it? Can I have…? I would like… Basic shopping/restaurant.", href: "eng-a1-w6.html", category: "A1" },
-      { id: 13, emoji: "🎬", title: "A1 • Semana 7: Fin de semana", desc: "On weekends I… I go to the park. With my family/friends. Mini pasado (muy suave).", href: "eng-a1-w7.html", category: "A1" },
-      { id: 14, emoji: "🏁", title: "A1 • Semana 8: Proyecto final A1", desc: "Presentación 1 minuto + writing 6–8 frases + listening simple.", href: "eng-a1-w8.html", category: "A1" },
+        // ======================
+        // A1 (8 semanas) — resumidas por semana
+        // ======================
+        { id: 7, emoji: "⏰", title: "A1 • Semana 1: Rutina diaria (Present Simple)", desc: "I wake up at… I have breakfast… I go to work/school… I go to bed…", href: "eng-a1-w1.html", category: "A1" },
+        { id: 8, emoji: "📆", title: "A1 • Semana 2: Frecuencia (always/usually/sometimes/never)", desc: "I always… I usually… I sometimes… I never… + preguntas simples.", href: "eng-a1-w2.html", category: "A1" },
+        { id: 9, emoji: "❤️", title: "A1 • Semana 3: Gustos y actividades", desc: "I like / I don’t like + Do you like…? + hobbies básicos.", href: "eng-a1-w3.html", category: "A1" },
+        { id: 10, emoji: "👨‍👩‍👧‍👦", title: "A1 • Semana 4: Familia + Descripciones", desc: "This is my… He is tall. She has long hair. Adjetivos básicos.", href: "eng-a1-w4.html", category: "A1" },
+        { id: 11, emoji: "🗺️", title: "A1 • Semana 5: Ciudad + Direcciones", desc: "There is/are. Next to. Go straight. Turn left/right. Lugares.", href: "eng-a1-w5.html", category: "A1" },
+        { id: 12, emoji: "🛒", title: "A1 • Semana 6: Compras / Pedir cosas", desc: "How much is it? Can I have…? I would like… Basic shopping/restaurant.", href: "eng-a1-w6.html", category: "A1" },
+        { id: 13, emoji: "🎬", title: "A1 • Semana 7: Fin de semana", desc: "On weekends I… I go to the park. With my family/friends. Mini pasado (muy suave).", href: "eng-a1-w7.html", category: "A1" },
+        { id: 14, emoji: "🏁", title: "A1 • Semana 8: Proyecto final A1", desc: "Presentación 1 minuto + writing 6–8 frases + listening simple.", href: "eng-a1-w8.html", category: "A1" },
 
-      // ======================
-      // A2 (8 semanas)
-      // ======================
-      { id: 15, emoji: "🔄", title: "A2 • Semana 1: Present Continuous", desc: "I’m studying right now. What are you doing? Comparar con rutina.", href: "eng-a2-w1.html", category: "A2" },
-      { id: 16, emoji: "⏳", title: "A2 • Semana 2: Past Simple (regular/irregular)", desc: "I visited… I went… Did you…? Historias cortas.", href: "eng-a2-w2.html", category: "A2" },
-      { id: 17, emoji: "🏙️", title: "A2 • Semana 3: Describir (comparativos/superlativos)", desc: "Bigger than… the best… There was/There were…", href: "eng-a2-w3.html", category: "A2" },
-      { id: 18, emoji: "📌", title: "A2 • Semana 4: Future (going to)", desc: "Plans + predictions con evidencia: It’s going to rain.", href: "eng-a2-w4.html", category: "A2" },
-      { id: 19, emoji: "🧰", title: "A2 • Semana 5: Modales (can/could/should/have to)", desc: "Habilidad, consejo, obligación y peticiones educadas.", href: "eng-a2-w5.html", category: "A2" },
-      { id: 20, emoji: "🔗", title: "A2 • Semana 6: Conectores (and/but/so/because)", desc: "Storytelling simple con conectores + mini historias.", href: "eng-a2-w6.html", category: "A2" },
-      { id: 21, emoji: "🎧", title: "A2 • Semana 7: Listening & Speaking", desc: "Shadowing + descripción de imagen 20–30s + 10 preguntas.", href: "eng-a2-w7.html", category: "A2" },
-      { id: 22, emoji: "✅", title: "A2 • Semana 8: Proyecto final A2", desc: "Pasado + presente + futuro + test básico (reading/listening/speaking/writing).", href: "eng-a2-w8.html", category: "A2" },
+        // ======================
+        // A2 (8 semanas)
+        // ======================
+        { id: 15, emoji: "🔄", title: "A2 • Semana 1: Present Continuous", desc: "I’m studying right now. What are you doing? Comparar con rutina.", href: "eng-a2-w1.html", category: "A2" },
+        { id: 16, emoji: "⏳", title: "A2 • Semana 2: Past Simple (regular/irregular)", desc: "I visited… I went… Did you…? Historias cortas.", href: "eng-a2-w2.html", category: "A2" },
+        { id: 17, emoji: "🏙️", title: "A2 • Semana 3: Describir (comparativos/superlativos)", desc: "Bigger than… the best… There was/There were…", href: "eng-a2-w3.html", category: "A2" },
+        { id: 18, emoji: "📌", title: "A2 • Semana 4: Future (going to)", desc: "Plans + predictions con evidencia: It’s going to rain.", href: "eng-a2-w4.html", category: "A2" },
+        { id: 19, emoji: "🧰", title: "A2 • Semana 5: Modales (can/could/should/have to)", desc: "Habilidad, consejo, obligación y peticiones educadas.", href: "eng-a2-w5.html", category: "A2" },
+        { id: 20, emoji: "🔗", title: "A2 • Semana 6: Conectores (and/but/so/because)", desc: "Storytelling simple con conectores + mini historias.", href: "eng-a2-w6.html", category: "A2" },
+        { id: 21, emoji: "🎧", title: "A2 • Semana 7: Listening & Speaking", desc: "Shadowing + descripción de imagen 20–30s + 10 preguntas.", href: "eng-a2-w7.html", category: "A2" },
+        { id: 22, emoji: "✅", title: "A2 • Semana 8: Proyecto final A2", desc: "Pasado + presente + futuro + test básico (reading/listening/speaking/writing).", href: "eng-a2-w8.html", category: "A2" },
 
-      // ======================
-      // B1 (8 semanas)
-      // ======================
-      { id: 23, emoji: "⭐", title: "B1 • Semana 1: Present Perfect (experiencias)", desc: "I have visited… ever/never, for/since + contraste con pasado simple.", href: "eng-b1-w1.html", category: "B1" },
-      { id: 24, emoji: "🌧️", title: "B1 • Semana 2: Past Continuous + Narración", desc: "I was studying when… contexto + acción. Describir escenas.", href: "eng-b1-w2.html", category: "B1" },
-      { id: 25, emoji: "🚀", title: "B1 • Semana 3: Futuro (will/going to/future continuous)", desc: "Promesas, decisiones rápidas, planes y acciones en progreso.", href: "eng-b1-w3.html", category: "B1" },
-      { id: 26, emoji: "🧠", title: "B1 • Semana 4: Opinión + Comparar + Argumentar", desc: "In my opinion… because… however… describir lugares como guía.", href: "eng-b1-w4.html", category: "B1" },
-      { id: 27, emoji: "🧷", title: "B1 • Semana 5: Modales avanzados", desc: "Should/must/have to/could/might/may + reglas y posibilidad.", href: "eng-b1-w5.html", category: "B1" },
-      { id: 28, emoji: "🎙️", title: "B1 • Semana 6: Listening real + Conversación", desc: "Audio 1 min + shadowing + conectores (although/however).", href: "eng-b1-w6.html", category: "B1" },
-      { id: 29, emoji: "✍️", title: "B1 • Semana 7: Reading + Writing (párrafos)", desc: "Texto 150–200 palabras + ensayo 80–120 + corrección guiada.", href: "eng-b1-w7.html", category: "B1" },
-      { id: 30, emoji: "🏁", title: "B1 • Semana 8: Proyecto final B1", desc: "Hablar 2 min + writing 150 palabras + listening/reading + checklist.", href: "eng-b1-w8.html", category: "B1" },
+        // ======================
+        // B1 (8 semanas)
+        // ======================
+        { id: 23, emoji: "⭐", title: "B1 • Semana 1: Present Perfect (experiencias)", desc: "I have visited… ever/never, for/since + contraste con pasado simple.", href: "eng-b1-w1.html", category: "B1" },
+        { id: 24, emoji: "🌧️", title: "B1 • Semana 2: Past Continuous + Narración", desc: "I was studying when… contexto + acción. Describir escenas.", href: "eng-b1-w2.html", category: "B1" },
+        { id: 25, emoji: "🚀", title: "B1 • Semana 3: Futuro (will/going to/future continuous)", desc: "Promesas, decisiones rápidas, planes y acciones en progreso.", href: "eng-b1-w3.html", category: "B1" },
+        { id: 26, emoji: "🧠", title: "B1 • Semana 4: Opinión + Comparar + Argumentar", desc: "In my opinion… because… however… describir lugares como guía.", href: "eng-b1-w4.html", category: "B1" },
+        { id: 27, emoji: "🧷", title: "B1 • Semana 5: Modales avanzados", desc: "Should/must/have to/could/might/may + reglas y posibilidad.", href: "eng-b1-w5.html", category: "B1" },
+        { id: 28, emoji: "🎙️", title: "B1 • Semana 6: Listening real + Conversación", desc: "Audio 1 min + shadowing + conectores (although/however).", href: "eng-b1-w6.html", category: "B1" },
+        { id: 29, emoji: "✍️", title: "B1 • Semana 7: Reading + Writing (párrafos)", desc: "Texto 150–200 palabras + ensayo 80–120 + corrección guiada.", href: "eng-b1-w7.html", category: "B1" },
+        { id: 30, emoji: "🏁", title: "B1 • Semana 8: Proyecto final B1", desc: "Hablar 2 min + writing 150 palabras + listening/reading + checklist.", href: "eng-b1-w8.html", category: "B1" },
 
-      // ======================
-      // B2 (8 semanas)
-      // ======================
-      { id: 31, emoji: "🧩", title: "B2 • Semana 1: Condicionales (2nd) + ideas complejas", desc: "If I had… I would… + comparación con 1st conditional.", href: "eng-b2-w1.html", category: "B2" },
-      { id: 32, emoji: "⏱️", title: "B2 • Semana 2: Present Perfect Continuous", desc: "I have been studying… feelings lately + comparación con perfect simple.", href: "eng-b2-w2.html", category: "B2" },
-      { id: 33, emoji: "🧷", title: "B2 • Semana 3: Conectores avanzados + cohesión", desc: "although, nevertheless, therefore, as a result + ensayo corto.", href: "eng-b2-w3.html", category: "B2" },
-      { id: 34, emoji: "🗞️", title: "B2 • Semana 4: Passive Voice + Reported Speech", desc: "Noticias/academia + preguntas reportadas.", href: "eng-b2-w4.html", category: "B2" },
-      { id: 35, emoji: "🕵️", title: "B2 • Semana 5: Deducción (must/might/could)", desc: "Must be… Might have… resolver misterios + debate.", href: "eng-b2-w5.html", category: "B2" },
-      { id: 36, emoji: "📝", title: "B2 • Semana 6: Listening real + notas", desc: "Audios 3–4 min + técnica de keywords + resumen oral/escrito.", href: "eng-b2-w6.html", category: "B2" },
-      { id: 37, emoji: "🗣️", title: "B2 • Semana 7: Speaking natural", desc: "Reformulación, fillers, turn-taking, debate guiado.", href: "eng-b2-w7.html", category: "B2" },
-      { id: 38, emoji: "🏆", title: "B2 • Semana 8: Proyecto final B2", desc: "Speaking 2–3 min + writing 180–250 + listening/reading + grammar check.", href: "eng-b2-w8.html", category: "B2" },
+        // ======================
+        // B2 (8 semanas)
+        // ======================
+        { id: 31, emoji: "🧩", title: "B2 • Semana 1: Condicionales (2nd) + ideas complejas", desc: "If I had… I would… + comparación con 1st conditional.", href: "eng-b2-w1.html", category: "B2" },
+        { id: 32, emoji: "⏱️", title: "B2 • Semana 2: Present Perfect Continuous", desc: "I have been studying… feelings lately + comparación con perfect simple.", href: "eng-b2-w2.html", category: "B2" },
+        { id: 33, emoji: "🧷", title: "B2 • Semana 3: Conectores avanzados + cohesión", desc: "although, nevertheless, therefore, as a result + ensayo corto.", href: "eng-b2-w3.html", category: "B2" },
+        { id: 34, emoji: "🗞️", title: "B2 • Semana 4: Passive Voice + Reported Speech", desc: "Noticias/academia + preguntas reportadas.", href: "eng-b2-w4.html", category: "B2" },
+        { id: 35, emoji: "🕵️", title: "B2 • Semana 5: Deducción (must/might/could)", desc: "Must be… Might have… resolver misterios + debate.", href: "eng-b2-w5.html", category: "B2" },
+        { id: 36, emoji: "📝", title: "B2 • Semana 6: Listening real + notas", desc: "Audios 3–4 min + técnica de keywords + resumen oral/escrito.", href: "eng-b2-w6.html", category: "B2" },
+        { id: 37, emoji: "🗣️", title: "B2 • Semana 7: Speaking natural", desc: "Reformulación, fillers, turn-taking, debate guiado.", href: "eng-b2-w7.html", category: "B2" },
+        { id: 38, emoji: "🏆", title: "B2 • Semana 8: Proyecto final B2", desc: "Speaking 2–3 min + writing 180–250 + listening/reading + grammar check.", href: "eng-b2-w8.html", category: "B2" },
 
-      // ======================
-      // C1 (8 semanas)
-      // ======================
-      { id: 39, emoji: "🔬", title: "C1 • Semana 1: Refinamiento gramatical", desc: "Perfects, past perfect, future forms + claridad (rewriting).", href: "eng-c1-w1.html", category: "C1" },
-      { id: 40, emoji: "📚", title: "C1 • Semana 2: Vocab académico + collocations", desc: "raise awareness, conduct research + paraphrasing.", href: "eng-c1-w2.html", category: "C1" },
-      { id: 41, emoji: "🎩", title: "C1 • Semana 3: Inversions, clefts, tentative language", desc: "Never have I… What I find… It could be argued…", href: "eng-c1-w3.html", category: "C1" },
-      { id: 42, emoji: "🧱", title: "C1 • Semana 4: Escritura avanzada", desc: "Introducciones fuertes, argument+evidence, coherencia y conclusiones.", href: "eng-c1-w4.html", category: "C1" },
-      { id: 43, emoji: "🎧", title: "C1 • Semana 5: Listening (matices)", desc: "Intención, ironía suave, note-taking profesional, resumen oral.", href: "eng-c1-w5.html", category: "C1" },
-      { id: 44, emoji: "🤝", title: "C1 • Semana 6: Speaking profesional + debate", desc: "Turn-taking, contrargumentar con respeto, diálogos grabados.", href: "eng-c1-w6.html", category: "C1" },
-      { id: 45, emoji: "🧠", title: "C1 • Semana 7: Reading complejo + pensamiento crítico", desc: "Sesgo del autor, inferencias, resumen crítico, reseña.", href: "eng-c1-w7.html", category: "C1" },
-      { id: 46, emoji: "🏁", title: "C1 • Semana 8: Proyecto final C1", desc: "Presentación 3–5 min + ensayo 300–450 + evaluación total.", href: "eng-c1-w8.html", category: "C1" },
+        // ======================
+        // C1 (8 semanas)
+        // ======================
+        { id: 39, emoji: "🔬", title: "C1 • Semana 1: Refinamiento gramatical", desc: "Perfects, past perfect, future forms + claridad (rewriting).", href: "eng-c1-w1.html", category: "C1" },
+        { id: 40, emoji: "📚", title: "C1 • Semana 2: Vocab académico + collocations", desc: "raise awareness, conduct research + paraphrasing.", href: "eng-c1-w2.html", category: "C1" },
+        { id: 41, emoji: "🎩", title: "C1 • Semana 3: Inversions, clefts, tentative language", desc: "Never have I… What I find… It could be argued…", href: "eng-c1-w3.html", category: "C1" },
+        { id: 42, emoji: "🧱", title: "C1 • Semana 4: Escritura avanzada", desc: "Introducciones fuertes, argument+evidence, coherencia y conclusiones.", href: "eng-c1-w4.html", category: "C1" },
+        { id: 43, emoji: "🎧", title: "C1 • Semana 5: Listening (matices)", desc: "Intención, ironía suave, note-taking profesional, resumen oral.", href: "eng-c1-w5.html", category: "C1" },
+        { id: 44, emoji: "🤝", title: "C1 • Semana 6: Speaking profesional + debate", desc: "Turn-taking, contrargumentar con respeto, diálogos grabados.", href: "eng-c1-w6.html", category: "C1" },
+        { id: 45, emoji: "🧠", title: "C1 • Semana 7: Reading complejo + pensamiento crítico", desc: "Sesgo del autor, inferencias, resumen crítico, reseña.", href: "eng-c1-w7.html", category: "C1" },
+        { id: 46, emoji: "🏁", title: "C1 • Semana 8: Proyecto final C1", desc: "Presentación 3–5 min + ensayo 300–450 + evaluación total.", href: "eng-c1-w8.html", category: "C1" },
 
-      // ======================
-      // C2 (8 semanas)
-      // ======================
-      { id: 47, emoji: "✨", title: "C2 • Semana 1: Voz propia + naturalidad", desc: "Precisión léxica, eliminar redundancias, reescribir en 3 tonos.", href: "eng-c2-w1.html", category: "C2" },
-      { id: 48, emoji: "🎓", title: "C2 • Semana 2: Lenguaje académico avanzado", desc: "Estructuras complejas + conectores + ensayo 250–350.", href: "eng-c2-w2.html", category: "C2" },
-      { id: 49, emoji: "🧭", title: "C2 • Semana 3: Pragmática (intención y diplomacia)", desc: "Indirectness, tacto, responder comentarios difíciles con elegancia.", href: "eng-c2-w3.html", category: "C2" },
-      { id: 50, emoji: "📖", title: "C2 • Semana 4: Lectura avanzada + retórica", desc: "Analizar estructura retórica + resumen crítico + reseña argumentada.", href: "eng-c2-w4.html", category: "C2" },
-      { id: 51, emoji: "🧾", title: "C2 • Semana 5: Listening auténtico + notas", desc: "Paneles/entrevistas + acentos + reporte verbal 2–3 min.", href: "eng-c2-w5.html", category: "C2" },
-      { id: 52, emoji: "🎤", title: "C2 • Semana 6: Oratoria + storytelling avanzado", desc: "Mini charla 3–4 min + reformular en 3 niveles.", href: "eng-c2-w6.html", category: "C2" },
-      { id: 53, emoji: "🖋️", title: "C2 • Semana 7: Escritura creativa + estilo", desc: "Metáforas naturales, diálogos con subtexto, cuento 300–500.", href: "eng-c2-w7.html", category: "C2" },
-      { id: 54, emoji: "🏆", title: "C2 • Semana 8: Proyecto final C2", desc: "Ensayo 500–800 + charla 5–8 min + debate + evaluación completa.", href: "eng-c2-w8.html", category: "C2" },
+        // ======================
+        // C2 (8 semanas)
+        // ======================
+        { id: 47, emoji: "✨", title: "C2 • Semana 1: Voz propia + naturalidad", desc: "Precisión léxica, eliminar redundancias, reescribir en 3 tonos.", href: "eng-c2-w1.html", category: "C2" },
+        { id: 48, emoji: "🎓", title: "C2 • Semana 2: Lenguaje académico avanzado", desc: "Estructuras complejas + conectores + ensayo 250–350.", href: "eng-c2-w2.html", category: "C2" },
+        { id: 49, emoji: "🧭", title: "C2 • Semana 3: Pragmática (intención y diplomacia)", desc: "Indirectness, tacto, responder comentarios difíciles con elegancia.", href: "eng-c2-w3.html", category: "C2" },
+        { id: 50, emoji: "📖", title: "C2 • Semana 4: Lectura avanzada + retórica", desc: "Analizar estructura retórica + resumen crítico + reseña argumentada.", href: "eng-c2-w4.html", category: "C2" },
+        { id: 51, emoji: "🧾", title: "C2 • Semana 5: Listening auténtico + notas", desc: "Paneles/entrevistas + acentos + reporte verbal 2–3 min.", href: "eng-c2-w5.html", category: "C2" },
+        { id: 52, emoji: "🎤", title: "C2 • Semana 6: Oratoria + storytelling avanzado", desc: "Mini charla 3–4 min + reformular en 3 niveles.", href: "eng-c2-w6.html", category: "C2" },
+        { id: 53, emoji: "🖋️", title: "C2 • Semana 7: Escritura creativa + estilo", desc: "Metáforas naturales, diálogos con subtexto, cuento 300–500.", href: "eng-c2-w7.html", category: "C2" },
+        { id: 54, emoji: "🏆", title: "C2 • Semana 8: Proyecto final C2", desc: "Ensayo 500–800 + charla 5–8 min + debate + evaluación completa.", href: "eng-c2-w8.html", category: "C2" },
 
-      // ======================
-      // Extras (para completar 60 con evaluaciones + “kits”)
-      // ======================
-      { id: 55, emoji: "🧪", title: "Kit: Test rápido A0 (2 minutos)", desc: "6 frases: marcar entiendo/no entiendo + repetir 3 frases sin leer.", href: "eng-kit-a0-test.html", category: "Kits" },
-      { id: 56, emoji: "🧪", title: "Kit: Test rápido A1 (5 minutos)", desc: "Listening 1 min + 5 preguntas + mini writing 4 frases.", href: "eng-kit-a1-test.html", category: "Kits" },
-      { id: 57, emoji: "🧪", title: "Kit: Test rápido A2 (8 minutos)", desc: "Past + future + descripción. 10 preguntas + 6 frases escritas.", href: "eng-kit-a2-test.html", category: "Kits" },
-      { id: 58, emoji: "🧪", title: "Kit: Test rápido B1 (12 minutos)", desc: "Present perfect + story. Speaking 1 min + writing 120–150.", href: "eng-kit-b1-test.html", category: "Kits" },
-      { id: 59, emoji: "🧪", title: "Kit: Test rápido B2 (15 minutos)", desc: "Cohesion + deduction + writing 180–220 + speaking 2 min.", href: "eng-kit-b2-test.html", category: "Kits" },
-      { id: 60, emoji: "🎯", title: "Kit: Rutina diaria fija (plantilla)", desc: "Hello ritual + audio + chunks + mini juego + lectura + escritura (lista para copiar).", href: "eng-kit-daily-routine.html", category: "Kits" },
-    ];
+        // ======================
+        // Extras (para completar 60 con evaluaciones + “kits”)
+        // ======================
+        { id: 55, emoji: "🧪", title: "Kit: Test rápido A0 (2 minutos)", desc: "6 frases: marcar entiendo/no entiendo + repetir 3 frases sin leer.", href: "eng-kit-a0-test.html", category: "Kits" },
+        { id: 56, emoji: "🧪", title: "Kit: Test rápido A1 (5 minutos)", desc: "Listening 1 min + 5 preguntas + mini writing 4 frases.", href: "eng-kit-a1-test.html", category: "Kits" },
+        { id: 57, emoji: "🧪", title: "Kit: Test rápido A2 (8 minutos)", desc: "Past + future + descripción. 10 preguntas + 6 frases escritas.", href: "eng-kit-a2-test.html", category: "Kits" },
+        { id: 58, emoji: "🧪", title: "Kit: Test rápido B1 (12 minutos)", desc: "Present perfect + story. Speaking 1 min + writing 120–150.", href: "eng-kit-b1-test.html", category: "Kits" },
+        { id: 59, emoji: "🧪", title: "Kit: Test rápido B2 (15 minutos)", desc: "Cohesion + deduction + writing 180–220 + speaking 2 min.", href: "eng-kit-b2-test.html", category: "Kits" },
+        { id: 60, emoji: "🎯", title: "Kit: Rutina diaria fija (plantilla)", desc: "Hello ritual + audio + chunks + mini juego + lectura + escritura (lista para copiar).", href: "eng-kit-daily-routine.html", category: "Kits" },
+      ];
 
-    // Total
-    const totalEl = document.getElementById("totalCount");
-    totalEl.textContent = topics.length;
 
-    function loadDoneSet() {
-      try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        const arr = raw ? JSON.parse(raw) : [];
-        return new Set(arr.map(Number));
-      } catch {
-        return new Set();
-      }
-    }
+      // Total
+      const totalEl = document.getElementById("totalCount");
+      totalEl.textContent = topics.length;
 
-    function saveDoneSet(doneSet) {
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify([...doneSet]));
-      } catch { }
-    }
-
-    function updateProgress(doneSet) {
-      const done = doneSet.size;
-      const total = topics.length;
-      document.getElementById("doneCount").textContent = done;
-      const pct = total === 0 ? 0 : (done / total) * 100;
-      document.getElementById("barInner").style.width = pct + "%";
-    }
-
-    function cssSafeCat(cat) {
-      return String(cat).replace(/\s+/g, "-");
-    }
-
-    function renderGrid(queryText, doneSet) {
-      const grid = document.getElementById("grid");
-      grid.innerHTML = "";
-
-      const q = String(queryText || "").trim().toLowerCase();
-
-      const filtered = topics.filter(t => {
-        if (!q) return true;
-        const hay = (t.title + " " + t.desc + " " + t.category).toLowerCase();
-        return hay.includes(q);
-      });
-
-      const nextId = filtered.find(t => !doneSet.has(t.id))?.id ?? null;
-
-      if (filtered.length === 0) {
-        const empty = document.createElement("div");
-        empty.style.gridColumn = "1 / -1";
-        empty.style.textAlign = "center";
-        empty.style.padding = "18px";
-        empty.style.fontWeight = "900";
-        empty.style.color = "#6b7280";
-        empty.textContent = "No encontré temas con esa búsqueda 🙂";
-        grid.appendChild(empty);
-        return;
+      function loadDoneSet() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          const arr = raw ? JSON.parse(raw) : [];
+          return new Set(arr.map(Number));
+        } catch {
+          return new Set();
+        }
       }
 
-      filtered.forEach(t => {
-        const isDone = doneSet.has(t.id);
-        const isNext = nextId !== null && t.id === nextId;
+      function saveDoneSet(doneSet) {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify([...doneSet]));
+        } catch { }
+      }
 
-        const card = document.createElement("article");
-        card.className =
-          "topic " +
-          "cat-" + cssSafeCat(t.category) +
-          (isNext ? " next" : "") +
-          (isDone ? " done" : "");
+      function updateProgress(doneSet) {
+        const done = doneSet.size;
+        const total = topics.length;
+        document.getElementById("doneCount").textContent = done;
+        const pct = total === 0 ? 0 : (done / total) * 100;
+        document.getElementById("barInner").style.width = pct + "%";
+      }
 
-        card.innerHTML = `
+      function cssSafeCat(cat) {
+        return String(cat).replace(/\s+/g, "-");
+      }
+
+      function renderGrid(queryText, doneSet) {
+        const grid = document.getElementById("grid");
+        grid.innerHTML = "";
+
+        const q = String(queryText || "").trim().toLowerCase();
+
+        // ✅ FILTRO SOLO POR BUSCADOR (esta página es "Todos")
+        const filtered = topics.filter(t => {
+          if (!q) return true;
+          const hay = (t.title + " " + t.desc + " " + t.category).toLowerCase();
+          return hay.includes(q);
+        });
+
+        // recomendado: primer no hecho dentro del filtrado
+        const nextId = filtered.find(t => !doneSet.has(t.id))?.id ?? null;
+
+        // si no hay resultados
+        if (filtered.length === 0) {
+          const empty = document.createElement("div");
+          empty.style.gridColumn = "1 / -1";
+          empty.style.textAlign = "center";
+          empty.style.padding = "18px";
+          empty.style.fontWeight = "900";
+          empty.style.color = "#6b7280";
+          empty.textContent = "No encontré temas con esa búsqueda 🙂";
+          grid.appendChild(empty);
+          return;
+        }
+
+        filtered.forEach(t => {
+          const isDone = doneSet.has(t.id);
+          const isNext = nextId !== null && t.id === nextId;
+
+          const card = document.createElement("article");
+          card.className =
+            "topic " +
+            "cat-" + cssSafeCat(t.category) +
+            (isNext ? " next" : "") +
+            (isDone ? " done" : "");
+
+          card.innerHTML = `
           <div class="num" aria-label="Tema ${t.id}">${t.id}</div>
 
           <a href="${t.href}" aria-label="Abrir ${t.title}">
-            <div class="topic-tag">🇺🇸 ${t.category}${isNext ? " • ⭐ Recomendado" : ""}</div>
-            <div class="title">${t.emoji} ${t.title}</div>
+
+
+            <div class="topic-tag">${t.emoji} ${t.category}${isNext ? " • ⭐ Recomendado" : ""}</div>
+            <div class="title">${t.title}</div>
             <p class="desc">${t.desc}</p>
           </a>
 
@@ -589,49 +807,49 @@
           </div>
         `;
 
-        grid.appendChild(card);
-      });
-
-      grid.querySelectorAll(".mark").forEach(btn => {
-        btn.addEventListener("click", (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-
-          const id = Number(btn.dataset.id);
-          if (!Number.isFinite(id)) return;
-
-          if (doneSet.has(id)) doneSet.delete(id);
-          else doneSet.add(id);
-
-          saveDoneSet(doneSet);
-          updateProgress(doneSet);
-
-          const currentQuery = document.getElementById("q").value;
-          renderGrid(currentQuery, doneSet);
+          grid.appendChild(card);
         });
+
+        grid.querySelectorAll(".mark").forEach(btn => {
+          btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const id = Number(btn.dataset.id);
+            if (!Number.isFinite(id)) return;
+
+            if (doneSet.has(id)) doneSet.delete(id);
+            else doneSet.add(id);
+
+            saveDoneSet(doneSet);
+            updateProgress(doneSet);
+
+            const currentQuery = document.getElementById("q").value;
+            renderGrid(currentQuery, doneSet);
+          });
+        });
+      }
+
+      // INIT
+      const doneSet = loadDoneSet();
+      updateProgress(doneSet);
+      renderGrid("", doneSet);
+
+      // ✅ BUSCADOR FUNCIONA AQUÍ
+      const input = document.getElementById("q");
+      input.addEventListener("input", () => {
+        renderGrid(input.value, doneSet);
       });
-    }
+    </script>
 
-    // INIT
-    const doneSet = loadDoneSet();
-    updateProgress(doneSet);
-    renderGrid("", doneSet);
-
-    // BUSCADOR
-    const input = document.getElementById("q");
-    input.addEventListener("input", () => {
-      renderGrid(input.value, doneSet);
-    });
-  </script>
-
-  <script>
-    // Registrar Service Worker (PWA)
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () => {
-        navigator.serviceWorker.register("./service-worker.js").catch(() => { });
-      });
-    }
-  </script>
-</body>
+    <script>
+      // Registrar Service Worker (PWA)
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("./service-worker.js").catch(() => { });
+        });
+      }
+    </script>
+  </body>
 
 </html>
