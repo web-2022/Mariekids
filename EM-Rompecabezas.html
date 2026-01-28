@@ -5,18 +5,22 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Marie Kids • Rompecabezas (Reordenar)</title>
+
         <!-- PWA -->
         <link rel="manifest" href="manifest.json">
         <meta name="theme-color" content="#1976d2">
+
         <style>
             :root {
                 --bg1: #dbeafe;
                 --bg2: #e0f2fe;
                 --card: #fff;
-                --radius: 22px;
                 --shadow: 0 18px 40px rgba(0, 0, 0, .14);
                 --accent: #2563eb;
                 --muted: #64748b;
+                --ok: #16a34a;
+                --radius: clamp(16px, 3vw, 22px);
+                --app-max: 720px;
             }
 
             * {
@@ -36,12 +40,13 @@
 
             .app {
                 width: 100%;
-                max-width: 520px;
+                max-width: var(--app-max);
                 background: var(--card);
                 border-radius: var(--radius);
                 box-shadow: var(--shadow);
-                padding: 12px;
+                padding: clamp(10px, 2.5vw, 16px);
             }
+
 
             /* Header */
             .header {
@@ -61,6 +66,7 @@
                 display: grid;
                 place-items: center;
                 flex: 0 0 auto;
+                text-decoration: none;
             }
 
             .titleWrap {
@@ -69,25 +75,68 @@
 
             .title {
                 font-weight: 950;
-                font-size: 18px;
-                line-height: 1.05
+                font-size: clamp(16px, 4vw, 20px);
+                line-height: 1.1;
             }
 
             .sub {
-                font-size: 12px;
-                color: rgba(15, 23, 42, .62);
-                font-weight: 800
+                font-size: clamp(11px, 3vw, 13px);
             }
 
-            /* Controls */
-            .controls {
+            /* HUD */
+            .hud {
                 display: flex;
                 flex-wrap: wrap;
                 gap: 8px;
                 align-items: center;
                 justify-content: space-between;
+                margin: 8px 0 10px;
+                padding: 10px;
+                border-radius: 16px;
+                background: rgba(2, 6, 23, .04);
+                border: 1px solid rgba(2, 6, 23, .06);
+            }
+
+            .pill {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                padding: 8px 10px;
+                border-radius: 999px;
+                background: #fff;
+                border: 1px solid rgba(2, 6, 23, .10);
+                font-weight: 900;
+                color: #0f172a;
+                font-size: 12px;
+                white-space: nowrap;
+            }
+
+            .dot {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: var(--accent);
+                box-shadow: 0 8px 18px rgba(37, 99, 235, .25);
+            }
+
+            /* Controls */
+            .controls {
+                display: flex;
+                gap: 8px;
+                flex-direction: column;
+                align-items: stretch;
                 margin-bottom: 10px;
             }
+
+            /* En pantallas medianas y grandes */
+            @media (min-width: 520px) {
+                .controls {
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: space-between;
+                }
+            }
+
 
             .rowCtl {
                 display: flex;
@@ -97,14 +146,19 @@
             }
 
             select,
-            button {
+            button,
+            .btnMenu {
                 border-radius: 12px;
                 border: 1px solid rgba(2, 6, 23, .12);
                 padding: 10px 12px;
                 font-weight: 900;
                 background: #fff;
                 color: #0f172a;
+                min-height: 44px;
+                /* 👈 tamaño táctil */
+                font-size: clamp(13px, 3.5vw, 14px);
             }
+
 
             button.primary {
                 border: none;
@@ -112,11 +166,35 @@
                 background: linear-gradient(135deg, #22c55e, #16a34a);
             }
 
+            .btnMenu {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                padding: 10px 12px;
+                border-radius: 12px;
+                font-weight: 900;
+                text-decoration: none;
+                color: #0f172a;
+                background: #fff;
+                border: 1px solid rgba(2, 6, 23, .12);
+            }
+
+
             .hint {
                 font-size: 12px;
                 color: var(--muted);
-                font-weight: 800
+                font-weight: 800;
+                text-align: center;
+                /* 📱 móvil */
             }
+
+            /* 💻 tablet y desktop */
+            @media (min-width: 520px) {
+                .hint {
+                    text-align: left;
+                }
+            }
+
 
             /* Gallery */
             .gallery {
@@ -130,8 +208,8 @@
             }
 
             .thumb {
-                width: 70px;
-                height: 70px;
+                width: clamp(56px, 16vw, 72px);
+                height: clamp(56px, 16vw, 72px);
                 border-radius: 16px;
                 flex: 0 0 auto;
                 overflow: hidden;
@@ -179,6 +257,8 @@
             /* Board */
             .board {
                 width: 100%;
+                max-width: min(92vw, 520px);
+                margin-inline: auto;
                 aspect-ratio: 1/1;
                 display: grid;
                 gap: 6px;
@@ -226,7 +306,7 @@
             }
 
             .winCard {
-                width: min(360px, 92vw);
+                width: min(92vw, 380px);
                 background: #fff;
                 border-radius: 22px;
                 padding: 20px;
@@ -252,6 +332,10 @@
                 justify-content: center;
                 flex-wrap: wrap
             }
+
+            html {
+                touch-action: manipulation;
+            }
         </style>
     </head>
 
@@ -263,6 +347,13 @@
                     <div class="title">Rompecabezas</div>
                     <div class="sub">Arrastra y reordena en el tablero</div>
                 </div>
+            </div>
+
+            <!-- ✅ HUD (tiempo + movimientos) -->
+            <div class="hud" aria-label="Estado del juego">
+                <div class="pill"><span class="dot"></span> ⏱️ Tiempo: <span id="time">00:00</span></div>
+                <div class="pill"><span class="dot" style="background: var(--ok)"></span> 🔁 Movimientos: <span
+                        id="moves">0</span></div>
             </div>
 
             <div class="controls">
@@ -284,13 +375,14 @@
 
                 <div class="rowCtl">
                     <button id="btnNew" class="primary">🔄 Nuevo</button>
+                    <a href="ruta-cuentos.html" class="btnMenu">📚 Cuentos</a>
                 </div>
+
 
                 <div class="hint">Tip: suelta sobre otra pieza para intercambiar.</div>
             </div>
 
             <div id="gallery" class="gallery"></div>
-
             <div id="board" class="board" aria-label="Tablero del rompecabezas"></div>
         </div>
 
@@ -300,8 +392,10 @@
                 <p>Completaste el rompecabezas</p>
                 <div class="row">
                     <button id="btnAgain" class="primary">🔄 Jugar otra vez</button>
+                    <a href="ruta-cuentos.html" class="btnMenu">📚 Cuentos</a>
                     <button id="btnClose">❌ Cerrar</button>
                 </div>
+
             </div>
         </div>
 
@@ -504,9 +598,7 @@
                     return otherCard('Cohete', '🚀', '#a78bfa', '#60a5fa', (ctx, S) => {
                         const cx = S * 0.52, cy = S * 0.66;
                         ctx.fillStyle = 'rgba(255,255,255,.20)';
-                        for (let i = 0; i < 80; i++) {
-                            ctx.fillRect(Math.random() * S, Math.random() * S, 2, 2);
-                        }
+                        for (let i = 0; i < 80; i++) ctx.fillRect(Math.random() * S, Math.random() * S, 2, 2);
                         ctx.fillStyle = '#e2e8f0';
                         ctx.beginPath(); ctx.ellipse(cx, cy, S * 0.13, S * 0.24, 0, 0, Math.PI * 2); ctx.fill();
                         ctx.fillStyle = '#ef4444';
@@ -583,6 +675,28 @@
                 const btnAgain = document.getElementById('btnAgain');
                 const btnClose = document.getElementById('btnClose');
 
+                // HUD
+                const timeEl = document.getElementById('time');
+                const movesEl = document.getElementById('moves');
+
+                /* =========================
+                   ✅ Mini audio (beeps)
+                ========================= */
+                let audioCtx = null;
+                function beep(freq = 660, ms = 70, gain = 0.05) {
+                    try {
+                        audioCtx ||= new (window.AudioContext || window.webkitAudioContext)();
+                        const o = audioCtx.createOscillator();
+                        const g = audioCtx.createGain();
+                        o.type = 'sine';
+                        o.frequency.value = freq;
+                        g.gain.value = gain;
+                        o.connect(g); g.connect(audioCtx.destination);
+                        o.start();
+                        setTimeout(() => { o.stop(); }, ms);
+                    } catch { }
+                }
+
                 /* =========================
                    ✅ State + localStorage
                 ========================= */
@@ -614,6 +728,38 @@
                 }
 
                 /* =========================
+                   ✅ Timer + Moves
+                ========================= */
+                let t0 = 0;
+                let timerId = null;
+                let moves = 0;
+
+                function fmtTime(sec) {
+                    const m = Math.floor(sec / 60);
+                    const s = sec % 60;
+                    return String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+                }
+
+                function startTimer() {
+                    stopTimer();
+                    t0 = Date.now();
+                    timerId = setInterval(() => {
+                        const sec = Math.floor((Date.now() - t0) / 1000);
+                        timeEl.textContent = fmtTime(sec);
+                    }, 250);
+                }
+                function stopTimer() {
+                    if (timerId) clearInterval(timerId);
+                    timerId = null;
+                }
+                function resetHUD() {
+                    moves = 0;
+                    movesEl.textContent = '0';
+                    timeEl.textContent = '00:00';
+                    startTimer();
+                }
+
+                /* =========================
                    ✅ UI: select + gallery
                 ========================= */
                 function renderPick() {
@@ -626,7 +772,6 @@
                         if (it.id === activeId) opt.selected = true;
                         imgPick.appendChild(opt);
                     });
-                    // si activeId no pertenece a la categoría, elegir el primero
                     if (!list.some(x => x.id === activeId)) {
                         activeId = list[0]?.id || items[0].id;
                         imgPick.value = activeId;
@@ -675,10 +820,12 @@
                     boardEl.style.gridTemplateRows = `repeat(${N}, 1fr)`;
                 }
 
+                // ✅ más robusto: usa "paso" (N-1) para que 2x2 también sea exacto
                 function pieceStyle(r, c) {
                     const sizePct = N * 100;
-                    const x = (c / (N - 1)) * 100;
-                    const y = (r / (N - 1)) * 100;
+                    const denom = (N - 1) || 1;
+                    const x = (c / denom) * 100;
+                    const y = (r / denom) * 100;
                     return {
                         backgroundImage: `url("${imgURL}")`,
                         backgroundSize: `${sizePct}% ${sizePct}%`,
@@ -690,12 +837,10 @@
                     const slots = [...boardEl.querySelectorAll('.slot')];
                     const pcs = slots.map(s => s.firstChild);
 
-                    // mezclar
                     let tries = 0;
                     do {
                         pcs.sort(() => Math.random() - 0.5);
                         tries++;
-                        // asignar temporalmente para revisar si quedó resuelto
                         slots.forEach((s, i) => {
                             s.innerHTML = '';
                             s.appendChild(pcs[i]);
@@ -733,6 +878,15 @@
                         }
                     }
                     shuffleBoard();
+                    resetHUD();
+                }
+
+                function cleanupDrag() {
+                    if (ghost) ghost.remove();
+                    ghost = null;
+                    if (draggingPiece) draggingPiece.style.visibility = 'visible';
+                    draggingPiece = null;
+                    sourceSlot = null;
                 }
 
                 function startDrag(e) {
@@ -761,31 +915,52 @@
                     ghost.style.top = (e.clientY - offY) + 'px';
                 }, { passive: false });
 
-                window.addEventListener('pointerup', (e) => {
+                function doSwap(targetSlot) {
+                    if (!targetSlot || targetSlot === sourceSlot) return false;
+
+                    const other = targetSlot.firstChild;
+                    if (!other || !draggingPiece) return false;
+
+                    sourceSlot.appendChild(other);
+                    targetSlot.appendChild(draggingPiece);
+
+                    other.dataset.current = sourceSlot.dataset.slot;
+                    draggingPiece.dataset.current = targetSlot.dataset.slot;
+
+                    moves++;
+                    movesEl.textContent = String(moves);
+
+                    // feedback
+                    if (navigator.vibrate) navigator.vibrate(15);
+                    beep(640, 60, 0.05);
+
+                    return true;
+                }
+
+                function finishDrop(e) {
                     if (!ghost) return;
 
+                    // ✅ si sueltas sobre la pieza, sube al .slot
                     const el = document.elementFromPoint(e.clientX, e.clientY);
                     const targetSlot = el?.closest('.slot');
 
-                    draggingPiece.style.visibility = 'visible';
+                    // show original piece
+                    if (draggingPiece) draggingPiece.style.visibility = 'visible';
 
-                    if (targetSlot && targetSlot !== sourceSlot) {
-                        const other = targetSlot.firstChild;
+                    doSwap(targetSlot);
 
-                        sourceSlot.appendChild(other);
-                        targetSlot.appendChild(draggingPiece);
+                    cleanupDrag();
 
-                        other.dataset.current = sourceSlot.dataset.slot;
-                        draggingPiece.dataset.current = targetSlot.dataset.slot;
+                    if (isSolved()) {
+                        stopTimer();
+                        beep(880, 120, 0.06);
+                        setTimeout(() => beep(990, 120, 0.06), 140);
+                        win.style.display = 'flex';
                     }
+                }
 
-                    ghost.remove();
-                    ghost = null;
-                    draggingPiece = null;
-                    sourceSlot = null;
-
-                    if (isSolved()) win.style.display = 'flex';
-                }, { passive: false });
+                window.addEventListener('pointerup', finishDrop, { passive: false });
+                window.addEventListener('pointercancel', cleanupDrag, { passive: false });
 
                 /* =========================
                    ✅ Events
@@ -799,7 +974,6 @@
                 btnClose.addEventListener('click', () => win.style.display = 'none');
 
                 catSel.addEventListener('change', () => {
-                    // si cambias categoría, escoger primero de la categoría
                     const list = filtered();
                     activeId = list[0]?.id || items[0].id;
                     imgURL = items.find(x => x.id === activeId).url;
@@ -828,11 +1002,9 @@
                 /* =========================
                    ✅ Init
                 ========================= */
-                // Ajustar a lo guardado
                 catSel.value = cat;
                 levelSel.value = String(lvl);
 
-                // Si activeId no está en la categoría guardada, lo corregimos
                 if (!filtered().some(x => x.id === activeId)) {
                     activeId = filtered()[0]?.id || items[0].id;
                     imgURL = items.find(x => x.id === activeId).url;
