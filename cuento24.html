@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marie Kids • El Unicornio y la Nube Triste</title>
+
+    <meta name="theme-color" content="#1976d2">
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1976d2">
+
+    <style>
+      :root {
+        --bg1: #dbeafe;
+        --bg2: #e0f2fe;
+        --card: #ffffff;
+        --accent: #1976d2;
+        --text: #0f172a;
+        --muted: #475569;
+        --radius: 22px;
+      }
+
+      * {
+        box-sizing: border-box;
+        font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: linear-gradient(145deg, var(--bg1), var(--bg2));
+        padding: 18px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .app {
+        width: 100%;
+        max-width: 560px;
+      }
+
+      /* ===== ENCABEZADO MK ===== */
+      header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 18px;
+        background: #fff;
+        border-radius: var(--radius);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, .12);
+        margin-bottom: 18px;
+      }
+
+      .logo {
+        font-size: 28px;
+      }
+
+      .brand h1 {
+        margin: 0;
+        font-size: 18px;
+        color: var(--accent);
+      }
+
+      .brand span {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      /* ===== SCENE CARD ===== */
+      .scene-card {
+        background: var(--card);
+        border-radius: var(--radius);
+        padding: 22px;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, .14);
+        display: none;
+        animation: fade .4s ease;
+      }
+
+      .scene-card.active {
+        display: block;
+      }
+
+      @keyframes fade {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .scene-card h2 {
+        text-align: center;
+        margin-bottom: 12px;
+        font-size: 20px;
+      }
+
+      .scene-card h3 {
+        font-size: 15px;
+        color: var(--accent);
+        margin-bottom: 8px;
+      }
+
+      .scene-card p {
+        font-size: 15px;
+        line-height: 1.6;
+        margin: 6px 0;
+        color: var(--text);
+      }
+
+      .dialogue {
+        margin-left: 12px;
+        padding-left: 12px;
+        border-left: 3px solid #bfdbfe;
+        font-style: italic;
+        color: #1e3a8a;
+      }
+
+      .scene-img {
+        width: 100%;
+        max-height: 260px;
+        object-fit: contain;
+        border-radius: 16px;
+        margin-bottom: 14px;
+        background: #f8fafc;
+      }
+
+      /* ===== BOTONES ===== */
+      .actions {
+        margin-top: 18px;
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+      }
+
+      button {
+        background: var(--accent);
+        color: #fff;
+        border: none;
+        padding: 12px 22px;
+        font-size: 15px;
+        border-radius: 999px;
+        cursor: pointer;
+        box-shadow: 0 8px 20px rgba(25, 118, 210, .35);
+      }
+
+      button.secondary {
+        background: #94a3b8;
+        box-shadow: none;
+      }
+
+      button:disabled {
+        opacity: .4;
+        cursor: not-allowed;
+      }
+
+      button:active {
+        transform: scale(.96);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="app">
+
+      <!-- ENCABEZADO -->
+      <header>
+        <div class="logo">🦄</div>
+        <div class="brand">
+          <h1>Marie Kids</h1>
+          <span>Cuentos con valores</span>
+        </div>
+      </header>
+
+      <!-- ESCENA 1 -->
+      <div class="scene-card active">
+        <h2>🌈 El Unicornio y la Nube Triste</h2>
+        <img src="Cuentos/c1.png" class="scene-img">
+        <h3>Lía en el valle de flores</h3>
+        <p>
+          En un valle lleno de flores brillantes vivía Lía, una unicornio blanca y bondadosa.
+          Su cuerno brillaba como la luna, y le gustaba pasear ayudando a todos.
+        </p>
+      </div>
+
+      <!-- ESCENA 2 -->
+      <div class="scene-card">
+        <img src="Cuentos/c2.png" class="scene-img">
+        <h3>La nube triste flotando bajito</h3>
+        <p>
+          Un día, Lía vio una nube pequeña y gris flotando muy bajito.
+          La nube parecía triste y cansada.
+        </p>
+        <p class="dialogue">—¿Por qué estás tan bajita y triste?</p>
+      </div>
+
+      <!-- ESCENA 3 -->
+      <div class="scene-card">
+        <img src="Cuentos/c3.png" class="scene-img">
+        <h3>Lía tocando la nube con su cuerno</h3>
+        <p class="dialogue">—Los otros dicen que no sirvo para nada…</p>
+        <p class="dialogue">—Cada ser tiene un brillo especial.</p>
+      </div>
+
+      <!-- ESCENA 4 -->
+      <div class="scene-card">
+        <img src="Cuentos/c4.png" class="scene-img">
+        <h3>La gotita cayendo</h3>
+        <p>
+          Nubita suspiró… y una pequeña gotita cayó suavemente.
+        </p>
+      </div>
+
+      <!-- ESCENA 5 -->
+      <div class="scene-card">
+        <img src="Cuentos/c5.png" class="scene-img">
+        <h3>La flor reviviendo</h3>
+        <p>
+          ¡La flor volvió a levantarse, llena de vida y color!
+        </p>
+        <p class="dialogue">—¡Devolviste vida!</p>
+      </div>
+
+      <!-- ESCENA 6 -->
+      <div class="scene-card">
+        <img src="Cuentos/c6.png" class="scene-img">
+        <h3>Lía y Nubita ayudando juntas</h3>
+        <p class="dialogue">—¿De verdad sirvo para algo?</p>
+        <p class="dialogue">—No importa el tamaño de tu nube.</p>
+      </div>
+
+      <!-- FINAL -->
+      <div class="scene-card">
+        <h3>✨ Final y moraleja</h3>
+        <p class="dialogue">
+          —Las cosas pequeñas, cuando se hacen con amor, se vuelven gigantes.
+        </p>
+        <p>
+          No necesitas ser grande para hacer grandes cosas.
+        </p>
+      </div>
+
+      <!-- BOTONES -->
+      <div class="actions">
+        <button id="prevBtn" class="secondary" disabled>⬅ Anterior</button>
+        <button id="nextBtn">Siguiente ➡</button>
+      </div>
+
+    </div>
+
+    <script>
+      const scenes = document.querySelectorAll(".scene-card");
+      const nextBtn = document.getElementById("nextBtn");
+      const prevBtn = document.getElementById("prevBtn");
+      let index = 0;
+
+      function updateView() {
+        scenes.forEach(s => s.classList.remove("active"));
+        scenes[index].classList.add("active");
+
+        prevBtn.disabled = index === 0;
+
+        if (index === scenes.length - 1) {
+          nextBtn.textContent = "Finalizar ✨";
+        } else {
+          nextBtn.textContent = "Siguiente ➡";
+        }
+      }
+
+      nextBtn.addEventListener("click", () => {
+        if (index < scenes.length - 1) {
+          index++;
+          updateView();
+        } else {
+          nextBtn.style.display = "none";
+        }
+      });
+
+      prevBtn.addEventListener("click", () => {
+        if (index > 0) {
+          index--;
+          updateView();
+        }
+      });
+    </script>
+
+    <script>
+      // Registrar Service Worker (PWA)
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("./service-worker.js").catch(() => { });
+        });
+      }
+    </script>
+  </body>
+
+</html>
