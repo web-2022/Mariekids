@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Marie Kids • El Unicornio y la Nube Triste</title>
 
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+
+
     <meta name="theme-color" content="#1976d2">
 
     <!-- PWA -->
@@ -25,8 +28,9 @@
 
       * {
         box-sizing: border-box;
-        font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+        font-family: "Comic Neue", "Segoe UI", system-ui, sans-serif;
       }
+
 
       body {
         margin: 0;
@@ -53,6 +57,24 @@
         box-shadow: 0 12px 30px rgba(0, 0, 0, .12);
         margin-bottom: 18px;
       }
+
+      .backBtn {
+        margin-left: auto;
+        /* empuja a la derecha */
+        background: #f59e0b;
+        color: #fff;
+        text-decoration: none;
+        padding: 8px 16px;
+        font-size: 14px;
+        border-radius: 999px;
+        font-weight: 600;
+        box-shadow: 0 6px 14px rgba(245, 158, 11, .35);
+      }
+
+      .backBtn:active {
+        transform: scale(.96);
+      }
+
 
       .logo {
         font-size: 28px;
@@ -98,29 +120,35 @@
       .scene-card h2 {
         text-align: center;
         margin-bottom: 12px;
-        font-size: 20px;
+        font-size: 28px;
       }
 
       .scene-card h3 {
-        font-size: 15px;
+        font-size: 20px;
         color: var(--accent);
-        margin-bottom: 8px;
+        margin-bottom: 10px;
       }
 
       .scene-card p {
-        font-size: 15px;
-        line-height: 1.6;
-        margin: 6px 0;
+        font-size: 20px;
+        /* antes 15px */
+        line-height: 1.9;
+        /* más aire para leer */
+        margin: 10px 0;
         color: var(--text);
       }
+
 
       .dialogue {
         margin-left: 12px;
         padding-left: 12px;
-        border-left: 3px solid #bfdbfe;
+        border-left: 4px solid #bfdbfe;
         font-style: italic;
         color: #1e3a8a;
+        font-size: 20px;
+        /* grande */
       }
+
 
       .scene-img {
         width: 100%;
@@ -143,12 +171,15 @@
         background: var(--accent);
         color: #fff;
         border: none;
-        padding: 12px 22px;
-        font-size: 15px;
+        padding: 16px 26px;
+        /* más grandes */
+        font-size: 18px;
+        /* antes 15px */
         border-radius: 999px;
         cursor: pointer;
         box-shadow: 0 8px 20px rgba(25, 118, 210, .35);
       }
+
 
       button.secondary {
         background: #94a3b8;
@@ -163,6 +194,22 @@
       button:active {
         transform: scale(.96);
       }
+
+      .readBtn {
+        background: #22c55e;
+        color: #fff;
+        border: none;
+        padding: 10px 18px;
+        font-size: 16px;
+        border-radius: 999px;
+        margin-bottom: 8px;
+        cursor: pointer;
+        box-shadow: 0 6px 14px rgba(34, 197, 94, .35);
+      }
+
+      .readBtn:active {
+        transform: scale(.95);
+      }
     </style>
   </head>
 
@@ -172,17 +219,24 @@
       <!-- ENCABEZADO -->
       <header>
         <div class="logo">🦄</div>
+
         <div class="brand">
           <h1>Marie Kids</h1>
           <span>Cuentos con valores</span>
         </div>
+
+        <!-- BOTÓN VOLVER -->
+        <a href="ruta-cuentos.html" class="backBtn">📚 Volver</a>
       </header>
+
 
       <!-- ESCENA 1 -->
       <div class="scene-card active">
         <h2>🌈 El Unicornio y la Nube Triste</h2>
         <img src="Cuentos/c1.png" class="scene-img">
-        <h3>Lía en el valle de flores</h3>
+        <!-- <h3>Lía en el valle de flores</h3> -->
+        <button class="readBtn">🔊 Leer</button>
+
         <p>
           En un valle lleno de flores brillantes vivía Lía, una unicornio blanca y bondadosa.
           Su cuerno brillaba como la luna, y le gustaba pasear ayudando a todos.
@@ -192,52 +246,64 @@
       <!-- ESCENA 2 -->
       <div class="scene-card">
         <img src="Cuentos/c2.png" class="scene-img">
-        <h3>La nube triste flotando bajito</h3>
+        <!-- <h3>La nube triste flotando bajito</h3> -->
+        <button class="readBtn">🔊 Leer</button>
+
         <p>
-          Un día, Lía vio una nube pequeña y gris flotando muy bajito.
+          Un día, Lía vio una nube pequeña y gris, llamada Nubita. Ella, estaba flotando muy bajito.
           La nube parecía triste y cansada.
         </p>
-        <p class="dialogue">—¿Por qué estás tan bajita y triste?</p>
+        <p class="dialogue">—¿Por qué estás tan bajita y triste?, preguntó Lía</p>
       </div>
 
       <!-- ESCENA 3 -->
       <div class="scene-card">
         <img src="Cuentos/c3.png" class="scene-img">
-        <h3>Lía tocando la nube con su cuerno</h3>
-        <p class="dialogue">—Los otros dicen que no sirvo para nada…</p>
-        <p class="dialogue">—Cada ser tiene un brillo especial.</p>
+        <!-- <h3>Lía tocando la nube con su cuerno</h3> -->
+        <button class="readBtn">🔊 Leer</button>
+
+        <p class="dialogue">—Nubita, respondió: los otros dicen que no sirvo para nada…</p>
+        <p class="dialogue">—Lía, le dijo: cada ser tiene un brillo especial, no estes triste.</p>
       </div>
 
       <!-- ESCENA 4 -->
       <div class="scene-card">
         <img src="Cuentos/c4.png" class="scene-img">
-        <h3>La gotita cayendo</h3>
+        <!-- <h3>La gotita cayendo</h3> -->
+        <button class="readBtn">🔊 Leer</button>
+
         <p>
-          Nubita suspiró… y una pequeña gotita cayó suavemente.
+          Nubita suspiró… y una pequeña gotita cayó suavemente sobre una plantita de hojas amarrillas y secas.
         </p>
       </div>
 
       <!-- ESCENA 5 -->
       <div class="scene-card">
         <img src="Cuentos/c5.png" class="scene-img">
-        <h3>La flor reviviendo</h3>
+        <!-- <h3>La flor reviviendo</h3> -->
+        <button class="readBtn">🔊 Leer</button>
+
         <p>
           ¡La flor volvió a levantarse, llena de vida y color!
         </p>
-        <p class="dialogue">—¡Devolviste vida!</p>
+        <p class="dialogue">—¡Le devolviste vida, dijo Lía!</p>
       </div>
 
       <!-- ESCENA 6 -->
       <div class="scene-card">
         <img src="Cuentos/c6.png" class="scene-img">
-        <h3>Lía y Nubita ayudando juntas</h3>
-        <p class="dialogue">—¿De verdad sirvo para algo?</p>
-        <p class="dialogue">—No importa el tamaño de tu nube.</p>
+        <!-- <h3>Lía y Nubita ayudando juntas</h3> -->
+        <button class="readBtn">🔊 Leer</button>
+
+        <p class="dialogue">—¿De verdad sirvo para algo?, comentó Nubita con un tono muy bajito</p>
+        <p class="dialogue">—No importa el tamaño de tu nube, le respondió Lía.</p>
       </div>
 
       <!-- FINAL -->
       <div class="scene-card">
         <h3>✨ Final y moraleja</h3>
+        <button class="readBtn">🔊 Leer</button>
+
         <p class="dialogue">
           —Las cosas pequeñas, cuando se hacen con amor, se vuelven gigantes.
         </p>
@@ -298,6 +364,53 @@
         });
       }
     </script>
+
+    <script>
+      const synth = window.speechSynthesis;
+      let voices = [];
+
+      function loadVoices() {
+        voices = synth.getVoices();
+      }
+
+      loadVoices();
+      if (speechSynthesis.onvoiceschanged !== undefined) {
+        speechSynthesis.onvoiceschanged = loadVoices;
+      }
+
+      function getPeruFemale() {
+        // Prioriza español de Latinoamérica
+        return voices.find(v =>
+          v.lang.startsWith("es") &&
+          (v.name.toLowerCase().includes("female") ||
+            v.name.toLowerCase().includes("mujer") ||
+            v.name.toLowerCase().includes("google") ||
+            v.name.toLowerCase().includes("spanish"))
+        ) || voices.find(v => v.lang.startsWith("es"));
+      }
+
+      document.querySelectorAll(".readBtn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          synth.cancel();
+
+          const card = btn.closest(".scene-card");
+          const text = [...card.querySelectorAll("p, .dialogue")]
+            .map(el => el.innerText)
+            .join(" ");
+
+          const utter = new SpeechSynthesisUtterance(text);
+          const voice = getPeruFemale();
+          if (voice) utter.voice = voice;
+
+          utter.lang = "es-PE";
+          utter.rate = 0.9;   // suave
+          utter.pitch = 1.1; // femenina
+
+          synth.speak(utter);
+        });
+      });
+    </script>
+
   </body>
 
 </html>
