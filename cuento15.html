@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Marie Kids • Saltín, el Caballito Valiente</title>
+
+        <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+
+
+        <!-- PWA -->
+        <link rel="manifest" href="manifest.json">
+        <meta name="theme-color" content="#1976d2">
+
+        <style>
+            :root {
+                --bg1: #dbeafe;
+                --bg2: #e0f2fe;
+                --card: #ffffff;
+                --accent: #1976d2;
+                --text: #0f172a;
+                --muted: #475569;
+                --radius: 22px;
+            }
+
+            * {
+                box-sizing: border-box;
+                font-family: "Comic Neue", "Segoe UI", system-ui, sans-serif;
+            }
+
+            body {
+                margin: 0;
+                min-height: 100vh;
+                background: linear-gradient(145deg, var(--bg1), var(--bg2));
+                padding: 18px;
+                display: flex;
+                justify-content: center;
+            }
+
+            .app {
+                width: 100%;
+                max-width: 560px;
+            }
+
+            header {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 14px 18px;
+                background: #fff;
+                border-radius: var(--radius);
+                box-shadow: 0 12px 30px rgba(0, 0, 0, .12);
+                margin-bottom: 18px;
+            }
+
+            .logo {
+                font-size: 28px;
+            }
+
+            .brand h1 {
+                margin: 0;
+                font-size: 18px;
+                color: var(--accent);
+            }
+
+            .brand span {
+                font-size: 13px;
+                color: var(--muted);
+            }
+
+            .backBtn {
+                margin-left: auto;
+                background: #f59e0b;
+                color: #fff;
+                text-decoration: none;
+                padding: 8px 16px;
+                font-size: 14px;
+                border-radius: 999px;
+                font-weight: 600;
+                box-shadow: 0 6px 14px rgba(245, 158, 11, .35);
+            }
+
+            .scene-card {
+                background: var(--card);
+                border-radius: var(--radius);
+                padding: 10px;
+                box-shadow: 0 16px 40px rgba(0, 0, 0, .14);
+                display: none;
+                animation: fade .4s ease;
+            }
+
+            .scene-card.active {
+                display: block;
+            }
+
+            @keyframes fade {
+                from {
+                    opacity: 0;
+                    transform: translateY(12px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .scene-card h2 {
+                text-align: center;
+                margin-bottom: 12px;
+                font-size: 28px;
+            }
+
+            .scene-card p {
+                font-size: 20px;
+                line-height: 1.9;
+                margin: 10px 0;
+                color: var(--text);
+            }
+
+            .dialogue {
+                margin-left: 12px;
+                padding-left: 12px;
+                border-left: 4px solid #bfdbfe;
+                font-style: italic;
+                color: #1e3a8a;
+                font-size: 20px;
+            }
+
+            .scene-img {
+                width: 100%;
+                max-height: 260px;
+                object-fit: contain;
+                border-radius: 16px;
+                margin-bottom: 14px;
+                background: #f8fafc;
+            }
+
+            .actions {
+                margin-top: 18px;
+                display: flex;
+                gap: 12px;
+                justify-content: center;
+            }
+
+            button {
+                background: var(--accent);
+                color: #fff;
+                border: none;
+                padding: 16px 26px;
+                font-size: 18px;
+                border-radius: 999px;
+                cursor: pointer;
+                box-shadow: 0 8px 20px rgba(25, 118, 210, .35);
+            }
+
+            button.secondary {
+                background: #94a3b8;
+                box-shadow: none;
+            }
+
+            button:disabled {
+                opacity: .4;
+                cursor: not-allowed;
+            }
+
+            .readBtn {
+                background: #22c55e;
+                padding: 10px 18px;
+                font-size: 16px;
+                border-radius: 999px;
+                margin-bottom: 8px;
+                box-shadow: 0 6px 14px rgba(34, 197, 94, .35);
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="app">
+
+            <header>
+                <div class="logo">♞</div>
+                <div class="brand">
+                    <h1>Marie Kids</h1>
+                    <span>Cuentos con valores</span>
+                </div>
+                <a href="ruta-cuentos.html" class="backBtn">📚 Volver</a>
+            </header>
+
+            <!-- ESCENA 1 -->
+            <div class="scene-card active">
+                <h2>♘ Saltín, el Caballito Valiente</h2>
+                <img src="Cuentos/c15-1.png" class="scene-img">
+                <button class="readBtn">🔊 Leer</button>
+                <p>
+                    En un tablero de ajedrez vivía un caballito llamado Saltín.
+                    Mientras todos se movían distinto, él decía orgulloso:
+                </p>
+                <p class="dialogue">—¡Yo salto como quiero!</p>
+            </div>
+
+            <!-- ESCENA 2 -->
+            <div class="scene-card">
+                <img src="Cuentos/c15-2.png" class="scene-img">
+                <button class="readBtn">🔊 Leer</button>
+                <p>
+                    A Saltín no le gustaba seguir órdenes. Quería moverse como la reina
+                    o en línea recta como la torre.
+                </p>
+                <p class="dialogue">—¡Eso no es justo! ¿Por qué no puedo moverme como la reina?</p>
+            </div>
+
+            <!-- ESCENA 3 -->
+            <div class="scene-card">
+                <img src="Cuentos/c15-3.png" class="scene-img">
+                <button class="readBtn">🔊 Leer</button>
+                <p>
+                    Un día comenzó una partida importante. El Rey estaba en peligro.
+                </p>
+                <p class="dialogue">—¡Necesitamos ayuda! —gritó un peón.</p>
+            </div>
+
+            <!-- ESCENA 4 -->
+            <div class="scene-card">
+                <img src="Cuentos/c15-4.png" class="scene-img">
+                <button class="readBtn">🔊 Leer</button>
+                <p>
+                    La torre estaba bloqueada, el alfil no podía pasar,
+                    y la reina estaba lejos.
+                </p>
+            </div>
+
+            <!-- ESCENA 5 -->
+            <div class="scene-card">
+                <img src="Cuentos/c15-5.png" class="scene-img">
+                <button class="readBtn">🔊 Leer</button>
+                <p>
+                    Saltín respiró profundo:
+                </p>
+                <p class="dialogue">
+                    —Tal vez no necesito moverme como los demás… mi salto es justo lo que hace falta.
+                </p>
+            </div>
+
+            <!-- ESCENA 6 -->
+            <div class="scene-card">
+                <img src="Cuentos/c15-6.png" class="scene-img">
+                <button class="readBtn">🔊 Leer</button>
+                <p>
+                    Con su salto en forma de L, llegó donde nadie lo esperaba.
+                </p>
+                <p class="dialogue">—¡Jaque! —dijo orgulloso.</p>
+            </div>
+
+            <!-- FINAL -->
+            <div class="scene-card">
+                <h3>✨ Mensaje</h3>
+                <button class="readBtn">🔊 Leer</button>
+                <p class="dialogue">
+                    Ser diferente no es un problema; es una fortaleza cuando se usa con responsabilidad.
+                </p>
+            </div>
+
+            <div class="actions">
+                <button id="prevBtn" class="secondary" disabled>⬅ Anterior</button>
+                <button id="nextBtn">Siguiente ➡</button>
+            </div>
+
+        </div>
+
+        <!-- NAV -->
+        <script>
+            const scenes = document.querySelectorAll(".scene-card");
+            const nextBtn = document.getElementById("nextBtn");
+            const prevBtn = document.getElementById("prevBtn");
+            let index = 0;
+
+            function updateView() {
+                scenes.forEach(s => s.classList.remove("active"));
+                scenes[index].classList.add("active");
+
+                prevBtn.disabled = index === 0;
+                nextBtn.textContent = index === scenes.length - 1 ? "Finalizar ✨" : "Siguiente ➡";
+            }
+
+            nextBtn.addEventListener("click", () => {
+                if (index < scenes.length - 1) {
+                    index++;
+                    updateView();
+                } else {
+                    nextBtn.style.display = "none";
+                }
+            });
+
+            prevBtn.addEventListener("click", () => {
+                if (index > 0) {
+                    index--;
+                    updateView();
+                }
+            });
+        </script>
+
+        <!-- LECTURA -->
+        <script>
+            const synth = window.speechSynthesis;
+            let voices = [];
+
+            function loadVoices() { voices = synth.getVoices(); }
+            loadVoices();
+            if (speechSynthesis.onvoiceschanged !== undefined) {
+                speechSynthesis.onvoiceschanged = loadVoices;
+            }
+
+            function getSpanish() {
+                return voices.find(v => v.lang.startsWith("es")) || voices[0];
+            }
+
+            document.querySelectorAll(".readBtn").forEach((btn) => {
+                btn.addEventListener("click", () => {
+                    synth.cancel();
+                    const card = btn.closest(".scene-card");
+                    const text = [...card.querySelectorAll("p, .dialogue")]
+                        .map(el => el.innerText).join(" ");
+
+                    const utter = new SpeechSynthesisUtterance(text);
+                    utter.voice = getSpanish();
+                    utter.lang = "es-PE";
+                    utter.rate = 0.9;
+                    utter.pitch = 1.1;
+
+                    synth.speak(utter);
+                });
+            });
+        </script>
+
+        <script>
+            // Registrar Service Worker (PWA)
+            if ("serviceWorker" in navigator) {
+                window.addEventListener("load", () => {
+                    navigator.serviceWorker.register("./service-worker.js").catch(() => { });
+                });
+            }
+        </script>
+
+    </body>
+
+</html>
