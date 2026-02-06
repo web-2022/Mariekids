@@ -223,7 +223,7 @@
                 border-radius: 18px;
                 background: rgba(255, 255, 255, .55);
                 box-shadow: inset 0 0 0 1px rgba(15, 23, 42, .06);
-                margin-top: 12px;
+                margin-top: 6px;
             }
 
             canvas {
@@ -358,10 +358,7 @@
                         <h1>🗺️ Laberinto</h1>
                         <button id="btnNew" class="btn primary">✨ Nuevo</button>
                     </div>
-                    <p class="sub">
-                        Mueve al jugador desde <b>Inicio</b> hasta <b>Salida</b>. Usa las teclas
-                        <b>← ↑ → ↓</b> o los botones. Puedes pedir una pista con “Resolver”.
-                    </p>
+                    
 
                     <div class="controls">
                         <label style="display:flex; gap:8px; align-items:center;">
@@ -378,32 +375,34 @@
                         <button id="btnClear" class="btn">🧼 Borrar ruta</button>
                     </div>
 
-                    <div class="stat">
-                        <div class="pill" id="pMoves">Movimientos: 0</div>
-                        <div class="pill" id="pTime">Tiempo: 00:00</div>
-                        <div class="pill" id="pBest">Mejor: —</div>
-                    </div>
+                    
 
                     <div class="canvasWrap">
                         <canvas id="maze"></canvas>
 
                     </div>
 
-                    <div class="pad" aria-label="Controles">
+                    <div class="stat">
+                        <div class="pill" id="pMoves">Movimientos: 0</div>
+                        <div class="pill" id="pTime">Tiempo: 00:00</div>
+                        <div class="pill" id="pBest">Mejor: —</div>
+                    </div>
+
+                    <!-- <div class="pad" aria-label="Controles">
                         <button class="btn" data-move="U">⬆️</button>
                         <div class="padRow">
                             <button class="btn" data-move="L">⬅️</button>
                             <button class="btn" data-move="D">⬇️</button>
                             <button class="btn" data-move="R">➡️</button>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="hint" id="hint">
                         Consejo: primero busca un camino “macro” (zonas), luego ajusta con pasos cortos.
                     </div>
-                    <div class="note">
+                    <!-- <div class="note">
                         *Plantilla lista para ampliar: niveles, monedas/XP, bloqueos, etc.
-                    </div>
+                    </div> -->
                 </section>
 
                 <!-- Panel derecho -->
@@ -449,6 +448,13 @@
 
             let breadcrumbs = [];       // camino del jugador
             let solvedPath = null;      // camino solución
+
+            let drawing = false;
+            let lastCell = null;
+
+            let finished = false;
+
+
 
             // Best por tamaño
             const BEST_KEY = "EM_LAB_BEST";
@@ -642,6 +648,26 @@
                 cellSize = Math.floor(canvas.width / H);
             }
 
+            function drawStrokePath() {
+                if (breadcrumbs.length < 2) return;
+
+                ctx.beginPath();
+                ctx.lineCap = "round";
+                ctx.lineJoin = "round";
+                ctx.strokeStyle = "rgba(37, 99, 235, 0.9)"; // azul lápiz
+                ctx.lineWidth = Math.max(3, cellSize * 0.25);
+
+                breadcrumbs.forEach((p, i) => {
+                    const x = p.c * cellSize + cellSize / 2;
+                    const y = p.r * cellSize + cellSize / 2;
+                    if (i === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                });
+
+                ctx.stroke();
+            }
+
+
             function draw() {
                 const H = grid.length;
                 computeCellSize();
@@ -662,12 +688,9 @@
                 }
 
                 // Ruta del jugador (breadcrumbs)
-                if (breadcrumbs.length) {
-                    ctx.fillStyle = "rgba(37, 99, 235, .18)";
-                    for (const p of breadcrumbs) {
-                        ctx.fillRect(p.c * cellSize, p.r * cellSize, cellSize, cellSize);
-                    }
-                }
+                // Ruta del jugador (línea tipo lápiz)
+                drawStrokePath();
+
 
                 // Solución (si existe)
                 if (solvedPath && solvedPath.length) {
@@ -696,6 +719,30 @@
                 ctx.lineWidth = Math.max(2, cellSize * 0.06);
                 ctx.strokeStyle = "rgba(15, 23, 42, .25)";
                 ctx.stroke();
+
+                if (finished) {
+                    ctx.save();
+
+                    ctx.fillStyle = "rgba(0,0,0,0.55)";
+                    ctx.fillRect(0, canvas.height / 2 - 60, canvas.width, 120);
+
+                    ctx.textAlign = "center";
+                    ctx.textBaseline = "middle";
+
+                    ctx.fillStyle = "#ffffff";
+                    ctx.font = `bold ${Math.max(22, cellSize * 1.2)}px system-ui`;
+                    ctx.fillText("🎉 ¡LO LOGRASTE!", canvas.width / 2, canvas.height / 2 - 10);
+
+                    ctx.font = `${Math.max(14, cellSize * 0.7)}px system-ui`;
+                    ctx.fillText(
+                        `Movimientos: ${moves} • Tiempo: ${elTime.textContent.replace("Tiempo: ", "")}`,
+                        canvas.width / 2,
+                        canvas.height / 2 + 26
+                    );
+
+                    ctx.restore();
+                }
+
             }
 
             function setSizeFromSelect() {
@@ -717,8 +764,9 @@
                 if (!grid || !grid.length) return;
 
                 const parentWidth = canvas.parentElement.clientWidth;
-                const size = Math.min(parentWidth, 700);
+                if (parentWidth === 0) return;
 
+                const size = Math.min(parentWidth, 700);
                 canvas.width = size;
                 canvas.height = size;
 
@@ -726,7 +774,10 @@
             }
 
 
+
             function newMaze() {
+                finished = false;
+
                 setSizeFromSelect();
                 grid = generateMaze(N);
 
@@ -743,7 +794,6 @@
                 resetStats();
                 loadBest();
                 startTimer();
-                draw();
                 $("hint").textContent = "Tip: si te pierdes, vuelve a un cruce y prueba la otra rama.";
             }
 
@@ -776,8 +826,10 @@
                 if (player.r === exit.r && player.c === exit.c) {
                     stopTimer();
                     saveBestIfNeeded();
-                    $("hint").textContent = "🏁 ¡Llegaste! Presiona “Nuevo” para otro laberinto.";
+                    finished = true;
+                    $("hint").textContent = "🏁 ¡Llegaste! Excelente trabajo.";
                 }
+
 
                 draw();
             }
@@ -791,6 +843,8 @@
             }
 
             function clearRoute() {
+                finished = false;
+
                 breadcrumbs = [{ ...start }];
                 player = { ...start };
                 solvedPath = null;
@@ -801,6 +855,47 @@
                 draw();
                 $("hint").textContent = "Ruta borrada. Vuelve a intentarlo desde el inicio.";
             }
+
+            function getCellFromPointer(e) {
+                const rect = canvas.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const H = grid.length;
+                const cs = rect.width / H;
+
+                const c = Math.floor(x / cs);
+                const r = Math.floor(y / cs);
+
+                return { r, c };
+            }
+
+            function tryMoveToCell(cell) {
+                if (!cell) return;
+
+                const dr = cell.r - player.r;
+                const dc = cell.c - player.c;
+
+                // Solo permitir movimientos adyacentes (no saltos)
+                if (Math.abs(dr) + Math.abs(dc) !== 1) return;
+
+                if (!canMoveTo(cell.r, cell.c)) return;
+
+                player = { r: cell.r, c: cell.c };
+                breadcrumbs.push({ ...player });
+
+                moves++;
+                elMoves.textContent = `Movimientos: ${moves}`;
+
+                if (player.r === exit.r && player.c === exit.c) {
+                    stopTimer();
+                    saveBestIfNeeded();
+                    $("hint").textContent = "🏁 ¡Llegaste! Ruta trazada con éxito.";
+                }
+
+                draw();
+            }
+
 
             // ===== Eventos =====
             btnNew.addEventListener("click", newMaze);
@@ -837,29 +932,41 @@
                 setTimeout(resizeCanvas, 200);
             });
 
-
-            // Canvas click/tap: mueve hacia donde tocas (aprox)
             canvas.addEventListener("pointerdown", (e) => {
-                const rect = canvas.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-
-                // Convertir a celda
-                const H = grid.length;
-                const cs = rect.width / H;
-                const tc = Math.floor(x / cs);
-                const tr = Math.floor(y / cs);
-
-                // mover 1 paso en la dirección predominante
-                const dr = tr - player.r;
-                const dc = tc - player.c;
-
-                if (Math.abs(dc) > Math.abs(dr)) {
-                    movePlayer(dc > 0 ? "R" : "L");
-                } else {
-                    movePlayer(dr > 0 ? "D" : "U");
-                }
+                drawing = false;
+                lastCell = null;
+                e.preventDefault(); // 👈 evita scroll / zoom
+                drawing = true;
+                canvas.setPointerCapture(e.pointerId);
+                lastCell = getCellFromPointer(e);
             });
+
+
+
+            canvas.addEventListener("pointermove", (e) => {
+                if (!drawing) return;
+
+                const cell = getCellFromPointer(e);
+
+                if (!cell || !lastCell) return;
+
+                // Solo actuar si entró a otra celda
+                if (cell.r === lastCell.r && cell.c === lastCell.c) return;
+
+                tryMoveToCell(cell);
+                lastCell = cell;
+            });
+
+            canvas.addEventListener("pointerup", () => {
+                drawing = false;
+                lastCell = null;
+            });
+
+            canvas.addEventListener("pointerleave", () => {
+                drawing = false;
+                lastCell = null;
+            });
+
 
             // Inicial
             // Inicial
