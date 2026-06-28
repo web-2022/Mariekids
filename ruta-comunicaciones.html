@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marie Kids • Comunicación 1.° Primaria</title>
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1976d2">
+
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif
+      }
+
+      html {
+        -webkit-text-size-adjust: 100%
+      }
+
+      body {
+        margin: 0;
+        min-height: 100dvh;
+        background:
+          radial-gradient(1200px 800px at 10% 10%, #dbeafe 0%, transparent 60%),
+          radial-gradient(900px 700px at 90% 20%, #e0f2fe 0%, transparent 55%),
+          linear-gradient(145deg, #dbeafe, #e0f2fe);
+        padding: calc(10px + env(safe-area-inset-top)) calc(10px + env(safe-area-inset-right)) calc(12px + env(safe-area-inset-bottom)) calc(10px + env(safe-area-inset-left));
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+      }
+
+      :root {
+        --app-max: 980px;
+        --pad: clamp(12px, 3.2vw, 22px);
+        --radius: clamp(18px, 3.8vw, 26px);
+        --h1: clamp(1.25rem, 3.4vw, 1.7rem);
+        --sub: clamp(.9rem, 2.4vw, 1rem);
+        --btn: clamp(.92rem, 2.6vw, 1rem);
+
+        --blue: #2563eb;
+        --violet: #7c3aed;
+        --shadow: rgba(0, 0, 0, .14);
+      }
+
+      .app {
+        width: 100%;
+        max-width: var(--app-max);
+        background: #fff;
+        border-radius: var(--radius);
+        border: 3px solid var(--blue);
+        padding: var(--pad);
+        box-shadow: 0 18px 55px var(--shadow);
+        overflow: hidden;
+      }
+
+      /* ===== HERO ===== */
+      .hero {
+        position: relative;
+        overflow: hidden;
+        border-radius: calc(var(--radius) - 6px);
+        padding: clamp(14px, 3.2vw, 18px);
+        background: linear-gradient(135deg, #93c5fd 0%, #60a5fa 40%, #2563eb 100%);
+        border: 2px solid rgba(255, 255, 255, .65);
+        box-shadow: 0 16px 36px rgba(37, 99, 235, .28);
+        color: #fff;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: -2px;
+        pointer-events: none;
+        background:
+          radial-gradient(600px 200px at 20% 10%, rgba(255, 255, 255, .22), transparent 60%),
+          radial-gradient(500px 240px at 85% 15%, rgba(255, 255, 255, .18), transparent 62%);
+      }
+
+      .hero-row {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center
+      }
+
+      .hero-left {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        min-width: 240px;
+        flex: 1
+      }
+
+      .badge {
+        width: clamp(52px, 10vw, 62px);
+        height: clamp(52px, 10vw, 62px);
+        border-radius: 18px;
+        display: grid;
+        place-items: center;
+        font-size: clamp(1.6rem, 4vw, 2rem);
+        background: linear-gradient(135deg, #2563eb, #6366f1);
+        border: 1px solid rgba(255, 255, 255, .35);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35);
+      }
+
+      .hero-title {
+        margin: 0;
+        font-weight: 1000;
+        letter-spacing: .02em;
+        line-height: 1.05;
+        font-size: var(--h1);
+        text-shadow: 0 2px 0 rgba(0, 0, 0, .12)
+      }
+
+      .hero-sub {
+        margin: 6px 0 0;
+        font-size: var(--sub);
+        font-weight: 800;
+        opacity: .95;
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap
+      }
+
+      .pill {
+        background: rgba(255, 255, 255, .22);
+        border: 1px solid rgba(255, 255, 255, .35);
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: clamp(.78rem, 2.2vw, .88rem);
+        font-weight: 950;
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+        white-space: nowrap;
+      }
+
+      /* ===== TOOLBAR ===== */
+      .toolbar {
+        margin-top: 12px;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .search {
+        flex: 1;
+        min-width: min(100%, 340px);
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        padding: 10px 12px;
+        border-radius: 999px;
+        background: #eff6ff;
+        border: 1px solid #bfdbfe;
+      }
+
+      .search input {
+        width: 100%;
+        border: none;
+        outline: none;
+        background: transparent;
+        font-weight: 900;
+        font-size: var(--btn)
+      }
+
+      /* ===== LINKS (chips) ===== */
+      .chips {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: flex-end
+      }
+
+      .chip {
+        border: 1px solid #bfdbfe;
+        background: #fff;
+        border-radius: 999px;
+        padding: 8px 12px;
+        cursor: pointer;
+        font-weight: 950;
+        font-size: clamp(.85rem, 2.4vw, .95rem);
+        transition: transform .1s ease, background .15s ease, border-color .15s ease;
+        white-space: nowrap;
+        text-decoration: none;
+        color: #111827;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .chip:hover {
+        transform: translateY(-1px);
+        background: #e0f2fe;
+        border-color: #93c5fd
+      }
+
+      .chip.active {
+        background: linear-gradient(90deg, #60a5fa, #2563eb);
+        color: #fff;
+        border-color: transparent
+      }
+
+      /* ===== PROGRESS ===== */
+      .progress-wrap {
+        margin-top: 12px;
+        background: #eff6ff;
+        border: 1px solid #bfdbfe;
+        border-radius: 18px;
+        padding: 12px;
+      }
+
+      .progress-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        flex-wrap: wrap;
+        font-weight: 1000;
+        color: #1f2937;
+        margin-bottom: 8px
+      }
+
+      .progress-tag {
+        display: inline-flex;
+        gap: 6px;
+        align-items: center;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: #eff6ff;
+        border: 1px solid #bfdbfe;
+        font-weight: 1000;
+        color: #1e3a8a;
+        font-size: clamp(.82rem, 2.3vw, .9rem);
+      }
+
+      .bar {
+        width: 100%;
+        height: 10px;
+        background: #e5e7eb;
+        border-radius: 999px;
+        overflow: hidden
+      }
+
+      .bar>div {
+        width: 0%;
+        height: 100%;
+        background: linear-gradient(90deg, #60a5fa, #2563eb);
+        border-radius: 999px;
+        transition: width .2s ease
+      }
+
+      /* ===== GRID ===== */
+      .grid {
+        margin-top: 12px;
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 12px;
+      }
+
+      @media (min-width: 860px) {
+        .topic {
+          grid-column: span 4;
+        }
+      }
+
+      @media (min-width: 560px) and (max-width: 859px) {
+        .topic {
+          grid-column: span 6;
+        }
+      }
+
+      @media (max-width: 559px) {
+        .topic {
+          grid-column: span 12;
+        }
+      }
+
+      .topic {
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
+        border-radius: 18px;
+        padding: 14px;
+        box-shadow: 0 10px 22px rgba(0, 0, 0, .06);
+        transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease, opacity .12s ease;
+        position: relative;
+        overflow: hidden;
+        border-left: 6px solid rgba(37, 99, 235, .35);
+      }
+
+      .topic:hover {
+        transform: translateY(-2px);
+        border-color: #93c5fd;
+        box-shadow: 0 16px 30px rgba(0, 0, 0, .09)
+      }
+
+      .topic a {
+        display: block;
+        text-decoration: none;
+        color: inherit
+      }
+
+      .topic.cat-Comunicación {
+        border-left-color: rgba(37, 99, 235, .75)
+      }
+
+      .topic.cat-Lectura {
+        border-left-color: rgba(14, 165, 233, .75)
+      }
+
+      .topic.cat-Escritura {
+        border-left-color: rgba(124, 58, 237, .75)
+      }
+
+      .topic.cat-Tildación {
+        border-left-color: rgba(249, 115, 22, .75)
+      }
+
+      .topic.cat-Olimpiada {
+        border-left-color: rgba(34, 197, 94, .75)
+      }
+
+      /* NUMERO BONITO */
+      .num {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+        border-radius: 999px;
+        display: grid;
+        place-items: center;
+        font-weight: 1000;
+        font-size: 1.05rem;
+        color: #fff;
+        background: linear-gradient(135deg, #60a5fa, #2563eb);
+        box-shadow: 0 12px 22px rgba(37, 99, 235, .25);
+        border: 2px solid rgba(255, 255, 255, .75);
+      }
+
+      .num::after {
+        content: "";
+        position: absolute;
+        inset: -14px;
+        background:
+          radial-gradient(circle at 30% 30%, rgba(96, 165, 250, .22), transparent 55%),
+          radial-gradient(circle at 70% 70%, rgba(37, 99, 235, .18), transparent 55%);
+        border-radius: 999px;
+        z-index: -1;
+      }
+
+      .topic-tag {
+        display: inline-flex;
+        gap: 6px;
+        align-items: center;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: #eff6ff;
+        border: 1px solid #bfdbfe;
+        font-weight: 1000;
+        color: #1e3a8a;
+        font-size: clamp(.82rem, 2.3vw, .9rem);
+      }
+
+      .title {
+        margin: 10px 0 6px;
+        font-weight: 1000;
+        color: #111827;
+        font-size: clamp(1.05rem, 2.9vw, 1.15rem)
+      }
+
+      .desc {
+        margin: 0;
+        color: #6b7280;
+        font-weight: 780;
+        line-height: 1.35;
+        font-size: clamp(.92rem, 2.4vw, .98rem)
+      }
+
+      .meta {
+        margin-top: 12px;
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        flex-wrap: wrap;
+        align-items: center
+      }
+
+      .status {
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+        padding: 7px 10px;
+        border-radius: 999px;
+        border: 1px solid #e5e7eb;
+        background: #fff;
+        font-weight: 1000;
+        font-size: clamp(.84rem, 2.3vw, .92rem)
+      }
+
+      .status.done {
+        border-color: #86efac;
+        background: #f0fdf4;
+        color: #166534
+      }
+
+      /* BOTON */
+      .mark {
+        border: none;
+        border-radius: 999px;
+        padding: 9px 12px;
+        font-weight: 1000;
+        cursor: pointer;
+        background: #e5e7eb;
+        color: #111827;
+        transition: transform .1s ease, filter .15s ease, background .15s ease, color .15s ease;
+      }
+
+      .mark:hover {
+        transform: translateY(-1px);
+        filter: brightness(1.02)
+      }
+
+      /* Botón DONE: VERDE */
+      .mark.done {
+        background: linear-gradient(90deg, #22c55e, #16a34a);
+        color: #fff;
+        box-shadow: 0 10px 18px rgba(34, 197, 94, .28);
+        border: 1px solid rgba(255, 255, 255, .55);
+      }
+
+      .mark.done:hover {
+        filter: brightness(1.06)
+      }
+
+      /* TARJETA HECHA: TODO GRIS, EXCEPTO BOTON VERDE */
+      .topic.done {
+        background: linear-gradient(145deg, #f3f4f6, #eef2f7);
+        border-color: #d1d5db;
+        box-shadow: 0 8px 18px rgba(0, 0, 0, .05);
+      }
+
+      .topic.done:hover {
+        transform: none;
+        border-color: #cbd5e1;
+        box-shadow: 0 8px 18px rgba(0, 0, 0, .05);
+      }
+
+      .topic.done .topic-tag,
+      .topic.done .title,
+      .topic.done .desc,
+      .topic.done .status,
+      .topic.done .num {
+        filter: grayscale(1);
+        opacity: .55;
+      }
+
+      .topic.done .mark.done {
+        filter: none !important;
+        opacity: 1 !important;
+      }
+
+      /* siguiente recomendado */
+      .topic.next {
+        border-color: rgba(37, 99, 235, .55);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, .16), 0 16px 30px rgba(0, 0, 0, .09);
+        background: linear-gradient(145deg, #f9fafb, #eff6ff);
+      }
+
+      .topic.done.next {
+        box-shadow: 0 8px 18px rgba(0, 0, 0, .05);
+        border-color: #d1d5db;
+        background: linear-gradient(145deg, #f3f4f6, #eef2f7);
+      }
+
+      .note {
+        margin-top: 12px;
+        text-align: center;
+        color: #6b7280;
+        font-weight: 800;
+        font-size: clamp(.85rem, 2.3vw, .95rem);
+      }
+
+      /* ===============================
+         HERO CLICKABLE
+         =============================== */
+      .hero-link {
+        padding: 0;
+      }
+
+      .hero-click {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .hero-space {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      /* ===============================
+         CURSO (DERECHA)
+         =============================== */
+      .hero-course {
+        font-family: "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
+        font-size: clamp(1.05rem, 3vw, 1.45rem);
+        font-weight: 800;
+        letter-spacing: .06em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.9);
+        padding: 10px 16px;
+        border-radius: 14px;
+        background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.18),
+            rgba(255, 255, 255, 0.05));
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        box-shadow: 0 10px 22px rgba(0, 0, 0, .18);
+        white-space: nowrap;
+      }
+
+      .hero-link:hover .hero-course {
+        transform: translateY(-1px);
+        filter: brightness(1.05);
+      }
+
+      .hero-link:hover .badge {
+        transform: scale(1.05);
+      }
+
+      @media (max-width: 620px) {
+        .hero-space {
+          align-items: flex-start;
+        }
+
+        .hero-course {
+          width: 100%;
+          text-align: center;
+          margin-top: 6px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="app">
+
+      <header class="hero hero-link" aria-label="Ruta de Aprendizaje">
+        <a href="index.html" class="hero-click" aria-label="Volver al inicio">
+
+          <div class="hero-row hero-space">
+
+            <!-- IZQUIERDA -->
+            <div class="hero-left">
+              <div class="badge" aria-hidden="true">MK</div>
+
+              <div>
+                <h1 class="hero-title">Ruta de Aprendizaje</h1>
+                <div class="hero-sub">
+                  <span class="pill">💬 1 → 25</span>
+                  <span class="pill">📚 1.° Primaria</span>
+                  <span class="pill">🏆 Nivel olimpiada</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- DERECHA -->
+            <div class="hero-course">
+              💬 COMUNICACIÓN
+            </div>
+
+          </div>
+
+        </a>
+      </header>
+
+
+      <div class="toolbar">
+        <div class="search" role="search" aria-label="Buscar temas">
+          🔎 <input id="q" type="text" placeholder="Buscar: sílabas, lectura, tilde, cuentos..." />
+        </div>
+
+        <div class="chips" role="navigation" aria-label="Rutas por materia">
+          <a class="chip active" href="index.html">🌟 Cursos</a>
+          <!-- Puedes activar estos enlaces cuando tengas las otras rutas -->
+          <!-- <a class="chip" href="ruta-mate.html">➗ Matemáticas</a> -->
+          <!-- <a class="chip" href="ruta-ingles.html">🇺🇸 Inglés</a> -->
+          <!-- <a class="chip" href="ruta-chess.html">♟️ Ajedrez</a> -->
+        </div>
+      </div>
+
+      <section class="progress-wrap" aria-label="Progreso general">
+        <div class="progress-row">
+          <div>Progreso: <span id="doneCount">0</span>/<span id="totalCount">25</span></div>
+          <div class="progress-tag">📚 Temas</div>
+        </div>
+        <div class="bar">
+          <div id="barInner"></div>
+        </div>
+      </section>
+
+      <main class="grid" id="grid" aria-label="Lista de temas"></main>
+
+      <p class="note">Ruta secuencial: escuchar → sonidos → lectura → comprensión → vocabulario → escritura → tildación → razonamiento verbal → simulacro.</p>
+    </div>
+
+    <script>
+      const STORAGE_KEY = "mk_learning_path_comunicacion_done_v1";
+
+      // ✅ Ruta secuencial de Comunicación para 1.° de primaria
+      // ✅ Cambia los href cuando crees cada clase HTML.
+
+      const topics = [
+        {
+          id: 1,
+          emoji: "👂",
+          title: "Escuchar y seguir instrucciones",
+          desc: "Comprender órdenes cortas, escuchar con atención y responder de forma ordenada.",
+          href: "comunicacion-tema01.html",
+          category: "Comunicación"
+        },
+        {
+          id: 2,
+          emoji: "🔤",
+          title: "Vocales y sonidos iniciales",
+          desc: "Reconocer vocales y sonidos al inicio de palabras: avión, elefante, isla, oso, uva.",
+          href: "comunicacion-tema02.html",
+          category: "Comunicación"
+        },
+        {
+          id: 3,
+          emoji: "🧩",
+          title: "Sílabas directas",
+          desc: "Leer sílabas simples como ma, me, mi, mo, mu; pa, pe, pi, po, pu.",
+          href: "comunicacion-tema03.html",
+          category: "Lectura"
+        },
+        {
+          id: 4,
+          emoji: "🔗",
+          title: "Formación de palabras",
+          desc: "Unir sílabas para formar palabras: ca-sa, ma-má, so-pa, pa-to.",
+          href: "comunicacion-tema04.html",
+          category: "Lectura"
+        },
+        {
+          id: 5,
+          emoji: "📖",
+          title: "Lectura de palabras",
+          desc: "Leer palabras cortas con seguridad, claridad y buena pronunciación.",
+          href: "comunicacion-tema05.html",
+          category: "Lectura"
+        },
+        {
+          id: 6,
+          emoji: "📝",
+          title: "Lectura de oraciones cortas",
+          desc: "Leer y comprender oraciones simples: El gato salta. Mi mamá lee.",
+          href: "comunicacion-tema06.html",
+          category: "Lectura"
+        },
+        {
+          id: 7,
+          emoji: "❓",
+          title: "Comprensión literal",
+          desc: "Responder preguntas básicas: quién, qué, dónde, cuándo y cómo.",
+          href: "comunicacion-tema07.html",
+          category: "Comunicación"
+        },
+        {
+          id: 8,
+          emoji: "🔢",
+          title: "Secuencia de hechos",
+          desc: "Ordenar imágenes, frases o acciones: primero, luego y finalmente.",
+          href: "comunicacion-tema08.html",
+          category: "Comunicación"
+        },
+        {
+          id: 9,
+          emoji: "👧",
+          title: "Personajes, lugares y acciones",
+          desc: "Identificar quién participa, dónde ocurre y qué sucede en un cuento corto.",
+          href: "comunicacion-tema09.html",
+          category: "Comunicación"
+        },
+        {
+          id: 10,
+          emoji: "💡",
+          title: "Idea principal sencilla",
+          desc: "Decir de qué trata un texto corto usando sus propias palabras.",
+          href: "comunicacion-tema10.html",
+          category: "Comunicación"
+        },
+        {
+          id: 11,
+          emoji: "🧺",
+          title: "Vocabulario por categorías",
+          desc: "Agrupar palabras: animales, frutas, colores, útiles escolares y acciones.",
+          href: "comunicacion-tema11.html",
+          category: "Comunicación"
+        },
+        {
+          id: 12,
+          emoji: "😊",
+          title: "Sinónimos básicos",
+          desc: "Reconocer palabras con significado parecido: feliz/contento, bonito/lindo.",
+          href: "comunicacion-tema12.html",
+          category: "Comunicación"
+        },
+        {
+          id: 13,
+          emoji: "↔️",
+          title: "Antónimos básicos",
+          desc: "Reconocer palabras opuestas: grande/pequeño, arriba/abajo, frío/caliente.",
+          href: "comunicacion-tema13.html",
+          category: "Comunicación"
+        },
+        {
+          id: 14,
+          emoji: "🌳",
+          title: "Familia de palabras",
+          desc: "Relacionar palabras de una misma familia: pan, panadero, panadería.",
+          href: "comunicacion-tema14.html",
+          category: "Comunicación"
+        },
+        {
+          id: 15,
+          emoji: "🕵️",
+          title: "Palabra intrusa",
+          desc: "Encontrar la palabra que no pertenece a un grupo y explicar por qué.",
+          href: "comunicacion-tema15.html",
+          category: "Olimpiada"
+        },
+        {
+          id: 16,
+          emoji: "✍️",
+          title: "Escritura de palabras y oraciones",
+          desc: "Escribir palabras y formar oraciones cortas con sentido completo.",
+          href: "comunicacion-tema16.html",
+          category: "Escritura"
+        },
+        {
+          id: 17,
+          emoji: "🔠",
+          title: "Mayúscula inicial y punto final",
+          desc: "Usar mayúscula al iniciar una oración y punto al terminar una idea.",
+          href: "comunicacion-tema17.html",
+          category: "Escritura"
+        },
+        {
+          id: 18,
+          emoji: "👏",
+          title: "Separación en sílabas",
+          desc: "Separar palabras con palmadas: ca-sa, pe-lo-ta, ma-ri-po-sa.",
+          href: "comunicacion-tema18.html",
+          category: "Tildación"
+        },
+        {
+          id: 19,
+          emoji: "🎵",
+          title: "Acento: fuerza de voz",
+          desc: "Escuchar qué sílaba suena más fuerte en una palabra: ma-MÁ, CA-sa.",
+          href: "comunicacion-tema19.html",
+          category: "Tildación"
+        },
+        {
+          id: 20,
+          emoji: "📌",
+          title: "Sílaba tónica y sílabas átonas",
+          desc: "Identificar la sílaba fuerte y las sílabas suaves dentro de una palabra.",
+          href: "comunicacion-tema20.html",
+          category: "Tildación"
+        },
+        {
+          id: 21,
+          emoji: "´",
+          title: "Uso de la tilde",
+          desc: "Diferenciar acento y tilde; reconocer palabras como mamá, papá, Perú, lápiz y pájaro.",
+          href: "comunicacion-tema21.html",
+          category: "Tildación"
+        },
+        {
+          id: 22,
+          emoji: "🧠",
+          title: "Comprensión inferencial",
+          desc: "Deducir información que no aparece escrita directamente en el texto.",
+          href: "comunicacion-tema22.html",
+          category: "Olimpiada"
+        },
+        {
+          id: 23,
+          emoji: "🔍",
+          title: "Analogías y completar oraciones",
+          desc: "Resolver relaciones simples y elegir la palabra que completa mejor una oración.",
+          href: "comunicacion-tema23.html",
+          category: "Olimpiada"
+        },
+        {
+          id: 24,
+          emoji: "🗣️",
+          title: "Expresión oral",
+          desc: "Contar una imagen, explicar una respuesta y hablar con seguridad.",
+          href: "comunicacion-tema24.html",
+          category: "Comunicación"
+        },
+        {
+          id: 25,
+          emoji: "🏆",
+          title: "Mini olimpiada de Comunicación",
+          desc: "Simulacro con lectura, vocabulario, tildación, comprensión y razonamiento verbal.",
+          href: "comunicacion-tema25.html",
+          category: "Olimpiada"
+        }
+      ];
+
+
+      // Total
+      const totalEl = document.getElementById("totalCount");
+      totalEl.textContent = topics.length;
+
+      function loadDoneSet() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          const arr = raw ? JSON.parse(raw) : [];
+          return new Set(arr.map(Number));
+        } catch {
+          return new Set();
+        }
+      }
+
+      function saveDoneSet(doneSet) {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify([...doneSet]));
+        } catch { }
+      }
+
+      function updateProgress(doneSet) {
+        const done = doneSet.size;
+        const total = topics.length;
+        document.getElementById("doneCount").textContent = done;
+        const pct = total === 0 ? 0 : (done / total) * 100;
+        document.getElementById("barInner").style.width = pct + "%";
+      }
+
+      function cssSafeCat(cat) {
+        return String(cat).replace(/\s+/g, "-");
+      }
+
+      function renderGrid(queryText, doneSet) {
+        const grid = document.getElementById("grid");
+        grid.innerHTML = "";
+
+        const q = String(queryText || "").trim().toLowerCase();
+
+        const filtered = topics.filter(t => {
+          if (!q) return true;
+          const hay = (t.title + " " + t.desc + " " + t.category).toLowerCase();
+          return hay.includes(q);
+        });
+
+        // recomendado: primer no hecho dentro del filtrado
+        const nextId = filtered.find(t => !doneSet.has(t.id))?.id ?? null;
+
+        if (filtered.length === 0) {
+          const empty = document.createElement("div");
+          empty.style.gridColumn = "1 / -1";
+          empty.style.textAlign = "center";
+          empty.style.padding = "18px";
+          empty.style.fontWeight = "900";
+          empty.style.color = "#6b7280";
+          empty.textContent = "No encontré temas con esa búsqueda 🙂";
+          grid.appendChild(empty);
+          return;
+        }
+
+        filtered.forEach(t => {
+          const isDone = doneSet.has(t.id);
+          const isNext = nextId !== null && t.id === nextId;
+
+          const card = document.createElement("article");
+          card.className =
+            "topic " +
+            "cat-" + cssSafeCat(t.category) +
+            (isNext ? " next" : "") +
+            (isDone ? " done" : "");
+
+          card.innerHTML = `
+          <div class="num" aria-label="Tema ${t.id}">${t.id}</div>
+
+          <a href="${t.href}" aria-label="Abrir ${t.title}">
+            <div class="topic-tag">${t.emoji} ${t.category}${isNext ? " • ⭐ Recomendado" : ""}</div>
+            <div class="title">${t.title}</div>
+            <p class="desc">${t.desc}</p>
+          </a>
+
+          <div class="meta">
+            <div class="status ${isDone ? "done" : ""}">
+              ${isDone ? "✅ Realizado" : (isNext ? "👉 Recomendado" : "🔁 Practicar nuevamente")}
+            </div>
+
+            <button class="mark ${isDone ? "done" : ""}" type="button" data-id="${t.id}">
+              ${isDone ? "Realizado ✅" : "Realizado"}
+            </button>
+          </div>
+        `;
+
+          grid.appendChild(card);
+        });
+
+        grid.querySelectorAll(".mark").forEach(btn => {
+          btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const id = Number(btn.dataset.id);
+            if (!Number.isFinite(id)) return;
+
+            if (doneSet.has(id)) doneSet.delete(id);
+            else doneSet.add(id);
+
+            saveDoneSet(doneSet);
+            updateProgress(doneSet);
+
+            const currentQuery = document.getElementById("q").value;
+            renderGrid(currentQuery, doneSet);
+          });
+        });
+      }
+
+      // INIT
+      const doneSet = loadDoneSet();
+      updateProgress(doneSet);
+      renderGrid("", doneSet);
+
+      const input = document.getElementById("q");
+      input.addEventListener("input", () => {
+        renderGrid(input.value, doneSet);
+      });
+    </script>
+
+    <script>
+      // Registrar Service Worker (PWA)
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("./service-worker.js").catch(() => { });
+        });
+      }
+    </script>
+  </body>
+
+</html>
