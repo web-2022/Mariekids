@@ -243,6 +243,32 @@
       gap: 8px;
     }
 
+
+    .theory-audio-row {
+      display: flex;
+      justify-content: center;
+      margin: 8px 0 12px;
+    }
+
+    .theory-audio-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 10px 16px;
+      background: linear-gradient(90deg, #a78bfa, #7c3aed);
+      color: #ffffff;
+      font-weight: 950;
+      cursor: pointer;
+      font-size: .95rem;
+      transition: transform .1s ease, filter .15s ease, box-shadow .1s ease;
+      box-shadow: 0 8px 16px rgba(124, 58, 237, .18);
+    }
+
+    .theory-audio-btn:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+      box-shadow: 0 10px 18px rgba(124, 58, 237, .24);
+    }
+
     .theory { background: #eff6ff; border-color: #bfdbfe; }
     .examples { background: #f0fdf4; border-color: #bbf7d0; }
     .practice { background: #fff7ed; border-color: #fed7aa; }
@@ -524,6 +550,9 @@
     <section class="module active" id="module-agudas">
       <div class="panel theory">
         <h2 class="panel-title">📚 1. Palabras agudas</h2>
+        <div class="theory-audio-row">
+          <button class="theory-audio-btn" onclick="speakTheory('agudas')">🔊 Escuchar teoría</button>
+        </div>
 
         <div class="rule">
           Las palabras <b>agudas</b> tienen la mayor fuerza de voz en la <b>última sílaba</b>.
@@ -560,6 +589,9 @@
     <section class="module" id="module-graves">
       <div class="panel theory">
         <h2 class="panel-title">📚 2. Palabras graves o llanas</h2>
+        <div class="theory-audio-row">
+          <button class="theory-audio-btn" onclick="speakTheory('graves')">🔊 Escuchar teoría</button>
+        </div>
 
         <div class="rule">
           Las palabras <b>graves</b> o <b>llanas</b> tienen la mayor fuerza de voz en la <b>penúltima sílaba</b>.
@@ -596,6 +628,9 @@
     <section class="module" id="module-esdrujulas">
       <div class="panel theory">
         <h2 class="panel-title">📚 3. Palabras esdrújulas</h2>
+        <div class="theory-audio-row">
+          <button class="theory-audio-btn" onclick="speakTheory('esdrujulas')">🔊 Escuchar teoría</button>
+        </div>
 
         <div class="rule">
           Las palabras <b>esdrújulas</b> tienen la mayor fuerza de voz en la <b>antepenúltima sílaba</b>.
@@ -633,6 +668,9 @@
     <section class="module" id="module-sobresdrujulas">
       <div class="panel theory">
         <h2 class="panel-title">📚 4. Palabras sobresdrújulas</h2>
+        <div class="theory-audio-row">
+          <button class="theory-audio-btn" onclick="speakTheory('sobresdrujulas')">🔊 Escuchar teoría</button>
+        </div>
 
         <div class="rule">
           Las palabras <b>sobresdrújulas</b> tienen la mayor fuerza de voz <b>antes de la antepenúltima sílaba</b>.
@@ -671,6 +709,9 @@
     <section class="module" id="module-reto">
       <div class="panel theory">
         <h2 class="panel-title">🏆 Reto final</h2>
+        <div class="theory-audio-row">
+          <button class="theory-audio-btn" onclick="speakTheory('reto')">🔊 Escuchar teoría</button>
+        </div>
         <div class="summary-box">
           1️⃣ <b>Aguda:</b> fuerza en la última sílaba. Tilde si termina en vocal, n o s.
           <br>2️⃣ <b>Grave o llana:</b> fuerza en la penúltima. Tilde si no termina en vocal, n ni s.
@@ -1031,6 +1072,11 @@
       const question = data.questions[state.index[moduleName]];
       if (!question) return;
       speakText(question.prompt + " Opciones: " + question.options.join(", ") + ".");
+    }
+
+    function speakTheory(moduleName) {
+      if (!modules[moduleName]) return;
+      speakText(modules[moduleName].theoryAudio);
     }
 
     function speakCurrentTheory() {
