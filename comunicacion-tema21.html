@@ -528,7 +528,8 @@
       <button class="tab-btn" id="tab-graves" onclick="showModule('graves')">2. Graves</button>
       <button class="tab-btn" id="tab-esdrujulas" onclick="showModule('esdrujulas')">3. Esdrújulas</button>
       <button class="tab-btn" id="tab-sobresdrujulas" onclick="showModule('sobresdrujulas')">4. Sobresdrújulas</button>
-      <button class="tab-btn" id="tab-reto" onclick="showModule('reto')">🏆 Reto final</button>
+      <button class="tab-btn" id="tab-reto" onclick="showModule('reto')">5. Reto final</button>
+      <button class="tab-btn" id="tab-olimpiadas" onclick="showModule('olimpiadas')">🏅 6. Olimpiadas</button>
     </div>
 
     <div class="status-bar">
@@ -539,7 +540,7 @@
     <div class="progress-wrapper">
       <div class="progress-label">
         <span>Progreso general</span>
-        <span id="progressText">0/50</span>
+        <span id="progressText">0/60</span>
       </div>
       <div class="progress">
         <div class="progress-inner" id="progressBar"></div>
@@ -555,7 +556,7 @@
         </div>
 
         <div class="rule">
-          Las palabras <b>agudas</b> tienen la mayor fuerza de voz en la <b>última sílaba</b>.
+          Las palabras <b>agudas</b> tienen la mayor fuerza de voz en la <b>última sílaba (sílaba tónica)</b>.
           <br><br>
           Llevan tilde cuando terminan en <b>vocal</b>, <b>n</b> o <b>s</b>.
         </div>
@@ -566,10 +567,10 @@
         </div>
 
         <div class="steps">
-          <div class="step">1️⃣ Separo: ra - tón</div>
-          <div class="step">2️⃣ Escucho fuerte: TÓN</div>
-          <div class="step">3️⃣ Está al final: es aguda</div>
-          <div class="step">4️⃣ Termina en n, s o vocal: entonces lleva tilde</div>
+          <div class="step">1️⃣ Separo en sílabas: ra - tón</div>
+          <div class="step">2️⃣ Identifico quien lleva la mayor fuerza de voz (sílaba tónica): TÓN</div>
+          <div class="step">3️⃣ Está al final: entonces es AGUDA</div>
+          <div class="step">4️⃣ Como termina en n, s o vocal: entonces LLEVA TILDE</div>
         </div>
       </div>
 
@@ -594,7 +595,7 @@
         </div>
 
         <div class="rule">
-          Las palabras <b>graves</b> o <b>llanas</b> tienen la mayor fuerza de voz en la <b>penúltima sílaba</b>.
+          Las palabras <b>graves</b> o <b>llanas</b> tienen la mayor fuerza de voz (sílaba tónica) en la <b>penúltima sílaba</b>.
           <br><br>
           Llevan tilde cuando <b>NO</b> terminan en vocal, n ni s.
         </div>
@@ -605,10 +606,10 @@
         </div>
 
         <div class="steps">
-          <div class="step">1️⃣ Separo: lá - piz</div>
-          <div class="step">2️⃣ Escucho fuerte: LÁ</div>
-          <div class="step">3️⃣ Está en la penúltima: es grave</div>
-          <div class="step">4️⃣ Termina en z: lleva tilde</div>
+          <div class="step">1️⃣ Separo en sílabas: lá - piz</div>
+          <div class="step">2️⃣ Identifico quien lleva la mayor fuerza de voz (sílaba tónica): LÁ</div>
+          <div class="step">3️⃣ Está en la penúltima: es GRAVE o LLANA</div>
+          <div class="step">4️⃣ Como termina en z, entonces LLEVA TILDE: lleva tilde</div>
         </div>
       </div>
 
@@ -633,7 +634,7 @@
         </div>
 
         <div class="rule">
-          Las palabras <b>esdrújulas</b> tienen la mayor fuerza de voz en la <b>antepenúltima sílaba</b>.
+          Las palabras <b>esdrújulas</b> tienen la mayor fuerza de voz (sílaba tónica) en la <b>antepenúltima sílaba</b>.
           <br><br>
           Las esdrújulas <b>siempre llevan tilde</b>.
         </div>
@@ -645,9 +646,9 @@
         </div>
 
         <div class="steps">
-          <div class="step">1️⃣ Separo: mú - si - ca</div>
-          <div class="step">2️⃣ Escucho fuerte: MÚ</div>
-          <div class="step">3️⃣ Está en la antepenúltima</div>
+          <div class="step">1️⃣ Separo en sílabas: mú - si - ca</div>
+          <div class="step">2️⃣ Identifico quien lleva la mayor fuerza de voz (sílaba tónica): MÚ</div>
+          <div class="step">3️⃣ Está en la antepenúltima, es ESDRÚJULA</div>
           <div class="step">4️⃣ Siempre lleva tilde</div>
         </div>
       </div>
@@ -686,10 +687,10 @@
         </div>
 
         <div class="steps">
-          <div class="step">1️⃣ Separo: dí - ga - me - lo</div>
-          <div class="step">2️⃣ Escucho fuerte: DÍ</div>
-          <div class="step">3️⃣ Está antes de la antepenúltima</div>
-          <div class="step">4️⃣ Lleva tilde</div>
+          <div class="step">1️⃣ Separo en sílabas: dí - ga - me - lo</div>
+          <div class="step">2️⃣ Identifico quien lleva la mayor fuerza de voz (sílaba tónica): DÍ</div>
+          <div class="step">3️⃣ Está antes de la antepenúltima, es SOBREESDRÚJULA</div>
+          <div class="step">4️⃣ Siempre lleva tilde</div>
         </div>
       </div>
 
@@ -713,10 +714,10 @@
           <button class="theory-audio-btn" onclick="speakTheory('reto')">🔊 Escuchar teoría</button>
         </div>
         <div class="summary-box">
-          1️⃣ <b>Aguda:</b> fuerza en la última sílaba. Tilde si termina en vocal, n o s.
-          <br>2️⃣ <b>Grave o llana:</b> fuerza en la penúltima. Tilde si no termina en vocal, n ni s.
-          <br>3️⃣ <b>Esdrújula:</b> fuerza en la antepenúltima. Siempre lleva tilde.
-          <br>4️⃣ <b>Sobresdrújula:</b> fuerza antes de la antepenúltima. Para este nivel, siempre lleva tilde.
+          1️⃣ <b>Aguda:</b> mayor fuerza de voz en la última sílaba. Tilde si termina en vocal, n o s.
+          <br>2️⃣ <b>Grave o llana:</b> mayor fuerza de voz en la penúltima. Tilde si no termina en vocal, n ni s.
+          <br>3️⃣ <b>Esdrújula:</b> mayor fuerza de voz en la antepenúltima. Siempre lleva tilde.
+          <br>4️⃣ <b>Sobresdrújula:</b> mayor fuerza de voz antes de la antepenúltima. Para este nivel, siempre lleva tilde.
         </div>
       </div>
 
@@ -726,8 +727,20 @@
       </div>
     </section>
 
+
+    <!-- OLIMPIADAS -->
+    <section class="module" id="module-olimpiadas">
+      <div class="panel practice">
+        <h2 class="panel-title">🏅 6. Olimpiadas</h2>
+        <div class="summary-box" style="margin-bottom:12px;">
+          Prueba de nivel interescolar: aquí ya no hay teoría. Lee con atención, piensa y marca la alternativa correcta.
+        </div>
+        <div class="question-card" id="practice-olimpiadas"></div>
+      </div>
+    </section>
+
     <div class="controls">
-      <button class="main-btn secondary" onclick="speakCurrentTheory()">🔊 Escuchar teoría actual</button>
+      <button class="main-btn secondary" id="globalTheoryBtn" onclick="speakCurrentTheory()">🔊 Escuchar teoría actual</button>
       <button class="main-btn" onclick="shareApp()">📤 Compartir app</button>
     </div>
   </div>
@@ -789,9 +802,9 @@
         theoryAudio: "Las palabras esdrújulas tienen la mayor fuerza de voz en la antepenúltima sílaba. Todas las palabras esdrújulas siempre llevan tilde. Por ejemplo: música, pájaro, teléfono.",
         examples: [
           "música. Mú si ca. La mayor fuerza de voz está en mú. Es esdrújula.",
-          "pájaro. Pá ja ro. La mayor fuerza de voz está en pá. Es esdrújula.",
+          "pájaro. Pa ja ro. La mayor fuerza de voz está en pa. Es esdrújula.",
           "teléfono. Te lé fo no. La mayor fuerza de voz está en lé. Es esdrújula.",
-          "sábado. Sá ba do. La mayor fuerza de voz está en sá. Es esdrújula."
+          "sílaba. Si la ba. La mayor fuerza de voz está en Sí. Es esdrújula."
         ],
         questions: [
           { prompt: "Elige la palabra escrita correctamente.", answer: "música", options: ["musica", "música", "musíca"], explain: "música es esdrújula y siempre lleva tilde." },
@@ -849,19 +862,92 @@
       ]
     };
 
+    modules.olimpiadas = {
+      title: "Olimpiadas",
+      questions: [
+        {
+          prompt: "Mira la lista y marca la única palabra que lleva tilde.",
+          answer: "lápiz",
+          options: ["camioneta", "mesa", "lápiz", "pelota", "casa", "perro"],
+          explain: "lápiz lleva tilde porque es grave y termina en z."
+        },
+        {
+          prompt: "Marca la palabra escrita correctamente.",
+          answer: "canción",
+          options: ["cancion", "cáncion", "canción", "cancíon"],
+          explain: "canción es aguda y termina en n."
+        },
+        {
+          prompt: "¿Cuál palabra es esdrújula y está bien escrita?",
+          answer: "música",
+          options: ["musica", "música", "musíca", "músicá"],
+          explain: "música es esdrújula; las esdrújulas siempre llevan tilde."
+        },
+        {
+          prompt: "Marca la palabra grave o llana escrita correctamente.",
+          answer: "árbol",
+          options: ["arbol", "árbol", "arból", "árböl"],
+          explain: "árbol es grave y termina en l, por eso lleva tilde."
+        },
+        {
+          prompt: "¿Cuál palabra NO necesita tilde?",
+          answer: "mesa",
+          options: ["mamá", "ratón", "mesa", "pájaro"],
+          explain: "mesa es grave, termina en vocal y no lleva tilde."
+        },
+        {
+          prompt: "Elige la palabra sobresdrújula escrita correctamente.",
+          answer: "dígamelo",
+          options: ["digamelo", "digámelo", "dígamelo", "dígamélo"],
+          explain: "dígamelo es sobresdrújula y lleva tilde."
+        },
+        {
+          prompt: "¿Cuál alternativa tiene todas las palabras bien escritas?",
+          answer: "mamá, lápiz, música",
+          options: [
+            "mama, lapiz, musica",
+            "mamá, lápiz, música",
+            "máma, lapíz, musica",
+            "mama, lápiz, músicá"
+          ],
+          explain: "mamá, lápiz y música tienen la tilde en el lugar correcto."
+        },
+        {
+          prompt: "Marca la palabra aguda escrita correctamente.",
+          answer: "compás",
+          options: ["compas", "cómpas", "compás", "compáses"],
+          explain: "compás es aguda y termina en s."
+        },
+        {
+          prompt: "¿Cuál palabra está mal escrita?",
+          answer: "telefono",
+          options: ["pájaro", "lápiz", "telefono", "ratón"],
+          explain: "telefono está mal; debe escribirse teléfono porque es esdrújula."
+        },
+        {
+          prompt: "Reto final: ¿cuál palabra debe llevar tilde por ser esdrújula?",
+          answer: "sábado",
+          options: ["camino", "sábado", "pared", "animal"],
+          explain: "sábado es esdrújula y siempre lleva tilde."
+        }
+      ]
+    };
+
+
     const state = {
       currentModule: "agudas",
-      index: { agudas: 0, graves: 0, esdrujulas: 0, sobresdrujulas: 0, reto: 0 },
+      index: { agudas: 0, graves: 0, esdrujulas: 0, sobresdrujulas: 0, reto: 0, olimpiadas: 0 },
       answered: {
         agudas: new Set(),
         graves: new Set(),
         esdrujulas: new Set(),
         sobresdrujulas: new Set(),
-        reto: new Set()
+        reto: new Set(),
+        olimpiadas: new Set()
       },
       correct: 0,
       wrong: 0,
-      totalQuestions: 50
+      totalQuestions: 60
     };
 
     function showModule(name) {
@@ -872,6 +958,11 @@
 
       document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
       document.getElementById("tab-" + name).classList.add("active");
+
+      const globalTheoryBtn = document.getElementById("globalTheoryBtn");
+      if (globalTheoryBtn) {
+        globalTheoryBtn.style.display = name === "olimpiadas" ? "none" : "";
+      }
 
       renderPractice(name);
     }
@@ -974,18 +1065,28 @@
       const controls = document.createElement("div");
       controls.className = "controls";
 
-      const audioBtn = document.createElement("button");
-      audioBtn.className = "main-btn secondary";
-      audioBtn.textContent = "🔊 Escuchar pregunta";
-      audioBtn.addEventListener("click", () => speakQuestion(moduleName));
-
       const nextBtn = document.createElement("button");
       nextBtn.className = "main-btn";
       nextBtn.textContent = "Siguiente";
       nextBtn.addEventListener("click", () => nextQuestion(moduleName));
 
-      controls.appendChild(audioBtn);
-      controls.appendChild(nextBtn);
+      if (moduleName === "olimpiadas") {
+        const shareBtn = document.createElement("button");
+        shareBtn.className = "main-btn secondary";
+        shareBtn.textContent = "📤 Compartir app";
+        shareBtn.addEventListener("click", () => shareApp());
+
+        controls.appendChild(nextBtn);
+        controls.appendChild(shareBtn);
+      } else {
+        const audioBtn = document.createElement("button");
+        audioBtn.className = "main-btn secondary";
+        audioBtn.textContent = "🔊 Escuchar pregunta";
+        audioBtn.addEventListener("click", () => speakQuestion(moduleName));
+
+        controls.appendChild(audioBtn);
+        controls.appendChild(nextBtn);
+      }
 
       target.appendChild(title);
       target.appendChild(prompt);
@@ -1061,9 +1162,9 @@
     }
 
     function goNextModule(moduleName) {
-      const order = ["agudas", "graves", "esdrujulas", "sobresdrujulas", "reto"];
+      const order = ["agudas", "graves", "esdrujulas", "sobresdrujulas", "reto", "olimpiadas"];
       const pos = order.indexOf(moduleName);
-      const next = order[pos + 1] || "reto";
+      const next = order[pos + 1] || "olimpiadas";
       showModule(next);
     }
 
@@ -1122,7 +1223,7 @@
     function shareApp() {
       const shareData = {
         title: "Marie Kids - Uso de la tilde",
-        text: "📚 Practica agudas, graves, esdrújulas y sobresdrújulas.",
+        text: "📚 Practica agudas, graves, esdrújulas, sobresdrújulas y olimpiadas.",
         url: window.location.href
       };
 
@@ -1140,6 +1241,7 @@
     renderPractice("esdrujulas");
     renderPractice("sobresdrujulas");
     renderPractice("reto");
+    renderPractice("olimpiadas");
     updateProgress();
   </script>
 
