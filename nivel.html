@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marie Kids • Menú de niveles</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1976d2">
+<style>
+*{box-sizing:border-box;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body{margin:0;min-height:100vh;background:radial-gradient(circle at 14% 8%,#fff7ad 0 0,#fff7ad 90px,transparent 92px),radial-gradient(circle at 92% 18%,#fecdd3 0 0,#fecdd3 100px,transparent 102px),radial-gradient(circle at 8% 88%,#bbf7d0 0 0,#bbf7d0 110px,transparent 112px),linear-gradient(145deg,#dbeafe,#e0f2fe 55%,#fae8ff);display:flex;justify-content:center;align-items:flex-start;padding:16px}
+.app{width:100%;max-width:760px;background:rgba(255,255,255,.96);border:3px solid #2563eb;border-radius:28px;box-shadow:0 20px 46px rgba(37,99,235,.18),0 8px 18px rgba(15,23,42,.10);padding:16px;overflow:hidden}
+.brand-header-kids{position:relative;overflow:hidden;padding:10px 12px;border-radius:22px;margin-bottom:14px;background:radial-gradient(circle at 12% 16%,rgba(255,255,255,.58) 0 0,rgba(255,255,255,.58) 6px,transparent 7px),radial-gradient(circle at 86% 20%,rgba(255,255,255,.32) 0 0,rgba(255,255,255,.32) 8px,transparent 9px),linear-gradient(135deg,#0f172a 0%,#1d4ed8 36%,#7c3aed 68%,#f97316 120%);border:1px solid rgba(255,255,255,.88);box-shadow:0 16px 34px rgba(37,99,235,.30),inset 0 1px 0 rgba(255,255,255,.50),inset 0 -18px 40px rgba(15,23,42,.16);color:#fff;cursor:default;user-select:none;isolation:isolate;transition:transform .18s ease,filter .18s ease,box-shadow .18s ease}
+.brand-header-kids:hover{filter:brightness(1.05);transform:translateY(-1px);box-shadow:0 20px 40px rgba(37,99,235,.34),inset 0 1px 0 rgba(255,255,255,.50),inset 0 -18px 40px rgba(15,23,42,.16)}
+.brand-header-kids::before{content:"";position:absolute;inset:-55% -20%;background:linear-gradient(115deg,transparent 0%,transparent 37%,rgba(255,255,255,.30) 46%,transparent 55%,transparent 100%);transform:translateX(-38%) rotate(8deg);animation:headerShine 5.5s ease-in-out infinite;pointer-events:none;z-index:1}
+.brand-header-kids::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,.10) 1px,transparent 1px),linear-gradient(0deg,rgba(255,255,255,.08) 1px,transparent 1px);background-size:24px 24px;opacity:.24;pointer-events:none;z-index:1}
+.brand-row{position:relative;z-index:2;display:grid;grid-template-columns:54px minmax(0,1fr) auto;gap:10px;align-items:center}
+.kids-badge{width:52px;height:52px;border-radius:18px;display:grid;place-items:center;font-size:1.75rem;font-weight:1000;background:radial-gradient(circle at 30% 22%,rgba(255,255,255,.92),rgba(255,255,255,.30) 42%,rgba(255,255,255,.08) 70%),linear-gradient(135deg,rgba(255,255,255,.42),rgba(255,255,255,.12));border:1px solid rgba(255,255,255,.58);box-shadow:0 10px 20px rgba(15,23,42,.18),inset 0 1px 0 rgba(255,255,255,.60)}
+.kids-title{font-weight:1000;font-size:clamp(1.32rem,4vw,1.72rem);line-height:1.02;letter-spacing:.2px;text-shadow:0 3px 10px rgba(15,23,42,.32)}
+.brand-row>div:not(.kids-badge) .kids-title{white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.brand-row>.kids-title:last-child{justify-self:end;font-size:clamp(.82rem,2.4vw,1rem);line-height:1;padding:8px 10px;border-radius:999px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.44);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 8px 18px rgba(15,23,42,.14);text-shadow:0 2px 8px rgba(15,23,42,.28);white-space:nowrap}
+.kids-subtitle{margin-top:5px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:.9rem;font-weight:800;opacity:.98}
+.kids-pill,.ruta-pill-btn{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.45);padding:5px 10px;border-radius:999px;font-size:.80rem;font-weight:950;color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 7px 14px rgba(15,23,42,.10);backdrop-filter:blur(8px)}
+.ruta-pill-btn{cursor:pointer;font-family:inherit;line-height:1.15;transition:transform .18s ease,background .18s ease}
+.ruta-pill-btn:hover{background:rgba(255,255,255,.30);transform:translateY(-1px)}
+.bubble{position:absolute;border-radius:999px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.26);pointer-events:none;animation:floaty 6s ease-in-out infinite;z-index:0;filter:blur(.1px)}
+.b1{left:-22px;top:-26px;width:82px;height:82px}.b2{right:-24px;bottom:-34px;width:92px;height:92px;animation-delay:1s}.b3{left:48%;bottom:-30px;width:50px;height:50px;animation-delay:.6s}
+@keyframes floaty{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-7px) scale(1.04)}}
+@keyframes headerShine{0%,58%,100%{transform:translateX(-46%) rotate(8deg);opacity:0}68%{opacity:.72}84%{transform:translateX(46%) rotate(8deg);opacity:0}}
+
+.hero-kids{position:relative;overflow:hidden;margin:2px 0 14px;border-radius:24px;padding:14px 14px 13px;text-align:center;background:radial-gradient(circle at 12% 20%,rgba(255,255,255,.92) 0 0,rgba(255,255,255,.92) 7px,transparent 8px),radial-gradient(circle at 88% 28%,rgba(255,255,255,.80) 0 0,rgba(255,255,255,.80) 9px,transparent 10px),linear-gradient(135deg,#fff7ed,#fef3c7 35%,#dbeafe 72%,#f5d0fe);border:2px solid rgba(147,197,253,.95);box-shadow:0 14px 26px rgba(37,99,235,.14),inset 0 1px 0 rgba(255,255,255,.95)}
+.hero-kids::before{content:"⭐";position:absolute;left:16px;top:12px;font-size:1.55rem;animation:popStar 2.8s ease-in-out infinite}
+.hero-kids::after{content:"🚀";position:absolute;right:16px;top:12px;font-size:1.65rem;animation:rocketMove 3s ease-in-out infinite}
+.menu-title{position:relative;margin:0 auto 8px;text-align:center;color:#0f172a;font-size:clamp(1.58rem,5vw,2.35rem);line-height:1.02;font-weight:1000;letter-spacing:-.5px;text-shadow:0 3px 0 rgba(255,255,255,.85)}
+.menu-title span{display:inline-block;padding:7px 44px 9px;border-radius:999px;background:linear-gradient(135deg,#ffffff,#eff6ff);border:1px solid #bfdbfe;box-shadow:0 11px 22px rgba(37,99,235,.12),inset 0 1px 0 rgba(255,255,255,.95)}
+.menu-subtitle{margin:0 auto;max-width:620px;text-align:center;color:#1e3a8a;font-size:clamp(.95rem,2.8vw,1.06rem);font-weight:950;line-height:1.32;background:rgba(255,255,255,.68);border:1px solid rgba(147,197,253,.90);border-radius:999px;padding:8px 12px;box-shadow:0 8px 18px rgba(37,99,235,.10)}
+@keyframes popStar{0%,100%{transform:scale(1) rotate(0deg)}50%{transform:scale(1.18) rotate(10deg)}}
+@keyframes rocketMove{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-5px) rotate(-8deg)}}
+
+.levels-panel{position:relative;overflow:hidden;border-radius:24px;padding:14px;background:radial-gradient(circle at 90% 8%,rgba(253,186,116,.28),transparent 28%),radial-gradient(circle at 6% 95%,rgba(134,239,172,.32),transparent 32%),linear-gradient(145deg,#eff6ff,#ffffff 45%,#fff7ed);border:1px solid #bfdbfe;box-shadow:0 14px 28px rgba(37,99,235,.12)}
+.levels-panel::before{content:"";position:absolute;inset:-80px -60px auto auto;width:210px;height:210px;border-radius:999px;background:radial-gradient(circle,rgba(37,99,235,.16),transparent 68%);pointer-events:none}
+.levels-panel::after{content:"";position:absolute;left:-90px;bottom:-120px;width:240px;height:240px;border-radius:999px;background:radial-gradient(circle,rgba(249,115,22,.14),transparent 68%);pointer-events:none}
+.levels-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.level-card{position:relative;min-height:76px;border-radius:22px;text-decoration:none;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:10px;border:2px solid rgba(255,255,255,.80);box-shadow:0 11px 20px rgba(15,23,42,.13),inset 0 1px 0 rgba(255,255,255,.62);isolation:isolate;transition:transform .18s ease,box-shadow .18s ease,filter .18s ease}
+.level-card::before{content:"";position:absolute;inset:-70% -40%;background:linear-gradient(115deg,transparent 0%,transparent 38%,rgba(255,255,255,.40) 48%,transparent 58%,transparent 100%);transform:translateX(-45%) rotate(10deg);transition:transform .55s ease;z-index:-1}
+.level-card::after{content:"";position:absolute;width:78px;height:78px;right:-28px;top:-28px;border-radius:999px;background:rgba(255,255,255,.24);z-index:-1}
+.level-icon{display:grid;place-items:center;width:32px;height:32px;border-radius:13px;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.42);box-shadow:inset 0 1px 0 rgba(255,255,255,.55);font-size:1.24rem;line-height:1}
+.level-card span:last-child{color:#fff;font-weight:1000;font-size:clamp(.96rem,2.8vw,1.13rem);line-height:1.08;text-align:center;text-shadow:0 3px 9px rgba(15,23,42,.24);letter-spacing:.1px}
+.level-card:hover{transform:translateY(-4px) scale(1.02);filter:saturate(1.12);box-shadow:0 18px 30px rgba(15,23,42,.18),inset 0 1px 0 rgba(255,255,255,.72)}
+.level-card:hover::before{transform:translateX(45%) rotate(10deg)}
+.level-card:hover .level-icon{animation:bounceIcon .44s ease}
+.level-card:active{transform:scale(.98)}
+.level-card.inicial{background:linear-gradient(135deg,#fb923c 0%,#f472b6 58%,#f43f5e 100%)}
+.level-card.primaria{background:linear-gradient(135deg,#2563eb 0%,#06b6d4 62%,#22c55e 120%)}
+.level-card.secundaria{background:linear-gradient(135deg,#7c3aed 0%,#2563eb 56%,#0ea5e9 120%)}
+@keyframes bounceIcon{0%,100%{transform:translateY(0)}45%{transform:translateY(-5px)}}
+
+@media(max-width:560px){body{padding:12px}.app{padding:13px}.brand-header-kids{padding:9px 9px;border-radius:20px}.brand-row{grid-template-columns:46px minmax(0,1fr) auto;gap:8px}.kids-badge{width:44px;height:44px;border-radius:15px;font-size:1.45rem}.kids-title{font-size:1.18rem}.kids-subtitle{margin-top:4px}.ruta-pill-btn{padding:4px 8px;font-size:.72rem}.brand-row>.kids-title:last-child{font-size:.74rem;padding:7px 8px}.hero-kids{padding:12px 10px;border-radius:22px}.hero-kids::before{left:10px;top:10px;font-size:1.25rem}.hero-kids::after{right:10px;top:10px;font-size:1.35rem}.menu-title span{padding:7px 34px 8px}.menu-subtitle{border-radius:18px}.levels-panel{padding:12px;border-radius:22px}.levels-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.level-card{min-height:68px;border-radius:19px}.level-icon{width:28px;height:28px;border-radius:11px;font-size:1.08rem}}
+@media(max-width:360px){.levels-grid{grid-template-columns:1fr}.menu-title span{padding:7px 24px 8px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="brand-header-kids" aria-label="Marie Kids" role="link" tabindex="0" onclick="goHome()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();goHome();}">
+    <div class="bubble b1"></div>
+    <div class="bubble b2"></div>
+    <div class="bubble b3"></div>
+
+    <div class="brand-row">
+      <div class="kids-badge" aria-hidden="true">🌈</div>
+      <div>
+        <div class="kids-title">Marie Kids</div>
+        
+      </div>
+      <div class="kids-title">Niveles</div>
+    </div>
+  </div>
+
+  <section class="hero-kids" aria-label="Presentación">
+    <h1 class="menu-title"><span>¡Elige tu aventura!</span></h1>
+    <p class="menu-subtitle">Olimpiadas, ajedrez, cuentos y juegos para pensar.</p>
+  </section>
+
+  <section class="levels-panel" aria-label="Menú de niveles">
+    <div class="levels-grid">
+      <a class="level-card inicial" href="3-anios.html"><span class="level-icon">🧸</span><span>3 años</span></a>
+      <a class="level-card inicial" href="4-anios.html"><span class="level-icon">🎨</span><span>4 años</span></a>
+      <a class="level-card inicial" href="5-anios.html"><span class="level-icon">🌟</span><span>5 años</span></a>
+      <a class="level-card primaria" href="1-primaria.html"><span class="level-icon">🚀</span><span>1 primaria</span></a>
+      <a class="level-card primaria" href="2-primaria.html"><span class="level-icon">⭐</span><span>2 primaria</span></a>
+      <a class="level-card primaria" href="3-primaria.html"><span class="level-icon">🏆</span><span>3 primaria</span></a>
+      <a class="level-card primaria" href="4-primaria.html"><span class="level-icon">🧩</span><span>4 primaria</span></a>
+      <a class="level-card primaria" href="5-primaria.html"><span class="level-icon">♟️</span><span>5 primaria</span></a>
+      <a class="level-card primaria" href="6-primaria.html"><span class="level-icon">📚</span><span>6 primaria</span></a>
+      <a class="level-card secundaria" href="1-secundaria.html"><span class="level-icon">⚡</span><span>1 secundaria</span></a>
+      <a class="level-card secundaria" href="2-secundaria.html"><span class="level-icon">🎯</span><span>2 secundaria</span></a>
+      <a class="level-card secundaria" href="3-secundaria.html"><span class="level-icon">🧠</span><span>3 secundaria</span></a>
+      <a class="level-card secundaria" href="4-secundaria.html"><span class="level-icon">🔥</span><span>4 secundaria</span></a>
+      <a class="level-card secundaria" href="5-secundaria.html"><span class="level-icon">🎓</span><span>5 secundaria</span></a>
+    </div>
+  </section>
+</div>
+
+<script>
+function goHome(){location.href="index.html";}
+function goRuta(){location.href="ruta.html";}
+</script>
+
+<script>
+if("serviceWorker" in navigator){
+  window.addEventListener("load",()=>{
+    navigator.serviceWorker.register("./service-worker.js").catch(()=>{});
+  });
+}
+</script>
+</body>
+</html>
