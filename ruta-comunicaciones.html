@@ -2,14 +2,11 @@
 <html lang="es">
 
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marie Kids • Comunicación 1.° Primaria</title>
-
-    <!-- PWA -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#1976d2">
-
     <style>
       * {
         box-sizing: border-box;
@@ -17,149 +14,199 @@
       }
 
       html {
-        -webkit-text-size-adjust: 100%
+        -webkit-text-size-adjust: 100%;
+        scroll-behavior: smooth
+      }
+
+      :root {
+        --blue: #2563eb;
+        --sky: #e0f2fe;
+        --soft: #eff6ff;
+        --green: #16a34a;
+        --text: #111827;
+        --muted: #6b7280;
+        --line: #dbeafe
       }
 
       body {
         margin: 0;
         min-height: 100dvh;
-        background:
-          radial-gradient(1200px 800px at 10% 10%, #dbeafe 0%, transparent 60%),
-          radial-gradient(900px 700px at 90% 20%, #e0f2fe 0%, transparent 55%),
-          linear-gradient(145deg, #dbeafe, #e0f2fe);
-        padding: calc(10px + env(safe-area-inset-top)) calc(10px + env(safe-area-inset-right)) calc(12px + env(safe-area-inset-bottom)) calc(10px + env(safe-area-inset-left));
+        background: radial-gradient(1000px 650px at 8% 4%, #bfdbfe 0%, transparent 58%), radial-gradient(900px 600px at 92% 10%, #e9d5ff 0%, transparent 55%), radial-gradient(800px 520px at 50% 95%, #dcfce7 0%, transparent 55%), linear-gradient(145deg, #dbeafe, #e0f2fe);
+        padding: 12px;
         display: flex;
         justify-content: center;
         align-items: flex-start;
-      }
-
-      :root {
-        --app-max: 980px;
-        --pad: clamp(12px, 3.2vw, 22px);
-        --radius: clamp(18px, 3.8vw, 26px);
-        --h1: clamp(1.25rem, 3.4vw, 1.7rem);
-        --sub: clamp(.9rem, 2.4vw, 1rem);
-        --btn: clamp(.92rem, 2.6vw, 1rem);
-
-        --blue: #2563eb;
-        --violet: #7c3aed;
-        --shadow: rgba(0, 0, 0, .14);
+        color: var(--text)
       }
 
       .app {
         width: 100%;
-        max-width: var(--app-max);
-        background: #fff;
-        border-radius: var(--radius);
+        max-width: 1120px;
+        background: rgba(255, 255, 255, .94);
         border: 3px solid var(--blue);
-        padding: var(--pad);
-        box-shadow: 0 18px 55px var(--shadow);
-        overflow: hidden;
+        border-radius: 28px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, .14);
+        padding: clamp(12px, 3vw, 22px);
+        overflow: hidden
       }
 
-      /* ===== HERO ===== */
       .hero {
         position: relative;
         overflow: hidden;
-        border-radius: calc(var(--radius) - 6px);
-        padding: clamp(14px, 3.2vw, 18px);
-        background: linear-gradient(135deg, #93c5fd 0%, #60a5fa 40%, #2563eb 100%);
-        border: 2px solid rgba(255, 255, 255, .65);
-        box-shadow: 0 16px 36px rgba(37, 99, 235, .28);
-        color: #fff;
+        border-radius: 24px;
+        padding: clamp(16px, 3.4vw, 26px);
+        background: radial-gradient(700px 240px at 20% 12%, rgba(255, 255, 255, .28), transparent 60%), linear-gradient(135deg, #93c5fd 0%, #60a5fa 38%, #2563eb 72%, #1d4ed8 100%);
+        border: 2px solid rgba(255, 255, 255, .7);
+        box-shadow: 0 18px 40px rgba(37, 99, 235, .28);
+        color: #fff
       }
 
-      .hero::after {
-        content: "";
+      .hero:after {
+        content: "✦";
         position: absolute;
-        inset: -2px;
-        pointer-events: none;
-        background:
-          radial-gradient(600px 200px at 20% 10%, rgba(255, 255, 255, .22), transparent 60%),
-          radial-gradient(500px 240px at 85% 15%, rgba(255, 255, 255, .18), transparent 62%);
+        right: 20px;
+        top: 6px;
+        font-size: 6rem;
+        opacity: .16;
+        transform: rotate(18deg)
       }
 
-      .hero-row {
+      .hero-top {
         position: relative;
-        z-index: 2;
+        z-index: 1;
         display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
+        align-items: center;
         justify-content: space-between;
-        align-items: center
+        gap: 14px;
+        flex-wrap: wrap
       }
 
-      .hero-left {
+      .brand {
         display: flex;
-        gap: 12px;
         align-items: center;
-        min-width: 240px;
+        gap: 14px;
+        min-width: min(100%, 290px);
         flex: 1
       }
 
       .badge {
-        width: clamp(52px, 10vw, 62px);
-        height: clamp(52px, 10vw, 62px);
-        border-radius: 18px;
+        width: clamp(62px, 12vw, 78px);
+        height: clamp(62px, 12vw, 78px);
+        border-radius: 22px;
         display: grid;
         place-items: center;
-        font-size: clamp(1.6rem, 4vw, 2rem);
-        background: linear-gradient(135deg, #2563eb, #6366f1);
-        border: 1px solid rgba(255, 255, 255, .35);
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35);
+        font-weight: 1000;
+        font-size: clamp(1.5rem, 4vw, 2rem);
+        background: linear-gradient(135deg, #1d4ed8, #7c3aed);
+        border: 2px solid rgba(255, 255, 255, .45);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35), 0 14px 26px rgba(0, 0, 0, .18)
       }
 
-      .hero-title {
+      h1 {
         margin: 0;
+        font-size: clamp(1.55rem, 5vw, 2.45rem);
+        line-height: 1.03;
         font-weight: 1000;
-        letter-spacing: .02em;
-        line-height: 1.05;
-        font-size: var(--h1);
         text-shadow: 0 2px 0 rgba(0, 0, 0, .12)
       }
 
       .hero-sub {
-        margin: 6px 0 0;
-        font-size: var(--sub);
-        font-weight: 800;
-        opacity: .95;
+        margin-top: 8px;
         display: flex;
-        gap: 8px;
-        flex-wrap: wrap
+        flex-wrap: wrap;
+        gap: 8px
       }
 
       .pill {
-        background: rgba(255, 255, 255, .22);
-        border: 1px solid rgba(255, 255, 255, .35);
-        padding: 6px 10px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 7px 11px;
         border-radius: 999px;
-        font-size: clamp(.78rem, 2.2vw, .88rem);
+        background: rgba(255, 255, 255, .2);
+        border: 1px solid rgba(255, 255, 255, .38);
         font-weight: 950;
-        backdrop-filter: blur(2px);
-        -webkit-backdrop-filter: blur(2px);
-        white-space: nowrap;
+        font-size: clamp(.82rem, 2.5vw, .94rem);
+        white-space: nowrap
       }
 
-      /* ===== TOOLBAR ===== */
+      .course-box {
+        min-width: min(100%, 240px);
+        text-align: center;
+        border-radius: 18px;
+        padding: 12px 16px;
+        background: rgba(255, 255, 255, .18);
+        border: 1px solid rgba(255, 255, 255, .38);
+        box-shadow: 0 12px 26px rgba(0, 0, 0, .16);
+        font-weight: 1000;
+        letter-spacing: .06em;
+        text-transform: uppercase;
+        font-size: clamp(1rem, 3vw, 1.35rem)
+      }
+
+      .stats {
+        position: relative;
+        z-index: 1;
+        margin-top: 14px;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px
+      }
+
+      @media(max-width:780px) {
+        .stats {
+          grid-template-columns: repeat(2, minmax(0, 1fr))
+        }
+      }
+
+      @media(max-width:480px) {
+        .stats {
+          grid-template-columns: 1fr
+        }
+      }
+
+      .stat {
+        background: rgba(255, 255, 255, .18);
+        border: 1px solid rgba(255, 255, 255, .36);
+        border-radius: 18px;
+        padding: 12px
+      }
+
+      .stat-label {
+        font-size: .82rem;
+        font-weight: 850;
+        opacity: .9
+      }
+
+      .stat-value {
+        margin-top: 4px;
+        font-size: clamp(1.25rem, 3.8vw, 1.8rem);
+        font-weight: 1000
+      }
+
       .toolbar {
-        margin-top: 12px;
-        display: flex;
+        margin-top: 14px;
+        display: grid;
+        grid-template-columns: 1.2fr auto;
         gap: 10px;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: space-between;
+        align-items: center
+      }
+
+      @media(max-width:760px) {
+        .toolbar {
+          grid-template-columns: 1fr
+        }
       }
 
       .search {
-        flex: 1;
-        min-width: min(100%, 340px);
         display: flex;
-        gap: 8px;
         align-items: center;
-        padding: 10px 12px;
+        gap: 10px;
         border-radius: 999px;
-        background: #eff6ff;
-        border: 1px solid #bfdbfe;
+        background: #fff;
+        border: 2px solid #bfdbfe;
+        padding: 12px 14px;
+        box-shadow: 0 8px 18px rgba(37, 99, 235, .08)
       }
 
       .search input {
@@ -167,54 +214,42 @@
         border: none;
         outline: none;
         background: transparent;
+        font-size: 1rem;
         font-weight: 900;
-        font-size: var(--btn)
+        color: var(--text)
       }
 
-      /* ===== LINKS (chips) ===== */
-      .chips {
+      .toolbar-buttons {
         display: flex;
         gap: 8px;
         flex-wrap: wrap;
         justify-content: flex-end
       }
 
-      .chip {
+      .small-btn {
         border: 1px solid #bfdbfe;
         background: #fff;
+        color: #1e3a8a;
         border-radius: 999px;
-        padding: 8px 12px;
+        padding: 10px 13px;
+        font-weight: 1000;
         cursor: pointer;
-        font-weight: 950;
-        font-size: clamp(.85rem, 2.4vw, .95rem);
-        transition: transform .1s ease, background .15s ease, border-color .15s ease;
-        white-space: nowrap;
         text-decoration: none;
-        color: #111827;
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
+        box-shadow: 0 8px 18px rgba(0, 0, 0, .05)
       }
 
-      .chip:hover {
-        transform: translateY(-1px);
-        background: #e0f2fe;
-        border-color: #93c5fd
+      .small-btn:hover {
+        background: #eff6ff;
+        transform: translateY(-1px)
       }
 
-      .chip.active {
-        background: linear-gradient(90deg, #60a5fa, #2563eb);
-        color: #fff;
-        border-color: transparent
-      }
-
-      /* ===== PROGRESS ===== */
       .progress-wrap {
         margin-top: 12px;
-        background: #eff6ff;
+        background: #fff;
         border: 1px solid #bfdbfe;
-        border-radius: 18px;
-        padding: 12px;
+        border-radius: 22px;
+        padding: 13px;
+        box-shadow: 0 10px 24px rgba(37, 99, 235, .08)
       }
 
       .progress-row {
@@ -222,418 +257,408 @@
         justify-content: space-between;
         gap: 10px;
         flex-wrap: wrap;
+        align-items: center;
         font-weight: 1000;
-        color: #1f2937;
-        margin-bottom: 8px
+        margin-bottom: 9px
       }
 
-      .progress-tag {
-        display: inline-flex;
-        gap: 6px;
-        align-items: center;
-        padding: 6px 10px;
-        border-radius: 999px;
-        background: #eff6ff;
-        border: 1px solid #bfdbfe;
-        font-weight: 1000;
-        color: #1e3a8a;
-        font-size: clamp(.82rem, 2.3vw, .9rem);
+      .progress-note {
+        color: var(--muted);
+        font-weight: 850;
+        font-size: .92rem
       }
 
       .bar {
-        width: 100%;
-        height: 10px;
+        height: 12px;
         background: #e5e7eb;
         border-radius: 999px;
         overflow: hidden
       }
 
       .bar>div {
-        width: 0%;
         height: 100%;
-        background: linear-gradient(90deg, #60a5fa, #2563eb);
+        width: 0%;
+        background: linear-gradient(90deg, #22c55e, #60a5fa, #2563eb);
         border-radius: 999px;
         transition: width .2s ease
       }
 
-      /* ===== GRID ===== */
-      .grid {
-        margin-top: 12px;
-        display: grid;
-        grid-template-columns: repeat(12, 1fr);
-        gap: 12px;
-      }
-
-      @media (min-width: 860px) {
-        .topic {
-          grid-column: span 4;
-        }
-      }
-
-      @media (min-width: 560px) and (max-width: 859px) {
-        .topic {
-          grid-column: span 6;
-        }
-      }
-
-      @media (max-width: 559px) {
-        .topic {
-          grid-column: span 12;
-        }
-      }
-
-      .topic {
-        background: #f9fafb;
-        border: 1px solid #e5e7eb;
-        border-radius: 18px;
-        padding: 14px;
-        box-shadow: 0 10px 22px rgba(0, 0, 0, .06);
-        transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease, opacity .12s ease;
-        position: relative;
-        overflow: hidden;
-        border-left: 6px solid rgba(37, 99, 235, .35);
-      }
-
-      .topic:hover {
-        transform: translateY(-2px);
-        border-color: #93c5fd;
-        box-shadow: 0 16px 30px rgba(0, 0, 0, .09)
-      }
-
-      .topic a {
-        display: block;
-        text-decoration: none;
-        color: inherit
-      }
-
-      .topic.cat-Comunicación {
-        border-left-color: rgba(37, 99, 235, .75)
-      }
-
-      .topic.cat-Lectura {
-        border-left-color: rgba(14, 165, 233, .75)
-      }
-
-      .topic.cat-Escritura {
-        border-left-color: rgba(124, 58, 237, .75)
-      }
-
-      .topic.cat-Tildación {
-        border-left-color: rgba(249, 115, 22, .75)
-      }
-
-      .topic.cat-Olimpiada {
-        border-left-color: rgba(34, 197, 94, .75)
-      }
-
-      /* NUMERO BONITO */
-      .num {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        width: 40px;
-        height: 40px;
-        border-radius: 999px;
-        display: grid;
-        place-items: center;
-        font-weight: 1000;
-        font-size: 1.05rem;
-        color: #fff;
-        background: linear-gradient(135deg, #60a5fa, #2563eb);
-        box-shadow: 0 12px 22px rgba(37, 99, 235, .25);
-        border: 2px solid rgba(255, 255, 255, .75);
-      }
-
-      .num::after {
-        content: "";
-        position: absolute;
-        inset: -14px;
-        background:
-          radial-gradient(circle at 30% 30%, rgba(96, 165, 250, .22), transparent 55%),
-          radial-gradient(circle at 70% 70%, rgba(37, 99, 235, .18), transparent 55%);
-        border-radius: 999px;
-        z-index: -1;
-      }
-
-      .topic-tag {
-        display: inline-flex;
-        gap: 6px;
-        align-items: center;
-        padding: 6px 10px;
-        border-radius: 999px;
-        background: #eff6ff;
-        border: 1px solid #bfdbfe;
-        font-weight: 1000;
-        color: #1e3a8a;
-        font-size: clamp(.82rem, 2.3vw, .9rem);
-      }
-
-      .title {
-        margin: 10px 0 6px;
-        font-weight: 1000;
-        color: #111827;
-        font-size: clamp(1.05rem, 2.9vw, 1.15rem)
-      }
-
-      .desc {
-        margin: 0;
-        color: #6b7280;
-        font-weight: 780;
-        line-height: 1.35;
-        font-size: clamp(.92rem, 2.4vw, .98rem)
-      }
-
-      .meta {
+      .filter-row {
         margin-top: 12px;
         display: flex;
-        justify-content: space-between;
-        gap: 10px;
         flex-wrap: wrap;
-        align-items: center
-      }
-
-      .status {
-        display: inline-flex;
         gap: 8px;
-        align-items: center;
-        padding: 7px 10px;
-        border-radius: 999px;
-        border: 1px solid #e5e7eb;
+        justify-content: center
+      }
+
+      .filter {
+        border: 1px solid #bfdbfe;
         background: #fff;
-        font-weight: 1000;
-        font-size: clamp(.84rem, 2.3vw, .92rem)
-      }
-
-      .status.done {
-        border-color: #86efac;
-        background: #f0fdf4;
-        color: #166534
-      }
-
-      /* BOTON */
-      .mark {
-        border: none;
         border-radius: 999px;
         padding: 9px 12px;
         font-weight: 1000;
         cursor: pointer;
-        background: #e5e7eb;
-        color: #111827;
-        transition: transform .1s ease, filter .15s ease, background .15s ease, color .15s ease;
+        color: #1e3a8a
       }
 
-      .mark:hover {
+      .filter:hover {
         transform: translateY(-1px);
-        filter: brightness(1.02)
+        background: #eff6ff
       }
 
-      /* Botón DONE: VERDE */
-      .mark.done {
-        background: linear-gradient(90deg, #22c55e, #16a34a);
+      .filter.active {
         color: #fff;
-        box-shadow: 0 10px 18px rgba(34, 197, 94, .28);
-        border: 1px solid rgba(255, 255, 255, .55);
+        border-color: transparent;
+        background: linear-gradient(90deg, #60a5fa, #2563eb);
+        box-shadow: 0 10px 20px rgba(37, 99, 235, .22)
       }
 
-      .mark.done:hover {
-        filter: brightness(1.06)
+      .section {
+        margin-top: 18px
       }
 
-      /* TARJETA HECHA: TODO GRIS, EXCEPTO BOTON VERDE */
-      .topic.done {
-        background: linear-gradient(145deg, #f3f4f6, #eef2f7);
-        border-color: #d1d5db;
-        box-shadow: 0 8px 18px rgba(0, 0, 0, .05);
-      }
-
-      .topic.done:hover {
-        transform: none;
-        border-color: #cbd5e1;
-        box-shadow: 0 8px 18px rgba(0, 0, 0, .05);
-      }
-
-      .topic.done .topic-tag,
-      .topic.done .title,
-      .topic.done .desc,
-      .topic.done .status,
-      .topic.done .num {
-        filter: grayscale(1);
-        opacity: .55;
-      }
-
-      .topic.done .mark.done {
-        filter: none !important;
-        opacity: 1 !important;
-      }
-
-      /* siguiente recomendado */
-      .topic.next {
-        border-color: rgba(37, 99, 235, .55);
-        box-shadow: 0 0 0 3px rgba(37, 99, 235, .16), 0 16px 30px rgba(0, 0, 0, .09);
-        background: linear-gradient(145deg, #f9fafb, #eff6ff);
-      }
-
-      .topic.done.next {
-        box-shadow: 0 8px 18px rgba(0, 0, 0, .05);
-        border-color: #d1d5db;
-        background: linear-gradient(145deg, #f3f4f6, #eef2f7);
-      }
-
-      .note {
-        margin-top: 12px;
-        text-align: center;
-        color: #6b7280;
-        font-weight: 800;
-        font-size: clamp(.85rem, 2.3vw, .95rem);
-      }
-
-      /* ===============================
-         HERO CLICKABLE
-         =============================== */
-      .hero-link {
-        padding: 0;
-      }
-
-      .hero-click {
-        display: block;
-        text-decoration: none;
-        color: inherit;
-      }
-
-      .hero-space {
+      .section-head {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 10px
       }
 
-      /* ===============================
-         CURSO (DERECHA)
-         =============================== */
-      .hero-course {
-        font-family: "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
-        font-size: clamp(1.05rem, 3vw, 1.45rem);
-        font-weight: 800;
-        letter-spacing: .06em;
-        text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.9);
-        padding: 10px 16px;
-        border-radius: 14px;
-        background: linear-gradient(135deg,
-            rgba(255, 255, 255, 0.18),
-            rgba(255, 255, 255, 0.05));
-        border: 1px solid rgba(255, 255, 255, 0.35);
-        backdrop-filter: blur(4px);
-        -webkit-backdrop-filter: blur(4px);
-        box-shadow: 0 10px 22px rgba(0, 0, 0, .18);
-        white-space: nowrap;
+      .section-title {
+        margin: 0;
+        font-size: clamp(1.05rem, 3vw, 1.35rem);
+        font-weight: 1000;
+        color: #1f2937;
+        display: flex;
+        align-items: center;
+        gap: 8px
       }
 
-      .hero-link:hover .hero-course {
-        transform: translateY(-1px);
-        filter: brightness(1.05);
+      .section-count {
+        padding: 7px 11px;
+        border-radius: 999px;
+        background: #eff6ff;
+        border: 1px solid #bfdbfe;
+        color: #1e3a8a;
+        font-weight: 1000;
+        font-size: .9rem
       }
 
-      .hero-link:hover .badge {
-        transform: scale(1.05);
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 12px
       }
 
-      @media (max-width: 620px) {
-        .hero-space {
-          align-items: flex-start;
+      .topic {
+        grid-column: span 4;
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-left: 7px solid #60a5fa;
+        border-radius: 20px;
+        padding: 14px;
+        min-height: 196px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 12px 26px rgba(0, 0, 0, .07);
+        transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease
+      }
+
+      @media(max-width:900px) {
+        .topic {
+          grid-column: span 6
         }
+      }
 
-        .hero-course {
-          width: 100%;
-          text-align: center;
-          margin-top: 6px;
+      @media(max-width:580px) {
+        .topic {
+          grid-column: span 12
         }
+      }
+
+      .topic:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 32px rgba(0, 0, 0, .1);
+        border-color: #93c5fd
+      }
+
+      .topic:after {
+        content: "";
+        position: absolute;
+        width: 130px;
+        height: 130px;
+        right: -58px;
+        top: -58px;
+        border-radius: 50%;
+        background: rgba(96, 165, 250, .12);
+        pointer-events: none
+      }
+
+      .topic.done {
+        background: linear-gradient(145deg, #f3f4f6, #eef2f7);
+        border-color: #d1d5db;
+        box-shadow: 0 8px 18px rgba(0, 0, 0, .05)
+      }
+
+      .topic.next {
+        background: linear-gradient(145deg, #fff, #eff6ff);
+        border-color: rgba(37, 99, 235, .55);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, .13), 0 16px 32px rgba(0, 0, 0, .09)
+      }
+
+      .topic.done.next {
+        background: linear-gradient(145deg, #f3f4f6, #eef2f7);
+        border-color: #d1d5db;
+        box-shadow: 0 8px 18px rgba(0, 0, 0, .05)
+      }
+
+      .num {
+        position: absolute;
+        right: 12px;
+        top: 12px;
+        width: 42px;
+        height: 42px;
+        border-radius: 999px;
+        display: grid;
+        place-items: center;
+        font-weight: 1000;
+        color: #fff;
+        background: linear-gradient(135deg, #60a5fa, #2563eb);
+        border: 2px solid rgba(255, 255, 255, .8);
+        box-shadow: 0 12px 22px rgba(37, 99, 235, .22);
+        z-index: 1
+      }
+
+      .topic.done .num,
+      .topic.done .topic-title,
+      .topic.done .desc,
+      .topic.done .tag,
+      .topic.done .meta-line {
+        filter: grayscale(1);
+        opacity: .58
+      }
+
+      .top-line {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding-right: 46px
+      }
+
+      .emoji {
+        width: 38px;
+        height: 38px;
+        border-radius: 15px;
+        display: grid;
+        place-items: center;
+        background: #eff6ff;
+        border: 1px solid #bfdbfe;
+        font-size: 1.25rem;
+        flex: 0 0 auto
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 9px;
+        border-radius: 999px;
+        background: #eff6ff;
+        color: #1e3a8a;
+        border: 1px solid #bfdbfe;
+        font-size: .78rem;
+        font-weight: 1000
+      }
+
+      .topic-title {
+        position: relative;
+        z-index: 1;
+        margin: 12px 0 7px;
+        font-size: clamp(1.02rem, 2.7vw, 1.16rem);
+        line-height: 1.18;
+        font-weight: 1000;
+        color: #111827;
+        padding-right: 4px
+      }
+
+      .desc {
+        position: relative;
+        z-index: 1;
+        color: #6b7280;
+        margin: 0;
+        font-weight: 780;
+        line-height: 1.35;
+        font-size: .94rem
+      }
+
+      .meta-line {
+        margin-top: 11px;
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        align-items: center
+      }
+
+      .mini {
+        padding: 6px 9px;
+        border-radius: 999px;
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
+        color: #374151;
+        font-size: .8rem;
+        font-weight: 950
+      }
+
+      .topic-actions {
+        position: relative;
+        z-index: 1;
+        margin-top: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        flex-wrap: wrap
+      }
+
+      .open {
+        flex: 1;
+        min-width: 135px;
+        text-align: center;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 999px;
+        padding: 10px 12px;
+        font-weight: 1000;
+        background: linear-gradient(90deg, #60a5fa, #2563eb);
+        box-shadow: 0 10px 18px rgba(37, 99, 235, .22)
+      }
+
+      .mark {
+        border: none;
+        border-radius: 999px;
+        padding: 10px 12px;
+        font-weight: 1000;
+        cursor: pointer;
+        background: #e5e7eb;
+        color: #111827
+      }
+
+      .mark.done {
+        background: linear-gradient(90deg, #22c55e, #16a34a);
+        color: #fff;
+        box-shadow: 0 10px 18px rgba(34, 197, 94, .25)
+      }
+
+      .empty {
+        margin-top: 14px;
+        text-align: center;
+        padding: 18px;
+        border-radius: 20px;
+        background: #fff;
+        border: 1px dashed #bfdbfe;
+        color: #6b7280;
+        font-weight: 950
+      }
+
+      .footer-note {
+        margin: 18px 0 0;
+        padding: 12px;
+        text-align: center;
+        color: #6b7280;
+        font-weight: 850;
+        border-radius: 18px;
+        background: #f9fafb;
+        border: 1px solid #e5e7eb
       }
     </style>
   </head>
 
   <body>
     <div class="app">
-
-      <header class="hero hero-link" aria-label="Ruta de Aprendizaje">
-        <a href="index.html" class="hero-click" aria-label="Volver al inicio">
-
-          <div class="hero-row hero-space">
-
-            <!-- IZQUIERDA -->
-            <div class="hero-left">
-              <div class="badge" aria-hidden="true">MK</div>
-
-              <div>
-                <h1 class="hero-title">Ruta de Aprendizaje</h1>
-                <div class="hero-sub">
-                  <span class="pill">💬 1 → 36</span>
-                  <span class="pill">📚 1.° Primaria</span>
-                  <span class="pill">🏆 Nivel olimpiada</span>
-                </div>
+      <header class="hero" aria-label="Ruta de Aprendizaje">
+        <div class="hero-top">
+          <div class="brand">
+            <div class="badge" aria-hidden="true">MK</div>
+            <div>
+              <h1>Ruta de Aprendizaje</h1>
+              <div class="hero-sub">
+                <span class="pill">💬 Comunicación</span>
+                <span class="pill">📚 1.° Primaria</span>
+                <span class="pill">🏆 Nivel olimpiada</span>
+                <span class="pill">🔊 Con audio</span>
               </div>
             </div>
-
-            <!-- DERECHA -->
-            <div class="hero-course">
-              💬 COMUNICACIÓN
-            </div>
-
           </div>
-
-        </a>
+          <div class="course-box">36 temas completos</div>
+        </div>
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-label">Temas</div>
+            <div class="stat-value">36</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Ejercicios aprox.</div>
+            <div class="stat-value">1800</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Completados</div>
+            <div class="stat-value"><span id="doneHero">0</span></div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Avance</div>
+            <div class="stat-value"><span id="pctHero">0%</span></div>
+          </div>
+        </div>
       </header>
 
-
-      <div class="toolbar">
-        <div class="search" role="search" aria-label="Buscar temas">
-          🔎 <input id="q" type="text" placeholder="Buscar: sílabas, lectura, tilde, cuentos..." />
+      <section class="toolbar" aria-label="Herramientas">
+        <div class="search" role="search" aria-label="Buscar temas">🔎 <input id="q" type="text"
+            placeholder="Buscar: tilde, sustantivo, comprensión, sinónimos..." /></div>
+        <div class="toolbar-buttons">
+          <button class="small-btn" type="button" id="goNext">⭐ Ir al recomendado</button>
+          <button class="small-btn" type="button" id="resetProgress">🧹 Reiniciar</button>
         </div>
-
-        <div class="chips" role="navigation" aria-label="Rutas por materia">
-          <a class="chip active" href="index.html">🌟 Cursos</a>
-          <!-- Puedes activar estos enlaces cuando tengas las otras rutas -->
-          <!-- <a class="chip" href="ruta-mate.html">➗ Matemáticas</a> -->
-          <!-- <a class="chip" href="ruta-ingles.html">🇺🇸 Inglés</a> -->
-          <!-- <a class="chip" href="ruta-chess.html">♟️ Ajedrez</a> -->
-        </div>
-      </div>
+      </section>
 
       <section class="progress-wrap" aria-label="Progreso general">
         <div class="progress-row">
-          <div>Progreso: <span id="doneCount">0</span>/<span id="totalCount">25</span></div>
-          <div class="progress-tag">📚 Temas</div>
+          <div>Progreso: <span id="doneCount">0</span>/<span id="totalCount">36</span></div>
+          <div class="progress-note" id="nextText">Siguiente recomendado: Tema 1</div>
         </div>
         <div class="bar">
           <div id="barInner"></div>
         </div>
       </section>
 
-      <main class="grid" id="grid" aria-label="Lista de temas"></main>
-
-      <p class="note">Ruta secuencial progresiva: escuchar → vocales → sílabas → palabras → acento y tilde → oraciones → gramática → comprensión → vocabulario → razonamiento verbal → olimpiada.</p>
+      <nav class="filter-row" id="filters" aria-label="Filtros por bloque"></nav>
+      <main id="content" aria-label="Lista de temas"></main>
+      <p class="footer-note">Ruta sugerida: lectura inicial → sílabas y tilde → escritura y gramática → comprensión
+        lectora → vocabulario y razonamiento verbal → mini olimpiada final.</p>
     </div>
 
     <script>
-      const STORAGE_KEY = "mk_learning_path_comunicacion_done_v1";
-
-      // ✅ Ruta secuencial de Comunicación para 1.° de primaria
-      // ✅ Cambia los href cuando crees cada clase HTML.
-
+      const STORAGE_KEY = "mk_learning_path_comunicacion_36_done_v1";
       const topics = [
         {
           id: 1,
           emoji: "👂",
           title: "Escuchar y seguir instrucciones",
-          desc: "Comprender órdenes cortas, escuchar con atención y responder de forma ordenada.",
-          href: "comunicacion-tema01.html",
+          desc: "Comprender indicaciones cortas, escuchar con atención y responder en orden.",
+          href: "comunicaciones1.html",
+          block: "Lectura inicial",
           category: "Comunicación"
         },
         {
           id: 2,
           emoji: "🔤",
           title: "Vocales y sonidos iniciales",
-          desc: "Reconocer vocales y sonidos al inicio de palabras: avión, elefante, isla, oso, uva.",
-          href: "comunicacion-tema02.html",
+          desc: "Reconocer vocales y sonidos iniciales en palabras familiares.",
+          href: "comunicaciones2.html",
+          block: "Lectura inicial",
           category: "Comunicación"
         },
         {
@@ -641,7 +666,8 @@
           emoji: "🧩",
           title: "Sílabas directas",
           desc: "Leer sílabas simples como ma, me, mi, mo, mu; pa, pe, pi, po, pu.",
-          href: "comunicacion-tema03.html",
+          href: "comunicaciones3.html",
+          block: "Lectura inicial",
           category: "Lectura"
         },
         {
@@ -649,15 +675,17 @@
           emoji: "🔗",
           title: "Formación de palabras",
           desc: "Unir sílabas para formar palabras: ca-sa, ma-má, so-pa, pa-to.",
-          href: "comunicacion-tema04.html",
+          href: "comunicaciones4.html",
+          block: "Lectura inicial",
           category: "Lectura"
         },
         {
           id: 5,
           emoji: "📖",
           title: "Lectura de palabras",
-          desc: "Leer palabras cortas con seguridad, claridad y buena pronunciación.",
-          href: "comunicacion-tema05.html",
+          desc: "Leer palabras cortas con claridad, seguridad y buena pronunciación.",
+          href: "comunicaciones5.html",
+          block: "Lectura inicial",
           category: "Lectura"
         },
         {
@@ -665,47 +693,53 @@
           emoji: "👏",
           title: "Separación en sílabas",
           desc: "Separar palabras con palmadas: ca-sa, pe-lo-ta, ma-ri-po-sa.",
-          href: "comunicacion-tema06.html",
+          href: "comunicaciones6.html",
+          block: "Sílabas, acento y tilde",
           category: "Tildación"
         },
         {
           id: 7,
-          emoji: "🌈",
-          title: "Diptongo",
-          desc: "Reconocer dos vocales que se pronuncian juntas dentro de una sílaba: cielo, puerta, peine.",
+          emoji: "🔊",
+          title: "Diptongo y hiato",
+          desc: "Reconocer la unión de dos vocales en una misma sílaba: cielo, peine, auto.",
           href: "comunicaciones7.html",
+          block: "Sílabas, acento y tilde",
           category: "Tildación"
         },
         {
           id: 8,
           emoji: "🎵",
           title: "Acento: fuerza de voz",
-          desc: "Escuchar qué sílaba suena más fuerte en una palabra: ma-MÁ, CA-sa.",
-          href: "comunicacion-tema08.html",
+          desc: "Identificar la sílaba que suena con mayor fuerza dentro de una palabra.",
+          href: "comunicaciones8.html",
+          block: "Sílabas, acento y tilde",
           category: "Tildación"
         },
         {
           id: 9,
           emoji: "📌",
           title: "Sílaba tónica y sílabas átonas",
-          desc: "Identificar la sílaba fuerte y las sílabas suaves dentro de una palabra.",
-          href: "comunicacion-tema09.html",
+          desc: "Diferenciar la sílaba fuerte de las sílabas suaves.",
+          href: "comunicaciones9.html",
+          block: "Sílabas, acento y tilde",
           category: "Tildación"
         },
         {
           id: 10,
           emoji: "´",
           title: "Uso de la tilde",
-          desc: "Diferenciar acento y tilde; reconocer palabras como mamá, papá, Perú, lápiz y pájaro.",
-          href: "comunicacion-tema10.html",
+          desc: "Reconocer cuándo una palabra lleva tilde: mamá, papá, Perú, lápiz y pájaro.",
+          href: "comunicaciones10.html",
+          block: "Sílabas, acento y tilde",
           category: "Tildación"
         },
         {
           id: 11,
-          emoji: "📝",
+          emoji: "📘",
           title: "Lectura de oraciones cortas",
           desc: "Leer y comprender oraciones simples: El gato salta. Mi mamá lee.",
-          href: "comunicacion-tema11.html",
+          href: "comunicaciones11.html",
+          block: "Escritura y gramática",
           category: "Lectura"
         },
         {
@@ -713,7 +747,8 @@
           emoji: "🔠",
           title: "Mayúscula inicial y punto final",
           desc: "Usar mayúscula al iniciar una oración y punto al terminar una idea.",
-          href: "comunicacion-tema12.html",
+          href: "comunicaciones12.html",
+          block: "Escritura y gramática",
           category: "Escritura"
         },
         {
@@ -721,326 +756,373 @@
           emoji: "✍️",
           title: "Escritura de palabras y oraciones",
           desc: "Escribir palabras y formar oraciones cortas con sentido completo.",
-          href: "comunicacion-tema13.html",
+          href: "comunicaciones13.html",
+          block: "Escritura y gramática",
           category: "Escritura"
         },
         {
           id: 14,
-          emoji: "🔀",
+          emoji: "🧱",
           title: "Ordenar palabras para formar oraciones",
-          desc: "Ordenar palabras desordenadas y formar oraciones con sentido completo.",
-          href: "comunicacion-tema14.html",
+          desc: "Ordenar palabras para construir oraciones claras y coherentes.",
+          href: "comunicaciones14.html",
+          block: "Escritura y gramática",
           category: "Escritura"
         },
         {
           id: 15,
           emoji: "🧩",
           title: "Completar oraciones",
-          desc: "Elegir la palabra que completa mejor una oración según el sentido.",
-          href: "comunicacion-tema15.html",
-          category: "Olimpiada"
+          desc: "Elegir palabras que completan una oración con sentido.",
+          href: "comunicaciones15.html",
+          block: "Escritura y gramática",
+          category: "Escritura"
         },
         {
           id: 16,
-          emoji: "📎",
+          emoji: "🏷️",
           title: "El artículo",
-          desc: "Reconocer artículos definidos e indefinidos: el, la, los, las, un, una, unos, unas.",
-          href: "comunicacion-tema16.html",
-          category: "Escritura"
+          desc: "Reconocer y usar artículos: el, la, los, las, un, una, unos, unas.",
+          href: "comunicaciones16.html",
+          block: "Escritura y gramática",
+          category: "Gramática"
         },
         {
           id: 17,
-          emoji: "🏷️",
+          emoji: "🧸",
           title: "El sustantivo",
-          desc: "Reconocer nombres de personas, animales, cosas y lugares: niña, perro, mesa, colegio.",
-          href: "comunicacion-tema17.html",
-          category: "Escritura"
+          desc: "Identificar nombres de personas, animales, cosas, lugares e ideas.",
+          href: "comunicaciones17.html",
+          block: "Escritura y gramática",
+          category: "Gramática"
         },
         {
           id: 18,
-          emoji: "🎨",
+          emoji: "🌈",
           title: "El adjetivo",
-          desc: "Reconocer palabras que dicen cómo es alguien o algo: grande, pequeño, alegre, rojo.",
-          href: "comunicacion-tema18.html",
-          category: "Escritura"
+          desc: "Reconocer palabras que dicen cómo es una persona, animal, cosa o lugar.",
+          href: "comunicaciones18.html",
+          block: "Escritura y gramática",
+          category: "Gramática"
         },
         {
           id: 19,
           emoji: "🏃",
           title: "El verbo",
-          desc: "Identificar acciones en una oración: correr, saltar, leer, escribir, jugar.",
-          href: "comunicacion-tema19.html",
-          category: "Escritura"
+          desc: "Identificar acciones: correr, leer, cantar, dormir, jugar y escribir.",
+          href: "comunicaciones19.html",
+          block: "Escritura y gramática",
+          category: "Gramática"
         },
         {
           id: 20,
-          emoji: "🧱",
-          title: "Partes de una oración",
-          desc: "Reconocer sujeto, verbo y predicado en oraciones sencillas: El gato corre.",
-          href: "comunicacion-tema20.html",
-          category: "Escritura"
+          emoji: "🧠",
+          title: "Partes de una oración: sujeto y predicado",
+          desc: "Diferenciar de quién se habla y qué se dice del sujeto.",
+          href: "comunicaciones20.html",
+          block: "Escritura y gramática",
+          category: "Gramática"
         },
         {
           id: 21,
           emoji: "❓",
           title: "Comprensión literal",
-          desc: "Responder preguntas básicas: quién, qué, dónde, cuándo y cómo.",
-          href: "comunicacion-tema21.html",
-          category: "Comunicación"
+          desc: "Responder preguntas directas: quién, qué, dónde, cuándo y cómo.",
+          href: "comunicaciones21.html",
+          block: "Comprensión lectora",
+          category: "Comprensión"
         },
         {
           id: 22,
-          emoji: "👧",
+          emoji: "🎭",
           title: "Personajes, lugares y acciones",
-          desc: "Identificar quién participa, dónde ocurre y qué sucede en un cuento corto.",
-          href: "comunicacion-tema22.html",
-          category: "Comunicación"
+          desc: "Identificar quién participa, dónde ocurre y qué acción realiza.",
+          href: "comunicaciones22.html",
+          block: "Comprensión lectora",
+          category: "Comprensión"
         },
         {
           id: 23,
           emoji: "🔢",
           title: "Secuencia de hechos",
-          desc: "Ordenar imágenes, frases o acciones: primero, luego y finalmente.",
-          href: "comunicacion-tema23.html",
-          category: "Comunicación"
+          desc: "Ordenar acciones usando primero, luego, después y finalmente.",
+          href: "comunicaciones23.html",
+          block: "Comprensión lectora",
+          category: "Comprensión"
         },
         {
           id: 24,
           emoji: "💡",
           title: "Idea principal sencilla",
-          desc: "Decir de qué trata un texto corto usando sus propias palabras.",
-          href: "comunicacion-tema24.html",
-          category: "Comunicación"
+          desc: "Reconocer de qué trata principalmente un texto corto.",
+          href: "comunicaciones24.html",
+          block: "Comprensión lectora",
+          category: "Comprensión"
         },
         {
           id: 25,
-          emoji: "🧠",
+          emoji: "🔎",
           title: "Comprensión inferencial",
-          desc: "Deducir información que no aparece escrita directamente en el texto.",
-          href: "comunicacion-tema25.html",
-          category: "Olimpiada"
+          desc: "Deducir sentimientos, causas, consecuencias y posibles finales.",
+          href: "comunicaciones25.html",
+          block: "Comprensión lectora",
+          category: "Comprensión"
         },
         {
           id: 26,
-          emoji: "🗣️",
+          emoji: "🎤",
           title: "Expresión oral",
-          desc: "Contar una imagen, explicar una respuesta y hablar con seguridad.",
-          href: "comunicacion-tema26.html",
+          desc: "Hablar claro, saludar, describir y contar hechos en orden.",
+          href: "comunicaciones26.html",
+          block: "Comprensión lectora",
           category: "Comunicación"
         },
         {
           id: 27,
-          emoji: "🧺",
+          emoji: "🗂️",
           title: "Vocabulario por categorías",
-          desc: "Agrupar palabras: animales, frutas, colores, útiles escolares y acciones.",
-          href: "comunicacion-tema27.html",
-          category: "Comunicación"
+          desc: "Agrupar palabras: frutas, animales, útiles, lugares, oficios y alimentos.",
+          href: "comunicaciones27.html",
+          block: "Vocabulario y razonamiento verbal",
+          category: "Vocabulario"
         },
         {
           id: 28,
           emoji: "🌳",
           title: "Familia de palabras",
-          desc: "Relacionar palabras de una misma familia: pan, panadero, panadería.",
-          href: "comunicacion-tema28.html",
-          category: "Comunicación"
+          desc: "Reconocer palabras con la misma raíz: pan, panadero, panadería.",
+          href: "comunicaciones28.html",
+          block: "Vocabulario y razonamiento verbal",
+          category: "Vocabulario"
         },
         {
           id: 29,
-          emoji: "😊",
+          emoji: "🔁",
           title: "Sinónimos básicos",
-          desc: "Reconocer palabras con significado parecido: feliz/contento, bonito/lindo.",
-          href: "comunicacion-tema29.html",
-          category: "Comunicación"
+          desc: "Identificar palabras con significado igual o parecido.",
+          href: "comunicaciones29.html",
+          block: "Vocabulario y razonamiento verbal",
+          category: "Vocabulario"
         },
         {
           id: 30,
           emoji: "↔️",
           title: "Antónimos básicos",
-          desc: "Reconocer palabras opuestas: grande/pequeño, arriba/abajo, frío/caliente.",
-          href: "comunicacion-tema30.html",
-          category: "Comunicación"
+          desc: "Reconocer palabras opuestas: grande/pequeño, duro/blando, claro/oscuro.",
+          href: "comunicaciones30.html",
+          block: "Vocabulario y razonamiento verbal",
+          category: "Vocabulario"
         },
         {
           id: 31,
           emoji: "🕵️",
           title: "Palabra intrusa",
-          desc: "Encontrar la palabra que no pertenece a un grupo y explicar por qué.",
-          href: "comunicacion-tema31.html",
+          desc: "Encontrar la palabra que no pertenece al grupo.",
+          href: "comunicaciones31.html",
+          block: "Vocabulario y razonamiento verbal",
           category: "Olimpiada"
         },
         {
           id: 32,
           emoji: "🚫",
           title: "Término excluido",
-          desc: "Identificar la palabra que no pertenece a un grupo: perro, gato, mesa, conejo.",
-          href: "comunicacion-tema32.html",
+          desc: "Excluir el término que no comparte la misma relación con el grupo.",
+          href: "comunicaciones32.html",
+          block: "Vocabulario y razonamiento verbal",
           category: "Olimpiada"
         },
         {
           id: 33,
-          emoji: "🔍",
+          emoji: "🧩",
           title: "Analogías y completar oraciones",
-          desc: "Resolver relaciones simples y elegir la palabra que completa mejor una oración.",
-          href: "comunicacion-tema33.html",
+          desc: "Resolver relaciones y elegir palabras que completan oraciones coherentes.",
+          href: "comunicaciones33.html",
+          block: "Vocabulario y razonamiento verbal",
           category: "Olimpiada"
         },
         {
           id: 34,
-          emoji: "🔎",
+          emoji: "📖",
           title: "Vocabulario en contexto",
-          desc: "Descubrir el significado de una palabra según la oración o el texto.",
-          href: "comunicacion-tema34.html",
-          category: "Olimpiada"
+          desc: "Descubrir el significado de palabras usando pistas del texto.",
+          href: "comunicaciones34.html",
+          block: "Vocabulario y razonamiento verbal",
+          category: "Vocabulario"
         },
         {
           id: 35,
           emoji: "🖼️",
           title: "Lectura de imágenes y oraciones",
-          desc: "Observar una imagen, leer una oración y marcar la respuesta correcta.",
+          desc: "Observar imágenes y elegir la oración que coincide.",
           href: "comunicaciones35.html",
-          category: "Comunicación"
+          block: "Vocabulario y razonamiento verbal",
+          category: "Comprensión"
         },
         {
           id: 36,
           emoji: "🏆",
-          title: "Olimpiada de Comunicación",
-          desc: "Simulacro con lectura, vocabulario, tildación, comprensión y razonamiento verbal.",
-          href: "comunicacion-tema36.html",
+          title: "Mini olimpiada de Comunicación",
+          desc: "Evaluación final con lectura, gramática, vocabulario, comprensión y razonamiento verbal.",
+          href: "comunicaciones36.html",
+          block: "Mini olimpiada final",
           category: "Olimpiada"
         }
       ];
+      const blockIcons = {
+        "Todos": "🌟",
+        "Lectura inicial": "📖",
+        "Sílabas, acento y tilde": "🎵",
+        "Escritura y gramática": "✍️",
+        "Comprensión lectora": "🧠",
+        "Vocabulario y razonamiento verbal": "🗂️",
+        "Mini olimpiada final": "🏆"
+      };
 
-
-      // Total
-      const totalEl = document.getElementById("totalCount");
-      totalEl.textContent = topics.length;
+      let currentFilter = "Todos";
 
       function loadDoneSet() {
         try {
           const raw = localStorage.getItem(STORAGE_KEY);
           const arr = raw ? JSON.parse(raw) : [];
           return new Set(arr.map(Number));
-        } catch {
-          return new Set();
-        }
+        } catch { return new Set(); }
       }
 
       function saveDoneSet(doneSet) {
-        try {
-          localStorage.setItem(STORAGE_KEY, JSON.stringify([...doneSet]));
-        } catch { }
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify([...doneSet])); } catch { }
       }
 
-      function updateProgress(doneSet) {
-        const done = doneSet.size;
-        const total = topics.length;
+      const doneSet = loadDoneSet();
+
+      function normalize(text) {
+        return String(text || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      }
+
+      function updateProgress() {
+        const done = doneSet.size, total = topics.length, pct = total ? Math.round((done / total) * 100) : 0;
         document.getElementById("doneCount").textContent = done;
-        const pct = total === 0 ? 0 : (done / total) * 100;
+        document.getElementById("totalCount").textContent = total;
+        document.getElementById("doneHero").textContent = done;
+        document.getElementById("pctHero").textContent = pct + "%";
         document.getElementById("barInner").style.width = pct + "%";
+        const next = topics.find(t => !doneSet.has(t.id));
+        document.getElementById("nextText").textContent = next ? `Siguiente recomendado: Tema ${next.id} · ${next.title}` : "¡Ruta completada! Ya puedes practicar la mini olimpiada.";
       }
 
-      function cssSafeCat(cat) {
-        return String(cat).replace(/\s+/g, "-");
+      function renderFilters() {
+        const blocks = ["Todos", ...new Set(topics.map(t => t.block))];
+        const filters = document.getElementById("filters");
+        filters.innerHTML = "";
+        blocks.forEach(block => {
+          const btn = document.createElement("button");
+          btn.className = "filter" + (block === currentFilter ? " active" : "");
+          btn.type = "button";
+          btn.textContent = `${blockIcons[block] || "📚"} ${block}`;
+          btn.addEventListener("click", () => { currentFilter = block; renderFilters(); renderContent(); });
+          filters.appendChild(btn);
+        });
       }
 
-      function renderGrid(queryText, doneSet) {
-        const grid = document.getElementById("grid");
-        grid.innerHTML = "";
+      function getFilteredTopics() {
+        const q = normalize(document.getElementById("q").value);
+        return topics.filter(t => {
+          const matchFilter = currentFilter === "Todos" || t.block === currentFilter;
+          const hay = normalize(`${t.title} ${t.desc} ${t.block} ${t.category}`);
+          return matchFilter && (!q || hay.includes(q));
+        });
+      }
 
-        const q = String(queryText || "").trim().toLowerCase();
+      function renderContent() {
+        const content = document.getElementById("content");
+        content.innerHTML = "";
+        const filtered = getFilteredTopics();
+        const nextGlobal = topics.find(t => !doneSet.has(t.id));
+        const grouped = new Map();
 
-        const filtered = topics.filter(t => {
-          if (!q) return true;
-          const hay = (t.title + " " + t.desc + " " + t.category).toLowerCase();
-          return hay.includes(q);
+        filtered.forEach(t => {
+          if (!grouped.has(t.block)) grouped.set(t.block, []);
+          grouped.get(t.block).push(t);
         });
 
-        // recomendado: primer no hecho dentro del filtrado
-        const nextId = filtered.find(t => !doneSet.has(t.id))?.id ?? null;
-
         if (filtered.length === 0) {
-          const empty = document.createElement("div");
-          empty.style.gridColumn = "1 / -1";
-          empty.style.textAlign = "center";
-          empty.style.padding = "18px";
-          empty.style.fontWeight = "900";
-          empty.style.color = "#6b7280";
-          empty.textContent = "No encontré temas con esa búsqueda 🙂";
-          grid.appendChild(empty);
+          content.innerHTML = '<div class="empty">No encontré temas con esa búsqueda 🙂</div>';
           return;
         }
 
-        filtered.forEach(t => {
-          const isDone = doneSet.has(t.id);
-          const isNext = nextId !== null && t.id === nextId;
+        grouped.forEach((items, block) => {
+          const section = document.createElement("section");
+          section.className = "section";
+          section.innerHTML = `<div class="section-head"><h2 class="section-title">${blockIcons[block] || "📚"} ${block}</h2><div class="section-count">${items.length} tema${items.length === 1 ? "" : "s"}</div></div><div class="grid"></div>`;
+          const grid = section.querySelector(".grid");
 
-          const card = document.createElement("article");
-          card.className =
-            "topic " +
-            "cat-" + cssSafeCat(t.category) +
-            (isNext ? " next" : "") +
-            (isDone ? " done" : "");
+          items.forEach(t => {
+            const isDone = doneSet.has(t.id);
+            const isNext = nextGlobal && nextGlobal.id === t.id;
+            const card = document.createElement("article");
+            card.className = "topic" + (isDone ? " done" : "") + (isNext ? " next" : "");
+            card.id = `tema-${t.id}`;
+            card.innerHTML = `
+        <div class="num" aria-label="Tema ${t.id}">${t.id}</div>
+        <div class="top-line">
+          <div class="emoji" aria-hidden="true">${t.emoji}</div>
+          <div class="tag">${t.category}${isNext ? " · ⭐ Recomendado" : ""}</div>
+        </div>
+        <h3 class="topic-title">${t.title}</h3>
+        <p class="desc">${t.desc}</p>
+        <div class="meta-line"><span class="mini">🔊 Audio</span><span class="mini">✏️ 50 ejercicios</span><span class="mini">🏅 Olimpiadas</span></div>
+        <div class="topic-actions">
+          <a class="open" href="${t.href}" aria-label="Abrir ${t.title}">Abrir clase</a>
+          <button class="mark ${isDone ? "done" : ""}" type="button" data-id="${t.id}">${isDone ? "Realizado ✅" : "Marcar realizado"}</button>
+        </div>`;
+            grid.appendChild(card);
+          });
 
-          card.innerHTML = `
-          <div class="num" aria-label="Tema ${t.id}">${t.id}</div>
-
-          <a href="${t.href}" aria-label="Abrir ${t.title}">
-            <div class="topic-tag">${t.emoji} ${t.category}${isNext ? " • ⭐ Recomendado" : ""}</div>
-            <div class="title">${t.title}</div>
-            <p class="desc">${t.desc}</p>
-          </a>
-
-          <div class="meta">
-            <div class="status ${isDone ? "done" : ""}">
-              ${isDone ? "✅ Realizado" : (isNext ? "👉 Recomendado" : "🔁 Practicar nuevamente")}
-            </div>
-
-            <button class="mark ${isDone ? "done" : ""}" type="button" data-id="${t.id}">
-              ${isDone ? "Realizado ✅" : "Realizado"}
-            </button>
-          </div>
-        `;
-
-          grid.appendChild(card);
+          content.appendChild(section);
         });
 
-        grid.querySelectorAll(".mark").forEach(btn => {
+        document.querySelectorAll(".mark").forEach(btn => {
           btn.addEventListener("click", (e) => {
             e.preventDefault();
             e.stopPropagation();
-
             const id = Number(btn.dataset.id);
             if (!Number.isFinite(id)) return;
-
-            if (doneSet.has(id)) doneSet.delete(id);
-            else doneSet.add(id);
-
+            if (doneSet.has(id)) doneSet.delete(id); else doneSet.add(id);
             saveDoneSet(doneSet);
-            updateProgress(doneSet);
-
-            const currentQuery = document.getElementById("q").value;
-            renderGrid(currentQuery, doneSet);
+            updateProgress();
+            renderContent();
           });
         });
       }
 
-      // INIT
-      const doneSet = loadDoneSet();
-      updateProgress(doneSet);
-      renderGrid("", doneSet);
+      function goToRecommended() {
+        const next = topics.find(t => !doneSet.has(t.id)) || topics[topics.length - 1];
+        currentFilter = "Todos";
+        document.getElementById("q").value = "";
+        renderFilters();
+        renderContent();
+        setTimeout(() => {
+          const el = document.getElementById(`tema-${next.id}`);
+          if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+        }, 80);
+      }
 
-      const input = document.getElementById("q");
-      input.addEventListener("input", () => {
-        renderGrid(input.value, doneSet);
+      document.getElementById("q").addEventListener("input", renderContent);
+      document.getElementById("goNext").addEventListener("click", goToRecommended);
+      document.getElementById("resetProgress").addEventListener("click", () => {
+        const ok = confirm("¿Deseas reiniciar el progreso de Comunicación?");
+        if (!ok) return;
+        doneSet.clear();
+        saveDoneSet(doneSet);
+        updateProgress();
+        renderContent();
       });
-    </script>
 
-    <script>
-      // Registrar Service Worker (PWA)
+      updateProgress();
+      renderFilters();
+      renderContent();
+
       if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker.register("./service-worker.js").catch(() => { });
-        });
+        window.addEventListener("load", () => { navigator.serviceWorker.register("./service-worker.js").catch(() => { }); });
       }
     </script>
   </body>
