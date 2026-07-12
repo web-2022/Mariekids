@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marie Kids • Examen final de Comunicación</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1976d2">
+<style>
+*{box-sizing:border-box;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body{margin:0;min-height:100vh;background:linear-gradient(145deg,#dbeafe,#e0f2fe);display:flex;justify-content:center;align-items:flex-start;padding:16px}
+.app{width:100%;max-width:760px;background:#fff;border:3px solid #2563eb;border-radius:26px;box-shadow:0 18px 45px rgba(0,0,0,.14);padding:16px;overflow:hidden}
+.brand-header-kids{position:relative;overflow:hidden;padding:10px 12px;border-radius:22px;margin-bottom:14px;background:radial-gradient(circle at 12% 16%,rgba(255,255,255,.58) 0 0,rgba(255,255,255,.58) 6px,transparent 7px),radial-gradient(circle at 86% 20%,rgba(255,255,255,.32) 0 0,rgba(255,255,255,.32) 8px,transparent 9px),linear-gradient(135deg,#0f172a 0%,#1d4ed8 38%,#7c3aed 70%,#f97316 120%);border:1px solid rgba(255,255,255,.88);box-shadow:0 16px 34px rgba(37,99,235,.30),inset 0 1px 0 rgba(255,255,255,.50),inset 0 -18px 40px rgba(15,23,42,.16);color:#fff;cursor:pointer;user-select:none;isolation:isolate;transition:transform .18s ease,filter .18s ease,box-shadow .18s ease}
+.brand-header-kids::before{content:"";position:absolute;inset:-55% -20%;background:linear-gradient(115deg,transparent 0%,transparent 37%,rgba(255,255,255,.30) 46%,transparent 55%,transparent 100%);transform:translateX(-38%) rotate(8deg);animation:headerShine 5.5s ease-in-out infinite;pointer-events:none;z-index:1}
+.brand-header-kids::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,.10) 1px,transparent 1px),linear-gradient(0deg,rgba(255,255,255,.08) 1px,transparent 1px);background-size:24px 24px;opacity:.24;pointer-events:none;z-index:1}
+.brand-row{position:relative;z-index:2;display:grid;grid-template-columns:54px minmax(0,1fr) auto;gap:10px;align-items:center}
+.kids-badge{width:52px;height:52px;border-radius:18px;display:grid;place-items:center;font-size:1.75rem;font-weight:1000;background:radial-gradient(circle at 30% 22%,rgba(255,255,255,.92),rgba(255,255,255,.30) 42%,rgba(255,255,255,.08) 70%),linear-gradient(135deg,rgba(255,255,255,.42),rgba(255,255,255,.12));border:1px solid rgba(255,255,255,.58);box-shadow:0 10px 20px rgba(15,23,42,.18),inset 0 1px 0 rgba(255,255,255,.60)}
+.kids-title{font-weight:1000;font-size:clamp(1.32rem,4vw,1.72rem);line-height:1.02;letter-spacing:.2px;text-shadow:0 3px 10px rgba(15,23,42,.32)}
+.brand-row>div:not(.kids-badge) .kids-title{white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.brand-row>.kids-title:last-child{justify-self:end;font-size:clamp(.82rem,2.4vw,1rem);line-height:1;padding:8px 10px;border-radius:999px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.44);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 8px 18px rgba(15,23,42,.14);text-shadow:0 2px 8px rgba(15,23,42,.28);white-space:nowrap}
+.kids-subtitle{margin-top:5px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:.9rem;font-weight:800;opacity:.98}
+.kids-pill,.ruta-pill-btn{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.45);padding:5px 10px;border-radius:999px;font-size:.80rem;font-weight:950;color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 7px 14px rgba(15,23,42,.10);backdrop-filter:blur(8px)}
+.ruta-pill-btn{cursor:pointer;font-family:inherit;line-height:1.15;transition:transform .18s ease,background .18s ease}
+.ruta-pill-btn:hover{background:rgba(255,255,255,.30);transform:translateY(-1px)}
+.bubble{position:absolute;border-radius:999px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.26);pointer-events:none;animation:floaty 6s ease-in-out infinite;z-index:0;filter:blur(.1px)}
+.b1{left:-22px;top:-26px;width:82px;height:82px}.b2{right:-24px;bottom:-34px;width:92px;height:92px;animation-delay:1s}.b3{left:48%;bottom:-30px;width:50px;height:50px;animation-delay:.6s}
+@keyframes floaty{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-7px) scale(1.04)}}
+@keyframes headerShine{0%,58%,100%{transform:translateX(-46%) rotate(8deg);opacity:0}68%{opacity:.72}84%{transform:translateX(46%) rotate(8deg);opacity:0}}
+
+h1{margin:0;text-align:center;font-size:clamp(1.45rem,4vw,2rem);color:#111827}
+.subtitle{text-align:center;font-size:.95rem;color:#6b7280;margin:6px 0 14px;font-weight:750;line-height:1.35}
+.exam-top{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;margin:12px 0}
+.timer-box{border:2px solid #fecaca;background:#fef2f2;color:#991b1b;border-radius:20px;padding:12px;text-align:center;font-weight:1000}
+.timer{font-size:1.65rem;line-height:1}
+.exam-info{border:1px solid #bfdbfe;background:#eff6ff;border-radius:20px;padding:12px;color:#1e3a8a;font-weight:900;line-height:1.35}
+.progress-wrapper{margin-bottom:14px}.progress-label{display:flex;justify-content:space-between;font-size:.82rem;color:#6b7280;margin-bottom:5px;font-weight:800}.progress{height:11px;background:#e5e7eb;border-radius:999px;overflow:hidden}.progress-inner{height:100%;width:0%;background:linear-gradient(90deg,#60a5fa,#2563eb);transition:width .2s}
+.exam-panel{border-radius:22px;padding:14px;margin-bottom:12px;border:1px solid #fed7aa;background:#fff7ed}
+.question-card{background:#fff;border:1px solid #fed7aa;border-radius:18px;padding:14px;margin-bottom:12px}
+.question-head{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
+.question-title{font-weight:1000;color:#7c2d12;font-size:1.02rem}
+.topic-tag{border-radius:999px;background:#eff6ff;border:1px solid #bfdbfe;color:#1e3a8a;padding:6px 9px;font-size:.78rem;font-weight:950}
+.question-text{font-size:1.06rem;font-weight:1000;color:#111827;margin:8px 0;line-height:1.35;text-align:center}
+.big-word{text-align:center;font-size:clamp(1.1rem,4.5vw,1.55rem);font-weight:1000;color:#1e3a8a;margin:8px 0;line-height:1.25;background:#eff6ff;border:1px solid #bfdbfe;border-radius:16px;padding:10px}
+.options{display:grid;grid-template-columns:1fr;gap:8px;margin-top:10px}
+.option-btn{width:100%;border-radius:16px;border:1px solid #d1d5db;background:#fff;padding:11px 10px;font-size:1rem;cursor:pointer;font-weight:950;text-align:left}
+.option-btn:hover:not(:disabled){background:#e0f2fe;border-color:#93c5fd;transform:translateY(-1px)}
+.option-btn.selected{background:#dbeafe;border-color:#2563eb;color:#1e3a8a}
+.option-btn.correct-choice{background:#dcfce7;border-color:#22c55e;color:#166534}
+.option-btn.wrong-choice{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+.option-btn:disabled{cursor:default;opacity:.88}
+.controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.main-btn{flex:1;min-width:130px;border:none;border-radius:999px;padding:12px 14px;color:#fff;font-weight:950;cursor:pointer;background:linear-gradient(90deg,#60a5fa,#2563eb)}
+.main-btn.secondary{background:linear-gradient(90deg,#a78bfa,#7c3aed)}.main-btn.danger{background:linear-gradient(90deg,#fb7185,#e11d48)}
+
+
+.recommendation-box{
+  background:linear-gradient(145deg,#ffffff,#fff7ed);
+  border:2px solid #fdba74;
+  border-radius:18px;
+  padding:12px;
+  margin:10px 0;
+  color:#7c2d12;
+  box-shadow:0 8px 14px rgba(249,115,22,.08);
+}
+.recommendation-title{
+  font-size:1.08rem;
+  font-weight:1000;
+  color:#9a3412;
+  margin-bottom:6px;
+}
+.recommendation-text{
+  font-weight:850;
+  line-height:1.45;
+  color:#7c2d12;
+}
+
+.score-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  margin:12px 0;
+}
+.score-card{
+  background:#fff;
+  border:2px solid #bae6fd;
+  border-radius:18px;
+  padding:12px;
+  text-align:center;
+  box-shadow:0 8px 14px rgba(37,99,235,.08);
+}
+.grade-card{
+  border-color:#86efac;
+  background:linear-gradient(145deg,#ffffff,#f0fdf4);
+}
+.score-label{
+  font-size:.88rem;
+  color:#64748b;
+  font-weight:950;
+  margin-bottom:4px;
+}
+.score-value{
+  font-size:2rem;
+  line-height:1;
+  font-weight:1000;
+  color:#1e3a8a;
+}
+.score-value span{
+  font-size:.95rem;
+  color:#64748b;
+  font-weight:900;
+}
+.score-detail{
+  background:#fff;
+  border:1px solid #bae6fd;
+  border-radius:16px;
+  padding:12px;
+  margin:10px 0;
+  color:#155e75;
+  font-weight:850;
+  line-height:1.5;
+}
+.performance-box{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  border-radius:20px;
+  padding:14px;
+  margin:12px 0;
+  border:2px solid #e5e7eb;
+  background:#fff;
+}
+.performance-icon{
+  width:54px;
+  height:54px;
+  border-radius:18px;
+  display:grid;
+  place-items:center;
+  font-size:2rem;
+  background:#eff6ff;
+}
+.performance-title{
+  font-size:1.25rem;
+  font-weight:1000;
+  color:#111827;
+}
+.performance-msg{
+  font-weight:850;
+  color:#475569;
+  line-height:1.35;
+}
+.performance-box.excellent{
+  border-color:#86efac;
+  background:linear-gradient(145deg,#ffffff,#f0fdf4);
+}
+.performance-box.good{
+  border-color:#93c5fd;
+  background:linear-gradient(145deg,#ffffff,#eff6ff);
+}
+.performance-box.regular{
+  border-color:#fde68a;
+  background:linear-gradient(145deg,#ffffff,#fffbeb);
+}
+.performance-box.study{
+  border-color:#fdba74;
+  background:linear-gradient(145deg,#ffffff,#fff7ed);
+}
+@media(max-width:560px){
+  .score-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+.results{display:none;border-radius:22px;padding:14px;border:2px solid #67e8f9;background:#ecfeff;color:#155e75;font-weight:850;line-height:1.45;margin-top:12px}
+.results h2{margin:0 0 8px;color:#0f172a}
+.review-item{background:#fff;border:1px solid #bae6fd;border-radius:16px;padding:10px;margin-top:8px}
+.review-good{color:#16a34a;font-weight:1000}.review-bad{color:#dc2626;font-weight:1000}
+@media(max-width:560px){body{padding:12px}.app{padding:13px}.brand-header-kids{padding:9px 9px;border-radius:20px}.brand-row{grid-template-columns:46px minmax(0,1fr) auto;gap:8px}.kids-badge{width:44px;height:44px;border-radius:15px;font-size:1.45rem}.kids-title{font-size:1.18rem}.kids-subtitle{margin-top:4px}.ruta-pill-btn{padding:4px 8px;font-size:.72rem}.brand-row>.kids-title:last-child{font-size:.74rem;padding:7px 8px}.exam-top{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="app">
+<div class="brand-header-kids" aria-label="Marie Kids" role="link" tabindex="0" onclick="goHome()"
+                onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();goHome();}">
+                <div class="bubble b1"></div>
+                <div class="bubble b2"></div>
+                <div class="bubble b3"></div>
+
+                <div class="brand-row">
+                    <div class="kids-badge" aria-hidden="true">🌈</div>
+                    <div>
+                        <div class="kids-title">Marie Kids</div>
+                        <div class="kids-subtitle">
+
+                            <button class="ruta-pill-btn" type="button" onclick="event.stopPropagation(); goRuta();">🧭
+                                Ruta de Aprendizaje</button>
+
+                        </div>
+                    </div>
+                    <div class="kids-title">1 Primaria</div>
+
+                </div>
+            </div>
+
+<h1>Examen final de Comunicación</h1>
+<p class="subtitle">20 preguntas aleatorias de los 35 temas. Tienes 30 minutos.</p>
+
+<div class="exam-top">
+  <div class="exam-info">
+    🏅 Lee cada pregunta con calma. Marca una alternativa. Al terminar, presiona <b>Finalizar examen</b>.
+  </div>
+  <div class="timer-box">
+    ⏱️ Tiempo<br>
+    <div class="timer" id="timer">30:00</div>
+  </div>
+</div>
+
+<div class="progress-wrapper">
+  <div class="progress-label"><span>Preguntas respondidas</span><span id="progressText">0/20</span></div>
+  <div class="progress"><div class="progress-inner" id="progressBar"></div></div>
+</div>
+
+<div class="exam-panel" id="examPanel"></div>
+
+<div class="controls">
+  <button class="main-btn secondary" onclick="generateNewExam()">🔀 Nuevo examen</button>
+  <button class="main-btn danger" onclick="finishExam(false)">🏁 Finalizar examen</button>
+  <button class="main-btn" onclick="shareApp()">📤 Compartir app</button>
+</div>
+
+<div class="results" id="results"></div>
+</div>
+
+<script>
+function goHome(){location.href="index.html";}
+function goRuta(){location.href="ruta-comunicaciones.html";}
+
+const QUESTION_BANK = [{"id": 1, "tema": "Escuchar y seguir instrucciones", "prompt": "La profesora dice: primero escribe tu nombre y luego colorea el dibujo. ¿Qué haces primero?", "word": "Instrucción", "answer": "escribir tu nombre", "options": ["colorear", "escribir tu nombre", "guardar el lápiz", "borrar", "cerrar el cuaderno"], "explain": "Primero debes escribir tu nombre."}, {"id": 2, "tema": "Vocales y sonidos iniciales", "prompt": "Marca la palabra que empieza con la vocal a.", "word": "Opciones", "answer": "avión", "options": ["mesa", "oso", "avión", "uva", "sol"], "explain": "Avión empieza con la vocal a."}, {"id": 3, "tema": "Sílabas directas", "prompt": "Marca la palabra que se forma con las sílabas ma + no.", "word": "ma + no", "answer": "mano", "options": ["mono", "mano", "mina", "nube", "moto"], "explain": "Ma + no forma mano."}, {"id": 4, "tema": "Formación de palabras", "prompt": "Ordena las sílabas para formar una palabra con sentido.", "word": "sa - ca", "answer": "casa", "options": ["saca", "casa", "seca", "cosa", "saco"], "explain": "Ca + sa forma casa."}, {"id": 5, "tema": "Lectura de palabras", "prompt": "Marca la palabra que corresponde al dibujo imaginario de una fruta amarilla y larga.", "word": "🍌", "answer": "plátano", "options": ["manzana", "uva", "plátano", "pera", "fresa"], "explain": "El plátano es una fruta amarilla y larga."}, {"id": 6, "tema": "Separación en sílabas", "prompt": "Marca la separación correcta.", "word": "pelota", "answer": "pe-lo-ta", "options": ["pe-lo-ta", "pel-ota", "pelo-ta", "pe-lot-a", "pel-o-ta"], "explain": "Pelota se separa pe-lo-ta."}, {"id": 7, "tema": "Diptongo e hiato", "prompt": "Marca la palabra con hiato.", "word": "Opciones", "answer": "río", "options": ["cielo", "auto", "peine", "río", "cuento"], "explain": "Río tiene hiato: rí-o."}, {"id": 8, "tema": "Acento: fuerza de voz", "prompt": "¿En qué sílaba suena más fuerte la palabra ca-sa?", "word": "casa", "answer": "ca", "options": ["ca", "sa", "las dos", "ninguna", "a"], "explain": "En casa, la fuerza de voz cae en ca."}, {"id": 9, "tema": "Sílaba tónica y átonas", "prompt": "Marca la sílaba tónica.", "word": "ma-má", "answer": "má", "options": ["ma", "má", "m", "a", "ninguna"], "explain": "En mamá, la sílaba tónica es má."}, {"id": 10, "tema": "Uso de la tilde", "prompt": "Marca la palabra correctamente escrita.", "word": "Opciones", "answer": "Raúl", "options": ["Raul", "raul", "Raúl", "RAul", "Rául"], "explain": "Raúl lleva tilde en la ú."}, {"id": 11, "tema": "Lectura de oraciones cortas", "prompt": "Lee y responde: El gato duerme en la silla. ¿Quién duerme?", "word": "El gato duerme en la silla.", "answer": "el gato", "options": ["la silla", "el gato", "el perro", "la mesa", "la niña"], "explain": "El texto dice que duerme el gato."}, {"id": 12, "tema": "Mayúscula inicial y punto final", "prompt": "Marca la oración bien escrita.", "word": "Opciones", "answer": "María juega en el patio.", "options": ["maría juega en el patio.", "María juega en el patio", "María juega en el patio.", "maría juega en el patio", "MARÍA juega"], "explain": "La oración inicia con mayúscula y termina con punto."}, {"id": 13, "tema": "Escritura de palabras y oraciones", "prompt": "Elige la oración que tiene sentido.", "word": "Opciones", "answer": "El perro toma agua.", "options": ["La mesa come sopa.", "El perro toma agua.", "El lápiz duerme.", "La silla canta.", "El sol lee."], "explain": "El perro sí puede tomar agua."}, {"id": 14, "tema": "Ordenar palabras para formar oraciones", "prompt": "Ordena las palabras.", "word": "lee / Ana / un cuento", "answer": "Ana lee un cuento.", "options": ["Lee Ana cuento un.", "Ana lee un cuento.", "Un Ana cuento lee.", "Cuento lee Ana un.", "Ana cuento lee."], "explain": "La oración correcta es Ana lee un cuento."}, {"id": 15, "tema": "Completar oraciones", "prompt": "Completa la oración.", "word": "El niño ___ una pelota.", "answer": "patea", "options": ["duerme", "patea", "lee", "canta", "bebe"], "explain": "El niño patea una pelota tiene sentido."}, {"id": 16, "tema": "El artículo", "prompt": "Completa con el artículo correcto.", "word": "___ flores son rojas.", "answer": "Las", "options": ["El", "La", "Los", "Las", "Un"], "explain": "Flores es femenino plural: Las flores."}, {"id": 17, "tema": "El sustantivo", "prompt": "Marca el sustantivo.", "word": "El conejo salta rápido.", "answer": "conejo", "options": ["El", "conejo", "salta", "rápido", "muy"], "explain": "Conejo nombra un animal."}, {"id": 18, "tema": "El adjetivo", "prompt": "Marca el adjetivo.", "word": "La casa pequeña.", "answer": "pequeña", "options": ["La", "casa", "pequeña", "vive", "una"], "explain": "Pequeña dice cómo es la casa."}, {"id": 19, "tema": "El verbo", "prompt": "Marca el verbo.", "word": "Rosa canta bonito.", "answer": "canta", "options": ["Rosa", "canta", "bonito", "la", "flor"], "explain": "Canta es una acción."}, {"id": 20, "tema": "Sujeto y predicado", "prompt": "Marca el sujeto.", "word": "El ave vuela alto.", "answer": "El ave", "options": ["El ave", "vuela alto", "alto", "vuela", "ave alto"], "explain": "El sujeto es de quién se habla."}, {"id": 21, "tema": "Comprensión literal", "prompt": "Lee y responde: Carla tiene una mochila azul. ¿De qué color es la mochila?", "word": "Carla tiene una mochila azul.", "answer": "azul", "options": ["roja", "verde", "azul", "negra", "amarilla"], "explain": "El texto dice que la mochila es azul."}, {"id": 22, "tema": "Personajes, lugares y acciones", "prompt": "Lee: Pedro juega en el parque. ¿Dónde ocurre la acción?", "word": "Pedro juega en el parque.", "answer": "en el parque", "options": ["en la casa", "en el parque", "en la cocina", "en el aula", "en la sala"], "explain": "El lugar es el parque."}, {"id": 23, "tema": "Secuencia de hechos", "prompt": "Marca el orden correcto.", "word": "Primero me lavo las manos. Luego como.", "answer": "lavarse las manos y comer", "options": ["comer y lavarse", "lavarse las manos y comer", "dormir y comer", "correr y saltar", "leer y pintar"], "explain": "Primero se lava las manos y luego come."}, {"id": 24, "tema": "Idea principal sencilla", "prompt": "Marca la idea principal.", "word": "Luis alimenta a su perro, le da agua y juega con él.", "answer": "Luis cuida a su perro", "options": ["Luis cuida a su perro", "El agua es fría", "El perro duerme", "Luis va al mercado", "El perro corre solo"], "explain": "El texto trata de que Luis cuida a su perro."}, {"id": 25, "tema": "Comprensión inferencial", "prompt": "Deduce la respuesta: El niño bostezaba y se frotaba los ojos. ¿Qué tenía?", "word": "Pistas: bostezaba y se frotaba los ojos.", "answer": "sueño", "options": ["hambre", "sueño", "sed", "alegría", "frío"], "explain": "Bostezar y frotarse los ojos son pistas de sueño."}, {"id": 26, "tema": "Expresión oral", "prompt": "¿Cuál es la mejor forma de contar una experiencia?", "word": "Opciones", "answer": "hablar con orden y voz clara", "options": ["gritar sin orden", "hablar con orden y voz clara", "taparse la boca", "hablar muy rápido", "no mirar a nadie"], "explain": "Para expresarse bien se habla con orden y voz clara."}, {"id": 27, "tema": "Vocabulario por categorías", "prompt": "Marca la categoría correcta.", "word": "manzana, pera, plátano", "answer": "frutas", "options": ["animales", "frutas", "útiles", "colores", "lugares"], "explain": "Manzana, pera y plátano son frutas."}, {"id": 28, "tema": "Familia de palabras", "prompt": "Marca la palabra de la familia de pan.", "word": "pan", "answer": "panadero", "options": ["zapato", "panadero", "flor", "silla", "perro"], "explain": "Panadero pertenece a la familia de pan."}, {"id": 29, "tema": "Sinónimos básicos", "prompt": "Marca el sinónimo de alegre.", "word": "alegre", "answer": "feliz", "options": ["triste", "feliz", "lento", "pequeño", "duro"], "explain": "Alegre y feliz significan parecido."}, {"id": 30, "tema": "Antónimos básicos", "prompt": "Marca el antónimo de alto.", "word": "alto", "answer": "bajo", "options": ["grande", "bajo", "largo", "fuerte", "nuevo"], "explain": "Alto es contrario de bajo."}, {"id": 31, "tema": "Palabra intrusa", "prompt": "Marca la palabra intrusa.", "word": "rojo, azul, verde, mesa", "answer": "mesa", "options": ["rojo", "azul", "verde", "mesa", "amarillo"], "explain": "Mesa no es un color."}, {"id": 32, "tema": "Término excluido", "prompt": "Marca el término excluido.", "word": "lápiz, cuaderno, borrador, cama", "answer": "cama", "options": ["lápiz", "cuaderno", "borrador", "cama", "regla"], "explain": "Cama no es útil escolar."}, {"id": 33, "tema": "Analogías y completar oraciones", "prompt": "Completa la analogía.", "word": "zapato : pie :: guante : ___", "answer": "mano", "options": ["cabeza", "mano", "rodilla", "oreja", "nariz"], "explain": "El zapato va en el pie y el guante en la mano."}, {"id": 34, "tema": "Vocabulario en contexto", "prompt": "Según la oración, ¿qué significa repleta?", "word": "La mochila estaba repleta de libros.", "answer": "llena", "options": ["vacía", "llena", "rota", "nueva", "liviana"], "explain": "Repleta significa llena."}, {"id": 35, "tema": "Lectura de imágenes y oraciones", "prompt": "Imagina una imagen de una niña leyendo. Marca la oración correcta.", "word": "👧📖", "answer": "La niña lee un libro.", "options": ["La niña come sopa.", "La niña lee un libro.", "El perro duerme.", "La niña corre en el parque.", "El niño pinta una mesa."], "explain": "La imagen representa a una niña leyendo."}];
+const EXAM_SIZE = 20;
+const EXAM_MINUTES = 30;
+
+let examQuestions = [];
+let answers = {};
+let finished = false;
+let timeLeft = EXAM_MINUTES * 60;
+let timerId = null;
+
+function shuffleArray(a){
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+function letter(i){ return String.fromCharCode(65+i); }
+
+function generateNewExam(){
+  if(!finished && Object.keys(answers).length > 0){
+    if(!confirm("¿Quieres generar otro examen? Se perderán tus respuestas actuales.")) return;
+  }
+  finished = false;
+  answers = {};
+  examQuestions = shuffleArray([...QUESTION_BANK]).slice(0, EXAM_SIZE).map(q => ({
+    ...q,
+    options: shuffleArray([...q.options])
+  }));
+  timeLeft = EXAM_MINUTES * 60;
+  document.getElementById("results").style.display = "none";
+  renderExam();
+  updateProgress();
+  startTimer();
+}
+
+function startTimer(){
+  if(timerId) clearInterval(timerId);
+  updateTimer();
+  timerId = setInterval(() => {
+    if(finished) return;
+    timeLeft--;
+    updateTimer();
+    if(timeLeft <= 0){
+      clearInterval(timerId);
+      finishExam(true);
+    }
+  }, 1000);
+}
+
+function updateTimer(){
+  const min = Math.floor(timeLeft / 60);
+  const sec = timeLeft % 60;
+  document.getElementById("timer").textContent = `${String(min).padStart(2,"0")}:${String(sec).padStart(2,"0")}`;
+}
+
+function renderExam(){
+  const panel = document.getElementById("examPanel");
+  panel.innerHTML = examQuestions.map((q, idx) => {
+    const selected = answers[q.id];
+    return `
+      <div class="question-card" id="q-${q.id}">
+        <div class="question-head">
+          <div class="question-title">Pregunta ${idx + 1} de ${EXAM_SIZE}</div>
+          <div class="topic-tag">${q.tema}</div>
+        </div>
+        <div class="question-text">${q.prompt}</div>
+        <div class="big-word">${q.word || ""}</div>
+        <div class="options">
+          ${q.options.map((opt, i) => `
+            <button class="option-btn ${selected === opt ? "selected" : ""}" onclick="selectAnswer(${q.id}, '${escapeAttr(opt)}', this)" ${finished ? "disabled" : ""}>
+              <b>${letter(i)})</b> ${opt}
+            </button>
+          `).join("")}
+        </div>
+      </div>`;
+  }).join("");
+}
+
+function escapeAttr(s){
+  return String(s).replace(/'/g,"&#39;").replace(/"/g,"&quot;");
+}
+
+function selectAnswer(id, ans, btn){
+  if(finished) return;
+  ans = ans.replace(/&#39;/g,"'").replace(/&quot;/g,'"');
+  answers[id] = ans;
+
+  const card = document.getElementById("q-" + id);
+  card.querySelectorAll(".option-btn").forEach(b => b.classList.remove("selected"));
+  btn.classList.add("selected");
+  updateProgress();
+}
+
+function updateProgress(){
+  const done = Object.keys(answers).length;
+  document.getElementById("progressText").textContent = `${done}/${EXAM_SIZE}`;
+  document.getElementById("progressBar").style.width = (done / EXAM_SIZE * 100) + "%";
+}
+
+function finishExam(auto=false){
+  if(finished) return;
+  if(!auto && Object.keys(answers).length < EXAM_SIZE){
+    if(!confirm("Aún faltan preguntas. ¿Deseas finalizar de todos modos?")) return;
+  }
+  finished = true;
+  if(timerId) clearInterval(timerId);
+
+  let correct = 0;
+  let wrong = 0;
+  let blank = 0;
+
+  examQuestions.forEach(q => {
+    if(!answers[q.id]){
+      blank++;
+    } else if(answers[q.id] === q.answer){
+      correct++;
+    } else {
+      wrong++;
+    }
+  });
+
+  const pointsCorrect = correct * 10;
+  const pointsWrong = wrong * -2;
+  const pointsBlank = blank * 0;
+  const totalPoints = pointsCorrect + pointsWrong + pointsBlank;
+
+  // Nota del 1 al 20:
+  // 20 correctas = 200 puntos = nota 20.
+  // La nota se limita entre 1 y 20.
+  const rawGrade = totalPoints / 10;
+  const grade = Math.max(1, Math.min(20, rawGrade));
+  const gradeText = Number.isInteger(grade) ? String(grade) : grade.toFixed(1);
+
+  let performanceTitle = "";
+  let performanceMsg = "";
+  let performanceIcon = "";
+  let performanceClass = "";
+
+  if(grade >= 18){
+    performanceIcon = "🌟";
+    performanceTitle = "¡Felicitaciones!";
+    performanceMsg = "Rendimiento excelente. Dominas muy bien los temas de Comunicación.";
+    performanceClass = "excellent";
+  } else if(grade >= 14){
+    performanceIcon = "👏";
+    performanceTitle = "¡Bien hecho!";
+    performanceMsg = "Rendimiento bueno. Sigue practicando para llegar al nivel excelente.";
+    performanceClass = "good";
+  } else if(grade >= 11){
+    performanceIcon = "💪";
+    performanceTitle = "Vas por buen camino";
+    performanceMsg = "Rendimiento regular. Repasa los temas donde tuviste errores.";
+    performanceClass = "regular";
+  } else {
+    performanceIcon = "📚";
+    performanceTitle = "Estudia más";
+    performanceMsg = "Necesitas repasar con calma y volver a intentarlo.";
+    performanceClass = "study";
+  }
+
+  const recommendedTopics = [...new Set(
+    examQuestions
+      .filter(q => !answers[q.id] || answers[q.id] !== q.answer)
+      .map(q => q.tema)
+  )];
+
+  renderExam();
+
+  examQuestions.forEach(q => {
+    const card = document.getElementById("q-" + q.id);
+    card.querySelectorAll(".option-btn").forEach(btn => {
+      const txt = btn.textContent.replace(/^[A-E]\)\s*/,"").trim();
+      if(txt === q.answer) btn.classList.add("correct-choice");
+      if(answers[q.id] && txt === answers[q.id] && answers[q.id] !== q.answer) btn.classList.add("wrong-choice");
+      btn.disabled = true;
+    });
+  });
+
+  const results = document.getElementById("results");
+  results.style.display = "block";
+  results.innerHTML = `
+    <h2>${auto ? "⏱️ Tiempo terminado" : "🏁 Examen finalizado"}</h2>
+
+    <div class="score-grid">
+      <div class="score-card grade-card">
+        <div class="score-label">Nota</div>
+        <div class="score-value">${gradeText}<span>/20</span></div>
+      </div>
+
+      <div class="score-card">
+        <div class="score-label">Puntaje</div>
+        <div class="score-value">${totalPoints}<span> puntos</span></div>
+      </div>
+    </div>
+
+    <div class="performance-box ${performanceClass}">
+      <div class="performance-icon">${performanceIcon}</div>
+      <div>
+        <div class="performance-title">${performanceTitle}</div>
+        <div class="performance-msg">${performanceMsg}</div>
+      </div>
+    </div>
+
+    <div class="score-detail">
+      <b>Detalle del puntaje:</b><br>
+      ✅ Correctas: ${correct} × 10 = ${pointsCorrect} puntos<br>
+      ❌ Incorrectas: ${wrong} × -2 = ${pointsWrong} puntos<br>
+      ⚪ No marcadas: ${blank} × 0 = ${pointsBlank} puntos
+    </div>
+
+    <div class="recommendation-box">
+      <div class="recommendation-title">📌 Recomendación</div>
+      <div class="recommendation-text">
+        ${recommendedTopics.length
+          ? `Estudia los siguientes temas: <b>${recommendedTopics.join(" · ")}</b>.`
+          : "Excelente. No necesitas repasar temas específicos de este examen."}
+      </div>
+    </div>
+
+    <div class="review-item">
+      <b>Temas evaluados en este examen:</b><br>
+      ${examQuestions.map(q => q.tema).join(" · ")}
+    </div>
+
+    <h2 style="margin-top:12px;">Revisión</h2>
+    ${examQuestions.map((q, idx) => `
+      <div class="review-item">
+        <b>${idx+1}. ${q.tema}</b><br>
+        Tu respuesta:
+        <span class="${answers[q.id] === q.answer ? "review-good" : "review-bad"}">
+          ${answers[q.id] || "Sin responder"}
+        </span><br>
+        Respuesta correcta: <span class="review-good">${q.answer}</span><br>
+        ${q.explain}
+      </div>
+    `).join("")}
+  `;
+
+  results.scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+function shareApp(){
+  const data = {
+    title:"Marie Kids - Examen final de Comunicación",
+    text:"🏅 Practica un examen final de Comunicación con cronómetro.",
+    url:window.location.href
+  };
+  if(navigator.share) navigator.share(data).catch(()=>{});
+  else {
+    navigator.clipboard.writeText(data.url);
+    alert("🔗 Link copiado para compartir");
+  }
+}
+
+generateNewExam();
+</script>
+
+<script>
+if("serviceWorker" in navigator){
+  window.addEventListener("load",()=>{
+    navigator.serviceWorker.register("./service-worker.js").catch(()=>{});
+  });
+}
+</script>
+</body>
+</html>

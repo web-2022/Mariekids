@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marie Kids • El acento: fuerza de voz</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#1976d2" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(145deg, #dbeafe, #e0f2fe);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 16px;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 760px;
+      background: #fff;
+      border: 3px solid #2563eb;
+      border-radius: 26px;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, .14);
+      padding: 16px;
+      overflow: hidden;
+    }
+
+    .brand-header-kids {
+      position: relative;
+      overflow: hidden;
+      padding: 16px;
+      border-radius: 22px;
+      margin-bottom: 14px;
+      background: linear-gradient(135deg, #93c5fd, #60a5fa, #2563eb);
+      border: 2px solid rgba(255, 255, 255, .65);
+      box-shadow: 0 14px 28px rgba(37, 99, 235, .25);
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .brand-header-kids:hover {
+      filter: brightness(1.03);
+      transform: translateY(-1px);
+    }
+
+    .brand-row {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .kids-badge {
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      font-size: 2rem;
+      font-weight: 1000;
+      background: rgba(255, 255, 255, .22);
+      border: 1px solid rgba(255, 255, 255, .35);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35);
+    }
+
+    .kids-title {
+      font-weight: 1000;
+      font-size: clamp(1.35rem, 4vw, 1.75rem);
+      line-height: 1.05;
+      text-shadow: 0 2px 0 rgba(0, 0, 0, .12);
+    }
+
+    .kids-subtitle {
+      margin-top: 6px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+      font-size: .9rem;
+      font-weight: 800;
+      opacity: .96;
+    }
+
+    .kids-pill {
+      background: rgba(255, 255, 255, .22);
+      border: 1px solid rgba(255, 255, 255, .35);
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: .82rem;
+      font-weight: 900;
+    }
+
+    .bubble {
+      position: absolute;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .20);
+      border: 1px solid rgba(255, 255, 255, .28);
+      pointer-events: none;
+      animation: floaty 6s ease-in-out infinite;
+    }
+
+    .b1 { left: -18px; top: -24px; width: 90px; height: 90px; }
+    .b2 { right: -24px; bottom: -28px; width: 86px; height: 86px; animation-delay: 1s; }
+    .b3 { left: 48%; bottom: -28px; width: 50px; height: 50px; animation-delay: .6s; }
+
+    @keyframes floaty {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-8px) scale(1.03); }
+    }
+
+    h1 {
+      margin: 0;
+      text-align: center;
+      font-size: clamp(1.45rem, 4vw, 2rem);
+      color: #111827;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: .95rem;
+      color: #6b7280;
+      margin: 6px 0 14px;
+      font-weight: 750;
+    }
+
+    .module-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 10px;
+      border-radius: 18px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      margin-bottom: 14px;
+    }
+
+    .tab-btn {
+      border: 1px solid #bfdbfe;
+      background: #fff;
+      border-radius: 999px;
+      padding: 9px 12px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: transform .1s ease, background .15s ease;
+      color: #111827;
+    }
+
+    .tab-btn:hover {
+      transform: translateY(-1px);
+      background: #dbeafe;
+    }
+
+    .tab-btn.active {
+      color: #fff;
+      background: linear-gradient(90deg, #60a5fa, #2563eb);
+      border-color: transparent;
+    }
+
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      font-size: .9rem;
+      flex-wrap: wrap;
+    }
+
+    .xp, .hearts {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 850;
+    }
+
+    .xp span { color: #16a34a; }
+    .hearts span { color: #f97316; }
+
+    .progress-wrapper { margin-bottom: 14px; }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: .82rem;
+      color: #6b7280;
+      margin-bottom: 5px;
+      font-weight: 800;
+    }
+
+    .progress {
+      width: 100%;
+      height: 11px;
+      background: #e5e7eb;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-inner {
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #60a5fa, #2563eb);
+      transition: width .2s ease;
+    }
+
+    .module { display: none; }
+    .module.active { display: block; }
+
+    .panel {
+      border-radius: 22px;
+      padding: 14px;
+      margin-bottom: 12px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+    }
+
+    .panel-title {
+      margin: 0 0 8px;
+      color: #111827;
+      font-weight: 1000;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .theory { background: #eff6ff; border-color: #bfdbfe; }
+    .examples { background: #f0fdf4; border-color: #bbf7d0; }
+    .practice { background: #fff7ed; border-color: #fed7aa; }
+
+    .theory-audio-row {
+      display: flex;
+      justify-content: center;
+      margin: 8px 0 12px;
+    }
+
+    .theory-audio-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 10px 16px;
+      background: linear-gradient(90deg, #a78bfa, #7c3aed);
+      color: #fff;
+      font-weight: 950;
+      cursor: pointer;
+      font-size: .95rem;
+      box-shadow: 0 8px 16px rgba(124, 58, 237, .18);
+    }
+
+    .theory-audio-btn:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+    }
+
+    .rule {
+      padding: 12px;
+      border-radius: 16px;
+      background: #ffffff;
+      border: 1px solid #bfdbfe;
+      color: #374151;
+      font-weight: 760;
+      line-height: 1.4;
+      margin-bottom: 10px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 560px) {
+      .steps { grid-template-columns: 1fr; }
+    }
+
+    .step {
+      background: #fff;
+      border: 1px solid #dbeafe;
+      border-radius: 16px;
+      padding: 10px;
+      font-weight: 850;
+      color: #374151;
+    }
+
+    .syllables {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 12px 0;
+    }
+
+    .syllable {
+      padding: 12px 16px;
+      border-radius: 16px;
+      background: #ffffff;
+      border: 2px solid #dbeafe;
+      font-weight: 1000;
+      font-size: 1.2rem;
+      min-width: 58px;
+      text-align: center;
+    }
+
+    .syllable.strong {
+      background: #fef3c7;
+      border-color: #f59e0b;
+      color: #92400e;
+      transform: scale(1.08);
+      box-shadow: 0 8px 16px rgba(245, 158, 11, .18);
+    }
+
+    .voice-mark {
+      text-align: center;
+      font-size: 1.05rem;
+      font-weight: 950;
+      color: #92400e;
+      margin-top: -4px;
+    }
+
+    .example-audio-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 560px) {
+      .example-audio-grid { grid-template-columns: 1fr; }
+    }
+
+    .audio-card {
+      background: #ffffff;
+      border: 1px solid #bbf7d0;
+      border-radius: 18px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .audio-label {
+      font-weight: 950;
+      color: #166534;
+      margin-bottom: 8px;
+    }
+
+    .audio-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: linear-gradient(90deg, #22c55e, #16a34a);
+      color: #ffffff;
+      font-weight: 950;
+      cursor: pointer;
+      font-size: .95rem;
+    }
+
+    .audio-btn:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.04);
+    }
+
+    .question-card {
+      background: #ffffff;
+      border: 1px solid #fed7aa;
+      border-radius: 18px;
+      padding: 12px;
+    }
+
+    .question-title {
+      font-weight: 1000;
+      color: #7c2d12;
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 1.03rem;
+    }
+
+    .question-text {
+      text-align: center;
+      font-size: 1.12rem;
+      font-weight: 1000;
+      color: #111827;
+      margin: 8px 0;
+      line-height: 1.35;
+    }
+
+    .big-word {
+      text-align: center;
+      font-size: clamp(1.8rem, 6vw, 2.5rem);
+      font-weight: 1000;
+      color: #1e3a8a;
+      margin: 8px 0 2px;
+    }
+
+    .options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .option-btn {
+      flex: 1;
+      min-width: 120px;
+      border-radius: 16px;
+      border: 1px solid #d1d5db;
+      background: #ffffff;
+      padding: 11px 10px;
+      font-size: 1.04rem;
+      cursor: pointer;
+      transition: background .15s ease, transform .1s ease, border .1s ease, opacity .1s ease;
+      font-weight: 950;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      background: #e0f2fe;
+      transform: translateY(-1px);
+      border-color: #93c5fd;
+    }
+
+    .option-btn:disabled {
+      cursor: default;
+      opacity: .65;
+    }
+
+    .option-btn.correct-choice {
+      background: #dcfce7;
+      border-color: #22c55e;
+      color: #166534;
+      opacity: 1;
+    }
+
+    .option-btn.wrong-choice {
+      background: #fee2e2;
+      border-color: #ef4444;
+      color: #991b1b;
+    }
+
+    .feedback {
+      margin-top: 10px;
+      text-align: center;
+      min-height: 22px;
+      font-weight: 900;
+      line-height: 1.3;
+    }
+
+    .feedback.good { color: #16a34a; }
+    .feedback.bad { color: #ef4444; }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .main-btn {
+      flex: 1;
+      min-width: 130px;
+      border: none;
+      border-radius: 999px;
+      padding: 11px 14px;
+      color: #ffffff;
+      font-weight: 950;
+      cursor: pointer;
+      background: linear-gradient(90deg, #60a5fa, #2563eb);
+      transition: transform .1s ease, filter .15s ease, box-shadow .1s ease;
+    }
+
+    .main-btn:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.04);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, .14);
+    }
+
+    .main-btn.secondary {
+      background: linear-gradient(90deg, #a78bfa, #7c3aed);
+    }
+
+    .summary-box {
+      padding: 12px;
+      border-radius: 18px;
+      background: #ecfeff;
+      border: 2px solid #67e8f9;
+      color: #155e75;
+      font-weight: 850;
+      line-height: 1.45;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+
+    <div class="brand-header-kids"
+         aria-label="Marie Kids"
+         role="link"
+         tabindex="0"
+         onclick="goHome()"
+         onkeydown="if(event.key==='Enter' || event.key===' '){ event.preventDefault(); goHome(); }">
+      <div class="bubble b1"></div>
+      <div class="bubble b2"></div>
+      <div class="bubble b3"></div>
+
+      <div class="brand-row">
+        <div class="kids-badge" aria-hidden="true">🔊</div>
+        <div>
+          <div class="kids-title">Marie Kids</div>
+          <div class="kids-subtitle">
+            El acento: fuerza de voz
+            <span class="kids-pill">👂 Escucha</span>
+            <span class="kids-pill">👏 Separa</span>
+            <span class="kids-pill">✏️ Practica</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h1>El acento: fuerza de voz</h1>
+    <p class="subtitle">Aprende a encontrar la sílaba que suena más fuerte en una palabra.</p>
+
+    <div class="module-tabs" aria-label="Módulos de la lección">
+      <button class="tab-btn active" id="tab-concepto" onclick="showModule('concepto')">1. ¿Qué es?</button>
+      <button class="tab-btn" id="tab-fuerte" onclick="showModule('fuerte')">2. Sílaba fuerte</button>
+      <button class="tab-btn" id="tab-posicion" onclick="showModule('posicion')">3. Posición</button>
+      <button class="tab-btn" id="tab-acento-tilde" onclick="showModule('acentoTilde')">4. Acento y tilde</button>
+      <button class="tab-btn" id="tab-olimpiadas" onclick="showModule('olimpiadas')">🏅 5. Olimpiadas</button>
+    </div>
+
+    <div class="status-bar">
+      <div class="xp">✅ Correctas: <span id="correctCount">0</span></div>
+      <div class="hearts">🧠 Por mejorar: <span id="wrongCount">0</span></div>
+    </div>
+
+    <div class="progress-wrapper">
+      <div class="progress-label">
+        <span>Progreso general</span>
+        <span id="progressText">0/50</span>
+      </div>
+      <div class="progress">
+        <div class="progress-inner" id="progressBar"></div>
+      </div>
+    </div>
+
+    <!-- CONCEPTO -->
+    <section class="module active" id="module-concepto">
+      <div class="panel theory">
+        <h2 class="panel-title">📚 1. ¿Qué es el acento?</h2>
+        <div class="theory-audio-row">
+          <button class="theory-audio-btn" onclick="speakTheory('concepto')">🔊 Escuchar teoría</button>
+        </div>
+
+        <div class="rule">
+          El <b>acento</b> es la <b>mayor fuerza de voz</b> que hacemos al decir una sílaba.
+          <br><br>
+          Todas las palabras tienen una parte que suena más fuerte.
+        </div>
+
+        <div class="syllables">
+          <span class="syllable">ca</span>
+          <span class="syllable strong">sa</span>
+        </div>
+        <div class="voice-mark">La fuerza está en ca</div>
+
+        <div class="steps">
+          <div class="step">1️⃣ Digo la palabra: mamá</div>
+          <div class="step">2️⃣ La separo: ma - má</div>
+          <div class="step">3️⃣ Escucho cuál suena más fuerte</div>
+          <div class="step">4️⃣ La fuerte es: MÁ</div>
+        </div>
+      </div>
+
+      <div class="panel examples">
+        <h2 class="panel-title">🔊 Ejemplos para escuchar</h2>
+        <p class="rule">Presiona el audio. Escucha cuál sílaba suena más fuerte y repite.</p>
+        <div class="example-audio-grid" id="examples-concepto"></div>
+      </div>
+
+      <div class="panel practice">
+        <h2 class="panel-title">✏️ 10 ejercicios básicos</h2>
+        <div class="question-card" id="practice-concepto"></div>
+      </div>
+    </section>
+
+    <!-- FUERTE -->
+    <section class="module" id="module-fuerte">
+      <div class="panel theory">
+        <h2 class="panel-title">📚 2. Sílaba fuerte y sílabas suaves</h2>
+        <div class="theory-audio-row">
+          <button class="theory-audio-btn" onclick="speakTheory('fuerte')">🔊 Escuchar teoría</button>
+        </div>
+
+        <div class="rule">
+          La <b>sílaba fuerte</b> se llama <b>sílaba tónica</b>.
+          <br><br>
+          Las sílabas que suenan más suave se llaman <b>sílabas átonas</b>.
+        </div>
+
+        <div class="syllables">
+          <span class="syllable">pe</span>
+          <span class="syllable strong">LO</span>
+          <span class="syllable">ta</span>
+        </div>
+        <div class="voice-mark">En pelota, la fuerza está en LO</div>
+
+        <div class="steps">
+          <div class="step">1️⃣ pe suena suave</div>
+          <div class="step">2️⃣ LO suena fuerte</div>
+          <div class="step">3️⃣ ta suena suave</div>
+          <div class="step">4️⃣ LO es la sílaba tónica</div>
+        </div>
+      </div>
+
+      <div class="panel examples">
+        <h2 class="panel-title">🔊 Ejemplos para escuchar</h2>
+        <p class="rule">Escucha la sílaba fuerte. No hay alternativas en esta parte.</p>
+        <div class="example-audio-grid" id="examples-fuerte"></div>
+      </div>
+
+      <div class="panel practice">
+        <h2 class="panel-title">✏️ 10 ejercicios de sílaba fuerte</h2>
+        <div class="question-card" id="practice-fuerte"></div>
+      </div>
+    </section>
+
+    <!-- POSICION -->
+    <section class="module" id="module-posicion">
+      <div class="panel theory">
+        <h2 class="panel-title">📚 3. ¿Dónde está la fuerza de voz?</h2>
+        <div class="theory-audio-row">
+          <button class="theory-audio-btn" onclick="speakTheory('posicion')">🔊 Escuchar teoría</button>
+        </div>
+
+        <div class="rule">
+          La fuerza de voz puede estar en diferentes lugares:
+          <br><br>
+          ✅ en la <b>última sílaba</b>: ma - <b>MÁ</b>
+          <br>✅ en la <b>penúltima sílaba</b>: <b>CA</b> - sa
+          <br>✅ en la <b>antepenúltima sílaba</b>: <b>MÚ</b> - si - ca
+        </div>
+
+        <div class="syllables">
+          <span class="syllable strong">MÚ</span>
+          <span class="syllable">si</span>
+          <span class="syllable">ca</span>
+        </div>
+        <div class="voice-mark">En música, la fuerza está en MÚ</div>
+
+        <div class="steps">
+          <div class="step">1️⃣ Separo la palabra</div>
+          <div class="step">2️⃣ Escucho la sílaba fuerte</div>
+          <div class="step">3️⃣ Veo en qué lugar está</div>
+          <div class="step">4️⃣ Respondo con calma</div>
+        </div>
+      </div>
+
+      <div class="panel examples">
+        <h2 class="panel-title">🔊 Ejemplos para escuchar</h2>
+        <p class="rule">Escucha si la fuerza está al inicio, al medio o al final.</p>
+        <div class="example-audio-grid" id="examples-posicion"></div>
+      </div>
+
+      <div class="panel practice">
+        <h2 class="panel-title">✏️ 10 ejercicios de ubicación</h2>
+        <div class="question-card" id="practice-posicion"></div>
+      </div>
+    </section>
+
+    <!-- ACENTO Y TILDE -->
+    <section class="module" id="module-acentoTilde">
+      <div class="panel theory">
+        <h2 class="panel-title">📚 4. Acento y tilde no son lo mismo</h2>
+        <div class="theory-audio-row">
+          <button class="theory-audio-btn" onclick="speakTheory('acentoTilde')">🔊 Escuchar teoría</button>
+        </div>
+
+        <div class="rule">
+          El <b>acento</b> es la fuerza de voz. Se escucha.
+          <br><br>
+          La <b>tilde</b> es la rayita que se escribe sobre una vocal: á, é, í, ó, ú.
+        </div>
+
+        <div class="syllables">
+          <span class="syllable">pa</span>
+          <span class="syllable strong">PÁ</span>
+        </div>
+        <div class="voice-mark">papá tiene acento y también tilde</div>
+
+        <div class="steps">
+          <div class="step">👂 Acento: se escucha</div>
+          <div class="step">✍️ Tilde: se escribe</div>
+          <div class="step">📌 casa tiene acento, pero no tilde</div>
+          <div class="step">📌 mamá tiene acento y tilde</div>
+        </div>
+      </div>
+
+      <div class="panel examples">
+        <h2 class="panel-title">🔊 Ejemplos para escuchar</h2>
+        <p class="rule">Escucha y diferencia acento de tilde.</p>
+        <div class="example-audio-grid" id="examples-acentoTilde"></div>
+      </div>
+
+      <div class="panel practice">
+        <h2 class="panel-title">✏️ 10 ejercicios de acento y tilde</h2>
+        <div class="question-card" id="practice-acentoTilde"></div>
+      </div>
+    </section>
+
+    <!-- OLIMPIADAS -->
+    <section class="module" id="module-olimpiadas">
+      <div class="panel practice">
+        <h2 class="panel-title">🏅 5. Olimpiadas</h2>
+        <div class="summary-box" style="margin-bottom:12px;">
+          Prueba de nivel interescolar: aquí ya no hay teoría. Escucha mentalmente la palabra, separa en sílabas y marca la respuesta correcta.
+        </div>
+        <div class="question-card" id="practice-olimpiadas"></div>
+      </div>
+    </section>
+
+    <div class="controls">
+      <button class="main-btn secondary" id="globalTheoryBtn" onclick="speakCurrentTheory()">🔊 Escuchar teoría actual</button>
+      <button class="main-btn" onclick="shareApp()">📤 Compartir app</button>
+    </div>
+  </div>
+
+  <script>
+    function goHome() {
+      location.href = "index.html";
+    }
+
+    const modules = {
+      concepto: {
+        title: "¿Qué es el acento?",
+        theoryAudio: "El acento es la mayor fuerza de voz que hacemos al decir una sílaba. Todas las palabras tienen una parte que suena más fuerte. Por ejemplo, en arbol, la fuerza está en bol.",
+        examples: [
+          "mamá. Ma má. La fuerza de voz está en má.",
+          "casa. Ca sa. La fuerza de voz está en ca.",
+          "ratón. Ra tón. La fuerza de voz está en tón.",
+          "música. Mú si ca. La fuerza de voz está en mú."
+        ],
+        questions: [
+          { prompt: "¿Qué es el acento?", word: "acento", answer: "la fuerza de voz", options: ["la fuerza de voz", "una letra", "un dibujo"], explain: "El acento es la fuerza de voz." },
+          { prompt: "En la palabra mamá, ¿qué sílaba suena más fuerte?", word: "ma - má", answer: "má", options: ["ma", "má", "las dos igual"], explain: "En mamá, la fuerza está en má." },
+          { prompt: "En la palabra casa, ¿qué sílaba suena más fuerte?", word: "ca - sa", answer: "ca", options: ["ca", "sa", "ninguna"], explain: "En casa, la fuerza está en ca." },
+          { prompt: "En la palabra ratón, ¿qué sílaba suena más fuerte?", word: "ra - tón", answer: "tón", options: ["ra", "tón", "rat"], explain: "En ratón, la fuerza está en tón." },
+          { prompt: "En la palabra mesa, ¿qué sílaba suena más fuerte?", word: "me - sa", answer: "me", options: ["me", "sa", "mesa"], explain: "En mesa, la fuerza está en me." },
+          { prompt: "En la palabra papá, ¿qué sílaba suena más fuerte?", word: "pa - pá", answer: "pá", options: ["pa", "pá", "las dos igual"], explain: "En papá, la fuerza está en pá." },
+          { prompt: "En la palabra libro, ¿qué sílaba suena más fuerte?", word: "li - bro", answer: "li", options: ["li", "bro", "lib"], explain: "En libro, la fuerza está en li." },
+          { prompt: "En la palabra café, ¿qué sílaba suena más fuerte?", word: "ca - fé", answer: "fé", options: ["ca", "fé", "las dos igual"], explain: "En café, la fuerza está en fé." },
+          { prompt: "En la palabra árbol, ¿qué sílaba suena más fuerte?", word: "ár - bol", answer: "ár", options: ["ár", "bol", "arbol"], explain: "En árbol, la fuerza está en ár." },
+          { prompt: "En la palabra pelota, ¿qué sílaba suena más fuerte?", word: "pe - lo - ta", answer: "lo", options: ["pe", "lo", "ta"], explain: "En pelota, la fuerza está en lo." }
+        ]
+      },
+
+      fuerte: {
+        title: "Sílaba fuerte y sílabas suaves",
+        theoryAudio: "La sílaba fuerte se llama sílaba tónica. Las sílabas suaves se llaman sílabas átonas. En pelota, la sílaba tónica es lo.",
+        examples: [
+          "pelota. Pe lo ta. La sílaba fuerte es lo.",
+          "camino. Ca mi no. La sílaba fuerte es mi.",
+          "zapato. Za pa to. La sílaba fuerte es pa.",
+          "mariposa. Ma ri po sa. La sílaba fuerte es po."
+        ],
+        questions: [
+          { prompt: "¿Cómo se llama la sílaba que suena más fuerte?", word: "sílaba fuerte", answer: "sílaba tónica", options: ["sílaba tónica", "sílaba suave", "sílaba muda"], explain: "La sílaba fuerte se llama sílaba tónica." },
+          { prompt: "En pelota, marca la sílaba tónica.", word: "pe - lo - ta", answer: "lo", options: ["pe", "lo", "ta"], explain: "En pelota, la sílaba tónica es lo." },
+          { prompt: "En camino, marca la sílaba tónica.", word: "ca - mi - no", answer: "mi", options: ["ca", "mi", "no"], explain: "En camino, la sílaba tónica es mi." },
+          { prompt: "En zapato, marca la sílaba tónica.", word: "za - pa - to", answer: "pa", options: ["za", "pa", "to"], explain: "En zapato, la sílaba tónica es pa." },
+          { prompt: "En mariposa, marca la sílaba tónica.", word: "ma - ri - po - sa", answer: "po", options: ["ma", "ri", "po", "sa"], explain: "En mariposa, la sílaba tónica es po." },
+          { prompt: "En teléfono, marca la sílaba tónica.", word: "te - lé - fo - no", answer: "lé", options: ["te", "lé", "fo", "no"], explain: "En teléfono, la sílaba tónica es lé." },
+          { prompt: "En música, marca la sílaba tónica.", word: "mú - si - ca", answer: "mú", options: ["mú", "si", "ca"], explain: "En música, la sílaba tónica es mú." },
+          { prompt: "En limón, marca la sílaba tónica.", word: "li - món", answer: "món", options: ["li", "món", "lim"], explain: "En limón, la sílaba tónica es món." },
+          { prompt: "En cuaderno, marca la sílaba tónica.", word: "cua - der - no", answer: "der", options: ["cua", "der", "no"], explain: "En cuaderno, la sílaba tónica es der." },
+          { prompt: "En ventana, marca la sílaba tónica.", word: "ven - ta - na", answer: "ta", options: ["ven", "ta", "na"], explain: "En ventana, la sílaba tónica es ta." }
+        ]
+      },
+
+      posicion: {
+        title: "Dónde está la fuerza de voz",
+        theoryAudio: "La fuerza de voz puede estar en la última sílaba, en la penúltima sílaba o en la antepenúltima sílaba. Primero separa la palabra y luego escucha la sílaba fuerte.",
+        examples: [
+          "mamá. Ma má. La fuerza está en la última sílaba.",
+          "casa. Ca sa. La fuerza está en la penúltima sílaba.",
+          "música. Mú si ca. La fuerza está en la antepenúltima sílaba.",
+          "teléfono. Te lé fo no. La fuerza está en la antepenúltima sílaba."
+        ],
+        questions: [
+          { prompt: "En mamá, ¿dónde está la fuerza de voz?", word: "ma - má", answer: "última sílaba", options: ["última sílaba", "penúltima sílaba", "antepenúltima sílaba"], explain: "En mamá, la fuerza está en la última sílaba." },
+          { prompt: "En casa, ¿dónde está la fuerza de voz?", word: "ca - sa", answer: "penúltima sílaba", options: ["última sílaba", "penúltima sílaba", "antepenúltima sílaba"], explain: "En casa, la fuerza está en la penúltima sílaba." },
+          { prompt: "En música, ¿dónde está la fuerza de voz?", word: "mú - si - ca", answer: "antepenúltima sílaba", options: ["última sílaba", "penúltima sílaba", "antepenúltima sílaba"], explain: "En música, la fuerza está en la antepenúltima sílaba." },
+          { prompt: "En ratón, ¿dónde está la fuerza de voz?", word: "ra - tón", answer: "última sílaba", options: ["última sílaba", "penúltima sílaba", "antepenúltima sílaba"], explain: "En ratón, la fuerza está en la última sílaba." },
+          { prompt: "En lápiz, ¿dónde está la fuerza de voz?", word: "lá - piz", answer: "penúltima sílaba", options: ["última sílaba", "penúltima sílaba", "antepenúltima sílaba"], explain: "En lápiz, la fuerza está en la penúltima sílaba." },
+          { prompt: "En pájaro, ¿dónde está la fuerza de voz?", word: "pá - ja - ro", answer: "antepenúltima sílaba", options: ["última sílaba", "penúltima sílaba", "antepenúltima sílaba"], explain: "En pájaro, la fuerza está en la antepenúltima sílaba." },
+          { prompt: "En café, ¿dónde está la fuerza de voz?", word: "ca - fé", answer: "última sílaba", options: ["última sílaba", "penúltima sílaba", "antepenúltima sílaba"], explain: "En café, la fuerza está en la última sílaba." },
+          { prompt: "En escuela, ¿dónde está la fuerza de voz?", word: "es - cue - la", answer: "penúltima sílaba", options: ["última sílaba", "penúltima sílaba", "antepenúltima sílaba"], explain: "En escuela, la fuerza está en cue, que es la penúltima sílaba." },
+          { prompt: "En teléfono, ¿dónde está la fuerza de voz?", word: "te - lé - fo - no", answer: "antepenúltima sílaba", options: ["última sílaba", "penúltima sílaba", "antepenúltima sílaba"], explain: "En teléfono, la fuerza está en lé, que es antepenúltima." },
+          { prompt: "En pared, ¿dónde está la fuerza de voz?", word: "pa - red", answer: "última sílaba", options: ["última sílaba", "penúltima sílaba", "antepenúltima sílaba"], explain: "En pared, la fuerza está en red, la última sílaba." }
+        ]
+      },
+
+      acentoTilde: {
+        title: "Acento y tilde",
+        theoryAudio: "Acento y tilde no son lo mismo. El acento es la fuerza de voz y se escucha. La tilde es una rayita que se escribe sobre una vocal.",
+        examples: [
+          "casa. Tiene acento en ca, pero no lleva tilde.",
+          "mamá. Tiene acento en má y lleva tilde.",
+          "mesa. Tiene acento en me, pero no lleva tilde.",
+          "música. Tiene acento en mú y lleva tilde."
+        ],
+        questions: [
+          { prompt: "¿Qué se escucha?", word: "acento o tilde", answer: "acento", options: ["acento", "tilde", "punto"], explain: "El acento se escucha porque es fuerza de voz." },
+          { prompt: "¿Qué se escribe sobre una vocal?", word: "á é í ó ú", answer: "tilde", options: ["acento", "tilde", "sílaba"], explain: "La tilde es la rayita que se escribe." },
+          { prompt: "La palabra casa tiene fuerza de voz en CA. ¿Tiene acento?", word: "casa", answer: "sí", options: ["sí", "no", "solo si tiene tilde"], explain: "Sí. Todas las palabras tienen acento o fuerza de voz." },
+          { prompt: "La palabra casa, ¿lleva tilde?", word: "casa", answer: "no", options: ["sí", "no", "siempre"], explain: "casa tiene acento, pero no lleva tilde." },
+          { prompt: "La palabra mamá, ¿lleva tilde?", word: "mamá", answer: "sí", options: ["sí", "no", "nunca"], explain: "mamá lleva tilde en la á." },
+          { prompt: "Marca la palabra que tiene tilde escrita.", word: "casa / mamá / perro", answer: "mamá", options: ["casa", "mamá", "perro"], explain: "mamá tiene tilde en la á." },
+          { prompt: "Marca la palabra que tiene acento, pero no tilde.", word: "mesa / ratón / música", answer: "mesa", options: ["mesa", "ratón", "música"], explain: "mesa tiene fuerza de voz en me, pero no lleva tilde." },
+          { prompt: "¿Acento significa fuerza de voz?", word: "acento", answer: "sí", options: ["sí", "no", "solo en números"], explain: "Sí. El acento es la fuerza de voz." },
+          { prompt: "¿Tilde significa fuerza de voz?", word: "tilde", answer: "no", options: ["sí", "no", "a veces es una letra"], explain: "No. La tilde es el signo escrito." },
+          { prompt: "Marca la idea correcta.", word: "acento y tilde", answer: "el acento se escucha y la tilde se escribe", options: ["el acento se escucha y la tilde se escribe", "la tilde se escucha", "el acento es una letra"], explain: "Correcto: el acento se escucha y la tilde se escribe." }
+        ]
+      }
+    };
+
+    modules.olimpiadas = {
+      title: "Olimpiadas",
+      questions: [
+        { prompt: "En la lista, marca la palabra cuya fuerza de voz está en la última sílaba.", word: "casa, mamá, lápiz, música", answer: "mamá", options: ["casa", "mamá", "lápiz", "música"], explain: "mamá tiene la fuerza en la última sílaba: má." },
+        { prompt: "Marca la sílaba fuerte de la palabra ventana.", word: "ven - ta - na", answer: "ta", options: ["ven", "ta", "na"], explain: "En ventana, la fuerza está en ta." },
+        { prompt: "¿Cuál palabra tiene la fuerza en la antepenúltima sílaba?", word: "papá, mesa, música, pared", answer: "música", options: ["papá", "mesa", "música", "pared"], explain: "música tiene la fuerza en mú, la antepenúltima sílaba." },
+        { prompt: "Marca la afirmación correcta.", word: "acento", answer: "el acento es fuerza de voz", options: ["el acento es fuerza de voz", "el acento siempre se escribe", "el acento es una consonante"], explain: "El acento es la fuerza de voz." },
+        { prompt: "¿Cuál palabra tiene acento en la penúltima sílaba?", word: "ratón, casa, café, canción", answer: "casa", options: ["ratón", "casa", "café", "canción"], explain: "casa tiene la fuerza en ca, la penúltima sílaba." },
+        { prompt: "Marca la sílaba tónica de teléfono.", word: "te - lé - fo - no", answer: "lé", options: ["te", "lé", "fo", "no"], explain: "En teléfono, la sílaba tónica es lé." },
+        { prompt: "¿Cuál palabra tiene tilde escrita?", word: "perro, mesa, árbol, luna", answer: "árbol", options: ["perro", "mesa", "árbol", "luna"], explain: "árbol tiene tilde escrita en la á." },
+        { prompt: "¿Cuál palabra tiene acento, pero no tilde?", word: "papá, limón, pelota, música", answer: "pelota", options: ["papá", "limón", "pelota", "música"], explain: "pelota tiene fuerza de voz en lo, pero no lleva tilde." },
+        { prompt: "En la palabra mariposa, ¿cuál es la sílaba fuerte?", word: "ma - ri - po - sa", answer: "po", options: ["ma", "ri", "po", "sa"], explain: "En mariposa, la fuerza está en po." },
+        { prompt: "Reto final: ¿qué opción está correcta?", word: "acento y tilde", answer: "el acento se escucha; la tilde se escribe", options: ["el acento se escucha; la tilde se escribe", "la tilde se escucha; el acento se dibuja", "acento y tilde son siempre iguales"], explain: "Correcto: el acento se escucha; la tilde se escribe." }
+      ]
+    };
+
+    const state = {
+      currentModule: "concepto",
+      index: { concepto: 0, fuerte: 0, posicion: 0, acentoTilde: 0, olimpiadas: 0 },
+      answered: {
+        concepto: new Set(),
+        fuerte: new Set(),
+        posicion: new Set(),
+        acentoTilde: new Set(),
+        olimpiadas: new Set()
+      },
+      correct: 0,
+      wrong: 0,
+      totalQuestions: 50
+    };
+
+    function showModule(name) {
+      state.currentModule = name;
+
+      document.querySelectorAll(".module").forEach(m => m.classList.remove("active"));
+      document.getElementById("module-" + name).classList.add("active");
+
+      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+      document.getElementById("tab-" + name).classList.add("active");
+
+      const globalTheoryBtn = document.getElementById("globalTheoryBtn");
+      if (globalTheoryBtn) {
+        globalTheoryBtn.style.display = name === "olimpiadas" ? "none" : "";
+      }
+
+      renderPractice(name);
+    }
+
+    function renderExampleButtons() {
+      Object.keys(modules).forEach(moduleName => {
+        if (moduleName === "olimpiadas") return;
+
+        const container = document.getElementById("examples-" + moduleName);
+        if (!container) return;
+
+        container.innerHTML = "";
+
+        modules[moduleName].examples.forEach((text, index) => {
+          const card = document.createElement("div");
+          card.className = "audio-card";
+
+          const label = document.createElement("div");
+          label.className = "audio-label";
+          label.textContent = "Ejemplo " + (index + 1);
+
+          const button = document.createElement("button");
+          button.className = "audio-btn";
+          button.textContent = "🔊 Escuchar";
+          button.addEventListener("click", () => speakText(text));
+
+          card.appendChild(label);
+          card.appendChild(button);
+          container.appendChild(card);
+        });
+      });
+    }
+
+    function renderPractice(moduleName) {
+      const data = modules[moduleName];
+      const target = document.getElementById("practice-" + moduleName);
+      if (!target) return;
+
+      const questionIndex = state.index[moduleName];
+      const question = data.questions[questionIndex];
+
+      target.innerHTML = "";
+
+      if (!question) {
+        const title = document.createElement("div");
+        title.className = "question-title";
+        title.textContent = "🎉 Terminaste este módulo";
+
+        const msg = document.createElement("div");
+        msg.className = "feedback good";
+        msg.textContent = "Muy bien. Puedes pasar al siguiente módulo o volver a practicar.";
+
+        const controls = document.createElement("div");
+        controls.className = "controls";
+
+        const restartBtn = document.createElement("button");
+        restartBtn.className = "main-btn";
+        restartBtn.textContent = "Practicar otra vez";
+        restartBtn.addEventListener("click", () => restartModule(moduleName));
+
+        const nextBtn = document.createElement("button");
+        nextBtn.className = "main-btn secondary";
+        nextBtn.textContent = "Siguiente módulo";
+        nextBtn.addEventListener("click", () => goNextModule(moduleName));
+
+        controls.appendChild(restartBtn);
+        controls.appendChild(nextBtn);
+        target.appendChild(title);
+        target.appendChild(msg);
+        target.appendChild(controls);
+        return;
+      }
+
+      const title = document.createElement("div");
+      title.className = "question-title";
+      title.textContent = `Ejercicio ${questionIndex + 1} de ${data.questions.length}`;
+
+      const prompt = document.createElement("div");
+      prompt.className = "question-text";
+      prompt.textContent = question.prompt;
+
+      const word = document.createElement("div");
+      word.className = "big-word";
+      word.textContent = question.word || "";
+
+      const options = document.createElement("div");
+      options.className = "options";
+
+      const optionList = [...question.options];
+      shuffleArray(optionList);
+
+      optionList.forEach(option => {
+        const btn = document.createElement("button");
+        btn.className = "option-btn";
+        btn.textContent = option;
+        btn.addEventListener("click", () => checkAnswer(moduleName, option, btn));
+        options.appendChild(btn);
+      });
+
+      const feedback = document.createElement("div");
+      feedback.className = "feedback";
+      feedback.id = "feedback-" + moduleName;
+
+      const controls = document.createElement("div");
+      controls.className = "controls";
+
+      const nextBtn = document.createElement("button");
+      nextBtn.className = "main-btn";
+      nextBtn.textContent = "Siguiente";
+      nextBtn.addEventListener("click", () => nextQuestion(moduleName));
+
+      if (moduleName === "olimpiadas") {
+        const shareBtn = document.createElement("button");
+        shareBtn.className = "main-btn secondary";
+        shareBtn.textContent = "📤 Compartir app";
+        shareBtn.addEventListener("click", () => shareApp());
+        controls.appendChild(nextBtn);
+        controls.appendChild(shareBtn);
+      } else {
+        const audioBtn = document.createElement("button");
+        audioBtn.className = "main-btn secondary";
+        audioBtn.textContent = "🔊 Escuchar pregunta";
+        audioBtn.addEventListener("click", () => speakQuestion(moduleName));
+        controls.appendChild(audioBtn);
+        controls.appendChild(nextBtn);
+      }
+
+      target.appendChild(title);
+      target.appendChild(prompt);
+      target.appendChild(word);
+      target.appendChild(options);
+      target.appendChild(feedback);
+      target.appendChild(controls);
+    }
+
+    function checkAnswer(moduleName, answer, btn) {
+      const data = modules[moduleName];
+      const questionIndex = state.index[moduleName];
+      const question = data.questions[questionIndex];
+      const feedback = document.getElementById("feedback-" + moduleName);
+
+      if (!question || !feedback) return;
+      if (state.answered[moduleName].has(questionIndex)) return;
+
+      if (answer === question.answer) {
+        state.answered[moduleName].add(questionIndex);
+        state.correct++;
+        btn.classList.add("correct-choice");
+        feedback.textContent = "✅ Muy bien. " + question.explain;
+        feedback.classList.remove("bad");
+        feedback.classList.add("good");
+        speakText("Muy bien. " + question.explain);
+        disableOptions(moduleName, question.answer);
+        updateProgress();
+      } else {
+        state.wrong++;
+        btn.classList.add("wrong-choice");
+        btn.disabled = true;
+        feedback.textContent = "❌ Aún no. Escucha cuál sílaba suena más fuerte.";
+        feedback.classList.remove("good");
+        feedback.classList.add("bad");
+        speakText("Aún no. Escucha cuál sílaba suena más fuerte.");
+        updateProgress();
+      }
+    }
+
+    function disableOptions(moduleName, correctAnswer) {
+      const target = document.getElementById("practice-" + moduleName);
+      target.querySelectorAll(".option-btn").forEach(button => {
+        button.disabled = true;
+        if (button.textContent === correctAnswer) {
+          button.classList.add("correct-choice");
+        }
+      });
+    }
+
+    function nextQuestion(moduleName) {
+      const questionIndex = state.index[moduleName];
+
+      if (!state.answered[moduleName].has(questionIndex)) {
+        const feedback = document.getElementById("feedback-" + moduleName);
+        if (feedback) {
+          feedback.textContent = "👉 Primero responde correctamente para avanzar.";
+          feedback.classList.remove("good");
+          feedback.classList.add("bad");
+        }
+        speakText("Primero responde correctamente para avanzar.");
+        return;
+      }
+
+      state.index[moduleName]++;
+      renderPractice(moduleName);
+    }
+
+    function restartModule(moduleName) {
+      state.index[moduleName] = 0;
+      state.answered[moduleName] = new Set();
+      renderPractice(moduleName);
+      updateProgress();
+    }
+
+    function goNextModule(moduleName) {
+      const order = ["concepto", "fuerte", "posicion", "acentoTilde", "olimpiadas"];
+      const pos = order.indexOf(moduleName);
+      const next = order[pos + 1] || "olimpiadas";
+      showModule(next);
+    }
+
+    function speakQuestion(moduleName) {
+      const data = modules[moduleName];
+      const question = data.questions[state.index[moduleName]];
+      if (!question) return;
+      speakText(question.prompt + ". Palabra: " + (question.word || "") + ". Opciones: " + question.options.join(", ") + ".");
+    }
+
+    function speakTheory(moduleName) {
+      if (!modules[moduleName]) return;
+      speakText(modules[moduleName].theoryAudio);
+    }
+
+    function speakCurrentTheory() {
+      speakText(modules[state.currentModule].theoryAudio);
+    }
+
+    function speakText(text) {
+      if (!("speechSynthesis" in window)) return;
+
+      const utter = new SpeechSynthesisUtterance(text);
+      const voices = window.speechSynthesis.getVoices();
+
+      const vozPeru = voices.find(v => v.lang === "es-PE");
+      const vozLatam = voices.find(v => v.lang === "es-419");
+      const vozEspanol = voices.find(v => v.lang && v.lang.startsWith("es"));
+
+      utter.voice = vozPeru || vozLatam || vozEspanol || null;
+      utter.lang = "es-PE";
+      utter.rate = 0.88;
+      utter.pitch = 1.02;
+
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utter);
+    }
+
+    function updateProgress() {
+      document.getElementById("correctCount").textContent = state.correct;
+      document.getElementById("wrongCount").textContent = state.wrong;
+
+      const done = Object.values(state.answered).reduce((sum, set) => sum + set.size, 0);
+      document.getElementById("progressText").textContent = `${done}/${state.totalQuestions}`;
+      document.getElementById("progressBar").style.width = ((done / state.totalQuestions) * 100) + "%";
+    }
+
+    function shuffleArray(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+    }
+
+    function shareApp() {
+      const shareData = {
+        title: "Marie Kids - El acento: fuerza de voz",
+        text: "📚 Practica el acento y la fuerza de voz.",
+        url: window.location.href
+      };
+
+      if (navigator.share) {
+        navigator.share(shareData).catch(() => {});
+      } else {
+        navigator.clipboard.writeText(shareData.url);
+        alert("🔗 Link copiado para compartir");
+      }
+    }
+
+    renderExampleButtons();
+    renderPractice("concepto");
+    renderPractice("fuerte");
+    renderPractice("posicion");
+    renderPractice("acentoTilde");
+    renderPractice("olimpiadas");
+    updateProgress();
+  </script>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./service-worker.js").catch(() => {});
+      });
+    }
+  </script>
+</body>
+
+</html>

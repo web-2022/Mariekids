@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Marie Kids • Vocabulario en contexto</title>
+<link rel="manifest" href="manifest.json" />
+<meta name="theme-color" content="#1976d2" />
+<style>
+*{box-sizing:border-box;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body{margin:0;min-height:100vh;background:linear-gradient(145deg,#dbeafe,#e0f2fe);display:flex;justify-content:center;align-items:flex-start;padding:16px}
+.app{width:100%;max-width:760px;background:#fff;border:3px solid #2563eb;border-radius:26px;box-shadow:0 18px 45px rgba(0,0,0,.14);padding:16px;overflow:hidden}
+.brand-header-kids{position:relative;overflow:hidden;padding:10px 12px;border-radius:22px;margin-bottom:14px;background:radial-gradient(circle at 12% 16%,rgba(255,255,255,.58) 0 0,rgba(255,255,255,.58) 6px,transparent 7px),radial-gradient(circle at 86% 20%,rgba(255,255,255,.32) 0 0,rgba(255,255,255,.32) 8px,transparent 9px),linear-gradient(135deg,#0f172a 0%,#1d4ed8 38%,#7c3aed 70%,#f97316 120%);border:1px solid rgba(255,255,255,.88);box-shadow:0 16px 34px rgba(37,99,235,.30),inset 0 1px 0 rgba(255,255,255,.50),inset 0 -18px 40px rgba(15,23,42,.16);color:#fff;cursor:pointer;user-select:none;isolation:isolate;transition:transform .18s ease,filter .18s ease,box-shadow .18s ease}
+.brand-header-kids::before{content:"";position:absolute;inset:-55% -20%;background:linear-gradient(115deg,transparent 0%,transparent 37%,rgba(255,255,255,.30) 46%,transparent 55%,transparent 100%);transform:translateX(-38%) rotate(8deg);animation:headerShine 5.5s ease-in-out infinite;pointer-events:none;z-index:1}
+.brand-header-kids::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,.10) 1px,transparent 1px),linear-gradient(0deg,rgba(255,255,255,.08) 1px,transparent 1px);background-size:24px 24px;opacity:.24;pointer-events:none;z-index:1}
+.brand-row{position:relative;z-index:2;display:grid;grid-template-columns:54px minmax(0,1fr) auto;gap:10px;align-items:center}
+.kids-badge{width:52px;height:52px;border-radius:18px;display:grid;place-items:center;font-size:1.75rem;font-weight:1000;background:radial-gradient(circle at 30% 22%,rgba(255,255,255,.92),rgba(255,255,255,.30) 42%,rgba(255,255,255,.08) 70%),linear-gradient(135deg,rgba(255,255,255,.42),rgba(255,255,255,.12));border:1px solid rgba(255,255,255,.58);box-shadow:0 10px 20px rgba(15,23,42,.18),inset 0 1px 0 rgba(255,255,255,.60)}
+.kids-title{font-weight:1000;font-size:clamp(1.32rem,4vw,1.72rem);line-height:1.02;letter-spacing:.2px;text-shadow:0 3px 10px rgba(15,23,42,.32)}
+.brand-row>div:not(.kids-badge) .kids-title{white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.brand-row>.kids-title:last-child{justify-self:end;font-size:clamp(.82rem,2.4vw,1rem);line-height:1;padding:8px 10px;border-radius:999px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.44);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 8px 18px rgba(15,23,42,.14);text-shadow:0 2px 8px rgba(15,23,42,.28);white-space:nowrap}
+.kids-subtitle{margin-top:5px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:.9rem;font-weight:800;opacity:.98}
+.ruta-pill-btn{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.45);padding:5px 10px;border-radius:999px;font-size:.80rem;font-weight:950;color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 7px 14px rgba(15,23,42,.10);backdrop-filter:blur(8px);cursor:pointer;font-family:inherit;line-height:1.15;transition:transform .18s ease,background .18s ease}
+.ruta-pill-btn:hover{background:rgba(255,255,255,.30);transform:translateY(-1px)}
+.bubble{position:absolute;border-radius:999px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.26);pointer-events:none;animation:floaty 6s ease-in-out infinite;z-index:0;filter:blur(.1px)}
+.b1{left:-22px;top:-26px;width:82px;height:82px}.b2{right:-24px;bottom:-34px;width:92px;height:92px;animation-delay:1s}.b3{left:48%;bottom:-30px;width:50px;height:50px;animation-delay:.6s}
+@keyframes floaty{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-7px) scale(1.04)}}
+@keyframes headerShine{0%,58%,100%{transform:translateX(-46%) rotate(8deg);opacity:0}68%{opacity:.72}84%{transform:translateX(46%) rotate(8deg);opacity:0}}
+h1{margin:0;text-align:center;font-size:clamp(1.45rem,4vw,2rem);color:#111827}
+.subtitle{text-align:center;font-size:.95rem;color:#6b7280;margin:6px 0 14px;font-weight:750}
+.module-tabs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;padding:10px;border-radius:18px;background:#eff6ff;border:1px solid #bfdbfe;margin-bottom:14px}
+.tab-btn{border:1px solid #bfdbfe;background:#fff;border-radius:999px;padding:9px 12px;font-weight:900;cursor:pointer;color:#111827}
+.tab-btn.active{color:#fff;background:linear-gradient(90deg,#60a5fa,#2563eb);border-color:transparent}
+.status-bar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:8px;padding:9px 12px;border-radius:999px;background:#eff6ff;border:1px solid #bfdbfe;font-size:.9rem;flex-wrap:wrap}
+.xp,.hearts{display:flex;align-items:center;gap:4px;font-weight:850}.xp span{color:#16a34a}.hearts span{color:#f97316}
+.progress-wrapper{margin-bottom:14px}.progress-label{display:flex;justify-content:space-between;font-size:.82rem;color:#6b7280;margin-bottom:5px;font-weight:800}.progress{width:100%;height:11px;background:#e5e7eb;border-radius:999px;overflow:hidden}.progress-inner{height:100%;width:0%;border-radius:999px;background:linear-gradient(90deg,#60a5fa,#2563eb);transition:width .2s ease}
+.module{display:none}.module.active{display:block}
+.panel{border-radius:22px;padding:14px;margin-bottom:12px;border:1px solid #e5e7eb;background:#f9fafb}
+.panel-title{margin:0 0 8px;color:#111827;font-weight:1000;font-size:1.15rem;display:flex;align-items:center;gap:8px}
+.theory{background:#eff6ff;border-color:#bfdbfe}.examples{background:#f0fdf4;border-color:#bbf7d0}.practice{background:#fff7ed;border-color:#fed7aa}
+
+.audio-small-btn{
+  border:none;
+  border-radius:999px;
+  padding:10px 14px;
+  color:#fff;
+  font-weight:950;
+  cursor:pointer;
+  background:linear-gradient(90deg,#22c55e,#16a34a);
+  box-shadow:0 8px 14px rgba(22,163,74,.18);
+}
+.audio-small-btn:hover{
+  transform:translateY(-1px);
+  filter:brightness(1.04);
+}
+.audio-small-btn.purple{
+  background:linear-gradient(90deg,#a78bfa,#7c3aed);
+  box-shadow:0 8px 14px rgba(124,58,237,.18);
+}
+
+.no-audio-badge{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:8px 12px;border-radius:999px;background:#fef2f2;color:#991b1b;border:1px solid #fecaca;font-weight:950;margin:6px auto 12px}
+.theory-audio-row{display:flex;justify-content:center;margin:8px 0 12px}
+.rule{padding:12px;border-radius:16px;background:#fff;border:1px solid #bfdbfe;color:#374151;font-weight:760;line-height:1.45;margin-bottom:10px}
+.theory-header{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:8px 0 12px}
+.rule-card{border-radius:18px;padding:12px;background:#fff;border:2px solid #e5e7eb;font-weight:820;line-height:1.38}
+.rule-card.dip{border-color:#86efac;background:linear-gradient(145deg,#ffffff,#f0fdf4);color:#166534}.rule-card.hia{border-color:#fdba74;background:linear-gradient(145deg,#ffffff,#fff7ed);color:#9a3412}
+.rule-card-title{font-size:1.04rem;font-weight:1000;margin-bottom:6px}.rule-card-text{color:#374151;font-weight:820;line-height:1.38;font-size:.95rem}
+.steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:10px}.step{background:#fff;border:1px solid #dbeafe;border-radius:16px;padding:10px;font-weight:850;color:#374151}
+.chip-row{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;margin:12px 0}.chip{background:#fff;border:2px solid #dbeafe;color:#1e3a8a;border-radius:18px;padding:11px 16px;font-size:1.25rem;font-weight:1000;box-shadow:0 8px 14px rgba(37,99,235,.08)}
+.visual-note{background:#fff;border:1px solid #bbf7d0;border-radius:16px;padding:12px;color:#166534;font-weight:850;line-height:1.45;margin-bottom:12px;text-align:center}
+.legend{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:8px}.legend-pill{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;font-weight:1000;font-size:.86rem}.legend-pill.green{background:#dcfce7;color:#166534;border:1px solid #22c55e}.legend-pill.orange{background:#ffedd5;color:#9a3412;border:1px solid #f97316}
+.visual-examples-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:10px}
+.image-card{background:#fff;border:2px solid #bfdbfe;border-radius:20px;padding:14px;text-align:center;box-shadow:0 10px 18px rgba(37,99,235,.08)}
+.image-card.look{border-color:#93c5fd;background:linear-gradient(145deg,#ffffff,#eff6ff)}.image-card.match{border-color:#86efac;background:linear-gradient(145deg,#ffffff,#f0fdf4)}.image-card.check{border-color:#fdba74;background:linear-gradient(145deg,#ffffff,#fff7ed)}
+.image-emoji{font-size:2.5rem;line-height:1.1;margin-bottom:8px}.image-title{font-size:1.18rem;font-weight:1000;color:#1e3a8a;margin-bottom:8px}.image-chip{display:inline-flex;align-items:center;justify-content:center;padding:8px 12px;border-radius:15px;border:2px solid #bfdbfe;background:#eff6ff;color:#1e3a8a;font-weight:1000;margin:5px}.image-chip.good{border-color:#22c55e;background:#dcfce7;color:#166534}.image-chip.warn{border-color:#f97316;background:#ffedd5;color:#9a3412}
+.mini-explain{margin-top:8px;color:#4b5563;font-weight:800;line-height:1.35;font-size:.94rem}
+.question-card{background:#fff;border:1px solid #fed7aa;border-radius:18px;padding:12px}
+.question-title{font-weight:1000;color:#7c2d12;text-align:center;margin-bottom:10px;font-size:1.03rem}.question-text{text-align:center;font-size:1.13rem;font-weight:1000;color:#111827;margin:8px 0;line-height:1.35}.big-word{text-align:center;font-size:clamp(1.45rem,5vw,2.25rem);font-weight:1000;color:#1e3a8a;margin:8px 0 2px;line-height:1.25}
+.options{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.option-btn{flex:1;min-width:120px;border-radius:16px;border:1px solid #d1d5db;background:#fff;padding:11px 10px;font-size:1.04rem;cursor:pointer;font-weight:950}.option-btn.correct-choice{background:#dcfce7;border-color:#22c55e;color:#166534;opacity:1}.option-btn.wrong-choice{background:#fee2e2;border-color:#ef4444;color:#991b1b}.option-btn:disabled{cursor:default;opacity:.65}
+.feedback{margin-top:10px;text-align:center;min-height:22px;font-weight:900;line-height:1.3}.feedback.good{color:#16a34a}.feedback.bad{color:#ef4444}
+.controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.main-btn{flex:1;min-width:130px;border:none;border-radius:999px;padding:11px 14px;color:#fff;font-weight:950;cursor:pointer;background:linear-gradient(90deg,#60a5fa,#2563eb)}.main-btn.secondary{background:linear-gradient(90deg,#a78bfa,#7c3aed)}.summary-box{padding:12px;border-radius:18px;background:#ecfeff;border:2px solid #67e8f9;color:#155e75;font-weight:850;line-height:1.45}
+@media(max-width:560px){body{padding:12px}.app{padding:13px}.brand-header-kids{padding:9px 9px;border-radius:20px}.brand-row{grid-template-columns:46px minmax(0,1fr) auto;gap:8px}.kids-badge{width:44px;height:44px;border-radius:15px;font-size:1.45rem}.kids-title{font-size:1.18rem}.kids-subtitle{margin-top:4px}.ruta-pill-btn{padding:4px 8px;font-size:.72rem}.brand-row>.kids-title:last-child{font-size:.74rem;padding:7px 8px}.steps,.theory-header,.visual-examples-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="app">
+<div class="brand-header-kids" aria-label="Marie Kids" role="link" tabindex="0" onclick="goHome()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();goHome();}">
+<div class="bubble b1"></div><div class="bubble b2"></div><div class="bubble b3"></div>
+<div class="brand-row">
+<div class="kids-badge" aria-hidden="true">🌈</div>
+<div><div class="kids-title">Marie Kids</div><div class="kids-subtitle"><button class="ruta-pill-btn" type="button" onclick="event.stopPropagation(); goRuta();">🧭 Ruta de Aprendizaje</button></div></div>
+<div class="kids-title">1 Primaria</div>
+</div>
+</div>
+<h1>Tema 34: Vocabulario en contexto</h1>
+<p class="subtitle">Aprende a descubrir el significado de una palabra usando las pistas de la oración.</p>
+<div class="module-tabs" aria-label="Módulos de la lección" id="tabs"></div>
+<div class="status-bar"><div class="xp">✅ Correctas: <span id="correctCount">0</span></div><div class="hearts">🧠 Por mejorar: <span id="wrongCount">0</span></div></div>
+<div class="progress-wrapper"><div class="progress-label"><span>Progreso general</span><span id="progressText">0/60</span></div><div class="progress"><div class="progress-inner" id="progressBar"></div></div></div>
+<div id="modulesContainer"></div>
+</div>
+<script>
+function goHome(){location.href="index.html";}
+function goRuta(){location.href="ruta-comunicaciones.html";}
+const modules = {"contexto": {"tab": "1. Contexto", "title": "🔎 1. ¿Qué es el contexto?", "theory": "El contexto son las palabras que acompañan a una palabra difícil. Nos ayudan a descubrir su significado.", "demo": ["Leo", "Observo", "Busco pistas", "Entiendo"], "steps": ["Leo toda la oración.", "Busco palabras que den pistas.", "Pienso qué significado tiene más sentido.", "Marco la respuesta correcta."], "examples": ["La mochila estaba repleta de libros. → repleta significa llena.", "El niño estaba agotado después de correr. → agotado significa cansado.", "La sopa estaba caliente. → caliente significa con mucho calor.", "El perro era veloz y ganó la carrera. → veloz significa rápido."], "questions": [{"prompt": "Según la oración, ¿qué significa repleta?", "word": "La mochila estaba repleta de libros.", "answer": "llena", "options": ["vacía", "llena", "rota", "nueva"], "explain": "Repleta significa llena."}, {"prompt": "Según la oración, ¿qué significa agotado?", "word": "El niño estaba agotado después de correr.", "answer": "cansado", "options": ["cansado", "feliz", "pequeño", "limpio"], "explain": "Después de correr, agotado significa cansado."}, {"prompt": "Según la oración, ¿qué significa caliente?", "word": "La sopa estaba caliente.", "answer": "con mucho calor", "options": ["fría", "con mucho calor", "vacía", "rápida"], "explain": "Caliente significa con mucho calor."}, {"prompt": "Según la oración, ¿qué significa veloz?", "word": "El perro era veloz y ganó la carrera.", "answer": "rápido", "options": ["lento", "rápido", "triste", "pequeño"], "explain": "Veloz significa rápido."}, {"prompt": "Según la oración, ¿qué significa diminuto?", "word": "El insecto era diminuto y casi no se veía.", "answer": "muy pequeño", "options": ["muy grande", "muy pequeño", "muy pesado", "muy largo"], "explain": "Diminuto significa muy pequeño."}, {"prompt": "Según la oración, ¿qué significa enorme?", "word": "El elefante es un animal enorme.", "answer": "muy grande", "options": ["muy grande", "muy pequeño", "muy frío", "muy delgado"], "explain": "Enorme significa muy grande."}, {"prompt": "Según la oración, ¿qué significa furioso?", "word": "El león estaba furioso y rugía fuerte.", "answer": "enojado", "options": ["alegre", "enojado", "dormido", "pequeño"], "explain": "Furioso significa enojado."}, {"prompt": "Según la oración, ¿qué significa brillante?", "word": "La estrella era brillante en el cielo.", "answer": "que da luz", "options": ["que da luz", "que duerme", "que corre", "que pesa"], "explain": "Brillante significa que da luz."}, {"prompt": "Según la oración, ¿qué significa sabroso?", "word": "El pastel estaba sabroso y todos pidieron más.", "answer": "rico", "options": ["feo", "rico", "duro", "sucio"], "explain": "Sabroso significa rico."}, {"prompt": "Según la oración, ¿qué significa oscuro?", "word": "La habitación estaba oscura y no se veía nada.", "answer": "sin luz", "options": ["con mucha luz", "sin luz", "llena", "limpia"], "explain": "Oscura significa sin luz."}]}, "pistas": {"tab": "2. Pistas", "title": "🧩 2. Pistas en la oración", "theory": "Las pistas son palabras que nos ayudan a entender una palabra desconocida. Pueden ser acciones, objetos o ideas cercanas.", "demo": ["Palabra clave", "Pista", "Sentido", "Respuesta"], "steps": ["Encuentro la palabra difícil.", "Busco una pista cercana.", "Comparo las opciones.", "Elijo la que mejor encaja."], "examples": ["El vaso se rompió al caer. → rompió significa quebró.", "Ana susurró para no despertar al bebé. → susurró significa habló bajito.", "El suelo estaba mojado por la lluvia. → mojado significa con agua.", "Pedro sonrió porque estaba contento. → sonrió es una pista de alegría."], "questions": [{"prompt": "Busca la pista y marca el significado de rompió.", "word": "El vaso se rompió al caer.", "answer": "quebró", "options": ["saltó", "quebró", "cantó", "durmió"], "explain": "Si un vaso cae y se rompe, se quiebra."}, {"prompt": "Busca la pista y marca el significado de susurró.", "word": "Ana susurró para no despertar al bebé.", "answer": "habló bajito", "options": ["gritó", "habló bajito", "corrió", "saltó"], "explain": "Para no despertar al bebé, Ana habló bajito."}, {"prompt": "Busca la pista y marca el significado de mojado.", "word": "El suelo estaba mojado por la lluvia.", "answer": "con agua", "options": ["con agua", "con fuego", "con polvo", "con flores"], "explain": "La lluvia deja el suelo con agua."}, {"prompt": "Busca la pista y marca el significado de contento.", "word": "Pedro sonrió porque estaba contento.", "answer": "alegre", "options": ["triste", "alegre", "enfermo", "dormido"], "explain": "Sonreír es pista de estar alegre."}, {"prompt": "Busca la pista y marca el significado de hambriento.", "word": "El niño estaba hambriento y pidió comida.", "answer": "con hambre", "options": ["con sueño", "con hambre", "con frío", "con miedo"], "explain": "Pedir comida es pista de hambre."}, {"prompt": "Busca la pista y marca el significado de sediento.", "word": "El perro estaba sediento y tomó agua.", "answer": "con sed", "options": ["con sed", "con sueño", "con frío", "con miedo"], "explain": "Tomar agua es pista de sed."}, {"prompt": "Busca la pista y marca el significado de veloz.", "word": "La liebre fue veloz y llegó primero.", "answer": "rápida", "options": ["lenta", "rápida", "pequeña", "fría"], "explain": "Llegar primero es pista de rapidez."}, {"prompt": "Busca la pista y marca el significado de silencioso.", "word": "El salón estaba silencioso; nadie hablaba.", "answer": "sin ruido", "options": ["con música", "sin ruido", "con gritos", "con juegos"], "explain": "Si nadie hablaba, estaba sin ruido."}, {"prompt": "Busca la pista y marca el significado de asustado.", "word": "El niño vio un trueno y estaba asustado.", "answer": "con miedo", "options": ["con hambre", "con miedo", "contento", "rápido"], "explain": "El trueno puede causar miedo."}, {"prompt": "Busca la pista y marca el significado de limpio.", "word": "Después de lavar la mesa, quedó limpia.", "answer": "sin suciedad", "options": ["sin suciedad", "rota", "llena", "oscura"], "explain": "Lavar deja las cosas sin suciedad."}]}, "significado": {"tab": "3. Significado", "title": "📚 3. Elegir el significado correcto", "theory": "Una palabra puede entenderse mejor cuando vemos toda la oración. Debemos elegir el significado que encaja mejor.", "demo": ["Palabra", "Oración", "Opciones", "Significado"], "steps": ["Leo la palabra destacada.", "Leo la oración completa.", "Descarto opciones que no tienen sentido.", "Marco el significado correcto."], "examples": ["El ave voló muy alto. → alto significa arriba.", "La niña usó un abrigo porque hacía frío. → abrigo es ropa para calentarse.", "El camino era largo. → largo significa extenso.", "El pan estaba duro. → duro significa difícil de morder."], "questions": [{"prompt": "Elige el significado correcto de alto.", "word": "El ave voló muy alto.", "answer": "arriba", "options": ["abajo", "arriba", "pequeño", "corto"], "explain": "Alto significa arriba en esta oración."}, {"prompt": "Elige el significado correcto de abrigo.", "word": "La niña usó un abrigo porque hacía frío.", "answer": "ropa para calentarse", "options": ["juguete", "ropa para calentarse", "comida", "animal"], "explain": "El abrigo ayuda cuando hace frío."}, {"prompt": "Elige el significado correcto de largo.", "word": "El camino era largo.", "answer": "extenso", "options": ["corto", "extenso", "frío", "rojo"], "explain": "Largo significa extenso."}, {"prompt": "Elige el significado correcto de duro.", "word": "El pan estaba duro.", "answer": "difícil de morder", "options": ["suave", "dulce", "difícil de morder", "caliente"], "explain": "Si el pan está duro, cuesta morderlo."}, {"prompt": "Elige el significado correcto de fresco.", "word": "Tomé agua fresca después de jugar.", "answer": "fría y agradable", "options": ["muy caliente", "fría y agradable", "seca", "dura"], "explain": "Agua fresca es fría y agradable."}, {"prompt": "Elige el significado correcto de temprano.", "word": "Llegamos temprano al colegio.", "answer": "antes de la hora", "options": ["después de la hora", "antes de la hora", "con sueño", "con hambre"], "explain": "Temprano significa antes de la hora."}, {"prompt": "Elige el significado correcto de tarde.", "word": "Llegamos tarde y la clase ya empezó.", "answer": "después de la hora", "options": ["antes de la hora", "después de la hora", "muy rápido", "muy alto"], "explain": "Tarde significa después de la hora."}, {"prompt": "Elige el significado correcto de suave.", "word": "La almohada era suave.", "answer": "blanda", "options": ["dura", "blanda", "pesada", "sucia"], "explain": "Suave significa blanda."}, {"prompt": "Elige el significado correcto de vacío.", "word": "El vaso estaba vacío.", "answer": "sin nada", "options": ["lleno", "sin nada", "roto", "pesado"], "explain": "Vacío significa sin nada."}, {"prompt": "Elige el significado correcto de lleno.", "word": "El plato estaba lleno de arroz.", "answer": "con mucha cantidad", "options": ["sin comida", "con mucha cantidad", "roto", "pequeño"], "explain": "Lleno significa con mucha cantidad."}]}, "completar": {"tab": "4. Completar", "title": "✍️ 4. Completar según el contexto", "theory": "Para completar una oración, debo elegir la palabra que encaja mejor con la idea.", "demo": ["Leo", "Completo", "Reviso", "Marco"], "steps": ["Leo la oración incompleta.", "Pienso qué palabra falta.", "Pruebo cada opción.", "Elijo la opción con sentido."], "examples": ["Tengo sed, quiero tomar ___. → agua.", "Tengo sueño, quiero ___. → dormir.", "Hace frío, uso una ___. → casaca.", "El perro ladra muy ___. → fuerte."], "questions": [{"prompt": "Completa según el contexto.", "word": "Tengo sed, quiero tomar ___.", "answer": "agua", "options": ["pan", "agua", "lápiz", "pelota"], "explain": "Cuando tenemos sed, tomamos agua."}, {"prompt": "Completa según el contexto.", "word": "Tengo sueño, quiero ___.", "answer": "dormir", "options": ["dormir", "correr", "comer", "pintar"], "explain": "Cuando tenemos sueño, queremos dormir."}, {"prompt": "Completa según el contexto.", "word": "Hace frío, uso una ___.", "answer": "casaca", "options": ["casaca", "sandía", "pelota", "flor"], "explain": "La casaca ayuda cuando hace frío."}, {"prompt": "Completa según el contexto.", "word": "El perro ladra muy ___.", "answer": "fuerte", "options": ["fuerte", "dulce", "azul", "redondo"], "explain": "El ladrido puede ser fuerte."}, {"prompt": "Completa según el contexto.", "word": "El bebé tiene hambre, quiere ___.", "answer": "leche", "options": ["leche", "piedra", "silla", "lápiz"], "explain": "Un bebé con hambre puede querer leche."}, {"prompt": "Completa según el contexto.", "word": "El sol brilla en el ___.", "answer": "cielo", "options": ["cielo", "zapato", "vaso", "cuaderno"], "explain": "El sol brilla en el cielo."}, {"prompt": "Completa según el contexto.", "word": "El pez nada en el ___.", "answer": "agua", "options": ["árbol", "agua", "plato", "techo"], "explain": "El pez nada en el agua."}, {"prompt": "Completa según el contexto.", "word": "La abeja vuela cerca de la ___.", "answer": "flor", "options": ["flor", "sopa", "cama", "piedra"], "explain": "La abeja se relaciona con la flor."}, {"prompt": "Completa según el contexto.", "word": "El lápiz sirve para ___.", "answer": "escribir", "options": ["dormir", "escribir", "nadar", "cocinar"], "explain": "El lápiz sirve para escribir."}, {"prompt": "Completa según el contexto.", "word": "La escoba sirve para ___.", "answer": "barrer", "options": ["barrer", "leer", "beber", "saltar"], "explain": "La escoba sirve para barrer."}]}, "olimpiadas": {"tab": "🏅 5. Olimpiadas", "title": "🏅 5. Olimpiadas", "theory": "", "demo": [], "steps": [], "examples": [], "questions": [{"prompt": "Nivel 1. Según la oración, ¿qué significa grande?", "word": "El elefante es un animal grande.", "answer": "enorme", "options": ["enorme", "pequeño", "delgado", "vacío", "oscuro"], "explain": "Grande significa enorme."}, {"prompt": "Nivel 1. Según la oración, ¿qué significa pequeño?", "word": "El botón era pequeño y casi no se veía.", "answer": "diminuto", "options": ["diminuto", "gigante", "pesado", "fuerte", "caliente"], "explain": "Pequeño significa diminuto."}, {"prompt": "Nivel 1. Completa según el contexto.", "word": "Tengo sed, quiero tomar ___.", "answer": "agua", "options": ["agua", "pan", "lápiz", "pelota", "zapato"], "explain": "Cuando tenemos sed, tomamos agua."}, {"prompt": "Nivel 1. Completa según el contexto.", "word": "Tengo sueño, quiero ___.", "answer": "dormir", "options": ["dormir", "correr", "comer", "pintar", "barrer"], "explain": "Cuando tenemos sueño, queremos dormir."}, {"prompt": "Nivel 2. Según el contexto, ¿qué significa repleta?", "word": "La mochila estaba repleta de libros.", "answer": "llena", "options": ["llena", "vacía", "rota", "nueva", "limpia"], "explain": "Repleta significa llena."}, {"prompt": "Nivel 2. Según el contexto, ¿qué significa agotado?", "word": "El niño estaba agotado después de correr.", "answer": "cansado", "options": ["cansado", "feliz", "limpio", "rápido", "nuevo"], "explain": "Después de correr, agotado significa cansado."}, {"prompt": "Nivel 2. Completa según el contexto.", "word": "Hace frío, uso una ___.", "answer": "casaca", "options": ["casaca", "sandía", "pelota", "flor", "vaso"], "explain": "La casaca ayuda cuando hace frío."}, {"prompt": "Nivel 2. Completa según el contexto.", "word": "El pez nada en el ___.", "answer": "agua", "options": ["agua", "árbol", "plato", "techo", "zapato"], "explain": "El pez nada en el agua."}, {"prompt": "Nivel 3. Busca la pista y marca el significado de susurró.", "word": "Ana susurró para no despertar al bebé.", "answer": "habló bajito", "options": ["habló bajito", "gritó", "corrió", "saltó", "cantó fuerte"], "explain": "Para no despertar al bebé, Ana habló bajito."}, {"prompt": "Nivel 3. Busca la pista y marca el significado de mojado.", "word": "El suelo estaba mojado por la lluvia.", "answer": "con agua", "options": ["con agua", "con fuego", "con polvo", "con flores", "con arena"], "explain": "La lluvia deja el suelo con agua."}, {"prompt": "Nivel 3. Según el contexto, ¿qué significa veloz?", "word": "La liebre fue veloz y llegó primero.", "answer": "rápida", "options": ["rápida", "lenta", "pequeña", "fría", "triste"], "explain": "Llegar primero es pista de rapidez."}, {"prompt": "Nivel 3. Según el contexto, ¿qué significa hambriento?", "word": "El gato estaba hambriento y buscaba comida.", "answer": "con hambre", "options": ["con hambre", "con sueño", "con frío", "con miedo", "con sed"], "explain": "Buscar comida es pista de hambre."}, {"prompt": "Nivel 4. Elige el significado correcto de temprano.", "word": "Llegamos temprano al colegio.", "answer": "antes de la hora", "options": ["antes de la hora", "después de la hora", "con sueño", "con hambre", "muy lejos"], "explain": "Temprano significa antes de la hora."}, {"prompt": "Nivel 4. Elige el significado correcto de tarde.", "word": "Llegamos tarde y la clase ya empezó.", "answer": "después de la hora", "options": ["después de la hora", "antes de la hora", "muy rápido", "muy alto", "muy suave"], "explain": "Tarde significa después de la hora."}, {"prompt": "Nivel 4. Según el contexto, ¿qué significa silenciosa?", "word": "La habitación estaba silenciosa; nadie hablaba.", "answer": "sin ruido", "options": ["sin ruido", "con ruido", "con lluvia", "con comida", "con agua"], "explain": "Si nadie habla, hay silencio."}, {"prompt": "Nivel 4. Según el contexto, ¿qué significa vacío?", "word": "El cajón estaba vacío; no tenía juguetes.", "answer": "sin nada", "options": ["sin nada", "lleno", "roto", "nuevo", "pesado"], "explain": "Vacío significa sin nada."}, {"prompt": "Nivel 5. Según el contexto, ¿qué significa brillante?", "word": "La estrella era brillante en el cielo oscuro.", "answer": "que da luz", "options": ["que da luz", "que duerme", "que corre", "que pesa", "que come"], "explain": "Brillante significa que da luz."}, {"prompt": "Nivel 5. Según el contexto, ¿qué significa furioso?", "word": "El león estaba furioso y rugía muy fuerte.", "answer": "enojado", "options": ["enojado", "alegre", "dormido", "pequeño", "tranquilo"], "explain": "Furioso significa enojado."}, {"prompt": "Nivel 5. Completa según el contexto.", "word": "El lápiz sirve para ___ y la escoba sirve para ___.", "answer": "escribir / barrer", "options": ["escribir / barrer", "dormir / beber", "nadar / leer", "cocinar / saltar", "cantar / pintar"], "explain": "El lápiz sirve para escribir y la escoba sirve para barrer."}, {"prompt": "Nivel 5. Según el contexto, ¿qué significa sabroso?", "word": "El jugo estaba sabroso y todos querían tomar más.", "answer": "rico", "options": ["rico", "amargo", "duro", "sucio", "oscuro"], "explain": "Sabroso significa rico."}]}};
+const order = ["contexto","pistas","significado","completar","olimpiadas"];
+const state = {currentModule:"contexto",index:Object.fromEntries(order.map(k=>[k,0])),answered:Object.fromEntries(order.map(k=>[k,new Set()])),correct:0,wrong:0,totalQuestions:60};
+const exampleCards = {
+"La mochila estaba repleta de libros. → repleta significa llena.":{icon:"🎒📚",kind:"look",title:"Contexto",chips:["repleta","llena"],explain:"La pista son los libros dentro de la mochila."},
+"El niño estaba agotado después de correr. → agotado significa cansado.":{icon:"🏃‍♂️😴",kind:"look",title:"Contexto",chips:["agotado","cansado"],explain:"Después de correr, puede estar cansado."},
+"La sopa estaba caliente. → caliente significa con mucho calor.":{icon:"🍲♨️",kind:"match",title:"Pista",chips:["caliente","calor"],explain:"La sopa caliente tiene mucho calor."},
+"El perro era veloz y ganó la carrera. → veloz significa rápido.":{icon:"🐶🏁",kind:"match",title:"Pista",chips:["veloz","rápido"],explain:"Ganar una carrera es pista de rapidez."},
+"El vaso se rompió al caer. → rompió significa quebró.":{icon:"🥛💥",kind:"check",title:"Pista",chips:["rompió","quebró"],explain:"Si cae y se rompe, se quiebra."},
+"Ana susurró para no despertar al bebé. → susurró significa habló bajito.":{icon:"🤫👶",kind:"check",title:"Pista",chips:["susurró","habló bajito"],explain:"Para no despertar, se habla bajito."},
+"El suelo estaba mojado por la lluvia. → mojado significa con agua.":{icon:"🌧️💧",kind:"check",title:"Pista",chips:["mojado","con agua"],explain:"La lluvia deja agua en el suelo."},
+"Pedro sonrió porque estaba contento. → sonrió es una pista de alegría.":{icon:"😊",kind:"match",title:"Pista",chips:["sonrió","alegre"],explain:"Sonreír indica alegría."},
+"El ave voló muy alto. → alto significa arriba.":{icon:"🐦⬆️",kind:"look",title:"Significado",chips:["alto","arriba"],explain:"El ave está arriba."},
+"La niña usó un abrigo porque hacía frío. → abrigo es ropa para calentarse.":{icon:"🧥❄️",kind:"look",title:"Significado",chips:["abrigo","frío"],explain:"El abrigo ayuda cuando hace frío."},
+"El camino era largo. → largo significa extenso.":{icon:"🛣️",kind:"match",title:"Significado",chips:["largo","extenso"],explain:"Un camino largo tiene mucha distancia."},
+"El pan estaba duro. → duro significa difícil de morder.":{icon:"🍞",kind:"check",title:"Significado",chips:["duro","difícil de morder"],explain:"El pan duro cuesta morder."},
+"Tengo sed, quiero tomar ___. → agua.":{icon:"💧",kind:"match",title:"Completar",chips:["sed","agua"],explain:"Cuando hay sed, se toma agua."},
+"Tengo sueño, quiero ___. → dormir.":{icon:"😴",kind:"match",title:"Completar",chips:["sueño","dormir"],explain:"Cuando hay sueño, queremos dormir."},
+"Hace frío, uso una ___. → casaca.":{icon:"🧥",kind:"look",title:"Completar",chips:["frío","casaca"],explain:"La casaca abriga."},
+"El perro ladra muy ___. → fuerte.":{icon:"🐶🔊",kind:"check",title:"Completar",chips:["ladra","fuerte"],explain:"El ladrido puede ser fuerte."}
+};
+function visualExampleHTML(text){
+const item=exampleCards[text]||{icon:"🖼️",kind:"look",title:"Observa",chips:[text],explain:"Lee con atención y busca las pistas del contexto."};
+const chipClass=item.kind==="check"?"warn":"good";
+return `<div class="image-card ${item.kind}"><div class="image-emoji">${item.icon}</div><div class="image-title">${item.title}</div><div>${item.chips.map(x=>`<span class="image-chip ${chipClass}">${x}</span>`).join("")}</div><div class="mini-explain">${item.explain}</div></div>`;
+}
+function buildTheoryHeader(){return `<div class="theory-header"><div class="rule-card dip"><div class="rule-card-title">🔎 Contexto</div><div class="rule-card-text">Leo la oración completa y busco pistas.</div></div><div class="rule-card hia"><div class="rule-card-title">🧩 Pistas</div><div class="rule-card-text">Elijo el significado que mejor encaja.</div></div></div>`;}
+
+function cleanForSpeech(text){
+  return String(text || "")
+    .replace(/<[^>]+>/g," ")
+    .replace(/[^\wáéíóúÁÉÍÓÚñÑüÜ¿?.,;:¡! ]/g," ")
+    .replace(/→/g," se lee ")
+    .replace(/·/g,". ")
+    .replace(/\s+/g," ")
+    .trim();
+}
+
+function speakText(text){
+  if(!("speechSynthesis" in window)){
+    alert("Tu navegador no permite audio automático.");
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(cleanForSpeech(text));
+  const voices = window.speechSynthesis.getVoices();
+  u.voice = voices.find(v => v.lang === "es-PE")
+    || voices.find(v => v.lang === "es-419")
+    || voices.find(v => v.lang && v.lang.startsWith("es"))
+    || null;
+  u.lang = "es-PE";
+  u.rate = 0.88;
+  u.pitch = 1.02;
+  window.speechSynthesis.speak(u);
+}
+
+function speakTheory(moduleName){
+  const m = modules[moduleName];
+  if(!m) return;
+  const text = [
+    m.title,
+    m.theory,
+    "Pasos:",
+    ...(m.steps || [])
+  ].join(". ");
+  speakText(text);
+}
+
+function speakExamples(moduleName){
+  const m = modules[moduleName];
+  if(!m) return;
+  const text = [
+    "Ejemplos visuales del módulo.",
+    ...(m.examples || [])
+  ].join(". ");
+  speakText(text);
+}
+
+function buildPage(){
+const tabs=document.getElementById("tabs"),cont=document.getElementById("modulesContainer");
+order.forEach((name,i)=>{
+const b=document.createElement("button");b.className="tab-btn"+(i===0?" active":"");b.id="tab-"+name;b.textContent=modules[name].tab;b.onclick=()=>showModule(name);tabs.appendChild(b);
+const s=document.createElement("section");s.className="module"+(i===0?" active":"");s.id="module-"+name;
+if(name==="olimpiadas"){s.innerHTML=`<div class="panel practice"><h2 class="panel-title">${modules[name].title}</h2><div class="summary-box" style="margin-bottom:12px;">Prueba de nivel interescolar: 20 ejercicios de menor a mayor nivel sobre vocabulario en contexto.</div><div class="question-card" id="practice-${name}"></div></div>`;}
+else{s.innerHTML=`<div class="panel theory"><h2 class="panel-title">${modules[name].title}</h2><div class="theory-audio-row"><button class="audio-small-btn" onclick="speakTheory(\'${name}\')">🔊 Escuchar teoría</button></div>${buildTheoryHeader()}<div class="rule">${modules[name].theory}</div><div class="chip-row">${modules[name].demo.map(x=>`<span class="chip">${x}</span>`).join("")}</div><div class="steps">${modules[name].steps.map((x,j)=>`<div class="step">${j+1}️⃣ ${x}</div>`).join("")}</div></div><div class="panel examples"><h2 class="panel-title">👀 Ejemplos visuales</h2><div class="visual-note">Lee la oración y encuentra las pistas del contexto:<div class="legend"><span class="legend-pill green">Verde = significado</span><span class="legend-pill orange">Naranja = pista clave</span></div></div><div class="theory-audio-row"><button class="audio-small-btn purple" onclick="speakExamples(\'${name}\')">🔊 Escuchar explicación de imágenes</button></div><div class="visual-examples-grid" id="examples-${name}"></div></div><div class="panel practice"><h2 class="panel-title">✏️ 10 ejercicios</h2><div class="question-card" id="practice-${name}"></div></div>`;}
+cont.appendChild(s);
+});
+}
+function showModule(name){state.currentModule=name;document.querySelectorAll(".module").forEach(m=>m.classList.remove("active"));document.getElementById("module-"+name).classList.add("active");document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));document.getElementById("tab-"+name).classList.add("active");renderPractice(name);}
+function renderExampleButtons(){order.forEach(name=>{if(name==="olimpiadas")return;const c=document.getElementById("examples-"+name);if(!c)return;c.innerHTML="";modules[name].examples.forEach(text=>c.insertAdjacentHTML("beforeend",visualExampleHTML(text)));});}
+function renderPractice(moduleName){
+const data=modules[moduleName],target=document.getElementById("practice-"+moduleName);if(!target)return;
+const idx=state.index[moduleName],qq=data.questions[idx];target.innerHTML="";
+if(!qq){target.innerHTML=`<div class="question-title">🎉 Terminaste este módulo</div><div class="feedback good">Muy bien.</div><div class="controls"><button class="main-btn" onclick="goNextModule('${moduleName}')">Siguiente</button><button class="main-btn secondary" onclick="shareApp()">📤 Compartir app</button></div>`;return;}
+const opts=[...qq.options];shuffleArray(opts);
+target.innerHTML=`<div class="question-title">Ejercicio ${idx+1} de ${data.questions.length}</div><div class="question-text">${qq.prompt}</div><div class="big-word">${qq.word||""}</div><div class="options">${opts.map(o=>`<button class="option-btn" onclick="checkAnswer('${moduleName}','${escapeAttr(o)}',this)">${o}</button>`).join("")}</div><div class="feedback" id="feedback-${moduleName}"></div><div class="controls"><button class="main-btn" onclick="nextQuestion('${moduleName}')">Siguiente</button><button class="main-btn secondary" onclick="shareApp()">📤 Compartir app</button></div>`;
+}
+function escapeAttr(s){return String(s).replace(/'/g,"&#39;");}
+function checkAnswer(moduleName,answer,btn){
+answer=answer.replace(/&#39;/g,"'");
+const qq=modules[moduleName].questions[state.index[moduleName]],fb=document.getElementById("feedback-"+moduleName);
+if(!qq||state.answered[moduleName].has(state.index[moduleName]))return;
+if(answer===qq.answer){state.answered[moduleName].add(state.index[moduleName]);state.correct++;btn.classList.add("correct-choice");fb.textContent="✅ Muy bien. "+qq.explain;fb.className="feedback good";if(moduleName==="olimpiadas"){speakText("Muy bien. Respuesta correcta.");}disableOptions(moduleName,qq.answer);updateProgress();}
+else{state.wrong++;btn.classList.add("wrong-choice");btn.disabled=true;fb.textContent="❌ Incorrecto. Intenta otra vez.";fb.className="feedback bad";if(moduleName==="olimpiadas"){speakText("Incorrecto. Intenta otra vez.");}updateProgress();}
+}
+function disableOptions(moduleName,correct){document.getElementById("practice-"+moduleName).querySelectorAll(".option-btn").forEach(b=>{b.disabled=true;if(b.textContent===correct)b.classList.add("correct-choice");});}
+function nextQuestion(moduleName){if(!state.answered[moduleName].has(state.index[moduleName])){const fb=document.getElementById("feedback-"+moduleName);if(fb){fb.textContent="👉 Primero responde correctamente para avanzar.";fb.className="feedback bad";}return;}state.index[moduleName]++;renderPractice(moduleName);}
+function goNextModule(moduleName){showModule(order[order.indexOf(moduleName)+1]||"olimpiadas");}
+function updateProgress(){document.getElementById("correctCount").textContent=state.correct;document.getElementById("wrongCount").textContent=state.wrong;const done=Object.values(state.answered).reduce((s,set)=>s+set.size,0);document.getElementById("progressText").textContent=`${done}/${state.totalQuestions}`;document.getElementById("progressBar").style.width=(done/state.totalQuestions*100)+"%";}
+function shuffleArray(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}}
+function shareApp(){const data={title:"Marie Kids - Vocabulario en contexto",text:"📚 Practica vocabulario en contexto.",url:window.location.href};if(navigator.share){navigator.share(data).catch(()=>{});}else{navigator.clipboard.writeText(data.url);alert("🔗 Link copiado para compartir");}}
+buildPage();renderExampleButtons();order.forEach(renderPractice);updateProgress();
+</script>
+<script>
+if("serviceWorker" in navigator){window.addEventListener("load",()=>{navigator.serviceWorker.register("./service-worker.js").catch(()=>{});});}
+</script>
+</body>
+</html>

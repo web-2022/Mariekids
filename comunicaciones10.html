@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marie Kids • Uso de la tilde</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#1976d2" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(145deg, #dbeafe, #e0f2fe);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 16px;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 760px;
+      background: #fff;
+      border: 3px solid #2563eb;
+      border-radius: 26px;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, .14);
+      padding: 16px;
+      overflow: hidden;
+    }
+
+    .brand-header-kids {
+      position: relative;
+      overflow: hidden;
+      padding: 16px;
+      border-radius: 22px;
+      margin-bottom: 14px;
+      background: linear-gradient(135deg, #93c5fd, #60a5fa, #2563eb);
+      border: 2px solid rgba(255, 255, 255, .65);
+      box-shadow: 0 14px 28px rgba(37, 99, 235, .25);
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .brand-header-kids:hover {
+      filter: brightness(1.03);
+      transform: translateY(-1px);
+    }
+
+    .brand-row {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .kids-badge {
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      font-size: 2.2rem;
+      font-weight: 1000;
+      background: rgba(255, 255, 255, .22);
+      border: 1px solid rgba(255, 255, 255, .35);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35);
+    }
+
+    .kids-title {
+      font-weight: 1000;
+      font-size: clamp(1.35rem, 4vw, 1.75rem);
+      line-height: 1.05;
+      text-shadow: 0 2px 0 rgba(0, 0, 0, .12);
+    }
+
+    .kids-subtitle {
+      margin-top: 6px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+      font-size: .9rem;
+      font-weight: 800;
+      opacity: .96;
+    }
+
+    .kids-pill {
+      background: rgba(255, 255, 255, .22);
+      border: 1px solid rgba(255, 255, 255, .35);
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: .82rem;
+      font-weight: 900;
+    }
+
+    .bubble {
+      position: absolute;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .20);
+      border: 1px solid rgba(255, 255, 255, .28);
+      pointer-events: none;
+      animation: floaty 6s ease-in-out infinite;
+    }
+
+    .b1 { left: -18px; top: -24px; width: 90px; height: 90px; }
+    .b2 { right: -24px; bottom: -28px; width: 86px; height: 86px; animation-delay: 1s; }
+    .b3 { left: 48%; bottom: -28px; width: 50px; height: 50px; animation-delay: .6s; }
+
+    @keyframes floaty {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-8px) scale(1.03); }
+    }
+
+    h1 {
+      margin: 0;
+      text-align: center;
+      font-size: clamp(1.45rem, 4vw, 2rem);
+      color: #111827;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: .95rem;
+      color: #6b7280;
+      margin: 6px 0 14px;
+      font-weight: 750;
+    }
+
+    .module-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 10px;
+      border-radius: 18px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      margin-bottom: 14px;
+    }
+
+    .tab-btn {
+      border: 1px solid #bfdbfe;
+      background: #fff;
+      border-radius: 999px;
+      padding: 9px 12px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: transform .1s ease, background .15s ease;
+      color: #111827;
+    }
+
+    .tab-btn:hover {
+      transform: translateY(-1px);
+      background: #dbeafe;
+    }
+
+    .tab-btn.active {
+      color: #fff;
+      background: linear-gradient(90deg, #60a5fa, #2563eb);
+      border-color: transparent;
+    }
+
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      font-size: .9rem;
+      flex-wrap: wrap;
+    }
+
+    .xp, .hearts {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 850;
+    }
+
+    .xp span { color: #16a34a; }
+    .hearts span { color: #f97316; }
+
+    .progress-wrapper { margin-bottom: 14px; }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: .82rem;
+      color: #6b7280;
+      margin-bottom: 5px;
+      font-weight: 800;
+    }
+
+    .progress {
+      width: 100%;
+      height: 11px;
+      background: #e5e7eb;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-inner {
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #60a5fa, #2563eb);
+      transition: width .2s ease;
+    }
+
+    .module { display: none; }
+    .module.active { display: block; }
+
+    .panel {
+      border-radius: 22px;
+      padding: 14px;
+      margin-bottom: 12px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+    }
+
+    .panel-title {
+      margin: 0 0 8px;
+      color: #111827;
+      font-weight: 1000;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+
+    .theory-audio-row {
+      display: flex;
+      justify-content: center;
+      margin: 8px 0 12px;
+    }
+
+    .theory-audio-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 10px 16px;
+      background: linear-gradient(90deg, #a78bfa, #7c3aed);
+      color: #ffffff;
+      font-weight: 950;
+      cursor: pointer;
+      font-size: .95rem;
+      transition: transform .1s ease, filter .15s ease, box-shadow .1s ease;
+      box-shadow: 0 8px 16px rgba(124, 58, 237, .18);
+    }
+
+    .theory-audio-btn:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+      box-shadow: 0 10px 18px rgba(124, 58, 237, .24);
+    }
+
+    .theory { background: #eff6ff; border-color: #bfdbfe; }
+    .examples { background: #f0fdf4; border-color: #bbf7d0; }
+    .practice { background: #fff7ed; border-color: #fed7aa; }
+
+    .rule {
+      padding: 12px;
+      border-radius: 16px;
+      background: #ffffff;
+      border: 1px solid #bfdbfe;
+      color: #374151;
+      font-weight: 760;
+      line-height: 1.4;
+      margin-bottom: 10px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 560px) {
+      .steps { grid-template-columns: 1fr; }
+    }
+
+    .step {
+      background: #fff;
+      border: 1px solid #dbeafe;
+      border-radius: 16px;
+      padding: 10px;
+      font-weight: 850;
+      color: #374151;
+    }
+
+    .syllables {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 12px 0;
+    }
+
+    .syllable {
+      padding: 12px 16px;
+      border-radius: 16px;
+      background: #ffffff;
+      border: 2px solid #dbeafe;
+      font-weight: 1000;
+      font-size: 1.2rem;
+      min-width: 58px;
+      text-align: center;
+    }
+
+    .syllable.strong {
+      background: #fef3c7;
+      border-color: #f59e0b;
+      color: #92400e;
+      transform: scale(1.05);
+      box-shadow: 0 8px 16px rgba(245, 158, 11, .18);
+    }
+
+    .example-audio-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 560px) {
+      .example-audio-grid { grid-template-columns: 1fr; }
+    }
+
+    .audio-card {
+      background: #ffffff;
+      border: 1px solid #bbf7d0;
+      border-radius: 18px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .audio-label {
+      font-weight: 950;
+      color: #166534;
+      margin-bottom: 8px;
+    }
+
+    .audio-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: linear-gradient(90deg, #22c55e, #16a34a);
+      color: #ffffff;
+      font-weight: 950;
+      cursor: pointer;
+      font-size: .95rem;
+      transition: transform .1s ease, filter .15s ease;
+    }
+
+    .audio-btn:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.04);
+    }
+
+    .question-card {
+      background: #ffffff;
+      border: 1px solid #fed7aa;
+      border-radius: 18px;
+      padding: 12px;
+    }
+
+    .question-title {
+      font-weight: 1000;
+      color: #7c2d12;
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 1.03rem;
+    }
+
+    .question-text {
+      text-align: center;
+      font-size: 1.15rem;
+      font-weight: 1000;
+      color: #111827;
+      margin: 8px 0;
+    }
+
+    .options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .option-btn {
+      flex: 1;
+      min-width: 120px;
+      border-radius: 16px;
+      border: 1px solid #d1d5db;
+      background: #ffffff;
+      padding: 11px 10px;
+      font-size: 1.04rem;
+      cursor: pointer;
+      transition: background .15s ease, transform .1s ease, border .1s ease, opacity .1s ease;
+      font-weight: 950;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      background: #e0f2fe;
+      transform: translateY(-1px);
+      border-color: #93c5fd;
+    }
+
+    .option-btn:disabled {
+      cursor: default;
+      opacity: .65;
+    }
+
+    .option-btn.correct-choice {
+      background: #dcfce7;
+      border-color: #22c55e;
+      color: #166534;
+      opacity: 1;
+    }
+
+    .option-btn.wrong-choice {
+      background: #fee2e2;
+      border-color: #ef4444;
+      color: #991b1b;
+    }
+
+    .feedback {
+      margin-top: 10px;
+      text-align: center;
+      min-height: 22px;
+      font-weight: 900;
+      line-height: 1.3;
+    }
+
+    .feedback.good { color: #16a34a; }
+    .feedback.bad { color: #ef4444; }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .main-btn {
+      flex: 1;
+      min-width: 130px;
+      border: none;
+      border-radius: 999px;
+      padding: 11px 14px;
+      color: #ffffff;
+      font-weight: 950;
+      cursor: pointer;
+      background: linear-gradient(90deg, #60a5fa, #2563eb);
+      transition: transform .1s ease, filter .15s ease, box-shadow .1s ease;
+    }
+
+    .main-btn:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.04);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, .14);
+    }
+
+    .main-btn.secondary {
+      background: linear-gradient(90deg, #a78bfa, #7c3aed);
+    }
+
+    .summary-box {
+      padding: 12px;
+      border-radius: 18px;
+      background: #ecfeff;
+      border: 2px solid #67e8f9;
+      color: #155e75;
+      font-weight: 850;
+      line-height: 1.45;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+
+    <div class="brand-header-kids"
+         aria-label="Marie Kids"
+         role="link"
+         tabindex="0"
+         onclick="goHome()"
+         onkeydown="if(event.key==='Enter' || event.key===' '){ event.preventDefault(); goHome(); }">
+      <div class="bubble b1"></div>
+      <div class="bubble b2"></div>
+      <div class="bubble b3"></div>
+
+      <div class="brand-row">
+        <div class="kids-badge" aria-hidden="true">´</div>
+        <div>
+          <div class="kids-title">Marie Kids</div>
+          <div class="kids-subtitle">
+            Uso de la tilde
+            <span class="kids-pill">📚 Aprende</span>
+            <span class="kids-pill">🔊 Escucha</span>
+            <span class="kids-pill">✏️ Practica</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h1>Uso de la tilde</h1>
+    <p class="subtitle">Primero aprendemos, luego escuchamos ejemplos y al final resolvemos ejercicios.</p>
+
+    <div class="module-tabs" aria-label="Módulos de la lección">
+      <button class="tab-btn active" id="tab-agudas" onclick="showModule('agudas')">1. Agudas</button>
+      <button class="tab-btn" id="tab-graves" onclick="showModule('graves')">2. Graves</button>
+      <button class="tab-btn" id="tab-esdrujulas" onclick="showModule('esdrujulas')">3. Esdrújulas</button>
+      <button class="tab-btn" id="tab-sobresdrujulas" onclick="showModule('sobresdrujulas')">4. Sobresdrújulas</button>
+      <button class="tab-btn" id="tab-reto" onclick="showModule('reto')">5. Reto final</button>
+      <button class="tab-btn" id="tab-olimpiadas" onclick="showModule('olimpiadas')">🏅 6. Olimpiadas</button>
+    </div>
+
+    <div class="status-bar">
+      <div class="xp">✅ Correctas: <span id="correctCount">0</span></div>
+      <div class="hearts">🧠 Por mejorar: <span id="wrongCount">0</span></div>
+    </div>
+
+    <div class="progress-wrapper">
+      <div class="progress-label">
+        <span>Progreso general</span>
+        <span id="progressText">0/60</span>
+      </div>
+      <div class="progress">
+        <div class="progress-inner" id="progressBar"></div>
+      </div>
+    </div>
+
+    <!-- AGUDAS -->
+    <section class="module active" id="module-agudas">
+      <div class="panel theory">
+        <h2 class="panel-title">📚 1. Palabras agudas</h2>
+        <div class="theory-audio-row">
+          <button class="theory-audio-btn" onclick="speakTheory('agudas')">🔊 Escuchar teoría</button>
+        </div>
+
+        <div class="rule">
+          Las palabras <b>agudas</b> tienen la mayor fuerza de voz en la <b>última sílaba (sílaba tónica)</b>.
+          <br><br>
+          Llevan tilde cuando terminan en <b>vocal</b>, <b>n</b> o <b>s</b>.
+        </div>
+
+        <div class="syllables" aria-label="Ejemplo gráfico de palabra aguda">
+          <span class="syllable">ra</span>
+          <span class="syllable strong">TÓN</span>
+        </div>
+
+        <div class="steps">
+          <div class="step">1️⃣ Separo en sílabas: ra - tón</div>
+          <div class="step">2️⃣ Identifico quien lleva la mayor fuerza de voz (sílaba tónica): TÓN</div>
+          <div class="step">3️⃣ Está al final: entonces es AGUDA</div>
+          <div class="step">4️⃣ Como termina en n, s o vocal: entonces LLEVA TILDE</div>
+        </div>
+      </div>
+
+      <div class="panel examples">
+        <h2 class="panel-title">🔊 Ejemplos para escuchar</h2>
+        <p class="rule">Aquí solo escuchamos. No hay alternativas. Presiona el audio y repite.</p>
+        <div class="example-audio-grid" id="examples-agudas"></div>
+      </div>
+
+      <div class="panel practice">
+        <h2 class="panel-title">✏️ 10 ejercicios de agudas</h2>
+        <div class="question-card" id="practice-agudas"></div>
+      </div>
+    </section>
+
+    <!-- GRAVES -->
+    <section class="module" id="module-graves">
+      <div class="panel theory">
+        <h2 class="panel-title">📚 2. Palabras graves o llanas</h2>
+        <div class="theory-audio-row">
+          <button class="theory-audio-btn" onclick="speakTheory('graves')">🔊 Escuchar teoría</button>
+        </div>
+
+        <div class="rule">
+          Las palabras <b>graves</b> o <b>llanas</b> tienen la mayor fuerza de voz (sílaba tónica) en la <b>penúltima sílaba</b>.
+          <br><br>
+          Llevan tilde cuando <b>NO</b> terminan en vocal, n ni s.
+        </div>
+
+        <div class="syllables" aria-label="Ejemplo gráfico de palabra grave">
+          <span class="syllable strong">LÁ</span>
+          <span class="syllable">piz</span>
+        </div>
+
+        <div class="steps">
+          <div class="step">1️⃣ Separo en sílabas: lá - piz</div>
+          <div class="step">2️⃣ Identifico quien lleva la mayor fuerza de voz (sílaba tónica): LÁ</div>
+          <div class="step">3️⃣ Está en la penúltima: es GRAVE o LLANA</div>
+          <div class="step">4️⃣ Como termina en z, entonces LLEVA TILDE: lleva tilde</div>
+        </div>
+      </div>
+
+      <div class="panel examples">
+        <h2 class="panel-title">🔊 Ejemplos para escuchar</h2>
+        <p class="rule">Aquí solo escuchamos. No hay alternativas. Presiona el audio y repite.</p>
+        <div class="example-audio-grid" id="examples-graves"></div>
+      </div>
+
+      <div class="panel practice">
+        <h2 class="panel-title">✏️ 10 ejercicios de graves o llanas</h2>
+        <div class="question-card" id="practice-graves"></div>
+      </div>
+    </section>
+
+    <!-- ESDRÚJULAS -->
+    <section class="module" id="module-esdrujulas">
+      <div class="panel theory">
+        <h2 class="panel-title">📚 3. Palabras esdrújulas</h2>
+        <div class="theory-audio-row">
+          <button class="theory-audio-btn" onclick="speakTheory('esdrujulas')">🔊 Escuchar teoría</button>
+        </div>
+
+        <div class="rule">
+          Las palabras <b>esdrújulas</b> tienen la mayor fuerza de voz (sílaba tónica) en la <b>antepenúltima sílaba</b>.
+          <br><br>
+          Las esdrújulas <b>siempre llevan tilde</b>.
+        </div>
+
+        <div class="syllables" aria-label="Ejemplo gráfico de palabra esdrújula">
+          <span class="syllable strong">MÚ</span>
+          <span class="syllable">si</span>
+          <span class="syllable">ca</span>
+        </div>
+
+        <div class="steps">
+          <div class="step">1️⃣ Separo en sílabas: mú - si - ca</div>
+          <div class="step">2️⃣ Identifico quien lleva la mayor fuerza de voz (sílaba tónica): MÚ</div>
+          <div class="step">3️⃣ Está en la antepenúltima, es ESDRÚJULA</div>
+          <div class="step">4️⃣ Siempre lleva tilde</div>
+        </div>
+      </div>
+
+      <div class="panel examples">
+        <h2 class="panel-title">🔊 Ejemplos para escuchar</h2>
+        <p class="rule">Aquí solo escuchamos. No hay alternativas. Presiona el audio y repite.</p>
+        <div class="example-audio-grid" id="examples-esdrujulas"></div>
+      </div>
+
+      <div class="panel practice">
+        <h2 class="panel-title">✏️ 10 ejercicios de esdrújulas</h2>
+        <div class="question-card" id="practice-esdrujulas"></div>
+      </div>
+    </section>
+
+    <!-- SOBRESDRÚJULAS -->
+    <section class="module" id="module-sobresdrujulas">
+      <div class="panel theory">
+        <h2 class="panel-title">📚 4. Palabras sobresdrújulas</h2>
+        <div class="theory-audio-row">
+          <button class="theory-audio-btn" onclick="speakTheory('sobresdrujulas')">🔊 Escuchar teoría</button>
+        </div>
+
+        <div class="rule">
+          Las palabras <b>sobresdrújulas</b> tienen la mayor fuerza de voz <b>antes de la antepenúltima sílaba</b>.
+          <br><br>
+          Para este nivel, recordaremos que las sobresdrújulas <b>siempre llevan tilde</b>.
+        </div>
+
+        <div class="syllables" aria-label="Ejemplo gráfico de palabra sobresdrújula">
+          <span class="syllable strong">DÍ</span>
+          <span class="syllable">ga</span>
+          <span class="syllable">me</span>
+          <span class="syllable">lo</span>
+        </div>
+
+        <div class="steps">
+          <div class="step">1️⃣ Separo en sílabas: dí - ga - me - lo</div>
+          <div class="step">2️⃣ Identifico quien lleva la mayor fuerza de voz (sílaba tónica): DÍ</div>
+          <div class="step">3️⃣ Está antes de la antepenúltima, es SOBREESDRÚJULA</div>
+          <div class="step">4️⃣ Siempre lleva tilde</div>
+        </div>
+      </div>
+
+      <div class="panel examples">
+        <h2 class="panel-title">🔊 Ejemplos para escuchar</h2>
+        <p class="rule">Aquí solo escuchamos. No hay alternativas. Presiona el audio y repite.</p>
+        <div class="example-audio-grid" id="examples-sobresdrujulas"></div>
+      </div>
+
+      <div class="panel practice">
+        <h2 class="panel-title">✏️ 10 ejercicios de sobresdrújulas</h2>
+        <div class="question-card" id="practice-sobresdrujulas"></div>
+      </div>
+    </section>
+
+    <!-- RETO FINAL -->
+    <section class="module" id="module-reto">
+      <div class="panel theory">
+        <h2 class="panel-title">🏆 Reto final</h2>
+        <div class="theory-audio-row">
+          <button class="theory-audio-btn" onclick="speakTheory('reto')">🔊 Escuchar teoría</button>
+        </div>
+        <div class="summary-box">
+          1️⃣ <b>Aguda:</b> mayor fuerza de voz en la última sílaba. Tilde si termina en vocal, n o s.
+          <br>2️⃣ <b>Grave o llana:</b> mayor fuerza de voz en la penúltima. Tilde si no termina en vocal, n ni s.
+          <br>3️⃣ <b>Esdrújula:</b> mayor fuerza de voz en la antepenúltima. Siempre lleva tilde.
+          <br>4️⃣ <b>Sobresdrújula:</b> mayor fuerza de voz antes de la antepenúltima. Para este nivel, siempre lleva tilde.
+        </div>
+      </div>
+
+      <div class="panel practice">
+        <h2 class="panel-title">✏️ 10 ejercicios mezclados</h2>
+        <div class="question-card" id="practice-reto"></div>
+      </div>
+    </section>
+
+
+    <!-- OLIMPIADAS -->
+    <section class="module" id="module-olimpiadas">
+      <div class="panel practice">
+        <h2 class="panel-title">🏅 6. Olimpiadas</h2>
+        <div class="summary-box" style="margin-bottom:12px;">
+          Prueba de nivel interescolar: aquí ya no hay teoría. Lee con atención, piensa y marca la alternativa correcta.
+        </div>
+        <div class="question-card" id="practice-olimpiadas"></div>
+      </div>
+    </section>
+
+    <div class="controls">
+      <button class="main-btn secondary" id="globalTheoryBtn" onclick="speakCurrentTheory()">🔊 Escuchar teoría actual</button>
+      <button class="main-btn" onclick="shareApp()">📤 Compartir app</button>
+    </div>
+  </div>
+
+  <script>
+    function goHome() {
+      location.href = "index.html";
+    }
+
+    const modules = {
+      agudas: {
+        title: "Palabras agudas",
+        theoryAudio: "Las palabras agudas tienen la mayor fuerza de voz en la última sílaba. Llevan tilde cuando terminan en vocal, ene o ese. Por ejemplo: mamá, papá, ratón, café.",
+        examples: [
+          "mamá. Ma má. La mayor fuerza de voz está en má. Es aguda y termina en vocal.",
+          "canción. Can ción. La mayor fuerza de voz está en ción. Es aguda y termina en ene.",
+          "café. Ca fé. La mayor fuerza de voz está en fé. Es aguda y termina en vocal.",
+          "limón. Li món. La mayor fuerza de voz está en món. Es aguda y termina en ene."
+        ],
+        questions: [
+          { prompt: "Elige la palabra escrita correctamente.", answer: "mamá", options: ["mama", "mamá", "máma"], explain: "mamá es aguda y termina en vocal." },
+          { prompt: "Elige la palabra escrita correctamente.", answer: "papá", options: ["papa", "pápa", "papá"], explain: "papá es aguda y termina en vocal." },
+          { prompt: "Elige la palabra escrita correctamente.", answer: "Perú", options: ["Perú", "Peru", "Péru"], explain: "Perú es aguda y termina en vocal." },
+          { prompt: "Elige la palabra escrita correctamente.", answer: "ratón", options: ["ráton", "raton", "ratón"], explain: "ratón es aguda y termina en n." },
+          { prompt: "Elige la palabra escrita correctamente.", answer: "limón", options: ["limón", "limon", "límon"], explain: "limón es aguda y termina en n." },
+          { prompt: "Elige la palabra escrita correctamente.", answer: "café", options: ["cafe", "cáfe", "café"], explain: "café es aguda y termina en vocal." },
+          { prompt: "Elige la palabra escrita correctamente.", answer: "sofá", options: ["sofa", "sofá", "sófa"], explain: "sofá es aguda y termina en vocal." },
+          { prompt: "Elige la palabra escrita correctamente.", answer: "canción", options: ["canción", "cancion", "cáncion"], explain: "canción es aguda y termina en n." },
+          { prompt: "Elige la palabra escrita correctamente.", answer: "compás", options: ["compas", "cómpas", "compás"], explain: "compás es aguda y termina en s." },
+          { prompt: "Elige la palabra escrita correctamente.", answer: "después", options: ["despues", "después", "déspues"], explain: "después es aguda y termina en s." }
+        ]
+      },
+
+      graves: {
+        title: "Palabras graves o llanas",
+        theoryAudio: "Las palabras graves o llanas tienen la mayor fuerza de voz en la penúltima sílaba. Llevan tilde cuando no terminan en vocal, ene ni ese. Por ejemplo: lápiz, árbol, fácil.",
+        examples: [
+          "lápiz. Lá piz. La mayor fuerza de voz está en lá. Es grave y termina en zeta.",
+          "árbol. Ár bol. La mayor fuerza de voz está en ár. Es grave y termina en ele.",
+          "fácil. Fá cil. La mayor fuerza de voz está en fá. Es grave y termina en ele.",
+          "túnel. Tú nel. La mayor fuerza de voz está en tú. Es grave y termina en ele."
+        ],
+        questions: [
+          { prompt: "Elige la palabra escrita correctamente.", answer: "lápiz", options: ["lapiz", "lápiz", "lapíz"], explain: "lápiz es grave y termina en z." },
+          { prompt: "Elige la palabra escrita correctamente.", answer: "árbol", options: ["arbol", "arból", "árbol"], explain: "árbol es grave y termina en l." },
+          { prompt: "Elige la palabra escrita correctamente.", answer: "fácil", options: ["facil", "fácil", "facíl"], explain: "fácil es grave y termina en l." },
+          { prompt: "Elige la palabra escrita correctamente.", answer: "césped", options: ["cesped", "césped", "cespéd"], explain: "césped es grave y termina en d." },
+          { prompt: "Elige la palabra escrita correctamente.", answer: "túnel", options: ["tunel", "túnel", "tunél"], explain: "túnel es grave y termina en l." },
+          { prompt: "Elige la palabra escrita correctamente.", answer: "azúcar", options: ["azucar", "azúcar", "azucár"], explain: "azúcar es grave y termina en r." },
+          { prompt: "Elige la palabra escrita correctamente.", answer: "ángel", options: ["angel", "ángel", "angél"], explain: "ángel es grave y termina en l." },
+          { prompt: "Elige la palabra escrita correctamente.", answer: "útil", options: ["util", "utíl", "útil"], explain: "útil es grave y termina en l." },
+          { prompt: "Elige la palabra escrita correctamente.", answer: "débil", options: ["debil", "débil", "debíl"], explain: "débil es grave y termina en l." },
+          { prompt: "Elige la palabra escrita correctamente.", answer: "mármol", options: ["marmol", "mármol", "marmól"], explain: "mármol es grave y termina en l." }
+        ]
+      },
+
+      esdrujulas: {
+        title: "Palabras esdrújulas",
+        theoryAudio: "Las palabras esdrújulas tienen la mayor fuerza de voz en la antepenúltima sílaba. Todas las palabras esdrújulas siempre llevan tilde. Por ejemplo: música, pájaro, teléfono.",
+        examples: [
+          "música. Mú si ca. La mayor fuerza de voz está en mú. Es esdrújula.",
+          "pájaro. Pa ja ro. La mayor fuerza de voz está en pa. Es esdrújula.",
+          "teléfono. Te lé fo no. La mayor fuerza de voz está en lé. Es esdrújula.",
+          "sílaba. Si la ba. La mayor fuerza de voz está en Sí. Es esdrújula."
+        ],
+        questions: [
+          { prompt: "Elige la palabra escrita correctamente.", answer: "música", options: ["musica", "música", "musíca"], explain: "música es esdrújula y siempre lleva tilde." },
+          { prompt: "Elige la palabra escrita correctamente.", answer: "pájaro", options: ["pajaro", "pajáro", "pájaro"], explain: "pájaro es esdrújula y siempre lleva tilde." },
+          { prompt: "Elige la palabra escrita correctamente.", answer: "teléfono", options: ["telefono", "teléfono", "telefóno"], explain: "teléfono es esdrújula y siempre lleva tilde." },
+          { prompt: "Elige la palabra escrita correctamente.", answer: "médico", options: ["medico", "médico", "medíco"], explain: "médico es esdrújula y siempre lleva tilde." },
+          { prompt: "Elige la palabra escrita correctamente.", answer: "sábado", options: ["sabado", "sábado", "sabádo"], explain: "sábado es esdrújula y siempre lleva tilde." },
+          { prompt: "Elige la palabra escrita correctamente.", answer: "rápido", options: ["rapido", "rápido", "rapído"], explain: "rápido es esdrújula y siempre lleva tilde." },
+          { prompt: "Elige la palabra escrita correctamente.", answer: "página", options: ["pagina", "página", "pagína"], explain: "página es esdrújula y siempre lleva tilde." },
+          { prompt: "Elige la palabra escrita correctamente.", answer: "plástico", options: ["plastico", "plástico", "plastíco"], explain: "plástico es esdrújula y siempre lleva tilde." },
+          { prompt: "Elige la palabra escrita correctamente.", answer: "sílaba", options: ["silaba", "sílaba", "silába"], explain: "sílaba es esdrújula y siempre lleva tilde." },
+          { prompt: "Elige la palabra escrita correctamente.", answer: "matemáticas", options: ["matematicas", "matemáticas", "matemátícas"], explain: "matemáticas es esdrújula y siempre lleva tilde." }
+        ]
+      },
+
+      sobresdrujulas: {
+        title: "Palabras sobresdrújulas",
+        theoryAudio: "Las palabras sobresdrújulas tienen la mayor fuerza de voz antes de la antepenúltima sílaba. Para este nivel, recordamos que siempre llevan tilde. Por ejemplo: dígamelo, cuéntamelo, cómpramelo.",
+        examples: [
+          "dígamelo. Dí ga me lo. La mayor fuerza de voz está en dí. Es sobresdrújula.",
+          "cuéntamelo. Cuén ta me lo. La mayor fuerza de voz está en cuén. Es sobresdrújula.",
+          "cómpramelo. Cóm pra me lo. La mayor fuerza de voz está en cóm. Es sobresdrújula.",
+          "explícaselo. Ex plí ca se lo. La mayor fuerza de voz está en plí. Es sobresdrújula."
+        ],
+        questions: [
+          { prompt: "Elige la palabra escrita correctamente.", answer: "dígamelo", options: ["digamelo", "dígamelo", "digámelo"], explain: "dígamelo es sobresdrújula y lleva tilde." },
+          { prompt: "Elige la palabra escrita correctamente.", answer: "cuéntamelo", options: ["cuentamelo", "cuéntamelo", "cuentámelo"], explain: "cuéntamelo es sobresdrújula y lleva tilde." },
+          { prompt: "Elige la palabra escrita correctamente.", answer: "cómpramelo", options: ["compramelo", "cómpramelo", "comprámelo"], explain: "cómpramelo es sobresdrújula y lleva tilde." },
+          { prompt: "Elige la palabra escrita correctamente.", answer: "llévaselo", options: ["llevaselo", "llévaselo", "lleváselo"], explain: "llévaselo es sobresdrújula y lleva tilde." },
+          { prompt: "Elige la palabra escrita correctamente.", answer: "explícaselo", options: ["explicaselo", "explícaselo", "explicáselo"], explain: "explícaselo es sobresdrújula y lleva tilde." },
+          { prompt: "Elige la palabra escrita correctamente.", answer: "dibújamelo", options: ["dibujamelo", "dibújamelo", "dibujámelo"], explain: "dibújamelo es sobresdrújula y lleva tilde." },
+          { prompt: "Elige la palabra escrita correctamente.", answer: "préstamelo", options: ["prestamelo", "préstamelo", "prestámelo"], explain: "préstamelo es sobresdrújula y lleva tilde." },
+          { prompt: "Elige la palabra escrita correctamente.", answer: "guárdamelo", options: ["guardamelo", "guárdamelo", "guardámelo"], explain: "guárdamelo es sobresdrújula y lleva tilde." },
+          { prompt: "Elige la palabra escrita correctamente.", answer: "enséñamelo", options: ["enseñamelo", "enséñamelo", "enseñámelo"], explain: "enséñamelo es sobresdrújula y lleva tilde." },
+          { prompt: "Elige la palabra escrita correctamente.", answer: "léemelo", options: ["leemelo", "léemelo", "leémelo"], explain: "léemelo es sobresdrújula y lleva tilde." }
+        ]
+      }
+    };
+
+    modules.reto = {
+      title: "Reto final",
+      theoryAudio: "Reto final. Recuerda: agudas, graves, esdrújulas y sobresdrújulas. Escucha la mayor fuerza de voz y elige la palabra escrita correctamente.",
+      examples: [],
+      questions: [
+        modules.agudas.questions[0],
+        modules.graves.questions[0],
+        modules.esdrujulas.questions[0],
+        modules.sobresdrujulas.questions[0],
+        modules.agudas.questions[3],
+        modules.graves.questions[2],
+        modules.esdrujulas.questions[2],
+        modules.sobresdrujulas.questions[2],
+        modules.agudas.questions[7],
+        modules.esdrujulas.questions[9]
+      ]
+    };
+
+    modules.olimpiadas = {
+      title: "Olimpiadas",
+      questions: [
+        {
+          prompt: "Mira la lista y marca la única palabra que lleva tilde.",
+          answer: "lápiz",
+          options: ["camioneta", "mesa", "lápiz", "pelota", "casa", "perro"],
+          explain: "lápiz lleva tilde porque es grave y termina en z."
+        },
+        {
+          prompt: "Marca la palabra escrita correctamente.",
+          answer: "canción",
+          options: ["cancion", "cáncion", "canción", "cancíon"],
+          explain: "canción es aguda y termina en n."
+        },
+        {
+          prompt: "¿Cuál palabra es esdrújula y está bien escrita?",
+          answer: "música",
+          options: ["musica", "música", "musíca", "músicá"],
+          explain: "música es esdrújula; las esdrújulas siempre llevan tilde."
+        },
+        {
+          prompt: "Marca la palabra grave o llana escrita correctamente.",
+          answer: "árbol",
+          options: ["arbol", "árbol", "arból", "árböl"],
+          explain: "árbol es grave y termina en l, por eso lleva tilde."
+        },
+        {
+          prompt: "¿Cuál palabra NO necesita tilde?",
+          answer: "mesa",
+          options: ["mamá", "ratón", "mesa", "pájaro"],
+          explain: "mesa es grave, termina en vocal y no lleva tilde."
+        },
+        {
+          prompt: "Elige la palabra sobresdrújula escrita correctamente.",
+          answer: "dígamelo",
+          options: ["digamelo", "digámelo", "dígamelo", "dígamélo"],
+          explain: "dígamelo es sobresdrújula y lleva tilde."
+        },
+        {
+          prompt: "¿Cuál alternativa tiene todas las palabras bien escritas?",
+          answer: "mamá, lápiz, música",
+          options: [
+            "mama, lapiz, musica",
+            "mamá, lápiz, música",
+            "máma, lapíz, musica",
+            "mama, lápiz, músicá"
+          ],
+          explain: "mamá, lápiz y música tienen la tilde en el lugar correcto."
+        },
+        {
+          prompt: "Marca la palabra aguda escrita correctamente.",
+          answer: "compás",
+          options: ["compas", "cómpas", "compás", "compáses"],
+          explain: "compás es aguda y termina en s."
+        },
+        {
+          prompt: "¿Cuál palabra está mal escrita?",
+          answer: "telefono",
+          options: ["pájaro", "lápiz", "telefono", "ratón"],
+          explain: "telefono está mal; debe escribirse teléfono porque es esdrújula."
+        },
+        {
+          prompt: "Reto final: ¿cuál palabra debe llevar tilde por ser esdrújula?",
+          answer: "sábado",
+          options: ["camino", "sábado", "pared", "animal"],
+          explain: "sábado es esdrújula y siempre lleva tilde."
+        }
+      ]
+    };
+
+
+    const state = {
+      currentModule: "agudas",
+      index: { agudas: 0, graves: 0, esdrujulas: 0, sobresdrujulas: 0, reto: 0, olimpiadas: 0 },
+      answered: {
+        agudas: new Set(),
+        graves: new Set(),
+        esdrujulas: new Set(),
+        sobresdrujulas: new Set(),
+        reto: new Set(),
+        olimpiadas: new Set()
+      },
+      correct: 0,
+      wrong: 0,
+      totalQuestions: 60
+    };
+
+    function showModule(name) {
+      state.currentModule = name;
+
+      document.querySelectorAll(".module").forEach(m => m.classList.remove("active"));
+      document.getElementById("module-" + name).classList.add("active");
+
+      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+      document.getElementById("tab-" + name).classList.add("active");
+
+      const globalTheoryBtn = document.getElementById("globalTheoryBtn");
+      if (globalTheoryBtn) {
+        globalTheoryBtn.style.display = name === "olimpiadas" ? "none" : "";
+      }
+
+      renderPractice(name);
+    }
+
+    function renderExampleButtons() {
+      Object.keys(modules).forEach(moduleName => {
+        if (moduleName === "reto") return;
+
+        const container = document.getElementById("examples-" + moduleName);
+        if (!container) return;
+
+        container.innerHTML = "";
+
+        modules[moduleName].examples.forEach((text, index) => {
+          const card = document.createElement("div");
+          card.className = "audio-card";
+
+          const label = document.createElement("div");
+          label.className = "audio-label";
+          label.textContent = "Ejemplo " + (index + 1);
+
+          const button = document.createElement("button");
+          button.className = "audio-btn";
+          button.textContent = "🔊 Escuchar";
+          button.addEventListener("click", () => speakText(text));
+
+          card.appendChild(label);
+          card.appendChild(button);
+          container.appendChild(card);
+        });
+      });
+    }
+
+    function renderPractice(moduleName) {
+      const data = modules[moduleName];
+      const target = document.getElementById("practice-" + moduleName);
+      if (!target) return;
+
+      const questionIndex = state.index[moduleName];
+      const question = data.questions[questionIndex];
+
+      target.innerHTML = "";
+
+      if (!question) {
+        const title = document.createElement("div");
+        title.className = "question-title";
+        title.textContent = "🎉 Terminaste este módulo";
+
+        const msg = document.createElement("div");
+        msg.className = "feedback good";
+        msg.textContent = "Muy bien. Puedes pasar al siguiente módulo o volver a practicar.";
+
+        const controls = document.createElement("div");
+        controls.className = "controls";
+
+        const restartBtn = document.createElement("button");
+        restartBtn.className = "main-btn";
+        restartBtn.textContent = "Practicar otra vez";
+        restartBtn.addEventListener("click", () => restartModule(moduleName));
+
+        const nextBtn = document.createElement("button");
+        nextBtn.className = "main-btn secondary";
+        nextBtn.textContent = "Siguiente módulo";
+        nextBtn.addEventListener("click", () => goNextModule(moduleName));
+
+        controls.appendChild(restartBtn);
+        controls.appendChild(nextBtn);
+        target.appendChild(title);
+        target.appendChild(msg);
+        target.appendChild(controls);
+        return;
+      }
+
+      const title = document.createElement("div");
+      title.className = "question-title";
+      title.textContent = `Ejercicio ${questionIndex + 1} de ${data.questions.length}`;
+
+      const prompt = document.createElement("div");
+      prompt.className = "question-text";
+      prompt.textContent = question.prompt;
+
+      const options = document.createElement("div");
+      options.className = "options";
+
+      const optionList = [...question.options];
+      shuffleArray(optionList);
+
+      optionList.forEach(option => {
+        const btn = document.createElement("button");
+        btn.className = "option-btn";
+        btn.textContent = option;
+        btn.addEventListener("click", () => checkAnswer(moduleName, option, btn));
+        options.appendChild(btn);
+      });
+
+      const feedback = document.createElement("div");
+      feedback.className = "feedback";
+      feedback.id = "feedback-" + moduleName;
+
+      const controls = document.createElement("div");
+      controls.className = "controls";
+
+      const nextBtn = document.createElement("button");
+      nextBtn.className = "main-btn";
+      nextBtn.textContent = "Siguiente";
+      nextBtn.addEventListener("click", () => nextQuestion(moduleName));
+
+      if (moduleName === "olimpiadas") {
+        const shareBtn = document.createElement("button");
+        shareBtn.className = "main-btn secondary";
+        shareBtn.textContent = "📤 Compartir app";
+        shareBtn.addEventListener("click", () => shareApp());
+
+        controls.appendChild(nextBtn);
+        controls.appendChild(shareBtn);
+      } else {
+        const audioBtn = document.createElement("button");
+        audioBtn.className = "main-btn secondary";
+        audioBtn.textContent = "🔊 Escuchar pregunta";
+        audioBtn.addEventListener("click", () => speakQuestion(moduleName));
+
+        controls.appendChild(audioBtn);
+        controls.appendChild(nextBtn);
+      }
+
+      target.appendChild(title);
+      target.appendChild(prompt);
+      target.appendChild(options);
+      target.appendChild(feedback);
+      target.appendChild(controls);
+    }
+
+    function checkAnswer(moduleName, answer, btn) {
+      const data = modules[moduleName];
+      const questionIndex = state.index[moduleName];
+      const question = data.questions[questionIndex];
+      const feedback = document.getElementById("feedback-" + moduleName);
+
+      if (!question || !feedback) return;
+      if (state.answered[moduleName].has(questionIndex)) return;
+
+      if (answer === question.answer) {
+        state.answered[moduleName].add(questionIndex);
+        state.correct++;
+        btn.classList.add("correct-choice");
+        feedback.textContent = "✅ Muy bien. " + question.explain;
+        feedback.classList.remove("bad");
+        feedback.classList.add("good");
+        speakText("Muy bien. " + question.answer + " está escrito correctamente.");
+        disableOptions(moduleName, question.answer);
+        updateProgress();
+      } else {
+        state.wrong++;
+        btn.classList.add("wrong-choice");
+        btn.disabled = true;
+        feedback.textContent = "❌ Aún no. Observa dónde debe ir la tilde.";
+        feedback.classList.remove("good");
+        feedback.classList.add("bad");
+        speakText("Aún no. Intenta otra vez.");
+        updateProgress();
+      }
+    }
+
+    function disableOptions(moduleName, correctAnswer) {
+      const target = document.getElementById("practice-" + moduleName);
+      target.querySelectorAll(".option-btn").forEach(button => {
+        button.disabled = true;
+        if (button.textContent === correctAnswer) {
+          button.classList.add("correct-choice");
+        }
+      });
+    }
+
+    function nextQuestion(moduleName) {
+      const questionIndex = state.index[moduleName];
+
+      if (!state.answered[moduleName].has(questionIndex)) {
+        const feedback = document.getElementById("feedback-" + moduleName);
+        if (feedback) {
+          feedback.textContent = "👉 Primero responde correctamente para avanzar.";
+          feedback.classList.remove("good");
+          feedback.classList.add("bad");
+        }
+        speakText("Primero responde correctamente para avanzar.");
+        return;
+      }
+
+      state.index[moduleName]++;
+      renderPractice(moduleName);
+    }
+
+    function restartModule(moduleName) {
+      state.index[moduleName] = 0;
+      state.answered[moduleName] = new Set();
+      renderPractice(moduleName);
+      updateProgress();
+    }
+
+    function goNextModule(moduleName) {
+      const order = ["agudas", "graves", "esdrujulas", "sobresdrujulas", "reto", "olimpiadas"];
+      const pos = order.indexOf(moduleName);
+      const next = order[pos + 1] || "olimpiadas";
+      showModule(next);
+    }
+
+    function speakQuestion(moduleName) {
+      const data = modules[moduleName];
+      const question = data.questions[state.index[moduleName]];
+      if (!question) return;
+      speakText(question.prompt + " Opciones: " + question.options.join(", ") + ".");
+    }
+
+    function speakTheory(moduleName) {
+      if (!modules[moduleName]) return;
+      speakText(modules[moduleName].theoryAudio);
+    }
+
+    function speakCurrentTheory() {
+      speakText(modules[state.currentModule].theoryAudio);
+    }
+
+    function speakText(text) {
+    if (!("speechSynthesis" in window)) return;
+
+    const utter = new SpeechSynthesisUtterance(text);
+
+    const voices = window.speechSynthesis.getVoices();
+
+    const vozPeru = voices.find(v => v.lang === "es-PE");
+    const vozLatam = voices.find(v => v.lang === "es-419");
+    const vozEspanol = voices.find(v => v.lang.startsWith("es"));
+
+    utter.voice = vozPeru || vozLatam || vozEspanol || null;
+    utter.lang = "es-PE";
+    utter.rate = 0.88;
+    utter.pitch = 1.02;
+
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(utter);
+}
+
+    function updateProgress() {
+      document.getElementById("correctCount").textContent = state.correct;
+      document.getElementById("wrongCount").textContent = state.wrong;
+
+      const done = Object.values(state.answered).reduce((sum, set) => sum + set.size, 0);
+      document.getElementById("progressText").textContent = `${done}/${state.totalQuestions}`;
+      document.getElementById("progressBar").style.width = ((done / state.totalQuestions) * 100) + "%";
+    }
+
+    function shuffleArray(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+    }
+
+    function shareApp() {
+      const shareData = {
+        title: "Marie Kids - Uso de la tilde",
+        text: "📚 Practica agudas, graves, esdrújulas, sobresdrújulas y olimpiadas.",
+        url: window.location.href
+      };
+
+      if (navigator.share) {
+        navigator.share(shareData).catch(() => {});
+      } else {
+        navigator.clipboard.writeText(shareData.url);
+        alert("🔗 Link copiado para compartir");
+      }
+    }
+
+    renderExampleButtons();
+    renderPractice("agudas");
+    renderPractice("graves");
+    renderPractice("esdrujulas");
+    renderPractice("sobresdrujulas");
+    renderPractice("reto");
+    renderPractice("olimpiadas");
+    updateProgress();
+  </script>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./service-worker.js").catch(() => {});
+      });
+    }
+  </script>
+</body>
+
+</html>
