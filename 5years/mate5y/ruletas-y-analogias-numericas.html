@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MVG Learning | Perímetro con unidades - 5 años</title>
+    <title>MVG Learning | Ruletas y analogías numéricas - 5 años</title>
 
     <!-- PWA -->
     <meta name="theme-color" content="#0b73ff" />
@@ -1735,7 +1735,7 @@
 
             <div class="brand-copy">
               <small>5 AÑOS · MATEMÁTICAS · TEMA 1</small>
-              <h1>47. Perímetro con unidades</h1>
+              <h1>55. Ruletas y analogías numéricas</h1>
               <p>Contar objetos con orden, sin repetir ni omitir ninguno.</p>
             </div>
           </div>
@@ -1872,7 +1872,7 @@
         <div class="overlay-card">
           <div class="overlay-icon" aria-hidden="true">🔎🍎</div>
           <div class="overlay-label">MVG Learning · 5 AÑOS</div>
-          <h3>47. Perímetro con unidades</h3>
+          <h3>55. Ruletas y analogías numéricas</h3>
 
           <p>
             Cada partida presenta 20 ejercicios elegidos al azar de una batería de 60.
@@ -1902,7 +1902,7 @@
           <div class="final-score" id="finalScore">20 / 20</div>
 
           <div class="finish-actions">
-            <a class="finish-next-btn" href="simetria.html">
+            <a class="finish-next-btn" href="sumas-constantes-en-figuras.html">
               Siguiente tema ➡️
             </a>
             <button id="restartBtn" type="button">🔄 Repetir</button>
@@ -1914,7 +1914,7 @@
     </div>
 
     <script>
-      // TEMA 47 · PERÍMETRO CON UNIDADES
+      // TEMA 55 · RULETAS Y ANALOGÍAS NUMÉRICAS
       const COLORS = {
         red: "#ff5b5b",
         blue: "#178cff",
@@ -1931,90 +1931,96 @@
                 "id": "B01",
                 "level": "Básico",
                 "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 2 unidades de largo y 2 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 2, 1 y 2. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "9",
+                                "value": "4",
                                 "color": "blue",
-                                "label": "número 9"
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
                         },
                         {
                                 "kind": "number",
                                 "value": "6",
                                 "color": "blue",
                                 "label": "número 6"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "8",
-                                "color": "blue",
-                                "label": "número 8"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "7",
-                                "color": "blue",
-                                "label": "número 7"
                         }
                 ],
                 "answer": 2,
-                "success": "¡Correcto! El perímetro es 8."
+                "success": "¡Correcto! La suma es 5."
         },
         {
                 "id": "B02",
                 "level": "Básico",
                 "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 1 unidades de largo y 2 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 1, 1 y 0. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "5",
+                                "value": "1",
                                 "color": "blue",
-                                "label": "número 5"
+                                "label": "número 1"
                         },
                         {
                                 "kind": "number",
-                                "value": "6",
+                                "value": "2",
                                 "color": "blue",
-                                "label": "número 6"
+                                "label": "número 2"
                         },
                         {
                                 "kind": "number",
-                                "value": "4",
+                                "value": "0",
                                 "color": "blue",
-                                "label": "número 4"
+                                "label": "número 0"
                         },
                         {
                                 "kind": "number",
-                                "value": "7",
+                                "value": "3",
                                 "color": "blue",
-                                "label": "número 7"
+                                "label": "número 3"
                         }
                 ],
                 "answer": 1,
-                "success": "¡Correcto! El perímetro es 6."
+                "success": "¡Correcto! La suma es 2."
         },
         {
                 "id": "B03",
                 "level": "Básico",
                 "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 1 unidades de largo y 1 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 1, 0 y 1. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "2",
+                                "value": "0",
                                 "color": "blue",
-                                "label": "número 2"
+                                "label": "número 0"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "1",
+                                "color": "blue",
+                                "label": "número 1"
                         },
                         {
                                 "kind": "number",
@@ -2024,40 +2030,28 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "5",
+                                "value": "2",
                                 "color": "blue",
-                                "label": "número 5"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "4",
-                                "color": "blue",
-                                "label": "número 4"
+                                "label": "número 2"
                         }
                 ],
                 "answer": 3,
-                "success": "¡Correcto! El perímetro es 4."
+                "success": "¡Correcto! La suma es 2."
         },
         {
                 "id": "B04",
                 "level": "Básico",
                 "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 1 unidades de largo y 2 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 3, 1 y 0. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "6",
+                                "value": "2",
                                 "color": "blue",
-                                "label": "número 6"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "7",
-                                "color": "blue",
-                                "label": "número 7"
+                                "label": "número 2"
                         },
                         {
                                 "kind": "number",
@@ -2070,26 +2064,26 @@
                                 "value": "4",
                                 "color": "blue",
                                 "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! El perímetro es 6."
+                "answer": 2,
+                "success": "¡Correcto! La suma es 4."
         },
         {
                 "id": "B05",
                 "level": "Básico",
                 "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 2 unidades de largo y 1 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 2, 3 y 1. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
                 "options": [
-                        {
-                                "kind": "number",
-                                "value": "4",
-                                "color": "blue",
-                                "label": "número 4"
-                        },
                         {
                                 "kind": "number",
                                 "value": "7",
@@ -2098,40 +2092,40 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "6",
+                                "value": "4",
                                 "color": "blue",
-                                "label": "número 6"
+                                "label": "número 4"
                         },
                         {
                                 "kind": "number",
                                 "value": "5",
                                 "color": "blue",
                                 "label": "número 5"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
                         }
                 ],
-                "answer": 2,
-                "success": "¡Correcto! El perímetro es 6."
+                "answer": 3,
+                "success": "¡Correcto! La suma es 6."
         },
         {
                 "id": "B06",
                 "level": "Básico",
                 "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 2 unidades de largo y 1 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 2, 1 y 2. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
                 "options": [
                         {
                                 "kind": "number",
                                 "value": "4",
                                 "color": "blue",
                                 "label": "número 4"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "7",
-                                "color": "blue",
-                                "label": "número 7"
                         },
                         {
                                 "kind": "number",
@@ -2144,56 +2138,62 @@
                                 "value": "5",
                                 "color": "blue",
                                 "label": "número 5"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
                         }
                 ],
                 "answer": 2,
-                "success": "¡Correcto! El perímetro es 6."
+                "success": "¡Correcto! La suma es 5."
         },
         {
                 "id": "B07",
                 "level": "Básico",
                 "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 2 unidades de largo y 1 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 0, 3 y 1. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "5",
+                                "value": "3",
                                 "color": "blue",
-                                "label": "número 5"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "6",
-                                "color": "blue",
-                                "label": "número 6"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "7",
-                                "color": "blue",
-                                "label": "número 7"
+                                "label": "número 3"
                         },
                         {
                                 "kind": "number",
                                 "value": "4",
                                 "color": "blue",
                                 "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "2",
+                                "color": "blue",
+                                "label": "número 2"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
                         }
                 ],
                 "answer": 1,
-                "success": "¡Correcto! El perímetro es 6."
+                "success": "¡Correcto! La suma es 4."
         },
         {
                 "id": "B08",
                 "level": "Básico",
                 "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 1 unidades de largo y 1 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 3, 1 y 0. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
                 "options": [
                         {
                                 "kind": "number",
@@ -2221,60 +2221,54 @@
                         }
                 ],
                 "answer": 3,
-                "success": "¡Correcto! El perímetro es 4."
+                "success": "¡Correcto! La suma es 4."
         },
         {
                 "id": "B09",
                 "level": "Básico",
                 "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 2 unidades de largo y 2 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 0, 2 y 2. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "8",
+                                "value": "4",
                                 "color": "blue",
-                                "label": "número 8"
+                                "label": "número 4"
                         },
                         {
                                 "kind": "number",
-                                "value": "9",
+                                "value": "3",
                                 "color": "blue",
-                                "label": "número 9"
+                                "label": "número 3"
                         },
                         {
                                 "kind": "number",
-                                "value": "7",
+                                "value": "5",
                                 "color": "blue",
-                                "label": "número 7"
+                                "label": "número 5"
                         },
                         {
                                 "kind": "number",
-                                "value": "6",
+                                "value": "2",
                                 "color": "blue",
-                                "label": "número 6"
+                                "label": "número 2"
                         }
                 ],
                 "answer": 0,
-                "success": "¡Correcto! El perímetro es 8."
+                "success": "¡Correcto! La suma es 4."
         },
         {
                 "id": "B10",
                 "level": "Básico",
                 "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 1 unidades de largo y 1 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 1, 0 y 2. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
                 "options": [
-                        {
-                                "kind": "number",
-                                "value": "2",
-                                "color": "blue",
-                                "label": "número 2"
-                        },
                         {
                                 "kind": "number",
                                 "value": "3",
@@ -2283,9 +2277,15 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "5",
+                                "value": "1",
                                 "color": "blue",
-                                "label": "número 5"
+                                "label": "número 1"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "2",
+                                "color": "blue",
+                                "label": "número 2"
                         },
                         {
                                 "kind": "number",
@@ -2294,468 +2294,18 @@
                                 "label": "número 4"
                         }
                 ],
-                "answer": 3,
-                "success": "¡Correcto! El perímetro es 4."
+                "answer": 0,
+                "success": "¡Correcto! La suma es 3."
         },
         {
                 "id": "B11",
                 "level": "Básico",
                 "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 2 unidades de largo y 1 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 0, 1 y 2. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
                 "options": [
-                        {
-                                "kind": "number",
-                                "value": "4",
-                                "color": "blue",
-                                "label": "número 4"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "6",
-                                "color": "blue",
-                                "label": "número 6"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "7",
-                                "color": "blue",
-                                "label": "número 7"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "5",
-                                "color": "blue",
-                                "label": "número 5"
-                        }
-                ],
-                "answer": 1,
-                "success": "¡Correcto! El perímetro es 6."
-        },
-        {
-                "id": "B12",
-                "level": "Básico",
-                "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 2 unidades de largo y 2 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "9",
-                                "color": "blue",
-                                "label": "número 9"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "6",
-                                "color": "blue",
-                                "label": "número 6"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "7",
-                                "color": "blue",
-                                "label": "número 7"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "8",
-                                "color": "blue",
-                                "label": "número 8"
-                        }
-                ],
-                "answer": 3,
-                "success": "¡Correcto! El perímetro es 8."
-        },
-        {
-                "id": "B13",
-                "level": "Básico",
-                "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 2 unidades de largo y 1 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "6",
-                                "color": "blue",
-                                "label": "número 6"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "4",
-                                "color": "blue",
-                                "label": "número 4"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "7",
-                                "color": "blue",
-                                "label": "número 7"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "5",
-                                "color": "blue",
-                                "label": "número 5"
-                        }
-                ],
-                "answer": 0,
-                "success": "¡Correcto! El perímetro es 6."
-        },
-        {
-                "id": "B14",
-                "level": "Básico",
-                "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 1 unidades de largo y 2 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "5",
-                                "color": "blue",
-                                "label": "número 5"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "6",
-                                "color": "blue",
-                                "label": "número 6"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "4",
-                                "color": "blue",
-                                "label": "número 4"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "7",
-                                "color": "blue",
-                                "label": "número 7"
-                        }
-                ],
-                "answer": 1,
-                "success": "¡Correcto! El perímetro es 6."
-        },
-        {
-                "id": "B15",
-                "level": "Básico",
-                "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 2 unidades de largo y 2 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "8",
-                                "color": "blue",
-                                "label": "número 8"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "6",
-                                "color": "blue",
-                                "label": "número 6"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "7",
-                                "color": "blue",
-                                "label": "número 7"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "9",
-                                "color": "blue",
-                                "label": "número 9"
-                        }
-                ],
-                "answer": 0,
-                "success": "¡Correcto! El perímetro es 8."
-        },
-        {
-                "id": "B16",
-                "level": "Básico",
-                "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 1 unidades de largo y 2 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "5",
-                                "color": "blue",
-                                "label": "número 5"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "6",
-                                "color": "blue",
-                                "label": "número 6"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "4",
-                                "color": "blue",
-                                "label": "número 4"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "7",
-                                "color": "blue",
-                                "label": "número 7"
-                        }
-                ],
-                "answer": 1,
-                "success": "¡Correcto! El perímetro es 6."
-        },
-        {
-                "id": "B17",
-                "level": "Básico",
-                "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 1 unidades de largo y 2 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "5",
-                                "color": "blue",
-                                "label": "número 5"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "4",
-                                "color": "blue",
-                                "label": "número 4"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "7",
-                                "color": "blue",
-                                "label": "número 7"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "6",
-                                "color": "blue",
-                                "label": "número 6"
-                        }
-                ],
-                "answer": 3,
-                "success": "¡Correcto! El perímetro es 6."
-        },
-        {
-                "id": "B18",
-                "level": "Básico",
-                "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 1 unidades de largo y 2 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "7",
-                                "color": "blue",
-                                "label": "número 7"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "4",
-                                "color": "blue",
-                                "label": "número 4"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "6",
-                                "color": "blue",
-                                "label": "número 6"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "5",
-                                "color": "blue",
-                                "label": "número 5"
-                        }
-                ],
-                "answer": 2,
-                "success": "¡Correcto! El perímetro es 6."
-        },
-        {
-                "id": "B19",
-                "level": "Básico",
-                "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 2 unidades de largo y 1 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "7",
-                                "color": "blue",
-                                "label": "número 7"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "4",
-                                "color": "blue",
-                                "label": "número 4"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "5",
-                                "color": "blue",
-                                "label": "número 5"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "6",
-                                "color": "blue",
-                                "label": "número 6"
-                        }
-                ],
-                "answer": 3,
-                "success": "¡Correcto! El perímetro es 6."
-        },
-        {
-                "id": "B20",
-                "level": "Básico",
-                "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 2 unidades de largo y 2 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "9",
-                                "color": "blue",
-                                "label": "número 9"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "7",
-                                "color": "blue",
-                                "label": "número 7"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "6",
-                                "color": "blue",
-                                "label": "número 6"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "8",
-                                "color": "blue",
-                                "label": "número 8"
-                        }
-                ],
-                "answer": 3,
-                "success": "¡Correcto! El perímetro es 8."
-        },
-        {
-                "id": "I01",
-                "level": "Intermedio",
-                "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 1 unidades de largo y 5 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "11",
-                                "color": "blue",
-                                "label": "número 11"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "13",
-                                "color": "blue",
-                                "label": "número 13"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "12",
-                                "color": "blue",
-                                "label": "número 12"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "10",
-                                "color": "blue",
-                                "label": "número 10"
-                        }
-                ],
-                "answer": 2,
-                "success": "¡Correcto! El perímetro es 12."
-        },
-        {
-                "id": "I02",
-                "level": "Intermedio",
-                "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 4 unidades de largo y 5 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "16",
-                                "color": "blue",
-                                "label": "número 16"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "17",
-                                "color": "blue",
-                                "label": "número 17"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "19",
-                                "color": "blue",
-                                "label": "número 19"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "18",
-                                "color": "blue",
-                                "label": "número 18"
-                        }
-                ],
-                "answer": 3,
-                "success": "¡Correcto! El perímetro es 18."
-        },
-        {
-                "id": "I03",
-                "level": "Intermedio",
-                "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 1 unidades de largo y 1 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "5",
-                                "color": "blue",
-                                "label": "número 5"
-                        },
                         {
                                 "kind": "number",
                                 "value": "3",
@@ -2773,20 +2323,476 @@
                                 "value": "4",
                                 "color": "blue",
                                 "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "1",
+                                "color": "blue",
+                                "label": "número 1"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! La suma es 3."
+        },
+        {
+                "id": "B12",
+                "level": "Básico",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 1, 2 y 3. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! La suma es 6."
+        },
+        {
+                "id": "B13",
+                "level": "Básico",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 3, 0 y 1. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "2",
+                                "color": "blue",
+                                "label": "número 2"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! La suma es 4."
+        },
+        {
+                "id": "B14",
+                "level": "Básico",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 0, 3 y 1. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "2",
+                                "color": "blue",
+                                "label": "número 2"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! La suma es 4."
+        },
+        {
+                "id": "B15",
+                "level": "Básico",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 2, 1 y 0. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "1",
+                                "color": "blue",
+                                "label": "número 1"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "2",
+                                "color": "blue",
+                                "label": "número 2"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
                         }
                 ],
                 "answer": 3,
-                "success": "¡Correcto! El perímetro es 4."
+                "success": "¡Correcto! La suma es 3."
+        },
+        {
+                "id": "B16",
+                "level": "Básico",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 2, 0 y 3. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        }
+                ],
+                "answer": 2,
+                "success": "¡Correcto! La suma es 5."
+        },
+        {
+                "id": "B17",
+                "level": "Básico",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 2, 1 y 0. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "2",
+                                "color": "blue",
+                                "label": "número 2"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "1",
+                                "color": "blue",
+                                "label": "número 1"
+                        }
+                ],
+                "answer": 1,
+                "success": "¡Correcto! La suma es 3."
+        },
+        {
+                "id": "B18",
+                "level": "Básico",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 2, 1 y 3. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        }
+                ],
+                "answer": 1,
+                "success": "¡Correcto! La suma es 6."
+        },
+        {
+                "id": "B19",
+                "level": "Básico",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 0, 0 y 3. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "1",
+                                "color": "blue",
+                                "label": "número 1"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "2",
+                                "color": "blue",
+                                "label": "número 2"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! La suma es 3."
+        },
+        {
+                "id": "B20",
+                "level": "Básico",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 2, 3 y 0. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! La suma es 5."
+        },
+        {
+                "id": "I01",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 0, 4 y 6. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "11",
+                                "color": "blue",
+                                "label": "número 11"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "8",
+                                "color": "blue",
+                                "label": "número 8"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "9",
+                                "color": "blue",
+                                "label": "número 9"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "10",
+                                "color": "blue",
+                                "label": "número 10"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! La suma es 10."
+        },
+        {
+                "id": "I02",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 3, 1 y 5. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "9",
+                                "color": "blue",
+                                "label": "número 9"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "8",
+                                "color": "blue",
+                                "label": "número 8"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "10",
+                                "color": "blue",
+                                "label": "número 10"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! La suma es 9."
+        },
+        {
+                "id": "I03",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 3, 4 y 0. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "8",
+                                "color": "blue",
+                                "label": "número 8"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! La suma es 7."
         },
         {
                 "id": "I04",
                 "level": "Intermedio",
                 "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 2 unidades de largo y 2 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 5, 4 y 2. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
                 "options": [
+                        {
+                                "kind": "number",
+                                "value": "11",
+                                "color": "blue",
+                                "label": "número 11"
+                        },
                         {
                                 "kind": "number",
                                 "value": "9",
@@ -2795,342 +2801,34 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "7",
+                                "value": "10",
                                 "color": "blue",
-                                "label": "número 7"
+                                "label": "número 10"
                         },
                         {
                                 "kind": "number",
-                                "value": "8",
+                                "value": "12",
                                 "color": "blue",
-                                "label": "número 8"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "6",
-                                "color": "blue",
-                                "label": "número 6"
+                                "label": "número 12"
                         }
                 ],
-                "answer": 2,
-                "success": "¡Correcto! El perímetro es 8."
+                "answer": 0,
+                "success": "¡Correcto! La suma es 11."
         },
         {
                 "id": "I05",
                 "level": "Intermedio",
                 "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 4 unidades de largo y 2 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 5, 6 y 2. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
                 "options": [
                         {
                                 "kind": "number",
                                 "value": "12",
                                 "color": "blue",
                                 "label": "número 12"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "10",
-                                "color": "blue",
-                                "label": "número 10"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "11",
-                                "color": "blue",
-                                "label": "número 11"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "13",
-                                "color": "blue",
-                                "label": "número 13"
-                        }
-                ],
-                "answer": 0,
-                "success": "¡Correcto! El perímetro es 12."
-        },
-        {
-                "id": "I06",
-                "level": "Intermedio",
-                "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 1 unidades de largo y 5 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "13",
-                                "color": "blue",
-                                "label": "número 13"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "10",
-                                "color": "blue",
-                                "label": "número 10"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "12",
-                                "color": "blue",
-                                "label": "número 12"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "11",
-                                "color": "blue",
-                                "label": "número 11"
-                        }
-                ],
-                "answer": 2,
-                "success": "¡Correcto! El perímetro es 12."
-        },
-        {
-                "id": "I07",
-                "level": "Intermedio",
-                "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 4 unidades de largo y 1 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "10",
-                                "color": "blue",
-                                "label": "número 10"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "11",
-                                "color": "blue",
-                                "label": "número 11"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "8",
-                                "color": "blue",
-                                "label": "número 8"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "9",
-                                "color": "blue",
-                                "label": "número 9"
-                        }
-                ],
-                "answer": 0,
-                "success": "¡Correcto! El perímetro es 10."
-        },
-        {
-                "id": "I08",
-                "level": "Intermedio",
-                "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 4 unidades de largo y 2 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "12",
-                                "color": "blue",
-                                "label": "número 12"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "10",
-                                "color": "blue",
-                                "label": "número 10"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "11",
-                                "color": "blue",
-                                "label": "número 11"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "13",
-                                "color": "blue",
-                                "label": "número 13"
-                        }
-                ],
-                "answer": 0,
-                "success": "¡Correcto! El perímetro es 12."
-        },
-        {
-                "id": "I09",
-                "level": "Intermedio",
-                "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 1 unidades de largo y 3 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "8",
-                                "color": "blue",
-                                "label": "número 8"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "6",
-                                "color": "blue",
-                                "label": "número 6"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "9",
-                                "color": "blue",
-                                "label": "número 9"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "7",
-                                "color": "blue",
-                                "label": "número 7"
-                        }
-                ],
-                "answer": 0,
-                "success": "¡Correcto! El perímetro es 8."
-        },
-        {
-                "id": "I10",
-                "level": "Intermedio",
-                "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 2 unidades de largo y 4 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "13",
-                                "color": "blue",
-                                "label": "número 13"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "12",
-                                "color": "blue",
-                                "label": "número 12"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "10",
-                                "color": "blue",
-                                "label": "número 10"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "11",
-                                "color": "blue",
-                                "label": "número 11"
-                        }
-                ],
-                "answer": 1,
-                "success": "¡Correcto! El perímetro es 12."
-        },
-        {
-                "id": "I11",
-                "level": "Intermedio",
-                "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 1 unidades de largo y 4 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "8",
-                                "color": "blue",
-                                "label": "número 8"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "10",
-                                "color": "blue",
-                                "label": "número 10"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "9",
-                                "color": "blue",
-                                "label": "número 9"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "11",
-                                "color": "blue",
-                                "label": "número 11"
-                        }
-                ],
-                "answer": 1,
-                "success": "¡Correcto! El perímetro es 10."
-        },
-        {
-                "id": "I12",
-                "level": "Intermedio",
-                "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 3 unidades de largo y 3 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "10",
-                                "color": "blue",
-                                "label": "número 10"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "11",
-                                "color": "blue",
-                                "label": "número 11"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "12",
-                                "color": "blue",
-                                "label": "número 12"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "13",
-                                "color": "blue",
-                                "label": "número 13"
-                        }
-                ],
-                "answer": 2,
-                "success": "¡Correcto! El perímetro es 12."
-        },
-        {
-                "id": "I13",
-                "level": "Intermedio",
-                "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 5 unidades de largo y 3 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "16",
-                                "color": "blue",
-                                "label": "número 16"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "17",
-                                "color": "blue",
-                                "label": "número 17"
                         },
                         {
                                 "kind": "number",
@@ -3140,23 +2838,35 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "15",
+                                "value": "13",
                                 "color": "blue",
-                                "label": "número 15"
+                                "label": "número 13"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "11",
+                                "color": "blue",
+                                "label": "número 11"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! El perímetro es 16."
+                "answer": 2,
+                "success": "¡Correcto! La suma es 13."
         },
         {
-                "id": "I14",
+                "id": "I06",
                 "level": "Intermedio",
                 "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 3 unidades de largo y 1 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 6, 4 y 0. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
                 "options": [
+                        {
+                                "kind": "number",
+                                "value": "11",
+                                "color": "blue",
+                                "label": "número 11"
+                        },
                         {
                                 "kind": "number",
                                 "value": "8",
@@ -3171,6 +2881,321 @@
                         },
                         {
                                 "kind": "number",
+                                "value": "10",
+                                "color": "blue",
+                                "label": "número 10"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! La suma es 10."
+        },
+        {
+                "id": "I07",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 5, 5 y 5. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "14",
+                                "color": "blue",
+                                "label": "número 14"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "16",
+                                "color": "blue",
+                                "label": "número 16"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "13",
+                                "color": "blue",
+                                "label": "número 13"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "15",
+                                "color": "blue",
+                                "label": "número 15"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! La suma es 15."
+        },
+        {
+                "id": "I08",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 5, 6 y 1. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "13",
+                                "color": "blue",
+                                "label": "número 13"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "12",
+                                "color": "blue",
+                                "label": "número 12"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "10",
+                                "color": "blue",
+                                "label": "número 10"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "11",
+                                "color": "blue",
+                                "label": "número 11"
+                        }
+                ],
+                "answer": 1,
+                "success": "¡Correcto! La suma es 12."
+        },
+        {
+                "id": "I09",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 3, 3 y 4. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "10",
+                                "color": "blue",
+                                "label": "número 10"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "8",
+                                "color": "blue",
+                                "label": "número 8"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "9",
+                                "color": "blue",
+                                "label": "número 9"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "11",
+                                "color": "blue",
+                                "label": "número 11"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! La suma es 10."
+        },
+        {
+                "id": "I10",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 3, 2 y 3. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "9",
+                                "color": "blue",
+                                "label": "número 9"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "8",
+                                "color": "blue",
+                                "label": "número 8"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! La suma es 8."
+        },
+        {
+                "id": "I11",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 5, 6 y 4. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "13",
+                                "color": "blue",
+                                "label": "número 13"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "14",
+                                "color": "blue",
+                                "label": "número 14"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "16",
+                                "color": "blue",
+                                "label": "número 16"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "15",
+                                "color": "blue",
+                                "label": "número 15"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! La suma es 15."
+        },
+        {
+                "id": "I12",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 2, 1 y 6. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "8",
+                                "color": "blue",
+                                "label": "número 8"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "10",
+                                "color": "blue",
+                                "label": "número 10"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "9",
+                                "color": "blue",
+                                "label": "número 9"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
+                        }
+                ],
+                "answer": 2,
+                "success": "¡Correcto! La suma es 9."
+        },
+        {
+                "id": "I13",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 4, 3 y 5. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "12",
+                                "color": "blue",
+                                "label": "número 12"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "13",
+                                "color": "blue",
+                                "label": "número 13"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "11",
+                                "color": "blue",
+                                "label": "número 11"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "10",
+                                "color": "blue",
+                                "label": "número 10"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! La suma es 12."
+        },
+        {
+                "id": "I14",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 0, 2 y 3. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! La suma es 5."
+        },
+        {
+                "id": "I15",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 1, 1 y 6. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
                                 "value": "6",
                                 "color": "blue",
                                 "label": "número 6"
@@ -3180,20 +3205,149 @@
                                 "value": "7",
                                 "color": "blue",
                                 "label": "número 7"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "8",
+                                "color": "blue",
+                                "label": "número 8"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "9",
+                                "color": "blue",
+                                "label": "número 9"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! El perímetro es 8."
+                "answer": 2,
+                "success": "¡Correcto! La suma es 8."
         },
         {
-                "id": "I15",
+                "id": "I16",
                 "level": "Intermedio",
                 "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 3 unidades de largo y 3 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 3, 1 y 4. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
                 "options": [
+                        {
+                                "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "9",
+                                "color": "blue",
+                                "label": "número 9"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "8",
+                                "color": "blue",
+                                "label": "número 8"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! La suma es 8."
+        },
+        {
+                "id": "I17",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 0, 5 y 5. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "9",
+                                "color": "blue",
+                                "label": "número 9"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "11",
+                                "color": "blue",
+                                "label": "número 11"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "10",
+                                "color": "blue",
+                                "label": "número 10"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "8",
+                                "color": "blue",
+                                "label": "número 8"
+                        }
+                ],
+                "answer": 2,
+                "success": "¡Correcto! La suma es 10."
+        },
+        {
+                "id": "I18",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 5, 0 y 5. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "9",
+                                "color": "blue",
+                                "label": "número 9"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "10",
+                                "color": "blue",
+                                "label": "número 10"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "11",
+                                "color": "blue",
+                                "label": "número 11"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "8",
+                                "color": "blue",
+                                "label": "número 8"
+                        }
+                ],
+                "answer": 1,
+                "success": "¡Correcto! La suma es 10."
+        },
+        {
+                "id": "I19",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 1, 6 y 6. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "13",
+                                "color": "blue",
+                                "label": "número 13"
+                        },
                         {
                                 "kind": "number",
                                 "value": "12",
@@ -3208,140 +3362,35 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "10",
+                                "value": "14",
                                 "color": "blue",
-                                "label": "número 10"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "13",
-                                "color": "blue",
-                                "label": "número 13"
+                                "label": "número 14"
                         }
                 ],
                 "answer": 0,
-                "success": "¡Correcto! El perímetro es 12."
+                "success": "¡Correcto! La suma es 13."
         },
         {
-                "id": "I16",
+                "id": "I20",
                 "level": "Intermedio",
                 "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 3 unidades de largo y 2 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 0, 4 y 2. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "10",
+                                "value": "7",
                                 "color": "blue",
-                                "label": "número 10"
+                                "label": "número 7"
                         },
                         {
                                 "kind": "number",
-                                "value": "11",
+                                "value": "4",
                                 "color": "blue",
-                                "label": "número 11"
+                                "label": "número 4"
                         },
-                        {
-                                "kind": "number",
-                                "value": "9",
-                                "color": "blue",
-                                "label": "número 9"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "8",
-                                "color": "blue",
-                                "label": "número 8"
-                        }
-                ],
-                "answer": 0,
-                "success": "¡Correcto! El perímetro es 10."
-        },
-        {
-                "id": "I17",
-                "level": "Intermedio",
-                "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 1 unidades de largo y 4 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "10",
-                                "color": "blue",
-                                "label": "número 10"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "11",
-                                "color": "blue",
-                                "label": "número 11"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "8",
-                                "color": "blue",
-                                "label": "número 8"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "9",
-                                "color": "blue",
-                                "label": "número 9"
-                        }
-                ],
-                "answer": 0,
-                "success": "¡Correcto! El perímetro es 10."
-        },
-        {
-                "id": "I18",
-                "level": "Intermedio",
-                "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 5 unidades de largo y 4 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "19",
-                                "color": "blue",
-                                "label": "número 19"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "18",
-                                "color": "blue",
-                                "label": "número 18"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "16",
-                                "color": "blue",
-                                "label": "número 16"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "17",
-                                "color": "blue",
-                                "label": "número 17"
-                        }
-                ],
-                "answer": 1,
-                "success": "¡Correcto! El perímetro es 18."
-        },
-        {
-                "id": "I19",
-                "level": "Intermedio",
-                "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 1 unidades de largo y 2 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
-                "options": [
                         {
                                 "kind": "number",
                                 "value": "6",
@@ -3350,9 +3399,28 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "7",
+                                "value": "5",
                                 "color": "blue",
-                                "label": "número 7"
+                                "label": "número 5"
+                        }
+                ],
+                "answer": 2,
+                "success": "¡Correcto! La suma es 6."
+        },
+        {
+                "id": "A01",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 3, 3 y 0. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
                         },
                         {
                                 "kind": "number",
@@ -3365,26 +3433,26 @@
                                 "value": "4",
                                 "color": "blue",
                                 "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
                         }
                 ],
                 "answer": 0,
-                "success": "¡Correcto! El perímetro es 6."
+                "success": "¡Correcto! La suma es 6."
         },
         {
-                "id": "I20",
-                "level": "Intermedio",
+                "id": "A02",
+                "level": "Avanzado",
                 "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 5 unidades de largo y 5 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 4, 10 y 5. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
                 "options": [
-                        {
-                                "kind": "number",
-                                "value": "18",
-                                "color": "blue",
-                                "label": "número 18"
-                        },
                         {
                                 "kind": "number",
                                 "value": "19",
@@ -3393,66 +3461,10 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "20",
+                                "value": "18",
                                 "color": "blue",
-                                "label": "número 20"
+                                "label": "número 18"
                         },
-                        {
-                                "kind": "number",
-                                "value": "21",
-                                "color": "blue",
-                                "label": "número 21"
-                        }
-                ],
-                "answer": 2,
-                "success": "¡Correcto! El perímetro es 20."
-        },
-        {
-                "id": "A01",
-                "level": "Avanzado",
-                "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 4 unidades de largo y 2 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "13",
-                                "color": "blue",
-                                "label": "número 13"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "10",
-                                "color": "blue",
-                                "label": "número 10"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "11",
-                                "color": "blue",
-                                "label": "número 11"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "12",
-                                "color": "blue",
-                                "label": "número 12"
-                        }
-                ],
-                "answer": 3,
-                "success": "¡Correcto! El perímetro es 12."
-        },
-        {
-                "id": "A02",
-                "level": "Avanzado",
-                "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 5 unidades de largo y 4 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
-                "options": [
                         {
                                 "kind": "number",
                                 "value": "17",
@@ -3461,15 +3473,77 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "18",
+                                "value": "20",
                                 "color": "blue",
-                                "label": "número 18"
+                                "label": "número 20"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! La suma es 19."
+        },
+        {
+                "id": "A03",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 9, 5 y 1. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "16",
+                                "color": "blue",
+                                "label": "número 16"
                         },
                         {
                                 "kind": "number",
-                                "value": "19",
+                                "value": "15",
                                 "color": "blue",
-                                "label": "número 19"
+                                "label": "número 15"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "14",
+                                "color": "blue",
+                                "label": "número 14"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "13",
+                                "color": "blue",
+                                "label": "número 13"
+                        }
+                ],
+                "answer": 1,
+                "success": "¡Correcto! La suma es 15."
+        },
+        {
+                "id": "A04",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 8, 2 y 6. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "14",
+                                "color": "blue",
+                                "label": "número 14"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "17",
+                                "color": "blue",
+                                "label": "número 17"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "15",
+                                "color": "blue",
+                                "label": "número 15"
                         },
                         {
                                 "kind": "number",
@@ -3478,141 +3552,240 @@
                                 "label": "número 16"
                         }
                 ],
-                "answer": 1,
-                "success": "¡Correcto! El perímetro es 18."
+                "answer": 3,
+                "success": "¡Correcto! La suma es 16."
         },
         {
-                "id": "A03",
+                "id": "A05",
                 "level": "Avanzado",
                 "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 7 unidades de largo y 6 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 10, 8 y 5. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "27",
+                                "value": "21",
                                 "color": "blue",
-                                "label": "número 27"
+                                "label": "número 21"
                         },
                         {
                                 "kind": "number",
-                                "value": "25",
+                                "value": "22",
                                 "color": "blue",
-                                "label": "número 25"
+                                "label": "número 22"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "23",
+                                "color": "blue",
+                                "label": "número 23"
                         },
                         {
                                 "kind": "number",
                                 "value": "24",
                                 "color": "blue",
                                 "label": "número 24"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "26",
-                                "color": "blue",
-                                "label": "número 26"
-                        }
-                ],
-                "answer": 3,
-                "success": "¡Correcto! El perímetro es 26."
-        },
-        {
-                "id": "A04",
-                "level": "Avanzado",
-                "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 3 unidades de largo y 1 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "6",
-                                "color": "blue",
-                                "label": "número 6"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "9",
-                                "color": "blue",
-                                "label": "número 9"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "8",
-                                "color": "blue",
-                                "label": "número 8"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "7",
-                                "color": "blue",
-                                "label": "número 7"
                         }
                 ],
                 "answer": 2,
-                "success": "¡Correcto! El perímetro es 8."
+                "success": "¡Correcto! La suma es 23."
         },
         {
-                "id": "A05",
+                "id": "A06",
                 "level": "Avanzado",
                 "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 4 unidades de largo y 2 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 9, 0 y 9. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "12",
+                                "value": "17",
                                 "color": "blue",
-                                "label": "número 12"
+                                "label": "número 17"
                         },
                         {
                                 "kind": "number",
-                                "value": "11",
+                                "value": "19",
                                 "color": "blue",
-                                "label": "número 11"
+                                "label": "número 19"
                         },
                         {
                                 "kind": "number",
-                                "value": "10",
+                                "value": "18",
                                 "color": "blue",
-                                "label": "número 10"
+                                "label": "número 18"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "16",
+                                "color": "blue",
+                                "label": "número 16"
+                        }
+                ],
+                "answer": 2,
+                "success": "¡Correcto! La suma es 18."
+        },
+        {
+                "id": "A07",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 1, 6 y 10. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "16",
+                                "color": "blue",
+                                "label": "número 16"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "17",
+                                "color": "blue",
+                                "label": "número 17"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "18",
+                                "color": "blue",
+                                "label": "número 18"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "15",
+                                "color": "blue",
+                                "label": "número 15"
+                        }
+                ],
+                "answer": 1,
+                "success": "¡Correcto! La suma es 17."
+        },
+        {
+                "id": "A08",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 6, 3 y 7. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "17",
+                                "color": "blue",
+                                "label": "número 17"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "14",
+                                "color": "blue",
+                                "label": "número 14"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "16",
+                                "color": "blue",
+                                "label": "número 16"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "15",
+                                "color": "blue",
+                                "label": "número 15"
+                        }
+                ],
+                "answer": 2,
+                "success": "¡Correcto! La suma es 16."
+        },
+        {
+                "id": "A09",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 8, 0 y 7. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "16",
+                                "color": "blue",
+                                "label": "número 16"
                         },
                         {
                                 "kind": "number",
                                 "value": "13",
                                 "color": "blue",
                                 "label": "número 13"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "14",
+                                "color": "blue",
+                                "label": "número 14"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "15",
+                                "color": "blue",
+                                "label": "número 15"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! El perímetro es 12."
+                "answer": 3,
+                "success": "¡Correcto! La suma es 15."
         },
         {
-                "id": "A06",
+                "id": "A10",
                 "level": "Avanzado",
                 "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 5 unidades de largo y 5 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 3, 9 y 2. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "19",
+                                "value": "13",
                                 "color": "blue",
-                                "label": "número 19"
+                                "label": "número 13"
                         },
                         {
                                 "kind": "number",
-                                "value": "21",
+                                "value": "14",
                                 "color": "blue",
-                                "label": "número 21"
+                                "label": "número 14"
                         },
+                        {
+                                "kind": "number",
+                                "value": "15",
+                                "color": "blue",
+                                "label": "número 15"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "12",
+                                "color": "blue",
+                                "label": "número 12"
+                        }
+                ],
+                "answer": 1,
+                "success": "¡Correcto! La suma es 14."
+        },
+        {
+                "id": "A11",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 10, 9 y 0. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
                         {
                                 "kind": "number",
                                 "value": "18",
@@ -3621,96 +3794,34 @@
                         },
                         {
                                 "kind": "number",
+                                "value": "19",
+                                "color": "blue",
+                                "label": "número 19"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "17",
+                                "color": "blue",
+                                "label": "número 17"
+                        },
+                        {
+                                "kind": "number",
                                 "value": "20",
                                 "color": "blue",
                                 "label": "número 20"
                         }
                 ],
-                "answer": 3,
-                "success": "¡Correcto! El perímetro es 20."
+                "answer": 1,
+                "success": "¡Correcto! La suma es 19."
         },
         {
-                "id": "A07",
+                "id": "A12",
                 "level": "Avanzado",
                 "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 3 unidades de largo y 5 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "14",
-                                "color": "blue",
-                                "label": "número 14"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "15",
-                                "color": "blue",
-                                "label": "número 15"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "16",
-                                "color": "blue",
-                                "label": "número 16"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "17",
-                                "color": "blue",
-                                "label": "número 17"
-                        }
-                ],
-                "answer": 2,
-                "success": "¡Correcto! El perímetro es 16."
-        },
-        {
-                "id": "A08",
-                "level": "Avanzado",
-                "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 5 unidades de largo y 3 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "15",
-                                "color": "blue",
-                                "label": "número 15"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "14",
-                                "color": "blue",
-                                "label": "número 14"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "17",
-                                "color": "blue",
-                                "label": "número 17"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "16",
-                                "color": "blue",
-                                "label": "número 16"
-                        }
-                ],
-                "answer": 3,
-                "success": "¡Correcto! El perímetro es 16."
-        },
-        {
-                "id": "A09",
-                "level": "Avanzado",
-                "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 3 unidades de largo y 1 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 1, 1 y 4. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
                 "options": [
                         {
                                 "kind": "number",
@@ -3720,72 +3831,10 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "6",
+                                "value": "4",
                                 "color": "blue",
-                                "label": "número 6"
+                                "label": "número 4"
                         },
-                        {
-                                "kind": "number",
-                                "value": "9",
-                                "color": "blue",
-                                "label": "número 9"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "8",
-                                "color": "blue",
-                                "label": "número 8"
-                        }
-                ],
-                "answer": 3,
-                "success": "¡Correcto! El perímetro es 8."
-        },
-        {
-                "id": "A10",
-                "level": "Avanzado",
-                "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 4 unidades de largo y 6 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "20",
-                                "color": "blue",
-                                "label": "número 20"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "18",
-                                "color": "blue",
-                                "label": "número 18"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "21",
-                                "color": "blue",
-                                "label": "número 21"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "19",
-                                "color": "blue",
-                                "label": "número 19"
-                        }
-                ],
-                "answer": 0,
-                "success": "¡Correcto! El perímetro es 20."
-        },
-        {
-                "id": "A11",
-                "level": "Avanzado",
-                "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 1 unidades de largo y 1 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
-                "options": [
                         {
                                 "kind": "number",
                                 "value": "5",
@@ -3794,47 +3843,23 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "2",
+                                "value": "6",
                                 "color": "blue",
-                                "label": "número 2"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "3",
-                                "color": "blue",
-                                "label": "número 3"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "4",
-                                "color": "blue",
-                                "label": "número 4"
+                                "label": "número 6"
                         }
                 ],
                 "answer": 3,
-                "success": "¡Correcto! El perímetro es 4."
+                "success": "¡Correcto! La suma es 6."
         },
         {
-                "id": "A12",
+                "id": "A13",
                 "level": "Avanzado",
                 "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 6 unidades de largo y 5 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 9, 3 y 10. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
                 "options": [
-                        {
-                                "kind": "number",
-                                "value": "21",
-                                "color": "blue",
-                                "label": "número 21"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "20",
-                                "color": "blue",
-                                "label": "número 20"
-                        },
                         {
                                 "kind": "number",
                                 "value": "23",
@@ -3846,210 +3871,6 @@
                                 "value": "22",
                                 "color": "blue",
                                 "label": "número 22"
-                        }
-                ],
-                "answer": 3,
-                "success": "¡Correcto! El perímetro es 22."
-        },
-        {
-                "id": "A13",
-                "level": "Avanzado",
-                "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 4 unidades de largo y 4 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "16",
-                                "color": "blue",
-                                "label": "número 16"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "17",
-                                "color": "blue",
-                                "label": "número 17"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "15",
-                                "color": "blue",
-                                "label": "número 15"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "14",
-                                "color": "blue",
-                                "label": "número 14"
-                        }
-                ],
-                "answer": 0,
-                "success": "¡Correcto! El perímetro es 16."
-        },
-        {
-                "id": "A14",
-                "level": "Avanzado",
-                "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 1 unidades de largo y 2 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "7",
-                                "color": "blue",
-                                "label": "número 7"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "4",
-                                "color": "blue",
-                                "label": "número 4"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "6",
-                                "color": "blue",
-                                "label": "número 6"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "5",
-                                "color": "blue",
-                                "label": "número 5"
-                        }
-                ],
-                "answer": 2,
-                "success": "¡Correcto! El perímetro es 6."
-        },
-        {
-                "id": "A15",
-                "level": "Avanzado",
-                "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 5 unidades de largo y 3 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "16",
-                                "color": "blue",
-                                "label": "número 16"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "14",
-                                "color": "blue",
-                                "label": "número 14"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "15",
-                                "color": "blue",
-                                "label": "número 15"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "17",
-                                "color": "blue",
-                                "label": "número 17"
-                        }
-                ],
-                "answer": 0,
-                "success": "¡Correcto! El perímetro es 16."
-        },
-        {
-                "id": "A16",
-                "level": "Avanzado",
-                "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 2 unidades de largo y 7 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "17",
-                                "color": "blue",
-                                "label": "número 17"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "19",
-                                "color": "blue",
-                                "label": "número 19"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "18",
-                                "color": "blue",
-                                "label": "número 18"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "16",
-                                "color": "blue",
-                                "label": "número 16"
-                        }
-                ],
-                "answer": 2,
-                "success": "¡Correcto! El perímetro es 18."
-        },
-        {
-                "id": "A17",
-                "level": "Avanzado",
-                "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 6 unidades de largo y 7 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "26",
-                                "color": "blue",
-                                "label": "número 26"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "27",
-                                "color": "blue",
-                                "label": "número 27"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "25",
-                                "color": "blue",
-                                "label": "número 25"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "24",
-                                "color": "blue",
-                                "label": "número 24"
-                        }
-                ],
-                "answer": 0,
-                "success": "¡Correcto! El perímetro es 26."
-        },
-        {
-                "id": "A18",
-                "level": "Avanzado",
-                "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 7 unidades de largo y 3 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "20",
-                                "color": "blue",
-                                "label": "número 20"
                         },
                         {
                                 "kind": "number",
@@ -4059,9 +3880,40 @@
                         },
                         {
                                 "kind": "number",
+                                "value": "20",
+                                "color": "blue",
+                                "label": "número 20"
+                        }
+                ],
+                "answer": 1,
+                "success": "¡Correcto! La suma es 22."
+        },
+        {
+                "id": "A14",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 8, 3 y 8. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "20",
+                                "color": "blue",
+                                "label": "número 20"
+                        },
+                        {
+                                "kind": "number",
                                 "value": "18",
                                 "color": "blue",
                                 "label": "número 18"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "17",
+                                "color": "blue",
+                                "label": "número 17"
                         },
                         {
                                 "kind": "number",
@@ -4070,82 +3922,230 @@
                                 "label": "número 19"
                         }
                 ],
+                "answer": 3,
+                "success": "¡Correcto! La suma es 19."
+        },
+        {
+                "id": "A15",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 3, 5 y 8. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "14",
+                                "color": "blue",
+                                "label": "número 14"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "17",
+                                "color": "blue",
+                                "label": "número 17"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "16",
+                                "color": "blue",
+                                "label": "número 16"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "15",
+                                "color": "blue",
+                                "label": "número 15"
+                        }
+                ],
+                "answer": 2,
+                "success": "¡Correcto! La suma es 16."
+        },
+        {
+                "id": "A16",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 1, 10 y 1. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "10",
+                                "color": "blue",
+                                "label": "número 10"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "13",
+                                "color": "blue",
+                                "label": "número 13"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "11",
+                                "color": "blue",
+                                "label": "número 11"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "12",
+                                "color": "blue",
+                                "label": "número 12"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! La suma es 12."
+        },
+        {
+                "id": "A17",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 9, 3 y 5. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "17",
+                                "color": "blue",
+                                "label": "número 17"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "18",
+                                "color": "blue",
+                                "label": "número 18"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "16",
+                                "color": "blue",
+                                "label": "número 16"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "15",
+                                "color": "blue",
+                                "label": "número 15"
+                        }
+                ],
                 "answer": 0,
-                "success": "¡Correcto! El perímetro es 20."
+                "success": "¡Correcto! La suma es 17."
+        },
+        {
+                "id": "A18",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 9, 3 y 4. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "17",
+                                "color": "blue",
+                                "label": "número 17"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "14",
+                                "color": "blue",
+                                "label": "número 14"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "15",
+                                "color": "blue",
+                                "label": "número 15"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "16",
+                                "color": "blue",
+                                "label": "número 16"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! La suma es 16."
         },
         {
                 "id": "A19",
                 "level": "Avanzado",
                 "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 4 unidades de largo y 4 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 8, 2 y 2. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "14",
+                                "value": "13",
                                 "color": "blue",
-                                "label": "número 14"
+                                "label": "número 13"
                         },
                         {
                                 "kind": "number",
-                                "value": "15",
+                                "value": "12",
                                 "color": "blue",
-                                "label": "número 15"
+                                "label": "número 12"
                         },
                         {
                                 "kind": "number",
-                                "value": "17",
+                                "value": "11",
                                 "color": "blue",
-                                "label": "número 17"
+                                "label": "número 11"
                         },
                         {
                                 "kind": "number",
-                                "value": "16",
+                                "value": "10",
                                 "color": "blue",
-                                "label": "número 16"
+                                "label": "número 10"
                         }
                 ],
-                "answer": 3,
-                "success": "¡Correcto! El perímetro es 16."
+                "answer": 1,
+                "success": "¡Correcto! La suma es 12."
         },
         {
                 "id": "A20",
                 "level": "Avanzado",
                 "mode": "choice",
-                "title": "Perímetro con unidades",
-                "instruction": "Un rectángulo mide 5 unidades de largo y 3 de ancho. ¿Cuál es su perímetro?",
-                "speech": "Suma todos los lados.",
-                "hint": "Calcula largo + ancho + largo + ancho.",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 6, 0 y 4. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "14",
+                                "value": "9",
                                 "color": "blue",
-                                "label": "número 14"
+                                "label": "número 9"
                         },
                         {
                                 "kind": "number",
-                                "value": "15",
+                                "value": "10",
                                 "color": "blue",
-                                "label": "número 15"
+                                "label": "número 10"
                         },
                         {
                                 "kind": "number",
-                                "value": "17",
+                                "value": "8",
                                 "color": "blue",
-                                "label": "número 17"
+                                "label": "número 8"
                         },
                         {
                                 "kind": "number",
-                                "value": "16",
+                                "value": "11",
                                 "color": "blue",
-                                "label": "número 16"
+                                "label": "número 11"
                         }
                 ],
-                "answer": 3,
-                "success": "¡Correcto! El perímetro es 16."
+                "answer": 1,
+                "success": "¡Correcto! La suma es 10."
         }
 ];
 
@@ -4703,10 +4703,10 @@
 
         if (state.score === exercises.length) {
           elements.finalMessage.textContent =
-            "¡Excelente! Dominaste el tema perímetro con unidades.";
+            "¡Excelente! Dominaste el tema ruletas numéricas.";
         } else if (state.score >= 15) {
           elements.finalMessage.textContent =
-            "¡Muy bien! Resolviste con éxito las actividades de perímetro con unidades.";
+            "¡Muy bien! Resolviste con éxito las actividades de ruletas numéricas.";
         } else {
           elements.finalMessage.textContent =
             "¡Buen trabajo! Repite la actividad para seguir mejorando.";
@@ -4714,7 +4714,7 @@
 
         try {
           localStorage.setItem(
-            "mvg_topic_perimetro_con_unidades_complete",
+            "mvg_topic_ruletas_numericas_complete",
             "true"
           );
 
@@ -4729,8 +4729,8 @@
               ? savedRouteProgress.filter(item => typeof item === "string")
               : [];
 
-          if (!completedTopics.includes("stage-47")) {
-            completedTopics.push("stage-47");
+          if (!completedTopics.includes("stage-55")) {
+            completedTopics.push("stage-55");
           }
 
           localStorage.setItem(

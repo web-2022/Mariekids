@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MVG Learning | Conteo de cuadrados - 5 años</title>
+    <title>MVG Learning | Valores ocultos con dibujos - 5 años</title>
 
     <!-- PWA -->
     <meta name="theme-color" content="#0b73ff" />
@@ -1735,7 +1735,7 @@
 
             <div class="brand-copy">
               <small>5 AÑOS · MATEMÁTICAS · TEMA 1</small>
-              <h1>46. Conteo de cuadrados</h1>
+              <h1>54. Valores ocultos con dibujos</h1>
               <p>Contar objetos con orden, sin repetir ni omitir ninguno.</p>
             </div>
           </div>
@@ -1872,7 +1872,7 @@
         <div class="overlay-card">
           <div class="overlay-icon" aria-hidden="true">🔎🍎</div>
           <div class="overlay-label">MVG Learning · 5 AÑOS</div>
-          <h3>46. Conteo de cuadrados</h3>
+          <h3>54. Valores ocultos con dibujos</h3>
 
           <p>
             Cada partida presenta 20 ejercicios elegidos al azar de una batería de 60.
@@ -1902,7 +1902,7 @@
           <div class="final-score" id="finalScore">20 / 20</div>
 
           <div class="finish-actions">
-            <a class="finish-next-btn" href="perimetro-con-unidades.html">
+            <a class="finish-next-btn" href="ruletas-y-analogias-numericas.html">
               Siguiente tema ➡️
             </a>
             <button id="restartBtn" type="button">🔄 Repetir</button>
@@ -1914,7 +1914,7 @@
     </div>
 
     <script>
-      // TEMA 46 · CONTEO DE CUADRADOS
+      // TEMA 54 · VALORES OCULTOS CON DIBUJOS
       const COLORS = {
         red: "#ff5b5b",
         blue: "#178cff",
@@ -1930,17 +1930,23 @@
         {
                 "id": "B01",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 2. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
                 "options": [
                         {
                                 "kind": "number",
                                 "value": "2",
                                 "color": "blue",
                                 "label": "número 2"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "0",
+                                "color": "blue",
+                                "label": "número 0"
                         },
                         {
                                 "kind": "number",
@@ -1953,89 +1959,62 @@
                                 "value": "1",
                                 "color": "blue",
                                 "label": "número 1"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "0",
-                                "color": "blue",
-                                "label": "número 0"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! Hay 2 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "2 cuadrados"
-                }
+                "answer": 3,
+                "success": "¡Correcto! ⭐ vale 1."
         },
         {
                 "id": "B02",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 6. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "7",
+                                "value": "2",
                                 "color": "blue",
-                                "label": "número 7"
+                                "label": "número 2"
                         },
                         {
                                 "kind": "number",
-                                "value": "8",
+                                "value": "3",
                                 "color": "blue",
-                                "label": "número 8"
+                                "label": "número 3"
                         },
                         {
                                 "kind": "number",
-                                "value": "5",
+                                "value": "1",
                                 "color": "blue",
-                                "label": "número 5"
+                                "label": "número 1"
                         },
                         {
                                 "kind": "number",
-                                "value": "6",
+                                "value": "4",
                                 "color": "blue",
-                                "label": "número 6"
+                                "label": "número 4"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! Hay 7 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "7 cuadrados"
-                }
+                "answer": 1,
+                "success": "¡Correcto! ⭐ vale 3."
         },
         {
                 "id": "B03",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 6. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "3",
+                                "value": "2",
                                 "color": "blue",
-                                "label": "número 3"
+                                "label": "número 2"
                         },
                         {
                                 "kind": "number",
@@ -2051,285 +2030,207 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "2",
+                                "value": "3",
                                 "color": "blue",
-                                "label": "número 2"
+                                "label": "número 3"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! Hay 3 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "3 cuadrados"
-                }
+                "answer": 3,
+                "success": "¡Correcto! ⭐ vale 3."
         },
         {
                 "id": "B04",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 2. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "8",
+                                "value": "3",
                                 "color": "blue",
-                                "label": "número 8"
+                                "label": "número 3"
                         },
                         {
                                 "kind": "number",
-                                "value": "11",
+                                "value": "1",
                                 "color": "blue",
-                                "label": "número 11"
+                                "label": "número 1"
                         },
                         {
                                 "kind": "number",
-                                "value": "10",
+                                "value": "2",
                                 "color": "blue",
-                                "label": "número 10"
+                                "label": "número 2"
                         },
                         {
                                 "kind": "number",
-                                "value": "9",
+                                "value": "0",
                                 "color": "blue",
-                                "label": "número 9"
+                                "label": "número 0"
                         }
                 ],
-                "answer": 2,
-                "success": "¡Correcto! Hay 10 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "10 cuadrados"
-                }
+                "answer": 1,
+                "success": "¡Correcto! ⭐ vale 1."
         },
         {
                 "id": "B05",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 6. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "7",
+                                "value": "3",
                                 "color": "blue",
-                                "label": "número 7"
+                                "label": "número 3"
                         },
                         {
                                 "kind": "number",
-                                "value": "8",
+                                "value": "2",
                                 "color": "blue",
-                                "label": "número 8"
+                                "label": "número 2"
                         },
                         {
                                 "kind": "number",
-                                "value": "5",
+                                "value": "4",
                                 "color": "blue",
-                                "label": "número 5"
+                                "label": "número 4"
                         },
                         {
                                 "kind": "number",
-                                "value": "6",
+                                "value": "1",
                                 "color": "blue",
-                                "label": "número 6"
+                                "label": "número 1"
                         }
                 ],
                 "answer": 0,
-                "success": "¡Correcto! Hay 7 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "7 cuadrados"
-                }
+                "success": "¡Correcto! ⭐ vale 3."
         },
         {
                 "id": "B06",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 6. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "9",
+                                "value": "3",
                                 "color": "blue",
-                                "label": "número 9"
+                                "label": "número 3"
                         },
                         {
                                 "kind": "number",
-                                "value": "8",
+                                "value": "2",
                                 "color": "blue",
-                                "label": "número 8"
+                                "label": "número 2"
                         },
                         {
                                 "kind": "number",
-                                "value": "7",
+                                "value": "4",
                                 "color": "blue",
-                                "label": "número 7"
+                                "label": "número 4"
                         },
                         {
                                 "kind": "number",
-                                "value": "6",
+                                "value": "1",
                                 "color": "blue",
-                                "label": "número 6"
+                                "label": "número 1"
                         }
                 ],
-                "answer": 1,
-                "success": "¡Correcto! Hay 8 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "8 cuadrados"
-                }
+                "answer": 0,
+                "success": "¡Correcto! ⭐ vale 3."
         },
         {
                 "id": "B07",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 6. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
                 "options": [
-                        {
-                                "kind": "number",
-                                "value": "7",
-                                "color": "blue",
-                                "label": "número 7"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "6",
-                                "color": "blue",
-                                "label": "número 6"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "5",
-                                "color": "blue",
-                                "label": "número 5"
-                        },
                         {
                                 "kind": "number",
                                 "value": "4",
                                 "color": "blue",
                                 "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "1",
+                                "color": "blue",
+                                "label": "número 1"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "2",
+                                "color": "blue",
+                                "label": "número 2"
                         }
                 ],
                 "answer": 1,
-                "success": "¡Correcto! Hay 6 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "6 cuadrados"
-                }
+                "success": "¡Correcto! ⭐ vale 3."
         },
         {
                 "id": "B08",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 6. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "6",
+                                "value": "1",
                                 "color": "blue",
-                                "label": "número 6"
+                                "label": "número 1"
                         },
                         {
                                 "kind": "number",
-                                "value": "7",
+                                "value": "2",
                                 "color": "blue",
-                                "label": "número 7"
+                                "label": "número 2"
                         },
                         {
                                 "kind": "number",
-                                "value": "9",
+                                "value": "4",
                                 "color": "blue",
-                                "label": "número 9"
+                                "label": "número 4"
                         },
                         {
                                 "kind": "number",
-                                "value": "8",
+                                "value": "3",
                                 "color": "blue",
-                                "label": "número 8"
+                                "label": "número 3"
                         }
                 ],
                 "answer": 3,
-                "success": "¡Correcto! Hay 8 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "8 cuadrados"
-                }
+                "success": "¡Correcto! ⭐ vale 3."
         },
         {
                 "id": "B09",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 6. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
                 "options": [
                         {
                                 "kind": "number",
@@ -2339,109 +2240,83 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "5",
+                                "value": "4",
                                 "color": "blue",
-                                "label": "número 5"
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "1",
+                                "color": "blue",
+                                "label": "número 1"
                         },
                         {
                                 "kind": "number",
                                 "value": "3",
                                 "color": "blue",
                                 "label": "número 3"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "4",
-                                "color": "blue",
-                                "label": "número 4"
                         }
                 ],
                 "answer": 3,
-                "success": "¡Correcto! Hay 4 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "4 cuadrados"
-                }
+                "success": "¡Correcto! ⭐ vale 3."
         },
         {
                 "id": "B10",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 2. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "8",
+                                "value": "0",
                                 "color": "blue",
-                                "label": "número 8"
+                                "label": "número 0"
                         },
                         {
                                 "kind": "number",
-                                "value": "9",
+                                "value": "3",
                                 "color": "blue",
-                                "label": "número 9"
+                                "label": "número 3"
                         },
                         {
                                 "kind": "number",
-                                "value": "11",
+                                "value": "2",
                                 "color": "blue",
-                                "label": "número 11"
+                                "label": "número 2"
                         },
                         {
                                 "kind": "number",
-                                "value": "10",
+                                "value": "1",
                                 "color": "blue",
-                                "label": "número 10"
+                                "label": "número 1"
                         }
                 ],
                 "answer": 3,
-                "success": "¡Correcto! Hay 10 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "10 cuadrados"
-                }
+                "success": "¡Correcto! ⭐ vale 1."
         },
         {
                 "id": "B11",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 4. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
                 "options": [
-                        {
-                                "kind": "number",
-                                "value": "0",
-                                "color": "blue",
-                                "label": "número 0"
-                        },
                         {
                                 "kind": "number",
                                 "value": "3",
                                 "color": "blue",
                                 "label": "número 3"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "1",
+                                "color": "blue",
+                                "label": "número 1"
                         },
                         {
                                 "kind": "number",
@@ -2451,37 +2326,23 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "1",
+                                "value": "0",
                                 "color": "blue",
-                                "label": "número 1"
+                                "label": "número 0"
                         }
                 ],
                 "answer": 2,
-                "success": "¡Correcto! Hay 2 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "2 cuadrados"
-                }
+                "success": "¡Correcto! ⭐ vale 2."
         },
         {
                 "id": "B12",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 4. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
                 "options": [
-                        {
-                                "kind": "number",
-                                "value": "4",
-                                "color": "blue",
-                                "label": "número 4"
-                        },
                         {
                                 "kind": "number",
                                 "value": "2",
@@ -2490,9 +2351,15 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "5",
+                                "value": "0",
                                 "color": "blue",
-                                "label": "número 5"
+                                "label": "número 0"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "1",
+                                "color": "blue",
+                                "label": "número 1"
                         },
                         {
                                 "kind": "number",
@@ -2502,33 +2369,17 @@
                         }
                 ],
                 "answer": 0,
-                "success": "¡Correcto! Hay 4 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "4 cuadrados"
-                }
+                "success": "¡Correcto! ⭐ vale 2."
         },
         {
                 "id": "B13",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 4. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
                 "options": [
-                        {
-                                "kind": "number",
-                                "value": "4",
-                                "color": "blue",
-                                "label": "número 4"
-                        },
                         {
                                 "kind": "number",
                                 "value": "3",
@@ -2537,40 +2388,41 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "6",
+                                "value": "0",
                                 "color": "blue",
-                                "label": "número 6"
+                                "label": "número 0"
                         },
                         {
                                 "kind": "number",
-                                "value": "5",
+                                "value": "2",
                                 "color": "blue",
-                                "label": "número 5"
+                                "label": "número 2"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "1",
+                                "color": "blue",
+                                "label": "número 1"
                         }
                 ],
-                "answer": 3,
-                "success": "¡Correcto! Hay 5 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "5 cuadrados"
-                }
+                "answer": 2,
+                "success": "¡Correcto! ⭐ vale 2."
         },
         {
                 "id": "B14",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 6. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
                 "options": [
+                        {
+                                "kind": "number",
+                                "value": "2",
+                                "color": "blue",
+                                "label": "número 2"
+                        },
                         {
                                 "kind": "number",
                                 "value": "4",
@@ -2585,51 +2437,23 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "2",
+                                "value": "1",
                                 "color": "blue",
-                                "label": "número 2"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "5",
-                                "color": "blue",
-                                "label": "número 5"
+                                "label": "número 1"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! Hay 4 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "4 cuadrados"
-                }
+                "answer": 2,
+                "success": "¡Correcto! ⭐ vale 3."
         },
         {
                 "id": "B15",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 6. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
                 "options": [
-                        {
-                                "kind": "number",
-                                "value": "4",
-                                "color": "blue",
-                                "label": "número 4"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "3",
-                                "color": "blue",
-                                "label": "número 3"
-                        },
                         {
                                 "kind": "number",
                                 "value": "1",
@@ -2638,31 +2462,34 @@
                         },
                         {
                                 "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
                                 "value": "2",
                                 "color": "blue",
                                 "label": "número 2"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
                         }
                 ],
-                "answer": 1,
-                "success": "¡Correcto! Hay 3 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "3 cuadrados"
-                }
+                "answer": 3,
+                "success": "¡Correcto! ⭐ vale 3."
         },
         {
                 "id": "B16",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 6. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
                 "options": [
                         {
                                 "kind": "number",
@@ -2672,211 +2499,151 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "7",
+                                "value": "2",
                                 "color": "blue",
-                                "label": "número 7"
+                                "label": "número 2"
                         },
                         {
                                 "kind": "number",
-                                "value": "5",
+                                "value": "1",
                                 "color": "blue",
-                                "label": "número 5"
+                                "label": "número 1"
                         },
                         {
                                 "kind": "number",
-                                "value": "6",
+                                "value": "3",
                                 "color": "blue",
-                                "label": "número 6"
+                                "label": "número 3"
                         }
                 ],
                 "answer": 3,
-                "success": "¡Correcto! Hay 6 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "6 cuadrados"
-                }
+                "success": "¡Correcto! ⭐ vale 3."
         },
         {
                 "id": "B17",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 2. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "8",
+                                "value": "2",
                                 "color": "blue",
-                                "label": "número 8"
+                                "label": "número 2"
                         },
                         {
                                 "kind": "number",
-                                "value": "9",
+                                "value": "0",
                                 "color": "blue",
-                                "label": "número 9"
+                                "label": "número 0"
                         },
                         {
                                 "kind": "number",
-                                "value": "6",
+                                "value": "1",
                                 "color": "blue",
-                                "label": "número 6"
+                                "label": "número 1"
                         },
                         {
                                 "kind": "number",
-                                "value": "7",
+                                "value": "3",
                                 "color": "blue",
-                                "label": "número 7"
+                                "label": "número 3"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! Hay 8 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "8 cuadrados"
-                }
+                "answer": 2,
+                "success": "¡Correcto! ⭐ vale 1."
         },
         {
                 "id": "B18",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 2. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "7",
+                                "value": "2",
                                 "color": "blue",
-                                "label": "número 7"
+                                "label": "número 2"
                         },
                         {
                                 "kind": "number",
-                                "value": "8",
+                                "value": "1",
                                 "color": "blue",
-                                "label": "número 8"
+                                "label": "número 1"
                         },
                         {
                                 "kind": "number",
-                                "value": "9",
+                                "value": "0",
                                 "color": "blue",
-                                "label": "número 9"
+                                "label": "número 0"
                         },
                         {
                                 "kind": "number",
-                                "value": "6",
+                                "value": "3",
                                 "color": "blue",
-                                "label": "número 6"
+                                "label": "número 3"
                         }
                 ],
                 "answer": 1,
-                "success": "¡Correcto! Hay 8 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "8 cuadrados"
-                }
+                "success": "¡Correcto! ⭐ vale 1."
         },
         {
                 "id": "B19",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 2. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "7",
+                                "value": "1",
                                 "color": "blue",
-                                "label": "número 7"
+                                "label": "número 1"
                         },
                         {
                                 "kind": "number",
-                                "value": "9",
+                                "value": "0",
                                 "color": "blue",
-                                "label": "número 9"
+                                "label": "número 0"
                         },
                         {
                                 "kind": "number",
-                                "value": "6",
+                                "value": "3",
                                 "color": "blue",
-                                "label": "número 6"
+                                "label": "número 3"
                         },
                         {
                                 "kind": "number",
-                                "value": "8",
+                                "value": "2",
                                 "color": "blue",
-                                "label": "número 8"
+                                "label": "número 2"
                         }
                 ],
-                "answer": 3,
-                "success": "¡Correcto! Hay 8 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "8 cuadrados"
-                }
+                "answer": 0,
+                "success": "¡Correcto! ⭐ vale 1."
         },
         {
                 "id": "B20",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 2. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
                 "options": [
                         {
                                 "kind": "number",
                                 "value": "2",
                                 "color": "blue",
                                 "label": "número 2"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "0",
-                                "color": "blue",
-                                "label": "número 0"
                         },
                         {
                                 "kind": "number",
@@ -2889,310 +2656,222 @@
                                 "value": "3",
                                 "color": "blue",
                                 "label": "número 3"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "0",
+                                "color": "blue",
+                                "label": "número 0"
                         }
                 ],
-                "answer": 2,
-                "success": "¡Correcto! Hay 1 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨"
-                        ],
-                        "label": "1 cuadrados"
-                }
+                "answer": 1,
+                "success": "¡Correcto! ⭐ vale 1."
         },
         {
                 "id": "I01",
                 "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 12. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "11",
+                                "value": "5",
                                 "color": "blue",
-                                "label": "número 11"
+                                "label": "número 5"
                         },
                         {
                                 "kind": "number",
-                                "value": "12",
+                                "value": "7",
                                 "color": "blue",
-                                "label": "número 12"
+                                "label": "número 7"
                         },
                         {
                                 "kind": "number",
-                                "value": "10",
+                                "value": "6",
                                 "color": "blue",
-                                "label": "número 10"
+                                "label": "número 6"
                         },
                         {
                                 "kind": "number",
-                                "value": "13",
+                                "value": "4",
                                 "color": "blue",
-                                "label": "número 13"
+                                "label": "número 4"
                         }
                 ],
-                "answer": 1,
-                "success": "¡Correcto! Hay 12 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "12 cuadrados"
-                }
+                "answer": 2,
+                "success": "¡Correcto! ⭐ vale 6."
         },
         {
                 "id": "I02",
                 "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 2. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "18",
+                                "value": "1",
                                 "color": "blue",
-                                "label": "número 18"
+                                "label": "número 1"
                         },
                         {
                                 "kind": "number",
-                                "value": "15",
+                                "value": "2",
                                 "color": "blue",
-                                "label": "número 15"
+                                "label": "número 2"
                         },
                         {
                                 "kind": "number",
-                                "value": "16",
+                                "value": "0",
                                 "color": "blue",
-                                "label": "número 16"
+                                "label": "número 0"
                         },
                         {
                                 "kind": "number",
-                                "value": "17",
+                                "value": "3",
                                 "color": "blue",
-                                "label": "número 17"
+                                "label": "número 3"
                         }
                 ],
-                "answer": 3,
-                "success": "¡Correcto! Hay 17 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "17 cuadrados"
-                }
+                "answer": 0,
+                "success": "¡Correcto! ⭐ vale 1."
         },
         {
                 "id": "I03",
                 "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 4. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "16",
+                                "value": "1",
                                 "color": "blue",
-                                "label": "número 16"
+                                "label": "número 1"
                         },
                         {
                                 "kind": "number",
-                                "value": "17",
+                                "value": "0",
                                 "color": "blue",
-                                "label": "número 17"
+                                "label": "número 0"
                         },
                         {
                                 "kind": "number",
-                                "value": "15",
+                                "value": "3",
                                 "color": "blue",
-                                "label": "número 15"
+                                "label": "número 3"
                         },
                         {
                                 "kind": "number",
-                                "value": "14",
+                                "value": "2",
                                 "color": "blue",
-                                "label": "número 14"
+                                "label": "número 2"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! Hay 16 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "16 cuadrados"
-                }
+                "answer": 3,
+                "success": "¡Correcto! ⭐ vale 2."
         },
         {
                 "id": "I04",
                 "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 4. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "5",
+                                "value": "0",
                                 "color": "blue",
-                                "label": "número 5"
+                                "label": "número 0"
                         },
                         {
                                 "kind": "number",
-                                "value": "6",
+                                "value": "3",
                                 "color": "blue",
-                                "label": "número 6"
+                                "label": "número 3"
                         },
                         {
                                 "kind": "number",
-                                "value": "8",
+                                "value": "1",
                                 "color": "blue",
-                                "label": "número 8"
+                                "label": "número 1"
                         },
                         {
                                 "kind": "number",
-                                "value": "7",
+                                "value": "2",
                                 "color": "blue",
-                                "label": "número 7"
+                                "label": "número 2"
                         }
                 ],
                 "answer": 3,
-                "success": "¡Correcto! Hay 7 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "7 cuadrados"
-                }
+                "success": "¡Correcto! ⭐ vale 2."
         },
         {
                 "id": "I05",
                 "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 4. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
                 "options": [
-                        {
-                                "kind": "number",
-                                "value": "4",
-                                "color": "blue",
-                                "label": "número 4"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "5",
-                                "color": "blue",
-                                "label": "número 5"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "6",
-                                "color": "blue",
-                                "label": "número 6"
-                        },
                         {
                                 "kind": "number",
                                 "value": "3",
                                 "color": "blue",
                                 "label": "número 3"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "0",
+                                "color": "blue",
+                                "label": "número 0"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "1",
+                                "color": "blue",
+                                "label": "número 1"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "2",
+                                "color": "blue",
+                                "label": "número 2"
                         }
                 ],
-                "answer": 1,
-                "success": "¡Correcto! Hay 5 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "5 cuadrados"
-                }
+                "answer": 3,
+                "success": "¡Correcto! ⭐ vale 2."
         },
         {
                 "id": "I06",
                 "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 10. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
                 "options": [
-                        {
-                                "kind": "number",
-                                "value": "5",
-                                "color": "blue",
-                                "label": "número 5"
-                        },
                         {
                                 "kind": "number",
                                 "value": "4",
                                 "color": "blue",
                                 "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
                         },
                         {
                                 "kind": "number",
@@ -3207,682 +2886,288 @@
                                 "label": "número 6"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! Hay 5 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "5 cuadrados"
-                }
+                "answer": 1,
+                "success": "¡Correcto! ⭐ vale 5."
         },
         {
                 "id": "I07",
                 "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 8. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "20",
+                                "value": "5",
                                 "color": "blue",
-                                "label": "número 20"
+                                "label": "número 5"
                         },
                         {
                                 "kind": "number",
-                                "value": "17",
+                                "value": "4",
                                 "color": "blue",
-                                "label": "número 17"
+                                "label": "número 4"
                         },
                         {
                                 "kind": "number",
-                                "value": "19",
+                                "value": "3",
                                 "color": "blue",
-                                "label": "número 19"
+                                "label": "número 3"
                         },
                         {
                                 "kind": "number",
-                                "value": "18",
+                                "value": "2",
                                 "color": "blue",
-                                "label": "número 18"
+                                "label": "número 2"
                         }
                 ],
-                "answer": 2,
-                "success": "¡Correcto! Hay 19 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "19 cuadrados"
-                }
+                "answer": 1,
+                "success": "¡Correcto! ⭐ vale 4."
         },
         {
                 "id": "I08",
                 "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 6. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "15",
+                                "value": "4",
                                 "color": "blue",
-                                "label": "número 15"
+                                "label": "número 4"
                         },
                         {
                                 "kind": "number",
-                                "value": "13",
+                                "value": "3",
                                 "color": "blue",
-                                "label": "número 13"
+                                "label": "número 3"
                         },
                         {
                                 "kind": "number",
-                                "value": "12",
+                                "value": "2",
                                 "color": "blue",
-                                "label": "número 12"
+                                "label": "número 2"
                         },
                         {
                                 "kind": "number",
-                                "value": "14",
+                                "value": "1",
                                 "color": "blue",
-                                "label": "número 14"
+                                "label": "número 1"
                         }
                 ],
-                "answer": 3,
-                "success": "¡Correcto! Hay 14 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "14 cuadrados"
-                }
+                "answer": 1,
+                "success": "¡Correcto! ⭐ vale 3."
         },
         {
                 "id": "I09",
                 "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 10. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "13",
+                                "value": "5",
                                 "color": "blue",
-                                "label": "número 13"
+                                "label": "número 5"
                         },
                         {
                                 "kind": "number",
-                                "value": "11",
+                                "value": "6",
                                 "color": "blue",
-                                "label": "número 11"
+                                "label": "número 6"
                         },
                         {
                                 "kind": "number",
-                                "value": "14",
+                                "value": "4",
                                 "color": "blue",
-                                "label": "número 14"
+                                "label": "número 4"
                         },
                         {
                                 "kind": "number",
-                                "value": "12",
+                                "value": "3",
                                 "color": "blue",
-                                "label": "número 12"
+                                "label": "número 3"
                         }
                 ],
                 "answer": 0,
-                "success": "¡Correcto! Hay 13 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "13 cuadrados"
-                }
+                "success": "¡Correcto! ⭐ vale 5."
         },
         {
                 "id": "I10",
                 "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 4. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "11",
+                                "value": "3",
                                 "color": "blue",
-                                "label": "número 11"
+                                "label": "número 3"
                         },
                         {
                                 "kind": "number",
-                                "value": "12",
+                                "value": "1",
                                 "color": "blue",
-                                "label": "número 12"
+                                "label": "número 1"
                         },
                         {
                                 "kind": "number",
-                                "value": "9",
+                                "value": "0",
                                 "color": "blue",
-                                "label": "número 9"
+                                "label": "número 0"
                         },
                         {
                                 "kind": "number",
-                                "value": "10",
+                                "value": "2",
                                 "color": "blue",
-                                "label": "número 10"
+                                "label": "número 2"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! Hay 11 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "11 cuadrados"
-                }
+                "answer": 3,
+                "success": "¡Correcto! ⭐ vale 2."
         },
         {
                 "id": "I11",
                 "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 10. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "14",
+                                "value": "5",
                                 "color": "blue",
-                                "label": "número 14"
+                                "label": "número 5"
                         },
                         {
                                 "kind": "number",
-                                "value": "13",
+                                "value": "6",
                                 "color": "blue",
-                                "label": "número 13"
+                                "label": "número 6"
                         },
                         {
                                 "kind": "number",
-                                "value": "11",
+                                "value": "3",
                                 "color": "blue",
-                                "label": "número 11"
+                                "label": "número 3"
                         },
                         {
                                 "kind": "number",
-                                "value": "12",
+                                "value": "4",
                                 "color": "blue",
-                                "label": "número 12"
+                                "label": "número 4"
                         }
                 ],
-                "answer": 1,
-                "success": "¡Correcto! Hay 13 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "13 cuadrados"
-                }
+                "answer": 0,
+                "success": "¡Correcto! ⭐ vale 5."
         },
         {
                 "id": "I12",
                 "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 6. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "14",
+                                "value": "2",
                                 "color": "blue",
-                                "label": "número 14"
+                                "label": "número 2"
                         },
                         {
                                 "kind": "number",
-                                "value": "15",
+                                "value": "4",
                                 "color": "blue",
-                                "label": "número 15"
+                                "label": "número 4"
                         },
                         {
                                 "kind": "number",
-                                "value": "13",
+                                "value": "3",
                                 "color": "blue",
-                                "label": "número 13"
+                                "label": "número 3"
                         },
                         {
                                 "kind": "number",
-                                "value": "16",
+                                "value": "1",
                                 "color": "blue",
-                                "label": "número 16"
+                                "label": "número 1"
                         }
                 ],
-                "answer": 1,
-                "success": "¡Correcto! Hay 15 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "15 cuadrados"
-                }
+                "answer": 2,
+                "success": "¡Correcto! ⭐ vale 3."
         },
         {
                 "id": "I13",
                 "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 12. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "1",
+                                "value": "6",
                                 "color": "blue",
-                                "label": "número 1"
+                                "label": "número 6"
                         },
                         {
                                 "kind": "number",
-                                "value": "2",
+                                "value": "7",
                                 "color": "blue",
-                                "label": "número 2"
+                                "label": "número 7"
                         },
                         {
                                 "kind": "number",
-                                "value": "3",
+                                "value": "5",
                                 "color": "blue",
-                                "label": "número 3"
+                                "label": "número 5"
                         },
                         {
                                 "kind": "number",
-                                "value": "0",
+                                "value": "4",
                                 "color": "blue",
-                                "label": "número 0"
+                                "label": "número 4"
                         }
                 ],
-                "answer": 1,
-                "success": "¡Correcto! Hay 2 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "2 cuadrados"
-                }
+                "answer": 0,
+                "success": "¡Correcto! ⭐ vale 6."
         },
         {
                 "id": "I14",
                 "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 12. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
                 "options": [
-                        {
-                                "kind": "number",
-                                "value": "10",
-                                "color": "blue",
-                                "label": "número 10"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "11",
-                                "color": "blue",
-                                "label": "número 11"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "13",
-                                "color": "blue",
-                                "label": "número 13"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "12",
-                                "color": "blue",
-                                "label": "número 12"
-                        }
-                ],
-                "answer": 3,
-                "success": "¡Correcto! Hay 12 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "12 cuadrados"
-                }
-        },
-        {
-                "id": "I15",
-                "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "19",
-                                "color": "blue",
-                                "label": "número 19"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "16",
-                                "color": "blue",
-                                "label": "número 16"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "17",
-                                "color": "blue",
-                                "label": "número 17"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "18",
-                                "color": "blue",
-                                "label": "número 18"
-                        }
-                ],
-                "answer": 3,
-                "success": "¡Correcto! Hay 18 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "18 cuadrados"
-                }
-        },
-        {
-                "id": "I16",
-                "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "1",
-                                "color": "blue",
-                                "label": "número 1"
-                        },
                         {
                                 "kind": "number",
                                 "value": "4",
                                 "color": "blue",
                                 "label": "número 4"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "3",
-                                "color": "blue",
-                                "label": "número 3"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "2",
-                                "color": "blue",
-                                "label": "número 2"
-                        }
-                ],
-                "answer": 2,
-                "success": "¡Correcto! Hay 3 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "3 cuadrados"
-                }
-        },
-        {
-                "id": "I17",
-                "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "2",
-                                "color": "blue",
-                                "label": "número 2"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "3",
-                                "color": "blue",
-                                "label": "número 3"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "4",
-                                "color": "blue",
-                                "label": "número 4"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "1",
-                                "color": "blue",
-                                "label": "número 1"
-                        }
-                ],
-                "answer": 1,
-                "success": "¡Correcto! Hay 3 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "3 cuadrados"
-                }
-        },
-        {
-                "id": "I18",
-                "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "8",
-                                "color": "blue",
-                                "label": "número 8"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "9",
-                                "color": "blue",
-                                "label": "número 9"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "10",
-                                "color": "blue",
-                                "label": "número 10"
                         },
                         {
                                 "kind": "number",
                                 "value": "7",
                                 "color": "blue",
                                 "label": "número 7"
-                        }
-                ],
-                "answer": 1,
-                "success": "¡Correcto! Hay 9 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "9 cuadrados"
-                }
-        },
-        {
-                "id": "I19",
-                "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "5",
-                                "color": "blue",
-                                "label": "número 5"
                         },
                         {
                                 "kind": "number",
@@ -3892,112 +3177,60 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "3",
+                                "value": "5",
                                 "color": "blue",
-                                "label": "número 3"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "4",
-                                "color": "blue",
-                                "label": "número 4"
+                                "label": "número 5"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! Hay 5 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "5 cuadrados"
-                }
+                "answer": 2,
+                "success": "¡Correcto! ⭐ vale 6."
         },
         {
-                "id": "I20",
+                "id": "I15",
                 "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 6. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
                 "options": [
-                        {
-                                "kind": "number",
-                                "value": "18",
-                                "color": "blue",
-                                "label": "número 18"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "17",
-                                "color": "blue",
-                                "label": "número 17"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "15",
-                                "color": "blue",
-                                "label": "número 15"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "16",
-                                "color": "blue",
-                                "label": "número 16"
-                        }
-                ],
-                "answer": 1,
-                "success": "¡Correcto! Hay 17 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "17 cuadrados"
-                }
-        },
-        {
-                "id": "A01",
-                "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "3",
-                                "color": "blue",
-                                "label": "número 3"
-                        },
                         {
                                 "kind": "number",
                                 "value": "2",
                                 "color": "blue",
                                 "label": "número 2"
                         },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "1",
+                                "color": "blue",
+                                "label": "número 1"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! ⭐ vale 3."
+        },
+        {
+                "id": "I16",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 2. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
+                "options": [
                         {
                                 "kind": "number",
                                 "value": "1",
@@ -4009,827 +3242,31 @@
                                 "value": "0",
                                 "color": "blue",
                                 "label": "número 0"
-                        }
-                ],
-                "answer": 2,
-                "success": "¡Correcto! Hay 1 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨"
-                        ],
-                        "label": "1 cuadrados"
-                }
-        },
-        {
-                "id": "A02",
-                "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "18",
-                                "color": "blue",
-                                "label": "número 18"
                         },
                         {
                                 "kind": "number",
-                                "value": "21",
+                                "value": "2",
                                 "color": "blue",
-                                "label": "número 21"
+                                "label": "número 2"
                         },
                         {
                                 "kind": "number",
-                                "value": "20",
+                                "value": "3",
                                 "color": "blue",
-                                "label": "número 20"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "19",
-                                "color": "blue",
-                                "label": "número 19"
-                        }
-                ],
-                "answer": 2,
-                "success": "¡Correcto! Hay 20 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "20 cuadrados"
-                }
-        },
-        {
-                "id": "A03",
-                "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "20",
-                                "color": "blue",
-                                "label": "número 20"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "17",
-                                "color": "blue",
-                                "label": "número 17"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "19",
-                                "color": "blue",
-                                "label": "número 19"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "18",
-                                "color": "blue",
-                                "label": "número 18"
-                        }
-                ],
-                "answer": 2,
-                "success": "¡Correcto! Hay 19 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "19 cuadrados"
-                }
-        },
-        {
-                "id": "A04",
-                "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "8",
-                                "color": "blue",
-                                "label": "número 8"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "9",
-                                "color": "blue",
-                                "label": "número 9"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "7",
-                                "color": "blue",
-                                "label": "número 7"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "10",
-                                "color": "blue",
-                                "label": "número 10"
-                        }
-                ],
-                "answer": 1,
-                "success": "¡Correcto! Hay 9 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "9 cuadrados"
-                }
-        },
-        {
-                "id": "A05",
-                "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "9",
-                                "color": "blue",
-                                "label": "número 9"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "7",
-                                "color": "blue",
-                                "label": "número 7"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "8",
-                                "color": "blue",
-                                "label": "número 8"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "10",
-                                "color": "blue",
-                                "label": "número 10"
+                                "label": "número 3"
                         }
                 ],
                 "answer": 0,
-                "success": "¡Correcto! Hay 9 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "9 cuadrados"
-                }
+                "success": "¡Correcto! ⭐ vale 1."
         },
         {
-                "id": "A06",
-                "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "14",
-                                "color": "blue",
-                                "label": "número 14"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "16",
-                                "color": "blue",
-                                "label": "número 16"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "17",
-                                "color": "blue",
-                                "label": "número 17"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "15",
-                                "color": "blue",
-                                "label": "número 15"
-                        }
-                ],
-                "answer": 1,
-                "success": "¡Correcto! Hay 16 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "16 cuadrados"
-                }
-        },
-        {
-                "id": "A07",
-                "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "16",
-                                "color": "blue",
-                                "label": "número 16"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "17",
-                                "color": "blue",
-                                "label": "número 17"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "18",
-                                "color": "blue",
-                                "label": "número 18"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "19",
-                                "color": "blue",
-                                "label": "número 19"
-                        }
-                ],
-                "answer": 2,
-                "success": "¡Correcto! Hay 18 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "18 cuadrados"
-                }
-        },
-        {
-                "id": "A08",
-                "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "13",
-                                "color": "blue",
-                                "label": "número 13"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "14",
-                                "color": "blue",
-                                "label": "número 14"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "15",
-                                "color": "blue",
-                                "label": "número 15"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "16",
-                                "color": "blue",
-                                "label": "número 16"
-                        }
-                ],
-                "answer": 2,
-                "success": "¡Correcto! Hay 15 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "15 cuadrados"
-                }
-        },
-        {
-                "id": "A09",
-                "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "11",
-                                "color": "blue",
-                                "label": "número 11"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "12",
-                                "color": "blue",
-                                "label": "número 12"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "10",
-                                "color": "blue",
-                                "label": "número 10"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "13",
-                                "color": "blue",
-                                "label": "número 13"
-                        }
-                ],
-                "answer": 1,
-                "success": "¡Correcto! Hay 12 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "12 cuadrados"
-                }
-        },
-        {
-                "id": "A10",
-                "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "16",
-                                "color": "blue",
-                                "label": "número 16"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "17",
-                                "color": "blue",
-                                "label": "número 17"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "14",
-                                "color": "blue",
-                                "label": "número 14"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "15",
-                                "color": "blue",
-                                "label": "número 15"
-                        }
-                ],
-                "answer": 0,
-                "success": "¡Correcto! Hay 16 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "16 cuadrados"
-                }
-        },
-        {
-                "id": "A11",
-                "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "10",
-                                "color": "blue",
-                                "label": "número 10"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "8",
-                                "color": "blue",
-                                "label": "número 8"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "11",
-                                "color": "blue",
-                                "label": "número 11"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "9",
-                                "color": "blue",
-                                "label": "número 9"
-                        }
-                ],
-                "answer": 0,
-                "success": "¡Correcto! Hay 10 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "10 cuadrados"
-                }
-        },
-        {
-                "id": "A12",
-                "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "16",
-                                "color": "blue",
-                                "label": "número 16"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "15",
-                                "color": "blue",
-                                "label": "número 15"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "17",
-                                "color": "blue",
-                                "label": "número 17"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "18",
-                                "color": "blue",
-                                "label": "número 18"
-                        }
-                ],
-                "answer": 2,
-                "success": "¡Correcto! Hay 17 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "17 cuadrados"
-                }
-        },
-        {
-                "id": "A13",
-                "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "19",
-                                "color": "blue",
-                                "label": "número 19"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "18",
-                                "color": "blue",
-                                "label": "número 18"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "17",
-                                "color": "blue",
-                                "label": "número 17"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "20",
-                                "color": "blue",
-                                "label": "número 20"
-                        }
-                ],
-                "answer": 0,
-                "success": "¡Correcto! Hay 19 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "19 cuadrados"
-                }
-        },
-        {
-                "id": "A14",
-                "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "11",
-                                "color": "blue",
-                                "label": "número 11"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "10",
-                                "color": "blue",
-                                "label": "número 10"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "12",
-                                "color": "blue",
-                                "label": "número 12"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "9",
-                                "color": "blue",
-                                "label": "número 9"
-                        }
-                ],
-                "answer": 0,
-                "success": "¡Correcto! Hay 11 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "11 cuadrados"
-                }
-        },
-        {
-                "id": "A15",
-                "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "9",
-                                "color": "blue",
-                                "label": "número 9"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "8",
-                                "color": "blue",
-                                "label": "número 8"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "7",
-                                "color": "blue",
-                                "label": "número 7"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "6",
-                                "color": "blue",
-                                "label": "número 6"
-                        }
-                ],
-                "answer": 1,
-                "success": "¡Correcto! Hay 8 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "8 cuadrados"
-                }
-        },
-        {
-                "id": "A16",
-                "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "id": "I17",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 10. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
                 "options": [
                         {
                                 "kind": "number",
@@ -4857,34 +3294,387 @@
                         }
                 ],
                 "answer": 1,
-                "success": "¡Correcto! Hay 5 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "5 cuadrados"
-                }
+                "success": "¡Correcto! ⭐ vale 5."
         },
         {
-                "id": "A17",
-                "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "id": "I18",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 8. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "11",
+                                "value": "4",
                                 "color": "blue",
-                                "label": "número 11"
+                                "label": "número 4"
                         },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "2",
+                                "color": "blue",
+                                "label": "número 2"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! ⭐ vale 4."
+        },
+        {
+                "id": "I19",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 6. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "2",
+                                "color": "blue",
+                                "label": "número 2"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "1",
+                                "color": "blue",
+                                "label": "número 1"
+                        }
+                ],
+                "answer": 2,
+                "success": "¡Correcto! ⭐ vale 3."
+        },
+        {
+                "id": "I20",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 12. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! ⭐ vale 6."
+        },
+        {
+                "id": "A01",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 8. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "2",
+                                "color": "blue",
+                                "label": "número 2"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        }
+                ],
+                "answer": 1,
+                "success": "¡Correcto! ⭐ vale 4."
+        },
+        {
+                "id": "A02",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 4. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "0",
+                                "color": "blue",
+                                "label": "número 0"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "2",
+                                "color": "blue",
+                                "label": "número 2"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "1",
+                                "color": "blue",
+                                "label": "número 1"
+                        }
+                ],
+                "answer": 2,
+                "success": "¡Correcto! ⭐ vale 2."
+        },
+        {
+                "id": "A03",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 18. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "8",
+                                "color": "blue",
+                                "label": "número 8"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "10",
+                                "color": "blue",
+                                "label": "número 10"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "9",
+                                "color": "blue",
+                                "label": "número 9"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! ⭐ vale 9."
+        },
+        {
+                "id": "A04",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 2. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "2",
+                                "color": "blue",
+                                "label": "número 2"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "0",
+                                "color": "blue",
+                                "label": "número 0"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "1",
+                                "color": "blue",
+                                "label": "número 1"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! ⭐ vale 1."
+        },
+        {
+                "id": "A05",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 14. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "8",
+                                "color": "blue",
+                                "label": "número 8"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! ⭐ vale 7."
+        },
+        {
+                "id": "A06",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 8. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "2",
+                                "color": "blue",
+                                "label": "número 2"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        }
+                ],
+                "answer": 2,
+                "success": "¡Correcto! ⭐ vale 4."
+        },
+        {
+                "id": "A07",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 2. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "0",
+                                "color": "blue",
+                                "label": "número 0"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "1",
+                                "color": "blue",
+                                "label": "número 1"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "2",
+                                "color": "blue",
+                                "label": "número 2"
+                        }
+                ],
+                "answer": 2,
+                "success": "¡Correcto! ⭐ vale 1."
+        },
+        {
+                "id": "A08",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 18. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
+                "options": [
                         {
                                 "kind": "number",
                                 "value": "9",
@@ -4899,156 +3689,28 @@
                         },
                         {
                                 "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
+                        },
+                        {
+                                "kind": "number",
                                 "value": "10",
                                 "color": "blue",
                                 "label": "número 10"
                         }
                 ],
-                "answer": 3,
-                "success": "¡Correcto! Hay 10 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "10 cuadrados"
-                }
-        },
-        {
-                "id": "A18",
-                "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "14",
-                                "color": "blue",
-                                "label": "número 14"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "12",
-                                "color": "blue",
-                                "label": "número 12"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "15",
-                                "color": "blue",
-                                "label": "número 15"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "13",
-                                "color": "blue",
-                                "label": "número 13"
-                        }
-                ],
                 "answer": 0,
-                "success": "¡Correcto! Hay 14 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "14 cuadrados"
-                }
+                "success": "¡Correcto! ⭐ vale 9."
         },
         {
-                "id": "A19",
+                "id": "A09",
                 "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "17",
-                                "color": "blue",
-                                "label": "número 17"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "19",
-                                "color": "blue",
-                                "label": "número 19"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "18",
-                                "color": "blue",
-                                "label": "número 18"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "16",
-                                "color": "blue",
-                                "label": "número 16"
-                        }
-                ],
-                "answer": 2,
-                "success": "¡Correcto! Hay 18 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "18 cuadrados"
-                }
-        },
-        {
-                "id": "A20",
-                "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de cuadrados",
-                "instruction": "¿Cuántos cuadrados hay?",
-                "speech": "Cuenta los cuadrados.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 16. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
                 "options": [
                         {
                                 "kind": "number",
@@ -5064,6 +3726,265 @@
                         },
                         {
                                 "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "9",
+                                "color": "blue",
+                                "label": "número 9"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! ⭐ vale 8."
+        },
+        {
+                "id": "A10",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 10. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! ⭐ vale 5."
+        },
+        {
+                "id": "A11",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 6. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "2",
+                                "color": "blue",
+                                "label": "número 2"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "1",
+                                "color": "blue",
+                                "label": "número 1"
+                        }
+                ],
+                "answer": 1,
+                "success": "¡Correcto! ⭐ vale 3."
+        },
+        {
+                "id": "A12",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 12. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        }
+                ],
+                "answer": 2,
+                "success": "¡Correcto! ⭐ vale 6."
+        },
+        {
+                "id": "A13",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 18. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "9",
+                                "color": "blue",
+                                "label": "número 9"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "10",
+                                "color": "blue",
+                                "label": "número 10"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "8",
+                                "color": "blue",
+                                "label": "número 8"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! ⭐ vale 9."
+        },
+        {
+                "id": "A14",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 4. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "1",
+                                "color": "blue",
+                                "label": "número 1"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "2",
+                                "color": "blue",
+                                "label": "número 2"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "0",
+                                "color": "blue",
+                                "label": "número 0"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        }
+                ],
+                "answer": 1,
+                "success": "¡Correcto! ⭐ vale 2."
+        },
+        {
+                "id": "A15",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 20. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "9",
+                                "color": "blue",
+                                "label": "número 9"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "10",
+                                "color": "blue",
+                                "label": "número 10"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "8",
+                                "color": "blue",
+                                "label": "número 8"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "11",
+                                "color": "blue",
+                                "label": "número 11"
+                        }
+                ],
+                "answer": 1,
+                "success": "¡Correcto! ⭐ vale 10."
+        },
+        {
+                "id": "A16",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 12. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
                                 "value": "5",
                                 "color": "blue",
                                 "label": "número 5"
@@ -5075,21 +3996,156 @@
                                 "label": "número 7"
                         }
                 ],
+                "answer": 0,
+                "success": "¡Correcto! ⭐ vale 6."
+        },
+        {
+                "id": "A17",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 18. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "8",
+                                "color": "blue",
+                                "label": "número 8"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "10",
+                                "color": "blue",
+                                "label": "número 10"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "9",
+                                "color": "blue",
+                                "label": "número 9"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
+                        }
+                ],
+                "answer": 2,
+                "success": "¡Correcto! ⭐ vale 9."
+        },
+        {
+                "id": "A18",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 12. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        }
+                ],
+                "answer": 2,
+                "success": "¡Correcto! ⭐ vale 6."
+        },
+        {
+                "id": "A19",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 6. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "2",
+                                "color": "blue",
+                                "label": "número 2"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "1",
+                                "color": "blue",
+                                "label": "número 1"
+                        }
+                ],
+                "answer": 1,
+                "success": "¡Correcto! ⭐ vale 3."
+        },
+        {
+                "id": "A20",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Valores ocultos",
+                "instruction": "⭐ + ⭐ = 14. ¿Cuánto vale ⭐?",
+                "speech": "Descubre el valor oculto.",
+                "hint": "Reparte el total entre las dos estrellas iguales.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "8",
+                                "color": "blue",
+                                "label": "número 8"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
+                        }
+                ],
                 "answer": 3,
-                "success": "¡Correcto! Hay 7 cuadrados.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨",
-                                "🟨"
-                        ],
-                        "label": "7 cuadrados"
-                }
+                "success": "¡Correcto! ⭐ vale 7."
         }
 ];
 
@@ -5647,10 +4703,10 @@
 
         if (state.score === exercises.length) {
           elements.finalMessage.textContent =
-            "¡Excelente! Dominaste el tema conteo de cuadrados.";
+            "¡Excelente! Dominaste el tema valores ocultos.";
         } else if (state.score >= 15) {
           elements.finalMessage.textContent =
-            "¡Muy bien! Resolviste con éxito las actividades de conteo de cuadrados.";
+            "¡Muy bien! Resolviste con éxito las actividades de valores ocultos.";
         } else {
           elements.finalMessage.textContent =
             "¡Buen trabajo! Repite la actividad para seguir mejorando.";
@@ -5658,7 +4714,7 @@
 
         try {
           localStorage.setItem(
-            "mvg_topic_conteo_de_cuadrados_complete",
+            "mvg_topic_valores_ocultos_complete",
             "true"
           );
 
@@ -5673,8 +4729,8 @@
               ? savedRouteProgress.filter(item => typeof item === "string")
               : [];
 
-          if (!completedTopics.includes("stage-46")) {
-            completedTopics.push("stage-46");
+          if (!completedTopics.includes("stage-54")) {
+            completedTopics.push("stage-54");
           }
 
           localStorage.setItem(

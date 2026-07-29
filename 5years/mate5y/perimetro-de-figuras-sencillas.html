@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MVG Learning | Analogías numéricas - 5 años</title>
+    <title>MVG Learning | Perímetro de figuras sencillas - 5 años</title>
 
     <!-- PWA -->
     <meta name="theme-color" content="#0b73ff" />
@@ -1735,7 +1735,7 @@
 
             <div class="brand-copy">
               <small>5 AÑOS · MATEMÁTICAS · TEMA 1</small>
-              <h1>56. Analogías numéricas</h1>
+              <h1>47. Perímetro de figuras sencillas</h1>
               <p>Contar objetos con orden, sin repetir ni omitir ninguno.</p>
             </div>
           </div>
@@ -1872,7 +1872,7 @@
         <div class="overlay-card">
           <div class="overlay-icon" aria-hidden="true">🔎🍎</div>
           <div class="overlay-label">MVG Learning · 5 AÑOS</div>
-          <h3>56. Analogías numéricas</h3>
+          <h3>47. Perímetro de figuras sencillas</h3>
 
           <p>
             Cada partida presenta 20 ejercicios elegidos al azar de una batería de 60.
@@ -1902,7 +1902,7 @@
           <div class="final-score" id="finalScore">20 / 20</div>
 
           <div class="finish-actions">
-            <a class="finish-next-btn" href="suma-de-cifras.html">
+            <a class="finish-next-btn" href="figuras-con-eje-de-simetria.html">
               Siguiente tema ➡️
             </a>
             <button id="restartBtn" type="button">🔄 Repetir</button>
@@ -1914,7 +1914,7 @@
     </div>
 
     <script>
-      // TEMA 56 · ANALOGÍAS NUMÉRICAS
+      // TEMA 47 · PERÍMETRO DE FIGURAS SENCILLAS
       const COLORS = {
         red: "#ff5b5b",
         blue: "#178cff",
@@ -1931,48 +1931,60 @@
                 "id": "B01",
                 "level": "Básico",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "1 es a 2 como 1 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 2 unidades de largo y 2 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "2",
+                                "value": "9",
                                 "color": "blue",
-                                "label": "número 2"
+                                "label": "número 9"
                         },
                         {
                                 "kind": "number",
-                                "value": "1",
+                                "value": "6",
                                 "color": "blue",
-                                "label": "número 1"
+                                "label": "número 6"
                         },
                         {
                                 "kind": "number",
-                                "value": "0",
+                                "value": "8",
                                 "color": "blue",
-                                "label": "número 0"
+                                "label": "número 8"
                         },
                         {
                                 "kind": "number",
-                                "value": "3",
+                                "value": "7",
                                 "color": "blue",
-                                "label": "número 3"
+                                "label": "número 7"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! 1 es a 2."
+                "answer": 2,
+                "success": "¡Correcto! El perímetro es 8."
         },
         {
                 "id": "B02",
                 "level": "Básico",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "3 es a 6 como 2 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 1 unidades de largo y 2 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
+                        },
                         {
                                 "kind": "number",
                                 "value": "4",
@@ -1981,46 +1993,34 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "3",
+                                "value": "7",
                                 "color": "blue",
-                                "label": "número 3"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "2",
-                                "color": "blue",
-                                "label": "número 2"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "5",
-                                "color": "blue",
-                                "label": "número 5"
+                                "label": "número 7"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! 2 es a 4."
+                "answer": 1,
+                "success": "¡Correcto! El perímetro es 6."
         },
         {
                 "id": "B03",
                 "level": "Básico",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "1 es a 2 como 2 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 1 unidades de largo y 1 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
-                        {
-                                "kind": "number",
-                                "value": "4",
-                                "color": "blue",
-                                "label": "número 4"
-                        },
                         {
                                 "kind": "number",
                                 "value": "2",
                                 "color": "blue",
                                 "label": "número 2"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
                         },
                         {
                                 "kind": "number",
@@ -2030,28 +2030,34 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "3",
+                                "value": "4",
                                 "color": "blue",
-                                "label": "número 3"
+                                "label": "número 4"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! 2 es a 4."
+                "answer": 3,
+                "success": "¡Correcto! El perímetro es 4."
         },
         {
                 "id": "B04",
                 "level": "Básico",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "1 es a 2 como 2 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 1 unidades de largo y 2 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "3",
+                                "value": "6",
                                 "color": "blue",
-                                "label": "número 3"
+                                "label": "número 6"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
                         },
                         {
                                 "kind": "number",
@@ -2064,25 +2070,19 @@
                                 "value": "4",
                                 "color": "blue",
                                 "label": "número 4"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "2",
-                                "color": "blue",
-                                "label": "número 2"
                         }
                 ],
-                "answer": 2,
-                "success": "¡Correcto! 2 es a 4."
+                "answer": 0,
+                "success": "¡Correcto! El perímetro es 6."
         },
         {
                 "id": "B05",
                 "level": "Básico",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "1 es a 2 como 3 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 2 unidades de largo y 1 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
@@ -2110,53 +2110,53 @@
                         }
                 ],
                 "answer": 2,
-                "success": "¡Correcto! 3 es a 6."
+                "success": "¡Correcto! El perímetro es 6."
         },
         {
                 "id": "B06",
                 "level": "Básico",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "2 es a 4 como 1 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 2 unidades de largo y 1 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "3",
+                                "value": "4",
                                 "color": "blue",
-                                "label": "número 3"
+                                "label": "número 4"
                         },
                         {
                                 "kind": "number",
-                                "value": "0",
+                                "value": "7",
                                 "color": "blue",
-                                "label": "número 0"
+                                "label": "número 7"
                         },
                         {
                                 "kind": "number",
-                                "value": "2",
+                                "value": "6",
                                 "color": "blue",
-                                "label": "número 2"
+                                "label": "número 6"
                         },
                         {
                                 "kind": "number",
-                                "value": "1",
+                                "value": "5",
                                 "color": "blue",
-                                "label": "número 1"
+                                "label": "número 5"
                         }
                 ],
                 "answer": 2,
-                "success": "¡Correcto! 1 es a 2."
+                "success": "¡Correcto! El perímetro es 6."
         },
         {
                 "id": "B07",
                 "level": "Básico",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "3 es a 6 como 2 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 2 unidades de largo y 1 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
@@ -2166,15 +2166,15 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "2",
+                                "value": "6",
                                 "color": "blue",
-                                "label": "número 2"
+                                "label": "número 6"
                         },
                         {
                                 "kind": "number",
-                                "value": "3",
+                                "value": "7",
                                 "color": "blue",
-                                "label": "número 3"
+                                "label": "número 7"
                         },
                         {
                                 "kind": "number",
@@ -2183,55 +2183,67 @@
                                 "label": "número 4"
                         }
                 ],
-                "answer": 3,
-                "success": "¡Correcto! 2 es a 4."
+                "answer": 1,
+                "success": "¡Correcto! El perímetro es 6."
         },
         {
                 "id": "B08",
                 "level": "Básico",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "2 es a 4 como 3 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 1 unidades de largo y 1 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "6",
+                                "value": "2",
                                 "color": "blue",
-                                "label": "número 6"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "4",
-                                "color": "blue",
-                                "label": "número 4"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "7",
-                                "color": "blue",
-                                "label": "número 7"
+                                "label": "número 2"
                         },
                         {
                                 "kind": "number",
                                 "value": "5",
                                 "color": "blue",
                                 "label": "número 5"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! 3 es a 6."
+                "answer": 3,
+                "success": "¡Correcto! El perímetro es 4."
         },
         {
                 "id": "B09",
                 "level": "Básico",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "2 es a 4 como 3 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 2 unidades de largo y 2 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
+                        {
+                                "kind": "number",
+                                "value": "8",
+                                "color": "blue",
+                                "label": "número 8"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "9",
+                                "color": "blue",
+                                "label": "número 9"
+                        },
                         {
                                 "kind": "number",
                                 "value": "7",
@@ -2240,35 +2252,35 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "5",
-                                "color": "blue",
-                                "label": "número 5"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "4",
-                                "color": "blue",
-                                "label": "número 4"
-                        },
-                        {
-                                "kind": "number",
                                 "value": "6",
                                 "color": "blue",
                                 "label": "número 6"
                         }
                 ],
-                "answer": 3,
-                "success": "¡Correcto! 3 es a 6."
+                "answer": 0,
+                "success": "¡Correcto! El perímetro es 8."
         },
         {
                 "id": "B10",
                 "level": "Básico",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "2 es a 4 como 2 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 1 unidades de largo y 1 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
+                        {
+                                "kind": "number",
+                                "value": "2",
+                                "color": "blue",
+                                "label": "número 2"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        },
                         {
                                 "kind": "number",
                                 "value": "5",
@@ -2280,37 +2292,25 @@
                                 "value": "4",
                                 "color": "blue",
                                 "label": "número 4"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "3",
-                                "color": "blue",
-                                "label": "número 3"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "2",
-                                "color": "blue",
-                                "label": "número 2"
                         }
                 ],
-                "answer": 1,
-                "success": "¡Correcto! 2 es a 4."
+                "answer": 3,
+                "success": "¡Correcto! El perímetro es 4."
         },
         {
                 "id": "B11",
                 "level": "Básico",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "3 es a 6 como 3 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 2 unidades de largo y 1 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "5",
+                                "value": "4",
                                 "color": "blue",
-                                "label": "número 5"
+                                "label": "número 4"
                         },
                         {
                                 "kind": "number",
@@ -2326,65 +2326,65 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "4",
+                                "value": "5",
                                 "color": "blue",
-                                "label": "número 4"
+                                "label": "número 5"
                         }
                 ],
                 "answer": 1,
-                "success": "¡Correcto! 3 es a 6."
+                "success": "¡Correcto! El perímetro es 6."
         },
         {
                 "id": "B12",
                 "level": "Básico",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "1 es a 2 como 2 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 2 unidades de largo y 2 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "4",
+                                "value": "9",
                                 "color": "blue",
-                                "label": "número 4"
+                                "label": "número 9"
                         },
                         {
                                 "kind": "number",
-                                "value": "3",
+                                "value": "6",
                                 "color": "blue",
-                                "label": "número 3"
+                                "label": "número 6"
                         },
                         {
                                 "kind": "number",
-                                "value": "5",
+                                "value": "7",
                                 "color": "blue",
-                                "label": "número 5"
+                                "label": "número 7"
                         },
                         {
                                 "kind": "number",
-                                "value": "2",
+                                "value": "8",
                                 "color": "blue",
-                                "label": "número 2"
+                                "label": "número 8"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! 2 es a 4."
+                "answer": 3,
+                "success": "¡Correcto! El perímetro es 8."
         },
         {
                 "id": "B13",
                 "level": "Básico",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "3 es a 6 como 2 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 2 unidades de largo y 1 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "2",
+                                "value": "6",
                                 "color": "blue",
-                                "label": "número 2"
+                                "label": "número 6"
                         },
                         {
                                 "kind": "number",
@@ -2394,9 +2394,9 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "3",
+                                "value": "7",
                                 "color": "blue",
-                                "label": "número 3"
+                                "label": "número 7"
                         },
                         {
                                 "kind": "number",
@@ -2405,17 +2405,17 @@
                                 "label": "número 5"
                         }
                 ],
-                "answer": 1,
-                "success": "¡Correcto! 2 es a 4."
+                "answer": 0,
+                "success": "¡Correcto! El perímetro es 6."
         },
         {
                 "id": "B14",
                 "level": "Básico",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "2 es a 4 como 3 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 1 unidades de largo y 2 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
@@ -2425,15 +2425,15 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "4",
-                                "color": "blue",
-                                "label": "número 4"
-                        },
-                        {
-                                "kind": "number",
                                 "value": "6",
                                 "color": "blue",
                                 "label": "número 6"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
                         },
                         {
                                 "kind": "number",
@@ -2442,67 +2442,55 @@
                                 "label": "número 7"
                         }
                 ],
-                "answer": 2,
-                "success": "¡Correcto! 3 es a 6."
+                "answer": 1,
+                "success": "¡Correcto! El perímetro es 6."
         },
         {
                 "id": "B15",
                 "level": "Básico",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "1 es a 2 como 2 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 2 unidades de largo y 2 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "3",
+                                "value": "8",
                                 "color": "blue",
-                                "label": "número 3"
+                                "label": "número 8"
                         },
                         {
                                 "kind": "number",
-                                "value": "5",
+                                "value": "6",
                                 "color": "blue",
-                                "label": "número 5"
+                                "label": "número 6"
                         },
                         {
                                 "kind": "number",
-                                "value": "2",
+                                "value": "7",
                                 "color": "blue",
-                                "label": "número 2"
+                                "label": "número 7"
                         },
                         {
                                 "kind": "number",
-                                "value": "4",
+                                "value": "9",
                                 "color": "blue",
-                                "label": "número 4"
+                                "label": "número 9"
                         }
                 ],
-                "answer": 3,
-                "success": "¡Correcto! 2 es a 4."
+                "answer": 0,
+                "success": "¡Correcto! El perímetro es 8."
         },
         {
                 "id": "B16",
                 "level": "Básico",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "1 es a 2 como 2 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 1 unidades de largo y 2 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
-                        {
-                                "kind": "number",
-                                "value": "4",
-                                "color": "blue",
-                                "label": "número 4"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "3",
-                                "color": "blue",
-                                "label": "número 3"
-                        },
                         {
                                 "kind": "number",
                                 "value": "5",
@@ -2511,28 +2499,40 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "2",
+                                "value": "6",
                                 "color": "blue",
-                                "label": "número 2"
+                                "label": "número 6"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! 2 es a 4."
+                "answer": 1,
+                "success": "¡Correcto! El perímetro es 6."
         },
         {
                 "id": "B17",
                 "level": "Básico",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "3 es a 6 como 3 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 1 unidades de largo y 2 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "6",
+                                "value": "5",
                                 "color": "blue",
-                                "label": "número 6"
+                                "label": "número 5"
                         },
                         {
                                 "kind": "number",
@@ -2542,404 +2542,404 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "5",
-                                "color": "blue",
-                                "label": "número 5"
-                        },
-                        {
-                                "kind": "number",
                                 "value": "7",
                                 "color": "blue",
                                 "label": "número 7"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! 3 es a 6."
+                "answer": 3,
+                "success": "¡Correcto! El perímetro es 6."
         },
         {
                 "id": "B18",
                 "level": "Básico",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "2 es a 4 como 1 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 1 unidades de largo y 2 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "2",
+                                "value": "7",
                                 "color": "blue",
-                                "label": "número 2"
+                                "label": "número 7"
                         },
                         {
                                 "kind": "number",
-                                "value": "0",
+                                "value": "4",
                                 "color": "blue",
-                                "label": "número 0"
+                                "label": "número 4"
                         },
                         {
                                 "kind": "number",
-                                "value": "1",
+                                "value": "6",
                                 "color": "blue",
-                                "label": "número 1"
+                                "label": "número 6"
                         },
                         {
                                 "kind": "number",
-                                "value": "3",
+                                "value": "5",
                                 "color": "blue",
-                                "label": "número 3"
+                                "label": "número 5"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! 1 es a 2."
+                "answer": 2,
+                "success": "¡Correcto! El perímetro es 6."
         },
         {
                 "id": "B19",
                 "level": "Básico",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "3 es a 6 como 1 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 2 unidades de largo y 1 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "2",
+                                "value": "7",
                                 "color": "blue",
-                                "label": "número 2"
+                                "label": "número 7"
                         },
                         {
                                 "kind": "number",
-                                "value": "1",
+                                "value": "4",
                                 "color": "blue",
-                                "label": "número 1"
+                                "label": "número 4"
                         },
                         {
                                 "kind": "number",
-                                "value": "3",
+                                "value": "5",
                                 "color": "blue",
-                                "label": "número 3"
+                                "label": "número 5"
                         },
                         {
                                 "kind": "number",
-                                "value": "0",
+                                "value": "6",
                                 "color": "blue",
-                                "label": "número 0"
+                                "label": "número 6"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! 1 es a 2."
+                "answer": 3,
+                "success": "¡Correcto! El perímetro es 6."
         },
         {
                 "id": "B20",
                 "level": "Básico",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "2 es a 4 como 1 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 2 unidades de largo y 2 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "2",
+                                "value": "9",
                                 "color": "blue",
-                                "label": "número 2"
+                                "label": "número 9"
                         },
                         {
                                 "kind": "number",
-                                "value": "3",
+                                "value": "7",
                                 "color": "blue",
-                                "label": "número 3"
+                                "label": "número 7"
                         },
                         {
                                 "kind": "number",
-                                "value": "1",
+                                "value": "6",
                                 "color": "blue",
-                                "label": "número 1"
+                                "label": "número 6"
                         },
                         {
                                 "kind": "number",
-                                "value": "0",
+                                "value": "8",
                                 "color": "blue",
-                                "label": "número 0"
+                                "label": "número 8"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! 1 es a 2."
+                "answer": 3,
+                "success": "¡Correcto! El perímetro es 8."
         },
         {
                 "id": "I01",
                 "level": "Intermedio",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "3 es a 6 como 4 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 1 unidades de largo y 5 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "7",
+                                "value": "11",
                                 "color": "blue",
-                                "label": "número 7"
+                                "label": "número 11"
                         },
                         {
                                 "kind": "number",
-                                "value": "6",
+                                "value": "13",
                                 "color": "blue",
-                                "label": "número 6"
+                                "label": "número 13"
                         },
                         {
                                 "kind": "number",
-                                "value": "9",
+                                "value": "12",
                                 "color": "blue",
-                                "label": "número 9"
+                                "label": "número 12"
                         },
                         {
                                 "kind": "number",
-                                "value": "8",
+                                "value": "10",
                                 "color": "blue",
-                                "label": "número 8"
+                                "label": "número 10"
                         }
                 ],
-                "answer": 3,
-                "success": "¡Correcto! 4 es a 8."
+                "answer": 2,
+                "success": "¡Correcto! El perímetro es 12."
         },
         {
                 "id": "I02",
                 "level": "Intermedio",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "3 es a 6 como 1 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 4 unidades de largo y 5 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "2",
+                                "value": "16",
                                 "color": "blue",
-                                "label": "número 2"
+                                "label": "número 16"
                         },
                         {
                                 "kind": "number",
-                                "value": "0",
+                                "value": "17",
                                 "color": "blue",
-                                "label": "número 0"
+                                "label": "número 17"
                         },
                         {
                                 "kind": "number",
-                                "value": "3",
+                                "value": "19",
                                 "color": "blue",
-                                "label": "número 3"
+                                "label": "número 19"
                         },
                         {
                                 "kind": "number",
-                                "value": "1",
+                                "value": "18",
                                 "color": "blue",
-                                "label": "número 1"
+                                "label": "número 18"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! 1 es a 2."
+                "answer": 3,
+                "success": "¡Correcto! El perímetro es 18."
         },
         {
                 "id": "I03",
                 "level": "Intermedio",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "6 es a 12 como 5 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 1 unidades de largo y 1 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "8",
+                                "value": "5",
                                 "color": "blue",
-                                "label": "número 8"
+                                "label": "número 5"
                         },
                         {
                                 "kind": "number",
-                                "value": "10",
+                                "value": "3",
                                 "color": "blue",
-                                "label": "número 10"
+                                "label": "número 3"
                         },
                         {
                                 "kind": "number",
-                                "value": "11",
+                                "value": "2",
                                 "color": "blue",
-                                "label": "número 11"
+                                "label": "número 2"
                         },
                         {
                                 "kind": "number",
-                                "value": "9",
+                                "value": "4",
                                 "color": "blue",
-                                "label": "número 9"
+                                "label": "número 4"
                         }
                 ],
-                "answer": 1,
-                "success": "¡Correcto! 5 es a 10."
+                "answer": 3,
+                "success": "¡Correcto! El perímetro es 4."
         },
         {
                 "id": "I04",
                 "level": "Intermedio",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "6 es a 12 como 1 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 2 unidades de largo y 2 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "1",
+                                "value": "9",
                                 "color": "blue",
-                                "label": "número 1"
+                                "label": "número 9"
                         },
                         {
                                 "kind": "number",
-                                "value": "2",
+                                "value": "7",
                                 "color": "blue",
-                                "label": "número 2"
+                                "label": "número 7"
                         },
                         {
                                 "kind": "number",
-                                "value": "0",
+                                "value": "8",
                                 "color": "blue",
-                                "label": "número 0"
+                                "label": "número 8"
                         },
                         {
                                 "kind": "number",
-                                "value": "3",
+                                "value": "6",
                                 "color": "blue",
-                                "label": "número 3"
+                                "label": "número 6"
                         }
                 ],
-                "answer": 1,
-                "success": "¡Correcto! 1 es a 2."
+                "answer": 2,
+                "success": "¡Correcto! El perímetro es 8."
         },
         {
                 "id": "I05",
                 "level": "Intermedio",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "6 es a 12 como 3 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 4 unidades de largo y 2 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "7",
+                                "value": "12",
                                 "color": "blue",
-                                "label": "número 7"
+                                "label": "número 12"
                         },
                         {
                                 "kind": "number",
-                                "value": "4",
+                                "value": "10",
                                 "color": "blue",
-                                "label": "número 4"
+                                "label": "número 10"
                         },
                         {
                                 "kind": "number",
-                                "value": "5",
+                                "value": "11",
                                 "color": "blue",
-                                "label": "número 5"
+                                "label": "número 11"
                         },
                         {
                                 "kind": "number",
-                                "value": "6",
+                                "value": "13",
                                 "color": "blue",
-                                "label": "número 6"
+                                "label": "número 13"
                         }
                 ],
-                "answer": 3,
-                "success": "¡Correcto! 3 es a 6."
+                "answer": 0,
+                "success": "¡Correcto! El perímetro es 12."
         },
         {
                 "id": "I06",
                 "level": "Intermedio",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "2 es a 4 como 2 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 1 unidades de largo y 5 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "5",
+                                "value": "13",
                                 "color": "blue",
-                                "label": "número 5"
+                                "label": "número 13"
                         },
                         {
                                 "kind": "number",
-                                "value": "3",
+                                "value": "10",
                                 "color": "blue",
-                                "label": "número 3"
+                                "label": "número 10"
                         },
                         {
                                 "kind": "number",
-                                "value": "2",
+                                "value": "12",
                                 "color": "blue",
-                                "label": "número 2"
+                                "label": "número 12"
                         },
                         {
                                 "kind": "number",
-                                "value": "4",
+                                "value": "11",
                                 "color": "blue",
-                                "label": "número 4"
+                                "label": "número 11"
                         }
                 ],
-                "answer": 3,
-                "success": "¡Correcto! 2 es a 4."
+                "answer": 2,
+                "success": "¡Correcto! El perímetro es 12."
         },
         {
                 "id": "I07",
                 "level": "Intermedio",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "5 es a 10 como 3 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 4 unidades de largo y 1 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "7",
+                                "value": "10",
                                 "color": "blue",
-                                "label": "número 7"
+                                "label": "número 10"
                         },
                         {
                                 "kind": "number",
-                                "value": "5",
+                                "value": "11",
                                 "color": "blue",
-                                "label": "número 5"
+                                "label": "número 11"
                         },
                         {
                                 "kind": "number",
-                                "value": "4",
+                                "value": "8",
                                 "color": "blue",
-                                "label": "número 4"
+                                "label": "número 8"
                         },
                         {
                                 "kind": "number",
-                                "value": "6",
+                                "value": "9",
                                 "color": "blue",
-                                "label": "número 6"
+                                "label": "número 9"
                         }
                 ],
-                "answer": 3,
-                "success": "¡Correcto! 3 es a 6."
+                "answer": 0,
+                "success": "¡Correcto! El perímetro es 10."
         },
         {
                 "id": "I08",
                 "level": "Intermedio",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "3 es a 6 como 6 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 4 unidades de largo y 2 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "11",
+                                "value": "12",
                                 "color": "blue",
-                                "label": "número 11"
+                                "label": "número 12"
                         },
                         {
                                 "kind": "number",
@@ -2949,40 +2949,34 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "13",
+                                "value": "11",
                                 "color": "blue",
-                                "label": "número 13"
+                                "label": "número 11"
                         },
                         {
                                 "kind": "number",
-                                "value": "12",
+                                "value": "13",
                                 "color": "blue",
-                                "label": "número 12"
+                                "label": "número 13"
                         }
                 ],
-                "answer": 3,
-                "success": "¡Correcto! 6 es a 12."
+                "answer": 0,
+                "success": "¡Correcto! El perímetro es 12."
         },
         {
                 "id": "I09",
                 "level": "Intermedio",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "4 es a 8 como 3 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 1 unidades de largo y 3 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "5",
+                                "value": "8",
                                 "color": "blue",
-                                "label": "número 5"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "7",
-                                "color": "blue",
-                                "label": "número 7"
+                                "label": "número 8"
                         },
                         {
                                 "kind": "number",
@@ -2992,176 +2986,182 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "4",
+                                "value": "9",
                                 "color": "blue",
-                                "label": "número 4"
+                                "label": "número 9"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
                         }
                 ],
-                "answer": 2,
-                "success": "¡Correcto! 3 es a 6."
+                "answer": 0,
+                "success": "¡Correcto! El perímetro es 8."
         },
         {
                 "id": "I10",
                 "level": "Intermedio",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "4 es a 8 como 3 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 2 unidades de largo y 4 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "6",
+                                "value": "13",
                                 "color": "blue",
-                                "label": "número 6"
+                                "label": "número 13"
                         },
                         {
                                 "kind": "number",
-                                "value": "5",
+                                "value": "12",
                                 "color": "blue",
-                                "label": "número 5"
+                                "label": "número 12"
                         },
                         {
                                 "kind": "number",
-                                "value": "4",
+                                "value": "10",
                                 "color": "blue",
-                                "label": "número 4"
+                                "label": "número 10"
                         },
                         {
                                 "kind": "number",
-                                "value": "7",
+                                "value": "11",
                                 "color": "blue",
-                                "label": "número 7"
+                                "label": "número 11"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! 3 es a 6."
+                "answer": 1,
+                "success": "¡Correcto! El perímetro es 12."
         },
         {
                 "id": "I11",
                 "level": "Intermedio",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "6 es a 12 como 1 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 1 unidades de largo y 4 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "2",
+                                "value": "8",
                                 "color": "blue",
-                                "label": "número 2"
+                                "label": "número 8"
                         },
                         {
                                 "kind": "number",
-                                "value": "3",
+                                "value": "10",
                                 "color": "blue",
-                                "label": "número 3"
+                                "label": "número 10"
                         },
                         {
                                 "kind": "number",
-                                "value": "1",
+                                "value": "9",
                                 "color": "blue",
-                                "label": "número 1"
+                                "label": "número 9"
                         },
                         {
                                 "kind": "number",
-                                "value": "0",
+                                "value": "11",
                                 "color": "blue",
-                                "label": "número 0"
+                                "label": "número 11"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! 1 es a 2."
+                "answer": 1,
+                "success": "¡Correcto! El perímetro es 10."
         },
         {
                 "id": "I12",
                 "level": "Intermedio",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "1 es a 2 como 2 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 3 unidades de largo y 3 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "5",
+                                "value": "10",
                                 "color": "blue",
-                                "label": "número 5"
+                                "label": "número 10"
                         },
                         {
                                 "kind": "number",
-                                "value": "4",
+                                "value": "11",
                                 "color": "blue",
-                                "label": "número 4"
+                                "label": "número 11"
                         },
                         {
                                 "kind": "number",
-                                "value": "3",
+                                "value": "12",
                                 "color": "blue",
-                                "label": "número 3"
+                                "label": "número 12"
                         },
                         {
                                 "kind": "number",
-                                "value": "2",
+                                "value": "13",
                                 "color": "blue",
-                                "label": "número 2"
+                                "label": "número 13"
                         }
                 ],
-                "answer": 1,
-                "success": "¡Correcto! 2 es a 4."
+                "answer": 2,
+                "success": "¡Correcto! El perímetro es 12."
         },
         {
                 "id": "I13",
                 "level": "Intermedio",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "3 es a 6 como 5 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 5 unidades de largo y 3 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "9",
+                                "value": "16",
                                 "color": "blue",
-                                "label": "número 9"
+                                "label": "número 16"
                         },
                         {
                                 "kind": "number",
-                                "value": "8",
+                                "value": "17",
                                 "color": "blue",
-                                "label": "número 8"
+                                "label": "número 17"
                         },
                         {
                                 "kind": "number",
-                                "value": "11",
+                                "value": "14",
                                 "color": "blue",
-                                "label": "número 11"
+                                "label": "número 14"
                         },
                         {
                                 "kind": "number",
-                                "value": "10",
+                                "value": "15",
                                 "color": "blue",
-                                "label": "número 10"
+                                "label": "número 15"
                         }
                 ],
-                "answer": 3,
-                "success": "¡Correcto! 5 es a 10."
+                "answer": 0,
+                "success": "¡Correcto! El perímetro es 16."
         },
         {
                 "id": "I14",
                 "level": "Intermedio",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "4 es a 8 como 4 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 3 unidades de largo y 1 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "7",
+                                "value": "8",
                                 "color": "blue",
-                                "label": "número 7"
+                                "label": "número 8"
                         },
                         {
                                 "kind": "number",
@@ -3171,72 +3171,66 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "8",
-                                "color": "blue",
-                                "label": "número 8"
-                        },
-                        {
-                                "kind": "number",
                                 "value": "6",
                                 "color": "blue",
                                 "label": "número 6"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
                         }
                 ],
-                "answer": 2,
-                "success": "¡Correcto! 4 es a 8."
+                "answer": 0,
+                "success": "¡Correcto! El perímetro es 8."
         },
         {
                 "id": "I15",
                 "level": "Intermedio",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "5 es a 10 como 4 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 3 unidades de largo y 3 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "6",
+                                "value": "12",
                                 "color": "blue",
-                                "label": "número 6"
+                                "label": "número 12"
                         },
                         {
                                 "kind": "number",
-                                "value": "7",
+                                "value": "11",
                                 "color": "blue",
-                                "label": "número 7"
+                                "label": "número 11"
                         },
                         {
                                 "kind": "number",
-                                "value": "8",
+                                "value": "10",
                                 "color": "blue",
-                                "label": "número 8"
+                                "label": "número 10"
                         },
                         {
                                 "kind": "number",
-                                "value": "9",
+                                "value": "13",
                                 "color": "blue",
-                                "label": "número 9"
+                                "label": "número 13"
                         }
                 ],
-                "answer": 2,
-                "success": "¡Correcto! 4 es a 8."
+                "answer": 0,
+                "success": "¡Correcto! El perímetro es 12."
         },
         {
                 "id": "I16",
                 "level": "Intermedio",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "2 es a 4 como 6 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 3 unidades de largo y 2 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
-                        {
-                                "kind": "number",
-                                "value": "12",
-                                "color": "blue",
-                                "label": "número 12"
-                        },
                         {
                                 "kind": "number",
                                 "value": "10",
@@ -3251,478 +3245,484 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "13",
+                                "value": "9",
                                 "color": "blue",
-                                "label": "número 13"
+                                "label": "número 9"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "8",
+                                "color": "blue",
+                                "label": "número 8"
                         }
                 ],
                 "answer": 0,
-                "success": "¡Correcto! 6 es a 12."
+                "success": "¡Correcto! El perímetro es 10."
         },
         {
                 "id": "I17",
                 "level": "Intermedio",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "6 es a 12 como 2 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 1 unidades de largo y 4 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "4",
+                                "value": "10",
                                 "color": "blue",
-                                "label": "número 4"
+                                "label": "número 10"
                         },
                         {
                                 "kind": "number",
-                                "value": "3",
+                                "value": "11",
                                 "color": "blue",
-                                "label": "número 3"
+                                "label": "número 11"
                         },
                         {
                                 "kind": "number",
-                                "value": "5",
+                                "value": "8",
                                 "color": "blue",
-                                "label": "número 5"
+                                "label": "número 8"
                         },
                         {
                                 "kind": "number",
-                                "value": "2",
+                                "value": "9",
                                 "color": "blue",
-                                "label": "número 2"
+                                "label": "número 9"
                         }
                 ],
                 "answer": 0,
-                "success": "¡Correcto! 2 es a 4."
+                "success": "¡Correcto! El perímetro es 10."
         },
         {
                 "id": "I18",
                 "level": "Intermedio",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "1 es a 2 como 6 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 5 unidades de largo y 4 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "13",
+                                "value": "19",
                                 "color": "blue",
-                                "label": "número 13"
+                                "label": "número 19"
                         },
                         {
                                 "kind": "number",
-                                "value": "10",
+                                "value": "18",
                                 "color": "blue",
-                                "label": "número 10"
+                                "label": "número 18"
                         },
                         {
                                 "kind": "number",
-                                "value": "11",
+                                "value": "16",
                                 "color": "blue",
-                                "label": "número 11"
+                                "label": "número 16"
                         },
                         {
                                 "kind": "number",
-                                "value": "12",
+                                "value": "17",
                                 "color": "blue",
-                                "label": "número 12"
+                                "label": "número 17"
                         }
                 ],
-                "answer": 3,
-                "success": "¡Correcto! 6 es a 12."
+                "answer": 1,
+                "success": "¡Correcto! El perímetro es 18."
         },
         {
                 "id": "I19",
                 "level": "Intermedio",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "2 es a 4 como 6 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 1 unidades de largo y 2 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "13",
+                                "value": "6",
                                 "color": "blue",
-                                "label": "número 13"
+                                "label": "número 6"
                         },
                         {
                                 "kind": "number",
-                                "value": "11",
+                                "value": "7",
                                 "color": "blue",
-                                "label": "número 11"
+                                "label": "número 7"
                         },
                         {
                                 "kind": "number",
-                                "value": "12",
+                                "value": "5",
                                 "color": "blue",
-                                "label": "número 12"
+                                "label": "número 5"
                         },
                         {
                                 "kind": "number",
-                                "value": "10",
+                                "value": "4",
                                 "color": "blue",
-                                "label": "número 10"
+                                "label": "número 4"
                         }
                 ],
-                "answer": 2,
-                "success": "¡Correcto! 6 es a 12."
+                "answer": 0,
+                "success": "¡Correcto! El perímetro es 6."
         },
         {
                 "id": "I20",
                 "level": "Intermedio",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "5 es a 10 como 3 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 5 unidades de largo y 5 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "5",
+                                "value": "18",
                                 "color": "blue",
-                                "label": "número 5"
+                                "label": "número 18"
                         },
                         {
                                 "kind": "number",
-                                "value": "7",
+                                "value": "19",
                                 "color": "blue",
-                                "label": "número 7"
+                                "label": "número 19"
                         },
                         {
                                 "kind": "number",
-                                "value": "6",
+                                "value": "20",
                                 "color": "blue",
-                                "label": "número 6"
+                                "label": "número 20"
                         },
                         {
                                 "kind": "number",
-                                "value": "4",
+                                "value": "21",
                                 "color": "blue",
-                                "label": "número 4"
+                                "label": "número 21"
                         }
                 ],
                 "answer": 2,
-                "success": "¡Correcto! 3 es a 6."
+                "success": "¡Correcto! El perímetro es 20."
         },
         {
                 "id": "A01",
                 "level": "Avanzado",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "7 es a 14 como 3 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 4 unidades de largo y 2 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "4",
+                                "value": "13",
                                 "color": "blue",
-                                "label": "número 4"
+                                "label": "número 13"
                         },
                         {
                                 "kind": "number",
-                                "value": "5",
+                                "value": "10",
                                 "color": "blue",
-                                "label": "número 5"
+                                "label": "número 10"
                         },
                         {
                                 "kind": "number",
-                                "value": "6",
+                                "value": "11",
                                 "color": "blue",
-                                "label": "número 6"
+                                "label": "número 11"
                         },
                         {
                                 "kind": "number",
-                                "value": "7",
+                                "value": "12",
                                 "color": "blue",
-                                "label": "número 7"
+                                "label": "número 12"
                         }
                 ],
-                "answer": 2,
-                "success": "¡Correcto! 3 es a 6."
+                "answer": 3,
+                "success": "¡Correcto! El perímetro es 12."
         },
         {
                 "id": "A02",
                 "level": "Avanzado",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "2 es a 4 como 5 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 5 unidades de largo y 4 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "10",
+                                "value": "17",
                                 "color": "blue",
-                                "label": "número 10"
+                                "label": "número 17"
                         },
                         {
                                 "kind": "number",
-                                "value": "8",
+                                "value": "18",
                                 "color": "blue",
-                                "label": "número 8"
+                                "label": "número 18"
                         },
                         {
                                 "kind": "number",
-                                "value": "11",
+                                "value": "19",
                                 "color": "blue",
-                                "label": "número 11"
+                                "label": "número 19"
                         },
                         {
                                 "kind": "number",
-                                "value": "9",
+                                "value": "16",
                                 "color": "blue",
-                                "label": "número 9"
+                                "label": "número 16"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! 5 es a 10."
+                "answer": 1,
+                "success": "¡Correcto! El perímetro es 18."
         },
         {
                 "id": "A03",
                 "level": "Avanzado",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "3 es a 6 como 2 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 7 unidades de largo y 6 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "5",
+                                "value": "27",
                                 "color": "blue",
-                                "label": "número 5"
+                                "label": "número 27"
                         },
                         {
                                 "kind": "number",
-                                "value": "4",
+                                "value": "25",
                                 "color": "blue",
-                                "label": "número 4"
+                                "label": "número 25"
                         },
                         {
                                 "kind": "number",
-                                "value": "3",
+                                "value": "24",
                                 "color": "blue",
-                                "label": "número 3"
+                                "label": "número 24"
                         },
                         {
                                 "kind": "number",
-                                "value": "2",
+                                "value": "26",
                                 "color": "blue",
-                                "label": "número 2"
+                                "label": "número 26"
                         }
                 ],
-                "answer": 1,
-                "success": "¡Correcto! 2 es a 4."
+                "answer": 3,
+                "success": "¡Correcto! El perímetro es 26."
         },
         {
                 "id": "A04",
                 "level": "Avanzado",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "3 es a 6 como 7 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 3 unidades de largo y 1 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "14",
+                                "value": "6",
                                 "color": "blue",
-                                "label": "número 14"
+                                "label": "número 6"
                         },
                         {
                                 "kind": "number",
-                                "value": "15",
+                                "value": "9",
                                 "color": "blue",
-                                "label": "número 15"
+                                "label": "número 9"
                         },
                         {
                                 "kind": "number",
-                                "value": "13",
+                                "value": "8",
                                 "color": "blue",
-                                "label": "número 13"
+                                "label": "número 8"
                         },
                         {
                                 "kind": "number",
-                                "value": "12",
+                                "value": "7",
                                 "color": "blue",
-                                "label": "número 12"
+                                "label": "número 7"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! 7 es a 14."
+                "answer": 2,
+                "success": "¡Correcto! El perímetro es 8."
         },
         {
                 "id": "A05",
                 "level": "Avanzado",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "2 es a 4 como 2 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 4 unidades de largo y 2 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "5",
+                                "value": "12",
                                 "color": "blue",
-                                "label": "número 5"
+                                "label": "número 12"
                         },
                         {
                                 "kind": "number",
-                                "value": "3",
+                                "value": "11",
                                 "color": "blue",
-                                "label": "número 3"
+                                "label": "número 11"
                         },
                         {
                                 "kind": "number",
-                                "value": "4",
+                                "value": "10",
                                 "color": "blue",
-                                "label": "número 4"
+                                "label": "número 10"
                         },
                         {
                                 "kind": "number",
-                                "value": "2",
+                                "value": "13",
                                 "color": "blue",
-                                "label": "número 2"
+                                "label": "número 13"
                         }
                 ],
-                "answer": 2,
-                "success": "¡Correcto! 2 es a 4."
+                "answer": 0,
+                "success": "¡Correcto! El perímetro es 12."
         },
         {
                 "id": "A06",
                 "level": "Avanzado",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "9 es a 18 como 6 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 5 unidades de largo y 5 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "13",
+                                "value": "19",
                                 "color": "blue",
-                                "label": "número 13"
+                                "label": "número 19"
                         },
                         {
                                 "kind": "number",
-                                "value": "12",
+                                "value": "21",
                                 "color": "blue",
-                                "label": "número 12"
+                                "label": "número 21"
                         },
                         {
                                 "kind": "number",
-                                "value": "11",
+                                "value": "18",
                                 "color": "blue",
-                                "label": "número 11"
+                                "label": "número 18"
                         },
                         {
                                 "kind": "number",
-                                "value": "10",
+                                "value": "20",
                                 "color": "blue",
-                                "label": "número 10"
+                                "label": "número 20"
                         }
                 ],
-                "answer": 1,
-                "success": "¡Correcto! 6 es a 12."
+                "answer": 3,
+                "success": "¡Correcto! El perímetro es 20."
         },
         {
                 "id": "A07",
                 "level": "Avanzado",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "9 es a 18 como 10 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 3 unidades de largo y 5 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "20",
+                                "value": "14",
                                 "color": "blue",
-                                "label": "número 20"
+                                "label": "número 14"
                         },
                         {
                                 "kind": "number",
-                                "value": "18",
+                                "value": "15",
                                 "color": "blue",
-                                "label": "número 18"
+                                "label": "número 15"
                         },
                         {
                                 "kind": "number",
-                                "value": "19",
+                                "value": "16",
                                 "color": "blue",
-                                "label": "número 19"
+                                "label": "número 16"
                         },
                         {
                                 "kind": "number",
-                                "value": "21",
+                                "value": "17",
                                 "color": "blue",
-                                "label": "número 21"
+                                "label": "número 17"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! 10 es a 20."
+                "answer": 2,
+                "success": "¡Correcto! El perímetro es 16."
         },
         {
                 "id": "A08",
                 "level": "Avanzado",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "5 es a 10 como 10 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 5 unidades de largo y 3 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "20",
+                                "value": "15",
                                 "color": "blue",
-                                "label": "número 20"
+                                "label": "número 15"
                         },
                         {
                                 "kind": "number",
-                                "value": "21",
+                                "value": "14",
                                 "color": "blue",
-                                "label": "número 21"
+                                "label": "número 14"
                         },
                         {
                                 "kind": "number",
-                                "value": "19",
+                                "value": "17",
                                 "color": "blue",
-                                "label": "número 19"
+                                "label": "número 17"
                         },
                         {
                                 "kind": "number",
-                                "value": "18",
+                                "value": "16",
                                 "color": "blue",
-                                "label": "número 18"
+                                "label": "número 16"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! 10 es a 20."
+                "answer": 3,
+                "success": "¡Correcto! El perímetro es 16."
         },
         {
                 "id": "A09",
                 "level": "Avanzado",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "10 es a 20 como 5 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 3 unidades de largo y 1 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "8",
+                                "value": "7",
                                 "color": "blue",
-                                "label": "número 8"
+                                "label": "número 7"
                         },
                         {
                                 "kind": "number",
-                                "value": "11",
+                                "value": "6",
                                 "color": "blue",
-                                "label": "número 11"
+                                "label": "número 6"
                         },
                         {
                                 "kind": "number",
@@ -3732,29 +3732,171 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "10",
+                                "value": "8",
                                 "color": "blue",
-                                "label": "número 10"
+                                "label": "número 8"
                         }
                 ],
                 "answer": 3,
-                "success": "¡Correcto! 5 es a 10."
+                "success": "¡Correcto! El perímetro es 8."
         },
         {
                 "id": "A10",
                 "level": "Avanzado",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "7 es a 14 como 3 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 4 unidades de largo y 6 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "6",
+                                "value": "20",
                                 "color": "blue",
-                                "label": "número 6"
+                                "label": "número 20"
                         },
+                        {
+                                "kind": "number",
+                                "value": "18",
+                                "color": "blue",
+                                "label": "número 18"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "21",
+                                "color": "blue",
+                                "label": "número 21"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "19",
+                                "color": "blue",
+                                "label": "número 19"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! El perímetro es 20."
+        },
+        {
+                "id": "A11",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 1 unidades de largo y 1 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "2",
+                                "color": "blue",
+                                "label": "número 2"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! El perímetro es 4."
+        },
+        {
+                "id": "A12",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 6 unidades de largo y 5 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "21",
+                                "color": "blue",
+                                "label": "número 21"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "20",
+                                "color": "blue",
+                                "label": "número 20"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "23",
+                                "color": "blue",
+                                "label": "número 23"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "22",
+                                "color": "blue",
+                                "label": "número 22"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! El perímetro es 22."
+        },
+        {
+                "id": "A13",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 4 unidades de largo y 4 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "16",
+                                "color": "blue",
+                                "label": "número 16"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "17",
+                                "color": "blue",
+                                "label": "número 17"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "15",
+                                "color": "blue",
+                                "label": "número 15"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "14",
+                                "color": "blue",
+                                "label": "número 14"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! El perímetro es 16."
+        },
+        {
+                "id": "A14",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 1 unidades de largo y 2 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
+                "options": [
                         {
                                 "kind": "number",
                                 "value": "7",
@@ -3769,66 +3911,66 @@
                         },
                         {
                                 "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
+                        },
+                        {
+                                "kind": "number",
                                 "value": "5",
                                 "color": "blue",
                                 "label": "número 5"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! 3 es a 6."
+                "answer": 2,
+                "success": "¡Correcto! El perímetro es 6."
         },
         {
-                "id": "A11",
+                "id": "A15",
                 "level": "Avanzado",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "6 es a 12 como 1 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 5 unidades de largo y 3 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "0",
+                                "value": "16",
                                 "color": "blue",
-                                "label": "número 0"
+                                "label": "número 16"
                         },
                         {
                                 "kind": "number",
-                                "value": "3",
+                                "value": "14",
                                 "color": "blue",
-                                "label": "número 3"
+                                "label": "número 14"
                         },
                         {
                                 "kind": "number",
-                                "value": "1",
+                                "value": "15",
                                 "color": "blue",
-                                "label": "número 1"
+                                "label": "número 15"
                         },
                         {
                                 "kind": "number",
-                                "value": "2",
+                                "value": "17",
                                 "color": "blue",
-                                "label": "número 2"
+                                "label": "número 17"
                         }
                 ],
-                "answer": 3,
-                "success": "¡Correcto! 1 es a 2."
+                "answer": 0,
+                "success": "¡Correcto! El perímetro es 16."
         },
         {
-                "id": "A12",
+                "id": "A16",
                 "level": "Avanzado",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "1 es a 2 como 9 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 2 unidades de largo y 7 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
-                        {
-                                "kind": "number",
-                                "value": "18",
-                                "color": "blue",
-                                "label": "número 18"
-                        },
                         {
                                 "kind": "number",
                                 "value": "17",
@@ -3837,9 +3979,89 @@
                         },
                         {
                                 "kind": "number",
+                                "value": "19",
+                                "color": "blue",
+                                "label": "número 19"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "18",
+                                "color": "blue",
+                                "label": "número 18"
+                        },
+                        {
+                                "kind": "number",
                                 "value": "16",
                                 "color": "blue",
                                 "label": "número 16"
+                        }
+                ],
+                "answer": 2,
+                "success": "¡Correcto! El perímetro es 18."
+        },
+        {
+                "id": "A17",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 6 unidades de largo y 7 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "26",
+                                "color": "blue",
+                                "label": "número 26"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "27",
+                                "color": "blue",
+                                "label": "número 27"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "25",
+                                "color": "blue",
+                                "label": "número 25"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "24",
+                                "color": "blue",
+                                "label": "número 24"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! El perímetro es 26."
+        },
+        {
+                "id": "A18",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 7 unidades de largo y 3 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "20",
+                                "color": "blue",
+                                "label": "número 20"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "21",
+                                "color": "blue",
+                                "label": "número 21"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "18",
+                                "color": "blue",
+                                "label": "número 18"
                         },
                         {
                                 "kind": "number",
@@ -3849,103 +4071,17 @@
                         }
                 ],
                 "answer": 0,
-                "success": "¡Correcto! 9 es a 18."
+                "success": "¡Correcto! El perímetro es 20."
         },
         {
-                "id": "A13",
+                "id": "A19",
                 "level": "Avanzado",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "3 es a 6 como 5 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 4 unidades de largo y 4 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
-                        {
-                                "kind": "number",
-                                "value": "8",
-                                "color": "blue",
-                                "label": "número 8"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "10",
-                                "color": "blue",
-                                "label": "número 10"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "11",
-                                "color": "blue",
-                                "label": "número 11"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "9",
-                                "color": "blue",
-                                "label": "número 9"
-                        }
-                ],
-                "answer": 1,
-                "success": "¡Correcto! 5 es a 10."
-        },
-        {
-                "id": "A14",
-                "level": "Avanzado",
-                "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "4 es a 8 como 6 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "11",
-                                "color": "blue",
-                                "label": "número 11"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "10",
-                                "color": "blue",
-                                "label": "número 10"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "12",
-                                "color": "blue",
-                                "label": "número 12"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "13",
-                                "color": "blue",
-                                "label": "número 13"
-                        }
-                ],
-                "answer": 2,
-                "success": "¡Correcto! 6 es a 12."
-        },
-        {
-                "id": "A15",
-                "level": "Avanzado",
-                "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "6 es a 12 como 7 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "13",
-                                "color": "blue",
-                                "label": "número 13"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "12",
-                                "color": "blue",
-                                "label": "número 12"
-                        },
                         {
                                 "kind": "number",
                                 "value": "14",
@@ -3957,62 +4093,6 @@
                                 "value": "15",
                                 "color": "blue",
                                 "label": "número 15"
-                        }
-                ],
-                "answer": 2,
-                "success": "¡Correcto! 7 es a 14."
-        },
-        {
-                "id": "A16",
-                "level": "Avanzado",
-                "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "9 es a 18 como 4 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "6",
-                                "color": "blue",
-                                "label": "número 6"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "8",
-                                "color": "blue",
-                                "label": "número 8"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "9",
-                                "color": "blue",
-                                "label": "número 9"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "7",
-                                "color": "blue",
-                                "label": "número 7"
-                        }
-                ],
-                "answer": 1,
-                "success": "¡Correcto! 4 es a 8."
-        },
-        {
-                "id": "A17",
-                "level": "Avanzado",
-                "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "1 es a 2 como 8 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "16",
-                                "color": "blue",
-                                "label": "número 16"
                         },
                         {
                                 "kind": "number",
@@ -4022,130 +4102,50 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "15",
+                                "value": "16",
                                 "color": "blue",
-                                "label": "número 15"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "14",
-                                "color": "blue",
-                                "label": "número 14"
-                        }
-                ],
-                "answer": 0,
-                "success": "¡Correcto! 8 es a 16."
-        },
-        {
-                "id": "A18",
-                "level": "Avanzado",
-                "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "9 es a 18 como 6 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "10",
-                                "color": "blue",
-                                "label": "número 10"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "13",
-                                "color": "blue",
-                                "label": "número 13"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "11",
-                                "color": "blue",
-                                "label": "número 11"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "12",
-                                "color": "blue",
-                                "label": "número 12"
+                                "label": "número 16"
                         }
                 ],
                 "answer": 3,
-                "success": "¡Correcto! 6 es a 12."
-        },
-        {
-                "id": "A19",
-                "level": "Avanzado",
-                "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "9 es a 18 como 7 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "12",
-                                "color": "blue",
-                                "label": "número 12"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "15",
-                                "color": "blue",
-                                "label": "número 15"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "14",
-                                "color": "blue",
-                                "label": "número 14"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "13",
-                                "color": "blue",
-                                "label": "número 13"
-                        }
-                ],
-                "answer": 2,
-                "success": "¡Correcto! 7 es a 14."
+                "success": "¡Correcto! El perímetro es 16."
         },
         {
                 "id": "A20",
                 "level": "Avanzado",
                 "mode": "choice",
-                "title": "Analogías numéricas",
-                "instruction": "7 es a 14 como 1 es a __.",
-                "speech": "Descubre la misma relación.",
-                "hint": "Observa que el segundo número es el doble del primero.",
+                "title": "Perímetro con unidades",
+                "instruction": "Un rectángulo mide 5 unidades de largo y 3 de ancho. ¿Cuál es su perímetro?",
+                "speech": "Suma todos los lados.",
+                "hint": "Calcula largo + ancho + largo + ancho.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "0",
+                                "value": "14",
                                 "color": "blue",
-                                "label": "número 0"
+                                "label": "número 14"
                         },
                         {
                                 "kind": "number",
-                                "value": "2",
+                                "value": "15",
                                 "color": "blue",
-                                "label": "número 2"
+                                "label": "número 15"
                         },
                         {
                                 "kind": "number",
-                                "value": "3",
+                                "value": "17",
                                 "color": "blue",
-                                "label": "número 3"
+                                "label": "número 17"
                         },
                         {
                                 "kind": "number",
-                                "value": "1",
+                                "value": "16",
                                 "color": "blue",
-                                "label": "número 1"
+                                "label": "número 16"
                         }
                 ],
-                "answer": 1,
-                "success": "¡Correcto! 1 es a 2."
+                "answer": 3,
+                "success": "¡Correcto! El perímetro es 16."
         }
 ];
 
@@ -4703,10 +4703,10 @@
 
         if (state.score === exercises.length) {
           elements.finalMessage.textContent =
-            "¡Excelente! Dominaste el tema analogías numéricas.";
+            "¡Excelente! Dominaste el tema perímetro con unidades.";
         } else if (state.score >= 15) {
           elements.finalMessage.textContent =
-            "¡Muy bien! Resolviste con éxito las actividades de analogías numéricas.";
+            "¡Muy bien! Resolviste con éxito las actividades de perímetro con unidades.";
         } else {
           elements.finalMessage.textContent =
             "¡Buen trabajo! Repite la actividad para seguir mejorando.";
@@ -4714,7 +4714,7 @@
 
         try {
           localStorage.setItem(
-            "mvg_topic_analogias_numericas_complete",
+            "mvg_topic_perimetro_con_unidades_complete",
             "true"
           );
 
@@ -4729,8 +4729,8 @@
               ? savedRouteProgress.filter(item => typeof item === "string")
               : [];
 
-          if (!completedTopics.includes("stage-56")) {
-            completedTopics.push("stage-56");
+          if (!completedTopics.includes("stage-47")) {
+            completedTopics.push("stage-47");
           }
 
           localStorage.setItem(

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MVG Learning | Conteo de triángulos - 5 años</title>
+    <title>MVG Learning | Secuencias que aumentan - 5 años</title>
 
     <!-- PWA -->
     <meta name="theme-color" content="#0b73ff" />
@@ -1735,7 +1735,7 @@
 
             <div class="brand-copy">
               <small>5 AÑOS · MATEMÁTICAS · TEMA 1</small>
-              <h1>45. Conteo de triángulos</h1>
+              <h1>51. Secuencias que aumentan</h1>
               <p>Contar objetos con orden, sin repetir ni omitir ninguno.</p>
             </div>
           </div>
@@ -1872,7 +1872,7 @@
         <div class="overlay-card">
           <div class="overlay-icon" aria-hidden="true">🔎🍎</div>
           <div class="overlay-label">MVG Learning · 5 AÑOS</div>
-          <h3>45. Conteo de triángulos</h3>
+          <h3>51. Secuencias que aumentan</h3>
 
           <p>
             Cada partida presenta 20 ejercicios elegidos al azar de una batería de 60.
@@ -1902,7 +1902,7 @@
           <div class="final-score" id="finalScore">20 / 20</div>
 
           <div class="finish-actions">
-            <a class="finish-next-btn" href="conteo-de-cuadrados.html">
+            <a class="finish-next-btn" href="secuencias-que-disminuyen.html">
               Siguiente tema ➡️
             </a>
             <button id="restartBtn" type="button">🔄 Repetir</button>
@@ -1914,7 +1914,7 @@
     </div>
 
     <script>
-      // TEMA 45 · CONTEO DE TRIÁNGULOS
+      // TEMA 51 · SECUENCIAS QUE AUMENTAN
       const COLORS = {
         red: "#ff5b5b",
         blue: "#178cff",
@@ -1930,152 +1930,123 @@
         {
                 "id": "B01",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 3, 6, 9, 12, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "3",
+                                "value": "13",
                                 "color": "blue",
-                                "label": "número 3"
+                                "label": "número 13"
                         },
                         {
                                 "kind": "number",
-                                "value": "0",
+                                "value": "16",
                                 "color": "blue",
-                                "label": "número 0"
+                                "label": "número 16"
                         },
                         {
                                 "kind": "number",
-                                "value": "2",
+                                "value": "15",
                                 "color": "blue",
-                                "label": "número 2"
+                                "label": "número 15"
                         },
                         {
                                 "kind": "number",
-                                "value": "1",
+                                "value": "14",
                                 "color": "blue",
-                                "label": "número 1"
+                                "label": "número 14"
                         }
                 ],
                 "answer": 2,
-                "success": "¡Correcto! Hay 2 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "2 triángulos"
-                }
+                "success": "¡Correcto! Sigue 15."
         },
         {
                 "id": "B02",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 4, 5, 6, 7, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "1",
+                                "value": "9",
                                 "color": "blue",
-                                "label": "número 1"
+                                "label": "número 9"
                         },
                         {
                                 "kind": "number",
-                                "value": "3",
+                                "value": "8",
                                 "color": "blue",
-                                "label": "número 3"
+                                "label": "número 8"
                         },
                         {
                                 "kind": "number",
-                                "value": "2",
+                                "value": "6",
                                 "color": "blue",
-                                "label": "número 2"
+                                "label": "número 6"
                         },
                         {
                                 "kind": "number",
-                                "value": "0",
+                                "value": "7",
                                 "color": "blue",
-                                "label": "número 0"
+                                "label": "número 7"
                         }
                 ],
-                "answer": 2,
-                "success": "¡Correcto! Hay 2 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "2 triángulos"
-                }
+                "answer": 1,
+                "success": "¡Correcto! Sigue 8."
         },
         {
                 "id": "B03",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 2, 4, 6, 8, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "1",
+                                "value": "8",
                                 "color": "blue",
-                                "label": "número 1"
+                                "label": "número 8"
                         },
                         {
                                 "kind": "number",
-                                "value": "0",
+                                "value": "10",
                                 "color": "blue",
-                                "label": "número 0"
+                                "label": "número 10"
                         },
                         {
                                 "kind": "number",
-                                "value": "2",
+                                "value": "11",
                                 "color": "blue",
-                                "label": "número 2"
+                                "label": "número 11"
                         },
                         {
                                 "kind": "number",
-                                "value": "3",
+                                "value": "9",
                                 "color": "blue",
-                                "label": "número 3"
+                                "label": "número 9"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! Hay 1 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺"
-                        ],
-                        "label": "1 triángulos"
-                }
+                "answer": 1,
+                "success": "¡Correcto! Sigue 10."
         },
         {
                 "id": "B04",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 1, 3, 5, 7, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
-                        {
-                                "kind": "number",
-                                "value": "6",
-                                "color": "blue",
-                                "label": "número 6"
-                        },
                         {
                                 "kind": "number",
                                 "value": "8",
@@ -2090,279 +2061,220 @@
                         },
                         {
                                 "kind": "number",
+                                "value": "10",
+                                "color": "blue",
+                                "label": "número 10"
+                        },
+                        {
+                                "kind": "number",
                                 "value": "9",
                                 "color": "blue",
                                 "label": "número 9"
                         }
                 ],
-                "answer": 1,
-                "success": "¡Correcto! Hay 8 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "8 triángulos"
-                }
+                "answer": 3,
+                "success": "¡Correcto! Sigue 9."
         },
         {
                 "id": "B05",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 5, 8, 11, 14, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "7",
+                                "value": "18",
                                 "color": "blue",
-                                "label": "número 7"
+                                "label": "número 18"
                         },
                         {
                                 "kind": "number",
-                                "value": "9",
+                                "value": "15",
                                 "color": "blue",
-                                "label": "número 9"
+                                "label": "número 15"
                         },
                         {
                                 "kind": "number",
-                                "value": "6",
+                                "value": "16",
                                 "color": "blue",
-                                "label": "número 6"
+                                "label": "número 16"
                         },
                         {
                                 "kind": "number",
-                                "value": "8",
+                                "value": "17",
                                 "color": "blue",
-                                "label": "número 8"
+                                "label": "número 17"
                         }
                 ],
                 "answer": 3,
-                "success": "¡Correcto! Hay 8 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "8 triángulos"
-                }
+                "success": "¡Correcto! Sigue 17."
         },
         {
                 "id": "B06",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 5, 6, 7, 8, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "4",
+                                "value": "9",
                                 "color": "blue",
-                                "label": "número 4"
+                                "label": "número 9"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "8",
+                                "color": "blue",
+                                "label": "número 8"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "10",
+                                "color": "blue",
+                                "label": "número 10"
                         },
                         {
                                 "kind": "number",
                                 "value": "7",
                                 "color": "blue",
                                 "label": "número 7"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "5",
-                                "color": "blue",
-                                "label": "número 5"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "6",
-                                "color": "blue",
-                                "label": "número 6"
                         }
                 ],
-                "answer": 3,
-                "success": "¡Correcto! Hay 6 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "6 triángulos"
-                }
+                "answer": 0,
+                "success": "¡Correcto! Sigue 9."
         },
         {
                 "id": "B07",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 1, 2, 3, 4, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "2",
+                                "value": "5",
                                 "color": "blue",
-                                "label": "número 2"
+                                "label": "número 5"
                         },
                         {
                                 "kind": "number",
-                                "value": "1",
+                                "value": "6",
                                 "color": "blue",
-                                "label": "número 1"
+                                "label": "número 6"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
                         },
                         {
                                 "kind": "number",
                                 "value": "3",
                                 "color": "blue",
                                 "label": "número 3"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "0",
-                                "color": "blue",
-                                "label": "número 0"
                         }
                 ],
                 "answer": 0,
-                "success": "¡Correcto! Hay 2 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "2 triángulos"
-                }
+                "success": "¡Correcto! Sigue 5."
         },
         {
                 "id": "B08",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 2, 5, 8, 11, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "4",
+                                "value": "14",
                                 "color": "blue",
-                                "label": "número 4"
+                                "label": "número 14"
                         },
                         {
                                 "kind": "number",
-                                "value": "3",
+                                "value": "13",
                                 "color": "blue",
-                                "label": "número 3"
+                                "label": "número 13"
                         },
                         {
                                 "kind": "number",
-                                "value": "1",
+                                "value": "15",
                                 "color": "blue",
-                                "label": "número 1"
+                                "label": "número 15"
                         },
                         {
                                 "kind": "number",
-                                "value": "2",
+                                "value": "12",
                                 "color": "blue",
-                                "label": "número 2"
+                                "label": "número 12"
                         }
                 ],
-                "answer": 1,
-                "success": "¡Correcto! Hay 3 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "3 triángulos"
-                }
+                "answer": 0,
+                "success": "¡Correcto! Sigue 14."
         },
         {
                 "id": "B09",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 0, 4, 8, 12, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "6",
+                                "value": "15",
                                 "color": "blue",
-                                "label": "número 6"
+                                "label": "número 15"
                         },
                         {
                                 "kind": "number",
-                                "value": "7",
+                                "value": "16",
                                 "color": "blue",
-                                "label": "número 7"
+                                "label": "número 16"
                         },
                         {
                                 "kind": "number",
-                                "value": "8",
+                                "value": "17",
                                 "color": "blue",
-                                "label": "número 8"
+                                "label": "número 17"
                         },
                         {
                                 "kind": "number",
-                                "value": "9",
+                                "value": "14",
                                 "color": "blue",
-                                "label": "número 9"
+                                "label": "número 14"
                         }
                 ],
-                "answer": 2,
-                "success": "¡Correcto! Hay 8 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "8 triángulos"
-                }
+                "answer": 1,
+                "success": "¡Correcto! Sigue 16."
         },
         {
                 "id": "B10",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 2, 3, 4, 5, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
                         {
                                 "kind": "number",
                                 "value": "5",
@@ -2371,54 +2283,29 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "7",
-                                "color": "blue",
-                                "label": "número 7"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "8",
-                                "color": "blue",
-                                "label": "número 8"
-                        },
-                        {
-                                "kind": "number",
                                 "value": "6",
                                 "color": "blue",
                                 "label": "número 6"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
                         }
                 ],
-                "answer": 1,
-                "success": "¡Correcto! Hay 7 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "7 triángulos"
-                }
+                "answer": 2,
+                "success": "¡Correcto! Sigue 6."
         },
         {
                 "id": "B11",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 4, 5, 6, 7, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
-                        {
-                                "kind": "number",
-                                "value": "8",
-                                "color": "blue",
-                                "label": "número 8"
-                        },
                         {
                                 "kind": "number",
                                 "value": "9",
@@ -2433,230 +2320,189 @@
                         },
                         {
                                 "kind": "number",
+                                "value": "8",
+                                "color": "blue",
+                                "label": "número 8"
+                        },
+                        {
+                                "kind": "number",
                                 "value": "7",
                                 "color": "blue",
                                 "label": "número 7"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! Hay 8 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "8 triángulos"
-                }
+                "answer": 2,
+                "success": "¡Correcto! Sigue 8."
         },
         {
                 "id": "B12",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 2, 4, 6, 8, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "0",
+                                "value": "11",
                                 "color": "blue",
-                                "label": "número 0"
+                                "label": "número 11"
                         },
                         {
                                 "kind": "number",
-                                "value": "2",
+                                "value": "10",
                                 "color": "blue",
-                                "label": "número 2"
+                                "label": "número 10"
                         },
                         {
                                 "kind": "number",
-                                "value": "1",
+                                "value": "8",
                                 "color": "blue",
-                                "label": "número 1"
+                                "label": "número 8"
                         },
                         {
                                 "kind": "number",
-                                "value": "3",
+                                "value": "9",
                                 "color": "blue",
-                                "label": "número 3"
+                                "label": "número 9"
                         }
                 ],
-                "answer": 2,
-                "success": "¡Correcto! Hay 1 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺"
-                        ],
-                        "label": "1 triángulos"
-                }
+                "answer": 1,
+                "success": "¡Correcto! Sigue 10."
         },
         {
                 "id": "B13",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 3, 6, 9, 12, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "6",
+                                "value": "14",
                                 "color": "blue",
-                                "label": "número 6"
+                                "label": "número 14"
                         },
                         {
                                 "kind": "number",
-                                "value": "4",
+                                "value": "16",
                                 "color": "blue",
-                                "label": "número 4"
+                                "label": "número 16"
                         },
                         {
                                 "kind": "number",
-                                "value": "3",
+                                "value": "13",
                                 "color": "blue",
-                                "label": "número 3"
+                                "label": "número 13"
                         },
                         {
                                 "kind": "number",
-                                "value": "5",
+                                "value": "15",
                                 "color": "blue",
-                                "label": "número 5"
+                                "label": "número 15"
                         }
                 ],
                 "answer": 3,
-                "success": "¡Correcto! Hay 5 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "5 triángulos"
-                }
+                "success": "¡Correcto! Sigue 15."
         },
         {
                 "id": "B14",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 5, 8, 11, 14, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "8",
+                                "value": "15",
                                 "color": "blue",
-                                "label": "número 8"
+                                "label": "número 15"
                         },
                         {
                                 "kind": "number",
-                                "value": "9",
+                                "value": "17",
                                 "color": "blue",
-                                "label": "número 9"
+                                "label": "número 17"
                         },
                         {
                                 "kind": "number",
-                                "value": "7",
+                                "value": "18",
                                 "color": "blue",
-                                "label": "número 7"
+                                "label": "número 18"
                         },
                         {
                                 "kind": "number",
-                                "value": "10",
+                                "value": "16",
                                 "color": "blue",
-                                "label": "número 10"
+                                "label": "número 16"
                         }
                 ],
                 "answer": 1,
-                "success": "¡Correcto! Hay 9 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "9 triángulos"
-                }
+                "success": "¡Correcto! Sigue 17."
         },
         {
                 "id": "B15",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 4, 7, 10, 13, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "4",
+                                "value": "16",
                                 "color": "blue",
-                                "label": "número 4"
+                                "label": "número 16"
                         },
                         {
                                 "kind": "number",
-                                "value": "7",
+                                "value": "17",
                                 "color": "blue",
-                                "label": "número 7"
+                                "label": "número 17"
                         },
                         {
                                 "kind": "number",
-                                "value": "5",
+                                "value": "14",
                                 "color": "blue",
-                                "label": "número 5"
+                                "label": "número 14"
                         },
                         {
                                 "kind": "number",
-                                "value": "6",
+                                "value": "15",
                                 "color": "blue",
-                                "label": "número 6"
+                                "label": "número 15"
                         }
                 ],
-                "answer": 3,
-                "success": "¡Correcto! Hay 6 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "6 triángulos"
-                }
+                "answer": 0,
+                "success": "¡Correcto! Sigue 16."
         },
         {
                 "id": "B16",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 4, 5, 6, 7, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
+                        },
                         {
                                 "kind": "number",
                                 "value": "8",
@@ -2665,104 +2511,71 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "11",
-                                "color": "blue",
-                                "label": "número 11"
-                        },
-                        {
-                                "kind": "number",
                                 "value": "9",
                                 "color": "blue",
                                 "label": "número 9"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "10",
-                                "color": "blue",
-                                "label": "número 10"
                         }
                 ],
-                "answer": 3,
-                "success": "¡Correcto! Hay 10 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "10 triángulos"
-                }
+                "answer": 2,
+                "success": "¡Correcto! Sigue 8."
         },
         {
                 "id": "B17",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 5, 8, 11, 14, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "4",
+                                "value": "15",
                                 "color": "blue",
-                                "label": "número 4"
+                                "label": "número 15"
                         },
                         {
                                 "kind": "number",
-                                "value": "3",
+                                "value": "18",
                                 "color": "blue",
-                                "label": "número 3"
+                                "label": "número 18"
                         },
                         {
                                 "kind": "number",
-                                "value": "5",
+                                "value": "17",
                                 "color": "blue",
-                                "label": "número 5"
+                                "label": "número 17"
                         },
                         {
                                 "kind": "number",
-                                "value": "6",
+                                "value": "16",
                                 "color": "blue",
-                                "label": "número 6"
+                                "label": "número 16"
                         }
                 ],
                 "answer": 2,
-                "success": "¡Correcto! Hay 5 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "5 triángulos"
-                }
+                "success": "¡Correcto! Sigue 17."
         },
         {
                 "id": "B18",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 2, 3, 4, 5, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "3",
+                                "value": "7",
                                 "color": "blue",
-                                "label": "número 3"
+                                "label": "número 7"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
                         },
                         {
                                 "kind": "number",
@@ -2775,49 +2588,20 @@
                                 "value": "5",
                                 "color": "blue",
                                 "label": "número 5"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "6",
-                                "color": "blue",
-                                "label": "número 6"
                         }
                 ],
-                "answer": 2,
-                "success": "¡Correcto! Hay 5 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "5 triángulos"
-                }
+                "answer": 1,
+                "success": "¡Correcto! Sigue 6."
         },
         {
                 "id": "B19",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 0, 1, 2, 3, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
-                        {
-                                "kind": "number",
-                                "value": "1",
-                                "color": "blue",
-                                "label": "número 1"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "0",
-                                "color": "blue",
-                                "label": "número 0"
-                        },
                         {
                                 "kind": "number",
                                 "value": "2",
@@ -2826,198 +2610,157 @@
                         },
                         {
                                 "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
                                 "value": "3",
                                 "color": "blue",
                                 "label": "número 3"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
                         }
                 ],
-                "answer": 2,
-                "success": "¡Correcto! Hay 2 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "2 triángulos"
-                }
+                "answer": 1,
+                "success": "¡Correcto! Sigue 4."
         },
         {
                 "id": "B20",
                 "level": "Básico",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 3, 7, 11, 15, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "6",
+                                "value": "20",
                                 "color": "blue",
-                                "label": "número 6"
+                                "label": "número 20"
                         },
                         {
                                 "kind": "number",
-                                "value": "4",
+                                "value": "19",
                                 "color": "blue",
-                                "label": "número 4"
+                                "label": "número 19"
                         },
                         {
                                 "kind": "number",
-                                "value": "5",
+                                "value": "18",
                                 "color": "blue",
-                                "label": "número 5"
+                                "label": "número 18"
                         },
                         {
                                 "kind": "number",
-                                "value": "7",
+                                "value": "17",
                                 "color": "blue",
-                                "label": "número 7"
+                                "label": "número 17"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! Hay 6 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "6 triángulos"
-                }
+                "answer": 1,
+                "success": "¡Correcto! Sigue 19."
         },
         {
                 "id": "I01",
                 "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 4, 5, 6, 7, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "12",
+                                "value": "7",
                                 "color": "blue",
-                                "label": "número 12"
+                                "label": "número 7"
                         },
                         {
                                 "kind": "number",
-                                "value": "11",
+                                "value": "6",
                                 "color": "blue",
-                                "label": "número 11"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "10",
-                                "color": "blue",
-                                "label": "número 10"
+                                "label": "número 6"
                         },
                         {
                                 "kind": "number",
                                 "value": "9",
                                 "color": "blue",
                                 "label": "número 9"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "8",
+                                "color": "blue",
+                                "label": "número 8"
                         }
                 ],
-                "answer": 1,
-                "success": "¡Correcto! Hay 11 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "11 triángulos"
-                }
+                "answer": 3,
+                "success": "¡Correcto! Sigue 8."
         },
         {
                 "id": "I02",
                 "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 0, 4, 8, 12, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "8",
+                                "value": "16",
                                 "color": "blue",
-                                "label": "número 8"
+                                "label": "número 16"
                         },
                         {
                                 "kind": "number",
-                                "value": "10",
+                                "value": "15",
                                 "color": "blue",
-                                "label": "número 10"
+                                "label": "número 15"
                         },
                         {
                                 "kind": "number",
-                                "value": "11",
+                                "value": "14",
                                 "color": "blue",
-                                "label": "número 11"
+                                "label": "número 14"
                         },
                         {
                                 "kind": "number",
-                                "value": "9",
+                                "value": "17",
                                 "color": "blue",
-                                "label": "número 9"
+                                "label": "número 17"
                         }
                 ],
-                "answer": 1,
-                "success": "¡Correcto! Hay 10 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "10 triángulos"
-                }
+                "answer": 0,
+                "success": "¡Correcto! Sigue 16."
         },
         {
                 "id": "I03",
                 "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 2, 3, 4, 5, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "4",
+                                "value": "5",
                                 "color": "blue",
-                                "label": "número 4"
+                                "label": "número 5"
                         },
                         {
                                 "kind": "number",
-                                "value": "3",
+                                "value": "7",
                                 "color": "blue",
-                                "label": "número 3"
+                                "label": "número 7"
                         },
                         {
                                 "kind": "number",
@@ -3027,157 +2770,28 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "5",
+                                "value": "4",
                                 "color": "blue",
-                                "label": "número 5"
+                                "label": "número 4"
                         }
                 ],
-                "answer": 3,
-                "success": "¡Correcto! Hay 5 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "5 triángulos"
-                }
+                "answer": 2,
+                "success": "¡Correcto! Sigue 6."
         },
         {
                 "id": "I04",
                 "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 0, 2, 4, 6, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
-                        {
-                                "kind": "number",
-                                "value": "17",
-                                "color": "blue",
-                                "label": "número 17"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "18",
-                                "color": "blue",
-                                "label": "número 18"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "20",
-                                "color": "blue",
-                                "label": "número 20"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "19",
-                                "color": "blue",
-                                "label": "número 19"
-                        }
-                ],
-                "answer": 3,
-                "success": "¡Correcto! Hay 19 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "19 triángulos"
-                }
-        },
-        {
-                "id": "I05",
-                "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "8",
-                                "color": "blue",
-                                "label": "número 8"
-                        },
                         {
                                 "kind": "number",
                                 "value": "7",
                                 "color": "blue",
                                 "label": "número 7"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "6",
-                                "color": "blue",
-                                "label": "número 6"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "5",
-                                "color": "blue",
-                                "label": "número 5"
-                        }
-                ],
-                "answer": 1,
-                "success": "¡Correcto! Hay 7 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "7 triángulos"
-                }
-        },
-        {
-                "id": "I06",
-                "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "6",
-                                "color": "blue",
-                                "label": "número 6"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "5",
-                                "color": "blue",
-                                "label": "número 5"
                         },
                         {
                                 "kind": "number",
@@ -3187,273 +2801,9 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "7",
-                                "color": "blue",
-                                "label": "número 7"
-                        }
-                ],
-                "answer": 3,
-                "success": "¡Correcto! Hay 7 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "7 triángulos"
-                }
-        },
-        {
-                "id": "I07",
-                "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "13",
-                                "color": "blue",
-                                "label": "número 13"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "15",
-                                "color": "blue",
-                                "label": "número 15"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "14",
-                                "color": "blue",
-                                "label": "número 14"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "16",
-                                "color": "blue",
-                                "label": "número 16"
-                        }
-                ],
-                "answer": 1,
-                "success": "¡Correcto! Hay 15 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "15 triángulos"
-                }
-        },
-        {
-                "id": "I08",
-                "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "13",
-                                "color": "blue",
-                                "label": "número 13"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "12",
-                                "color": "blue",
-                                "label": "número 12"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "14",
-                                "color": "blue",
-                                "label": "número 14"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "11",
-                                "color": "blue",
-                                "label": "número 11"
-                        }
-                ],
-                "answer": 0,
-                "success": "¡Correcto! Hay 13 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "13 triángulos"
-                }
-        },
-        {
-                "id": "I09",
-                "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
                                 "value": "6",
                                 "color": "blue",
                                 "label": "número 6"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "3",
-                                "color": "blue",
-                                "label": "número 3"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "4",
-                                "color": "blue",
-                                "label": "número 4"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "5",
-                                "color": "blue",
-                                "label": "número 5"
-                        }
-                ],
-                "answer": 3,
-                "success": "¡Correcto! Hay 5 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "5 triángulos"
-                }
-        },
-        {
-                "id": "I10",
-                "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "13",
-                                "color": "blue",
-                                "label": "número 13"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "15",
-                                "color": "blue",
-                                "label": "número 15"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "14",
-                                "color": "blue",
-                                "label": "número 14"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "16",
-                                "color": "blue",
-                                "label": "número 16"
-                        }
-                ],
-                "answer": 1,
-                "success": "¡Correcto! Hay 15 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "15 triángulos"
-                }
-        },
-        {
-                "id": "I11",
-                "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "10",
-                                "color": "blue",
-                                "label": "número 10"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "11",
-                                "color": "blue",
-                                "label": "número 11"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "12",
-                                "color": "blue",
-                                "label": "número 12"
                         },
                         {
                                 "kind": "number",
@@ -3463,207 +2813,17 @@
                         }
                 ],
                 "answer": 1,
-                "success": "¡Correcto! Hay 11 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "11 triángulos"
-                }
+                "success": "¡Correcto! Sigue 8."
         },
         {
-                "id": "I12",
+                "id": "I05",
                 "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 0, 3, 6, 9, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
-                        {
-                                "kind": "number",
-                                "value": "18",
-                                "color": "blue",
-                                "label": "número 18"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "16",
-                                "color": "blue",
-                                "label": "número 16"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "17",
-                                "color": "blue",
-                                "label": "número 17"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "19",
-                                "color": "blue",
-                                "label": "número 19"
-                        }
-                ],
-                "answer": 0,
-                "success": "¡Correcto! Hay 18 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "18 triángulos"
-                }
-        },
-        {
-                "id": "I13",
-                "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "4",
-                                "color": "blue",
-                                "label": "número 4"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "3",
-                                "color": "blue",
-                                "label": "número 3"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "6",
-                                "color": "blue",
-                                "label": "número 6"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "5",
-                                "color": "blue",
-                                "label": "número 5"
-                        }
-                ],
-                "answer": 3,
-                "success": "¡Correcto! Hay 5 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "5 triángulos"
-                }
-        },
-        {
-                "id": "I14",
-                "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "15",
-                                "color": "blue",
-                                "label": "número 15"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "13",
-                                "color": "blue",
-                                "label": "número 13"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "16",
-                                "color": "blue",
-                                "label": "número 16"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "14",
-                                "color": "blue",
-                                "label": "número 14"
-                        }
-                ],
-                "answer": 0,
-                "success": "¡Correcto! Hay 15 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "15 triángulos"
-                }
-        },
-        {
-                "id": "I15",
-                "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "12",
-                                "color": "blue",
-                                "label": "número 12"
-                        },
                         {
                                 "kind": "number",
                                 "value": "11",
@@ -3672,9 +2832,15 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "14",
+                                "value": "12",
                                 "color": "blue",
-                                "label": "número 14"
+                                "label": "número 12"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "10",
+                                "color": "blue",
+                                "label": "número 10"
                         },
                         {
                                 "kind": "number",
@@ -3683,48 +2849,23 @@
                                 "label": "número 13"
                         }
                 ],
-                "answer": 3,
-                "success": "¡Correcto! Hay 13 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "13 triángulos"
-                }
+                "answer": 1,
+                "success": "¡Correcto! Sigue 12."
         },
         {
-                "id": "I16",
+                "id": "I06",
                 "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 3, 4, 5, 6, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "4",
+                                "value": "8",
                                 "color": "blue",
-                                "label": "número 4"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "3",
-                                "color": "blue",
-                                "label": "número 3"
+                                "label": "número 8"
                         },
                         {
                                 "kind": "number",
@@ -3734,161 +2875,71 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "2",
+                                "value": "7",
                                 "color": "blue",
-                                "label": "número 2"
-                        }
-                ],
-                "answer": 0,
-                "success": "¡Correcto! Hay 4 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "4 triángulos"
-                }
-        },
-        {
-                "id": "I17",
-                "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "19",
-                                "color": "blue",
-                                "label": "número 19"
+                                "label": "número 7"
                         },
                         {
                                 "kind": "number",
-                                "value": "17",
+                                "value": "6",
                                 "color": "blue",
-                                "label": "número 17"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "18",
-                                "color": "blue",
-                                "label": "número 18"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "16",
-                                "color": "blue",
-                                "label": "número 16"
+                                "label": "número 6"
                         }
                 ],
                 "answer": 2,
-                "success": "¡Correcto! Hay 18 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "18 triángulos"
-                }
+                "success": "¡Correcto! Sigue 7."
         },
         {
-                "id": "I18",
+                "id": "I07",
                 "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 9, 12, 15, 18, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
-                        {
-                                "kind": "number",
-                                "value": "18",
-                                "color": "blue",
-                                "label": "número 18"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "19",
-                                "color": "blue",
-                                "label": "número 19"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "17",
-                                "color": "blue",
-                                "label": "número 17"
-                        },
                         {
                                 "kind": "number",
                                 "value": "20",
                                 "color": "blue",
                                 "label": "número 20"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "22",
+                                "color": "blue",
+                                "label": "número 22"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "19",
+                                "color": "blue",
+                                "label": "número 19"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "21",
+                                "color": "blue",
+                                "label": "número 21"
                         }
                 ],
-                "answer": 1,
-                "success": "¡Correcto! Hay 19 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "19 triángulos"
-                }
+                "answer": 3,
+                "success": "¡Correcto! Sigue 21."
         },
         {
-                "id": "I19",
+                "id": "I08",
                 "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 7, 11, 15, 19, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "18",
+                                "value": "22",
                                 "color": "blue",
-                                "label": "número 18"
+                                "label": "número 22"
                         },
                         {
                                 "kind": "number",
@@ -3898,152 +2949,522 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "20",
+                                "value": "24",
                                 "color": "blue",
-                                "label": "número 20"
+                                "label": "número 24"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "23",
+                                "color": "blue",
+                                "label": "número 23"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! Sigue 23."
+        },
+        {
+                "id": "I09",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 10, 14, 18, 22, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "27",
+                                "color": "blue",
+                                "label": "número 27"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "26",
+                                "color": "blue",
+                                "label": "número 26"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "25",
+                                "color": "blue",
+                                "label": "número 25"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "24",
+                                "color": "blue",
+                                "label": "número 24"
+                        }
+                ],
+                "answer": 1,
+                "success": "¡Correcto! Sigue 26."
+        },
+        {
+                "id": "I10",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 5, 9, 13, 17, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "21",
+                                "color": "blue",
+                                "label": "número 21"
                         },
                         {
                                 "kind": "number",
                                 "value": "19",
                                 "color": "blue",
                                 "label": "número 19"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "22",
+                                "color": "blue",
+                                "label": "número 22"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "20",
+                                "color": "blue",
+                                "label": "número 20"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! Sigue 21."
+        },
+        {
+                "id": "I11",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 3, 6, 9, 12, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "16",
+                                "color": "blue",
+                                "label": "número 16"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "14",
+                                "color": "blue",
+                                "label": "número 14"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "15",
+                                "color": "blue",
+                                "label": "número 15"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "13",
+                                "color": "blue",
+                                "label": "número 13"
                         }
                 ],
                 "answer": 2,
-                "success": "¡Correcto! Hay 20 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "20 triángulos"
-                }
+                "success": "¡Correcto! Sigue 15."
+        },
+        {
+                "id": "I12",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 2, 4, 6, 8, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "11",
+                                "color": "blue",
+                                "label": "número 11"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "9",
+                                "color": "blue",
+                                "label": "número 9"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "8",
+                                "color": "blue",
+                                "label": "número 8"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "10",
+                                "color": "blue",
+                                "label": "número 10"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! Sigue 10."
+        },
+        {
+                "id": "I13",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 3, 4, 5, 6, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "8",
+                                "color": "blue",
+                                "label": "número 8"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! Sigue 7."
+        },
+        {
+                "id": "I14",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 7, 9, 11, 13, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "15",
+                                "color": "blue",
+                                "label": "número 15"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "16",
+                                "color": "blue",
+                                "label": "número 16"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "13",
+                                "color": "blue",
+                                "label": "número 13"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "14",
+                                "color": "blue",
+                                "label": "número 14"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! Sigue 15."
+        },
+        {
+                "id": "I15",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 1, 2, 3, 4, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! Sigue 5."
+        },
+        {
+                "id": "I16",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 2, 5, 8, 11, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "14",
+                                "color": "blue",
+                                "label": "número 14"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "15",
+                                "color": "blue",
+                                "label": "número 15"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "13",
+                                "color": "blue",
+                                "label": "número 13"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "12",
+                                "color": "blue",
+                                "label": "número 12"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! Sigue 14."
+        },
+        {
+                "id": "I17",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 4, 5, 6, 7, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "9",
+                                "color": "blue",
+                                "label": "número 9"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "8",
+                                "color": "blue",
+                                "label": "número 8"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
+                        }
+                ],
+                "answer": 2,
+                "success": "¡Correcto! Sigue 8."
+        },
+        {
+                "id": "I18",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 2, 5, 8, 11, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "14",
+                                "color": "blue",
+                                "label": "número 14"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "12",
+                                "color": "blue",
+                                "label": "número 12"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "13",
+                                "color": "blue",
+                                "label": "número 13"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "15",
+                                "color": "blue",
+                                "label": "número 15"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! Sigue 14."
+        },
+        {
+                "id": "I19",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 7, 10, 13, 16, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "19",
+                                "color": "blue",
+                                "label": "número 19"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "18",
+                                "color": "blue",
+                                "label": "número 18"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "17",
+                                "color": "blue",
+                                "label": "número 17"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "20",
+                                "color": "blue",
+                                "label": "número 20"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! Sigue 19."
         },
         {
                 "id": "I20",
                 "level": "Intermedio",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 4, 7, 10, 13, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "8",
+                                "value": "16",
                                 "color": "blue",
-                                "label": "número 8"
+                                "label": "número 16"
                         },
                         {
                                 "kind": "number",
-                                "value": "6",
+                                "value": "14",
                                 "color": "blue",
-                                "label": "número 6"
+                                "label": "número 14"
                         },
                         {
                                 "kind": "number",
-                                "value": "9",
+                                "value": "15",
                                 "color": "blue",
-                                "label": "número 9"
+                                "label": "número 15"
                         },
                         {
                                 "kind": "number",
-                                "value": "7",
+                                "value": "17",
                                 "color": "blue",
-                                "label": "número 7"
+                                "label": "número 17"
                         }
                 ],
                 "answer": 0,
-                "success": "¡Correcto! Hay 8 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "8 triángulos"
-                }
+                "success": "¡Correcto! Sigue 16."
         },
         {
                 "id": "A01",
                 "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 13, 17, 21, 25, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "3",
+                                "value": "27",
                                 "color": "blue",
-                                "label": "número 3"
+                                "label": "número 27"
                         },
                         {
                                 "kind": "number",
-                                "value": "2",
+                                "value": "28",
                                 "color": "blue",
-                                "label": "número 2"
+                                "label": "número 28"
                         },
                         {
                                 "kind": "number",
-                                "value": "4",
+                                "value": "29",
                                 "color": "blue",
-                                "label": "número 4"
+                                "label": "número 29"
                         },
                         {
                                 "kind": "number",
-                                "value": "1",
+                                "value": "30",
                                 "color": "blue",
-                                "label": "número 1"
+                                "label": "número 30"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! Hay 3 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "3 triángulos"
-                }
+                "answer": 2,
+                "success": "¡Correcto! Sigue 29."
         },
         {
                 "id": "A02",
                 "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 9, 11, 13, 15, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
+                        {
+                                "kind": "number",
+                                "value": "17",
+                                "color": "blue",
+                                "label": "número 17"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "18",
+                                "color": "blue",
+                                "label": "número 18"
+                        },
                         {
                                 "kind": "number",
                                 "value": "15",
@@ -4052,181 +3473,97 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "13",
+                                "value": "16",
                                 "color": "blue",
-                                "label": "número 13"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "14",
-                                "color": "blue",
-                                "label": "número 14"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "12",
-                                "color": "blue",
-                                "label": "número 12"
+                                "label": "número 16"
                         }
                 ],
-                "answer": 2,
-                "success": "¡Correcto! Hay 14 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "14 triángulos"
-                }
+                "answer": 0,
+                "success": "¡Correcto! Sigue 17."
         },
         {
                 "id": "A03",
                 "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 10, 13, 16, 19, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "18",
+                                "value": "21",
                                 "color": "blue",
-                                "label": "número 18"
+                                "label": "número 21"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "23",
+                                "color": "blue",
+                                "label": "número 23"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "22",
+                                "color": "blue",
+                                "label": "número 22"
                         },
                         {
                                 "kind": "number",
                                 "value": "20",
                                 "color": "blue",
                                 "label": "número 20"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "19",
-                                "color": "blue",
-                                "label": "número 19"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "17",
-                                "color": "blue",
-                                "label": "número 17"
                         }
                 ],
                 "answer": 2,
-                "success": "¡Correcto! Hay 19 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "19 triángulos"
-                }
+                "success": "¡Correcto! Sigue 22."
         },
         {
                 "id": "A04",
                 "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 0, 3, 6, 9, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
                         {
                                 "kind": "number",
-                                "value": "14",
+                                "value": "10",
                                 "color": "blue",
-                                "label": "número 14"
+                                "label": "número 10"
                         },
                         {
                                 "kind": "number",
-                                "value": "15",
+                                "value": "11",
                                 "color": "blue",
-                                "label": "número 15"
+                                "label": "número 11"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "12",
+                                "color": "blue",
+                                "label": "número 12"
                         },
                         {
                                 "kind": "number",
                                 "value": "13",
                                 "color": "blue",
                                 "label": "número 13"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "16",
-                                "color": "blue",
-                                "label": "número 16"
                         }
                 ],
-                "answer": 1,
-                "success": "¡Correcto! Hay 15 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "15 triángulos"
-                }
+                "answer": 2,
+                "success": "¡Correcto! Sigue 12."
         },
         {
                 "id": "A05",
                 "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 12, 13, 14, 15, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
-                        {
-                                "kind": "number",
-                                "value": "15",
-                                "color": "blue",
-                                "label": "número 15"
-                        },
                         {
                                 "kind": "number",
                                 "value": "14",
@@ -4235,55 +3572,46 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "13",
-                                "color": "blue",
-                                "label": "número 13"
-                        },
-                        {
-                                "kind": "number",
                                 "value": "16",
                                 "color": "blue",
                                 "label": "número 16"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "17",
+                                "color": "blue",
+                                "label": "número 17"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "15",
+                                "color": "blue",
+                                "label": "número 15"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! Hay 15 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "15 triángulos"
-                }
+                "answer": 1,
+                "success": "¡Correcto! Sigue 16."
         },
         {
                 "id": "A06",
                 "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 0, 1, 2, 3, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
                         {
                                 "kind": "number",
                                 "value": "4",
                                 "color": "blue",
                                 "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "2",
+                                "color": "blue",
+                                "label": "número 2"
                         },
                         {
                                 "kind": "number",
@@ -4296,191 +3624,26 @@
                                 "value": "5",
                                 "color": "blue",
                                 "label": "número 5"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "6",
-                                "color": "blue",
-                                "label": "número 6"
                         }
                 ],
-                "answer": 2,
-                "success": "¡Correcto! Hay 5 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "5 triángulos"
-                }
+                "answer": 0,
+                "success": "¡Correcto! Sigue 4."
         },
         {
                 "id": "A07",
                 "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 3, 6, 9, 12, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
-                        {
-                                "kind": "number",
-                                "value": "9",
-                                "color": "blue",
-                                "label": "número 9"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "8",
-                                "color": "blue",
-                                "label": "número 8"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "10",
-                                "color": "blue",
-                                "label": "número 10"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "11",
-                                "color": "blue",
-                                "label": "número 11"
-                        }
-                ],
-                "answer": 2,
-                "success": "¡Correcto! Hay 10 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "10 triángulos"
-                }
-        },
-        {
-                "id": "A08",
-                "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "2",
-                                "color": "blue",
-                                "label": "número 2"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "0",
-                                "color": "blue",
-                                "label": "número 0"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "1",
-                                "color": "blue",
-                                "label": "número 1"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "3",
-                                "color": "blue",
-                                "label": "número 3"
-                        }
-                ],
-                "answer": 2,
-                "success": "¡Correcto! Hay 1 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺"
-                        ],
-                        "label": "1 triángulos"
-                }
-        },
-        {
-                "id": "A09",
-                "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "12",
-                                "color": "blue",
-                                "label": "número 12"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "14",
-                                "color": "blue",
-                                "label": "número 14"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "13",
-                                "color": "blue",
-                                "label": "número 13"
-                        },
                         {
                                 "kind": "number",
                                 "value": "15",
                                 "color": "blue",
                                 "label": "número 15"
-                        }
-                ],
-                "answer": 1,
-                "success": "¡Correcto! Hay 14 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "14 triángulos"
-                }
-        },
-        {
-                "id": "A10",
-                "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
+                        },
                         {
                                 "kind": "number",
                                 "value": "13",
@@ -4498,58 +3661,31 @@
                                 "value": "14",
                                 "color": "blue",
                                 "label": "número 14"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "15",
-                                "color": "blue",
-                                "label": "número 15"
                         }
                 ],
-                "answer": 3,
-                "success": "¡Correcto! Hay 15 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "15 triángulos"
-                }
+                "answer": 0,
+                "success": "¡Correcto! Sigue 15."
         },
         {
-                "id": "A11",
+                "id": "A08",
                 "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 8, 11, 14, 17, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
-                        {
-                                "kind": "number",
-                                "value": "18",
-                                "color": "blue",
-                                "label": "número 18"
-                        },
                         {
                                 "kind": "number",
                                 "value": "19",
                                 "color": "blue",
                                 "label": "número 19"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "18",
+                                "color": "blue",
+                                "label": "número 18"
                         },
                         {
                                 "kind": "number",
@@ -4559,153 +3695,22 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "17",
+                                "value": "21",
                                 "color": "blue",
-                                "label": "número 17"
+                                "label": "número 21"
                         }
                 ],
-                "answer": 1,
-                "success": "¡Correcto! Hay 19 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "19 triángulos"
-                }
+                "answer": 2,
+                "success": "¡Correcto! Sigue 20."
         },
         {
-                "id": "A12",
+                "id": "A09",
                 "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "12",
-                                "color": "blue",
-                                "label": "número 12"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "11",
-                                "color": "blue",
-                                "label": "número 11"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "9",
-                                "color": "blue",
-                                "label": "número 9"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "10",
-                                "color": "blue",
-                                "label": "número 10"
-                        }
-                ],
-                "answer": 1,
-                "success": "¡Correcto! Hay 11 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "11 triángulos"
-                }
-        },
-        {
-                "id": "A13",
-                "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "9",
-                                "color": "blue",
-                                "label": "número 9"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "10",
-                                "color": "blue",
-                                "label": "número 10"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "7",
-                                "color": "blue",
-                                "label": "número 7"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "8",
-                                "color": "blue",
-                                "label": "número 8"
-                        }
-                ],
-                "answer": 0,
-                "success": "¡Correcto! Hay 9 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "9 triángulos"
-                }
-        },
-        {
-                "id": "A14",
-                "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 11, 12, 13, 14, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
                         {
                                 "kind": "number",
@@ -4733,176 +3738,201 @@
                         }
                 ],
                 "answer": 1,
-                "success": "¡Correcto! Hay 15 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "15 triángulos"
-                }
+                "success": "¡Correcto! Sigue 15."
+        },
+        {
+                "id": "A10",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 3, 5, 7, 9, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "12",
+                                "color": "blue",
+                                "label": "número 12"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "11",
+                                "color": "blue",
+                                "label": "número 11"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "9",
+                                "color": "blue",
+                                "label": "número 9"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "10",
+                                "color": "blue",
+                                "label": "número 10"
+                        }
+                ],
+                "answer": 1,
+                "success": "¡Correcto! Sigue 11."
+        },
+        {
+                "id": "A11",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 6, 10, 14, 18, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "20",
+                                "color": "blue",
+                                "label": "número 20"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "23",
+                                "color": "blue",
+                                "label": "número 23"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "21",
+                                "color": "blue",
+                                "label": "número 21"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "22",
+                                "color": "blue",
+                                "label": "número 22"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! Sigue 22."
+        },
+        {
+                "id": "A12",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 0, 1, 2, 3, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "2",
+                                "color": "blue",
+                                "label": "número 2"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! Sigue 4."
+        },
+        {
+                "id": "A13",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 13, 17, 21, 25, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "30",
+                                "color": "blue",
+                                "label": "número 30"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "29",
+                                "color": "blue",
+                                "label": "número 29"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "27",
+                                "color": "blue",
+                                "label": "número 27"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "28",
+                                "color": "blue",
+                                "label": "número 28"
+                        }
+                ],
+                "answer": 1,
+                "success": "¡Correcto! Sigue 29."
+        },
+        {
+                "id": "A14",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 0, 2, 4, 6, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "8",
+                                "color": "blue",
+                                "label": "número 8"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "9",
+                                "color": "blue",
+                                "label": "número 9"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! Sigue 8."
         },
         {
                 "id": "A15",
                 "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "0",
-                                "color": "blue",
-                                "label": "número 0"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "3",
-                                "color": "blue",
-                                "label": "número 3"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "2",
-                                "color": "blue",
-                                "label": "número 2"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "1",
-                                "color": "blue",
-                                "label": "número 1"
-                        }
-                ],
-                "answer": 3,
-                "success": "¡Correcto! Hay 1 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺"
-                        ],
-                        "label": "1 triángulos"
-                }
-        },
-        {
-                "id": "A16",
-                "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "5",
-                                "color": "blue",
-                                "label": "número 5"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "2",
-                                "color": "blue",
-                                "label": "número 2"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "3",
-                                "color": "blue",
-                                "label": "número 3"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "4",
-                                "color": "blue",
-                                "label": "número 4"
-                        }
-                ],
-                "answer": 3,
-                "success": "¡Correcto! Hay 4 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "4 triángulos"
-                }
-        },
-        {
-                "id": "A17",
-                "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "3",
-                                "color": "blue",
-                                "label": "número 3"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "6",
-                                "color": "blue",
-                                "label": "número 6"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "4",
-                                "color": "blue",
-                                "label": "número 4"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "5",
-                                "color": "blue",
-                                "label": "número 5"
-                        }
-                ],
-                "answer": 3,
-                "success": "¡Correcto! Hay 5 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "5 triángulos"
-                }
-        },
-        {
-                "id": "A18",
-                "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 4, 5, 6, 7, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
                 "options": [
                         {
                                 "kind": "number",
@@ -4910,93 +3940,6 @@
                                 "color": "blue",
                                 "label": "número 6"
                         },
-                        {
-                                "kind": "number",
-                                "value": "3",
-                                "color": "blue",
-                                "label": "número 3"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "4",
-                                "color": "blue",
-                                "label": "número 4"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "5",
-                                "color": "blue",
-                                "label": "número 5"
-                        }
-                ],
-                "answer": 3,
-                "success": "¡Correcto! Hay 5 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "5 triángulos"
-                }
-        },
-        {
-                "id": "A19",
-                "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
-                        {
-                                "kind": "number",
-                                "value": "0",
-                                "color": "blue",
-                                "label": "número 0"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "1",
-                                "color": "blue",
-                                "label": "número 1"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "2",
-                                "color": "blue",
-                                "label": "número 2"
-                        },
-                        {
-                                "kind": "number",
-                                "value": "3",
-                                "color": "blue",
-                                "label": "número 3"
-                        }
-                ],
-                "answer": 2,
-                "success": "¡Correcto! Hay 2 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "2 triángulos"
-                }
-        },
-        {
-                "id": "A20",
-                "level": "Avanzado",
-                "mode": "match",
-                "title": "Conteo de triángulos",
-                "instruction": "¿Cuántos triángulos hay?",
-                "speech": "Cuenta los triángulos.",
-                "hint": "Marca cada figura mientras cuentas.",
-                "options": [
                         {
                                 "kind": "number",
                                 "value": "8",
@@ -5011,34 +3954,198 @@
                         },
                         {
                                 "kind": "number",
-                                "value": "10",
-                                "color": "blue",
-                                "label": "número 10"
-                        },
-                        {
-                                "kind": "number",
                                 "value": "9",
                                 "color": "blue",
                                 "label": "número 9"
                         }
                 ],
+                "answer": 1,
+                "success": "¡Correcto! Sigue 8."
+        },
+        {
+                "id": "A16",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 1, 4, 7, 10, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "14",
+                                "color": "blue",
+                                "label": "número 14"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "13",
+                                "color": "blue",
+                                "label": "número 13"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "12",
+                                "color": "blue",
+                                "label": "número 12"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "11",
+                                "color": "blue",
+                                "label": "número 11"
+                        }
+                ],
+                "answer": 1,
+                "success": "¡Correcto! Sigue 13."
+        },
+        {
+                "id": "A17",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 8, 12, 16, 20, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "23",
+                                "color": "blue",
+                                "label": "número 23"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "22",
+                                "color": "blue",
+                                "label": "número 22"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "25",
+                                "color": "blue",
+                                "label": "número 25"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "24",
+                                "color": "blue",
+                                "label": "número 24"
+                        }
+                ],
                 "answer": 3,
-                "success": "¡Correcto! Hay 9 triángulos.",
-                "target": {
-                        "kind": "group",
-                        "values": [
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺",
-                                "🔺"
-                        ],
-                        "label": "9 triángulos"
-                }
+                "success": "¡Correcto! Sigue 24."
+        },
+        {
+                "id": "A18",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 1, 2, 3, 4, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        }
+                ],
+                "answer": 2,
+                "success": "¡Correcto! Sigue 5."
+        },
+        {
+                "id": "A19",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 14, 15, 16, 17, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "17",
+                                "color": "blue",
+                                "label": "número 17"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "16",
+                                "color": "blue",
+                                "label": "número 16"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "19",
+                                "color": "blue",
+                                "label": "número 19"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "18",
+                                "color": "blue",
+                                "label": "número 18"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! Sigue 18."
+        },
+        {
+                "id": "A20",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Series crecientes",
+                "instruction": "Completa la serie: 1, 5, 9, 13, __",
+                "speech": "Encuentra el número que sigue.",
+                "hint": "Observa cuánto aumenta o disminuye cada término.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "16",
+                                "color": "blue",
+                                "label": "número 16"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "18",
+                                "color": "blue",
+                                "label": "número 18"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "15",
+                                "color": "blue",
+                                "label": "número 15"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "17",
+                                "color": "blue",
+                                "label": "número 17"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! Sigue 17."
         }
 ];
 
@@ -5596,10 +4703,10 @@
 
         if (state.score === exercises.length) {
           elements.finalMessage.textContent =
-            "¡Excelente! Dominaste el tema conteo de triángulos.";
+            "¡Excelente! Dominaste el tema series crecientes.";
         } else if (state.score >= 15) {
           elements.finalMessage.textContent =
-            "¡Muy bien! Resolviste con éxito las actividades de conteo de triángulos.";
+            "¡Muy bien! Resolviste con éxito las actividades de series crecientes.";
         } else {
           elements.finalMessage.textContent =
             "¡Buen trabajo! Repite la actividad para seguir mejorando.";
@@ -5607,7 +4714,7 @@
 
         try {
           localStorage.setItem(
-            "mvg_topic_conteo_de_triangulos_complete",
+            "mvg_topic_series_crecientes_complete",
             "true"
           );
 
@@ -5622,8 +4729,8 @@
               ? savedRouteProgress.filter(item => typeof item === "string")
               : [];
 
-          if (!completedTopics.includes("stage-45")) {
-            completedTopics.push("stage-45");
+          if (!completedTopics.includes("stage-51")) {
+            completedTopics.push("stage-51");
           }
 
           localStorage.setItem(
