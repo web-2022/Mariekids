@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mariekids-v1';
+const CACHE_NAME = 'mariekids-v2';
 
 const ARCHIVOS_CACHE = [
   '/',
