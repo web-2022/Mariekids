@@ -1723,6 +1723,195 @@
         );
       }
 
+    
+/* Mejoras visuales automáticas */
+.emoji-scene, .shape-scene {
+  position: relative;
+  width: min(260px, 78vw);
+  height: 170px;
+  margin: 0 auto;
+}
+.scene-emoji, .shape-scene .shape-wrap {
+  position: absolute;
+  line-height: 1;
+  transform-origin: center center;
+}
+.grid-scene {
+  display: inline-grid;
+  gap: 6px;
+  padding: 6px;
+  background: rgba(236,246,255,.8);
+  border-radius: 18px;
+  box-shadow: inset 0 0 0 3px rgba(143, 199, 255, .45);
+}
+.grid-cell {
+  min-width: 42px;
+  min-height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 4px 0 rgba(0,0,0,.08);
+  font-size: 28px;
+}
+.grid-cell.header {
+  background: transparent;
+  box-shadow: none;
+  font-size: 16px;
+  font-weight: 900;
+  color: #35507a;
+}
+.abacus-wrap {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  align-items: flex-end;
+}
+.abacus-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.abacus-rod {
+  width: 12px;
+  height: 108px;
+  border-radius: 999px;
+  background: #8b5cf6;
+  position: relative;
+  box-shadow: inset 0 2px 0 rgba(255,255,255,.25), 0 4px 0 rgba(0,0,0,.12);
+}
+.abacus-beads {
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 6px;
+}
+.abacus-bead {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #ffc800;
+  border: 3px solid #f59e0b;
+  box-shadow: inset 0 2px 0 rgba(255,255,255,.35), 0 3px 0 rgba(0,0,0,.1);
+}
+.abacus-label {
+  font-size: 16px;
+  font-weight: 900;
+  color: #35507a;
+}
+.clock-face {
+  width: 148px;
+  height: 148px;
+  margin: 0 auto;
+  position: relative;
+  border-radius: 50%;
+  background: #fff;
+  border: 6px solid #2f62d5;
+  box-shadow: inset 0 8px 0 rgba(255,255,255,.5), 0 8px 0 rgba(0,0,0,.08);
+}
+.clock-center {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 14px; height: 14px;
+  transform: translate(-50%,-50%);
+  background: #ef4444;
+  border-radius: 50%;
+}
+.clock-hand {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform-origin: bottom center;
+  border-radius: 999px;
+}
+.clock-hand.hour { width: 8px; height: 42px; background: #183153; }
+.clock-hand.minute { width: 6px; height: 54px; background: #0ea5e9; }
+.clock-num {
+  position: absolute;
+  transform: translate(-50%,-50%);
+  font-size: 16px;
+  font-weight: 900;
+  color: #35507a;
+}
+.size-compare {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 18px;
+  min-height: 120px;
+}
+.size-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.size-item .emoji { filter: drop-shadow(0 5px 0 rgba(0,0,0,.1)); }
+.size-item small {
+  font-size: 14px;
+  font-weight: 900;
+  color: #35507a;
+}
+.number-pyramid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+.p-row {
+  display: flex;
+  gap: 10px;
+}
+.p-cell {
+  min-width: 52px;
+  min-height: 52px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #fef3c7, #facc15);
+  box-shadow: 0 5px 0 rgba(0,0,0,.1);
+  display: grid;
+  place-items: center;
+  font-size: 26px;
+  font-weight: 900;
+  color: #5b4100;
+}
+.p-cell.blank {
+  background: linear-gradient(180deg, #dbeafe, #93c5fd);
+  color: #1d4ed8;
+}
+.number-wheel {
+  width: 170px;
+  height: 170px;
+  position: relative;
+  margin: 0 auto;
+}
+.wheel-center, .wheel-chip {
+  position: absolute;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  box-shadow: 0 4px 0 rgba(0,0,0,.1);
+}
+.wheel-center {
+  left: 50%; top: 50%;
+  transform: translate(-50%,-50%);
+  background: #8b5cf6;
+  color: #fff;
+  font-size: 28px;
+}
+.wheel-chip {
+  background: #e0f2fe;
+  color: #1d4ed8;
+  font-size: 22px;
+}
+
+
     </style>
   </head>
 
@@ -1930,12 +2119,16 @@
         {
                 "id": "B01",
                 "level": "Básico",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
+                        {
+                                "kind": "word",
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
+                        },
                         {
                                 "kind": "word",
                                 "value": "centro",
@@ -1943,41 +2136,48 @@
                         },
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
-                        },
-                        {
-                                "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 1,
+                "mode": "match",
+                "success": "¡Correcto! Está en centro.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 2,
+                                        "col": 2,
+                                        "value": "🐱",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "B02",
                 "level": "Básico",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
-                        },
-                        {
-                                "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         },
                         {
                                 "kind": "word",
@@ -1986,31 +2186,48 @@
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
+                        },
+                        {
+                                "kind": "word",
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         }
                 ],
-                "answer": 2,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 3,
+                "mode": "match",
+                "success": "¡Correcto! Está en esquina superior izquierda.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 1,
+                                        "col": 1,
+                                        "value": "🐱",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "B03",
                 "level": "Básico",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
-                        },
-                        {
-                                "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         },
                         {
                                 "kind": "word",
@@ -2019,121 +2236,199 @@
                         },
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
+                        },
+                        {
+                                "kind": "word",
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         }
                 ],
-                "answer": 2,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 0,
+                "mode": "match",
+                "success": "¡Correcto! Está en esquina superior derecha.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 1,
+                                        "col": 3,
+                                        "value": "⭐",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "B04",
                 "level": "Básico",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         },
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "esquina inferior izquierda",
+                                "label": "esquina inferior izquierda"
                         },
                         {
                                 "kind": "word",
-                                "value": "centro",
-                                "label": "centro"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         }
                 ],
-                "answer": 3,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 2,
+                "mode": "match",
+                "success": "¡Correcto! Está en esquina inferior izquierda.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 3,
+                                        "col": 1,
+                                        "value": "⭐",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "B05",
                 "level": "Básico",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         },
                         {
                                 "kind": "word",
-                                "value": "centro",
-                                "label": "centro"
+                                "value": "esquina inferior derecha",
+                                "label": "esquina inferior derecha"
                         },
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         }
                 ],
                 "answer": 1,
-                "success": "¡Correcto! La respuesta es centro."
+                "mode": "match",
+                "success": "¡Correcto! Está en esquina inferior derecha.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 3,
+                                        "col": 3,
+                                        "value": "⭐",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "B06",
                 "level": "Básico",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "extremo izquierdo",
+                                "label": "extremo izquierdo"
                         },
                         {
                                 "kind": "word",
-                                "value": "centro",
-                                "label": "centro"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         },
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         }
                 ],
-                "answer": 1,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 0,
+                "mode": "match",
+                "success": "¡Correcto! Está en extremo izquierdo.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 2,
+                                        "col": 1,
+                                        "value": "🍎",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "B07",
                 "level": "Básico",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
+                        {
+                                "kind": "word",
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
+                        },
                         {
                                 "kind": "word",
                                 "value": "centro",
@@ -2141,36 +2436,48 @@
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         },
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
-                        },
-                        {
-                                "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 2,
+                "mode": "match",
+                "success": "¡Correcto! Está en extremo derecho.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 2,
+                                        "col": 3,
+                                        "value": "🍎",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "B08",
                 "level": "Básico",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         },
                         {
                                 "kind": "word",
@@ -2179,37 +2486,44 @@
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         },
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         }
                 ],
                 "answer": 1,
-                "success": "¡Correcto! La respuesta es centro."
+                "mode": "match",
+                "success": "¡Correcto! Está en centro.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 2,
+                                        "col": 2,
+                                        "value": "🍎",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "B09",
                 "level": "Básico",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
-                        {
-                                "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
-                        },
-                        {
-                                "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
-                        },
                         {
                                 "kind": "word",
                                 "value": "centro",
@@ -2217,26 +2531,58 @@
                         },
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
+                        },
+                        {
+                                "kind": "word",
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
+                        },
+                        {
+                                "kind": "word",
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         }
                 ],
-                "answer": 2,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 1,
+                "mode": "match",
+                "success": "¡Correcto! Está en esquina superior izquierda.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 1,
+                                        "col": 1,
+                                        "value": "🐱",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "B10",
                 "level": "Básico",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
+                        },
+                        {
+                                "kind": "word",
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         },
                         {
                                 "kind": "word",
@@ -2245,140 +2591,203 @@
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
-                        },
-                        {
-                                "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         }
                 ],
                 "answer": 1,
-                "success": "¡Correcto! La respuesta es centro."
+                "mode": "match",
+                "success": "¡Correcto! Está en esquina superior derecha.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 1,
+                                        "col": 3,
+                                        "value": "⭐",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "B11",
                 "level": "Básico",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "centro",
-                                "label": "centro"
+                                "value": "esquina inferior izquierda",
+                                "label": "esquina inferior izquierda"
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         },
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         },
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         }
                 ],
                 "answer": 0,
-                "success": "¡Correcto! La respuesta es centro."
+                "mode": "match",
+                "success": "¡Correcto! Está en esquina inferior izquierda.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 3,
+                                        "col": 1,
+                                        "value": "🐱",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "B12",
                 "level": "Básico",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "centro",
-                                "label": "centro"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         },
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "esquina inferior derecha",
+                                "label": "esquina inferior derecha"
                         },
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 2,
+                "mode": "match",
+                "success": "¡Correcto! Está en esquina inferior derecha.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 3,
+                                        "col": 3,
+                                        "value": "🍎",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "B13",
                 "level": "Básico",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         },
                         {
                                 "kind": "word",
-                                "value": "centro",
-                                "label": "centro"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         },
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "extremo izquierdo",
+                                "label": "extremo izquierdo"
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         }
                 ],
-                "answer": 1,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 2,
+                "mode": "match",
+                "success": "¡Correcto! Está en extremo izquierdo.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 2,
+                                        "col": 1,
+                                        "value": "🍎",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "B14",
                 "level": "Básico",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         },
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         },
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         },
                         {
                                 "kind": "word",
@@ -2386,27 +2795,39 @@
                                 "label": "centro"
                         }
                 ],
-                "answer": 3,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 2,
+                "mode": "match",
+                "success": "¡Correcto! Está en extremo derecho.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 2,
+                                        "col": 3,
+                                        "value": "🍎",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "B15",
                 "level": "Básico",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
-                        },
-                        {
-                                "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         },
                         {
                                 "kind": "word",
@@ -2415,69 +2836,108 @@
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
+                        },
+                        {
+                                "kind": "word",
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         }
                 ],
-                "answer": 2,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 1,
+                "mode": "match",
+                "success": "¡Correcto! Está en centro.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 2,
+                                        "col": 2,
+                                        "value": "🐱",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "B16",
                 "level": "Básico",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
-                        {
-                                "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
-                        },
-                        {
-                                "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
-                        },
-                        {
-                                "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
-                        },
                         {
                                 "kind": "word",
                                 "value": "centro",
                                 "label": "centro"
+                        },
+                        {
+                                "kind": "word",
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
+                        },
+                        {
+                                "kind": "word",
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
+                        },
+                        {
+                                "kind": "word",
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         }
                 ],
-                "answer": 3,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 1,
+                "mode": "match",
+                "success": "¡Correcto! Está en esquina superior izquierda.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 1,
+                                        "col": 1,
+                                        "value": "🍎",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "B17",
                 "level": "Básico",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         },
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         },
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         },
                         {
                                 "kind": "word",
@@ -2485,126 +2945,189 @@
                                 "label": "centro"
                         }
                 ],
-                "answer": 3,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 0,
+                "mode": "match",
+                "success": "¡Correcto! Está en esquina superior derecha.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 1,
+                                        "col": 3,
+                                        "value": "🍎",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "B18",
                 "level": "Básico",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "centro",
-                                "label": "centro"
+                                "value": "esquina inferior izquierda",
+                                "label": "esquina inferior izquierda"
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         },
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         },
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         }
                 ],
                 "answer": 0,
-                "success": "¡Correcto! La respuesta es centro."
+                "mode": "match",
+                "success": "¡Correcto! Está en esquina inferior izquierda.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 3,
+                                        "col": 1,
+                                        "value": "🍎",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "B19",
                 "level": "Básico",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "esquina inferior derecha",
+                                "label": "esquina inferior derecha"
                         },
                         {
                                 "kind": "word",
-                                "value": "centro",
-                                "label": "centro"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         },
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         }
                 ],
-                "answer": 1,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 0,
+                "mode": "match",
+                "success": "¡Correcto! Está en esquina inferior derecha.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 3,
+                                        "col": 3,
+                                        "value": "🐱",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "B20",
                 "level": "Básico",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         },
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "extremo izquierdo",
+                                "label": "extremo izquierdo"
                         },
                         {
                                 "kind": "word",
-                                "value": "centro",
-                                "label": "centro"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         }
                 ],
-                "answer": 2,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 1,
+                "mode": "match",
+                "success": "¡Correcto! Está en extremo izquierdo.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 2,
+                                        "col": 1,
+                                        "value": "🍎",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "I01",
                 "level": "Intermedio",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
-                        },
-                        {
-                                "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         },
                         {
                                 "kind": "word",
@@ -2613,27 +3136,44 @@
                         },
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
+                        },
+                        {
+                                "kind": "word",
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         }
                 ],
-                "answer": 2,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 1,
+                "mode": "match",
+                "success": "¡Correcto! Está en centro.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 2,
+                                        "col": 2,
+                                        "value": "🍎",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "I02",
                 "level": "Intermedio",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
-                        {
-                                "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
-                        },
                         {
                                 "kind": "word",
                                 "value": "centro",
@@ -2641,26 +3181,48 @@
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         },
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
+                        },
+                        {
+                                "kind": "word",
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         }
                 ],
                 "answer": 1,
-                "success": "¡Correcto! La respuesta es centro."
+                "mode": "match",
+                "success": "¡Correcto! Está en esquina superior izquierda.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 1,
+                                        "col": 1,
+                                        "value": "🍎",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "I03",
                 "level": "Intermedio",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
@@ -2669,136 +3231,199 @@
                         },
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         },
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 2,
+                "mode": "match",
+                "success": "¡Correcto! Está en esquina superior derecha.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 1,
+                                        "col": 3,
+                                        "value": "🐱",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "I04",
                 "level": "Intermedio",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "esquina inferior izquierda",
+                                "label": "esquina inferior izquierda"
                         },
                         {
                                 "kind": "word",
-                                "value": "centro",
-                                "label": "centro"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         },
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         }
                 ],
-                "answer": 1,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 0,
+                "mode": "match",
+                "success": "¡Correcto! Está en esquina inferior izquierda.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 3,
+                                        "col": 1,
+                                        "value": "🍎",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "I05",
                 "level": "Intermedio",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "centro",
-                                "label": "centro"
+                                "value": "esquina inferior derecha",
+                                "label": "esquina inferior derecha"
                         },
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         },
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         }
                 ],
                 "answer": 0,
-                "success": "¡Correcto! La respuesta es centro."
+                "mode": "match",
+                "success": "¡Correcto! Está en esquina inferior derecha.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 3,
+                                        "col": 3,
+                                        "value": "⭐",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "I06",
                 "level": "Intermedio",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "centro",
-                                "label": "centro"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         },
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         },
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "extremo izquierdo",
+                                "label": "extremo izquierdo"
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 2,
+                "mode": "match",
+                "success": "¡Correcto! Está en extremo izquierdo.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 2,
+                                        "col": 1,
+                                        "value": "🍎",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "I07",
                 "level": "Intermedio",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
-                        {
-                                "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
-                        },
                         {
                                 "kind": "word",
                                 "value": "centro",
@@ -2806,93 +3431,154 @@
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         },
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
+                        },
+                        {
+                                "kind": "word",
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         }
                 ],
                 "answer": 1,
-                "success": "¡Correcto! La respuesta es centro."
+                "mode": "match",
+                "success": "¡Correcto! Está en extremo derecho.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 2,
+                                        "col": 3,
+                                        "value": "🐱",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "I08",
                 "level": "Intermedio",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
-                        },
-                        {
-                                "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         },
                         {
                                 "kind": "word",
                                 "value": "centro",
                                 "label": "centro"
+                        },
+                        {
+                                "kind": "word",
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         }
                 ],
-                "answer": 3,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 2,
+                "mode": "match",
+                "success": "¡Correcto! Está en centro.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 2,
+                                        "col": 2,
+                                        "value": "⭐",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "I09",
                 "level": "Intermedio",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         },
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
-                        },
-                        {
-                                "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         },
                         {
                                 "kind": "word",
                                 "value": "centro",
                                 "label": "centro"
+                        },
+                        {
+                                "kind": "word",
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         }
                 ],
                 "answer": 3,
-                "success": "¡Correcto! La respuesta es centro."
+                "mode": "match",
+                "success": "¡Correcto! Está en esquina superior izquierda.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 1,
+                                        "col": 1,
+                                        "value": "⭐",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "I10",
                 "level": "Intermedio",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
+                        {
+                                "kind": "word",
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
+                        },
                         {
                                 "kind": "word",
                                 "value": "centro",
@@ -2900,140 +3586,203 @@
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         },
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
-                        },
-                        {
-                                "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 2,
+                "mode": "match",
+                "success": "¡Correcto! Está en esquina superior derecha.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 1,
+                                        "col": 3,
+                                        "value": "🍎",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "I11",
                 "level": "Intermedio",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         },
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "esquina inferior izquierda",
+                                "label": "esquina inferior izquierda"
                         },
                         {
                                 "kind": "word",
-                                "value": "centro",
-                                "label": "centro"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         }
                 ],
-                "answer": 3,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 2,
+                "mode": "match",
+                "success": "¡Correcto! Está en esquina inferior izquierda.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 3,
+                                        "col": 1,
+                                        "value": "🐱",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "I12",
                 "level": "Intermedio",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         },
                         {
                                 "kind": "word",
-                                "value": "centro",
-                                "label": "centro"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         },
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "esquina inferior derecha",
+                                "label": "esquina inferior derecha"
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         }
                 ],
-                "answer": 1,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 2,
+                "mode": "match",
+                "success": "¡Correcto! Está en esquina inferior derecha.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 3,
+                                        "col": 3,
+                                        "value": "⭐",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "I13",
                 "level": "Intermedio",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         },
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "extremo izquierdo",
+                                "label": "extremo izquierdo"
                         },
                         {
                                 "kind": "word",
-                                "value": "centro",
-                                "label": "centro"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         },
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         }
                 ],
-                "answer": 2,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 1,
+                "mode": "match",
+                "success": "¡Correcto! Está en extremo izquierdo.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 2,
+                                        "col": 1,
+                                        "value": "⭐",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "I14",
                 "level": "Intermedio",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         },
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         },
                         {
                                 "kind": "word",
@@ -3042,97 +3791,143 @@
                         },
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         }
                 ],
-                "answer": 2,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 0,
+                "mode": "match",
+                "success": "¡Correcto! Está en extremo derecho.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 2,
+                                        "col": 3,
+                                        "value": "⭐",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "I15",
                 "level": "Intermedio",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
+                        },
+                        {
+                                "kind": "word",
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         },
                         {
                                 "kind": "word",
                                 "value": "centro",
                                 "label": "centro"
-                        },
-                        {
-                                "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
                         }
                 ],
-                "answer": 2,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 3,
+                "mode": "match",
+                "success": "¡Correcto! Está en centro.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 2,
+                                        "col": 2,
+                                        "value": "🐱",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "I16",
                 "level": "Intermedio",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
+                        {
+                                "kind": "word",
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
+                        },
+                        {
+                                "kind": "word",
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
+                        },
+                        {
+                                "kind": "word",
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
+                        },
                         {
                                 "kind": "word",
                                 "value": "centro",
                                 "label": "centro"
-                        },
-                        {
-                                "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
-                        },
-                        {
-                                "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
-                        },
-                        {
-                                "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 1,
+                "mode": "match",
+                "success": "¡Correcto! Está en esquina superior izquierda.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 1,
+                                        "col": 1,
+                                        "value": "🐱",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "I17",
                 "level": "Intermedio",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
-                        },
-                        {
-                                "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         },
                         {
                                 "kind": "word",
@@ -3141,121 +3936,204 @@
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
+                        },
+                        {
+                                "kind": "word",
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         }
                 ],
-                "answer": 2,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 3,
+                "mode": "match",
+                "success": "¡Correcto! Está en esquina superior derecha.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 1,
+                                        "col": 3,
+                                        "value": "🍎",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "I18",
                 "level": "Intermedio",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         },
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "esquina inferior izquierda",
+                                "label": "esquina inferior izquierda"
                         },
                         {
                                 "kind": "word",
-                                "value": "centro",
-                                "label": "centro"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         },
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         }
                 ],
-                "answer": 2,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 1,
+                "mode": "match",
+                "success": "¡Correcto! Está en esquina inferior izquierda.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 3,
+                                        "col": 1,
+                                        "value": "⭐",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "I19",
                 "level": "Intermedio",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         },
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "esquina inferior derecha",
+                                "label": "esquina inferior derecha"
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         },
                         {
                                 "kind": "word",
-                                "value": "centro",
-                                "label": "centro"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         }
                 ],
-                "answer": 3,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 1,
+                "mode": "match",
+                "success": "¡Correcto! Está en esquina inferior derecha.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 3,
+                                        "col": 3,
+                                        "value": "🍎",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "I20",
                 "level": "Intermedio",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "centro",
-                                "label": "centro"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         },
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "extremo izquierdo",
+                                "label": "extremo izquierdo"
                         },
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 1,
+                "mode": "match",
+                "success": "¡Correcto! Está en extremo izquierdo.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 2,
+                                        "col": 1,
+                                        "value": "⭐",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "A01",
                 "level": "Avanzado",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
+                        {
+                                "kind": "word",
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
+                        },
+                        {
+                                "kind": "word",
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
+                        },
                         {
                                 "kind": "word",
                                 "value": "centro",
@@ -3263,46 +4141,53 @@
                         },
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
-                        },
-                        {
-                                "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
-                        },
-                        {
-                                "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 2,
+                "mode": "match",
+                "success": "¡Correcto! Está en centro.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 2,
+                                        "col": 2,
+                                        "value": "🍎",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "A02",
                 "level": "Avanzado",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         },
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         },
                         {
                                 "kind": "word",
@@ -3310,18 +4195,40 @@
                                 "label": "centro"
                         }
                 ],
-                "answer": 3,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 2,
+                "mode": "match",
+                "success": "¡Correcto! Está en esquina superior izquierda.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 1,
+                                        "col": 1,
+                                        "value": "🐱",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "A03",
                 "level": "Avanzado",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
+                        {
+                                "kind": "word",
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
+                        },
                         {
                                 "kind": "word",
                                 "value": "centro",
@@ -3329,362 +4236,549 @@
                         },
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
-                        },
-                        {
-                                "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         }
                 ],
                 "answer": 0,
-                "success": "¡Correcto! La respuesta es centro."
+                "mode": "match",
+                "success": "¡Correcto! Está en esquina superior derecha.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 1,
+                                        "col": 3,
+                                        "value": "🍎",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "A04",
                 "level": "Avanzado",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         },
                         {
                                 "kind": "word",
-                                "value": "centro",
-                                "label": "centro"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         },
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         },
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "esquina inferior izquierda",
+                                "label": "esquina inferior izquierda"
                         }
                 ],
-                "answer": 1,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 3,
+                "mode": "match",
+                "success": "¡Correcto! Está en esquina inferior izquierda.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 3,
+                                        "col": 1,
+                                        "value": "⭐",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "A05",
                 "level": "Avanzado",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "esquina inferior derecha",
+                                "label": "esquina inferior derecha"
                         },
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         },
                         {
                                 "kind": "word",
-                                "value": "centro",
-                                "label": "centro"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         }
                 ],
-                "answer": 2,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 0,
+                "mode": "match",
+                "success": "¡Correcto! Está en esquina inferior derecha.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 3,
+                                        "col": 3,
+                                        "value": "🐱",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "A06",
                 "level": "Avanzado",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         },
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         },
                         {
                                 "kind": "word",
-                                "value": "centro",
-                                "label": "centro"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "extremo izquierdo",
+                                "label": "extremo izquierdo"
                         }
                 ],
-                "answer": 2,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 3,
+                "mode": "match",
+                "success": "¡Correcto! Está en extremo izquierdo.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 2,
+                                        "col": 1,
+                                        "value": "🐱",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "A07",
                 "level": "Avanzado",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
-                        },
-                        {
-                                "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
-                        },
-                        {
-                                "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         },
                         {
                                 "kind": "word",
                                 "value": "centro",
                                 "label": "centro"
+                        },
+                        {
+                                "kind": "word",
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
+                        },
+                        {
+                                "kind": "word",
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         }
                 ],
                 "answer": 3,
-                "success": "¡Correcto! La respuesta es centro."
+                "mode": "match",
+                "success": "¡Correcto! Está en extremo derecho.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 2,
+                                        "col": 3,
+                                        "value": "⭐",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "A08",
                 "level": "Avanzado",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
+                        },
+                        {
+                                "kind": "word",
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
+                        },
+                        {
+                                "kind": "word",
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         },
                         {
                                 "kind": "word",
                                 "value": "centro",
                                 "label": "centro"
-                        },
-                        {
-                                "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
-                        },
-                        {
-                                "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
                         }
                 ],
-                "answer": 1,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 3,
+                "mode": "match",
+                "success": "¡Correcto! Está en centro.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 2,
+                                        "col": 2,
+                                        "value": "🐱",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "A09",
                 "level": "Avanzado",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
+                        },
+                        {
+                                "kind": "word",
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
+                        },
+                        {
+                                "kind": "word",
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         },
                         {
                                 "kind": "word",
                                 "value": "centro",
                                 "label": "centro"
-                        },
-                        {
-                                "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
-                        },
-                        {
-                                "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
                         }
                 ],
-                "answer": 1,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 2,
+                "mode": "match",
+                "success": "¡Correcto! Está en esquina superior izquierda.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 1,
+                                        "col": 1,
+                                        "value": "⭐",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "A10",
                 "level": "Avanzado",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
-                        },
-                        {
-                                "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
-                        },
-                        {
-                                "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         },
                         {
                                 "kind": "word",
                                 "value": "centro",
                                 "label": "centro"
+                        },
+                        {
+                                "kind": "word",
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
+                        },
+                        {
+                                "kind": "word",
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         }
                 ],
                 "answer": 3,
-                "success": "¡Correcto! La respuesta es centro."
+                "mode": "match",
+                "success": "¡Correcto! Está en esquina superior derecha.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 1,
+                                        "col": 3,
+                                        "value": "🐱",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "A11",
                 "level": "Avanzado",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         },
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "esquina inferior izquierda",
+                                "label": "esquina inferior izquierda"
                         },
                         {
                                 "kind": "word",
-                                "value": "centro",
-                                "label": "centro"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         }
                 ],
-                "answer": 3,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 2,
+                "mode": "match",
+                "success": "¡Correcto! Está en esquina inferior izquierda.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 3,
+                                        "col": 1,
+                                        "value": "⭐",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "A12",
                 "level": "Avanzado",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "esquina inferior derecha",
+                                "label": "esquina inferior derecha"
                         },
                         {
                                 "kind": "word",
-                                "value": "centro",
-                                "label": "centro"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         },
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         }
                 ],
-                "answer": 1,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 0,
+                "mode": "match",
+                "success": "¡Correcto! Está en esquina inferior derecha.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 3,
+                                        "col": 3,
+                                        "value": "⭐",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "A13",
                 "level": "Avanzado",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         },
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         },
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         },
                         {
                                 "kind": "word",
-                                "value": "centro",
-                                "label": "centro"
+                                "value": "extremo izquierdo",
+                                "label": "extremo izquierdo"
                         }
                 ],
                 "answer": 3,
-                "success": "¡Correcto! La respuesta es centro."
+                "mode": "match",
+                "success": "¡Correcto! Está en extremo izquierdo.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 2,
+                                        "col": 1,
+                                        "value": "⭐",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "A14",
                 "level": "Avanzado",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
+                        {
+                                "kind": "word",
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
+                        },
                         {
                                 "kind": "word",
                                 "value": "centro",
@@ -3692,32 +4786,49 @@
                         },
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         },
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
-                        },
-                        {
-                                "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 2,
+                "mode": "match",
+                "success": "¡Correcto! Está en extremo derecho.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 2,
+                                        "col": 3,
+                                        "value": "⭐",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "A15",
                 "level": "Avanzado",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
+                        {
+                                "kind": "word",
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
+                        },
                         {
                                 "kind": "word",
                                 "value": "centro",
@@ -3725,36 +4836,53 @@
                         },
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
-                        },
-                        {
-                                "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         }
                 ],
-                "answer": 0,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 1,
+                "mode": "match",
+                "success": "¡Correcto! Está en centro.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 2,
+                                        "col": 2,
+                                        "value": "⭐",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "A16",
                 "level": "Avanzado",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
+                        },
+                        {
+                                "kind": "word",
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         },
                         {
                                 "kind": "word",
@@ -3763,149 +4891,230 @@
                         },
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
-                        },
-                        {
-                                "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         }
                 ],
                 "answer": 1,
-                "success": "¡Correcto! La respuesta es centro."
+                "mode": "match",
+                "success": "¡Correcto! Está en esquina superior izquierda.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 1,
+                                        "col": 1,
+                                        "value": "🐱",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "A17",
                 "level": "Avanzado",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
+                        {
+                                "kind": "word",
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
+                        },
+                        {
+                                "kind": "word",
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
+                        },
+                        {
+                                "kind": "word",
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
+                        },
                         {
                                 "kind": "word",
                                 "value": "centro",
                                 "label": "centro"
-                        },
-                        {
-                                "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
-                        },
-                        {
-                                "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
-                        },
-                        {
-                                "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
                         }
                 ],
                 "answer": 0,
-                "success": "¡Correcto! La respuesta es centro."
+                "mode": "match",
+                "success": "¡Correcto! Está en esquina superior derecha.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 1,
+                                        "col": 3,
+                                        "value": "⭐",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "A18",
                 "level": "Avanzado",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         },
                         {
                                 "kind": "word",
-                                "value": "centro",
-                                "label": "centro"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "esquina inferior izquierda",
+                                "label": "esquina inferior izquierda"
                         },
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         }
                 ],
-                "answer": 1,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 2,
+                "mode": "match",
+                "success": "¡Correcto! Está en esquina inferior izquierda.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 3,
+                                        "col": 1,
+                                        "value": "⭐",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "A19",
                 "level": "Avanzado",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "centro",
-                                "label": "centro"
+                                "value": "esquina inferior derecha",
+                                "label": "esquina inferior derecha"
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         },
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         },
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         }
                 ],
                 "answer": 0,
-                "success": "¡Correcto! La respuesta es centro."
+                "mode": "match",
+                "success": "¡Correcto! Está en esquina inferior derecha.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 3,
+                                        "col": 3,
+                                        "value": "🐱",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         },
         {
                 "id": "A20",
                 "level": "Avanzado",
-                "mode": "choice",
                 "title": "Centro, esquinas y extremos",
-                "instruction": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "speech": "En una cuadrícula, ¿qué palabra indica la parte central?",
-                "hint": "Observa el orden, la posición o la característica pedida.",
+                "instruction": "¿En qué lugar está el dibujo?",
+                "speech": "Observa la cuadrícula.",
+                "hint": "Piensa si está en el centro, en una esquina o en un extremo.",
                 "options": [
                         {
                                 "kind": "word",
-                                "value": "extremo",
-                                "label": "extremo"
+                                "value": "extremo izquierdo",
+                                "label": "extremo izquierdo"
                         },
                         {
                                 "kind": "word",
-                                "value": "centro",
-                                "label": "centro"
+                                "value": "esquina superior izquierda",
+                                "label": "esquina superior izquierda"
                         },
                         {
                                 "kind": "word",
-                                "value": "fuera",
-                                "label": "fuera"
+                                "value": "esquina superior derecha",
+                                "label": "esquina superior derecha"
                         },
                         {
                                 "kind": "word",
-                                "value": "esquina",
-                                "label": "esquina"
+                                "value": "extremo derecho",
+                                "label": "extremo derecho"
                         }
                 ],
-                "answer": 1,
-                "success": "¡Correcto! La respuesta es centro."
+                "answer": 0,
+                "mode": "match",
+                "success": "¡Correcto! Está en extremo izquierdo.",
+                "target": {
+                        "kind": "gridScene",
+                        "rows": 3,
+                        "cols": 3,
+                        "cells": [
+                                {
+                                        "row": 2,
+                                        "col": 1,
+                                        "value": "🐱",
+                                        "bg": "#dff5ff"
+                                }
+                        ],
+                        "showLabels": false,
+                        "rowLabels": [],
+                        "colLabels": [],
+                        "label": "cuadrícula 3x3"
+                }
         }
 ];
 
@@ -4238,6 +5447,264 @@
           visual.appendChild(pattern);
           return visual;
         }
+
+
+        if (item.kind === "emojiScene") {
+          const scene = document.createElement("div");
+          scene.className = "emoji-scene";
+          scene.style.width = `${item.width || 250}px`;
+          scene.style.height = `${item.height || 160}px`;
+
+          (item.decorations || []).forEach(dec => {
+            let node;
+            if (dec.type === "text") {
+              node = document.createElement("div");
+              node.textContent = dec.value;
+              node.style.position = "absolute";
+              node.style.left = `${dec.x}px`;
+              node.style.top = `${dec.y}px`;
+              node.style.fontSize = `${dec.size || 18}px`;
+              node.style.fontWeight = "900";
+              node.style.color = dec.color || "#183153";
+              node.style.whiteSpace = "pre";
+            } else if (dec.type === "line") {
+              node = document.createElement("div");
+              const dx = dec.x2 - dec.x1;
+              const dy = dec.y2 - dec.y1;
+              const len = Math.sqrt(dx*dx + dy*dy);
+              const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+              node.style.position = "absolute";
+              node.style.left = `${dec.x1}px`;
+              node.style.top = `${dec.y1}px`;
+              node.style.width = `${len}px`;
+              node.style.height = `${dec.width || 4}px`;
+              node.style.background = dec.color || "#94a3b8";
+              node.style.transformOrigin = "0 50%";
+              node.style.transform = `rotate(${angle}deg)`;
+              node.style.borderRadius = "999px";
+            } else if (dec.type === "circle") {
+              node = document.createElement("div");
+              node.style.position = "absolute";
+              node.style.left = `${dec.x}px`;
+              node.style.top = `${dec.y}px`;
+              node.style.width = `${dec.r*2}px`;
+              node.style.height = `${dec.r*2}px`;
+              node.style.borderRadius = "50%";
+              node.style.border = `${dec.strokeWidth || 4}px solid ${dec.color || '#8b5cf6'}`;
+              node.style.background = dec.fill || "transparent";
+            } else if (dec.type === "rect") {
+              node = document.createElement("div");
+              node.style.position = "absolute";
+              node.style.left = `${dec.x}px`;
+              node.style.top = `${dec.y}px`;
+              node.style.width = `${dec.w}px`;
+              node.style.height = `${dec.h}px`;
+              node.style.borderRadius = `${dec.radius || 12}px`;
+              node.style.border = `${dec.strokeWidth || 3}px solid ${dec.color || '#94a3b8'}`;
+              node.style.background = dec.fill || "transparent";
+            }
+            if (node) scene.appendChild(node);
+          });
+
+          (item.objects || []).forEach(obj => {
+            const span = document.createElement("span");
+            span.className = "scene-emoji";
+            span.textContent = obj.value;
+            span.style.left = `${obj.x}px`;
+            span.style.top = `${obj.y}px`;
+            span.style.fontSize = `${obj.size || 32}px`;
+            span.style.transform = `rotate(${obj.rotation || 0}deg) scaleX(${obj.flipX ? -1 : 1})`;
+            scene.appendChild(span);
+          });
+
+          visual.appendChild(scene);
+          return visual;
+        }
+
+        if (item.kind === "shapeScene") {
+          const scene = document.createElement("div");
+          scene.className = "shape-scene";
+          scene.style.width = `${item.width || 250}px`;
+          scene.style.height = `${item.height || 160}px`;
+
+          (item.objects || []).forEach(obj => {
+            const wrap = document.createElement("div");
+            wrap.className = "shape-wrap";
+            wrap.style.left = `${obj.x}px`;
+            wrap.style.top = `${obj.y}px`;
+            wrap.style.transform = `rotate(${obj.rotation || 0}deg)`;
+            wrap.appendChild(createShape(obj.shape, obj.color, obj.size || 42));
+            scene.appendChild(wrap);
+          });
+
+          visual.appendChild(scene);
+          return visual;
+        }
+
+        if (item.kind === "gridScene") {
+          const scene = document.createElement("div");
+          scene.className = "grid-scene";
+          const rows = item.rows || 3;
+          const cols = item.cols || 3;
+          const showLabels = Boolean(item.showLabels);
+          const rowLabels = item.rowLabels || [];
+          const colLabels = item.colLabels || [];
+          scene.style.gridTemplateColumns = `repeat(${showLabels ? cols + 1 : cols}, 42px)`;
+
+          if (showLabels) {
+            const corner = document.createElement("div");
+            corner.className = "grid-cell header";
+            scene.appendChild(corner);
+            for (let c = 0; c < cols; c += 1) {
+              const head = document.createElement("div");
+              head.className = "grid-cell header";
+              head.textContent = colLabels[c] || String(c + 1);
+              scene.appendChild(head);
+            }
+          }
+
+          const map = new Map();
+          (item.cells || []).forEach(cell => {
+            map.set(`${cell.row}-${cell.col}`, cell);
+          });
+
+          for (let r = 1; r <= rows; r += 1) {
+            if (showLabels) {
+              const head = document.createElement("div");
+              head.className = "grid-cell header";
+              head.textContent = rowLabels[r - 1] || String(r);
+              scene.appendChild(head);
+            }
+            for (let c = 1; c <= cols; c += 1) {
+              const cellEl = document.createElement("div");
+              cellEl.className = "grid-cell";
+              const cell = map.get(`${r}-${c}`);
+              if (cell) {
+                if (cell.bg) cellEl.style.background = cell.bg;
+                cellEl.textContent = cell.value || "";
+              }
+              scene.appendChild(cellEl);
+            }
+          }
+
+          visual.appendChild(scene);
+          return visual;
+        }
+
+        if (item.kind === "abacus") {
+          const wrap = document.createElement("div");
+          wrap.className = "abacus-wrap";
+          [[item.tens || 0, 'Decenas'], [item.units || 0, 'Unidades']].forEach(([count, label]) => {
+            const col = document.createElement('div');
+            col.className = 'abacus-col';
+            const rod = document.createElement('div');
+            rod.className = 'abacus-rod';
+            const beads = document.createElement('div');
+            beads.className = 'abacus-beads';
+            for (let i = 0; i < count; i += 1) {
+              const bead = document.createElement('span');
+              bead.className = 'abacus-bead';
+              beads.appendChild(bead);
+            }
+            rod.appendChild(beads);
+            const lab = document.createElement('div');
+            lab.className = 'abacus-label';
+            lab.textContent = label;
+            col.append(rod, lab);
+            wrap.appendChild(col);
+          });
+          visual.appendChild(wrap);
+          return visual;
+        }
+
+        if (item.kind === "clock") {
+          const face = document.createElement('div');
+          face.className = 'clock-face';
+          const positions = {1:[98,30],2:[118,48],3:[128,74],4:[118,102],5:[98,121],6:[74,129],7:[48,121],8:[30,102],9:[22,74],10:[30,48],11:[48,30],12:[74,22]};
+          Object.entries(positions).forEach(([num, pos]) => {
+            const chip = document.createElement('div');
+            chip.className = 'clock-num';
+            chip.style.left = `${pos[0]}px`;
+            chip.style.top = `${pos[1]}px`;
+            chip.textContent = num;
+            face.appendChild(chip);
+          });
+          const hour = item.hour || 12;
+          const minute = item.minute || 0;
+          const minuteAngle = minute * 6;
+          const hourAngle = ((hour % 12) * 30) + minute * 0.5;
+          const hourHand = document.createElement('div');
+          hourHand.className = 'clock-hand hour';
+          hourHand.style.transform = `translate(-50%, -100%) rotate(${hourAngle}deg)`;
+          const minuteHand = document.createElement('div');
+          minuteHand.className = 'clock-hand minute';
+          minuteHand.style.transform = `translate(-50%, -100%) rotate(${minuteAngle}deg)`;
+          const center = document.createElement('div');
+          center.className = 'clock-center';
+          face.append(hourHand, minuteHand, center);
+          visual.appendChild(face);
+          return visual;
+        }
+
+        if (item.kind === "sizeCompare") {
+          const wrap = document.createElement('div');
+          wrap.className = 'size-compare';
+          (item.items || []).forEach(entry => {
+            const col = document.createElement('div');
+            col.className = 'size-item';
+            const ico = document.createElement('div');
+            ico.className = 'emoji';
+            ico.textContent = entry.value;
+            ico.style.fontSize = `${entry.size || 36}px`;
+            const lab = document.createElement('small');
+            lab.textContent = entry.label || '';
+            col.append(ico, lab);
+            wrap.appendChild(col);
+          });
+          visual.appendChild(wrap);
+          return visual;
+        }
+
+        if (item.kind === "numberPyramid") {
+          const wrap = document.createElement('div');
+          wrap.className = 'number-pyramid';
+          (item.rows || []).slice().reverse().forEach(row => {
+            const rowEl = document.createElement('div');
+            rowEl.className = 'p-row';
+            row.forEach(value => {
+              const cell = document.createElement('div');
+              cell.className = 'p-cell' + (value === null || value === undefined ? ' blank' : '');
+              cell.textContent = value === null || value === undefined ? '?' : value;
+              rowEl.appendChild(cell);
+            });
+            wrap.appendChild(rowEl);
+          });
+          visual.appendChild(wrap);
+          return visual;
+        }
+
+        if (item.kind === "numberWheel") {
+          const wrap = document.createElement('div');
+          wrap.className = 'number-wheel';
+          const coords = [[62,6],[112,38],[112,96],[62,122],[12,96],[12,38]];
+          const values = item.values || [];
+          values.forEach((value, idx) => {
+            const chip = document.createElement('div');
+            chip.className = 'wheel-chip';
+            const pos = coords[idx % coords.length];
+            chip.style.left = `${pos[0]}px`;
+            chip.style.top = `${pos[1]}px`;
+            chip.textContent = value;
+            wrap.appendChild(chip);
+          });
+          const center = document.createElement('div');
+          center.className = 'wheel-center';
+          center.textContent = item.center || '?';
+          wrap.appendChild(center);
+          visual.appendChild(wrap);
+          return visual;
+        }
+
 
         visual.classList.add("emoji");
         visual.textContent = "❓";
