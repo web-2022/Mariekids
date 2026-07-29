@@ -1,0 +1,4993 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MVG Learning | Ruletas numéricas - 5 años</title>
+
+    <!-- PWA -->
+    <meta name="theme-color" content="#0b73ff" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="icon" type="image/png" sizes="192x192" href="../../icons/icon-192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="../../icons/icon-512.png" />
+    <link rel="apple-touch-icon" href="../../icons/icon-192.png" />
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap");
+
+      :root {
+        --blue-1: #0b73ff;
+        --blue-2: #12a8ff;
+        --blue-3: #5fd4ff;
+        --green: #58cc02;
+        --green-dark: #3ea300;
+        --yellow: #ffc800;
+        --orange: #ff9600;
+        --red: #ff4b4b;
+        --purple: #8b5cf6;
+        --pink: #ff6aa9;
+        --ink: #183153;
+        --muted: #6d7f96;
+        --line: #dbe7f4;
+        --bg: #f3f8ff;
+        --shadow: 0 14px 0 rgba(21, 64, 118, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        min-height: 100%;
+        background: var(--bg);
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        overflow-x: hidden;
+        font-family: "Nunito", Arial, sans-serif;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 10% 8%, rgba(95, 212, 255, 0.18), transparent 18%),
+          radial-gradient(circle at 90% 20%, rgba(139, 92, 246, 0.10), transparent 18%),
+          linear-gradient(180deg, #eef7ff 0%, #f8fbff 45%, #eef8ff 100%);
+      }
+
+      button {
+        font: inherit;
+      }
+
+      button:focus-visible,
+      a:focus-visible {
+        outline: 5px solid rgba(18, 168, 255, 0.35);
+        outline-offset: 4px;
+      }
+
+      .app {
+        min-height: 100vh;
+      }
+
+      /* =========================
+         ENCABEZADO
+      ========================== */
+      .hero-header {
+        position: relative;
+        min-height: 172px;
+        overflow: hidden;
+        color: #ffffff;
+        background:
+          linear-gradient(115deg, rgba(255, 255, 255, 0.07), transparent 45%),
+          linear-gradient(120deg, var(--blue-1), var(--blue-2) 58%, var(--blue-3));
+        box-shadow: 0 12px 30px rgba(11, 115, 255, 0.25);
+      }
+
+      .hero-header::before {
+        content: "MVG";
+        position: absolute;
+        right: clamp(20px, 5vw, 90px);
+        top: 50%;
+        transform: translateY(-52%) rotate(-8deg);
+        font-family: "Baloo 2", sans-serif;
+        font-size: clamp(120px, 18vw, 240px);
+        font-weight: 800;
+        letter-spacing: -18px;
+        color: rgba(255, 255, 255, 0.11);
+        pointer-events: none;
+        user-select: none;
+      }
+
+      .hero-header::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(circle at 18% 25%, rgba(255, 255, 255, .14) 0 3%, transparent 3.5%),
+          radial-gradient(circle at 35% 70%, rgba(255, 255, 255, .10) 0 2%, transparent 2.5%),
+          radial-gradient(circle at 72% 24%, rgba(255, 255, 255, .10) 0 2.5%, transparent 3%);
+        pointer-events: none;
+      }
+
+      .header-inner {
+        width: calc(100% - clamp(20px, 2.4vw, 52px));
+        max-width: none;
+        min-height: 172px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) max-content;
+        align-items: center;
+        column-gap: clamp(30px, 5vw, 90px);
+        padding: 22px 0;
+      }
+
+      .brand {
+        min-width: 0;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: clamp(14px, 1.6vw, 24px);
+      }
+
+      .logo-box {
+        width: 92px;
+        aspect-ratio: 1;
+        flex: 0 0 auto;
+        display: grid;
+        place-items: center;
+        border: 6px solid rgba(255, 255, 255, .96);
+        border-radius: 28px;
+        color: #ffffff;
+        font-family: "Baloo 2", sans-serif;
+        font-size: 42px;
+        font-weight: 800;
+        letter-spacing: -4px;
+        text-decoration: none;
+        background: linear-gradient(145deg, #ff6aa9, #8b5cf6);
+        box-shadow:
+          0 10px 0 rgba(46, 30, 142, 0.45),
+          0 18px 28px rgba(0, 51, 139, 0.26);
+        transform: rotate(-4deg);
+        transition: transform .18s ease, filter .18s ease;
+      }
+
+      .logo-box:hover {
+        transform: rotate(-4deg) translateY(-3px) scale(1.03);
+        filter: brightness(1.06);
+      }
+
+      .brand-copy {
+        min-width: 0;
+        display: grid;
+        justify-items: start;
+        gap: 2px;
+      }
+
+      .brand-copy small {
+        width: fit-content;
+        padding: 4px 12px;
+        border-radius: 999px;
+        color: #0c5aa8;
+        font-size: 13px;
+        letter-spacing: 1.4px;
+        font-weight: 900;
+        background: rgba(255, 255, 255, .9);
+      }
+
+      .brand-copy h1 {
+        margin: 0;
+        font-family: "Baloo 2", sans-serif;
+        font-size: clamp(34px, 5vw, 62px);
+        line-height: .98;
+        text-shadow: 0 5px 0 rgba(0, 70, 160, .18);
+      }
+
+      .brand-copy p {
+        margin: 4px 0 0;
+        font-size: clamp(16px, 2vw, 23px);
+        font-weight: 900;
+        opacity: .96;
+      }
+
+      .header-stats {
+        display: grid;
+        grid-template-columns: repeat(4, max-content);
+        align-items: center;
+        justify-content: end;
+        gap: 12px;
+      }
+
+      .header-stats > * {
+        white-space: nowrap;
+      }
+
+      .route-btn {
+        min-height: 52px;
+        padding: 10px 18px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        border: 4px solid rgba(255, 255, 255, .94);
+        border-radius: 999px;
+        color: #0a5aa8;
+        font-size: 16px;
+        font-weight: 900;
+        text-decoration: none;
+        background: rgba(255, 255, 255, .95);
+        box-shadow: 0 7px 0 rgba(4, 64, 142, 0.24);
+        transition: transform .15s ease, filter .15s ease;
+      }
+
+      .route-btn:hover {
+        transform: translateY(-3px);
+        filter: brightness(1.03);
+      }
+
+      .route-btn:active {
+        transform: translateY(4px);
+        box-shadow: 0 3px 0 rgba(4, 64, 142, 0.24);
+      }
+
+      .stat-pill {
+        min-height: 52px;
+        padding: 9px 17px;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        border: 4px solid rgba(255, 255, 255, .92);
+        border-radius: 999px;
+        color: #ffffff;
+        font-size: 17px;
+        font-weight: 900;
+        background: rgba(10, 77, 171, 0.26);
+        box-shadow: 0 7px 0 rgba(4, 64, 142, 0.28);
+        backdrop-filter: blur(6px);
+      }
+
+      .stat-pill.score {
+        color: #775300;
+        background: var(--yellow);
+        box-shadow: 0 7px 0 #d9a500;
+      }
+
+      .top-progress {
+        width: 100%;
+        height: 14px;
+        overflow: hidden;
+        background: #dbefff;
+        box-shadow: inset 0 2px 6px rgba(24, 49, 83, 0.13);
+      }
+
+      .top-progress-fill {
+        width: 0;
+        height: 100%;
+        border-radius: 0 999px 999px 0;
+        background: linear-gradient(90deg, #58cc02, #ffc800, #ff9600);
+        transition: width .45s ease;
+      }
+
+      /* =========================
+         CONTENIDO PRINCIPAL
+      ========================== */
+      .main-content {
+        width: calc(100% - clamp(16px, 2vw, 36px));
+        max-width: none;
+        margin: 0 auto;
+        padding: 22px 0 42px;
+      }
+
+      .lesson-card {
+        position: relative;
+        overflow: hidden;
+        border: 2px solid rgba(182, 209, 237, 0.7);
+        border-radius: 34px;
+        background: rgba(255, 255, 255, .96);
+        box-shadow:
+          var(--shadow),
+          0 24px 55px rgba(32, 75, 128, 0.14);
+      }
+
+      .lesson-card::before {
+        content: "";
+        position: absolute;
+        inset: 0 0 auto;
+        height: 8px;
+        background: linear-gradient(90deg, var(--green), var(--yellow), var(--pink), var(--purple), var(--blue-2));
+      }
+
+      .lesson-head {
+        padding: 28px 30px 18px;
+        text-align: center;
+      }
+
+      .level-badge {
+        width: fit-content;
+        margin: 0 auto 7px;
+        padding: 7px 18px;
+        border: 4px solid #ffffff;
+        border-radius: 999px;
+        color: #ffffff;
+        font-size: 15px;
+        letter-spacing: 1.4px;
+        font-weight: 900;
+        box-shadow: 0 6px 0 rgba(0, 0, 0, .12);
+      }
+
+      .level-badge.basic {
+        background: var(--green);
+      }
+
+      .level-badge.intermediate {
+        background: var(--orange);
+      }
+
+      .level-badge.advanced {
+        background: var(--purple);
+      }
+
+      .lesson-head h2 {
+        margin: 0;
+        font-family: "Baloo 2", sans-serif;
+        font-size: clamp(38px, 5vw, 64px);
+        line-height: 1;
+        color: var(--ink);
+      }
+
+      .lesson-head p {
+        margin: 7px 0 0;
+        font-size: clamp(17px, 2vw, 24px);
+        font-weight: 900;
+        color: var(--muted);
+      }
+
+      .game-layout {
+        width: 100%;
+        padding: 0 clamp(10px, 1.2vw, 22px) 28px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) clamp(340px, 27vw, 460px);
+        gap: clamp(12px, 1.2vw, 20px);
+        align-items: stretch;
+      }
+
+      .game-zone {
+        min-width: 0;
+      }
+
+      /* =========================
+         ESCENA DEL JUEGO
+      ========================== */
+      .scene {
+        min-height: 560px;
+        position: relative;
+        overflow: hidden;
+        border: 7px solid #ffffff;
+        border-radius: 30px;
+        background:
+          radial-gradient(circle at 14% 12%, rgba(255,255,255,.9) 0 3%, transparent 3.4%),
+          radial-gradient(circle at 88% 18%, rgba(255,255,255,.75) 0 2%, transparent 2.4%),
+          linear-gradient(180deg, #7edaff 0 50%, #b9f281 50% 69%, #77d65b 69%);
+        box-shadow:
+          0 12px 0 rgba(46, 141, 184, 0.20),
+          0 20px 32px rgba(24, 80, 122, 0.13);
+      }
+
+      .scene::before {
+        content: "";
+        position: absolute;
+        inset: auto 0 0;
+        height: 34%;
+        background:
+          radial-gradient(ellipse at 8% 100%, #39aa50 0 48%, transparent 49%),
+          radial-gradient(ellipse at 26% 100%, #59c85c 0 52%, transparent 53%),
+          radial-gradient(ellipse at 48% 100%, #3faf51 0 48%, transparent 49%),
+          radial-gradient(ellipse at 72% 100%, #68cc61 0 52%, transparent 53%),
+          radial-gradient(ellipse at 94% 100%, #3cab4e 0 50%, transparent 51%);
+        opacity: .95;
+      }
+
+      .scene-decoration {
+        position: absolute;
+        z-index: 1;
+        user-select: none;
+        pointer-events: none;
+      }
+
+      .sun {
+        top: 16px;
+        right: 24px;
+        font-size: clamp(54px, 7vw, 82px);
+        animation: pulseSun 3s ease-in-out infinite;
+      }
+
+      .cloud {
+        font-size: clamp(46px, 6vw, 76px);
+        animation: floatCloud 7s ease-in-out infinite;
+      }
+
+      .cloud.one {
+        top: 15px;
+        left: 28px;
+      }
+
+      .cloud.two {
+        top: 74px;
+        right: 20%;
+        transform: scale(.65);
+        animation-delay: -2.3s;
+      }
+
+      .butterfly {
+        font-size: 32px;
+        animation: fly 5s ease-in-out infinite;
+      }
+
+      .butterfly.one {
+        top: 105px;
+        left: 24%;
+      }
+
+      .butterfly.two {
+        top: 120px;
+        right: 29%;
+        animation-delay: -2s;
+      }
+
+      .detective-row {
+        position: relative;
+        z-index: 4;
+        min-height: 148px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 16px;
+        padding: 84px 20px 8px;
+      }
+
+      .mascot {
+        flex: 0 0 auto;
+        font-size: clamp(74px, 9vw, 112px);
+        line-height: 1;
+        filter: drop-shadow(0 9px 0 rgba(63, 83, 32, .18));
+        animation: mascotLook 2.8s ease-in-out infinite;
+      }
+
+      .speech-bubble {
+        max-width: 620px;
+        position: relative;
+        padding: 15px 22px;
+        border: 5px solid #ffffff;
+        border-radius: 24px;
+        color: #265174;
+        font-size: clamp(18px, 2.2vw, 26px);
+        line-height: 1.2;
+        font-weight: 900;
+        text-align: center;
+        background: rgba(255,255,255,.94);
+        box-shadow: 0 8px 0 rgba(24, 103, 154, .18);
+      }
+
+      .speech-bubble::before {
+        content: "";
+        position: absolute;
+        left: -17px;
+        bottom: 23px;
+        width: 26px;
+        height: 26px;
+        border-left: 5px solid #ffffff;
+        border-bottom: 5px solid #ffffff;
+        background: #ffffff;
+        transform: rotate(45deg);
+      }
+
+      .challenge-area {
+        position: relative;
+        z-index: 5;
+        padding: 8px clamp(12px, 2vw, 28px) 36px;
+      }
+
+      .target-wrap {
+        width: fit-content;
+        min-width: 190px;
+        margin: 0 auto 16px;
+        padding: 10px 18px 14px;
+        border: 4px dashed rgba(11, 115, 255, .35);
+        border-radius: 24px;
+        text-align: center;
+        background: rgba(255,255,255,.88);
+        box-shadow: 0 8px 0 rgba(27, 113, 171, .14);
+      }
+
+      .target-wrap.hidden {
+        display: none;
+      }
+
+      .target-label {
+        margin: 0 0 7px;
+        color: #0b73c8;
+        font-size: 15px;
+        letter-spacing: 1px;
+        font-weight: 900;
+      }
+
+      .target-card {
+        min-width: 142px;
+        min-height: 118px;
+        display: grid;
+        place-items: center;
+        border: 5px solid #ffffff;
+        border-radius: 24px;
+        background: linear-gradient(145deg, #ffffff, #eaf7ff);
+        box-shadow: 0 7px 0 #b6ddf1;
+      }
+
+      .options-grid {
+        width: min(900px, 100%);
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(130px, 1fr));
+        gap: clamp(10px, 1.4vw, 18px);
+      }
+
+      .visual-card {
+        min-height: 152px;
+        position: relative;
+        display: grid;
+        place-items: center;
+        padding: 12px;
+        border: 6px solid #ffffff;
+        border-radius: 28px;
+        cursor: pointer;
+        background: linear-gradient(145deg, #ffffff, #eef8ff);
+        box-shadow:
+          0 10px 0 #acd6ec,
+          0 16px 24px rgba(37, 94, 139, .13);
+        transition: transform .16s ease, filter .16s ease, box-shadow .16s ease;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .visual-card:nth-child(2) {
+        background: linear-gradient(145deg, #fffdf4, #fff1b9);
+        box-shadow: 0 10px 0 #e9c95d, 0 16px 24px rgba(37, 94, 139, .13);
+      }
+
+      .visual-card:nth-child(3) {
+        background: linear-gradient(145deg, #fff5fb, #ffd8eb);
+        box-shadow: 0 10px 0 #e9a8cb, 0 16px 24px rgba(37, 94, 139, .13);
+      }
+
+      .visual-card:nth-child(4) {
+        background: linear-gradient(145deg, #f7f4ff, #e5dbff);
+        box-shadow: 0 10px 0 #baa7ed, 0 16px 24px rgba(37, 94, 139, .13);
+      }
+
+      .visual-card:hover:not(:disabled) {
+        transform: translateY(-5px) scale(1.02);
+        filter: brightness(1.03);
+      }
+
+      .visual-card:active:not(:disabled) {
+        transform: translateY(4px);
+        box-shadow: 0 4px 0 #9bc8df;
+      }
+
+      .visual-card.correct {
+        border-color: #d9ffc8;
+        background: linear-gradient(145deg, #eaffdf, #bff58e);
+        box-shadow: 0 10px 0 #55a929;
+        animation: correct .55s ease-in-out;
+      }
+
+      .visual-card.correct::after {
+        content: "✓";
+        width: 47px;
+        height: 47px;
+        position: absolute;
+        right: 8px;
+        top: 8px;
+        display: grid;
+        place-items: center;
+        border: 4px solid #ffffff;
+        border-radius: 50%;
+        color: #ffffff;
+        font-family: "Baloo 2", sans-serif;
+        font-size: 31px;
+        font-weight: 800;
+        background: var(--green);
+        box-shadow: 0 5px 0 #318700;
+      }
+
+      .visual-card.wrong {
+        background: linear-gradient(145deg, #fff0f0, #ffc7c7);
+        box-shadow: 0 10px 0 #d94b4b;
+        animation: shake .42s ease-in-out;
+      }
+
+      .visual-card:disabled {
+        cursor: default;
+      }
+
+      .visual {
+        min-width: 92px;
+        min-height: 92px;
+        display: grid;
+        place-items: center;
+        color: var(--item-color, #ff5f8f);
+        font-family: "Baloo 2", sans-serif;
+        transform:
+          rotate(var(--rotation, 0deg))
+          scaleX(var(--flip-x, 1))
+          scale(var(--visual-scale, 1));
+        transform-origin: center;
+      }
+
+      .visual.emoji {
+        font-size: clamp(58px, 7vw, 88px);
+        line-height: 1;
+        filter: drop-shadow(0 6px 0 rgba(0,0,0,.10));
+      }
+
+      .visual.number {
+        font-size: clamp(68px, 8vw, 98px);
+        line-height: 1;
+        font-weight: 800;
+        text-shadow: 0 5px 0 rgba(0,0,0,.10);
+      }
+
+      .visual.arrow {
+        font-size: clamp(70px, 8vw, 102px);
+        line-height: 1;
+        font-weight: 800;
+        text-shadow: 0 5px 0 rgba(0,0,0,.10);
+      }
+
+      .shape {
+        width: var(--shape-size, 80px);
+        height: var(--shape-size, 80px);
+        display: block;
+        background: var(--item-color, #ff5f8f);
+        box-shadow: inset 0 6px 0 rgba(255,255,255,.25), 0 7px 0 rgba(0,0,0,.10);
+      }
+
+      .shape.circle {
+        border-radius: 50%;
+      }
+
+      .shape.square {
+        border-radius:0;
+      }
+
+      .shape.rectangle {
+        width: calc(var(--shape-size, 80px) * 1.28);
+        height: calc(var(--shape-size, 80px) * .78);
+        border-radius:0;
+      }
+
+      .shape.triangle {
+        width: 0;
+        height: 0;
+        background: transparent;
+        border-left: calc(var(--shape-size, 80px) * .56) solid transparent;
+        border-right: calc(var(--shape-size, 80px) * .56) solid transparent;
+        border-bottom: var(--shape-size, 80px) solid var(--item-color, #ff5f8f);
+        box-shadow: none;
+        filter: drop-shadow(0 7px 0 rgba(0,0,0,.10));
+      }
+
+      .shape.star {
+        width: auto;
+        height: auto;
+        background: transparent;
+        box-shadow: none;
+        font-size: calc(var(--shape-size, 80px) * 1.2);
+        line-height: 1;
+        color: var(--item-color, #ffc800);
+        filter: drop-shadow(0 6px 0 rgba(0,0,0,.10));
+      }
+
+      .face {
+        width: 98px;
+        height: 98px;
+        position: relative;
+        border: 5px solid #27445f;
+        border-radius: 50%;
+        background: var(--face-color, #ffe56d);
+        box-shadow: inset 0 6px 0 rgba(255,255,255,.35), 0 7px 0 rgba(0,0,0,.10);
+      }
+
+      .face-eyes {
+        position: absolute;
+        left: 18px;
+        right: 18px;
+        top: 22px;
+        display: flex;
+        justify-content: space-between;
+        color: #27445f;
+        font-size: 24px;
+        line-height: 1;
+        font-weight: 900;
+      }
+
+      .face-mouth {
+        position: absolute;
+        left: 50%;
+        bottom: 13px;
+        transform: translateX(-50%);
+        color: #27445f;
+        font-family: Arial, sans-serif;
+        font-size: 38px;
+        line-height: 1;
+        font-weight: 900;
+      }
+
+      .pattern {
+        min-width: 108px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        flex-wrap: nowrap;
+      }
+
+      .pattern-token {
+        width: 33px;
+        height: 33px;
+        flex: 0 0 auto;
+        border-radius: 8px;
+        background: var(--token-color, #ff5f8f);
+        box-shadow: inset 0 3px 0 rgba(255,255,255,.28), 0 4px 0 rgba(0,0,0,.10);
+      }
+
+      .pattern-token.circle {
+        border-radius: 50%;
+      }
+
+      .pattern-token.triangle {
+        width: 0;
+        height: 0;
+        border-left: 18px solid transparent;
+        border-right: 18px solid transparent;
+        border-bottom: 32px solid var(--token-color, #ff5f8f);
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+        filter: drop-shadow(0 4px 0 rgba(0,0,0,.10));
+      }
+
+
+      .basket-scene {
+        width: 132px;
+        min-height: 108px;
+        position: relative;
+        display: flex;
+        align-content: flex-start;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 0;
+        flex-wrap: wrap;
+        padding: 2px 7px 47px;
+        line-height: 1;
+      }
+
+      .basket-item {
+        position: relative;
+        z-index: 2;
+        display: inline-block;
+        margin: -3px -1px;
+        font-size: 39px;
+        filter: drop-shadow(0 4px 0 rgba(0, 0, 0, .08));
+      }
+
+      .basket-base {
+        position: absolute;
+        left: 50%;
+        bottom: -2px;
+        z-index: 1;
+        transform: translateX(-50%);
+        font-size: 67px;
+        filter: drop-shadow(0 6px 0 rgba(0, 0, 0, .10));
+      }
+
+      .quantity-word {
+        min-width: 116px;
+        min-height: 92px;
+        display: grid;
+        place-items: center;
+        padding: 10px 14px;
+        border: 5px solid #ffffff;
+        border-radius: 23px;
+        color: #ffffff;
+        font-family: "Baloo 2", sans-serif;
+        font-size: clamp(30px, 4vw, 47px);
+        line-height: 1;
+        font-weight: 800;
+        text-align: center;
+        background: linear-gradient(145deg, #8b73ff, #624fd9);
+        box-shadow: 0 7px 0 #4636ad;
+        text-shadow: 0 4px 0 rgba(0, 0, 0, .13);
+      }
+
+      .emoji-group {
+        min-width: 112px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        flex-wrap: wrap;
+        font-size: 47px;
+        line-height: 1;
+        filter: drop-shadow(0 5px 0 rgba(0,0,0,.08));
+      }
+
+      .composition {
+        width: 116px;
+        height: 96px;
+        position: relative;
+      }
+
+      .composition-part {
+        position: absolute;
+        width: 64px;
+        height: 64px;
+        border: 5px solid #ffffff;
+        box-shadow: 0 6px 0 rgba(0,0,0,.10);
+      }
+
+      .composition-part.circle {
+        border-radius: 50%;
+      }
+
+      .composition-part.square {
+        border-radius: 12px;
+      }
+
+      /* =========================
+         PANEL LATERAL
+      ========================== */
+      .side-panel {
+        width: 100%;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .audio-card,
+      .hint-card,
+      .answer-card,
+      .progress-card {
+        border: 2px solid var(--line);
+        border-radius: 24px;
+        background: #f9fcff;
+        box-shadow: 0 8px 0 rgba(56, 104, 158, 0.08);
+      }
+
+      .audio-card {
+        padding: 18px;
+        text-align: center;
+      }
+
+      .audio-card p {
+        margin: 0 0 12px;
+        color: var(--muted);
+        font-size: 15px;
+        font-weight: 900;
+      }
+
+      .audio-btn {
+        width: 100%;
+        min-height: 64px;
+        border: 0;
+        border-radius: 18px;
+        color: #ffffff;
+        font-size: 20px;
+        font-weight: 900;
+        cursor: pointer;
+        background: linear-gradient(180deg, #16aaff, #087ee8);
+        box-shadow: 0 8px 0 #0865b9;
+        transition: transform .15s ease, filter .15s ease;
+      }
+
+      .hint-card {
+        padding: 17px;
+        background:
+          radial-gradient(circle at 92% 10%, rgba(255, 200, 0, .20), transparent 24%),
+          linear-gradient(145deg, #fffdf2, #fff8d9);
+        border-color: #f3dc79;
+      }
+
+      .hint-btn {
+        width: 100%;
+        min-height: 58px;
+        border: 0;
+        border-radius: 18px;
+        color: #704c00;
+        font-size: 19px;
+        font-weight: 900;
+        cursor: pointer;
+        background: linear-gradient(180deg, #ffe56d, #ffc800);
+        box-shadow: 0 8px 0 #d6a600;
+        transition: transform .15s ease, filter .15s ease;
+      }
+
+      .hint-panel {
+        margin-top: 14px;
+        padding: 14px;
+        border: 3px dashed #e9bd25;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, .88);
+        animation: hintAppear .35s ease-out;
+      }
+
+      .hint-heading {
+        margin: 0 0 7px;
+        color: #7c5700;
+        font-size: 17px;
+        font-weight: 900;
+      }
+
+      .hint-text {
+        margin: 0 0 13px;
+        color: #6c5a25;
+        font-size: 15px;
+        line-height: 1.35;
+        font-weight: 900;
+      }
+
+      .hint-steps {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr auto 1fr;
+        align-items: center;
+        gap: 6px;
+        text-align: center;
+      }
+
+      .hint-step {
+        min-height: 58px;
+        padding: 7px;
+        display: grid;
+        place-items: center;
+        border: 3px solid #ffffff;
+        border-radius: 15px;
+        color: #ffffff;
+        font-size: 13px;
+        font-weight: 900;
+        background: linear-gradient(180deg, #17b0ff, #087fe8);
+        box-shadow: 0 5px 0 #0864b4;
+      }
+
+      .hint-step span {
+        display: block;
+        font-size: 24px;
+      }
+
+      .hint-arrow {
+        color: #936d00;
+        font-size: 22px;
+        font-weight: 900;
+      }
+
+      .answer-card {
+        padding: 18px;
+      }
+
+      .answer-title {
+        margin: 0 0 10px;
+        text-align: center;
+        color: var(--ink);
+        font-size: 18px;
+        font-weight: 900;
+      }
+
+      .touch-guide {
+        min-height: 70px;
+        display: grid;
+        place-items: center;
+        padding: 12px;
+        border: 4px dashed #a9d8f2;
+        border-radius: 18px;
+        color: #3c6b8c;
+        font-size: 18px;
+        font-weight: 900;
+        text-align: center;
+        background: #edf8ff;
+      }
+
+      .feedback {
+        min-height: 70px;
+        margin-top: 12px;
+        padding: 11px 13px;
+        display: grid;
+        place-items: center;
+        border-radius: 16px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 17px;
+        font-weight: 900;
+        background: #edf6ff;
+      }
+
+      .feedback.good {
+        color: #24743a;
+        background: #e8ffdb;
+      }
+
+      .feedback.try {
+        color: #973838;
+        background: #fff0f0;
+      }
+
+      .progress-card {
+        margin-top: auto;
+        padding: 17px;
+      }
+
+      .progress-card strong {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--ink);
+        font-size: 16px;
+      }
+
+      .mini-track {
+        height: 13px;
+        overflow: hidden;
+        border-radius: 999px;
+        background: #dce8f4;
+      }
+
+      .mini-fill {
+        width: 0;
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--green), var(--yellow));
+        transition: width .45s ease;
+      }
+
+      .next-row {
+        padding: 0 24px 28px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .next-btn {
+        min-width: min(430px, 100%);
+        min-height: 64px;
+        border: 0;
+        border-radius: 20px;
+        color: #ffffff;
+        font-size: 22px;
+        font-weight: 900;
+        cursor: pointer;
+        background: linear-gradient(180deg, #68d900, #4db700);
+        box-shadow: 0 9px 0 #379000;
+        transition: transform .15s ease, filter .15s ease;
+      }
+
+      .audio-btn:hover,
+      .hint-btn:hover,
+      .next-btn:hover,
+      .overlay-card button:hover,
+      .finish-next-btn:hover {
+        transform: translateY(-3px);
+        filter: brightness(1.04);
+      }
+
+      .audio-btn:active,
+      .hint-btn:active,
+      .next-btn:active,
+      .overlay-card button:active,
+      .finish-next-btn:active {
+        transform: translateY(4px);
+        box-shadow: 0 3px 0 rgba(0, 0, 0, .2);
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      /* =========================
+         PANTALLAS DE INICIO Y FIN
+      ========================== */
+      .overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        display: grid;
+        place-items: center;
+        padding: 18px;
+        background: rgba(18, 49, 89, .58);
+        backdrop-filter: blur(9px);
+      }
+
+      .overlay-card {
+        width: min(620px, 100%);
+        padding: clamp(28px, 5vw, 48px);
+        text-align: center;
+        border: 8px solid #ffffff;
+        border-radius: 38px;
+        background:
+          radial-gradient(circle at 12% 13%, rgba(255, 255, 255, .7) 0 4%, transparent 4.5%),
+          linear-gradient(145deg, #ffffff, #dff4ff);
+        box-shadow:
+          0 17px 0 rgba(8, 87, 169, 0.32),
+          0 30px 60px rgba(7, 43, 93, 0.34);
+      }
+
+      .overlay-icon {
+        font-size: clamp(82px, 15vw, 132px);
+        line-height: .9;
+        animation: welcomeHop 1.6s ease-in-out infinite;
+      }
+
+      .overlay-label {
+        width: fit-content;
+        margin: 18px auto 5px;
+        padding: 6px 14px;
+        border-radius: 999px;
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: 900;
+        letter-spacing: 1.5px;
+        background: linear-gradient(90deg, var(--pink), var(--purple));
+      }
+
+      .overlay-card h3 {
+        margin: 0;
+        font-family: "Baloo 2", sans-serif;
+        font-size: clamp(40px, 7vw, 62px);
+        line-height: 1;
+        color: var(--ink);
+      }
+
+      .overlay-card p {
+        margin: 12px 0 22px;
+        color: var(--muted);
+        font-size: clamp(17px, 2.4vw, 23px);
+        font-weight: 900;
+      }
+
+      .levels-preview {
+        margin: 0 0 24px;
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .levels-preview span {
+        padding: 7px 13px;
+        border-radius: 999px;
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: 900;
+      }
+
+      .levels-preview span:nth-child(1) {
+        background: var(--green);
+      }
+
+      .levels-preview span:nth-child(2) {
+        background: var(--orange);
+      }
+
+      .levels-preview span:nth-child(3) {
+        background: var(--purple);
+      }
+
+      .overlay-card button {
+        min-width: min(330px, 100%);
+        min-height: 64px;
+        border: 0;
+        border-radius: 20px;
+        color: #ffffff;
+        font-size: 23px;
+        font-weight: 900;
+        cursor: pointer;
+        background: linear-gradient(180deg, #16aaff, #087ee8);
+        box-shadow: 0 9px 0 #0865b9;
+      }
+
+      .finish-actions {
+        display: flex;
+        justify-content: center;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      .finish-actions > * {
+        min-width: 220px;
+      }
+
+      .finish-next-btn {
+        min-height: 64px;
+        padding: 12px 24px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 20px;
+        color: #ffffff;
+        font-size: 22px;
+        font-weight: 900;
+        text-decoration: none;
+        background: linear-gradient(180deg, #68d900, #4db700);
+        box-shadow: 0 9px 0 #379000;
+        transition: transform .15s ease, filter .15s ease;
+      }
+
+      .final-score {
+        width: fit-content;
+        margin: 0 auto 24px;
+        padding: 12px 28px;
+        border-radius: 22px;
+        color: #ffffff;
+        font-family: "Baloo 2", sans-serif;
+        font-size: 52px;
+        font-weight: 800;
+        background: linear-gradient(180deg, #8b73ff, #624fd9);
+        box-shadow: 0 9px 0 #4636ad;
+      }
+
+      .confetti-layer {
+        position: fixed;
+        inset: 0;
+        z-index: 130;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .confetti {
+        width: 14px;
+        height: 22px;
+        position: absolute;
+        top: -30px;
+        border-radius: 4px;
+        animation: confettiFall var(--fall-time) linear forwards;
+      }
+
+      /* =========================
+         ANIMACIONES
+      ========================== */
+      @keyframes pulseSun {
+        0%, 100% { transform: rotate(-4deg) scale(1); }
+        50% { transform: rotate(5deg) scale(1.08); }
+      }
+
+      @keyframes floatCloud {
+        0%, 100% { transform: translateX(0); }
+        50% { transform: translateX(18px); }
+      }
+
+      @keyframes fly {
+        0%, 100% { transform: translate(0, 0) rotate(-7deg); }
+        35% { transform: translate(22px, -13px) rotate(8deg); }
+        70% { transform: translate(-10px, 10px) rotate(-4deg); }
+      }
+
+      @keyframes mascotLook {
+        0%, 100% { transform: rotate(-3deg) translateY(0); }
+        50% { transform: rotate(4deg) translateY(-7px); }
+      }
+
+      @keyframes correct {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.09) rotate(2deg); }
+      }
+
+      @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-11px) rotate(-3deg); }
+        50% { transform: translateX(11px) rotate(3deg); }
+        75% { transform: translateX(-7px); }
+      }
+
+      @keyframes hintAppear {
+        from { opacity: 0; transform: translateY(-8px) scale(.98); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+      }
+
+      @keyframes welcomeHop {
+        0%, 100% { transform: translateY(0) rotate(-3deg); }
+        50% { transform: translateY(-14px) rotate(3deg); }
+      }
+
+      @keyframes confettiFall {
+        to {
+          transform: translate3d(var(--drift), 110vh, 0) rotate(760deg);
+        }
+      }
+
+      /* =========================
+         RESPONSIVE
+      ========================== */
+      @media (max-width: 1180px) {
+        .header-inner {
+          width: calc(100% - 24px);
+          grid-template-columns: minmax(0, 1fr) minmax(310px, auto);
+          column-gap: 20px;
+        }
+
+        .header-stats {
+          grid-template-columns: repeat(2, max-content);
+          gap: 10px;
+        }
+
+        .game-layout {
+          grid-template-columns: minmax(0, 1fr) minmax(330px, 410px);
+        }
+
+        .options-grid {
+          grid-template-columns: repeat(2, minmax(135px, 1fr));
+        }
+      }
+
+      @media (max-width: 920px) {
+        .game-layout {
+          grid-template-columns: 1fr;
+        }
+
+        .side-panel {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 16px;
+        }
+
+        .answer-card,
+        .progress-card {
+          grid-column: 1 / -1;
+        }
+
+        .header-inner {
+          grid-template-columns: minmax(0, 1fr) auto;
+        }
+
+        .header-stats {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          justify-items: stretch;
+        }
+
+        .route-btn,
+        .share-btn,
+        .stat-pill {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+
+      @media (max-width: 680px) {
+        .hero-header {
+          min-height: 292px;
+        }
+
+        .header-inner {
+          width: calc(100% - 22px);
+          min-height: 292px;
+          display: flex;
+          align-items: flex-start;
+          padding-top: 20px;
+          padding-bottom: 138px;
+        }
+
+        .logo-box {
+          width: 72px;
+          border-radius: 22px;
+          font-size: 34px;
+        }
+
+        .brand-copy p {
+          max-width: 230px;
+        }
+
+        .header-stats {
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 15px;
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 9px;
+        }
+
+        .stat-pill {
+          min-height: 44px;
+          padding: 7px 11px;
+          font-size: 14px;
+        }
+
+        .game-layout {
+          padding-inline: 13px;
+        }
+
+        .lesson-head {
+          padding-inline: 15px;
+        }
+
+        .side-panel {
+          grid-template-columns: 1fr;
+        }
+
+        .answer-card,
+        .progress-card {
+          grid-column: auto;
+        }
+
+        .scene {
+          min-height: 600px;
+        }
+
+        .detective-row {
+          padding-top: 82px;
+        }
+
+        .speech-bubble {
+          padding: 13px 16px;
+        }
+
+        .options-grid {
+          grid-template-columns: repeat(2, minmax(120px, 1fr));
+        }
+
+        .visual-card {
+          min-height: 138px;
+        }
+
+        .next-row {
+          padding-inline: 13px;
+        }
+      }
+
+      @media (max-width: 500px) {
+        .hero-header::before {
+          right: 10px;
+          font-size: 145px;
+        }
+
+        .header-inner {
+          width: calc(100% - 16px);
+          min-height: 282px;
+          padding-bottom: 134px;
+        }
+
+        .brand {
+          gap: 10px;
+        }
+
+        .logo-box {
+          width: 60px;
+          border-width: 4px;
+          font-size: 29px;
+        }
+
+        .brand-copy small {
+          font-size: 10px;
+        }
+
+        .brand-copy h1 {
+          font-size: 29px;
+        }
+
+        .brand-copy p {
+          max-width: 170px;
+          font-size: 13px;
+        }
+
+        .header-stats {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 7px;
+        }
+
+        .route-btn,
+        .share-btn {
+          min-height: 40px;
+          padding: 7px 8px;
+          gap: 5px;
+          font-size: 11px;
+        }
+
+        .stat-pill {
+          min-height: 40px;
+          padding: 6px 7px;
+          gap: 5px;
+          font-size: 11px;
+        }
+
+        .main-content {
+          width: calc(100% - 16px);
+          padding-top: 16px;
+        }
+
+        .lesson-card {
+          border-radius: 25px;
+        }
+
+        .scene {
+          min-height: 585px;
+          border-width: 5px;
+          border-radius: 23px;
+        }
+
+        .detective-row {
+          align-items: center;
+          gap: 8px;
+          padding: 80px 9px 8px;
+        }
+
+        .mascot {
+          font-size: 66px;
+        }
+
+        .speech-bubble {
+          font-size: 16px;
+        }
+
+        .speech-bubble::before {
+          left: -13px;
+          width: 20px;
+          height: 20px;
+        }
+
+        .challenge-area {
+          padding-inline: 8px;
+        }
+
+        .target-wrap {
+          min-width: 160px;
+        }
+
+        .target-card {
+          min-width: 126px;
+          min-height: 104px;
+        }
+
+        .options-grid {
+          gap: 9px;
+        }
+
+        .visual-card {
+          min-height: 128px;
+          padding: 8px;
+          border-width: 4px;
+          border-radius: 22px;
+        }
+
+        .visual {
+          min-width: 76px;
+          min-height: 76px;
+        }
+
+        .visual.emoji {
+          font-size: 58px;
+        }
+
+        .shape {
+          --shape-size: 68px !important;
+        }
+
+        .face {
+          width: 82px;
+          height: 82px;
+        }
+
+        .face-eyes {
+          left: 14px;
+          right: 14px;
+          top: 17px;
+          font-size: 20px;
+        }
+
+        .face-mouth {
+          bottom: 9px;
+          font-size: 32px;
+        }
+
+        .pattern-token {
+          width: 27px;
+          height: 27px;
+        }
+
+        .pattern-token.triangle {
+          border-left-width: 14px;
+          border-right-width: 14px;
+          border-bottom-width: 26px;
+        }
+
+        .emoji-group {
+          font-size: 38px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: .01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: .01ms !important;
+        }
+      }
+    
+/* Corrección geométrica:
+   un cuadrado y un rectángulo tienen vértices rectos. */
+.shape.square,
+.shape.rectangle {
+  border-radius: 0 !important;
+}
+
+
+/* =========================================
+   BOTÓN COMPARTIR EN EL ENCABEZADO
+========================================= */
+.header-share-wrap {
+  position: relative;
+  min-width: 0;
+}
+
+.share-btn {
+  min-height: 52px;
+  padding: 10px 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 4px solid rgba(255, 255, 255, .94);
+  border-radius: 999px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 900;
+  white-space: nowrap;
+  cursor: pointer;
+  background: linear-gradient(180deg, #a879ff, #7650de);
+  box-shadow: 0 7px 0 #5132aa;
+  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+}
+
+.share-btn:hover {
+  filter: brightness(1.06);
+  transform: translateY(-3px);
+}
+
+.share-btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 3px 0 #5132aa;
+}
+
+.share-btn:disabled {
+  cursor: default;
+  opacity: .75;
+  transform: none;
+}
+
+.share-status {
+  min-width: 230px;
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 20;
+  padding: 9px 12px;
+  border: 3px solid rgba(255, 255, 255, .92);
+  border-radius: 14px;
+  color: #ffffff;
+  font-size: 12px;
+  line-height: 1.25;
+  font-weight: 900;
+  text-align: center;
+  white-space: normal;
+  background: rgba(30, 70, 128, .94);
+  box-shadow: 0 6px 0 rgba(4, 50, 112, .34);
+}
+
+.share-status:empty {
+  display: none;
+}
+
+.share-status.good {
+  background: rgba(45, 139, 39, .96);
+}
+
+.share-status.error {
+  background: rgba(185, 58, 58, .96);
+}
+
+@media (max-width: 680px) {
+  .header-share-wrap {
+    width: 100%;
+  }
+
+  .share-status {
+    left: 0;
+    right: 0;
+    min-width: 0;
+    top: calc(100% + 7px);
+  }
+}
+
+
+      /* Extensiones de la plantilla para los temas 3 al 50 */
+      .quantity-word {
+        white-space: pre-line;
+      }
+
+      .shape.pentagon {
+        clip-path: polygon(50% 0%, 98% 35%, 80% 100%, 20% 100%, 2% 35%);
+      }
+
+      .shape.hexagon {
+        clip-path: polygon(25% 4%, 75% 4%, 100% 50%, 75% 96%, 25% 96%, 0 50%);
+      }
+
+      .shape.octagon {
+        clip-path: polygon(
+          30% 0%, 70% 0%, 100% 30%, 100% 70%,
+          70% 100%, 30% 100%, 0 70%, 0 30%
+        );
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <div class="app">
+      <header class="hero-header">
+        <div class="header-inner">
+          <div class="brand">
+            <a class="logo-box" href="../../index.html" aria-label="Ir al menú de cursos">MVG</a>
+
+            <div class="brand-copy">
+              <small>5 AÑOS · MATEMÁTICAS · TEMA 1</small>
+              <h1>55. Ruletas numéricas</h1>
+              <p>Contar objetos con orden, sin repetir ni omitir ninguno.</p>
+            </div>
+          </div>
+
+          <div class="header-stats">
+            <a class="route-btn" href="../ruta-mate5Y.html">
+              🗺️ Ruta de aprendizaje
+            </a>
+
+            <div class="header-share-wrap">
+              <button class="share-btn" id="shareBtn" type="button">
+                📤 Compartir
+              </button>
+              <div class="share-status" id="shareStatus" aria-live="polite"></div>
+            </div>
+
+            <div class="stat-pill">
+              <span aria-hidden="true">🔎</span>
+              <span id="exerciseText">Ejercicio 1 de 20</span>
+            </div>
+
+            <div class="stat-pill score">
+              <span aria-hidden="true">⭐</span>
+              <span id="scoreText">0 aciertos</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="top-progress">
+        <div class="top-progress-fill" id="topProgressFill"></div>
+      </div>
+
+      <main class="main-content">
+        <section class="lesson-card">
+          <div class="lesson-head">
+            <div class="level-badge basic" id="levelBadge">NIVEL BÁSICO</div>
+            <h2 id="questionTitle">Cuenta los objetos</h2>
+            <p id="instructionText">Observa con atención y elige la cantidad correcta.</p>
+          </div>
+
+          <div class="game-layout">
+            <div class="game-zone">
+              <div class="scene">
+                <span class="scene-decoration cloud one" aria-hidden="true">☁️</span>
+                <span class="scene-decoration cloud two" aria-hidden="true">☁️</span>
+                <span class="scene-decoration sun" aria-hidden="true">☀️</span>
+                <span class="scene-decoration butterfly one" aria-hidden="true">🦋</span>
+                <span class="scene-decoration butterfly two" aria-hidden="true">🦋</span>
+
+                <div class="detective-row">
+                  <div class="mascot" aria-hidden="true">🦉</div>
+                  <div class="speech-bubble" id="sceneSpeech">
+                    Cuenta uno por uno y no repitas ningún objeto.
+                  </div>
+                </div>
+
+                <div class="challenge-area">
+                  <div class="target-wrap" id="targetWrap">
+                    <p class="target-label">OBJETOS PARA CONTAR</p>
+                    <div class="target-card" id="targetCard"></div>
+                  </div>
+
+                  <div class="options-grid" id="optionsGrid" aria-label="Opciones de respuesta"></div>
+                </div>
+              </div>
+            </div>
+
+            <aside class="side-panel">
+              <section class="audio-card">
+                <p>Escucha la consigna</p>
+                <button class="audio-btn" id="audioBtn" type="button">
+                  🔊 Escuchar
+                </button>
+              </section>
+
+              <section class="hint-card">
+                <button
+                  class="hint-btn"
+                  id="hintBtn"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="hintPanel"
+                >
+                  💡 Dame una pista
+                </button>
+
+                <div class="hint-panel hidden" id="hintPanel">
+                  <p class="hint-heading">💡 Piensa paso a paso</p>
+                  <p class="hint-text" id="hintText"></p>
+
+                  <div class="hint-steps" aria-label="Pasos para contar objetos">
+                    <div class="hint-step"><span>👀</span>Observa</div>
+                    <div class="hint-arrow">➜</div>
+                    <div class="hint-step"><span>🧠</span>Piensa</div>
+                    <div class="hint-arrow">➜</div>
+                    <div class="hint-step"><span>✅</span>Elige</div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="answer-card">
+                <p class="answer-title">Responde en la escena</p>
+
+                <div class="touch-guide">
+                  👆 Toca una de las tarjetas grandes.
+                </div>
+
+                <div class="feedback" id="feedback" aria-live="assertive">
+                  Observa y toca tu respuesta.
+                </div>
+              </section>
+
+              <section class="progress-card">
+                <strong>Tu progreso</strong>
+
+                <div class="mini-track">
+                  <div class="mini-fill" id="miniProgressFill"></div>
+                </div>
+              </section>
+              
+            </aside>
+          </div>
+
+          <div class="next-row">
+            <button class="next-btn hidden" id="nextBtn" type="button">
+              Siguiente ejercicio ➡️
+            </button>
+          </div>
+        </section>
+      </main>
+
+      <div class="overlay" id="welcomeOverlay">
+        <div class="overlay-card">
+          <div class="overlay-icon" aria-hidden="true">🔎🍎</div>
+          <div class="overlay-label">MVG Learning · 5 AÑOS</div>
+          <h3>55. Ruletas numéricas</h3>
+
+          <p>
+            Cada partida presenta 20 ejercicios elegidos al azar de una batería de 60.
+            Practica el conteo visual con colecciones claras y divertidas. Resolverás 7 básicos, 7 intermedios y 6 avanzados.
+          </p>
+
+          <div class="levels-preview">
+            <span>7 básicos</span>
+            <span>7 intermedios</span>
+            <span>6 avanzados</span>
+          </div>
+
+          <p style="margin-top: 0; font-size: 15px;">
+            Cada nuevo intento genera una combinación diferente.
+          </p>
+
+          <button id="startBtn" type="button">▶️ Comenzar</button>
+        </div>
+      </div>
+
+      <div class="overlay hidden" id="finishOverlay">
+        <div class="overlay-card">
+          <div class="overlay-icon" aria-hidden="true">🏆</div>
+          <div class="overlay-label">MVG Learning · 5 AÑOS</div>
+          <h3>¡Terminaste!</h3>
+          <p id="finalMessage">Completaste los 20 ejercicios de conteo seleccionados.</p>
+          <div class="final-score" id="finalScore">20 / 20</div>
+
+          <div class="finish-actions">
+            <a class="finish-next-btn" href="analogias-numericas.html">
+              Siguiente tema ➡️
+            </a>
+            <button id="restartBtn" type="button">🔄 Repetir</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
+    </div>
+
+    <script>
+      // TEMA 55 · RULETAS NUMÉRICAS
+      const COLORS = {
+        red: "#ff5b5b",
+        blue: "#178cff",
+        yellow: "#ffc800",
+        green: "#58c85b",
+        purple: "#8b5cf6",
+        pink: "#ff6aa9",
+        orange: "#ff9600",
+        teal: "#18b8aa"
+      };
+
+      const EXERCISE_BANK = [
+        {
+                "id": "B01",
+                "level": "Básico",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 2, 1 y 2. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
+                        }
+                ],
+                "answer": 2,
+                "success": "¡Correcto! La suma es 5."
+        },
+        {
+                "id": "B02",
+                "level": "Básico",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 1, 1 y 0. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "1",
+                                "color": "blue",
+                                "label": "número 1"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "2",
+                                "color": "blue",
+                                "label": "número 2"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "0",
+                                "color": "blue",
+                                "label": "número 0"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        }
+                ],
+                "answer": 1,
+                "success": "¡Correcto! La suma es 2."
+        },
+        {
+                "id": "B03",
+                "level": "Básico",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 1, 0 y 1. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "0",
+                                "color": "blue",
+                                "label": "número 0"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "1",
+                                "color": "blue",
+                                "label": "número 1"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "2",
+                                "color": "blue",
+                                "label": "número 2"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! La suma es 2."
+        },
+        {
+                "id": "B04",
+                "level": "Básico",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 3, 1 y 0. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "2",
+                                "color": "blue",
+                                "label": "número 2"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        }
+                ],
+                "answer": 2,
+                "success": "¡Correcto! La suma es 4."
+        },
+        {
+                "id": "B05",
+                "level": "Básico",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 2, 3 y 1. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! La suma es 6."
+        },
+        {
+                "id": "B06",
+                "level": "Básico",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 2, 1 y 2. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        }
+                ],
+                "answer": 2,
+                "success": "¡Correcto! La suma es 5."
+        },
+        {
+                "id": "B07",
+                "level": "Básico",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 0, 3 y 1. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "2",
+                                "color": "blue",
+                                "label": "número 2"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        }
+                ],
+                "answer": 1,
+                "success": "¡Correcto! La suma es 4."
+        },
+        {
+                "id": "B08",
+                "level": "Básico",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 3, 1 y 0. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "2",
+                                "color": "blue",
+                                "label": "número 2"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! La suma es 4."
+        },
+        {
+                "id": "B09",
+                "level": "Básico",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 0, 2 y 2. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "2",
+                                "color": "blue",
+                                "label": "número 2"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! La suma es 4."
+        },
+        {
+                "id": "B10",
+                "level": "Básico",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 1, 0 y 2. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "1",
+                                "color": "blue",
+                                "label": "número 1"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "2",
+                                "color": "blue",
+                                "label": "número 2"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! La suma es 3."
+        },
+        {
+                "id": "B11",
+                "level": "Básico",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 0, 1 y 2. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "2",
+                                "color": "blue",
+                                "label": "número 2"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "1",
+                                "color": "blue",
+                                "label": "número 1"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! La suma es 3."
+        },
+        {
+                "id": "B12",
+                "level": "Básico",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 1, 2 y 3. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! La suma es 6."
+        },
+        {
+                "id": "B13",
+                "level": "Básico",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 3, 0 y 1. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "2",
+                                "color": "blue",
+                                "label": "número 2"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! La suma es 4."
+        },
+        {
+                "id": "B14",
+                "level": "Básico",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 0, 3 y 1. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "2",
+                                "color": "blue",
+                                "label": "número 2"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! La suma es 4."
+        },
+        {
+                "id": "B15",
+                "level": "Básico",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 2, 1 y 0. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "1",
+                                "color": "blue",
+                                "label": "número 1"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "2",
+                                "color": "blue",
+                                "label": "número 2"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! La suma es 3."
+        },
+        {
+                "id": "B16",
+                "level": "Básico",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 2, 0 y 3. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        }
+                ],
+                "answer": 2,
+                "success": "¡Correcto! La suma es 5."
+        },
+        {
+                "id": "B17",
+                "level": "Básico",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 2, 1 y 0. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "2",
+                                "color": "blue",
+                                "label": "número 2"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "1",
+                                "color": "blue",
+                                "label": "número 1"
+                        }
+                ],
+                "answer": 1,
+                "success": "¡Correcto! La suma es 3."
+        },
+        {
+                "id": "B18",
+                "level": "Básico",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 2, 1 y 3. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        }
+                ],
+                "answer": 1,
+                "success": "¡Correcto! La suma es 6."
+        },
+        {
+                "id": "B19",
+                "level": "Básico",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 0, 0 y 3. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "1",
+                                "color": "blue",
+                                "label": "número 1"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "2",
+                                "color": "blue",
+                                "label": "número 2"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! La suma es 3."
+        },
+        {
+                "id": "B20",
+                "level": "Básico",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 2, 3 y 0. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! La suma es 5."
+        },
+        {
+                "id": "I01",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 0, 4 y 6. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "11",
+                                "color": "blue",
+                                "label": "número 11"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "8",
+                                "color": "blue",
+                                "label": "número 8"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "9",
+                                "color": "blue",
+                                "label": "número 9"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "10",
+                                "color": "blue",
+                                "label": "número 10"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! La suma es 10."
+        },
+        {
+                "id": "I02",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 3, 1 y 5. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "9",
+                                "color": "blue",
+                                "label": "número 9"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "8",
+                                "color": "blue",
+                                "label": "número 8"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "10",
+                                "color": "blue",
+                                "label": "número 10"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! La suma es 9."
+        },
+        {
+                "id": "I03",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 3, 4 y 0. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "8",
+                                "color": "blue",
+                                "label": "número 8"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! La suma es 7."
+        },
+        {
+                "id": "I04",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 5, 4 y 2. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "11",
+                                "color": "blue",
+                                "label": "número 11"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "9",
+                                "color": "blue",
+                                "label": "número 9"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "10",
+                                "color": "blue",
+                                "label": "número 10"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "12",
+                                "color": "blue",
+                                "label": "número 12"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! La suma es 11."
+        },
+        {
+                "id": "I05",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 5, 6 y 2. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "12",
+                                "color": "blue",
+                                "label": "número 12"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "14",
+                                "color": "blue",
+                                "label": "número 14"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "13",
+                                "color": "blue",
+                                "label": "número 13"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "11",
+                                "color": "blue",
+                                "label": "número 11"
+                        }
+                ],
+                "answer": 2,
+                "success": "¡Correcto! La suma es 13."
+        },
+        {
+                "id": "I06",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 6, 4 y 0. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "11",
+                                "color": "blue",
+                                "label": "número 11"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "8",
+                                "color": "blue",
+                                "label": "número 8"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "9",
+                                "color": "blue",
+                                "label": "número 9"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "10",
+                                "color": "blue",
+                                "label": "número 10"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! La suma es 10."
+        },
+        {
+                "id": "I07",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 5, 5 y 5. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "14",
+                                "color": "blue",
+                                "label": "número 14"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "16",
+                                "color": "blue",
+                                "label": "número 16"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "13",
+                                "color": "blue",
+                                "label": "número 13"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "15",
+                                "color": "blue",
+                                "label": "número 15"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! La suma es 15."
+        },
+        {
+                "id": "I08",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 5, 6 y 1. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "13",
+                                "color": "blue",
+                                "label": "número 13"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "12",
+                                "color": "blue",
+                                "label": "número 12"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "10",
+                                "color": "blue",
+                                "label": "número 10"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "11",
+                                "color": "blue",
+                                "label": "número 11"
+                        }
+                ],
+                "answer": 1,
+                "success": "¡Correcto! La suma es 12."
+        },
+        {
+                "id": "I09",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 3, 3 y 4. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "10",
+                                "color": "blue",
+                                "label": "número 10"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "8",
+                                "color": "blue",
+                                "label": "número 8"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "9",
+                                "color": "blue",
+                                "label": "número 9"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "11",
+                                "color": "blue",
+                                "label": "número 11"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! La suma es 10."
+        },
+        {
+                "id": "I10",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 3, 2 y 3. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "9",
+                                "color": "blue",
+                                "label": "número 9"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "8",
+                                "color": "blue",
+                                "label": "número 8"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! La suma es 8."
+        },
+        {
+                "id": "I11",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 5, 6 y 4. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "13",
+                                "color": "blue",
+                                "label": "número 13"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "14",
+                                "color": "blue",
+                                "label": "número 14"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "16",
+                                "color": "blue",
+                                "label": "número 16"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "15",
+                                "color": "blue",
+                                "label": "número 15"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! La suma es 15."
+        },
+        {
+                "id": "I12",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 2, 1 y 6. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "8",
+                                "color": "blue",
+                                "label": "número 8"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "10",
+                                "color": "blue",
+                                "label": "número 10"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "9",
+                                "color": "blue",
+                                "label": "número 9"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
+                        }
+                ],
+                "answer": 2,
+                "success": "¡Correcto! La suma es 9."
+        },
+        {
+                "id": "I13",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 4, 3 y 5. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "12",
+                                "color": "blue",
+                                "label": "número 12"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "13",
+                                "color": "blue",
+                                "label": "número 13"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "11",
+                                "color": "blue",
+                                "label": "número 11"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "10",
+                                "color": "blue",
+                                "label": "número 10"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! La suma es 12."
+        },
+        {
+                "id": "I14",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 0, 2 y 3. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "3",
+                                "color": "blue",
+                                "label": "número 3"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! La suma es 5."
+        },
+        {
+                "id": "I15",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 1, 1 y 6. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "8",
+                                "color": "blue",
+                                "label": "número 8"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "9",
+                                "color": "blue",
+                                "label": "número 9"
+                        }
+                ],
+                "answer": 2,
+                "success": "¡Correcto! La suma es 8."
+        },
+        {
+                "id": "I16",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 3, 1 y 4. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "9",
+                                "color": "blue",
+                                "label": "número 9"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "8",
+                                "color": "blue",
+                                "label": "número 8"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! La suma es 8."
+        },
+        {
+                "id": "I17",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 0, 5 y 5. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "9",
+                                "color": "blue",
+                                "label": "número 9"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "11",
+                                "color": "blue",
+                                "label": "número 11"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "10",
+                                "color": "blue",
+                                "label": "número 10"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "8",
+                                "color": "blue",
+                                "label": "número 8"
+                        }
+                ],
+                "answer": 2,
+                "success": "¡Correcto! La suma es 10."
+        },
+        {
+                "id": "I18",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 5, 0 y 5. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "9",
+                                "color": "blue",
+                                "label": "número 9"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "10",
+                                "color": "blue",
+                                "label": "número 10"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "11",
+                                "color": "blue",
+                                "label": "número 11"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "8",
+                                "color": "blue",
+                                "label": "número 8"
+                        }
+                ],
+                "answer": 1,
+                "success": "¡Correcto! La suma es 10."
+        },
+        {
+                "id": "I19",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 1, 6 y 6. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "13",
+                                "color": "blue",
+                                "label": "número 13"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "12",
+                                "color": "blue",
+                                "label": "número 12"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "11",
+                                "color": "blue",
+                                "label": "número 11"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "14",
+                                "color": "blue",
+                                "label": "número 14"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! La suma es 13."
+        },
+        {
+                "id": "I20",
+                "level": "Intermedio",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 0, 4 y 2. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        }
+                ],
+                "answer": 2,
+                "success": "¡Correcto! La suma es 6."
+        },
+        {
+                "id": "A01",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 3, 3 y 0. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! La suma es 6."
+        },
+        {
+                "id": "A02",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 4, 10 y 5. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "19",
+                                "color": "blue",
+                                "label": "número 19"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "18",
+                                "color": "blue",
+                                "label": "número 18"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "17",
+                                "color": "blue",
+                                "label": "número 17"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "20",
+                                "color": "blue",
+                                "label": "número 20"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! La suma es 19."
+        },
+        {
+                "id": "A03",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 9, 5 y 1. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "16",
+                                "color": "blue",
+                                "label": "número 16"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "15",
+                                "color": "blue",
+                                "label": "número 15"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "14",
+                                "color": "blue",
+                                "label": "número 14"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "13",
+                                "color": "blue",
+                                "label": "número 13"
+                        }
+                ],
+                "answer": 1,
+                "success": "¡Correcto! La suma es 15."
+        },
+        {
+                "id": "A04",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 8, 2 y 6. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "14",
+                                "color": "blue",
+                                "label": "número 14"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "17",
+                                "color": "blue",
+                                "label": "número 17"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "15",
+                                "color": "blue",
+                                "label": "número 15"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "16",
+                                "color": "blue",
+                                "label": "número 16"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! La suma es 16."
+        },
+        {
+                "id": "A05",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 10, 8 y 5. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "21",
+                                "color": "blue",
+                                "label": "número 21"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "22",
+                                "color": "blue",
+                                "label": "número 22"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "23",
+                                "color": "blue",
+                                "label": "número 23"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "24",
+                                "color": "blue",
+                                "label": "número 24"
+                        }
+                ],
+                "answer": 2,
+                "success": "¡Correcto! La suma es 23."
+        },
+        {
+                "id": "A06",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 9, 0 y 9. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "17",
+                                "color": "blue",
+                                "label": "número 17"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "19",
+                                "color": "blue",
+                                "label": "número 19"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "18",
+                                "color": "blue",
+                                "label": "número 18"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "16",
+                                "color": "blue",
+                                "label": "número 16"
+                        }
+                ],
+                "answer": 2,
+                "success": "¡Correcto! La suma es 18."
+        },
+        {
+                "id": "A07",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 1, 6 y 10. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "16",
+                                "color": "blue",
+                                "label": "número 16"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "17",
+                                "color": "blue",
+                                "label": "número 17"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "18",
+                                "color": "blue",
+                                "label": "número 18"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "15",
+                                "color": "blue",
+                                "label": "número 15"
+                        }
+                ],
+                "answer": 1,
+                "success": "¡Correcto! La suma es 17."
+        },
+        {
+                "id": "A08",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 6, 3 y 7. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "17",
+                                "color": "blue",
+                                "label": "número 17"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "14",
+                                "color": "blue",
+                                "label": "número 14"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "16",
+                                "color": "blue",
+                                "label": "número 16"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "15",
+                                "color": "blue",
+                                "label": "número 15"
+                        }
+                ],
+                "answer": 2,
+                "success": "¡Correcto! La suma es 16."
+        },
+        {
+                "id": "A09",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 8, 0 y 7. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "16",
+                                "color": "blue",
+                                "label": "número 16"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "13",
+                                "color": "blue",
+                                "label": "número 13"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "14",
+                                "color": "blue",
+                                "label": "número 14"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "15",
+                                "color": "blue",
+                                "label": "número 15"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! La suma es 15."
+        },
+        {
+                "id": "A10",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 3, 9 y 2. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "13",
+                                "color": "blue",
+                                "label": "número 13"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "14",
+                                "color": "blue",
+                                "label": "número 14"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "15",
+                                "color": "blue",
+                                "label": "número 15"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "12",
+                                "color": "blue",
+                                "label": "número 12"
+                        }
+                ],
+                "answer": 1,
+                "success": "¡Correcto! La suma es 14."
+        },
+        {
+                "id": "A11",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 10, 9 y 0. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "18",
+                                "color": "blue",
+                                "label": "número 18"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "19",
+                                "color": "blue",
+                                "label": "número 19"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "17",
+                                "color": "blue",
+                                "label": "número 17"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "20",
+                                "color": "blue",
+                                "label": "número 20"
+                        }
+                ],
+                "answer": 1,
+                "success": "¡Correcto! La suma es 19."
+        },
+        {
+                "id": "A12",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 1, 1 y 4. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "7",
+                                "color": "blue",
+                                "label": "número 7"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "4",
+                                "color": "blue",
+                                "label": "número 4"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "5",
+                                "color": "blue",
+                                "label": "número 5"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "6",
+                                "color": "blue",
+                                "label": "número 6"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! La suma es 6."
+        },
+        {
+                "id": "A13",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 9, 3 y 10. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "23",
+                                "color": "blue",
+                                "label": "número 23"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "22",
+                                "color": "blue",
+                                "label": "número 22"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "21",
+                                "color": "blue",
+                                "label": "número 21"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "20",
+                                "color": "blue",
+                                "label": "número 20"
+                        }
+                ],
+                "answer": 1,
+                "success": "¡Correcto! La suma es 22."
+        },
+        {
+                "id": "A14",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 8, 3 y 8. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "20",
+                                "color": "blue",
+                                "label": "número 20"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "18",
+                                "color": "blue",
+                                "label": "número 18"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "17",
+                                "color": "blue",
+                                "label": "número 17"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "19",
+                                "color": "blue",
+                                "label": "número 19"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! La suma es 19."
+        },
+        {
+                "id": "A15",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 3, 5 y 8. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "14",
+                                "color": "blue",
+                                "label": "número 14"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "17",
+                                "color": "blue",
+                                "label": "número 17"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "16",
+                                "color": "blue",
+                                "label": "número 16"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "15",
+                                "color": "blue",
+                                "label": "número 15"
+                        }
+                ],
+                "answer": 2,
+                "success": "¡Correcto! La suma es 16."
+        },
+        {
+                "id": "A16",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 1, 10 y 1. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "10",
+                                "color": "blue",
+                                "label": "número 10"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "13",
+                                "color": "blue",
+                                "label": "número 13"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "11",
+                                "color": "blue",
+                                "label": "número 11"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "12",
+                                "color": "blue",
+                                "label": "número 12"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! La suma es 12."
+        },
+        {
+                "id": "A17",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 9, 3 y 5. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "17",
+                                "color": "blue",
+                                "label": "número 17"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "18",
+                                "color": "blue",
+                                "label": "número 18"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "16",
+                                "color": "blue",
+                                "label": "número 16"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "15",
+                                "color": "blue",
+                                "label": "número 15"
+                        }
+                ],
+                "answer": 0,
+                "success": "¡Correcto! La suma es 17."
+        },
+        {
+                "id": "A18",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 9, 3 y 4. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "17",
+                                "color": "blue",
+                                "label": "número 17"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "14",
+                                "color": "blue",
+                                "label": "número 14"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "15",
+                                "color": "blue",
+                                "label": "número 15"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "16",
+                                "color": "blue",
+                                "label": "número 16"
+                        }
+                ],
+                "answer": 3,
+                "success": "¡Correcto! La suma es 16."
+        },
+        {
+                "id": "A19",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 8, 2 y 2. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "13",
+                                "color": "blue",
+                                "label": "número 13"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "12",
+                                "color": "blue",
+                                "label": "número 12"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "11",
+                                "color": "blue",
+                                "label": "número 11"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "10",
+                                "color": "blue",
+                                "label": "número 10"
+                        }
+                ],
+                "answer": 1,
+                "success": "¡Correcto! La suma es 12."
+        },
+        {
+                "id": "A20",
+                "level": "Avanzado",
+                "mode": "choice",
+                "title": "Ruletas numéricas",
+                "instruction": "En una ruleta aparecen 6, 0 y 4. ¿Cuál es la suma?",
+                "speech": "Suma los números de la ruleta.",
+                "hint": "Suma de izquierda a derecha.",
+                "options": [
+                        {
+                                "kind": "number",
+                                "value": "9",
+                                "color": "blue",
+                                "label": "número 9"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "10",
+                                "color": "blue",
+                                "label": "número 10"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "8",
+                                "color": "blue",
+                                "label": "número 8"
+                        },
+                        {
+                                "kind": "number",
+                                "value": "11",
+                                "color": "blue",
+                                "label": "número 11"
+                        }
+                ],
+                "answer": 1,
+                "success": "¡Correcto! La suma es 10."
+        }
+];
+
+      const SESSION_PLAN = [
+        { level: "Básico", count: 7 },
+        { level: "Intermedio", count: 7 },
+        { level: "Avanzado", count: 6 }
+      ];
+
+      function shuffleArray(items) {
+        const copy = [...items];
+
+        for (let index = copy.length - 1; index > 0; index -= 1) {
+          const randomIndex = Math.floor(Math.random() * (index + 1));
+          [copy[index], copy[randomIndex]] =
+            [copy[randomIndex], copy[index]];
+        }
+
+        return copy;
+      }
+
+      function cloneExercise(exercise) {
+        return JSON.parse(JSON.stringify(exercise));
+      }
+
+      function randomizeOptions(exercise) {
+        const prepared = cloneExercise(exercise);
+
+        const shuffledOptions = shuffleArray(
+          prepared.options.map((option, index) => ({
+            option,
+            isCorrect: index === prepared.answer
+          }))
+        );
+
+        prepared.options =
+          shuffledOptions.map(item => item.option);
+
+        prepared.answer =
+          shuffledOptions.findIndex(item => item.isCorrect);
+
+        return prepared;
+      }
+
+      function buildRandomSession() {
+        const selectedExercises = [];
+
+        SESSION_PLAN.forEach(plan => {
+          const levelPool = EXERCISE_BANK.filter(
+            exercise => exercise.level === plan.level
+          );
+
+          const selectedForLevel =
+            shuffleArray(levelPool).slice(0, plan.count);
+
+          selectedExercises.push(
+            ...selectedForLevel.map(randomizeOptions)
+          );
+        });
+
+        return selectedExercises;
+      }
+
+      function validateExerciseBank() {
+        const expectedByLevel = {
+          "Básico": 20,
+          "Intermedio": 20,
+          "Avanzado": 20
+        };
+
+        const invalidOptions = EXERCISE_BANK.filter(
+          exercise =>
+            !Array.isArray(exercise.options) ||
+            exercise.options.length !== 4
+        );
+
+        const duplicatedIds = EXERCISE_BANK
+          .map(exercise => exercise.id)
+          .filter((id, index, ids) => ids.indexOf(id) !== index);
+
+        const wrongLevelCounts = Object.entries(expectedByLevel)
+          .filter(([level, expected]) =>
+            EXERCISE_BANK.filter(
+              exercise => exercise.level === level
+            ).length !== expected
+          );
+
+        if (
+          EXERCISE_BANK.length !== 60 ||
+          invalidOptions.length > 0 ||
+          duplicatedIds.length > 0 ||
+          wrongLevelCounts.length > 0
+        ) {
+          console.error("Error en la batería de ejercicios:", {
+            total: EXERCISE_BANK.length,
+            invalidOptions,
+            duplicatedIds,
+            wrongLevelCounts
+          });
+        } else {
+          console.info(
+            "Batería verificada: 60 ejercicios, 20 por nivel y 4 alternativas por ejercicio."
+          );
+        }
+      }
+
+      validateExerciseBank();
+
+      let exercises = buildRandomSession();
+
+      const state = {
+        currentIndex: 0,
+        score: 0,
+        answered: false
+      };
+
+      const elements = {
+        exerciseText: document.getElementById("exerciseText"),
+        scoreText: document.getElementById("scoreText"),
+        topProgressFill: document.getElementById("topProgressFill"),
+        miniProgressFill: document.getElementById("miniProgressFill"),
+        levelBadge: document.getElementById("levelBadge"),
+        questionTitle: document.getElementById("questionTitle"),
+        instructionText: document.getElementById("instructionText"),
+        sceneSpeech: document.getElementById("sceneSpeech"),
+        targetWrap: document.getElementById("targetWrap"),
+        targetCard: document.getElementById("targetCard"),
+        optionsGrid: document.getElementById("optionsGrid"),
+        audioBtn: document.getElementById("audioBtn"),
+        hintBtn: document.getElementById("hintBtn"),
+        hintPanel: document.getElementById("hintPanel"),
+        hintText: document.getElementById("hintText"),
+        feedback: document.getElementById("feedback"),
+        nextBtn: document.getElementById("nextBtn"),
+        welcomeOverlay: document.getElementById("welcomeOverlay"),
+        finishOverlay: document.getElementById("finishOverlay"),
+        startBtn: document.getElementById("startBtn"),
+        restartBtn: document.getElementById("restartBtn"),
+        finalMessage: document.getElementById("finalMessage"),
+        finalScore: document.getElementById("finalScore"),
+        confettiLayer: document.getElementById("confettiLayer")
+      };
+
+      function currentExercise() {
+        return exercises[state.currentIndex];
+      }
+
+      function colorValue(name) {
+        return COLORS[name] || name || COLORS.pink;
+      }
+
+      function levelClass(level) {
+        if (level === "Intermedio") return "intermediate";
+        if (level === "Avanzado") return "advanced";
+        return "basic";
+      }
+
+      function createShape(shapeName, colorName, size = 80) {
+        const shape = document.createElement("span");
+        shape.className = `shape ${shapeName}`;
+        shape.style.setProperty("--item-color", colorValue(colorName));
+        shape.style.setProperty("--shape-size", `${size}px`);
+
+        if (shapeName === "star") {
+          shape.textContent = "★";
+        }
+
+        return shape;
+      }
+
+      function createPatternToken(token) {
+        const part = document.createElement("span");
+        part.className = `pattern-token ${token.shape}`;
+        part.style.setProperty("--token-color", colorValue(token.color));
+        return part;
+      }
+
+      function createVisual(item) {
+        const visual = document.createElement("div");
+        visual.className = "visual";
+        visual.style.setProperty("--rotation", `${item.rotation || 0}deg`);
+        visual.style.setProperty("--flip-x", item.flipX ? -1 : 1);
+        visual.style.setProperty("--visual-scale", item.scale || 1);
+
+        if (item.kind === "emoji") {
+          visual.classList.add("emoji");
+          visual.textContent = item.value;
+          return visual;
+        }
+
+        if (item.kind === "shape") {
+          visual.appendChild(
+            createShape(item.shape, item.color, item.size || 80)
+          );
+          return visual;
+        }
+
+        if (item.kind === "number") {
+          visual.classList.add("number");
+          visual.textContent = item.value;
+          visual.style.setProperty("--item-color", colorValue(item.color));
+          return visual;
+        }
+
+        if (item.kind === "arrow") {
+          visual.classList.add("arrow");
+          visual.textContent = "➜";
+          visual.style.setProperty("--item-color", colorValue(item.color));
+          visual.style.setProperty(
+            "--rotation",
+            item.direction === "left" ? "180deg" : "0deg"
+          );
+          return visual;
+        }
+
+        if (item.kind === "face") {
+          const face = document.createElement("div");
+          face.className = "face";
+          face.style.setProperty("--face-color", colorValue(item.color));
+
+          const eyes = document.createElement("div");
+          eyes.className = "face-eyes";
+
+          const leftEye = document.createElement("span");
+          leftEye.textContent = item.leftEye;
+
+          const rightEye = document.createElement("span");
+          rightEye.textContent = item.rightEye;
+
+          eyes.append(leftEye, rightEye);
+
+          const mouth = document.createElement("div");
+          mouth.className = "face-mouth";
+          mouth.textContent = item.mouth;
+
+          face.append(eyes, mouth);
+          visual.appendChild(face);
+          return visual;
+        }
+
+        if (item.kind === "pattern") {
+          const pattern = document.createElement("div");
+          pattern.className = "pattern";
+
+          item.tokens.forEach(token => {
+            pattern.appendChild(createPatternToken(token));
+          });
+
+          visual.appendChild(pattern);
+          return visual;
+        }
+
+
+        if (item.kind === "basket") {
+          const basket = document.createElement("div");
+          basket.className = "basket-scene";
+
+          for (let index = 0; index < item.count; index += 1) {
+            const object = document.createElement("span");
+            object.className = "basket-item";
+            object.textContent = item.item;
+            basket.appendChild(object);
+          }
+
+          const base = document.createElement("span");
+          base.className = "basket-base";
+          base.textContent = item.container || "🧺";
+          basket.appendChild(base);
+
+          visual.appendChild(basket);
+          return visual;
+        }
+
+        if (item.kind === "word") {
+          const word = document.createElement("div");
+          word.className = "quantity-word";
+          word.textContent = item.value;
+          visual.appendChild(word);
+          return visual;
+        }
+
+        if (item.kind === "group") {
+          const group = document.createElement("div");
+          group.className = "emoji-group";
+
+          item.values.forEach(value => {
+            const span = document.createElement("span");
+            span.textContent = value;
+            group.appendChild(span);
+          });
+
+          visual.appendChild(group);
+          return visual;
+        }
+
+        if (item.kind === "composition") {
+          const composition = document.createElement("div");
+          composition.className = "composition";
+
+          item.parts.forEach(part => {
+            const piece = document.createElement("span");
+            piece.className = `composition-part ${part.shape}`;
+            piece.style.left = `${part.x}px`;
+            piece.style.top = `${part.y}px`;
+            piece.style.background = colorValue(part.color);
+            composition.appendChild(piece);
+          });
+
+          visual.appendChild(composition);
+          return visual;
+        }
+
+        if (item.kind === "arrowPattern") {
+          const pattern = document.createElement("div");
+          pattern.className = "pattern";
+
+          item.arrows.forEach(arrow => {
+            const span = document.createElement("span");
+            span.textContent = "➜";
+            span.style.display = "inline-block";
+            span.style.fontSize = "45px";
+            span.style.lineHeight = "1";
+            span.style.color = colorValue(arrow.color);
+            span.style.transform =
+              arrow.direction === "left" ? "rotate(180deg)" : "rotate(0deg)";
+            span.style.filter = "drop-shadow(0 4px 0 rgba(0,0,0,.10))";
+            pattern.appendChild(span);
+          });
+
+          visual.appendChild(pattern);
+          return visual;
+        }
+
+        visual.classList.add("emoji");
+        visual.textContent = "❓";
+        return visual;
+      }
+
+      function renderTarget(item) {
+        elements.targetCard.innerHTML = "";
+        elements.targetCard.appendChild(createVisual(item));
+      }
+
+      function updateStatus() {
+        const exercise = currentExercise();
+        const exerciseNumber = state.currentIndex + 1;
+        const percentage = (exerciseNumber / exercises.length) * 100;
+
+        elements.exerciseText.textContent =
+          `Ejercicio ${exerciseNumber} de ${exercises.length}`;
+
+        elements.scoreText.textContent =
+          `${state.score} ${state.score === 1 ? "acierto" : "aciertos"}`;
+
+        elements.topProgressFill.style.width = `${percentage}%`;
+        elements.miniProgressFill.style.width = `${percentage}%`;
+
+        elements.levelBadge.textContent =
+          `NIVEL ${exercise.level.toUpperCase()}`;
+
+        elements.levelBadge.className =
+          `level-badge ${levelClass(exercise.level)}`;
+
+        elements.questionTitle.textContent = exercise.title;
+        elements.instructionText.textContent = exercise.instruction;
+        elements.sceneSpeech.textContent = exercise.speech;
+      }
+
+      function renderExercise() {
+        stopSpeech();
+        state.answered = false;
+
+        const exercise = currentExercise();
+
+        updateStatus();
+
+        elements.feedback.className = "feedback";
+        elements.feedback.textContent = "Piensa y toca la respuesta correcta.";
+        elements.hintPanel.classList.add("hidden");
+        elements.hintBtn.setAttribute("aria-expanded", "false");
+        elements.hintBtn.innerHTML = "💡 Dame una pista";
+        elements.hintText.textContent = "";
+        elements.nextBtn.classList.add("hidden");
+        elements.optionsGrid.innerHTML = "";
+
+        elements.nextBtn.innerHTML =
+          state.currentIndex === exercises.length - 1
+            ? "Ver resultado 🏆"
+            : "Siguiente ejercicio ➡️";
+
+        if (exercise.mode === "match") {
+          elements.targetWrap.classList.remove("hidden");
+          renderTarget(exercise.target);
+        } else {
+          elements.targetWrap.classList.add("hidden");
+          elements.targetCard.innerHTML = "";
+        }
+
+        exercise.options.forEach((item, index) => {
+          const button = document.createElement("button");
+          button.className = "visual-card";
+          button.type = "button";
+          button.setAttribute(
+            "aria-label",
+            `Opción ${index + 1}: ${item.label || "figura"}`
+          );
+
+          button.appendChild(createVisual(item));
+
+          button.addEventListener("click", () => {
+            checkAnswer(index, button);
+          });
+
+          elements.optionsGrid.appendChild(button);
+        });
+
+        setTimeout(speakExercise, 420);
+      }
+
+      function toggleHint() {
+        const willOpen =
+          elements.hintPanel.classList.contains("hidden");
+
+        if (willOpen) {
+          const exercise = currentExercise();
+
+          elements.hintText.textContent = exercise.hint;
+          elements.hintPanel.classList.remove("hidden");
+          elements.hintBtn.setAttribute("aria-expanded", "true");
+          elements.hintBtn.innerHTML = "🙈 Ocultar pista";
+
+          speak(`Pista. ${exercise.hint}`, {
+            rate: 0.77,
+            pitch: 1.06
+          });
+        } else {
+          elements.hintPanel.classList.add("hidden");
+          elements.hintBtn.setAttribute("aria-expanded", "false");
+          elements.hintBtn.innerHTML = "💡 Dame una pista";
+        }
+      }
+
+      function buildExerciseText() {
+        const exercise = currentExercise();
+
+        return `Ejercicio ${state.currentIndex + 1}. Nivel ${exercise.level}. ${exercise.speech}`;
+      }
+
+      function getSpanishVoice() {
+        const voices =
+          window.speechSynthesis?.getVoices?.() || [];
+
+        return (
+          voices.find(
+            voice => voice.lang.toLowerCase() === "es-pe"
+          ) ||
+          voices.find(
+            voice => voice.lang.toLowerCase().startsWith("es")
+          ) ||
+          null
+        );
+      }
+
+      function speak(text, options = {}) {
+        if (!("speechSynthesis" in window)) {
+          elements.feedback.textContent =
+            "Este navegador no tiene lectura de voz.";
+          return;
+        }
+
+        stopSpeech();
+
+        const utterance =
+          new SpeechSynthesisUtterance(text);
+
+        utterance.lang = "es-PE";
+        utterance.rate = options.rate ?? 0.76;
+        utterance.pitch = options.pitch ?? 1.08;
+        utterance.volume = 1;
+
+        const voice = getSpanishVoice();
+
+        if (voice) {
+          utterance.voice = voice;
+        }
+
+        window.speechSynthesis.speak(utterance);
+      }
+
+      function stopSpeech() {
+        if ("speechSynthesis" in window) {
+          window.speechSynthesis.cancel();
+        }
+      }
+
+      function speakExercise() {
+        speak(buildExerciseText(), {
+          rate: 0.73,
+          pitch: 1.08
+        });
+      }
+
+      function checkAnswer(selectedIndex, selectedButton) {
+        if (state.answered) return;
+
+        const exercise = currentExercise();
+
+        if (selectedIndex === exercise.answer) {
+          state.answered = true;
+          state.score += 1;
+
+          updateStatus();
+
+          selectedButton.classList.add("correct");
+
+          [...elements.optionsGrid.children].forEach(button => {
+            button.disabled = true;
+          });
+
+          elements.feedback.className = "feedback good";
+          elements.feedback.textContent = exercise.success;
+          elements.nextBtn.classList.remove("hidden");
+
+          celebrate(45);
+
+          speak(exercise.success, {
+            rate: 0.79,
+            pitch: 1.12
+          });
+        } else {
+          selectedButton.classList.remove("wrong");
+          void selectedButton.offsetWidth;
+          selectedButton.classList.add("wrong");
+
+          elements.feedback.className = "feedback try";
+          elements.feedback.textContent =
+            "Casi. Revisa el ejercicio e inténtalo otra vez.";
+
+          speak(
+            "Casi. Piensa paso a paso e intenta otra vez.",
+            { rate: 0.80, pitch: 1.08 }
+          );
+
+          setTimeout(() => {
+            selectedButton.classList.remove("wrong");
+          }, 520);
+        }
+      }
+
+      function showFinalScreen() {
+        stopSpeech();
+
+        elements.finalScore.textContent =
+          `${state.score} / ${exercises.length}`;
+
+        if (state.score === exercises.length) {
+          elements.finalMessage.textContent =
+            "¡Excelente! Dominaste el tema ruletas numéricas.";
+        } else if (state.score >= 15) {
+          elements.finalMessage.textContent =
+            "¡Muy bien! Resolviste con éxito las actividades de ruletas numéricas.";
+        } else {
+          elements.finalMessage.textContent =
+            "¡Buen trabajo! Repite la actividad para seguir mejorando.";
+        }
+
+        try {
+          localStorage.setItem(
+            "mvg_topic_ruletas_numericas_complete",
+            "true"
+          );
+
+          const routeStorageKey =
+            "mk_learning_path_math_5y_v1";
+
+          const savedRouteProgress =
+            JSON.parse(localStorage.getItem(routeStorageKey));
+
+          const completedTopics =
+            Array.isArray(savedRouteProgress)
+              ? savedRouteProgress.filter(item => typeof item === "string")
+              : [];
+
+          if (!completedTopics.includes("stage-55")) {
+            completedTopics.push("stage-55");
+          }
+
+          localStorage.setItem(
+            routeStorageKey,
+            JSON.stringify([...new Set(completedTopics)])
+          );
+        } catch (error) {
+          console.info("No se pudo guardar el progreso local.", error);
+        }
+
+        elements.finishOverlay.classList.remove("hidden");
+
+        celebrate(100);
+
+        speak(
+          `¡Terminaste! Lograste ${state.score} aciertos de ${exercises.length}.`,
+          { rate: 0.75, pitch: 1.12 }
+        );
+      }
+
+      function celebrate(amount = 45) {
+        const colors = [
+          "#ff5f8f",
+          "#ffc800",
+          "#58cc02",
+          "#12a8ff",
+          "#8b5cf6",
+          "#ff9600"
+        ];
+
+        for (let index = 0; index < amount; index += 1) {
+          const piece = document.createElement("span");
+
+          piece.className = "confetti";
+          piece.style.left = `${Math.random() * 100}%`;
+          piece.style.background =
+            colors[Math.floor(Math.random() * colors.length)];
+
+          piece.style.setProperty(
+            "--drift",
+            `${Math.random() * 240 - 120}px`
+          );
+
+          piece.style.setProperty(
+            "--fall-time",
+            `${1.8 + Math.random() * 1.5}s`
+          );
+
+          piece.style.animationDelay =
+            `${Math.random() * 0.35}s`;
+
+          elements.confettiLayer.appendChild(piece);
+
+          setTimeout(() => piece.remove(), 3900);
+        }
+      }
+
+      elements.audioBtn.addEventListener("click", () => {
+        speakExercise();
+      });
+
+      elements.hintBtn.addEventListener("click", () => {
+        toggleHint();
+      });
+
+      elements.nextBtn.addEventListener("click", () => {
+        if (state.currentIndex === exercises.length - 1) {
+          showFinalScreen();
+          return;
+        }
+
+        state.currentIndex += 1;
+        renderExercise();
+      });
+
+      elements.startBtn.addEventListener("click", () => {
+        elements.welcomeOverlay.classList.add("hidden");
+        renderExercise();
+      });
+
+      elements.restartBtn.addEventListener("click", () => {
+        stopSpeech();
+
+        exercises = buildRandomSession();
+
+        state.currentIndex = 0;
+        state.score = 0;
+        state.answered = false;
+
+        elements.finishOverlay.classList.add("hidden");
+        renderExercise();
+      });
+
+      window.addEventListener("beforeunload", stopSpeech);
+
+      if ("speechSynthesis" in window) {
+        window.speechSynthesis.onvoiceschanged =
+          () => getSpanishVoice();
+      }
+    </script>
+
+    <script>
+      // Registrar Service Worker (PWA)
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", async () => {
+          try {
+            const registration = await navigator.serviceWorker.register(
+              "../../service-worker.js"
+            );
+
+            console.info(
+              "Service Worker registrado correctamente:",
+              registration.scope
+            );
+
+            registration.addEventListener("updatefound", () => {
+              const worker = registration.installing;
+
+              if (!worker) return;
+
+              worker.addEventListener("statechange", () => {
+                if (
+                  worker.state === "installed" &&
+                  navigator.serviceWorker.controller
+                ) {
+                  console.info(
+                    "Hay una nueva versión de MVG Learning disponible."
+                  );
+                }
+              });
+            });
+          } catch (error) {
+            console.error(
+              "No se pudo registrar el Service Worker:",
+              error
+            );
+          }
+        });
+      }
+    </script>
+  <script>
+  // Compartir el tema actual o copiar su enlace.
+  (() => {
+    const shareButton = document.getElementById("shareBtn");
+    const shareStatus = document.getElementById("shareStatus");
+
+    if (!shareButton || !shareStatus) return;
+
+    function setShareStatus(message, type = "") {
+      shareStatus.textContent = message;
+      shareStatus.className =
+        "share-status" + (type ? ` ${type}` : "");
+
+      clearTimeout(setShareStatus.timer);
+
+      setShareStatus.timer = setTimeout(() => {
+        shareStatus.textContent = "";
+        shareStatus.className = "share-status";
+      }, 3500);
+    }
+
+    async function copyShareLink(url) {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(url);
+        return;
+      }
+
+      const textArea = document.createElement("textarea");
+
+      textArea.value = url;
+      textArea.setAttribute("readonly", "");
+      textArea.style.position = "fixed";
+      textArea.style.left = "-9999px";
+
+      document.body.appendChild(textArea);
+      textArea.select();
+
+      const copied = document.execCommand("copy");
+
+      textArea.remove();
+
+      if (!copied) {
+        throw new Error("No se pudo copiar el enlace.");
+      }
+    }
+
+    async function sharePage() {
+      const topicTitle =
+        document.querySelector(".brand-copy h1")
+          ?.textContent
+          ?.trim()
+        || document.title;
+
+      const topicDescription =
+        document.querySelector(".brand-copy p")
+          ?.textContent
+          ?.trim()
+        || "Aprende matemáticas con MVG.";
+
+      const shareData = {
+        title: document.title,
+        text: `${topicTitle}. ${topicDescription}`,
+        url: window.location.href
+      };
+
+      shareButton.disabled = true;
+      shareButton.textContent = "⏳ Preparando...";
+
+      try {
+        if (typeof navigator.share === "function") {
+          await navigator.share(shareData);
+
+          setShareStatus(
+            "¡Tema compartido correctamente!",
+            "good"
+          );
+        } else {
+          await copyShareLink(shareData.url);
+
+          setShareStatus(
+            "¡Enlace copiado! Ya puedes compartirlo.",
+            "good"
+          );
+        }
+      } catch (error) {
+        if (error && error.name === "AbortError") {
+          setShareStatus(
+            "Se canceló la acción de compartir."
+          );
+        } else {
+          try {
+            await copyShareLink(shareData.url);
+
+            setShareStatus(
+              "¡Enlace copiado! Ya puedes compartirlo.",
+              "good"
+            );
+          } catch (copyError) {
+            console.error(
+              "No se pudo compartir el tema:",
+              copyError
+            );
+
+            setShareStatus(
+              "No se pudo compartir. Inténtalo nuevamente.",
+              "error"
+            );
+          }
+        }
+      } finally {
+        shareButton.disabled = false;
+        shareButton.textContent = "📤 Compartir";
+      }
+    }
+
+    shareButton.addEventListener("click", sharePage);
+  })();
+</script>
+</body>
+</html>
