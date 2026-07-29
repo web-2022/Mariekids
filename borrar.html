@@ -1,0 +1,673 @@
+
+
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marie Kids • Comunicación 1 Primaria</title>
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#1976d2" />
+
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: linear-gradient(145deg, #dbeafe, #e0f2fe);
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 16px;
+      }
+
+      .app {
+        width: 100%;
+        max-width: 860px;
+        background: #fff;
+        border: 3px solid #2563eb;
+        border-radius: 26px;
+        box-shadow: 0 18px 45px rgba(0, 0, 0, .14);
+        padding: 16px;
+        overflow: hidden;
+      }
+
+      .brand-header-kids {
+        position: relative;
+        overflow: hidden;
+        padding: 10px 12px;
+        border-radius: 22px;
+        margin-bottom: 14px;
+        background:
+          radial-gradient(circle at 12% 16%, rgba(255, 255, 255, .58) 0 0, rgba(255, 255, 255, .58) 6px, transparent 7px),
+          radial-gradient(circle at 86% 20%, rgba(255, 255, 255, .32) 0 0, rgba(255, 255, 255, .32) 8px, transparent 9px),
+          linear-gradient(135deg, #0f172a 0%, #1d4ed8 38%, #7c3aed 70%, #f97316 120%);
+        border: 1px solid rgba(255, 255, 255, .88);
+        box-shadow:
+          0 16px 34px rgba(37, 99, 235, .30),
+          inset 0 1px 0 rgba(255, 255, 255, .50),
+          inset 0 -18px 40px rgba(15, 23, 42, .16);
+        color: #fff;
+        cursor: pointer;
+        user-select: none;
+        isolation: isolate;
+        transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
+      }
+
+      .brand-header-kids::before {
+        content: "";
+        position: absolute;
+        inset: -55% -20%;
+        background: linear-gradient(115deg,
+          transparent 0%,
+          transparent 37%,
+          rgba(255, 255, 255, .30) 46%,
+          transparent 55%,
+          transparent 100%);
+        transform: translateX(-38%) rotate(8deg);
+        animation: headerShine 5.5s ease-in-out infinite;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .brand-header-kids::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(90deg, rgba(255, 255, 255, .10) 1px, transparent 1px),
+          linear-gradient(0deg, rgba(255, 255, 255, .08) 1px, transparent 1px);
+        background-size: 24px 24px;
+        opacity: .24;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .brand-header-kids:hover {
+        filter: saturate(1.08) brightness(1.04);
+        transform: translateY(-1px);
+      }
+
+      .brand-row {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: 54px minmax(0, 1fr) auto;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .kids-badge {
+        width: 52px;
+        height: 52px;
+        border-radius: 18px;
+        display: grid;
+        place-items: center;
+        font-size: 1.75rem;
+        font-weight: 1000;
+        background:
+          radial-gradient(circle at 30% 22%, rgba(255, 255, 255, .92), rgba(255, 255, 255, .30) 42%, rgba(255, 255, 255, .08) 70%),
+          linear-gradient(135deg, rgba(255, 255, 255, .42), rgba(255, 255, 255, .12));
+        border: 1px solid rgba(255, 255, 255, .58);
+        box-shadow:
+          0 10px 20px rgba(15, 23, 42, .18),
+          inset 0 1px 0 rgba(255, 255, 255, .60);
+      }
+
+      .kids-title {
+        font-weight: 1000;
+        font-size: clamp(1.32rem, 4vw, 1.72rem);
+        line-height: 1.02;
+        letter-spacing: .2px;
+        text-shadow: 0 3px 10px rgba(15, 23, 42, .32);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .brand-row>.kids-title:last-child {
+        justify-self: end;
+        font-size: clamp(.82rem, 2.4vw, 1rem);
+        line-height: 1;
+        padding: 8px 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, .18);
+        border: 1px solid rgba(255, 255, 255, .44);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, .35),
+          0 8px 18px rgba(15, 23, 42, .14);
+        text-shadow: 0 2px 8px rgba(15, 23, 42, .28);
+        white-space: nowrap;
+      }
+
+      .kids-subtitle {
+        margin-top: 5px;
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        align-items: center;
+        font-size: .9rem;
+        font-weight: 800;
+        opacity: .98;
+      }
+
+      .kids-pill,
+      .ruta-pill-btn {
+        background: rgba(255, 255, 255, .18);
+        border: 1px solid rgba(255, 255, 255, .45);
+        padding: 5px 10px;
+        border-radius: 999px;
+        font-size: .80rem;
+        font-weight: 950;
+        color: #fff;
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, .35),
+          0 7px 14px rgba(15, 23, 42, .10);
+        backdrop-filter: blur(8px);
+      }
+
+      .ruta-pill-btn {
+        cursor: pointer;
+        font-family: inherit;
+        line-height: 1.15;
+        transition: transform .18s ease, background .18s ease;
+        text-decoration: none;
+      }
+
+      .ruta-pill-btn:hover {
+        background: rgba(255, 255, 255, .30);
+        transform: translateY(-1px);
+      }
+
+      .bubble {
+        position: absolute;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, .16);
+        border: 1px solid rgba(255, 255, 255, .26);
+        pointer-events: none;
+        animation: floaty 6s ease-in-out infinite;
+        z-index: 0;
+      }
+
+      .b1 { left: -22px; top: -26px; width: 82px; height: 82px; }
+      .b2 { right: -24px; bottom: -34px; width: 92px; height: 92px; animation-delay: 1s; }
+      .b3 { left: 48%; bottom: -30px; width: 50px; height: 50px; animation-delay: .6s; }
+
+      @keyframes floaty {
+        0%, 100% { transform: translateY(0) scale(1); }
+        50% { transform: translateY(-7px) scale(1.04); }
+      }
+
+      @keyframes headerShine {
+        0%, 58%, 100% { transform: translateX(-46%) rotate(8deg); opacity: 0; }
+        68% { opacity: .72; }
+        84% { transform: translateX(46%) rotate(8deg); opacity: 0; }
+      }
+
+      h1 {
+        margin: 0;
+        text-align: center;
+        font-size: clamp(1.6rem, 4vw, 2.25rem);
+        color: #111827;
+      }
+
+      .subtitle {
+        text-align: center;
+        font-size: .98rem;
+        color: #6b7280;
+        margin: 6px 0 14px;
+        font-weight: 760;
+      }
+
+      .dashboard {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-bottom: 14px;
+      }
+
+      .progress-box {
+        background: #eff6ff;
+        border: 1px solid #bfdbfe;
+        border-radius: 20px;
+        padding: 12px;
+      }
+
+      .progress-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        flex-wrap: wrap;
+        color: #111827;
+        font-weight: 950;
+        margin-bottom: 8px;
+      }
+
+      .progress-muted {
+        color: #6b7280;
+        font-size: .9rem;
+        font-weight: 850;
+      }
+
+      .progress {
+        width: 100%;
+        height: 12px;
+        background: #e5e7eb;
+        border-radius: 999px;
+        overflow: hidden;
+      }
+
+      .progress-inner {
+        height: 100%;
+        width: 0%;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #22c55e, #60a5fa, #2563eb);
+        transition: width .2s ease;
+      }
+
+      .tools {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+        align-items: center;
+        margin: 12px 0;
+      }
+
+      .search {
+        width: 100%;
+        border: 2px solid #bfdbfe;
+        border-radius: 999px;
+        padding: 12px 14px;
+        font-size: 1rem;
+        font-weight: 850;
+        outline: none;
+        background: #fff;
+      }
+
+      .search:focus {
+        border-color: #2563eb;
+        box-shadow: 0 0 0 4px rgba(37,99,235,.12);
+      }
+
+      .reset-btn {
+        border: none;
+        border-radius: 999px;
+        padding: 12px 14px;
+        color: #fff;
+        font-weight: 950;
+        cursor: pointer;
+        background: linear-gradient(90deg, #a78bfa, #7c3aed);
+        white-space: nowrap;
+      }
+
+      .filters {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 10px;
+        border-radius: 18px;
+        background: #eff6ff;
+        border: 1px solid #bfdbfe;
+        margin-bottom: 14px;
+      }
+
+      .filter-btn {
+        border: 1px solid #bfdbfe;
+        background: #fff;
+        border-radius: 999px;
+        padding: 9px 12px;
+        font-weight: 900;
+        cursor: pointer;
+        color: #111827;
+      }
+
+      .filter-btn:hover {
+        transform: translateY(-1px);
+        background: #dbeafe;
+      }
+
+      .filter-btn.active {
+        color: #fff;
+        background: linear-gradient(90deg, #60a5fa, #2563eb);
+        border-color: transparent;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      @media(max-width:700px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+
+        .tools {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .topic-card {
+        position: relative;
+        border: 2px solid #dbeafe;
+        background: linear-gradient(145deg, #ffffff, #f8fbff);
+        border-radius: 22px;
+        padding: 14px;
+        box-shadow: 0 10px 18px rgba(37, 99, 235, .08);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        min-height: 212px;
+      }
+
+      .topic-card.done {
+        border-color: #86efac;
+        background: linear-gradient(145deg, #ffffff, #f0fdf4);
+      }
+
+      .topic-top {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .topic-emoji {
+        width: 48px;
+        height: 48px;
+        border-radius: 18px;
+        display: grid;
+        place-items: center;
+        font-size: 1.55rem;
+        background: #eff6ff;
+        border: 1px solid #bfdbfe;
+        flex: 0 0 auto;
+      }
+
+      .topic-title {
+        margin: 0;
+        font-size: 1.08rem;
+        line-height: 1.18;
+        color: #111827;
+        font-weight: 1000;
+      }
+
+      .topic-desc {
+        margin: 6px 0 0;
+        color: #4b5563;
+        font-weight: 780;
+        line-height: 1.35;
+        font-size: .93rem;
+      }
+
+      .tag-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: auto;
+      }
+
+      .tag {
+        border-radius: 999px;
+        padding: 5px 8px;
+        font-size: .76rem;
+        font-weight: 950;
+        color: #1e3a8a;
+        background: #eff6ff;
+        border: 1px solid #bfdbfe;
+      }
+
+      .tag.block {
+        color: #166534;
+        background: #dcfce7;
+        border-color: #86efac;
+      }
+
+      .topic-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+
+      .topic-link,
+      .done-btn {
+        border: none;
+        border-radius: 999px;
+        padding: 10px 12px;
+        font-weight: 1000;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        font-size: .92rem;
+      }
+
+      .topic-link {
+        color: #fff;
+        background: linear-gradient(90deg, #60a5fa, #2563eb);
+      }
+
+      .done-btn {
+        color: #166534;
+        background: #dcfce7;
+        border: 1px solid #86efac;
+      }
+
+      .topic-card.done .done-btn {
+        color: #fff;
+        background: linear-gradient(90deg, #22c55e, #16a34a);
+        border-color: transparent;
+      }
+
+      .empty {
+        display: none;
+        text-align: center;
+        padding: 18px;
+        color: #6b7280;
+        font-weight: 900;
+        border: 1px dashed #bfdbfe;
+        border-radius: 18px;
+        background: #eff6ff;
+      }
+
+      @media(max-width:560px) {
+        body { padding: 12px; }
+        .app { padding: 13px; }
+        .brand-header-kids { padding: 9px 9px; border-radius: 20px; }
+        .brand-row { grid-template-columns: 46px minmax(0, 1fr) auto; gap: 8px; }
+        .kids-badge { width: 44px; height: 44px; border-radius: 15px; font-size: 1.45rem; }
+        .kids-title { font-size: 1.18rem; }
+        .kids-subtitle { margin-top: 4px; }
+        .ruta-pill-btn { padding: 4px 8px; font-size: .72rem; }
+        .brand-row>.kids-title:last-child { font-size: .74rem; padding: 7px 8px; }
+        .topic-actions { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="app">
+      <div class="brand-header-kids" aria-label="Marie Kids" role="link" tabindex="0" onclick="goHome()"
+        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();goHome();}">
+        <div class="bubble b1"></div>
+        <div class="bubble b2"></div>
+        <div class="bubble b3"></div>
+
+        <div class="brand-row">
+          <div class="kids-badge" aria-hidden="true">🌈</div>
+          <div>
+            <div class="kids-title">Marie Kids</div>
+            <div class="kids-subtitle">
+              <button class="ruta-pill-btn" type="button" onclick="event.stopPropagation(); goRuta();">🧭 Ruta de Aprendizaje</button>
+            </div>
+          </div>
+          <div class="kids-title">1 Primaria</div>
+        </div>
+      </div>
+
+      <h1>Comunicación</h1>
+      <p class="subtitle">Ruta de aprendizaje con 36 temas para 1.° Primaria.</p>
+
+      <div class="dashboard">
+        <div class="progress-box">
+          <div class="progress-row">
+            <span>✅ Temas completados: <span id="doneCount">0</span>/36</span>
+            <span class="progress-muted" id="percentText">0%</span>
+          </div>
+          <div class="progress">
+            <div class="progress-inner" id="progressBar"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tools">
+        <input class="search" id="searchInput" type="search" placeholder="Buscar tema: tilde, verbo, sinónimos..." />
+        <button class="reset-btn" onclick="resetProgress()">🔄 Reiniciar</button>
+      </div>
+
+      <div class="filters" id="filters"></div>
+
+      <div class="grid" id="topicsGrid"></div>
+      <div class="empty" id="emptyMsg">No encontré temas con esa búsqueda.</div>
+    </div>
+
+    <script>
+      function goHome() { location.href = "index.html"; }
+      function goRuta() { location.href = "ruta.html"; }
+
+      const STORAGE_KEY = "mk_comunicacion_36_done_v2";
+      const topics = [{"id": 1, "emoji": "👂", "title": "Escuchar y seguir instrucciones", "desc": "Escuchar con atención, reconocer órdenes y seguir pasos simples.", "href": "comunicacion-tema01.html", "block": "Lectura inicial", "category": "Comunicación oral"}, {"id": 2, "emoji": "🔤", "title": "Vocales y sonidos iniciales", "desc": "Reconocer vocales, sonidos iniciales y palabras cercanas.", "href": "comunicacion-tema02.html", "block": "Lectura inicial", "category": "Conciencia fonológica"}, {"id": 3, "emoji": "🧩", "title": "Sílabas directas", "desc": "Leer y formar sílabas directas como ma, me, mi, mo, mu.", "href": "comunicacion-tema03.html", "block": "Lectura inicial", "category": "Sílabas"}, {"id": 4, "emoji": "🧱", "title": "Formación de palabras", "desc": "Unir sílabas para formar palabras simples.", "href": "comunicacion-tema04.html", "block": "Lectura inicial", "category": "Palabras"}, {"id": 5, "emoji": "📖", "title": "Lectura de palabras", "desc": "Leer palabras cortas y asociarlas con imágenes o significados.", "href": "comunicacion-tema05.html", "block": "Lectura inicial", "category": "Lectura"}, {"id": 6, "emoji": "👏", "title": "Separación en sílabas", "desc": "Separar palabras usando palmadas y reconocer cuántas sílabas tienen.", "href": "comunicacion-tema06.html", "block": "Sílabas, acento y tilde", "category": "Sílabas"}, {"id": 7, "emoji": "🌈", "title": "Diptongo e hiato", "desc": "Diferenciar vocales juntas o separadas en sílabas: cielo, auto, día, baúl.", "href": "comunicacion-tema07.html", "block": "Sílabas, acento y tilde", "category": "Tildación"}, {"id": 8, "emoji": "🔊", "title": "Acento: fuerza de voz", "desc": "Reconocer dónde suena más fuerte una palabra.", "href": "comunicacion-tema08.html", "block": "Sílabas, acento y tilde", "category": "Acento"}, {"id": 9, "emoji": "🎯", "title": "Sílaba tónica y sílabas átonas", "desc": "Identificar la sílaba con mayor fuerza de voz.", "href": "comunicacion-tema09.html", "block": "Sílabas, acento y tilde", "category": "Acento"}, {"id": 10, "emoji": "✍️", "title": "Uso de la tilde", "desc": "Reconocer palabras con tilde en casos sencillos: mamá, papá, Raúl.", "href": "comunicacion-tema10.html", "block": "Sílabas, acento y tilde", "category": "Tildación"}, {"id": 11, "emoji": "📘", "title": "Lectura de oraciones cortas", "desc": "Leer oraciones simples y comprender su sentido.", "href": "comunicacion-tema11.html", "block": "Escritura y gramática", "category": "Oraciones"}, {"id": 12, "emoji": "🔠", "title": "Mayúscula inicial y punto final", "desc": "Usar mayúscula al inicio y punto al terminar una oración.", "href": "comunicacion-tema12.html", "block": "Escritura y gramática", "category": "Ortografía"}, {"id": 13, "emoji": "📝", "title": "Escritura de palabras y oraciones", "desc": "Escribir palabras y formar oraciones claras.", "href": "comunicacion-tema13.html", "block": "Escritura y gramática", "category": "Escritura"}, {"id": 14, "emoji": "🔀", "title": "Ordenar palabras para formar oraciones", "desc": "Ordenar palabras desordenadas para formar una oración con sentido.", "href": "comunicacion-tema14.html", "block": "Escritura y gramática", "category": "Oraciones"}, {"id": 15, "emoji": "🧠", "title": "Completar oraciones", "desc": "Elegir la palabra que completa correctamente una oración.", "href": "comunicacion-tema15.html", "block": "Escritura y gramática", "category": "Oraciones"}, {"id": 16, "emoji": "📌", "title": "El artículo", "desc": "Usar artículos: el, la, los, las, un, una, unos, unas.", "href": "comunicacion-tema16.html", "block": "Escritura y gramática", "category": "Gramática"}, {"id": 17, "emoji": "🏠", "title": "El sustantivo", "desc": "Reconocer nombres de personas, animales, lugares y cosas.", "href": "comunicacion-tema17.html", "block": "Escritura y gramática", "category": "Gramática"}, {"id": 18, "emoji": "🎨", "title": "El adjetivo", "desc": "Identificar palabras que dicen cómo es una persona, animal o cosa.", "href": "comunicacion-tema18.html", "block": "Escritura y gramática", "category": "Gramática"}, {"id": 19, "emoji": "🏃", "title": "El verbo", "desc": "Reconocer acciones como correr, leer, pintar, saltar y cantar.", "href": "comunicacion-tema19.html", "block": "Escritura y gramática", "category": "Gramática"}, {"id": 20, "emoji": "🧩", "title": "Sujeto y predicado", "desc": "Identificar de quién se habla y qué se dice en una oración.", "href": "comunicacion-tema20.html", "block": "Escritura y gramática", "category": "Oraciones"}, {"id": 21, "emoji": "🔎", "title": "Comprensión literal", "desc": "Responder preguntas con información que aparece directamente en el texto.", "href": "comunicacion-tema21.html", "block": "Comprensión lectora", "category": "Comprensión"}, {"id": 22, "emoji": "👧", "title": "Personajes, lugares y acciones", "desc": "Identificar quién participa, dónde ocurre y qué sucede en un texto.", "href": "comunicacion-tema22.html", "block": "Comprensión lectora", "category": "Comprensión"}, {"id": 23, "emoji": "⏳", "title": "Secuencia de hechos", "desc": "Ordenar lo que ocurre primero, luego, después y finalmente.", "href": "comunicacion-tema23.html", "block": "Comprensión lectora", "category": "Comprensión"}, {"id": 24, "emoji": "💡", "title": "Idea principal sencilla", "desc": "Reconocer de qué trata principalmente un texto corto.", "href": "comunicacion-tema24.html", "block": "Comprensión lectora", "category": "Comprensión"}, {"id": 25, "emoji": "🤔", "title": "Comprensión inferencial", "desc": "Deducir respuestas usando pistas del texto y la imagen.", "href": "comunicacion-tema25.html", "block": "Comprensión lectora", "category": "Comprensión"}, {"id": 26, "emoji": "🗣️", "title": "Expresión oral", "desc": "Expresar ideas, responder preguntas y contar experiencias con orden.", "href": "comunicacion-tema26.html", "block": "Comprensión lectora", "category": "Comunicación oral"}, {"id": 27, "emoji": "📦", "title": "Vocabulario por categorías", "desc": "Agrupar palabras por animales, frutas, útiles, prendas y lugares.", "href": "comunicacion-tema27.html", "block": "Vocabulario y razonamiento verbal", "category": "Vocabulario"}, {"id": 28, "emoji": "👨‍👩‍👧", "title": "Familia de palabras", "desc": "Reconocer palabras que vienen de una misma raíz: pan, panadero, panadería.", "href": "comunicacion-tema28.html", "block": "Vocabulario y razonamiento verbal", "category": "Vocabulario"}, {"id": 29, "emoji": "🤝", "title": "Sinónimos básicos", "desc": "Reconocer palabras con significado parecido: feliz y contento.", "href": "comunicacion-tema29.html", "block": "Vocabulario y razonamiento verbal", "category": "Razonamiento verbal"}, {"id": 30, "emoji": "↔️", "title": "Antónimos básicos", "desc": "Reconocer palabras con significado contrario: grande y pequeño.", "href": "comunicacion-tema30.html", "block": "Vocabulario y razonamiento verbal", "category": "Razonamiento verbal"}, {"id": 31, "emoji": "🚫", "title": "Palabra intrusa", "desc": "Encontrar la palabra que no pertenece a un grupo.", "href": "comunicacion-tema31.html", "block": "Vocabulario y razonamiento verbal", "category": "Razonamiento verbal"}, {"id": 32, "emoji": "🧹", "title": "Término excluido", "desc": "Elegir la palabra que se excluye por no tener relación con las demás.", "href": "comunicacion-tema32.html", "block": "Vocabulario y razonamiento verbal", "category": "Razonamiento verbal"}, {"id": 33, "emoji": "🔗", "title": "Analogías y completar oraciones", "desc": "Relacionar palabras y completar oraciones con sentido.", "href": "comunicacion-tema33.html", "block": "Vocabulario y razonamiento verbal", "category": "Razonamiento verbal"}, {"id": 34, "emoji": "🌍", "title": "Vocabulario en contexto", "desc": "Entender el significado de una palabra según la oración o texto.", "href": "comunicacion-tema34.html", "block": "Vocabulario y razonamiento verbal", "category": "Vocabulario"}, {"id": 35, "emoji": "🖼️", "title": "Lectura de imágenes y oraciones", "desc": "Observar imágenes, leer oraciones y responder preguntas.", "href": "comunicacion-tema35.html", "block": "Comprensión lectora", "category": "Comprensión"}, {"id": 36, "emoji": "🏅", "title": "Mini olimpiada de Comunicación", "desc": "Evaluación final con preguntas variadas de lectura, gramática y razonamiento verbal.", "href": "comunicacion-tema36.html", "block": "Mini olimpiada final", "category": "Olimpiadas"}];
+      const blocks = ["Todos", "Lectura inicial", "Sílabas, acento y tilde", "Escritura y gramática", "Comprensión lectora", "Vocabulario y razonamiento verbal", "Mini olimpiada final"];
+
+      const state = {
+        filter: "Todos",
+        search: "",
+        done: new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"))
+      };
+
+      function saveDone() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify([...state.done]));
+      }
+
+      function normalizeText(text) {
+        return String(text || "")
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "");
+      }
+
+      function buildFilters() {
+        const container = document.getElementById("filters");
+        container.innerHTML = "";
+
+        blocks.forEach(block => {
+          const btn = document.createElement("button");
+          btn.className = "filter-btn" + (state.filter === block ? " active" : "");
+          btn.textContent = block;
+          btn.onclick = () => {
+            state.filter = block;
+            buildFilters();
+            renderTopics();
+          };
+          container.appendChild(btn);
+        });
+      }
+
+      function renderTopics() {
+        const grid = document.getElementById("topicsGrid");
+        const empty = document.getElementById("emptyMsg");
+        grid.innerHTML = "";
+
+        const query = normalizeText(state.search);
+
+        const filtered = topics.filter(t => {
+          const byBlock = state.filter === "Todos" || t.block === state.filter;
+          const haystack = normalizeText(`${t.title} ${t.desc} ${t.block} ${t.category}`);
+          const bySearch = !query || haystack.includes(query);
+          return byBlock && bySearch;
+        });
+
+        empty.style.display = filtered.length ? "none" : "block";
+
+        filtered.forEach(t => {
+          const isDone = state.done.has(t.id);
+          const card = document.createElement("article");
+          card.className = "topic-card" + (isDone ? " done" : "");
+          card.innerHTML = `
+            <div class="topic-top">
+              <div class="topic-emoji">${t.emoji}</div>
+              <div>
+                <h2 class="topic-title">${String(t.id).padStart(2, "0")}. ${t.title}</h2>
+                <p class="topic-desc">${t.desc}</p>
+              </div>
+            </div>
+
+            <div class="tag-row">
+              <span class="tag block">${t.block}</span>
+              <span class="tag">${t.category}</span>
+              <span class="tag">50 ejercicios</span>
+            </div>
+
+            <div class="topic-actions">
+              <a class="topic-link" href="${t.href}">Abrir clase</a>
+              <button class="done-btn" onclick="toggleDone(${t.id})">
+                ${isDone ? "✅ Realizado" : "Marcar realizado"}
+              </button>
+            </div>
+          `;
+          grid.appendChild(card);
+        });
+
+        updateProgress();
+      }
+
+      function toggleDone(id) {
+        if (state.done.has(id)) {
+          state.done.delete(id);
+        } else {
+          state.done.add(id);
+        }
+
+        saveDone();
+        renderTopics();
+      }
+
+      function updateProgress() {
+        const done = state.done.size;
+        const pct = Math.round(done / topics.length * 100);
+        document.getElementById("doneCount").textContent = done;
+        document.getElementById("percentText").textContent = pct + "%";
+        document.getElementById("progressBar").style.width = pct + "%";
+      }
+
+      function resetProgress() {
+        if (!confirm("¿Quieres reiniciar el progreso de los 36 temas?")) return;
+        state.done.clear();
+        saveDone();
+        renderTopics();
+      }
+
+      document.getElementById("searchInput").addEventListener("input", e => {
+        state.search = e.target.value;
+        renderTopics();
+      });
+
+      buildFilters();
+      renderTopics();
+    </script>
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("./service-worker.js").catch(() => {});
+        });
+      }
+    </script>
+  </body>
+
+</html>

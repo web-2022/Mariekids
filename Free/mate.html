@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Juego de Sumas y Restas</title>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <style>
+            body {
+                margin: 0;
+                min-height: 100vh;
+                background: linear-gradient(135deg, #93c5fd, #2563eb);
+                font-family: 'Segoe UI', sans-serif;
+                overflow-x: hidden;
+            }
+
+            .game-card {
+                max-width: 600px;
+                margin: auto;
+                border-radius: 25px;
+                background: white;
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+                padding: 25px;
+            }
+
+            .title {
+                font-weight: 800;
+                color: #1d4ed8;
+            }
+
+            .floating-area {
+                height: 230px;
+                position: relative;
+                overflow: hidden;
+                border-radius: 25px;
+                background: linear-gradient(180deg, #dbeafe, #eff6ff);
+                border: 3px solid #bfdbfe;
+                margin-bottom: 20px;
+            }
+
+            .number-box {
+                position: absolute;
+                font-size: 55px;
+                font-weight: 900;
+                color: white;
+                background: #2563eb;
+                border-radius: 25px;
+                padding: 15px 25px;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+                animation: float 3s infinite ease-in-out;
+            }
+
+            #num1 {
+                left: 15%;
+                top: 60px;
+            }
+
+            #operator {
+                left: 43%;
+                top: 80px;
+                background: #f97316;
+            }
+
+            #num2 {
+                right: 15%;
+                top: 60px;
+                background: #16a34a;
+            }
+
+            @keyframes float {
+                0% {
+                    transform: translateY(0px);
+                }
+
+                50% {
+                    transform: translateY(-25px);
+                }
+
+                100% {
+                    transform: translateY(0px);
+                }
+            }
+
+            .option-btn {
+                font-size: 28px;
+                font-weight: 800;
+                border-radius: 18px;
+                padding: 15px;
+                transition: 0.2s;
+            }
+
+            .option-btn:hover {
+                transform: scale(1.05);
+            }
+
+            .score-box {
+                font-size: 20px;
+                font-weight: bold;
+                color: #1e40af;
+            }
+
+            .message {
+                font-size: 24px;
+                font-weight: 800;
+                min-height: 35px;
+            }
+
+            .music-btn {
+                border-radius: 20px;
+                font-weight: bold;
+            }
+
+            #solutionBox {
+                background: #eff6ff;
+                border: 2px solid #bfdbfe;
+                display: none;
+            }
+
+            @media (max-width: 500px) {
+                .number-box {
+                    font-size: 38px;
+                    padding: 10px 18px;
+                }
+
+                #num1 {
+                    left: 8%;
+                }
+
+                #operator {
+                    left: 42%;
+                }
+
+                #num2 {
+                    right: 8%;
+                }
+
+                .option-btn {
+                    font-size: 23px;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <div class="container py-4">
+            <div class="game-card text-center">
+
+                <h1 class="title mb-2">🎮 Juego de Sumas y Restas</h1>
+                <p class="text-muted">Elige la respuesta correcta</p>
+
+                <div class="d-flex justify-content-between mb-3">
+                    <div class="score-box">✅ Puntos: <span id="score">0</span></div>
+                    <button class="btn btn-warning music-btn" onclick="toggleMusic()">🎵 Música</button>
+                </div>
+
+                <div class="floating-area">
+                    <div id="num1" class="number-box">5</div>
+                    <div id="operator" class="number-box">+</div>
+                    <div id="num2" class="number-box">3</div>
+                </div>
+
+                <div id="message" class="message mb-3"></div>
+
+                <div class="row g-3" id="options"></div>
+
+                <button class="btn btn-primary btn-lg mt-4 rounded-pill px-5" onclick="newQuestion()">
+                    🔄 Nueva pregunta
+                </button>
+
+                <br>
+
+                <button class="btn btn-success btn-lg mt-3 rounded-pill px-4" onclick="showSolution()">
+                    📘 Ver solución paso a paso
+                </button>
+
+                <div id="solutionBox" class="mt-3 p-3 rounded-4 text-start"></div>
+
+            </div>
+        </div>
+
+        <audio id="bgMusic" loop>
+            <source src="musica.mp3" type="audio/mpeg">
+        </audio>
+
+        <script>
+            let correctAnswer = 0;
+            let score = 0;
+            let musicPlaying = false;
+
+            const num1Box = document.getElementById("num1");
+            const num2Box = document.getElementById("num2");
+            const operatorBox = document.getElementById("operator");
+            const optionsBox = document.getElementById("options");
+            const messageBox = document.getElementById("message");
+            const scoreBox = document.getElementById("score");
+            const bgMusic = document.getElementById("bgMusic");
+
+            function newQuestion() {
+                messageBox.textContent = "";
+                document.getElementById("solutionBox").style.display = "none";
+
+                let num1 = Math.floor(Math.random() * 20) + 1;
+                let num2 = Math.floor(Math.random() * 20) + 1;
+                let operators = ["+", "-"];
+                let operator = operators[Math.floor(Math.random() * operators.length)];
+
+                if (operator === "-" && num2 > num1) {
+                    let temp = num1;
+                    num1 = num2;
+                    num2 = temp;
+                }
+
+                correctAnswer = operator === "+" ? num1 + num2 : num1 - num2;
+
+                num1Box.textContent = num1;
+                num2Box.textContent = num2;
+                operatorBox.textContent = operator;
+
+                generateOptions();
+            }
+
+            function generateOptions() {
+                optionsBox.innerHTML = "";
+
+                let options = [correctAnswer];
+
+                while (options.length < 4) {
+                    let wrong = correctAnswer + Math.floor(Math.random() * 11) - 5;
+
+                    if (wrong >= 0 && !options.includes(wrong)) {
+                        options.push(wrong);
+                    }
+                }
+
+                options.sort(() => Math.random() - 0.5);
+
+                options.forEach(option => {
+                    const col = document.createElement("div");
+                    col.className = "col-6";
+
+                    const button = document.createElement("button");
+                    button.className = "btn btn-outline-primary w-100 option-btn";
+                    button.textContent = option;
+                    button.onclick = () => checkAnswer(option);
+
+                    col.appendChild(button);
+                    optionsBox.appendChild(col);
+                });
+            }
+
+            function checkAnswer(answer) {
+                if (answer === correctAnswer) {
+                    score++;
+                    scoreBox.textContent = score;
+                    messageBox.textContent = "🎉 ¡Correcto!";
+                    messageBox.style.color = "#16a34a";
+
+                    setTimeout(newQuestion, 1000);
+                } else {
+                    messageBox.textContent = "❌ Intenta otra vez";
+                    messageBox.style.color = "#dc2626";
+                }
+            }
+
+            function crearEsferas(cantidad, color = "#2563eb") {
+                let html = `<div style="display:flex; flex-wrap:wrap; gap:8px; margin:10px 0;">`;
+
+                for (let i = 1; i <= cantidad; i++) {
+                    html += `
+      <span style="
+        width:34px;
+        height:34px;
+        border-radius:50%;
+        background:${color};
+        color:white;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-weight:bold;
+        box-shadow:0 3px 8px rgba(0,0,0,0.2);
+      ">
+        ${i}
+      </span>
+    `;
+                }
+
+                html += `</div>`;
+                return html;
+            }
+
+            function showSolution() {
+                const solutionBox = document.getElementById("solutionBox");
+
+                const n1 = Number(num1Box.textContent);
+                const n2 = Number(num2Box.textContent);
+                const op = operatorBox.textContent;
+                const total = op === "+" ? n1 + n2 : n1 - n2;
+
+                let texto = `
+    <h4>📘 Solución visual paso a paso</h4>
+    <p>Operación:</p>
+    <h3>${n1} ${op} ${n2}</h3>
+  `;
+
+                if (op === "+") {
+                    texto += `
+      <p>Primero representamos <strong>${n1}</strong> con esferas azules:</p>
+      ${crearEsferas(n1, "#2563eb")}
+
+      <p>Luego agregamos <strong>${n2}</strong> esferas verdes:</p>
+      ${crearEsferas(n2, "#16a34a")}
+
+      <p>Ahora agrupamos todo:</p>
+      ${crearEsferas(n1, "#2563eb")}
+      ${crearEsferas(n2, "#16a34a")}
+
+      <h3>${n1} + ${n2} = ${total}</h3>
+      <p>✅ La respuesta correcta es <strong>${total}</strong>.</p>
+    `;
+                } else {
+                    texto += `
+      <p>Primero representamos <strong>${n1}</strong> con esferas azules:</p>
+      ${crearEsferas(n1, "#2563eb")}
+
+      <p>Ahora quitamos <strong>${n2}</strong> esferas rojas:</p>
+      ${crearEsferas(n2, "#dc2626")}
+
+      <p>Las esferas que quedan son:</p>
+      ${crearEsferas(total, "#16a34a")}
+
+      <h3>${n1} - ${n2} = ${total}</h3>
+      <p>✅ La respuesta correcta es <strong>${total}</strong>.</p>
+    `;
+                }
+
+                solutionBox.innerHTML = texto;
+                solutionBox.style.display = "block";
+            }
+            function toggleMusic() {
+                if (!musicPlaying) {
+                    bgMusic.play();
+                    musicPlaying = true;
+                } else {
+                    bgMusic.pause();
+                    musicPlaying = false;
+                }
+            }
+
+            newQuestion();
+        </script>
+
+    </body>
+
+</html>

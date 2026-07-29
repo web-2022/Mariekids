@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>MVG | Dentro y fuera - 3 años</title>
+<meta name="theme-color" content="#0b73ff" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="icon" type="image/png" sizes="192x192" href="../../icons/icon-192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="../../icons/icon-512.png" />
+    <link rel="apple-touch-icon" href="../../icons/icon-192.png" />
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap");
+:root{--blue:#0b73ff;--sky:#12a8ff;--green:#58cc02;--yellow:#ffc800;--orange:#ff9600;--red:#ff4b4b;--purple:#8b5cf6;--pink:#ff6aa9;--ink:#183153;--muted:#6d7f96;--line:#dbe7f4;--bg:#f3f8ff}
+*{box-sizing:border-box}html{min-height:100%;background:var(--bg)}body{margin:0;min-height:100vh;overflow-x:hidden;font-family:"Nunito",Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at 10% 8%,rgba(95,212,255,.18),transparent 18%),linear-gradient(180deg,#eef7ff,#f8fbff 45%,#eef8ff)}
+button{font:inherit}button:focus-visible,a:focus-visible{outline:5px solid rgba(18,168,255,.35);outline-offset:4px}
+.hero{position:relative;min-height:168px;overflow:hidden;color:#fff;background:linear-gradient(120deg,#0b73ff,#12a8ff 58%,#5fd4ff);box-shadow:0 12px 30px rgba(11,115,255,.25)}
+.hero:before{content:"MK";position:absolute;right:5vw;top:50%;transform:translateY(-52%) rotate(-8deg);font-family:"Baloo 2";font-size:clamp(120px,18vw,230px);font-weight:800;letter-spacing:-18px;color:rgba(255,255,255,.11)}
+.header{width:min(1600px,calc(100% - 42px));min-height:168px;margin:auto;position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1fr) max-content;align-items:center;gap:30px;padding:20px 0}
+.brand{display:flex;align-items:center;gap:18px;min-width:0}.logo{width:88px;aspect-ratio:1;display:grid;place-items:center;flex:0 0 auto;border:6px solid #fff;border-radius:27px;color:#fff;text-decoration:none;font-family:"Baloo 2";font-size:40px;font-weight:800;letter-spacing:-4px;background:linear-gradient(145deg,#ff6aa9,#8b5cf6);box-shadow:0 10px 0 rgba(46,30,142,.45);transform:rotate(-4deg)}
+.brand-copy small{display:inline-block;padding:4px 12px;border-radius:999px;color:#0c5aa8;font-size:13px;letter-spacing:1.4px;background:rgba(255,255,255,.9)}.brand-copy h1{margin:2px 0 0;font-family:"Baloo 2";font-size:clamp(33px,4.8vw,59px);line-height:.98;text-shadow:0 5px 0 rgba(0,70,160,.18)}.brand-copy p{margin:5px 0 0;font-size:clamp(15px,1.8vw,21px)}
+.stats{display:grid;grid-template-columns:repeat(3,max-content);gap:10px;align-items:center}.pill,.route{min-height:50px;padding:9px 15px;display:flex;align-items:center;justify-content:center;gap:8px;border:4px solid rgba(255,255,255,.92);border-radius:999px;font-size:16px;font-weight:900;white-space:nowrap}.pill{background:rgba(10,77,171,.26);box-shadow:0 7px 0 rgba(4,64,142,.28)}.pill.score{color:#775300;background:var(--yellow);box-shadow:0 7px 0 #d9a500}.route{color:#0a5aa8;text-decoration:none;background:#fff;box-shadow:0 7px 0 rgba(4,64,142,.24)}
+.progress-top{height:14px;overflow:hidden;background:#dbefff}.progress-top span{display:block;width:0;height:100%;background:linear-gradient(90deg,#58cc02,#ffc800,#ff9600);transition:.4s}
+main{width:calc(100% - 14px);max-width:1900px;margin:auto;padding:22px 0 42px}.card{overflow:hidden;border:2px solid rgba(182,209,237,.7);border-radius:34px;background:rgba(255,255,255,.97);box-shadow:0 14px 0 rgba(21,64,118,.12),0 24px 55px rgba(32,75,128,.14)}
+.lesson-head{padding:26px 25px 17px;text-align:center}.level{width:max-content;margin:0 auto 7px;padding:7px 17px;border:4px solid #fff;border-radius:999px;color:#fff;font-size:14px;letter-spacing:1.2px;box-shadow:0 6px 0 rgba(0,0,0,.12)}.level.basic{background:var(--green)}.level.intermediate{background:var(--orange)}.level.advanced{background:var(--purple)}.lesson-head h2{margin:0;font-family:"Baloo 2";font-size:clamp(36px,5vw,60px);line-height:1}.lesson-head p{margin:7px 0 0;color:var(--muted);font-size:clamp(16px,2vw,22px)}
+.layout{padding:0 9px 28px;display:grid;grid-template-columns:minmax(0,1fr) clamp(430px,34vw,580px);gap:18px}.scene{min-height:570px;position:relative;overflow:hidden;border:7px solid #fff;border-radius:30px;background:radial-gradient(circle at 13% 12%,rgba(255,255,255,.9) 0 3%,transparent 3.5%),linear-gradient(180deg,#7edaff 0 51%,#b8ef82 51% 70%,#68cc5e 70%);box-shadow:0 12px 0 rgba(46,141,184,.2)}.scene:after{content:"";position:absolute;inset:auto 0 0;height:31%;background:radial-gradient(ellipse at 8% 100%,#39aa50 0 48%,transparent 49%),radial-gradient(ellipse at 31% 100%,#59c85c 0 52%,transparent 53%),radial-gradient(ellipse at 62% 100%,#3faf51 0 48%,transparent 49%),radial-gradient(ellipse at 92% 100%,#68cc61 0 52%,transparent 53%)}
+.deco{position:absolute;z-index:1;user-select:none}.sun{right:22px;top:15px;font-size:72px}.cloud1{left:24px;top:12px;font-size:66px}.cloud2{right:21%;top:72px;font-size:46px}.butter{left:29%;top:105px;font-size:31px}
+.scene-top{position:relative;z-index:4;min-height:145px;display:flex;align-items:flex-end;justify-content:center;gap:16px;padding:80px 18px 8px}.mascot{font-size:92px;filter:drop-shadow(0 8px 0 rgba(0,0,0,.12))}.speech{max-width:650px;padding:14px 20px;border:5px solid #fff;border-radius:23px;color:#285579;font-size:clamp(17px,2.1vw,24px);font-weight:900;text-align:center;background:rgba(255,255,255,.94);box-shadow:0 8px 0 rgba(24,103,154,.18)}
+.challenge{position:relative;z-index:5;padding:8px 20px 36px}.target{width:max-content;max-width:90%;min-width:170px;margin:0 auto 16px;padding:10px 16px;border:4px dashed rgba(11,115,255,.35);border-radius:23px;text-align:center;background:rgba(255,255,255,.9);box-shadow:0 7px 0 rgba(27,113,171,.14)}.target small{display:block;margin-bottom:6px;color:#0b73c8;letter-spacing:1px}.target-content{min-height:100px;display:grid;place-items:center}.hidden{display:none!important}
+.options{width:min(900px,100%);margin:auto;display:grid;grid-template-columns:repeat(3,minmax(135px,1fr));gap:14px}.option{min-height:155px;position:relative;display:grid;place-items:center;padding:12px;border:6px solid #fff;border-radius:27px;cursor:pointer;background:linear-gradient(145deg,#fff,#eef8ff);box-shadow:0 10px 0 #acd6ec,0 16px 24px rgba(37,94,139,.13);transition:.15s}.option:nth-child(2){background:linear-gradient(145deg,#fffdf4,#fff1b9);box-shadow:0 10px 0 #e9c95d}.option:nth-child(3){background:linear-gradient(145deg,#fff5fb,#ffd8eb);box-shadow:0 10px 0 #e9a8cb}.option:nth-child(4){background:linear-gradient(145deg,#f7f4ff,#e5dbff);box-shadow:0 10px 0 #baa7ed}.option:hover:not(:disabled){transform:translateY(-5px) scale(1.02)}.option.correct{background:linear-gradient(145deg,#eaffdf,#bff58e);box-shadow:0 10px 0 #55a929}.option.correct:after{content:"✓";position:absolute;right:7px;top:7px;width:45px;height:45px;display:grid;place-items:center;border:4px solid #fff;border-radius:50%;color:#fff;font-size:29px;background:var(--green)}.option.wrong{animation:shake .42s;background:#ffd1d1;box-shadow:0 10px 0 #d94b4b}.option:disabled{cursor:default}
+.side{display:flex;flex-direction:column;gap:15px}.panel{padding:17px;border:2px solid var(--line);border-radius:23px;background:#f9fcff;box-shadow:0 8px 0 rgba(56,104,158,.08)}.panel p{margin:0 0 10px;color:var(--muted);font-weight:900;text-align:center}.audio,.hint-btn,.next,.overlay button{width:100%;min-height:61px;border:0;border-radius:18px;color:#fff;font-size:20px;font-weight:900;cursor:pointer;background:linear-gradient(180deg,#16aaff,#087ee8);box-shadow:0 8px 0 #0865b9}.hint-panel{margin-top:13px;padding:13px;border:3px dashed #e9bd25;border-radius:17px;background:#fff}.hint-btn{color:#704c00;background:linear-gradient(180deg,#ffe56d,#ffc800);box-shadow:0 8px 0 #d6a600}.feedback{min-height:78px;display:grid;place-items:center;padding:11px;border-radius:16px;text-align:center;color:var(--muted);font-size:17px;font-weight:900;background:#edf6ff}.feedback.good{color:#24743a;background:#e8ffdb}.feedback.try{color:#973838;background:#fff0f0}.track{height:13px;overflow:hidden;border-radius:999px;background:#dce8f4}.track span{display:block;width:0;height:100%;background:linear-gradient(90deg,var(--green),var(--yellow));transition:.4s}.next-row{padding:0 24px 28px;display:flex;justify-content:center}.next{width:min(430px,100%);background:linear-gradient(180deg,#68d900,#4db700);box-shadow:0 9px 0 #379000}
+.overlay{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:18px;background:rgba(18,49,89,.58);backdrop-filter:blur(8px)}.overlay-card{width:min(610px,100%);padding:clamp(27px,5vw,46px);text-align:center;border:8px solid #fff;border-radius:37px;background:linear-gradient(145deg,#fff,#dff4ff);box-shadow:0 17px 0 rgba(8,87,169,.32),0 30px 60px rgba(7,43,93,.34)}.overlay-icon{font-size:104px}.overlay-label{width:max-content;margin:14px auto 5px;padding:6px 14px;border-radius:999px;color:#fff;background:linear-gradient(90deg,var(--pink),var(--purple))}.overlay h3{margin:0;font-family:"Baloo 2";font-size:clamp(39px,7vw,60px)}.overlay p{color:var(--muted);font-size:19px}.chips{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:0 0 22px}.chips span{padding:7px 12px;border-radius:999px;color:#fff;background:var(--green)}.chips span:nth-child(2){background:var(--orange)}.chips span:nth-child(3){background:var(--purple)}.finish-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}.finish-actions a{min-width:220px;min-height:61px;display:grid;place-items:center;border-radius:18px;color:#fff;text-decoration:none;background:linear-gradient(180deg,#68d900,#4db700);box-shadow:0 8px 0 #379000}.final-score{width:max-content;margin:0 auto 22px;padding:10px 25px;border-radius:20px;color:#fff;font-family:"Baloo 2";font-size:48px;background:linear-gradient(180deg,#8b73ff,#624fd9);box-shadow:0 8px 0 #4636ad}
+.confetti-layer{position:fixed;inset:0;z-index:130;pointer-events:none;overflow:hidden}.confetti{width:13px;height:21px;position:absolute;top:-30px;border-radius:4px;animation:fall var(--time) linear forwards}
+.emoji-view{display:inline-block;line-height:1;filter:drop-shadow(0 5px 0 rgba(0,0,0,.08))}.emoji-view.xl{font-size:82px}.emoji-view.md{font-size:58px}.emoji-view.flip{transform:scaleX(-1)}.emoji-group{max-width:230px;display:flex;align-items:center;justify-content:center;gap:3px;flex-wrap:wrap;line-height:1}.emoji-group.lg{font-size:45px}.emoji-group.sm{font-size:34px}.empty-group{min-width:120px;min-height:82px;display:grid;place-items:center;border:4px dashed #9bb8cc;border-radius:18px;color:#67809a;background:#fff}
+.number-view{display:inline-block;color:#6b4de2;font-family:"Baloo 2";font-size:88px;line-height:1;font-weight:800;text-shadow:0 5px 0 rgba(0,0,0,.1)}.number-view.mirror{transform:scaleX(-1)}.number-view.rotate{transform:rotate(180deg)}.trace-number{display:inline-block;padding:4px 22px;border:6px dashed #0b73ff;border-radius:20px;color:transparent;font-family:"Baloo 2";font-size:92px;line-height:1;-webkit-text-stroke:4px #0b73ff;background:repeating-linear-gradient(90deg,#fff,#fff 7px,#eaf6ff 7px,#eaf6ff 14px)}
+.word-view{display:inline-grid;place-items:center;min-width:118px;min-height:82px;padding:8px 13px;border-radius:20px;color:#fff;font-family:"Baloo 2";font-size:39px;background:#8b5cf6;box-shadow:0 7px 0 #6246c8}.word-view.blue{background:#168cff}.word-view.orange{background:#ff9600}
+.shape{display:inline-block;width:82px;height:82px;background:currentColor;box-shadow:inset 0 6px 0 rgba(255,255,255,.25),0 7px 0 rgba(0,0,0,.1)}.shape.sm{width:43px;height:43px}.shape.circle{border-radius:50%}.shape.square{border-radius:0;}.shape.rectangle{width:112px;height:68px;border-radius:0;}.shape.triangle{width:0;height:0;background:transparent;border-left:46px solid transparent;border-right:46px solid transparent;border-bottom:82px solid currentColor;box-shadow:none;filter:drop-shadow(0 7px 0 rgba(0,0,0,.1))}.shape.triangle.sm{border-left-width:24px;border-right-width:24px;border-bottom-width:43px}.shape.star{background:transparent;box-shadow:none}.shape.star:before{content:"★";font-size:96px;line-height:.8}.shape.star.sm:before{font-size:51px}.red{color:#ff5b5b}.blue{color:#168cff}.yellow{color:#ffc800}.green{color:#58c85b}.purple{color:#8b5cf6}.pink{color:#ff6aa9}.orange{color:#ff9600}.teal{color:#18b8aa}.brown{color:#9b6b43}.gray{color:#8796a8}
+.pattern-view{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:nowrap}.pattern-question{min-width:44px;height:44px;display:grid;place-items:center;border-radius:10px;color:#6d4d00;font-size:30px;background:#ffe56d}.sequence-view{display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap}.sequence-view b{color:#7992a9}.seq{min-width:52px;height:52px;display:grid;place-items:center;border:4px solid #fff;border-radius:14px;color:#fff;font-family:"Baloo 2";font-size:27px;background:#168cff;box-shadow:0 5px 0 #0864b4}.seq.blank{color:#765100;background:#ffc800;box-shadow:0 5px 0 #d29f00}
+.lineup,.trio{display:flex;align-items:flex-end;justify-content:center;gap:14px;font-size:66px}.trio span:nth-child(2){padding:4px 8px;border:4px dashed #ffc800;border-radius:15px}.bars-view{height:125px;display:flex;align-items:flex-end;justify-content:center;gap:12px}.bar{width:38px;border-radius:12px 12px 5px 5px;background:linear-gradient(#12a8ff,#0b73ff);box-shadow:0 6px 0 #0864b4}.length-view{min-width:170px;height:32px;display:flex;align-items:center}.length-view span{display:block;height:16px;border-radius:999px;background:currentColor;box-shadow:0 5px 0 rgba(0,0,0,.12)}.multi-length{display:grid;gap:8px}
+.scale-view{min-width:210px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:5px;font-size:54px}.scale-view b{font-size:70px}.scale-view.left-down span:first-child{transform:translateY(18px)}.scale-view.right-down span:last-child{transform:translateY(18px)}
+.compare-view{display:flex;align-items:center;justify-content:center;gap:8px}.compare-view b{color:#8b5cf6}.scene-mini{width:180px;height:112px;position:relative;margin:auto;border:6px solid #31506c;background:rgba(255,255,255,.7)}.scene-mini.box{border-radius:15px}.scene-object{position:absolute;font-size:45px}.inside-center{left:50%;top:50%;transform:translate(-50%,-50%)}.inside-left{left:20px;top:50%;transform:translateY(-50%)}.inside-right{right:20px;top:50%;transform:translateY(-50%)}.outside-right{right:-45px;top:50%;transform:translateY(-50%)}.outside-left{left:-45px;top:50%;transform:translateY(-50%)}.top-center{left:50%;top:6px;transform:translateX(-50%)}.bottom-center{left:50%;bottom:4px;transform:translateX(-50%)}
+.lr-scene{min-width:220px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;font-size:55px}.lr-scene span:first-child{text-align:right}.lr-scene span:last-child{text-align:left}.vertical-scene{min-width:150px;display:grid;justify-items:center;font-size:52px}.vertical-scene hr{width:120px;border:0;border-top:5px solid #31506c}.near-far-scene{min-width:250px;display:flex;align-items:center;font-size:50px}.near-far-scene .near{margin-left:8px}.near-far-scene .far{margin-left:auto}.grid-pos{width:150px;height:110px;position:relative;border:4px solid #31506c;border-radius:15px}.grid-pos span{position:absolute;font-size:40px}.grid-pos .tl{left:8px;top:5px}.grid-pos .tr{right:8px;top:5px}.grid-pos .bl{left:8px;bottom:5px}.grid-pos .br{right:8px;bottom:5px}.depth-view{width:170px;height:105px;position:relative}.depth-view span{position:absolute;font-size:72px}.depth-view .back{left:18px;top:0;opacity:.72;transform:scale(.82)}.depth-view .front{right:18px;bottom:0}.distance-row{min-width:255px;display:flex;align-items:center;gap:7px;font-size:48px}.distance-row i{display:block;flex:1;height:4px;background:repeating-linear-gradient(90deg,#789 0 8px,transparent 8px 16px)}
+.face-view{width:98px;height:98px;position:relative;border:5px solid #27445f;border-radius:50%;background:currentColor;box-shadow:inset 0 6px 0 rgba(255,255,255,.35),0 7px 0 rgba(0,0,0,.1)}.face-view .eye{position:absolute;top:20px;color:#27445f;font-size:24px;font-weight:900}.face-view .eye.left{left:19px}.face-view .eye.right{right:19px}.face-view .mouth{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);color:#27445f;font-size:38px}.poly{display:inline-block;width:92px;height:92px;background:currentColor;clip-path:polygon(50% 0,95% 35%,78% 100%,22% 100%,5% 35%)}.poly.hexagon{clip-path:polygon(25% 5%,75% 5%,100% 50%,75% 95%,25% 95%,0 50%)}.svg-view{width:180px;height:120px}.math-story{display:flex;align-items:center;justify-content:center;gap:10px}.math-story b{color:#8b5cf6;font-size:28px}.crossed-group{position:relative;opacity:.55}.crossed-group:after{content:"";position:absolute;left:0;right:0;top:50%;height:7px;background:#ff4b4b;transform:rotate(-14deg)}.missing-view{display:grid;justify-items:center;gap:8px}.missing-view strong{padding:5px 12px;border-radius:999px;color:#fff;background:#8b5cf6}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-10px)}50%{transform:translateX(10px)}75%{transform:translateX(-6px)}}@keyframes fall{to{transform:translate3d(var(--drift),110vh,0) rotate(760deg)}}
+@media(max-width:1120px){.header{grid-template-columns:1fr auto}.stats{grid-template-columns:repeat(2,max-content)}.stats .route{grid-column:1/-1}.layout{grid-template-columns:minmax(0,1fr) minmax(380px,480px)}.options{grid-template-columns:repeat(2,minmax(130px,1fr))}}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.side{display:grid;grid-template-columns:1fr 1fr}.side .panel:nth-child(3),.side .panel:nth-child(4){grid-column:1/-1}.header{grid-template-columns:1fr auto}.stats{grid-template-columns:1fr}.stats .route{grid-column:auto}}
+@media(max-width:680px){.hero{min-height:218px}.header{min-height:218px;display:flex;align-items:flex-start;padding-bottom:76px}.logo{width:70px;font-size:33px}.stats{position:absolute;left:0;right:0;bottom:14px;grid-template-columns:1.35fr 1fr 1fr;gap:7px}.pill,.route{min-height:42px;padding:6px 8px;font-size:12px}.layout{padding-inline:12px}.side{grid-template-columns:1fr}.side .panel:nth-child(3),.side .panel:nth-child(4){grid-column:auto}.scene{min-height:620px}.scene-top{padding-top:78px}.mascot{font-size:69px}.options{grid-template-columns:repeat(2,minmax(115px,1fr))}.option{min-height:137px}.challenge{padding-inline:8px}}
+@media(max-width:470px){.header{width:calc(100% - 16px)}.logo{width:58px;border-width:4px;font-size:28px}.brand{gap:9px}.brand-copy small{font-size:9px}.brand-copy h1{font-size:27px}.brand-copy p{font-size:12px;max-width:175px}.stats{gap:5px}.pill,.route{font-size:10px}.scene{min-height:600px;border-width:5px}.scene-top{gap:7px;padding-inline:8px}.speech{padding:11px;font-size:15px}.option{min-height:126px;border-width:4px;padding:8px}.emoji-view.xl{font-size:64px}.number-view{font-size:72px}.shape{width:67px;height:67px}.shape.rectangle{width:92px;height:56px}.shape.triangle{border-left-width:38px;border-right-width:38px;border-bottom-width:67px}.shape.star:before{font-size:78px}.pattern-view{gap:5px}.shape.sm{width:34px;height:34px}.shape.triangle.sm{border-left-width:19px;border-right-width:19px;border-bottom-width:34px}.shape.star.sm:before{font-size:41px}}
+
+/* Corrección geométrica:
+   un cuadrado y un rectángulo tienen vértices rectos. */
+.shape.square,
+.shape.rectangle {
+  border-radius: 0 !important;
+}
+
+
+/* =========================================
+   BOTÓN COMPARTIR APP
+========================================= */
+.share-btn {
+  width: 100%;
+  min-height: 61px;
+  border: 0;
+  border-radius: 18px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 900;
+  cursor: pointer;
+  background: linear-gradient(180deg, #9b6cff, #7148db);
+  box-shadow: 0 8px 0 #5132aa;
+  transition:
+    transform .15s,
+    box-shadow .15s,
+    filter .15s;
+}
+
+.share-btn:hover {
+  filter: brightness(1.06);
+  transform: translateY(-2px);
+}
+
+.share-btn:active {
+  transform: translateY(5px);
+  box-shadow: 0 3px 0 #5132aa;
+}
+
+.share-btn:disabled {
+  cursor: default;
+  opacity: .75;
+  transform: none;
+}
+
+.share-status {
+  min-height: 22px;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 900;
+  text-align: center;
+}
+
+.share-status.good {
+  color: #24743a;
+}
+
+.share-status.error {
+  color: #973838;
+}
+
+.share-panel {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 680px) {
+  .share-panel {
+    grid-column: auto;
+  }
+}
+
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="header">
+    <div class="brand">
+      <a class="logo" href="../../index.html" aria-label="Ir al menú de cursos">MVG</a>
+      <div class="brand-copy">
+        <small>3 AÑOS · MATEMÁTICAS · TEMA 11</small>
+        <h1>11. Dentro y fuera</h1>
+        <p>Reconocer objetos que están dentro o fuera de cajas, círculos y otros espacios.</p>
+      </div>
+    </div>
+    <div class="stats">
+      <a class="route" href="../ruta-mate3Y.html">🗺️ Ruta de aprendizaje</a>
+      <div class="pill"><span>📦</span><span id="exerciseText">Ejercicio 1 de 20</span></div>
+      <div class="pill score"><span>⭐</span><span id="scoreText">0 aciertos</span></div>
+    </div>
+  </div>
+</header>
+<div class="progress-top"><span id="topProgress"></span></div>
+<main>
+  <section class="card">
+    <div class="lesson-head">
+      <div class="level basic" id="levelBadge">NIVEL BÁSICO</div>
+      <h2 id="questionTitle">¡Empecemos!</h2>
+      <p id="instructionText">Observa con atención.</p>
+    </div>
+    <div class="layout">
+      <div class="scene">
+        <span class="deco cloud1">☁️</span><span class="deco cloud2">☁️</span>
+        <span class="deco sun">☀️</span><span class="deco butter">🦋</span>
+        <div class="scene-top">
+          <div class="mascot">📦</div>
+          <div class="speech" id="sceneSpeech">Observa y elige la respuesta correcta.</div>
+        </div>
+        <div class="challenge">
+          <div class="target hidden" id="targetWrap"><small>MODELO O RETO</small><div class="target-content" id="targetContent"></div></div>
+          <div class="options" id="options"></div>
+        </div>
+      </div>
+      <aside class="side">
+        <section class="panel"><p>Escucha la consigna</p><button class="audio" id="audioBtn">🔊 Escuchar</button></section>
+        <section class="panel"><button class="hint-btn" id="hintBtn">💡 Dame una pista</button><div class="hint-panel hidden" id="hintPanel"><strong>🔎 Pista</strong><p id="hintText"></p></div></section>
+        <section class="panel"><p>Responde en la escena</p><div class="feedback" id="feedback" aria-live="assertive">Toca una tarjeta.</div></section>
+        <section class="panel"><p>Tu progreso</p><div class="track"><span id="miniProgress"></span></div></section>
+      
+        <section class="panel share-panel">
+          <p>Comparte este tema</p>
+          <button
+            class="share-btn"
+            id="shareBtn"
+            type="button"
+          >📤 Compartir App</button>
+          <div
+            class="share-status"
+            id="shareStatus"
+            aria-live="polite"
+          ></div>
+        </section>
+      </aside>
+    </div>
+    <div class="next-row"><button class="next hidden" id="nextBtn">Siguiente ejercicio ➡️</button></div>
+  </section>
+</main>
+<div class="overlay" id="welcome">
+  <div class="overlay-card">
+    <div class="overlay-icon">📦</div>
+    <div class="overlay-label">MVG · 3 AÑOS</div>
+    <h3>11. Dentro y fuera</h3>
+    <p>Reconocer objetos que están dentro o fuera de cajas, círculos y otros espacios. Completa 20 retos de dificultad progresiva.</p>
+    <div class="chips"><span>Básico</span><span>Intermedio</span><span>Avanzado</span></div>
+    <button id="startBtn">▶️ Comenzar</button>
+  </div>
+</div>
+<div class="overlay hidden" id="finish">
+  <div class="overlay-card">
+    <div class="overlay-icon">🏆</div>
+    <div class="overlay-label">MVG · 3 AÑOS</div>
+    <h3>¡Terminaste!</h3>
+    <p id="finalMessage">Completaste los 20 ejercicios.</p>
+    <div class="final-score" id="finalScore">20 / 20</div>
+    <div class="finish-actions">
+      <a href="arriba-y-abajo.html">Siguiente tema ➡️</a>
+      <button id="restartBtn">🔄 Repetir</button>
+    </div>
+  </div>
+</div>
+<div class="confetti-layer" id="confetti"></div>
+<script>
+const exercises=[{"level": "Básico", "title": "¿Cuál está dentro?", "instruction": "Toca el objeto que está dentro de la caja.", "speech": "Toca el objeto que está dentro de la caja.", "hint": "Mira si el objeto está cruzando el borde o está separado de la caja.", "options": [{"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\">🐟</span></div>", "label": "objeto dentro"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object outside-right\">🐟</span></div>", "label": "objeto fuera"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\"></span></div>", "label": "espacio vacío"}], "answer": 0, "success": "¡Correcto! El objeto está dentro.", "target": null}, {"level": "Básico", "title": "¿Cuál está fuera?", "instruction": "Toca el objeto que está fuera de la caja.", "speech": "Toca el objeto que está fuera de la caja.", "hint": "Mira si el objeto está cruzando el borde o está separado de la caja.", "options": [{"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\">⚽</span></div>", "label": "objeto dentro"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object outside-right\">⚽</span></div>", "label": "objeto fuera"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\"></span></div>", "label": "espacio vacío"}], "answer": 1, "success": "¡Correcto! El objeto está fuera.", "target": null}, {"level": "Básico", "title": "¿Cuál está dentro?", "instruction": "Toca el objeto que está dentro de la caja.", "speech": "Toca el objeto que está dentro de la caja.", "hint": "Mira si el objeto está cruzando el borde o está separado de la caja.", "options": [{"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\">🍎</span></div>", "label": "objeto dentro"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object outside-right\">🍎</span></div>", "label": "objeto fuera"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\"></span></div>", "label": "espacio vacío"}], "answer": 0, "success": "¡Correcto! El objeto está dentro.", "target": null}, {"level": "Básico", "title": "¿Cuál está fuera?", "instruction": "Toca el objeto que está fuera de la caja.", "speech": "Toca el objeto que está fuera de la caja.", "hint": "Mira si el objeto está cruzando el borde o está separado de la caja.", "options": [{"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\">⭐</span></div>", "label": "objeto dentro"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object outside-right\">⭐</span></div>", "label": "objeto fuera"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\"></span></div>", "label": "espacio vacío"}], "answer": 1, "success": "¡Correcto! El objeto está fuera.", "target": null}, {"level": "Básico", "title": "¿Cuál está dentro?", "instruction": "Toca el objeto que está dentro de la caja.", "speech": "Toca el objeto que está dentro de la caja.", "hint": "Mira si el objeto está cruzando el borde o está separado de la caja.", "options": [{"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\">🐰</span></div>", "label": "objeto dentro"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object outside-right\">🐰</span></div>", "label": "objeto fuera"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\"></span></div>", "label": "espacio vacío"}], "answer": 0, "success": "¡Correcto! El objeto está dentro.", "target": null}, {"level": "Básico", "title": "¿Cuál está fuera?", "instruction": "Toca el objeto que está fuera de la caja.", "speech": "Toca el objeto que está fuera de la caja.", "hint": "Mira si el objeto está cruzando el borde o está separado de la caja.", "options": [{"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\">🐟</span></div>", "label": "objeto dentro"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object outside-right\">🐟</span></div>", "label": "objeto fuera"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\"></span></div>", "label": "espacio vacío"}], "answer": 1, "success": "¡Correcto! El objeto está fuera.", "target": null}, {"level": "Básico", "title": "¿Cuál está dentro?", "instruction": "Toca el objeto que está dentro de la caja.", "speech": "Toca el objeto que está dentro de la caja.", "hint": "Mira si el objeto está cruzando el borde o está separado de la caja.", "options": [{"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\">⚽</span></div>", "label": "objeto dentro"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object outside-right\">⚽</span></div>", "label": "objeto fuera"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\"></span></div>", "label": "espacio vacío"}], "answer": 0, "success": "¡Correcto! El objeto está dentro.", "target": null}, {"level": "Intermedio", "title": "¿Cuál está fuera?", "instruction": "Toca el objeto que está fuera de la caja.", "speech": "Toca el objeto que está fuera de la caja.", "hint": "Mira si el objeto está cruzando el borde o está separado de la caja.", "options": [{"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\">🍎</span></div>", "label": "objeto dentro"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object outside-right\">🍎</span></div>", "label": "objeto fuera"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\"></span></div>", "label": "espacio vacío"}], "answer": 1, "success": "¡Correcto! El objeto está fuera.", "target": null}, {"level": "Intermedio", "title": "¿Cuál está dentro?", "instruction": "Toca el objeto que está dentro de la caja.", "speech": "Toca el objeto que está dentro de la caja.", "hint": "Mira si el objeto está cruzando el borde o está separado de la caja.", "options": [{"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\">⭐</span></div>", "label": "objeto dentro"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object outside-right\">⭐</span></div>", "label": "objeto fuera"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\"></span></div>", "label": "espacio vacío"}], "answer": 0, "success": "¡Correcto! El objeto está dentro.", "target": null}, {"level": "Intermedio", "title": "¿Cuál está fuera?", "instruction": "Toca el objeto que está fuera de la caja.", "speech": "Toca el objeto que está fuera de la caja.", "hint": "Mira si el objeto está cruzando el borde o está separado de la caja.", "options": [{"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\">🐰</span></div>", "label": "objeto dentro"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object outside-right\">🐰</span></div>", "label": "objeto fuera"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\"></span></div>", "label": "espacio vacío"}], "answer": 1, "success": "¡Correcto! El objeto está fuera.", "target": null}, {"level": "Intermedio", "title": "¿Cuál está dentro?", "instruction": "Toca el objeto que está dentro de la caja.", "speech": "Toca el objeto que está dentro de la caja.", "hint": "Mira si el objeto está cruzando el borde o está separado de la caja.", "options": [{"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\">🐟</span></div>", "label": "objeto dentro"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object outside-right\">🐟</span></div>", "label": "objeto fuera"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\"></span></div>", "label": "espacio vacío"}], "answer": 0, "success": "¡Correcto! El objeto está dentro.", "target": null}, {"level": "Intermedio", "title": "¿Cuál está fuera?", "instruction": "Toca el objeto que está fuera de la caja.", "speech": "Toca el objeto que está fuera de la caja.", "hint": "Mira si el objeto está cruzando el borde o está separado de la caja.", "options": [{"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\">⚽</span></div>", "label": "objeto dentro"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object outside-right\">⚽</span></div>", "label": "objeto fuera"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\"></span></div>", "label": "espacio vacío"}], "answer": 1, "success": "¡Correcto! El objeto está fuera.", "target": null}, {"level": "Intermedio", "title": "¿Cuál está dentro?", "instruction": "Toca el objeto que está dentro de la caja.", "speech": "Toca el objeto que está dentro de la caja.", "hint": "Mira si el objeto está cruzando el borde o está separado de la caja.", "options": [{"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\">🍎</span></div>", "label": "objeto dentro"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object outside-right\">🍎</span></div>", "label": "objeto fuera"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\"></span></div>", "label": "espacio vacío"}], "answer": 0, "success": "¡Correcto! El objeto está dentro.", "target": null}, {"level": "Intermedio", "title": "¿Cuál está fuera?", "instruction": "Toca el objeto que está fuera de la caja.", "speech": "Toca el objeto que está fuera de la caja.", "hint": "Mira si el objeto está cruzando el borde o está separado de la caja.", "options": [{"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\">⭐</span></div>", "label": "objeto dentro"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object outside-right\">⭐</span></div>", "label": "objeto fuera"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\"></span></div>", "label": "espacio vacío"}], "answer": 1, "success": "¡Correcto! El objeto está fuera.", "target": null}, {"level": "Avanzado", "title": "Dentro y fuera", "instruction": "Busca la escena con dos objetos dentro.", "speech": "Busca la escena con dos objetos dentro.", "hint": "Mira el borde de la caja y la posición de cada objeto.", "options": [{"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\">🐟</span><span class=\"scene-object outside-right\">🐠</span></div>", "label": "uno dentro y uno fuera"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object outside-left\">🐟</span><span class=\"scene-object outside-right\">🐠</span></div>", "label": "dos fuera"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\">🐠</span><span class=\"scene-object inside-left\">🐟</span></div>", "label": "dos dentro"}], "answer": 2, "success": "¡Excelente! Interpretaste correctamente la posición.", "target": null}, {"level": "Avanzado", "title": "Dentro y fuera", "instruction": "Busca la escena con uno dentro y uno fuera.", "speech": "Busca la escena con uno dentro y uno fuera.", "hint": "Mira el borde de la caja y la posición de cada objeto.", "options": [{"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\">🐟</span><span class=\"scene-object outside-right\">🐠</span></div>", "label": "uno dentro y uno fuera"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object outside-left\">🐟</span><span class=\"scene-object outside-right\">🐠</span></div>", "label": "dos fuera"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\">🐠</span><span class=\"scene-object inside-left\">🐟</span></div>", "label": "dos dentro"}], "answer": 0, "success": "¡Excelente! Interpretaste correctamente la posición.", "target": null}, {"level": "Avanzado", "title": "Dentro y fuera", "instruction": "Busca la escena con dos objetos fuera.", "speech": "Busca la escena con dos objetos fuera.", "hint": "Mira el borde de la caja y la posición de cada objeto.", "options": [{"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\">🐟</span><span class=\"scene-object outside-right\">🐠</span></div>", "label": "uno dentro y uno fuera"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object outside-left\">🐟</span><span class=\"scene-object outside-right\">🐠</span></div>", "label": "dos fuera"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\">🐠</span><span class=\"scene-object inside-left\">🐟</span></div>", "label": "dos dentro"}], "answer": 1, "success": "¡Excelente! Interpretaste correctamente la posición.", "target": null}, {"level": "Avanzado", "title": "Dentro y fuera", "instruction": "Busca la escena con dos objetos dentro.", "speech": "Busca la escena con dos objetos dentro.", "hint": "Mira el borde de la caja y la posición de cada objeto.", "options": [{"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\">🐟</span><span class=\"scene-object outside-right\">🐠</span></div>", "label": "uno dentro y uno fuera"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object outside-left\">🐟</span><span class=\"scene-object outside-right\">🐠</span></div>", "label": "dos fuera"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\">🐠</span><span class=\"scene-object inside-left\">🐟</span></div>", "label": "dos dentro"}], "answer": 2, "success": "¡Excelente! Interpretaste correctamente la posición.", "target": null}, {"level": "Avanzado", "title": "Dentro y fuera", "instruction": "Busca la escena con uno dentro y uno fuera.", "speech": "Busca la escena con uno dentro y uno fuera.", "hint": "Mira el borde de la caja y la posición de cada objeto.", "options": [{"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\">🐟</span><span class=\"scene-object outside-right\">🐠</span></div>", "label": "uno dentro y uno fuera"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object outside-left\">🐟</span><span class=\"scene-object outside-right\">🐠</span></div>", "label": "dos fuera"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\">🐠</span><span class=\"scene-object inside-left\">🐟</span></div>", "label": "dos dentro"}], "answer": 0, "success": "¡Excelente! Interpretaste correctamente la posición.", "target": null}, {"level": "Avanzado", "title": "Dentro y fuera", "instruction": "Busca la escena con dos objetos fuera.", "speech": "Busca la escena con dos objetos fuera.", "hint": "Mira el borde de la caja y la posición de cada objeto.", "options": [{"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\">🐟</span><span class=\"scene-object outside-right\">🐠</span></div>", "label": "uno dentro y uno fuera"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object outside-left\">🐟</span><span class=\"scene-object outside-right\">🐠</span></div>", "label": "dos fuera"}, {"view": "<div class=\"scene-mini box\"><span class=\"scene-object inside-center\">🐠</span><span class=\"scene-object inside-left\">🐟</span></div>", "label": "dos dentro"}], "answer": 1, "success": "¡Excelente! Interpretaste correctamente la posición.", "target": null}];
+const state={index:0,score:0,answered:false};
+const $=id=>document.getElementById(id);
+const el={exerciseText:$("exerciseText"),scoreText:$("scoreText"),top:$("topProgress"),mini:$("miniProgress"),level:$("levelBadge"),title:$("questionTitle"),instruction:$("instructionText"),speech:$("sceneSpeech"),targetWrap:$("targetWrap"),target:$("targetContent"),options:$("options"),feedback:$("feedback"),next:$("nextBtn"),hintBtn:$("hintBtn"),hintPanel:$("hintPanel"),hintText:$("hintText"),welcome:$("welcome"),finish:$("finish"),finalScore:$("finalScore"),finalMessage:$("finalMessage"),confetti:$("confetti")};
+function current(){return exercises[state.index]}
+function levelClass(v){return v==="Intermedio"?"intermediate":v==="Avanzado"?"advanced":"basic"}
+function stopSpeech(){if("speechSynthesis" in window) speechSynthesis.cancel()}
+function speak(text){if(!("speechSynthesis" in window))return;stopSpeech();const u=new SpeechSynthesisUtterance(text);u.lang="es-PE";u.rate=.76;u.pitch=1.08;const vs=speechSynthesis.getVoices();u.voice=vs.find(v=>v.lang.toLowerCase()==="es-pe")||vs.find(v=>v.lang.toLowerCase().startsWith("es"))||null;speechSynthesis.speak(u)}
+function update(){
+ const e=current(),n=state.index+1,p=n/exercises.length*100;
+ el.exerciseText.textContent=`Ejercicio ${n} de ${exercises.length}`;
+ el.scoreText.textContent=`${state.score} ${state.score===1?"acierto":"aciertos"}`;
+ el.top.style.width=p+"%";el.mini.style.width=p+"%";
+ el.level.textContent="NIVEL "+e.level.toUpperCase();el.level.className="level "+levelClass(e.level);
+ el.title.textContent=e.title;el.instruction.textContent=e.instruction;el.speech.textContent=e.speech;
+}
+function render(){
+ stopSpeech();state.answered=false;const e=current();update();
+ el.options.innerHTML="";el.feedback.className="feedback";el.feedback.textContent="Observa y toca tu respuesta.";
+ el.next.classList.add("hidden");el.next.textContent=state.index===exercises.length-1?"Ver resultado 🏆":"Siguiente ejercicio ➡️";
+ el.hintPanel.classList.add("hidden");el.hintBtn.textContent="💡 Dame una pista";
+ if(e.target){el.targetWrap.classList.remove("hidden");el.target.innerHTML=e.target}else{el.targetWrap.classList.add("hidden");el.target.innerHTML=""}
+ e.options.forEach((o,i)=>{const b=document.createElement("button");b.className="option";b.type="button";b.setAttribute("aria-label",`Opción ${i+1}: ${o.label}`);b.innerHTML=o.view;b.onclick=()=>check(i,b);el.options.appendChild(b)});
+ setTimeout(()=>speak(`Ejercicio ${state.index+1}. ${e.speech}`),350);
+}
+function check(i,b){
+ if(state.answered)return;const e=current();
+ if(i===e.answer){state.answered=true;state.score++;b.classList.add("correct");[...el.options.children].forEach(x=>x.disabled=true);el.feedback.className="feedback good";el.feedback.textContent=e.success;el.next.classList.remove("hidden");update();celebrate(38);speak(e.success)}
+ else{b.classList.add("wrong");el.feedback.className="feedback try";el.feedback.textContent="Casi. Observa nuevamente e intenta otra vez.";speak("Casi. Observa nuevamente e intenta otra vez.");setTimeout(()=>b.classList.remove("wrong"),520)}
+}
+function celebrate(n){
+ const colors=["#ff5f8f","#ffc800","#58cc02","#12a8ff","#8b5cf6","#ff9600"];
+ for(let i=0;i<n;i++){const c=document.createElement("span");c.className="confetti";c.style.left=Math.random()*100+"%";c.style.background=colors[Math.floor(Math.random()*colors.length)];c.style.setProperty("--drift",(Math.random()*240-120)+"px");c.style.setProperty("--time",(1.8+Math.random()*1.5)+"s");el.confetti.appendChild(c);setTimeout(()=>c.remove(),3600)}
+}
+$("audioBtn").onclick=()=>speak(`Ejercicio ${state.index+1}. ${current().speech}`);
+el.hintBtn.onclick=()=>{const open=el.hintPanel.classList.contains("hidden");if(open){el.hintText.textContent=current().hint;el.hintPanel.classList.remove("hidden");el.hintBtn.textContent="🙈 Ocultar pista";speak("Pista. "+current().hint)}else{el.hintPanel.classList.add("hidden");el.hintBtn.textContent="💡 Dame una pista"}};
+el.next.onclick=()=>{if(state.index===exercises.length-1)finish();else{state.index++;render()}};
+$("startBtn").onclick=()=>{el.welcome.classList.add("hidden");render()};
+$("restartBtn").onclick=()=>{state.index=0;state.score=0;state.answered=false;el.finish.classList.add("hidden");render()};
+function finish(){
+ stopSpeech();el.finalScore.textContent=`${state.score} / ${exercises.length}`;
+ el.finalMessage.textContent=state.score===exercises.length?"¡Excelente! Resolviste todos los retos.":state.score>=15?"¡Muy bien! Lograste un gran resultado.":"¡Buen trabajo! Repite el tema para seguir aprendiendo.";
+ try{localStorage.setItem("mk_topic_dentro-y-fuera_complete","true")}catch(err){console.info(err)}
+ el.finish.classList.remove("hidden");celebrate(100);speak(`Terminaste con ${state.score} aciertos de ${exercises.length}.`);
+}
+window.addEventListener("beforeunload",stopSpeech);
+</script>
+<script>
+      // Registrar Service Worker (PWA)
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", async () => {
+          try {
+            const registration = await navigator.serviceWorker.register(
+              "../../service-worker.js"
+            );
+
+            console.info(
+              "Service Worker registrado correctamente:",
+              registration.scope
+            );
+
+            registration.addEventListener("updatefound", () => {
+              const worker = registration.installing;
+
+              if (!worker) return;
+
+              worker.addEventListener("statechange", () => {
+                if (
+                  worker.state === "installed" &&
+                  navigator.serviceWorker.controller
+                ) {
+                  console.info(
+                    "Hay una nueva versión de Marie Kids disponible."
+                  );
+                }
+              });
+            });
+          } catch (error) {
+            console.error(
+              "No se pudo registrar el Service Worker:",
+              error
+            );
+          }
+        });
+      }
+    </script>
+<script>
+  // Compartir el tema actual o copiar su enlace.
+  (() => {
+    const shareButton = document.getElementById("shareBtn");
+    const shareStatus = document.getElementById("shareStatus");
+
+    if (!shareButton || !shareStatus) return;
+
+    function setShareStatus(message, type = "") {
+      shareStatus.textContent = message;
+      shareStatus.className =
+        "share-status" + (type ? ` ${type}` : "");
+
+      clearTimeout(setShareStatus.timer);
+
+      setShareStatus.timer = setTimeout(() => {
+        shareStatus.textContent = "";
+        shareStatus.className = "share-status";
+      }, 3500);
+    }
+
+    async function copyShareLink(url) {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(url);
+        return;
+      }
+
+      const textArea = document.createElement("textarea");
+
+      textArea.value = url;
+      textArea.setAttribute("readonly", "");
+      textArea.style.position = "fixed";
+      textArea.style.left = "-9999px";
+
+      document.body.appendChild(textArea);
+      textArea.select();
+
+      const copied = document.execCommand("copy");
+
+      textArea.remove();
+
+      if (!copied) {
+        throw new Error("No se pudo copiar el enlace.");
+      }
+    }
+
+    async function sharePage() {
+      const topicTitle =
+        document.querySelector(".brand-copy h1")
+          ?.textContent
+          ?.trim()
+        || document.title;
+
+      const topicDescription =
+        document.querySelector(".brand-copy p")
+          ?.textContent
+          ?.trim()
+        || "Aprende matemáticas con MVG.";
+
+      const shareData = {
+        title: document.title,
+        text: `${topicTitle}. ${topicDescription}`,
+        url: window.location.href
+      };
+
+      shareButton.disabled = true;
+      shareButton.textContent = "⏳ Preparando...";
+
+      try {
+        if (typeof navigator.share === "function") {
+          await navigator.share(shareData);
+
+          setShareStatus(
+            "¡Tema compartido correctamente!",
+            "good"
+          );
+        } else {
+          await copyShareLink(shareData.url);
+
+          setShareStatus(
+            "¡Enlace copiado! Ya puedes compartirlo.",
+            "good"
+          );
+        }
+      } catch (error) {
+        if (error && error.name === "AbortError") {
+          setShareStatus(
+            "Se canceló la acción de compartir."
+          );
+        } else {
+          try {
+            await copyShareLink(shareData.url);
+
+            setShareStatus(
+              "¡Enlace copiado! Ya puedes compartirlo.",
+              "good"
+            );
+          } catch (copyError) {
+            console.error(
+              "No se pudo compartir el tema:",
+              copyError
+            );
+
+            setShareStatus(
+              "No se pudo compartir. Inténtalo nuevamente.",
+              "error"
+            );
+          }
+        }
+      } finally {
+        shareButton.disabled = false;
+        shareButton.textContent = "📤 Compartir App";
+      }
+    }
+
+    shareButton.addEventListener("click", sharePage);
+  })();
+</script>
+</body>
+</html>

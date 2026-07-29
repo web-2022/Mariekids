@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marie Kids • El Unicornio y la Nube Triste</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+
+
+    <meta name="theme-color" content="#1976d2">
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1976d2">
+
+    <style>
+      :root {
+        --bg1: #dbeafe;
+        --bg2: #e0f2fe;
+        --card: #ffffff;
+        --accent: #1976d2;
+        --text: #0f172a;
+        --muted: #475569;
+        --radius: 22px;
+      }
+
+      * {
+        box-sizing: border-box;
+        font-family: "Comic Neue", "Segoe UI", system-ui, sans-serif;
+      }
+
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: linear-gradient(145deg, var(--bg1), var(--bg2));
+        padding: 18px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .app {
+        width: 100%;
+        max-width: 560px;
+      }
+
+      /* ===== ENCABEZADO MK ===== */
+      header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 18px;
+        background: #fff;
+        border-radius: var(--radius);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, .12);
+        margin-bottom: 18px;
+      }
+
+      .backBtn {
+        margin-left: auto;
+        /* empuja a la derecha */
+        background: #f59e0b;
+        color: #fff;
+        text-decoration: none;
+        padding: 8px 16px;
+        font-size: 14px;
+        border-radius: 999px;
+        font-weight: 600;
+        box-shadow: 0 6px 14px rgba(245, 158, 11, .35);
+      }
+
+      .backBtn:active {
+        transform: scale(.96);
+      }
+
+
+      .logo {
+        font-size: 28px;
+      }
+
+      .brand h1 {
+        margin: 0;
+        font-size: 18px;
+        color: var(--accent);
+      }
+
+      .brand span {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      /* ===== SCENE CARD ===== */
+      .scene-card {
+        background: var(--card);
+        border-radius: var(--radius);
+        padding: 10px;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, .14);
+        display: none;
+        animation: fade .4s ease;
+      }
+
+      .scene-card.active {
+        display: block;
+      }
+
+      @keyframes fade {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .scene-card h2 {
+        text-align: center;
+        margin-bottom: 12px;
+        font-size: 28px;
+      }
+
+      .scene-card h3 {
+        font-size: 20px;
+        color: var(--accent);
+        margin-bottom: 10px;
+      }
+
+      .scene-card p {
+        font-size: 20px;
+        /* antes 15px */
+        line-height: 1.9;
+        /* más aire para leer */
+        margin: 10px 0;
+        color: var(--text);
+      }
+
+
+      .dialogue {
+        margin-left: 12px;
+        padding-left: 12px;
+        border-left: 4px solid #bfdbfe;
+        font-style: italic;
+        color: #1e3a8a;
+        font-size: 20px;
+        /* grande */
+      }
+
+
+      .scene-img {
+        width: 100%;
+        max-height: 260px;
+        object-fit: contain;
+        border-radius: 16px;
+        margin-bottom: 14px;
+        background: #f8fafc;
+      }
+
+      /* ===== BOTONES ===== */
+      .actions {
+        margin-top: 18px;
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+      }
+
+      button {
+        background: var(--accent);
+        color: #fff;
+        border: none;
+        padding: 16px 26px;
+        /* más grandes */
+        font-size: 18px;
+        /* antes 15px */
+        border-radius: 999px;
+        cursor: pointer;
+        box-shadow: 0 8px 20px rgba(25, 118, 210, .35);
+      }
+
+
+      button.secondary {
+        background: #94a3b8;
+        box-shadow: none;
+      }
+
+      button:disabled {
+        opacity: .4;
+        cursor: not-allowed;
+      }
+
+      button:active {
+        transform: scale(.96);
+      }
+
+      .readBtn {
+        background: #22c55e;
+        color: #fff;
+        border: none;
+        padding: 10px 18px;
+        font-size: 16px;
+        border-radius: 999px;
+        margin-bottom: 8px;
+        cursor: pointer;
+        box-shadow: 0 6px 14px rgba(34, 197, 94, .35);
+      }
+
+      .readBtn:active {
+        transform: scale(.95);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="app">
+
+      <!-- ENCABEZADO -->
+      <header>
+        <div class="logo">🐢</div>
+
+        <div class="brand">
+          <h1>Marie Kids</h1>
+          <span>Cuentos con valores</span>
+        </div>
+
+        <!-- BOTÓN VOLVER -->
+        <a href="ruta-cuentos.html" class="backBtn">📚 Volver</a>
+      </header>
+
+
+      <!-- ESCENA 1 -->
+      <div class="scene-card active">
+        <h2>🌈 La tortuga y el Grillo</h2>
+        <img src="Cuentos/c25-1.png" class="scene-img">
+        <!-- <h3>Lía en el valle de flores</h3> -->
+        <button class="readBtn">🔊 Leer</button>
+
+        <p>
+          En un valle lleno de flores brillantes vivía Lía, una unicornio blanca y bondadosa.
+          Su cuerno brillaba como la luna, y le gustaba pasear ayudando a todos.
+        </p>
+      </div>
+
+      <!-- ESCENA 2 -->
+      <div class="scene-card">
+        <img src="Cuentos/c25-2.png" class="scene-img">
+        <!-- <h3>La nube triste flotando bajito</h3> -->
+        <button class="readBtn">🔊 Leer</button>
+
+        <p>
+          Un día, Lía vio una nube pequeña y gris, llamada Nubita. Ella, estaba flotando muy bajito.
+          La nube parecía triste y cansada.
+        </p>
+        <p class="dialogue">—¿Por qué estás tan bajita y triste?, preguntó Lía</p>
+      </div>
+
+      <!-- ESCENA 3 -->
+      <div class="scene-card">
+        <img src="Cuentos/c25-3.png" class="scene-img">
+        <!-- <h3>Lía tocando la nube con su cuerno</h3> -->
+        <button class="readBtn">🔊 Leer</button>
+
+        <p class="dialogue">—Nubita, respondió: los otros dicen que no sirvo para nada…</p>
+        <p class="dialogue">—Lía, le dijo: cada ser tiene un brillo especial, no estes triste.</p>
+      </div>
+
+      <!-- ESCENA 4 -->
+      <div class="scene-card">
+        <img src="Cuentos/c25-4.png" class="scene-img">
+        <!-- <h3>La gotita cayendo</h3> -->
+        <button class="readBtn">🔊 Leer</button>
+
+        <p>
+          Nubita suspiró… y una pequeña gotita cayó suavemente sobre una plantita de hojas amarrillas y secas.
+        </p>
+      </div>
+
+      <!-- ESCENA 5 -->
+      <div class="scene-card">
+        <img src="Cuentos/c25-5.png" class="scene-img">
+        <!-- <h3>La flor reviviendo</h3> -->
+        <button class="readBtn">🔊 Leer</button>
+
+        <p>
+          ¡La flor volvió a levantarse, llena de vida y color!
+        </p>
+        <p class="dialogue">—¡Le devolviste vida, dijo Lía!</p>
+      </div>
+
+      <!-- ESCENA 6 -->
+      <div class="scene-card">
+        <img src="Cuentos/c25-6.png" class="scene-img">
+        <!-- <h3>Lía y Nubita ayudando juntas</h3> -->
+        <button class="readBtn">🔊 Leer</button>
+
+        <p class="dialogue">—¿De verdad sirvo para algo?, comentó Nubita con un tono muy bajito</p>
+        <p class="dialogue">—No importa el tamaño de tu nube, le respondió Lía.</p>
+      </div>
+
+      <!-- FINAL -->
+      <div class="scene-card">
+        <h3>✨ Final y moraleja</h3>
+        <button class="readBtn">🔊 Leer</button>
+
+        <p class="dialogue">
+          —Las cosas pequeñas, cuando se hacen con amor, se vuelven gigantes.
+        </p>
+        <p>
+          No necesitas ser grande para hacer grandes cosas.
+        </p>
+      </div>
+
+      <!-- BOTONES -->
+      <div class="actions">
+        <button id="prevBtn" class="secondary" disabled>⬅ Anterior</button>
+        <button id="nextBtn">Siguiente ➡</button>
+      </div>
+
+    </div>
+
+    <script>
+      const scenes = document.querySelectorAll(".scene-card");
+      const nextBtn = document.getElementById("nextBtn");
+      const prevBtn = document.getElementById("prevBtn");
+      let index = 0;
+
+      function updateView() {
+        scenes.forEach(s => s.classList.remove("active"));
+        scenes[index].classList.add("active");
+
+        prevBtn.disabled = index === 0;
+
+        if (index === scenes.length - 1) {
+          nextBtn.textContent = "Finalizar ✨";
+        } else {
+          nextBtn.textContent = "Siguiente ➡";
+        }
+      }
+
+      nextBtn.addEventListener("click", () => {
+        if (index < scenes.length - 1) {
+          index++;
+          updateView();
+        } else {
+          nextBtn.style.display = "none";
+        }
+      });
+
+      prevBtn.addEventListener("click", () => {
+        if (index > 0) {
+          index--;
+          updateView();
+        }
+      });
+    </script>
+
+    <script>
+      // Registrar Service Worker (PWA)
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("./service-worker.js").catch(() => { });
+        });
+      }
+    </script>
+
+    <script>
+      const synth = window.speechSynthesis;
+      let voices = [];
+
+      function loadVoices() {
+        voices = synth.getVoices();
+      }
+
+      loadVoices();
+      if (speechSynthesis.onvoiceschanged !== undefined) {
+        speechSynthesis.onvoiceschanged = loadVoices;
+      }
+
+      function getPeruFemale() {
+        // Prioriza español de Latinoamérica
+        return voices.find(v =>
+          v.lang.startsWith("es") &&
+          (v.name.toLowerCase().includes("female") ||
+            v.name.toLowerCase().includes("mujer") ||
+            v.name.toLowerCase().includes("google") ||
+            v.name.toLowerCase().includes("spanish"))
+        ) || voices.find(v => v.lang.startsWith("es"));
+      }
+
+      document.querySelectorAll(".readBtn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          synth.cancel();
+
+          const card = btn.closest(".scene-card");
+          const text = [...card.querySelectorAll("p, .dialogue")]
+            .map(el => el.innerText)
+            .join(" ");
+
+          const utter = new SpeechSynthesisUtterance(text);
+          const voice = getPeruFemale();
+          if (voice) utter.voice = voice;
+
+          utter.lang = "es-PE";
+          utter.rate = 0.9;   // suave
+          utter.pitch = 1.1; // femenina
+
+          synth.speak(utter);
+        });
+      });
+    </script>
+
+  </body>
+
+</html>

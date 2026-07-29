@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Posición de Ajedrez</title>
+<style>
+  body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background:#f3f4f6;
+  }
+
+  .board{
+    display:grid;
+    grid-template-columns:repeat(8,70px);
+    grid-template-rows:repeat(8,70px);
+    border:4px solid #111;
+  }
+
+  .square{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:42px;
+    font-family:"Segoe UI Symbol", "Arial Unicode MS", sans-serif;
+  }
+
+  .light{ background:#f8f8f8; }
+  .dark{ background:#999; }
+</style>
+</head>
+<body>
+
+<div class="board">
+
+  <!-- 8: a8-h8 -->
+  <div class="square light">♜</div>
+  <div class="square dark"></div>
+  <div class="square light">♝</div>
+  <div class="square dark"></div>
+  <div class="square light"></div>
+  <div class="square dark">♜</div>
+  <div class="square light">♚</div>
+  <div class="square dark"></div>
+
+  <!-- 7 -->
+  <div class="square dark">♝</div>
+  <div class="square light">♟</div>
+  <div class="square dark"></div>
+  <div class="square light">♟</div>
+  <div class="square dark"></div>
+  <div class="square light">♟</div>
+  <div class="square dark">♝</div>
+  <div class="square light"></div>
+
+  <!-- 6 -->
+  <div class="square light"></div>
+  <div class="square dark">♛</div>
+  <div class="square light"></div>
+  <div class="square dark">♟</div>
+  <div class="square light"></div>
+  <div class="square dark"></div>
+  <div class="square light">♗</div>
+  <div class="square dark"></div>
+
+  <!-- 5 -->
+  <div class="square dark">♞</div>
+  <div class="square light"></div>
+  <div class="square dark">♛</div>
+  <div class="square light">♕</div>
+  <div class="square dark"></div>
+  <div class="square light"></div>
+  <div class="square dark">♟</div>
+  <div class="square light"></div>
+
+  <!-- 4 -->
+  <div class="square light"></div>
+  <div class="square dark"></div>
+  <div class="square light"></div>
+  <div class="square dark"></div>
+  <div class="square light"></div>
+  <div class="square dark"></div>
+  <div class="square light"></div>
+  <div class="square dark"></div>
+
+  <!-- 3 -->
+  <div class="square dark"></div>
+  <div class="square light"></div>
+  <div class="square dark"></div>
+  <div class="square light"></div>
+  <div class="square dark"></div>
+  <div class="square light">♘</div>
+  <div class="square dark"></div>
+  <div class="square light"></div>
+
+  <!-- 2 -->
+  <div class="square light">♗</div>
+  <div class="square dark"></div>
+  <div class="square light"></div>
+  <div class="square dark"></div>
+  <div class="square light">♖</div>
+  <div class="square dark">♗</div>
+  <div class="square light">♙</div>
+  <div class="square dark">♖</div>
+
+  <!-- 1 -->
+  <div class="square dark"></div>
+  <div class="square light"></div>
+  <div class="square dark"></div>
+  <div class="square light"></div>
+  <div class="square dark">♖</div>
+  <div class="square light"></div>
+  <div class="square dark">♔</div>
+  <div class="square light"></div>
+
+</div>
+
+</body>
+</html>

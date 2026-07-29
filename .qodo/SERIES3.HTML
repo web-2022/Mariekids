@@ -1,0 +1,1722 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0f8cff" />
+  <title>Marie Kids MK | Series numéricas</title>
+
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap");
+
+    :root {
+      --blue-1: #0b73ff;
+      --blue-2: #12a8ff;
+      --blue-3: #5fd4ff;
+      --green: #58cc02;
+      --green-dark: #3ea300;
+      --yellow: #ffc800;
+      --orange: #ff9600;
+      --red: #ff4b4b;
+      --purple: #8b5cf6;
+      --pink: #ff6aa9;
+      --ink: #183153;
+      --muted: #6d7f96;
+      --panel: #ffffff;
+      --bg: #f3f8ff;
+      --line: #dbe7f4;
+      --shadow: 0 14px 0 rgba(21, 64, 118, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-height: 100%;
+      background: var(--bg);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-family: "Nunito", Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 8%, rgba(95, 212, 255, 0.18), transparent 18%),
+        radial-gradient(circle at 90% 20%, rgba(139, 92, 246, 0.10), transparent 18%),
+        linear-gradient(180deg, #eef7ff 0%, #f8fbff 45%, #eef8ff 100%);
+    }
+
+    button {
+      font: inherit;
+    }
+
+    button:focus-visible {
+      outline: 5px solid rgba(18, 168, 255, 0.35);
+      outline-offset: 4px;
+    }
+
+    .app {
+      min-height: 100vh;
+    }
+
+    /* ENCABEZADO */
+    .hero-header {
+      position: relative;
+      min-height: 172px;
+      overflow: hidden;
+      color: #ffffff;
+      background:
+        linear-gradient(115deg, rgba(255, 255, 255, 0.07), transparent 45%),
+        linear-gradient(120deg, var(--blue-1), var(--blue-2) 58%, var(--blue-3));
+      box-shadow: 0 12px 30px rgba(11, 115, 255, 0.25);
+    }
+
+    .hero-header::before {
+      content: "MK";
+      position: absolute;
+      right: clamp(20px, 5vw, 90px);
+      top: 50%;
+      transform: translateY(-52%) rotate(-8deg);
+      font-family: "Baloo 2", sans-serif;
+      font-size: clamp(120px, 18vw, 240px);
+      font-weight: 800;
+      letter-spacing: -18px;
+      color: rgba(255, 255, 255, 0.11);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .hero-header::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 18% 25%, rgba(255,255,255,.14) 0 3%, transparent 3.5%),
+        radial-gradient(circle at 35% 70%, rgba(255,255,255,.10) 0 2%, transparent 2.5%),
+        radial-gradient(circle at 72% 24%, rgba(255,255,255,.10) 0 2.5%, transparent 3%);
+      pointer-events: none;
+    }
+
+    .header-inner {
+      width: min(1220px, calc(100% - 28px));
+      min-height: 172px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+      padding: 22px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 17px;
+    }
+
+    .logo-box {
+      width: 92px;
+      aspect-ratio: 1;
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      border: 6px solid rgba(255,255,255,.96);
+      border-radius: 28px;
+      font-family: "Baloo 2", sans-serif;
+      font-size: 42px;
+      font-weight: 800;
+      letter-spacing: -4px;
+      background: linear-gradient(145deg, #ff6aa9, #8b5cf6);
+      box-shadow:
+        0 10px 0 rgba(46, 30, 142, 0.45),
+        0 18px 28px rgba(0, 51, 139, 0.26);
+      transform: rotate(-4deg);
+    }
+
+    .brand-copy {
+      display: grid;
+      gap: 2px;
+    }
+
+    .brand-copy small {
+      width: fit-content;
+      padding: 4px 12px;
+      border-radius: 999px;
+      color: #0c5aa8;
+      font-size: 13px;
+      letter-spacing: 1.4px;
+      font-weight: 900;
+      background: rgba(255,255,255,.9);
+    }
+
+    .brand-copy h1 {
+      margin: 0;
+      font-family: "Baloo 2", sans-serif;
+      font-size: clamp(34px, 5vw, 62px);
+      line-height: 0.98;
+      text-shadow: 0 5px 0 rgba(0, 70, 160, .18);
+    }
+
+    .brand-copy p {
+      margin: 4px 0 0;
+      font-size: clamp(16px, 2vw, 23px);
+      font-weight: 900;
+      opacity: .96;
+    }
+
+    .header-stats {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .stat-pill {
+      min-height: 52px;
+      padding: 9px 17px;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      border: 4px solid rgba(255,255,255,.92);
+      border-radius: 999px;
+      color: #ffffff;
+      font-size: 17px;
+      font-weight: 900;
+      background: rgba(10, 77, 171, 0.26);
+      box-shadow: 0 7px 0 rgba(4, 64, 142, 0.28);
+      backdrop-filter: blur(6px);
+    }
+
+    .stat-pill.score {
+      color: #775300;
+      background: var(--yellow);
+      box-shadow: 0 7px 0 #d9a500;
+    }
+
+    .top-progress {
+      width: 100%;
+      height: 14px;
+      overflow: hidden;
+      background: #dbefff;
+      box-shadow: inset 0 2px 6px rgba(24, 49, 83, 0.13);
+    }
+
+    .top-progress-fill {
+      width: 5%;
+      height: 100%;
+      border-radius: 0 999px 999px 0;
+      background: linear-gradient(90deg, #58cc02, #ffc800, #ff9600);
+      transition: width .45s ease;
+    }
+
+    /* CONTENIDO */
+    .main-content {
+      width: min(1180px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 28px 0 42px;
+    }
+
+    .lesson-card {
+      position: relative;
+      overflow: hidden;
+      border: 2px solid rgba(182, 209, 237, 0.7);
+      border-radius: 34px;
+      background: rgba(255,255,255,.96);
+      box-shadow:
+        var(--shadow),
+        0 24px 55px rgba(32, 75, 128, 0.14);
+    }
+
+    .lesson-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 8px;
+      background: linear-gradient(90deg, var(--green), var(--yellow), var(--pink), var(--purple), var(--blue-2));
+    }
+
+    .lesson-head {
+      padding: 28px 30px 18px;
+      text-align: center;
+    }
+
+    .level-badge {
+      width: fit-content;
+      margin: 0 auto 7px;
+      padding: 7px 18px;
+      border: 4px solid #ffffff;
+      border-radius: 999px;
+      color: #ffffff;
+      font-size: 15px;
+      letter-spacing: 1.4px;
+      font-weight: 900;
+      box-shadow: 0 6px 0 rgba(0,0,0,.12);
+    }
+
+    .level-badge.basic {
+      background: var(--green);
+    }
+
+    .level-badge.intermediate {
+      background: var(--orange);
+    }
+
+    .level-badge.advanced {
+      background: var(--purple);
+    }
+
+    .lesson-head h2 {
+      margin: 0;
+      font-family: "Baloo 2", sans-serif;
+      font-size: clamp(38px, 5vw, 64px);
+      line-height: 1;
+      color: var(--ink);
+    }
+
+    .lesson-head p {
+      margin: 7px 0 0;
+      font-size: clamp(17px, 2vw, 24px);
+      font-weight: 900;
+      color: var(--muted);
+    }
+
+    .game-layout {
+      padding: 0 24px 28px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 310px;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .game-zone {
+      min-width: 0;
+    }
+
+    /* ESCENARIO */
+    .scene {
+      min-height: 390px;
+      position: relative;
+      overflow: hidden;
+      border: 7px solid #ffffff;
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at 14% 14%, rgba(255,255,255,.92) 0 3.2%, transparent 3.5%),
+        linear-gradient(180deg, #79d8ff 0 55%, #86dd67 55% 71%, #39bce4 71%);
+      box-shadow:
+        0 12px 0 rgba(46, 141, 184, 0.20),
+        0 20px 32px rgba(24, 80, 122, 0.13);
+    }
+
+    .scene::before {
+      content: "";
+      position: absolute;
+      inset: auto 0 25% 0;
+      height: 31%;
+      background:
+        radial-gradient(ellipse at 5% 100%, #3ea24e 0 48%, transparent 49%),
+        radial-gradient(ellipse at 23% 100%, #57bd58 0 52%, transparent 53%),
+        radial-gradient(ellipse at 43% 100%, #3ca34d 0 48%, transparent 49%),
+        radial-gradient(ellipse at 67% 100%, #67c85e 0 52%, transparent 53%),
+        radial-gradient(ellipse at 91% 100%, #3da34d 0 50%, transparent 51%);
+    }
+
+    .sun,
+    .cloud,
+    .butterfly {
+      position: absolute;
+      z-index: 1;
+      user-select: none;
+    }
+
+    .sun {
+      top: 15px;
+      right: 23px;
+      font-size: clamp(52px, 7vw, 82px);
+      animation: pulseSun 3s ease-in-out infinite;
+    }
+
+    .cloud {
+      font-size: clamp(44px, 6vw, 74px);
+      filter: drop-shadow(0 5px 0 rgba(255,255,255,.25));
+      animation: floatCloud 7s ease-in-out infinite;
+    }
+
+    .cloud.one {
+      top: 16px;
+      left: 28px;
+    }
+
+    .cloud.two {
+      top: 70px;
+      right: 22%;
+      transform: scale(.65);
+      animation-delay: -2.2s;
+    }
+
+    .butterfly {
+      font-size: 32px;
+      animation: fly 5s ease-in-out infinite;
+    }
+
+    .butterfly.one {
+      top: 80px;
+      left: 30%;
+    }
+
+    .butterfly.two {
+      top: 115px;
+      right: 30%;
+      animation-delay: -2s;
+    }
+
+    .pond-stage {
+      min-height: 305px;
+      height: 100%;
+      position: relative;
+      z-index: 4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(7px, 1.4vw, 18px);
+      padding: 120px clamp(10px, 2vw, 28px) 48px;
+    }
+
+    .frog {
+      width: clamp(60px, 7.5vw, 92px);
+      height: clamp(60px, 7.5vw, 92px);
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 10;
+      display: grid;
+      place-items: center;
+      font-size: clamp(52px, 7vw, 84px);
+      filter: drop-shadow(0 8px 0 rgba(16, 85, 48, .22));
+      pointer-events: none;
+      transition:
+        left .62s cubic-bezier(.2,.8,.25,1),
+        top .62s cubic-bezier(.2,.8,.25,1);
+      transform-origin: center bottom;
+    }
+
+    .frog.jumping {
+      animation: frogJump .62s ease-in-out;
+    }
+
+    .start-pad,
+    .number-stone {
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      user-select: none;
+    }
+
+    .start-pad {
+      width: clamp(60px, 8vw, 94px);
+      height: clamp(50px, 6.4vw, 70px);
+      border: 5px solid #128449;
+      border-radius: 55% 48% 58% 45%;
+      font-size: clamp(28px, 4.5vw, 50px);
+      background: #43c36d;
+      box-shadow: 0 9px 0 #0b6f3b, inset 0 5px 0 rgba(255,255,255,.25);
+      transform: rotate(-5deg);
+    }
+
+    .stones {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(7px, 1.3vw, 17px);
+    }
+
+    .number-stone {
+      width: clamp(63px, 8.8vw, 105px);
+      aspect-ratio: 1.05;
+      border: 6px solid #ffffff;
+      border-radius: 48% 52% 45% 55%;
+      color: #ffffff;
+      font-family: "Baloo 2", sans-serif;
+      font-size: clamp(40px, 6vw, 68px);
+      line-height: 1;
+      font-weight: 800;
+      text-shadow: 0 4px 0 rgba(0,0,0,.14);
+      background: linear-gradient(145deg, #ff9d48, #ff6b61);
+      box-shadow: 0 10px 0 #d65944;
+      transform: rotate(var(--tilt, 0deg));
+    }
+
+    .number-stone:nth-child(2) {
+      background: linear-gradient(145deg, #7f75ff, #5c58da);
+      box-shadow: 0 10px 0 #4542ad;
+    }
+
+    .number-stone:nth-child(3) {
+      background: linear-gradient(145deg, #ff79b4, #e84a91);
+      box-shadow: 0 10px 0 #b93672;
+    }
+
+    .number-stone:nth-child(4) {
+      background: linear-gradient(145deg, #56d48a, #20a963);
+      box-shadow: 0 10px 0 #147744;
+    }
+
+    .number-stone.question {
+      color: #735200;
+      background: linear-gradient(145deg, #fff576, #ffc53d);
+      box-shadow: 0 10px 0 #e2a323;
+    }
+
+    .number-stone.revealed {
+      animation: reveal .62s cubic-bezier(.17,.89,.32,1.45);
+    }
+
+    .water {
+      height: 29%;
+      position: absolute;
+      inset: auto 0 0;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 25% 0%, rgba(255,255,255,.28) 0 8%, transparent 9%),
+        radial-gradient(ellipse at 72% 8%, rgba(255,255,255,.20) 0 9%, transparent 10%),
+        linear-gradient(180deg, rgba(90,216,246,.15), rgba(38,174,222,.77));
+    }
+
+    .fish,
+    .duck,
+    .flower {
+      position: absolute;
+      font-size: 34px;
+      user-select: none;
+    }
+
+    .fish.one {
+      left: 18%;
+      top: 42%;
+      animation: swim 6s linear infinite;
+    }
+
+    .fish.two {
+      right: 18%;
+      bottom: 10%;
+      animation: swimReverse 7s linear infinite;
+    }
+
+    .duck {
+      right: 5%;
+      top: 5%;
+      animation: bob 2s ease-in-out infinite;
+    }
+
+    .flower.one {
+      left: 3%;
+      top: 2%;
+    }
+
+    .flower.two {
+      left: 9%;
+      bottom: 7%;
+    }
+
+    /* PANEL LATERAL */
+    .side-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .audio-card,
+    .answer-card,
+    .progress-card {
+      border: 2px solid var(--line);
+      border-radius: 24px;
+      background: #f9fcff;
+      box-shadow: 0 8px 0 rgba(56, 104, 158, 0.08);
+    }
+
+    .audio-card {
+      padding: 18px;
+      text-align: center;
+    }
+
+    .audio-card p {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+    .audio-btn {
+      width: 100%;
+      min-height: 64px;
+      border: 0;
+      border-radius: 18px;
+      color: #ffffff;
+      font-size: 20px;
+      font-weight: 900;
+      cursor: pointer;
+      background: linear-gradient(180deg, #16aaff, #087ee8);
+      box-shadow: 0 8px 0 #0865b9;
+      transition: transform .15s ease, filter .15s ease;
+    }
+
+    .answer-card {
+      padding: 18px;
+    }
+
+    .answer-title {
+      margin: 0 0 12px;
+      text-align: center;
+      color: var(--ink);
+      font-size: 17px;
+      font-weight: 900;
+    }
+
+    .answers {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .answer-btn {
+      min-height: 82px;
+      border: 5px solid #ffffff;
+      border-radius: 21px;
+      color: #ffffff;
+      font-family: "Baloo 2", sans-serif;
+      font-size: 50px;
+      line-height: 1;
+      font-weight: 800;
+      cursor: pointer;
+      background: linear-gradient(180deg, #8b73ff, #624fd9);
+      box-shadow: 0 8px 0 #4636ad;
+      transition: transform .15s ease, filter .15s ease;
+    }
+
+    .answer-btn:nth-child(2) {
+      background: linear-gradient(180deg, #ff85b4, #e94d91);
+      box-shadow: 0 8px 0 #b93271;
+    }
+
+    .answer-btn:nth-child(3) {
+      background: linear-gradient(180deg, #ffa64e, #ed732d);
+      box-shadow: 0 8px 0 #b94c18;
+    }
+
+    .answer-btn.correct {
+      background: linear-gradient(180deg, #6bdd84, #20ad5a);
+      box-shadow: 0 8px 0 #14773d;
+      animation: correct .55s ease-in-out;
+    }
+
+    .answer-btn.wrong {
+      background: linear-gradient(180deg, #ff776e, #df3b3b);
+      box-shadow: 0 8px 0 #a72828;
+      animation: shake .42s ease-in-out;
+    }
+
+    .answer-btn:disabled {
+      cursor: default;
+      opacity: .86;
+    }
+
+    .feedback {
+      min-height: 58px;
+      margin-top: 12px;
+      padding: 10px 12px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 16px;
+      font-weight: 900;
+      background: #edf6ff;
+    }
+
+    .progress-card {
+      margin-top: auto;
+      padding: 17px;
+    }
+
+    .progress-card strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--ink);
+      font-size: 16px;
+    }
+
+    .mini-track {
+      height: 13px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #dce8f4;
+    }
+
+    .mini-fill {
+      width: 5%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--green), var(--yellow));
+      transition: width .45s ease;
+    }
+
+    .next-row {
+      padding: 0 24px 28px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .next-btn {
+      min-width: min(430px, 100%);
+      min-height: 64px;
+      border: 0;
+      border-radius: 20px;
+      color: #ffffff;
+      font-size: 22px;
+      font-weight: 900;
+      cursor: pointer;
+      background: linear-gradient(180deg, #68d900, #4db700);
+      box-shadow: 0 9px 0 #379000;
+      transition: transform .15s ease, filter .15s ease;
+    }
+
+    .audio-btn:hover,
+    .answer-btn:hover,
+    .next-btn:hover,
+    .overlay-card button:hover {
+      transform: translateY(-3px);
+      filter: brightness(1.04);
+    }
+
+    .audio-btn:active,
+    .answer-btn:active,
+    .next-btn:active,
+    .overlay-card button:active {
+      transform: translateY(4px);
+      box-shadow: 0 3px 0 rgba(0,0,0,.2);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* PANTALLAS */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      background: rgba(18, 49, 89, .58);
+      backdrop-filter: blur(9px);
+    }
+
+    .overlay-card {
+      width: min(590px, 100%);
+      padding: clamp(28px, 5vw, 48px);
+      text-align: center;
+      border: 8px solid #ffffff;
+      border-radius: 38px;
+      background:
+        radial-gradient(circle at 12% 13%, rgba(255,255,255,.7) 0 4%, transparent 4.5%),
+        linear-gradient(145deg, #ffffff, #dff4ff);
+      box-shadow:
+        0 17px 0 rgba(8, 87, 169, 0.32),
+        0 30px 60px rgba(7, 43, 93, 0.34);
+    }
+
+    .overlay-icon {
+      font-size: clamp(82px, 15vw, 132px);
+      line-height: .9;
+      animation: welcomeHop 1.6s ease-in-out infinite;
+    }
+
+    .overlay-label {
+      width: fit-content;
+      margin: 18px auto 5px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      background: linear-gradient(90deg, var(--pink), var(--purple));
+    }
+
+    .overlay-card h3 {
+      margin: 0;
+      font-family: "Baloo 2", sans-serif;
+      font-size: clamp(40px, 7vw, 62px);
+      line-height: 1;
+      color: var(--ink);
+    }
+
+    .overlay-card p {
+      margin: 12px 0 22px;
+      color: var(--muted);
+      font-size: clamp(17px, 2.4vw, 23px);
+      font-weight: 900;
+    }
+
+    .levels-preview {
+      margin: 0 0 24px;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .levels-preview span {
+      padding: 7px 13px;
+      border-radius: 999px;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .levels-preview span:nth-child(1) {
+      background: var(--green);
+    }
+
+    .levels-preview span:nth-child(2) {
+      background: var(--orange);
+    }
+
+    .levels-preview span:nth-child(3) {
+      background: var(--purple);
+    }
+
+    .overlay-card button {
+      min-width: min(330px, 100%);
+      min-height: 64px;
+      border: 0;
+      border-radius: 20px;
+      color: #ffffff;
+      font-size: 23px;
+      font-weight: 900;
+      cursor: pointer;
+      background: linear-gradient(180deg, #16aaff, #087ee8);
+      box-shadow: 0 9px 0 #0865b9;
+    }
+
+    .final-score {
+      width: fit-content;
+      margin: 0 auto 24px;
+      padding: 12px 28px;
+      border-radius: 22px;
+      color: #ffffff;
+      font-family: "Baloo 2", sans-serif;
+      font-size: 52px;
+      font-weight: 800;
+      background: linear-gradient(180deg, #8b73ff, #624fd9);
+      box-shadow: 0 9px 0 #4636ad;
+    }
+
+    .confetti-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 130;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .confetti {
+      width: 14px;
+      height: 22px;
+      position: absolute;
+      top: -30px;
+      border-radius: 4px;
+      animation: confettiFall var(--fall-time) linear forwards;
+    }
+
+    @keyframes frogJump {
+      0%, 100% { transform: translateY(0) rotate(0); }
+      45% { transform: translateY(-70px) rotate(-8deg) scale(1.08); }
+    }
+
+    @keyframes pulseSun {
+      0%, 100% { transform: rotate(-4deg) scale(1); }
+      50% { transform: rotate(5deg) scale(1.08); }
+    }
+
+    @keyframes floatCloud {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(18px); }
+    }
+
+    @keyframes fly {
+      0%, 100% { transform: translate(0, 0) rotate(-7deg); }
+      35% { transform: translate(22px, -13px) rotate(8deg); }
+      70% { transform: translate(-10px, 10px) rotate(-4deg); }
+    }
+
+    @keyframes swim {
+      0% { transform: translateX(-35px); }
+      50% { transform: translateX(85px) translateY(-7px); }
+      100% { transform: translateX(-35px); }
+    }
+
+    @keyframes swimReverse {
+      0% { transform: scaleX(-1) translateX(-35px); }
+      50% { transform: scaleX(-1) translateX(65px) translateY(6px); }
+      100% { transform: scaleX(-1) translateX(-35px); }
+    }
+
+    @keyframes bob {
+      0%, 100% { transform: translateY(0) rotate(-3deg); }
+      50% { transform: translateY(7px) rotate(3deg); }
+    }
+
+    @keyframes reveal {
+      0% { transform: scale(.5) rotate(-14deg); }
+      60% { transform: scale(1.18) rotate(5deg); }
+      100% { transform: scale(1) rotate(0); }
+    }
+
+    @keyframes correct {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.12) rotate(3deg); }
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-11px) rotate(-3deg); }
+      50% { transform: translateX(11px) rotate(3deg); }
+      75% { transform: translateX(-7px); }
+    }
+
+    @keyframes welcomeHop {
+      0%, 100% { transform: translateY(0) rotate(-3deg); }
+      50% { transform: translateY(-14px) rotate(3deg); }
+    }
+
+    @keyframes confettiFall {
+      to {
+        transform: translate3d(var(--drift), 110vh, 0) rotate(760deg);
+      }
+    }
+
+    @media (max-width: 920px) {
+      .game-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .side-panel {
+        display: grid;
+        grid-template-columns: 1fr 1.3fr;
+        align-items: stretch;
+      }
+
+      .progress-card {
+        grid-column: 1 / -1;
+      }
+
+      .header-inner {
+        align-items: flex-start;
+      }
+
+      .header-stats {
+        flex-direction: column;
+        align-items: flex-end;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .hero-header {
+        min-height: 205px;
+      }
+
+      .header-inner {
+        min-height: 205px;
+        align-items: center;
+      }
+
+      .logo-box {
+        width: 72px;
+        border-radius: 22px;
+        font-size: 34px;
+      }
+
+      .brand-copy p {
+        max-width: 230px;
+      }
+
+      .header-stats {
+        gap: 8px;
+      }
+
+      .stat-pill {
+        min-height: 44px;
+        padding: 7px 11px;
+        font-size: 14px;
+      }
+
+      .game-layout {
+        padding-inline: 13px;
+      }
+
+      .lesson-head {
+        padding-inline: 15px;
+      }
+
+      .side-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .scene {
+        min-height: 345px;
+      }
+
+      .pond-stage {
+        padding-inline: 7px;
+        gap: 5px;
+      }
+
+      .stones {
+        gap: 5px;
+      }
+
+      .number-stone {
+        border-width: 4px;
+      }
+
+      .start-pad {
+        border-width: 4px;
+      }
+
+      .next-row {
+        padding-inline: 13px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .hero-header::before {
+        right: 10px;
+        font-size: 145px;
+      }
+
+      .header-inner {
+        width: min(100% - 20px, 1220px);
+      }
+
+      .brand {
+        gap: 10px;
+      }
+
+      .logo-box {
+        width: 60px;
+        border-width: 4px;
+        font-size: 29px;
+      }
+
+      .brand-copy small {
+        font-size: 10px;
+      }
+
+      .brand-copy h1 {
+        font-size: 32px;
+      }
+
+      .brand-copy p {
+        font-size: 14px;
+        max-width: 170px;
+      }
+
+      .header-stats {
+        position: absolute;
+        right: 0;
+        bottom: 15px;
+        flex-direction: row;
+      }
+
+      .stat-pill {
+        min-height: 40px;
+        padding: 6px 9px;
+        font-size: 12px;
+      }
+
+      .main-content {
+        width: min(100% - 16px, 1180px);
+        padding-top: 16px;
+      }
+
+      .lesson-card {
+        border-radius: 25px;
+      }
+
+      .scene {
+        min-height: 320px;
+        border-radius: 23px;
+        border-width: 5px;
+      }
+
+      .pond-stage {
+        padding-top: 115px;
+      }
+
+      .number-stone {
+        width: clamp(52px, 15vw, 66px);
+        font-size: clamp(34px, 10vw, 44px);
+      }
+
+      .start-pad {
+        width: 52px;
+      }
+
+      .answer-btn {
+        min-height: 70px;
+        font-size: 42px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <header class="hero-header">
+      <div class="header-inner">
+        <div class="brand">
+          <div class="logo-box" aria-label="Logo Marie Kids">MK</div>
+
+          <div class="brand-copy">
+            <small>MARIE KIDS</small>
+            <h1>Series numéricas</h1>
+            <p>Aprende jugando con la ranita</p>
+          </div>
+        </div>
+
+        <div class="header-stats">
+          <div class="stat-pill">
+            <span aria-hidden="true">🐸</span>
+            <span id="exerciseText">Ejercicio 1 de 20</span>
+          </div>
+
+          <div class="stat-pill score">
+            <span aria-hidden="true">⭐</span>
+            <span id="scoreText">0 aciertos</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="top-progress">
+      <div class="top-progress-fill" id="topProgressFill"></div>
+    </div>
+
+    <main class="main-content">
+      <section class="lesson-card">
+        <div class="lesson-head">
+          <div class="level-badge basic" id="levelBadge">NIVEL BÁSICO</div>
+          <h2>¿Qué número sigue?</h2>
+          <p id="instructionText">Ayuda a la ranita a completar la serie.</p>
+        </div>
+
+        <div class="game-layout">
+          <div class="game-zone">
+            <div class="scene">
+              <div class="cloud one" aria-hidden="true">☁️</div>
+              <div class="cloud two" aria-hidden="true">☁️</div>
+              <div class="sun" aria-hidden="true">☀️</div>
+              <div class="butterfly one" aria-hidden="true">🦋</div>
+              <div class="butterfly two" aria-hidden="true">🦋</div>
+
+              <div class="pond-stage" id="pondStage">
+                <div class="frog" id="frog" aria-label="Ranita">🐸</div>
+
+                <div class="start-pad" id="startPad" aria-label="Inicio">
+                  🌿
+                </div>
+
+                <div class="stones" id="stones" aria-label="Serie numérica"></div>
+              </div>
+
+              <div class="water" aria-hidden="true">
+                <span class="fish one">🐟</span>
+                <span class="fish two">🐠</span>
+                <span class="duck">🦆</span>
+                <span class="flower one">🌸</span>
+                <span class="flower two">🌼</span>
+              </div>
+            </div>
+          </div>
+
+          <aside class="side-panel">
+            <section class="audio-card">
+              <p>Escucha la serie</p>
+              <button class="audio-btn" id="audioBtn" type="button">
+                🔊 Escuchar
+              </button>
+            </section>
+
+            <section class="answer-card">
+              <p class="answer-title">Elige la respuesta</p>
+              <div class="answers" id="answers"></div>
+              <div class="feedback" id="feedback" aria-live="assertive">
+                Toca una respuesta.
+              </div>
+            </section>
+
+            <section class="progress-card">
+              <strong>Tu progreso</strong>
+              <div class="mini-track">
+                <div class="mini-fill" id="miniProgressFill"></div>
+              </div>
+            </section>
+          </aside>
+        </div>
+
+        <div class="next-row">
+          <button class="next-btn hidden" id="nextBtn" type="button">
+            Siguiente ejercicio ➡️
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <div class="overlay" id="welcomeOverlay">
+      <div class="overlay-card">
+        <div class="overlay-icon" aria-hidden="true">🐸</div>
+        <div class="overlay-label">MARIE KIDS · MK</div>
+        <h3>¡20 saltos!</h3>
+        <p>
+          Escucha la serie, observa los números y toca la respuesta correcta.
+        </p>
+
+        <div class="levels-preview">
+          <span>Básico</span>
+          <span>Intermedio</span>
+          <span>Avanzado</span>
+        </div>
+
+        <button id="startBtn" type="button">▶️ Comenzar</button>
+      </div>
+    </div>
+
+    <div class="overlay hidden" id="finishOverlay">
+      <div class="overlay-card">
+        <div class="overlay-icon" aria-hidden="true">🏆</div>
+        <div class="overlay-label">MARIE KIDS · MK</div>
+        <h3>¡Terminaste!</h3>
+        <p id="finalMessage">Completaste los 20 ejercicios.</p>
+        <div class="final-score" id="finalScore">20 / 20</div>
+        <button id="restartBtn" type="button">🔄 Jugar otra vez</button>
+      </div>
+    </div>
+
+    <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
+  </div>
+
+  <script>
+    const exercises = [
+      { level: "Básico", sequence: [1, 2], answer: 3 },
+      { level: "Básico", sequence: [1, 2, 3], answer: 4 },
+      { level: "Básico", sequence: [2, 3, 4], answer: 5 },
+      { level: "Básico", sequence: [3, 4, 5], answer: 6 },
+      { level: "Básico", sequence: [4, 5, 6], answer: 7 },
+      { level: "Básico", sequence: [5, 6, 7], answer: 8 },
+      { level: "Básico", sequence: [6, 7, 8], answer: 9 },
+
+      { level: "Intermedio", sequence: [7, 8, 9], answer: 10 },
+      { level: "Intermedio", sequence: [1, 2, 3, 4], answer: 5 },
+      { level: "Intermedio", sequence: [2, 3, 4, 5], answer: 6 },
+      { level: "Intermedio", sequence: [3, 4, 5, 6], answer: 7 },
+      { level: "Intermedio", sequence: [4, 5, 6, 7], answer: 8 },
+      { level: "Intermedio", sequence: [5, 6, 7, 8], answer: 9 },
+      { level: "Intermedio", sequence: [6, 7, 8, 9], answer: 10 },
+
+      { level: "Avanzado", sequence: [1, 3, 5], answer: 7 },
+      { level: "Avanzado", sequence: [2, 4, 6], answer: 8 },
+      { level: "Avanzado", sequence: [3, 5, 7], answer: 9 },
+      { level: "Avanzado", sequence: [5, 4, 3], answer: 2 },
+      { level: "Avanzado", sequence: [10, 9, 8], answer: 7 },
+      { level: "Avanzado", sequence: [2, 4, 6, 8], answer: 10 }
+    ];
+
+    const numberWords = {
+      1: "uno",
+      2: "dos",
+      3: "tres",
+      4: "cuatro",
+      5: "cinco",
+      6: "seis",
+      7: "siete",
+      8: "ocho",
+      9: "nueve",
+      10: "diez"
+    };
+
+    const state = {
+      currentIndex: 0,
+      score: 0,
+      answered: false
+    };
+
+    const elements = {
+      frog: document.getElementById("frog"),
+      startPad: document.getElementById("startPad"),
+      pondStage: document.getElementById("pondStage"),
+      stones: document.getElementById("stones"),
+      answers: document.getElementById("answers"),
+      feedback: document.getElementById("feedback"),
+      scoreText: document.getElementById("scoreText"),
+      exerciseText: document.getElementById("exerciseText"),
+      levelBadge: document.getElementById("levelBadge"),
+      instructionText: document.getElementById("instructionText"),
+      topProgressFill: document.getElementById("topProgressFill"),
+      miniProgressFill: document.getElementById("miniProgressFill"),
+      audioBtn: document.getElementById("audioBtn"),
+      nextBtn: document.getElementById("nextBtn"),
+      startBtn: document.getElementById("startBtn"),
+      restartBtn: document.getElementById("restartBtn"),
+      welcomeOverlay: document.getElementById("welcomeOverlay"),
+      finishOverlay: document.getElementById("finishOverlay"),
+      finalMessage: document.getElementById("finalMessage"),
+      finalScore: document.getElementById("finalScore"),
+      confettiLayer: document.getElementById("confettiLayer")
+    };
+
+    function shuffle(list) {
+      const copy = [...list];
+
+      for (let i = copy.length - 1; i > 0; i -= 1) {
+        const randomIndex = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[randomIndex]] = [copy[randomIndex], copy[i]];
+      }
+
+      return copy;
+    }
+
+    function wait(milliseconds) {
+      return new Promise(resolve => setTimeout(resolve, milliseconds));
+    }
+
+    function currentExercise() {
+      return exercises[state.currentIndex];
+    }
+
+    function levelClass(level) {
+      if (level === "Intermedio") return "intermediate";
+      if (level === "Avanzado") return "advanced";
+      return "basic";
+    }
+
+    function instructionFor(level) {
+      if (level === "Avanzado") {
+        return "Mira con atención cómo salta la ranita.";
+      }
+
+      if (level === "Intermedio") {
+        return "La serie ahora es un poquito más larga.";
+      }
+
+      return "Ayuda a la ranita a completar la serie.";
+    }
+
+    function makeAlternatives(correctAnswer) {
+      const nearby = [];
+      const allWrong = [];
+
+      for (let number = 1; number <= 10; number += 1) {
+        if (number !== correctAnswer) {
+          allWrong.push(number);
+
+          if (Math.abs(number - correctAnswer) <= 2) {
+            nearby.push(number);
+          }
+        }
+      }
+
+      const source = nearby.length >= 2 ? nearby : allWrong;
+      const wrongAnswers = shuffle(source).slice(0, 2);
+
+      return shuffle([correctAnswer, ...wrongAnswers]);
+    }
+
+    function updateStatus() {
+      const exercise = currentExercise();
+      const number = state.currentIndex + 1;
+      const percentage = (number / exercises.length) * 100;
+
+      elements.exerciseText.textContent =
+        `Ejercicio ${number} de ${exercises.length}`;
+
+      elements.scoreText.textContent =
+        `${state.score} ${state.score === 1 ? "acierto" : "aciertos"}`;
+
+      elements.topProgressFill.style.width = `${percentage}%`;
+      elements.miniProgressFill.style.width = `${percentage}%`;
+
+      elements.levelBadge.textContent =
+        `NIVEL ${exercise.level.toUpperCase()}`;
+
+      elements.levelBadge.className =
+        `level-badge ${levelClass(exercise.level)}`;
+
+      elements.instructionText.textContent =
+        instructionFor(exercise.level);
+    }
+
+    function renderExercise() {
+      stopSpeech();
+      state.answered = false;
+
+      const exercise = currentExercise();
+
+      updateStatus();
+
+      elements.feedback.textContent = "Toca una respuesta.";
+      elements.nextBtn.classList.add("hidden");
+      elements.stones.innerHTML = "";
+      elements.answers.innerHTML = "";
+
+      elements.nextBtn.innerHTML =
+        state.currentIndex === exercises.length - 1
+          ? "Ver resultado 🏆"
+          : "Siguiente ejercicio ➡️";
+
+      exercise.sequence.forEach((number, index) => {
+        const stone = document.createElement("div");
+
+        stone.className = "number-stone";
+        stone.textContent = number;
+        stone.style.setProperty(
+          "--tilt",
+          `${index % 2 === 0 ? -3 : 3}deg`
+        );
+        stone.setAttribute("aria-label", `Número ${number}`);
+
+        elements.stones.appendChild(stone);
+      });
+
+      const questionStone = document.createElement("div");
+
+      questionStone.className = "number-stone question";
+      questionStone.id = "questionStone";
+      questionStone.textContent = "?";
+      questionStone.setAttribute("aria-label", "Número desconocido");
+
+      elements.stones.appendChild(questionStone);
+
+      makeAlternatives(exercise.answer).forEach(number => {
+        const button = document.createElement("button");
+
+        button.className = "answer-btn";
+        button.type = "button";
+        button.textContent = number;
+        button.setAttribute("aria-label", `Respuesta ${number}`);
+
+        button.addEventListener("click", () => {
+          checkAnswer(number, button);
+        });
+
+        elements.answers.appendChild(button);
+      });
+
+      requestAnimationFrame(() => {
+        moveFrogTo(elements.startPad, false);
+      });
+
+      setTimeout(playSequenceAnimation, 450);
+    }
+
+    function moveFrogTo(target, animate = true) {
+      if (!target) return;
+
+      const stageRect = elements.pondStage.getBoundingClientRect();
+      const targetRect = target.getBoundingClientRect();
+      const frogRect = elements.frog.getBoundingClientRect();
+
+      const left =
+        targetRect.left -
+        stageRect.left +
+        targetRect.width / 2 -
+        frogRect.width / 2;
+
+      const top =
+        targetRect.top -
+        stageRect.top -
+        frogRect.height * 0.68;
+
+      if (animate) {
+        elements.frog.classList.remove("jumping");
+        void elements.frog.offsetWidth;
+        elements.frog.classList.add("jumping");
+      }
+
+      elements.frog.style.left = `${left}px`;
+      elements.frog.style.top = `${top}px`;
+    }
+
+    async function playSequenceAnimation() {
+      const numberStones = [
+        ...elements.stones.querySelectorAll(
+          ".number-stone:not(.question)"
+        )
+      ];
+
+      moveFrogTo(elements.startPad, false);
+      await wait(260);
+
+      for (const stone of numberStones) {
+        moveFrogTo(stone, true);
+        await wait(650);
+      }
+
+      await wait(150);
+      speakExercise();
+    }
+
+    function buildExerciseText() {
+      const exercise = currentExercise();
+
+      const spokenNumbers = exercise.sequence
+        .map(number => numberWords[number])
+        .join(", ");
+
+      return `Ejercicio ${state.currentIndex + 1}. Nivel ${exercise.level}. ${spokenNumbers}. ¿Qué número sigue?`;
+    }
+
+    function getSpanishVoice() {
+      const voices =
+        window.speechSynthesis?.getVoices?.() || [];
+
+      return (
+        voices.find(
+          voice => voice.lang.toLowerCase() === "es-pe"
+        ) ||
+        voices.find(
+          voice => voice.lang.toLowerCase().startsWith("es")
+        ) ||
+        null
+      );
+    }
+
+    function speak(text, options = {}) {
+      if (!("speechSynthesis" in window)) {
+        elements.feedback.textContent =
+          "Este navegador no tiene lectura de voz.";
+        return;
+      }
+
+      stopSpeech();
+
+      const utterance =
+        new SpeechSynthesisUtterance(text);
+
+      utterance.lang = "es-PE";
+      utterance.rate = options.rate ?? 0.76;
+      utterance.pitch = options.pitch ?? 1.12;
+      utterance.volume = 1;
+
+      const voice = getSpanishVoice();
+
+      if (voice) {
+        utterance.voice = voice;
+      }
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function stopSpeech() {
+      if ("speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+      }
+    }
+
+    function speakExercise() {
+      speak(buildExerciseText(), {
+        rate: 0.7,
+        pitch: 1.15
+      });
+    }
+
+    function checkAnswer(selectedNumber, selectedButton) {
+      if (state.answered) return;
+
+      const exercise = currentExercise();
+
+      if (selectedNumber === exercise.answer) {
+        state.answered = true;
+        state.score += 1;
+
+        updateStatus();
+
+        selectedButton.classList.add("correct");
+
+        [...elements.answers.children].forEach(button => {
+          button.disabled = true;
+        });
+
+        const questionStone =
+          document.getElementById("questionStone");
+
+        questionStone.textContent = exercise.answer;
+        questionStone.classList.add("revealed");
+        questionStone.setAttribute(
+          "aria-label",
+          `Número ${exercise.answer}`
+        );
+
+        moveFrogTo(questionStone, true);
+
+        elements.feedback.textContent =
+          "¡Muy bien! ¡La ranita llegó!";
+
+        elements.nextBtn.classList.remove("hidden");
+
+        celebrate(45);
+
+        speak(
+          `¡Muy bien! El número que sigue es ${numberWords[exercise.answer]}.`,
+          { rate: 0.78, pitch: 1.2 }
+        );
+      } else {
+        selectedButton.classList.remove("wrong");
+        void selectedButton.offsetWidth;
+        selectedButton.classList.add("wrong");
+
+        elements.feedback.textContent =
+          "Casi. Mira la serie e intenta otra vez.";
+
+        speak(
+          "Casi. Mira los números e intenta otra vez.",
+          { rate: 0.8, pitch: 1.12 }
+        );
+
+        setTimeout(() => {
+          selectedButton.classList.remove("wrong");
+        }, 500);
+      }
+    }
+
+    function showFinalScreen() {
+      stopSpeech();
+
+      elements.finalScore.textContent =
+        `${state.score} / ${exercises.length}`;
+
+      if (state.score === exercises.length) {
+        elements.finalMessage.textContent =
+          "¡Excelente! Completaste todos los saltos.";
+      } else if (state.score >= 15) {
+        elements.finalMessage.textContent =
+          "¡Muy bien! Terminaste los 20 ejercicios.";
+      } else {
+        elements.finalMessage.textContent =
+          "¡Buen trabajo! Puedes jugar otra vez para seguir practicando.";
+      }
+
+      elements.finishOverlay.classList.remove("hidden");
+
+      celebrate(95);
+
+      speak(
+        `¡Terminaste! Lograste ${state.score} aciertos de ${exercises.length}.`,
+        { rate: 0.75, pitch: 1.18 }
+      );
+    }
+
+    function celebrate(amount = 45) {
+      const colors = [
+        "#ff5f8f",
+        "#ffc800",
+        "#58cc02",
+        "#12a8ff",
+        "#8b5cf6",
+        "#ff9600"
+      ];
+
+      for (let index = 0; index < amount; index += 1) {
+        const piece = document.createElement("span");
+
+        piece.className = "confetti";
+        piece.style.left = `${Math.random() * 100}%`;
+        piece.style.background =
+          colors[Math.floor(Math.random() * colors.length)];
+
+        piece.style.setProperty(
+          "--drift",
+          `${Math.random() * 240 - 120}px`
+        );
+
+        piece.style.setProperty(
+          "--fall-time",
+          `${1.8 + Math.random() * 1.5}s`
+        );
+
+        piece.style.animationDelay =
+          `${Math.random() * 0.35}s`;
+
+        elements.confettiLayer.appendChild(piece);
+
+        setTimeout(() => piece.remove(), 3900);
+      }
+    }
+
+    elements.audioBtn.addEventListener("click", () => {
+      playSequenceAnimation();
+    });
+
+    elements.nextBtn.addEventListener("click", () => {
+      if (state.currentIndex === exercises.length - 1) {
+        showFinalScreen();
+        return;
+      }
+
+      state.currentIndex += 1;
+      renderExercise();
+    });
+
+    elements.startBtn.addEventListener("click", () => {
+      elements.welcomeOverlay.classList.add("hidden");
+      renderExercise();
+    });
+
+    elements.restartBtn.addEventListener("click", () => {
+      stopSpeech();
+
+      state.currentIndex = 0;
+      state.score = 0;
+      state.answered = false;
+
+      elements.finishOverlay.classList.add("hidden");
+      renderExercise();
+    });
+
+    window.addEventListener("resize", () => {
+      const questionStone =
+        document.getElementById("questionStone");
+
+      if (state.answered && questionStone) {
+        moveFrogTo(questionStone, false);
+      } else {
+        moveFrogTo(elements.startPad, false);
+      }
+    });
+
+    window.addEventListener("beforeunload", stopSpeech);
+
+    if ("speechSynthesis" in window) {
+      window.speechSynthesis.onvoiceschanged =
+        () => getSpanishVoice();
+    }
+  </script>
+</body>
+</html>

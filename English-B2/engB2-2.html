@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marie Kids • Comparatives & Superlatives</title>
+
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1976d2">
+
+<style>
+/* ================= BASE ================= */
+*{box-sizing:border-box;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body{
+  margin:0;min-height:100vh;display:flex;justify-content:center;align-items:center;
+  background:linear-gradient(145deg,#dbeafe,#e0f2fe);padding:18px
+}
+.app{
+  background:#fff;width:100%;max-width:520px;padding:18px;border-radius:24px;
+  box-shadow:0 16px 40px rgba(0,0,0,.12);border:3px solid #2563eb
+}
+
+/* ================= HEADER ORIGINAL ================= */
+.brand-header-kids{
+  position:relative;overflow:hidden;padding:14px 14px 12px;border-radius:22px;margin-bottom:12px;
+  background:linear-gradient(135deg,#93c5fd,#60a5fa,#2563eb);
+  border:2px solid rgba(255,255,255,.65);box-shadow:0 14px 28px rgba(37,99,235,.25);color:#fff
+}
+.brand-header-kids.clickable{cursor:pointer}
+.brand-header-kids .bubble,.brand-header-kids .star{pointer-events:none}
+.brand-row{position:relative;z-index:2;display:flex;align-items:center;gap:12px}
+.kids-badge{
+  width:52px;height:52px;border-radius:18px;display:grid;place-items:center;font-size:1.55rem;
+  background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.35)
+}
+.kids-title{font-weight:950;font-size:1.55rem}
+.kids-subtitle{margin-top:4px;font-size:.9rem;font-weight:750;display:flex;gap:8px;flex-wrap:wrap}
+.kids-pill{
+  background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.35);
+  padding:4px 10px;border-radius:999px;font-size:.82rem;font-weight:850
+}
+.star{position:absolute;opacity:.9}
+.star.s1{top:8px;right:18px}
+.star.s2{top:40px;right:60px}
+.star.s3{bottom:12px;right:26px}
+.bubble{
+  position:absolute;border-radius:999px;background:rgba(255,255,255,.22);
+  border:1px solid rgba(255,255,255,.28)
+}
+.b1{left:-16px;top:-18px;width:84px;height:84px}
+.b2{left:40px;bottom:-22px;width:52px;height:52px}
+.b3{right:-22px;bottom:-26px;width:76px;height:76px}
+
+/* ================= UI ================= */
+.nav{
+  display:flex;gap:10px;background:#eff6ff;border:1px solid #bfdbfe;padding:10px;
+  border-radius:18px;margin-bottom:14px;flex-wrap:wrap;justify-content:center
+}
+.nav-btn{
+  border:1px solid #bfdbfe;background:#fff;border-radius:999px;padding:8px 12px;
+  cursor:pointer;font-weight:800;font-size:.95rem;min-width:120px
+}
+.nav-btn.active{background:linear-gradient(90deg,#60a5fa,#2563eb);color:#fff;border-color:transparent}
+
+h1{text-align:center;margin:6px 0}
+.subtitle{text-align:center;color:#6b7280;margin-bottom:12px}
+
+.status-bar{
+  display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;
+  padding:8px 12px;border-radius:999px;background:#eff6ff;border:1px solid #bfdbfe;font-size:.9rem
+}
+
+.progress{height:10px;background:#e5e7eb;border-radius:999px;overflow:hidden;margin-bottom:12px}
+.progress-inner{height:100%;width:0%;background:linear-gradient(90deg,#60a5fa,#2563eb)}
+
+.card{
+  border-radius:20px;padding:14px;background:#f9fafb;border:1px solid #e5e7eb;margin-bottom:12px
+}
+
+.emoji{text-align:center;font-size:3.5rem}
+
+.speak-btn{
+  display:block;margin:6px auto;font-size:1.6rem;border-radius:999px;
+  border:1px solid #bfdbfe;background:#eff6ff;cursor:pointer
+}
+
+.sentence{text-align:center;font-size:1.1rem;font-weight:800}
+.translation{text-align:center;color:#6b7280;margin-bottom:6px}
+.example{font-size:.95rem;margin:4px 0}
+
+.options{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.option-btn{
+  flex:1;border-radius:14px;border:1px solid #d1d5db;background:#fff;padding:8px;
+  font-weight:700;cursor:pointer
+}
+
+.feedback{text-align:center;font-weight:800;margin-top:8px}
+.good{color:#16a34a}.bad{color:#ef4444}
+
+.controls{display:flex;gap:10px}
+button.main-btn{
+  flex:1;border:none;border-radius:999px;padding:10px;font-weight:800;
+  background:linear-gradient(90deg,#60a5fa,#2563eb);color:#fff;cursor:pointer
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+
+<!-- HEADER -->
+<div class="brand-header-kids clickable" onclick="location.href='index.html'">
+  <div class="bubble b1"></div><div class="bubble b2"></div><div class="bubble b3"></div>
+  <div class="star s1">⭐</div><div class="star s2">✨</div><div class="star s3">🌟</div>
+  <div class="brand-row">
+    <div class="kids-badge">🧸</div>
+    <div>
+      <div class="kids-title">Marie Kids</div>
+      <div class="kids-subtitle">
+        Inglés divertido
+        <span class="kids-pill">Escucha</span>
+        <span class="kids-pill">👉 Responde</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav">
+  <button class="nav-btn active">Comparatives & Superlatives</button>
+</div>
+
+<h1>Comparatives & Superlatives</h1>
+<p class="subtitle">Aprende la teoría y practica paso a paso 👇</p>
+
+<div class="status-bar">
+  <div>✅ Correctas: <span id="ok">0</span></div>
+  <div>🧠 Por mejorar: <span id="bad">0</span></div>
+</div>
+
+<div class="progress"><div class="progress-inner" id="bar"></div></div>
+
+<div class="card">
+  <div class="emoji" id="emoji">📘</div>
+  <button class="speak-btn" onclick="speak()">🔊</button>
+
+  <div class="sentence" id="wordEn"></div>
+  <div class="translation" id="wordEs"></div>
+
+  <p class="example" id="exampleEn"></p>
+  <p class="example" id="exampleEs"></p>
+
+  <div class="options" id="options"></div>
+  <div class="feedback" id="fb"></div>
+</div>
+
+<div class="controls">
+  <button class="main-btn" onclick="next()">Next</button>
+  <button class="main-btn" onclick="share()">📤 Compartir app</button>
+</div>
+
+</div>
+
+<script>
+const items=[
+/* ===== TEORÍA ===== */
+{type:"theory",emoji:"📘",en:"What is this lesson about?",es:"¿De qué trata esta clase?",
+ exEn:"We learn how to compare people and things in English.",
+ exEs:"Aprendemos a comparar personas y cosas en inglés."},
+
+{type:"theory",emoji:"📏",en:"Comparatives",es:"Comparativos",
+ exEn:"We use comparatives to compare two things. Structure: adjective + than.",
+ exEs:"Usamos comparativos para comparar dos cosas. Estructura: adjetivo + than."},
+
+{type:"theory",emoji:"🧠",en:"Short adjectives",es:"Adjetivos cortos",
+ exEn:"Add -er: tall → taller, old → older, rich → richer.",
+ exEs:"Agrega -er: tall → taller, old → older, rich → richer."},
+
+{type:"theory",emoji:"✨",en:"Long adjectives",es:"Adjetivos largos",
+ exEn:"Use more + adjective: more expensive, more interesting.",
+ exEs:"Usa more + adjetivo: more expensive, more interesting."},
+
+{type:"theory",emoji:"⚖️",en:"Equality",es:"Igualdad",
+ exEn:"as + adjective + as. Example: I’m as tall as my dad.",
+ exEs:"as + adjetivo + as. Ejemplo: Soy tan alto como mi papá."},
+
+{type:"theory",emoji:"🏆",en:"Superlatives",es:"Superlativos",
+ exEn:"Use the + adjective + -est or the most + adjective.",
+ exEs:"Usa the + adjetivo + -est o the most + adjetivo."},
+
+/* ===== EJERCICIOS ===== */
+{type:"exercise",emoji:"🏠",en:"My house is ___ than yours.",es:"Mi casa es ___ que la tuya.",
+ a:"bigger",o:["big","bigger","biggest"]},
+
+{type:"exercise",emoji:"👧",en:"She is the ___ student.",es:"Ella es la ___ estudiante.",
+ a:"smartest",o:["smart","smarter","smartest"]},
+
+{type:"exercise",emoji:"🌍",en:"London is ___ expensive than my city.",es:"Londres es ___ caro que mi ciudad.",
+ a:"more",o:["more","most","less"]},
+
+{type:"exercise",emoji:"👨",en:"I’m as ___ as my dad.",es:"Soy tan ___ como mi papá.",
+ a:"tall",o:["tall","taller","tallest"]}
+];
+
+let i=0,ok=0,bad=0;
+
+function load(){
+ const it=items[i];
+ emoji.textContent=it.emoji;
+ wordEn.textContent=it.en;
+ wordEs.textContent=it.es;
+ exampleEn.textContent=it.exEn||"";
+ exampleEs.textContent=it.exEs||"";
+ options.innerHTML=""; fb.textContent="";
+
+ if(it.type==="exercise"){
+   it.o.sort(()=>Math.random()-0.5).forEach(x=>{
+     const b=document.createElement("button");
+     b.className="option-btn";b.textContent=x;
+     b.onclick=()=>check(x,it.a);options.appendChild(b);
+   });
+ }
+ bar.style.width=(i/items.length*100)+"%";
+}
+
+function check(x,a){
+ if(x===a){ok++;fb.textContent="✅ Correct";fb.className="feedback good";}
+ else{bad++;fb.textContent="❌ Try again";fb.className="feedback bad";}
+ okSpan.textContent=ok;badSpan.textContent=bad;
+}
+
+function next(){ if(i<items.length-1){i++;load()} }
+
+function speak(){
+ const u=new SpeechSynthesisUtterance(wordEn.textContent.replace("___",""));
+ u.lang="en-US";speechSynthesis.speak(u);
+}
+
+function share(){
+ if(navigator.share){navigator.share({title:"Marie Kids",url:location.href});}
+ else{navigator.clipboard.writeText(location.href);alert("Link copiado");}
+}
+
+const emoji=document.getElementById("emoji"),
+wordEn=document.getElementById("wordEn"),
+wordEs=document.getElementById("wordEs"),
+exampleEn=document.getElementById("exampleEn"),
+exampleEs=document.getElementById("exampleEs"),
+options=document.getElementById("options"),
+fb=document.getElementById("fb"),
+okSpan=document.getElementById("ok"),
+badSpan=document.getElementById("bad"),
+bar=document.getElementById("bar");
+
+load();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1523 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marie Kids • Leyes de exponentes</title>
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#1976d2" />
+    <style>
+            * {
+                box-sizing: border-box;
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            }
+
+            body {
+                margin: 0;
+                min-height: 100vh;
+                background: linear-gradient(145deg, #dbeafe, #e0f2fe);
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+                padding: 16px;
+            }
+
+            .app {
+                width: 100%;
+                max-width: 760px;
+                background: #fff;
+                border: 3px solid #2563eb;
+                border-radius: 26px;
+                box-shadow: 0 18px 45px rgba(0, 0, 0, .14);
+                padding: 16px;
+                overflow: hidden;
+            }
+
+            .brand-header-kids {
+                position: relative;
+                overflow: hidden;
+                padding: 10px 12px;
+                border-radius: 22px;
+                margin-bottom: 14px;
+                background:
+                    radial-gradient(circle at 12% 16%, rgba(255, 255, 255, .58) 0 0, rgba(255, 255, 255, .58) 6px, transparent 7px),
+                    radial-gradient(circle at 86% 20%, rgba(255, 255, 255, .32) 0 0, rgba(255, 255, 255, .32) 8px, transparent 9px),
+                    linear-gradient(135deg, #0f172a 0%, #1d4ed8 38%, #7c3aed 70%, #f97316 120%);
+                border: 1px solid rgba(255, 255, 255, .88);
+                box-shadow:
+                    0 16px 34px rgba(37, 99, 235, .30),
+                    inset 0 1px 0 rgba(255, 255, 255, .50),
+                    inset 0 -18px 40px rgba(15, 23, 42, .16);
+                color: #fff;
+                cursor: pointer;
+                user-select: none;
+                isolation: isolate;
+                transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
+            }
+
+            .brand-header-kids::before {
+                content: "";
+                position: absolute;
+                inset: -55% -20%;
+                background: linear-gradient(115deg,
+                        transparent 0%,
+                        transparent 37%,
+                        rgba(255, 255, 255, .30) 46%,
+                        transparent 55%,
+                        transparent 100%);
+                transform: translateX(-38%) rotate(8deg);
+                animation: headerShine 5.5s ease-in-out infinite;
+                pointer-events: none;
+                z-index: 1;
+            }
+
+            .brand-header-kids::after {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background:
+                    linear-gradient(90deg, rgba(255, 255, 255, .10) 1px, transparent 1px),
+                    linear-gradient(0deg, rgba(255, 255, 255, .08) 1px, transparent 1px);
+                background-size: 24px 24px;
+                opacity: .24;
+                pointer-events: none;
+                z-index: 1;
+            }
+
+            .brand-header-kids:hover {
+                filter: saturate(1.08) brightness(1.04);
+                transform: translateY(-1px);
+                box-shadow:
+                    0 18px 38px rgba(37, 99, 235, .35),
+                    inset 0 1px 0 rgba(255, 255, 255, .55),
+                    inset 0 -18px 40px rgba(15, 23, 42, .18);
+            }
+
+            .brand-row {
+                position: relative;
+                z-index: 2;
+                display: grid;
+                grid-template-columns: 54px minmax(0, 1fr) auto;
+                gap: 10px;
+                align-items: center;
+            }
+
+            .kids-badge {
+                width: 52px;
+                height: 52px;
+                border-radius: 18px;
+                display: grid;
+                place-items: center;
+                font-size: 1.75rem;
+                font-weight: 1000;
+                background:
+                    radial-gradient(circle at 30% 22%, rgba(255, 255, 255, .92), rgba(255, 255, 255, .30) 42%, rgba(255, 255, 255, .08) 70%),
+                    linear-gradient(135deg, rgba(255, 255, 255, .42), rgba(255, 255, 255, .12));
+                border: 1px solid rgba(255, 255, 255, .58);
+                box-shadow:
+                    0 10px 20px rgba(15, 23, 42, .18),
+                    inset 0 1px 0 rgba(255, 255, 255, .60);
+                flex: 0 0 auto;
+            }
+
+            .kids-title {
+                font-weight: 1000;
+                font-size: clamp(1.32rem, 4vw, 1.72rem);
+                line-height: 1.02;
+                letter-spacing: .2px;
+                text-shadow: 0 3px 10px rgba(15, 23, 42, .32);
+            }
+
+            .brand-row>div:not(.kids-badge) .kids-title {
+                white-space: nowrap;
+                max-width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .brand-row>.kids-title:last-child {
+                justify-self: end;
+                font-size: clamp(.82rem, 2.4vw, 1rem);
+                line-height: 1;
+                padding: 8px 10px;
+                border-radius: 999px;
+                background: rgba(255, 255, 255, .18);
+                border: 1px solid rgba(255, 255, 255, .44);
+                box-shadow:
+                    inset 0 1px 0 rgba(255, 255, 255, .35),
+                    0 8px 18px rgba(15, 23, 42, .14);
+                text-shadow: 0 2px 8px rgba(15, 23, 42, .28);
+                white-space: nowrap;
+            }
+
+            .kids-subtitle {
+                margin-top: 5px;
+                display: flex;
+                gap: 8px;
+                flex-wrap: wrap;
+                align-items: center;
+                font-size: .9rem;
+                font-weight: 800;
+                opacity: .98;
+            }
+
+            .kids-pill,
+            .ruta-pill-btn {
+                background: rgba(255, 255, 255, .18);
+                border: 1px solid rgba(255, 255, 255, .45);
+                padding: 5px 10px;
+                border-radius: 999px;
+                font-size: .80rem;
+                font-weight: 950;
+                color: #fff;
+                box-shadow:
+                    inset 0 1px 0 rgba(255, 255, 255, .35),
+                    0 7px 14px rgba(15, 23, 42, .10);
+                backdrop-filter: blur(8px);
+            }
+
+            .ruta-pill-btn {
+                cursor: pointer;
+                font-family: inherit;
+                line-height: 1.15;
+                transition: transform .18s ease, background .18s ease;
+            }
+
+            .ruta-pill-btn:hover {
+                background: rgba(255, 255, 255, .30);
+                transform: translateY(-1px);
+            }
+
+            .bubble {
+                position: absolute;
+                border-radius: 999px;
+                background: rgba(255, 255, 255, .16);
+                border: 1px solid rgba(255, 255, 255, .26);
+                pointer-events: none;
+                animation: floaty 6s ease-in-out infinite;
+                z-index: 0;
+                filter: blur(.1px);
+            }
+
+            .b1 {
+                left: -22px;
+                top: -26px;
+                width: 82px;
+                height: 82px;
+            }
+
+            .b2 {
+                right: -24px;
+                bottom: -34px;
+                width: 92px;
+                height: 92px;
+                animation-delay: 1s;
+            }
+
+            .b3 {
+                left: 48%;
+                bottom: -30px;
+                width: 50px;
+                height: 50px;
+                animation-delay: .6s;
+            }
+
+            @keyframes floaty {
+
+                0%,
+                100% {
+                    transform: translateY(0) scale(1);
+                }
+
+                50% {
+                    transform: translateY(-7px) scale(1.04);
+                }
+            }
+
+            @keyframes headerShine {
+
+                0%,
+                58%,
+                100% {
+                    transform: translateX(-46%) rotate(8deg);
+                    opacity: 0;
+                }
+
+                68% {
+                    opacity: .72;
+                }
+
+                84% {
+                    transform: translateX(46%) rotate(8deg);
+                    opacity: 0;
+                }
+            }
+
+            @media(max-width:560px) {
+                .brand-header-kids {
+                    padding: 9px 9px;
+                    border-radius: 20px;
+                }
+
+                .brand-row {
+                    grid-template-columns: 46px minmax(0, 1fr) auto;
+                    gap: 8px;
+                }
+
+                .kids-badge {
+                    width: 44px;
+                    height: 44px;
+                    border-radius: 15px;
+                    font-size: 1.45rem;
+                }
+
+                .kids-title {
+                    font-size: 1.18rem;
+                }
+
+                .kids-subtitle {
+                    margin-top: 4px;
+                }
+
+                .ruta-pill-btn {
+                    padding: 4px 8px;
+                    font-size: .72rem;
+                }
+
+                .brand-row>.kids-title:last-child {
+                    font-size: .74rem;
+                    padding: 7px 8px;
+                }
+            }
+
+            h1 {
+                margin: 0;
+                text-align: center;
+                font-size: clamp(1.45rem, 4vw, 2rem);
+                color: #111827;
+            }
+
+            .subtitle {
+                text-align: center;
+                font-size: .95rem;
+                color: #6b7280;
+                margin: 6px 0 14px;
+                font-weight: 750;
+            }
+
+            .module-tabs {
+                display: flex;
+                gap: 8px;
+                flex-wrap: wrap;
+                justify-content: center;
+                padding: 10px;
+                border-radius: 18px;
+                background: #eff6ff;
+                border: 1px solid #bfdbfe;
+                margin-bottom: 14px;
+            }
+
+            .tab-btn {
+                border: 1px solid #bfdbfe;
+                background: #fff;
+                border-radius: 999px;
+                padding: 9px 12px;
+                font-weight: 900;
+                cursor: pointer;
+                color: #111827;
+            }
+
+            .tab-btn:hover {
+                transform: translateY(-1px);
+                background: #dbeafe;
+            }
+
+            .tab-btn.active {
+                color: #fff;
+                background: linear-gradient(90deg, #60a5fa, #2563eb);
+                border-color: transparent;
+            }
+
+            .status-bar {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 10px;
+                margin-bottom: 8px;
+                padding: 9px 12px;
+                border-radius: 999px;
+                background: #eff6ff;
+                border: 1px solid #bfdbfe;
+                font-size: .9rem;
+                flex-wrap: wrap;
+            }
+
+            .xp,
+            .hearts {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                font-weight: 850;
+            }
+
+            .xp span {
+                color: #16a34a;
+            }
+
+            .hearts span {
+                color: #f97316;
+            }
+
+            .progress-wrapper {
+                margin-bottom: 14px;
+            }
+
+            .progress-label {
+                display: flex;
+                justify-content: space-between;
+                font-size: .82rem;
+                color: #6b7280;
+                margin-bottom: 5px;
+                font-weight: 800;
+            }
+
+            .progress {
+                width: 100%;
+                height: 11px;
+                background: #e5e7eb;
+                border-radius: 999px;
+                overflow: hidden;
+            }
+
+            .progress-inner {
+                height: 100%;
+                width: 0%;
+                border-radius: 999px;
+                background: linear-gradient(90deg, #60a5fa, #2563eb);
+                transition: width .2s ease;
+            }
+
+            .module {
+                display: none;
+            }
+
+            .module.active {
+                display: block;
+            }
+
+            .panel {
+                border-radius: 22px;
+                padding: 14px;
+                margin-bottom: 12px;
+                border: 1px solid #e5e7eb;
+                background: #f9fafb;
+            }
+
+            .panel-title {
+                margin: 0 0 8px;
+                color: #111827;
+                font-weight: 1000;
+                font-size: 1.15rem;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .theory {
+                background: #eff6ff;
+                border-color: #bfdbfe;
+            }
+
+            .examples {
+                background: #f0fdf4;
+                border-color: #bbf7d0;
+            }
+
+            .practice {
+                background: #fff7ed;
+                border-color: #fed7aa;
+            }
+
+            .theory-audio-row {
+                display: flex;
+                justify-content: center;
+                margin: 8px 0 12px;
+            }
+
+            .no-audio-badge {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 6px;
+                padding: 8px 12px;
+                border-radius: 999px;
+                background: #fef2f2;
+                color: #991b1b;
+                border: 1px solid #fecaca;
+                font-weight: 950;
+                margin: 6px auto 12px;
+            }
+
+            .rule {
+                padding: 12px;
+                border-radius: 16px;
+                background: #fff;
+                border: 1px solid #bfdbfe;
+                color: #374151;
+                font-weight: 760;
+                line-height: 1.45;
+                margin-bottom: 10px;
+            }
+
+            .theory-header {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 10px;
+                margin: 8px 0 12px;
+            }
+
+            @media(max-width:560px) {
+                .theory-header {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            .rule-card {
+                border-radius: 18px;
+                padding: 12px;
+                background: #fff;
+                border: 2px solid #e5e7eb;
+                font-weight: 820;
+                line-height: 1.38;
+            }
+
+            .rule-card.dip {
+                border-color: #86efac;
+                background: linear-gradient(145deg, #ffffff, #f0fdf4);
+                color: #166534;
+            }
+
+            .rule-card.hia {
+                border-color: #fdba74;
+                background: linear-gradient(145deg, #ffffff, #fff7ed);
+                color: #9a3412;
+            }
+
+            .rule-card-title {
+                font-size: 1.04rem;
+                font-weight: 1000;
+                margin-bottom: 6px;
+            }
+
+            .rule-card-text {
+                color: #374151;
+                font-weight: 820;
+                line-height: 1.38;
+                font-size: .95rem;
+            }
+
+            .steps {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 8px;
+                margin-top: 10px;
+            }
+
+            @media(max-width:560px) {
+                .steps {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            .step {
+                background: #fff;
+                border: 1px solid #dbeafe;
+                border-radius: 16px;
+                padding: 10px;
+                font-weight: 850;
+                color: #374151;
+            }
+
+            .chip-row {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 8px;
+                flex-wrap: wrap;
+                margin: 12px 0;
+            }
+
+            .chip {
+                background: #fff;
+                border: 2px solid #dbeafe;
+                color: #1e3a8a;
+                border-radius: 18px;
+                padding: 11px 16px;
+                font-size: 1.25rem;
+                font-weight: 1000;
+                box-shadow: 0 8px 14px rgba(37, 99, 235, .08);
+            }
+
+            .visual-note {
+                background: #fff;
+                border: 1px solid #bbf7d0;
+                border-radius: 16px;
+                padding: 12px;
+                color: #166534;
+                font-weight: 850;
+                line-height: 1.45;
+                margin-bottom: 12px;
+                text-align: center;
+            }
+
+            .legend {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                justify-content: center;
+                margin-top: 8px;
+            }
+
+            .legend-pill {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                padding: 7px 10px;
+                border-radius: 999px;
+                font-weight: 1000;
+                font-size: .86rem;
+            }
+
+            .legend-pill.green {
+                background: #dcfce7;
+                color: #166534;
+                border: 1px solid #22c55e;
+            }
+
+            .legend-pill.orange {
+                background: #ffedd5;
+                color: #9a3412;
+                border: 1px solid #f97316;
+            }
+
+            .visual-examples-grid {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 12px;
+                margin-top: 10px;
+            }
+
+            @media(max-width:560px) {
+                .visual-examples-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            .syllable-card {
+                background: #fff;
+                border: 2px solid #dbeafe;
+                border-radius: 20px;
+                padding: 14px;
+                text-align: center;
+                box-shadow: 0 10px 18px rgba(37, 99, 235, .08);
+            }
+
+            .syllable-card.diptongo-card {
+                border-color: #86efac;
+                background: linear-gradient(145deg, #ffffff, #f0fdf4);
+            }
+
+            .syllable-card.hiato-card {
+                border-color: #fdba74;
+                background: linear-gradient(145deg, #ffffff, #fff7ed);
+            }
+
+            .word-main {
+                font-size: 1.55rem;
+                font-weight: 1000;
+                color: #1e3a8a;
+                margin-bottom: 6px;
+            }
+
+            .split-line {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 7px;
+                flex-wrap: wrap;
+                margin: 8px 0;
+                font-size: 1.3rem;
+                font-weight: 1000;
+            }
+
+            .syllable {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 54px;
+                padding: 8px 12px;
+                border-radius: 15px;
+                border: 2px solid #bfdbfe;
+                background: #eff6ff;
+                color: #1e3a8a;
+                box-shadow: 0 6px 12px rgba(37, 99, 235, .08);
+            }
+
+            .syllable.join {
+                border-color: #22c55e;
+                background: #dcfce7;
+                color: #166534;
+            }
+
+            .syllable.separate {
+                border-color: #f97316;
+                background: #ffedd5;
+                color: #9a3412;
+            }
+
+            .hyphen {
+                font-weight: 1000;
+                color: #6b7280;
+            }
+
+            .vowel {
+                display: inline-block;
+                padding: 1px 4px;
+                margin: 0 1px;
+                border-radius: 8px;
+                background: #fef3c7;
+                color: #92400e;
+                border: 1px solid #f59e0b;
+            }
+
+            .vowel.join-vowel {
+                background: #bbf7d0;
+                color: #166534;
+                border-color: #22c55e;
+            }
+
+            .vowel.sep-vowel {
+                background: #fed7aa;
+                color: #9a3412;
+                border-color: #f97316;
+            }
+
+            .example-tag {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                padding: 6px 10px;
+                border-radius: 999px;
+                font-weight: 1000;
+                font-size: .86rem;
+                margin-top: 6px;
+            }
+
+            .tag-diptongo {
+                background: #dcfce7;
+                color: #166534;
+                border: 1px solid #22c55e;
+            }
+
+            .tag-hiato {
+                background: #ffedd5;
+                color: #9a3412;
+                border: 1px solid #f97316;
+            }
+
+            .mini-explain {
+                margin-top: 8px;
+                color: #4b5563;
+                font-weight: 800;
+                line-height: 1.35;
+                font-size: .94rem;
+            }
+
+
+            .instruction-icon {
+                font-size: 2rem;
+                margin-bottom: 6px;
+            }
+
+            .instruction-card {
+                background: #fff;
+                border: 2px solid #bfdbfe;
+                border-radius: 20px;
+                padding: 14px;
+                text-align: center;
+                box-shadow: 0 10px 18px rgba(37, 99, 235, .08);
+            }
+
+            .instruction-card.listen {
+                border-color: #93c5fd;
+                background: linear-gradient(145deg, #ffffff, #eff6ff);
+            }
+
+            .instruction-card.action {
+                border-color: #86efac;
+                background: linear-gradient(145deg, #ffffff, #f0fdf4);
+            }
+
+            .instruction-card.order {
+                border-color: #fdba74;
+                background: linear-gradient(145deg, #ffffff, #fff7ed);
+            }
+
+            .instruction-title {
+                font-size: 1.25rem;
+                font-weight: 1000;
+                color: #1e3a8a;
+                margin-bottom: 8px;
+            }
+
+            .instruction-box {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                padding: 8px 12px;
+                border-radius: 15px;
+                border: 2px solid #bfdbfe;
+                background: #eff6ff;
+                color: #1e3a8a;
+                font-weight: 1000;
+                margin: 5px;
+            }
+
+            .instruction-box.good {
+                border-color: #22c55e;
+                background: #dcfce7;
+                color: #166534;
+            }
+
+            .instruction-box.warn {
+                border-color: #f97316;
+                background: #ffedd5;
+                color: #9a3412;
+            }
+
+            .question-card {
+                background: #fff;
+                border: 1px solid #fed7aa;
+                border-radius: 18px;
+                padding: 12px;
+            }
+
+            .question-title {
+                font-weight: 1000;
+                color: #7c2d12;
+                text-align: center;
+                margin-bottom: 10px;
+                font-size: 1.03rem;
+            }
+
+            .question-text {
+                text-align: center;
+                font-size: 1.13rem;
+                font-weight: 1000;
+                color: #111827;
+                margin: 8px 0;
+                line-height: 1.35;
+            }
+
+            .big-word {
+                text-align: center;
+                font-size: clamp(1.45rem, 5vw, 2.25rem);
+                font-weight: 1000;
+                color: #1e3a8a;
+                margin: 8px 0 2px;
+                line-height: 1.25;
+            }
+
+            .options {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                margin-top: 10px;
+            }
+
+            .option-btn {
+                flex: 1;
+                min-width: 120px;
+                border-radius: 16px;
+                border: 1px solid #d1d5db;
+                background: #fff;
+                padding: 11px 10px;
+                font-size: 1.04rem;
+                cursor: pointer;
+                font-weight: 950;
+            }
+
+            .option-btn:hover:not(:disabled) {
+                background: #e0f2fe;
+                transform: translateY(-1px);
+                border-color: #93c5fd;
+            }
+
+            .option-btn:disabled {
+                cursor: default;
+                opacity: .65;
+            }
+
+            .option-btn.correct-choice {
+                background: #dcfce7;
+                border-color: #22c55e;
+                color: #166534;
+                opacity: 1;
+            }
+
+            .option-btn.wrong-choice {
+                background: #fee2e2;
+                border-color: #ef4444;
+                color: #991b1b;
+            }
+
+            .feedback {
+                margin-top: 10px;
+                text-align: center;
+                min-height: 22px;
+                font-weight: 900;
+                line-height: 1.3;
+            }
+
+            .feedback.good {
+                color: #16a34a;
+            }
+
+            .feedback.bad {
+                color: #ef4444;
+            }
+
+            .controls {
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+                margin-top: 12px;
+            }
+
+            .main-btn {
+                flex: 1;
+                min-width: 130px;
+                border: none;
+                border-radius: 999px;
+                padding: 11px 14px;
+                color: #fff;
+                font-weight: 950;
+                cursor: pointer;
+                background: linear-gradient(90deg, #60a5fa, #2563eb);
+            }
+
+            .main-btn.secondary {
+                background: linear-gradient(90deg, #a78bfa, #7c3aed);
+            }
+
+            .summary-box {
+                padding: 12px;
+                border-radius: 18px;
+                background: #ecfeff;
+                border: 2px solid #67e8f9;
+                color: #155e75;
+                font-weight: 850;
+                line-height: 1.45;
+            }
+
+            @media(max-width:560px) {
+                body {
+                    padding: 12px;
+                }
+
+                .app {
+                    padding: 13px;
+                }
+            }
+        
+
+            .formula-banner {
+                text-align: center;
+                padding: 14px;
+                border-radius: 18px;
+                background: linear-gradient(145deg, #ffffff, #eef2ff);
+                border: 2px solid #a5b4fc;
+                color: #312e81;
+                font-size: clamp(1.35rem, 5vw, 2rem);
+                font-weight: 1000;
+                margin: 10px 0 12px;
+                box-shadow: 0 8px 16px rgba(79, 70, 229, .10);
+            }
+
+            .formula-grid {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 10px;
+                margin: 10px 0 12px;
+            }
+
+            .formula-card {
+                background: #fff;
+                border: 2px solid #c7d2fe;
+                border-radius: 18px;
+                padding: 12px;
+                text-align: center;
+                box-shadow: 0 8px 16px rgba(79, 70, 229, .08);
+            }
+
+            .formula-card.product { border-color: #86efac; background: linear-gradient(145deg,#fff,#f0fdf4); }
+            .formula-card.quotient { border-color: #93c5fd; background: linear-gradient(145deg,#fff,#eff6ff); }
+            .formula-card.power { border-color: #c4b5fd; background: linear-gradient(145deg,#fff,#f5f3ff); }
+            .formula-card.special { border-color: #fdba74; background: linear-gradient(145deg,#fff,#fff7ed); }
+
+            .formula-main {
+                font-size: 1.45rem;
+                font-weight: 1000;
+                color: #1e3a8a;
+                margin-bottom: 6px;
+            }
+
+            .formula-label {
+                color: #4b5563;
+                font-weight: 850;
+                line-height: 1.35;
+            }
+
+            .audio-btn {
+                border: none;
+                border-radius: 999px;
+                padding: 10px 16px;
+                color: #fff;
+                font-weight: 950;
+                cursor: pointer;
+                background: linear-gradient(90deg, #8b5cf6, #6d28d9);
+                box-shadow: 0 8px 16px rgba(109, 40, 217, .20);
+            }
+
+            .audio-btn:hover { transform: translateY(-1px); filter: brightness(1.05); }
+
+            .math-example-card {
+                background: #fff;
+                border: 2px solid #c7d2fe;
+                border-radius: 20px;
+                padding: 14px;
+                text-align: center;
+                box-shadow: 0 10px 18px rgba(79, 70, 229, .08);
+            }
+
+            .math-example-icon { font-size: 1.8rem; margin-bottom: 5px; }
+            .math-example-title { font-size: 1.05rem; font-weight: 1000; color: #312e81; }
+            .math-example-operation { font-size: 1.35rem; font-weight: 1000; color: #1d4ed8; margin: 9px 0; }
+            .math-example-result { display:inline-block; padding:7px 11px; border-radius:14px; background:#dcfce7; border:1px solid #22c55e; color:#166534; font-weight:1000; }
+
+            @media(max-width:560px) {
+                .formula-grid { grid-template-columns: 1fr; }
+            }
+
+
+            /* Fracciones matemáticas con numerador, raya y denominador */
+            .math-expression {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: .12em;
+                vertical-align: middle;
+            }
+
+            .math-fraction {
+                display: inline-grid;
+                grid-template-rows: auto auto;
+                align-items: center;
+                justify-items: stretch;
+                min-width: 1.65em;
+                margin: 0 .14em;
+                vertical-align: middle;
+                line-height: 1.05;
+            }
+
+            .math-numerator,
+            .math-denominator {
+                display: block;
+                padding-left: .24em;
+                padding-right: .24em;
+                text-align: center;
+                white-space: nowrap;
+            }
+
+            .math-numerator {
+                padding-bottom: .13em;
+                border-bottom: .095em solid currentColor;
+            }
+
+            .math-denominator {
+                padding-top: .13em;
+            }
+
+            .math-equals {
+                display: inline-block;
+                margin: 0 .18em;
+                font-weight: 1000;
+            }
+
+            .math-separator {
+                display: inline-block;
+                margin: 0 .34em;
+                opacity: .65;
+            }
+
+            .math-parentheses {
+                display: inline-flex;
+                align-items: center;
+                vertical-align: middle;
+            }
+
+            .math-paren {
+                font-size: 1.18em;
+                line-height: 1;
+            }
+
+            .formula-banner .math-fraction,
+            .formula-main .math-fraction,
+            .big-word .math-fraction,
+            .math-example-operation .math-fraction,
+            .math-example-result .math-fraction,
+            .option-btn .math-fraction {
+                transform: translateY(.02em);
+            }
+
+            .option-btn .math-expression {
+                width: 100%;
+            }
+</style>
+</head>
+<body>
+    <div class="app">
+        <div class="brand-header-kids" aria-label="Marie Kids" role="link" tabindex="0" onclick="goHome()"
+            onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();goHome();}">
+            <div class="bubble b1"></div>
+            <div class="bubble b2"></div>
+            <div class="bubble b3"></div>
+
+            <div class="brand-row">
+                <div class="kids-badge" aria-hidden="true">🧮</div>
+                <div>
+                    <div class="kids-title">Marie Kids</div>
+                    <div class="kids-subtitle">
+                        <button class="ruta-pill-btn" type="button" onclick="event.stopPropagation(); goRuta();">🧭 Ruta de Aprendizaje</button>
+                    </div>
+                </div>
+                <div class="kids-title">1 Secundaria</div>
+            </div>
+        </div>
+
+        <h1>Tema 01: Leyes de exponentes</h1>
+        <p class="subtitle">Aprende a simplificar potencias usando reglas claras, ejemplos resueltos y ejercicios progresivos.</p>
+
+        <div class="module-tabs" aria-label="Módulos de la lección" id="tabs"></div>
+
+        <div class="status-bar">
+            <div class="xp">✅ Correctas: <span id="correctCount">0</span></div>
+            <div class="hearts">🧠 Por mejorar: <span id="wrongCount">0</span></div>
+        </div>
+
+        <div class="progress-wrapper">
+            <div class="progress-label"><span>Progreso general</span><span id="progressText">0/50</span></div>
+            <div class="progress"><div class="progress-inner" id="progressBar"></div></div>
+        </div>
+
+        <div id="modulesContainer"></div>
+    </div>
+
+    <script>
+            function goHome() { location.href = "index.html"; }
+            function goRuta() { location.href = "ruta-matematicas.html"; }
+
+            const modules = {"conceptos": {"tab": "1. Conceptos", "title": "🔢 1. Base, exponente y potencia", "theoryAudio": "Una potencia representa una multiplicación repetida. En a elevado a n, a es la base y n es el exponente. El exponente indica cuántas veces se multiplica la base por sí misma. Toda base elevada a uno conserva su valor.", "formula": "aⁿ = a × a × ... × a", "laws": [{"kind": "power", "formula": "a = base", "label": "Número o expresión que se repite."}, {"kind": "product", "formula": "n = exponente", "label": "Cantidad de veces que se usa la base."}, {"kind": "quotient", "formula": "aⁿ = potencia", "label": "Resultado de la multiplicación repetida."}, {"kind": "special", "formula": "a¹ = a", "label": "Todo número elevado a uno queda igual."}], "steps": ["Identifica la base.", "Identifica el exponente.", "Escribe la multiplicación repetida.", "Calcula y revisa el resultado."], "examples": [{"icon": "2️⃣", "title": "Dos elevado al cubo", "operation": "2³ = 2 × 2 × 2", "result": "2³ = 8"}, {"icon": "3️⃣", "title": "Tres elevado al cuadrado", "operation": "3² = 3 × 3", "result": "3² = 9"}, {"icon": "✖️", "title": "Multiplicación repetida", "operation": "5 × 5 × 5 × 5", "result": "5⁴"}, {"icon": "1️⃣", "title": "Exponente uno", "operation": "x¹", "result": "x"}], "questions": [{"prompt": "¿Cuál es la base?", "word": "5³", "answer": "5", "options": ["3", "5", "15"], "explain": "La base es el número que se repite: 5."}, {"prompt": "¿Cuál es el exponente?", "word": "5³", "answer": "3", "options": ["5", "8", "3"], "explain": "El exponente es 3."}, {"prompt": "Escribe como multiplicación repetida.", "word": "2⁴", "answer": "2 × 2 × 2 × 2", "options": ["2 × 4", "2 × 2 × 2 × 2", "4 × 4"], "explain": "La base 2 se multiplica cuatro veces."}, {"prompt": "Calcula la potencia.", "word": "3³", "answer": "27", "options": ["9", "18", "27"], "explain": "3 × 3 × 3 = 27."}, {"prompt": "Simplifica.", "word": "x¹", "answer": "x", "options": ["1", "x", "x²"], "explain": "Toda base elevada a uno queda igual."}, {"prompt": "Calcula.", "word": "10²", "answer": "100", "options": ["20", "100", "1000"], "explain": "10 × 10 = 100."}, {"prompt": "¿Qué multiplicación representa 4³?", "word": "4³", "answer": "4 × 4 × 4", "options": ["4 × 3", "4 × 4 × 4", "3 × 3 × 3 × 3"], "explain": "La base 4 se repite tres veces."}, {"prompt": "El exponente indica...", "word": "aⁿ", "answer": "cuántas veces se multiplica la base", "options": ["el resultado final", "cuántas veces se multiplica la base", "el signo de la base"], "explain": "El exponente señala cuántas veces se usa la base."}, {"prompt": "Escribe como potencia.", "word": "6 × 6 × 6 × 6", "answer": "6⁴", "options": ["4⁶", "6⁴", "6 × 4"], "explain": "La base 6 aparece cuatro veces."}, {"prompt": "¿Cuál es la base?", "word": "m⁵", "answer": "m", "options": ["5", "m", "m⁵"], "explain": "La base es m."}]}, "producto": {"tab": "2. Producto y cociente", "title": "➕➖ 2. Producto y cociente de potencias", "theoryAudio": "Cuando multiplicamos potencias de la misma base, conservamos la base y sumamos los exponentes. Cuando dividimos potencias de la misma base, conservamos la base y restamos los exponentes. En el cociente, la base debe ser diferente de cero.", "formula": "aᵐ × aⁿ = aᵐ⁺ⁿ   |   aᵐ ÷ aⁿ = aᵐ⁻ⁿ", "laws": [{"kind": "product", "formula": "aᵐ × aⁿ = aᵐ⁺ⁿ", "label": "En el producto, se suman exponentes."}, {"kind": "quotient", "formula": "aᵐ ÷ aⁿ = aᵐ⁻ⁿ", "label": "En el cociente, se restan exponentes."}, {"kind": "power", "formula": "La base no cambia", "label": "Las leyes se aplican cuando la base es la misma."}, {"kind": "special", "formula": "a ≠ 0 en el cociente", "label": "No se puede dividir entre cero."}], "steps": ["Comprueba que las bases sean iguales.", "Conserva la base.", "Suma o resta los exponentes.", "Simplifica el resultado."], "examples": [{"icon": "➕", "title": "Producto", "operation": "x³ × x⁴", "result": "x⁷"}, {"icon": "➖", "title": "Cociente", "operation": "a⁸ ÷ a³", "result": "a⁵"}, {"icon": "1️⃣", "title": "Exponente implícito", "operation": "y × y⁵ = y¹ × y⁵", "result": "y⁶"}, {"icon": "✅", "title": "Misma potencia", "operation": "b⁶ ÷ b⁶ = b⁰", "result": "1"}], "questions": [{"prompt": "Simplifica.", "word": "x³ × x⁴", "answer": "x⁷", "options": ["x¹²", "x⁷", "x"], "explain": "Se conserva x y se suma 3 + 4."}, {"prompt": "Simplifica.", "word": "a⁵ × a²", "answer": "a⁷", "options": ["a¹⁰", "a³", "a⁷"], "explain": "5 + 2 = 7."}, {"prompt": "Simplifica.", "word": "y × y⁶", "answer": "y⁷", "options": ["y⁶", "y⁷", "y⁵"], "explain": "y = y¹, entonces 1 + 6 = 7."}, {"prompt": "Simplifica.", "word": "m⁸ ÷ m³", "answer": "m⁵", "options": ["m¹¹", "m⁵", "m²⁴"], "explain": "8 − 3 = 5."}, {"prompt": "Simplifica.", "word": "p⁶ ÷ p²", "answer": "p⁴", "options": ["p³", "p⁸", "p⁴"], "explain": "6 − 2 = 4."}, {"prompt": "Aplica la ley del producto.", "word": "2³ × 2²", "answer": "2⁵", "options": ["2⁶", "2⁵", "4⁵"], "explain": "Se conserva la base 2 y se suma 3 + 2."}, {"prompt": "Simplifica.", "word": "b⁹ ÷ b⁹", "answer": "1", "options": ["b", "1", "0"], "explain": "b⁹ ÷ b⁹ = b⁰ = 1, si b es distinto de cero."}, {"prompt": "Simplifica.", "word": "x⁷ ÷ x⁵", "answer": "x²", "options": ["x¹²", "x²", "x³⁵"], "explain": "7 − 5 = 2."}, {"prompt": "En un producto de potencias de igual base, los exponentes se...", "word": "aᵐ × aⁿ", "answer": "suman", "options": ["multiplican", "suman", "dividen"], "explain": "En el producto se suman."}, {"prompt": "En un cociente de potencias de igual base, los exponentes se...", "word": "aᵐ ÷ aⁿ", "answer": "restan", "options": ["restan", "suman", "elevan al cuadrado"], "explain": "En el cociente se restan."}]}, "potencias": {"tab": "3. Potencias", "title": "⚡ 3. Potencia de una potencia, producto y cociente", "theoryAudio": "En una potencia de una potencia, conservamos la base y multiplicamos los exponentes. Si un producto o un cociente está elevado a una potencia, el exponente se distribuye a cada factor del producto, o al numerador y al denominador.", "formula": "(aᵐ)ⁿ = aᵐⁿ   |   (ab)ⁿ = aⁿbⁿ   |   (a/b)ⁿ = aⁿ/bⁿ", "laws": [{"kind": "power", "formula": "(aᵐ)ⁿ = aᵐⁿ", "label": "Multiplica los exponentes."}, {"kind": "product", "formula": "(ab)ⁿ = aⁿbⁿ", "label": "Distribuye el exponente a cada factor."}, {"kind": "quotient", "formula": "(a/b)ⁿ = aⁿ/bⁿ", "label": "Distribuye al numerador y denominador."}, {"kind": "special", "formula": "(kaᵐ)ⁿ = kⁿaᵐⁿ", "label": "También se eleva el coeficiente."}], "steps": ["Reconoce el tipo de expresión.", "Distribuye el exponente si corresponde.", "Multiplica los exponentes.", "Calcula los coeficientes y simplifica."], "examples": [{"icon": "⚡", "title": "Potencia de potencia", "operation": "(x³)²", "result": "x⁶"}, {"icon": "✖️", "title": "Potencia de producto", "operation": "(ab)³", "result": "a³b³"}, {"icon": "➗", "title": "Potencia de cociente", "operation": "(x/y)²", "result": "x²/y²"}, {"icon": "🔢", "title": "Con coeficiente", "operation": "(2m²)³", "result": "8m⁶"}], "questions": [{"prompt": "Simplifica.", "word": "(x³)²", "answer": "x⁶", "options": ["x⁵", "x⁶", "x⁹"], "explain": "Se multiplican 3 × 2 = 6."}, {"prompt": "Simplifica.", "word": "(a²)⁴", "answer": "a⁸", "options": ["a⁶", "a⁸", "a¹⁶"], "explain": "2 × 4 = 8."}, {"prompt": "Simplifica.", "word": "(m⁵)³", "answer": "m¹⁵", "options": ["m⁸", "m¹⁵", "m¹²⁵"], "explain": "5 × 3 = 15."}, {"prompt": "Distribuye el exponente.", "word": "(2x)³", "answer": "2³x³", "options": ["2x³", "2³x³", "6x³"], "explain": "El exponente 3 se aplica a 2 y a x."}, {"prompt": "Simplifica.", "word": "(ab)²", "answer": "a²b²", "options": ["ab²", "a²b²", "a²b"], "explain": "El exponente se distribuye a ambos factores."}, {"prompt": "Simplifica.", "word": "(x/y)³", "answer": "x³/y³", "options": ["x³/y", "x/y³", "x³/y³"], "explain": "El exponente se aplica al numerador y al denominador."}, {"prompt": "Simplifica completamente.", "word": "(3m²)²", "answer": "9m⁴", "options": ["6m⁴", "9m⁴", "9m²"], "explain": "3² = 9 y 2 × 2 = 4."}, {"prompt": "Simplifica.", "word": "(a⁴b²)³", "answer": "a¹²b⁶", "options": ["a⁷b⁵", "a¹²b⁶", "a⁶b¹²"], "explain": "4 × 3 = 12 y 2 × 3 = 6."}, {"prompt": "En una potencia de una potencia, los exponentes se...", "word": "(aᵐ)ⁿ", "answer": "multiplican", "options": ["suman", "restan", "multiplican"], "explain": "Se multiplican m × n."}, {"prompt": "En (ab)ⁿ, el exponente se aplica...", "word": "(ab)ⁿ", "answer": "a cada factor", "options": ["solo al primer factor", "a cada factor", "solo al segundo factor"], "explain": "Se distribuye a todos los factores."}]}, "especiales": {"tab": "4. Exponentes especiales", "title": "🔄 4. Exponente cero y exponente negativo", "theoryAudio": "Toda base distinta de cero elevada a cero es igual a uno. Un exponente negativo indica el inverso de la potencia con exponente positivo. Por ejemplo, a elevado a menos n es igual a uno entre a elevado a n.", "formula": "a⁰ = 1   |   a⁻ⁿ = 1/aⁿ   |   (a/b)⁻ⁿ = (b/a)ⁿ", "laws": [{"kind": "special", "formula": "a⁰ = 1", "label": "Válido cuando a es distinto de cero."}, {"kind": "quotient", "formula": "a⁻ⁿ = 1/aⁿ", "label": "El exponente negativo produce el inverso."}, {"kind": "power", "formula": "(a/b)⁻ⁿ = (b/a)ⁿ", "label": "Se invierte la fracción y el exponente queda positivo."}, {"kind": "product", "formula": "aᵐ ÷ aⁿ = aᵐ⁻ⁿ", "label": "Una resta puede generar exponente negativo."}], "steps": ["Identifica si el exponente es cero o negativo.", "Si es cero, escribe 1.", "Si es negativo, invierte la potencia.", "Deja el exponente positivo y simplifica."], "examples": [{"icon": "0️⃣", "title": "Exponente cero", "operation": "7⁰", "result": "1"}, {"icon": "🔄", "title": "Exponente negativo", "operation": "x⁻³", "result": "1/x³"}, {"icon": "➗", "title": "Número negativo", "operation": "2⁻²", "result": "1/4"}, {"icon": "↕️", "title": "Fracción invertida", "operation": "(a/b)⁻²", "result": "b²/a²"}], "questions": [{"prompt": "Simplifica, con a distinto de cero.", "word": "a⁰", "answer": "1", "options": ["0", "a", "1"], "explain": "Toda base no nula elevada a cero es 1."}, {"prompt": "Calcula.", "word": "5⁰", "answer": "1", "options": ["0", "1", "5"], "explain": "5⁰ = 1."}, {"prompt": "Escribe con exponente positivo.", "word": "x⁻³", "answer": "1/x³", "options": ["−x³", "1/x³", "x³"], "explain": "Un exponente negativo indica el inverso."}, {"prompt": "Calcula.", "word": "2⁻²", "answer": "1/4", "options": ["−4", "1/4", "4"], "explain": "2⁻² = 1/2² = 1/4."}, {"prompt": "Escribe con exponente positivo.", "word": "a⁻²", "answer": "1/a²", "options": ["−a²", "1/a²", "a²"], "explain": "Se toma el inverso de a²."}, {"prompt": "Simplifica.", "word": "(a/b)⁻²", "answer": "b²/a²", "options": ["a²/b²", "b²/a²", "−a²/b²"], "explain": "Se invierte la fracción y se conserva el exponente positivo."}, {"prompt": "Calcula.", "word": "10⁻¹", "answer": "1/10", "options": ["−10", "10", "1/10"], "explain": "10⁻¹ = 1/10."}, {"prompt": "Simplifica.", "word": "x⁰ × x⁵", "answer": "x⁵", "options": ["x⁰", "x⁵", "x¹⁰"], "explain": "x⁰ = 1, entonces 1 × x⁵ = x⁵."}, {"prompt": "Simplifica con exponente positivo.", "word": "x³ ÷ x⁵", "answer": "1/x²", "options": ["x²", "1/x²", "x⁸"], "explain": "x³ ÷ x⁵ = x⁻² = 1/x²."}, {"prompt": "Para usar a⁰ = 1 se necesita...", "word": "Condición", "answer": "a ≠ 0", "options": ["a = 0", "a ≠ 0", "a = 1 únicamente"], "explain": "La base debe ser distinta de cero."}]}, "olimpiadas": {"tab": "🏅 5. Olimpiadas", "title": "🏅 5. Olimpiadas de leyes de exponentes", "theoryAudio": "", "formula": "Combina las leyes con orden y revisa cada paso.", "laws": [], "steps": [], "examples": [], "questions": [{"prompt": "Simplifica.", "word": "x² × x⁵ ÷ x³", "answer": "x⁴", "options": ["x¹⁰", "x⁴", "x⁶", "x⁰", "x³"], "explain": "2 + 5 − 3 = 4."}, {"prompt": "Simplifica.", "word": "(a³)² × a⁴", "answer": "a¹⁰", "options": ["a⁹", "a¹⁰", "a¹²", "a²⁴", "a⁵"], "explain": "(a³)² = a⁶ y a⁶ × a⁴ = a¹⁰."}, {"prompt": "Simplifica.", "word": "(m⁴ ÷ m²)³", "answer": "m⁶", "options": ["m²", "m⁶", "m⁹", "m¹²", "m¹⁸"], "explain": "Dentro del paréntesis queda m² y luego (m²)³ = m⁶."}, {"prompt": "Simplifica completamente.", "word": "(2x²)³", "answer": "8x⁶", "options": ["6x⁶", "8x⁵", "8x⁶", "2x⁶", "8x⁸"], "explain": "2³ = 8 y 2 × 3 = 6."}, {"prompt": "Calcula.", "word": "a⁰ + 2³, con a ≠ 0", "answer": "9", "options": ["8", "9", "10", "1", "6"], "explain": "a⁰ = 1 y 2³ = 8; 1 + 8 = 9."}, {"prompt": "Simplifica.", "word": "x⁻² × x⁵", "answer": "x³", "options": ["x⁻¹⁰", "x³", "x⁷", "1/x³", "x⁻⁷"], "explain": "−2 + 5 = 3."}, {"prompt": "Simplifica.", "word": "(a²b³)²", "answer": "a⁴b⁶", "options": ["a⁴b⁵", "a²b⁶", "a⁴b⁶", "a⁸b⁹", "a⁶b⁴"], "explain": "2 × 2 = 4 y 3 × 2 = 6."}, {"prompt": "Simplifica.", "word": "(x³/y²)²", "answer": "x⁶/y⁴", "options": ["x⁵/y⁴", "x⁶/y²", "x⁶/y⁴", "x⁹/y⁴", "x⁶/y⁶"], "explain": "El exponente 2 se distribuye: 3 × 2 = 6 y 2 × 2 = 4."}, {"prompt": "Calcula.", "word": "3² × 3³", "answer": "243", "options": ["27", "81", "243", "729", "15"], "explain": "3² × 3³ = 3⁵ = 243."}, {"prompt": "Simplifica.", "word": "(p²)³ ÷ p⁴", "answer": "p²", "options": ["p", "p²", "p³", "p⁶", "1/p²"], "explain": "(p²)³ = p⁶ y p⁶ ÷ p⁴ = p²."}]}};
+            const order = ["conceptos", "producto", "potencias", "especiales", "olimpiadas"];
+
+            const state = {
+                currentModule: "conceptos",
+                index: Object.fromEntries(order.map(k => [k, 0])),
+                answered: Object.fromEntries(order.map(k => [k, new Set()])),
+                correct: 0,
+                wrong: 0,
+                totalQuestions: order.reduce((sum, key) => sum + modules[key].questions.length, 0)
+            };
+
+            function escapeHTML(value) {
+                return String(value)
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;")
+                    .replace(/"/g, "&quot;")
+                    .replace(/'/g, "&#39;");
+            }
+
+            function splitTopLevelMath(text) {
+                const parts = [];
+                let depth = 0;
+                let start = 0;
+
+                for (let i = 0; i < text.length; i++) {
+                    const ch = text[i];
+                    if (ch === "(") depth++;
+                    if (ch === ")") depth = Math.max(0, depth - 1);
+
+                    if (depth === 0 && (ch === "=" || ch === "|")) {
+                        parts.push({ type: "text", value: text.slice(start, i) });
+                        parts.push({ type: "operator", value: ch });
+                        start = i + 1;
+                    }
+                }
+
+                parts.push({ type: "text", value: text.slice(start) });
+                return parts;
+            }
+
+            function findTopLevelDivision(text) {
+                let depth = 0;
+                for (let i = 0; i < text.length; i++) {
+                    const ch = text[i];
+                    if (ch === "(") depth++;
+                    else if (ch === ")") depth = Math.max(0, depth - 1);
+                    else if (depth === 0 && (ch === "÷" || ch === "/")) return i;
+                }
+                return -1;
+            }
+
+            function matchingParenthesis(text, startIndex) {
+                let depth = 0;
+                for (let i = startIndex; i < text.length; i++) {
+                    if (text[i] === "(") depth++;
+                    if (text[i] === ")") {
+                        depth--;
+                        if (depth === 0) return i;
+                    }
+                }
+                return -1;
+            }
+
+            function fractionHTML(numerator, denominator) {
+                return `<span class="math-fraction"><span class="math-numerator">${numerator}</span><span class="math-denominator">${denominator}</span></span>`;
+            }
+
+            function formatMathTerm(value) {
+                const text = String(value || "").trim();
+                if (!text) return "";
+
+                if (text.startsWith("(")) {
+                    const close = matchingParenthesis(text, 0);
+                    if (close > 0 && /^[⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺ⁿᵐ]*$/.test(text.slice(close + 1))) {
+                        const inner = text.slice(1, close);
+                        const suffix = text.slice(close + 1);
+                        return `<span class="math-parentheses"><span class="math-paren">(</span>${formatMathExpression(inner)}<span class="math-paren">)</span>${escapeHTML(suffix)}</span>`;
+                    }
+                }
+
+                const divisionIndex = findTopLevelDivision(text);
+                if (divisionIndex >= 0) {
+                    const numerator = text.slice(0, divisionIndex).trim();
+                    const denominator = text.slice(divisionIndex + 1).trim();
+                    return fractionHTML(formatMathExpression(numerator), formatMathExpression(denominator));
+                }
+
+                let html = "";
+                let plainStart = 0;
+                for (let i = 0; i < text.length; i++) {
+                    if (text[i] !== "(") continue;
+                    const close = matchingParenthesis(text, i);
+                    if (close < 0) continue;
+
+                    html += escapeHTML(text.slice(plainStart, i));
+                    const inner = text.slice(i + 1, close);
+                    let suffixEnd = close + 1;
+                    while (suffixEnd < text.length && /[⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺ⁿᵐ]/.test(text[suffixEnd])) suffixEnd++;
+                    const suffix = text.slice(close + 1, suffixEnd);
+                    html += `<span class="math-parentheses"><span class="math-paren">(</span>${formatMathExpression(inner)}<span class="math-paren">)</span>${escapeHTML(suffix)}</span>`;
+                    i = suffixEnd - 1;
+                    plainStart = suffixEnd;
+                }
+                html += escapeHTML(text.slice(plainStart));
+                return html;
+            }
+
+            function formatMathExpression(value) {
+                const text = String(value || "").trim();
+                const parts = splitTopLevelMath(text);
+                const html = parts.map(part => {
+                    if (part.type === "operator") {
+                        return part.value === "="
+                            ? `<span class="math-equals">=</span>`
+                            : `<span class="math-separator">|</span>`;
+                    }
+                    return formatMathTerm(part.value);
+                }).join("");
+                return `<span class="math-expression">${html}</span>`;
+            }
+
+            function buildTheoryCards(laws) {
+                return `<div class="formula-grid">${laws.map(law => `
+                    <div class="formula-card ${law.kind}">
+                        <div class="formula-main">${formatMathExpression(law.formula)}</div>
+                        <div class="formula-label">${law.label}</div>
+                    </div>`).join("")}</div>`;
+            }
+
+            function visualExampleHTML(item) {
+                const resultText = String(item.result || "").trim();
+                const visibleResult = resultText.includes("=") ? resultText : `= ${resultText}`;
+
+                return `
+                    <div class="math-example-card">
+                        <div class="math-example-icon">${item.icon}</div>
+                        <div class="math-example-title">${item.title}</div>
+                        <div class="math-example-operation">${formatMathExpression(item.operation)}</div>
+                        <div class="math-example-result">${formatMathExpression(visibleResult)}</div>
+                    </div>`;
+            }
+
+            function formatQuestionExpression(question) {
+                const expression = String(question.word || "").trim();
+                const completeExpression = expression.includes("÷") && !expression.includes("=")
+                    ? `${expression} = ?`
+                    : expression;
+                return formatMathExpression(completeExpression);
+            }
+
+            function buildPage() {
+                const tabs = document.getElementById("tabs");
+                const cont = document.getElementById("modulesContainer");
+
+                order.forEach((name, i) => {
+                    const b = document.createElement("button");
+                    b.className = "tab-btn" + (i === 0 ? " active" : "");
+                    b.id = "tab-" + name;
+                    b.textContent = modules[name].tab;
+                    b.onclick = () => showModule(name);
+                    tabs.appendChild(b);
+
+                    const s = document.createElement("section");
+                    s.className = "module" + (i === 0 ? " active" : "");
+                    s.id = "module-" + name;
+
+                    if (name === "olimpiadas") {
+                        s.innerHTML = `
+                            <div class="panel practice">
+                                <h2 class="panel-title">${modules[name].title}</h2>
+                                <div class="summary-box" style="margin-bottom:12px;">
+                                    Evaluación mixta: aplica varias leyes, respeta el orden de las operaciones y simplifica hasta obtener exponentes positivos.
+                                </div>
+                                <div class="formula-banner">${formatMathExpression(modules[name].formula)}</div>
+                                <div class="question-card" id="practice-${name}"></div>
+                            </div>`;
+                    } else {
+                        s.innerHTML = `
+                            <div class="panel theory">
+                                <h2 class="panel-title">${modules[name].title}</h2>
+                                <div class="theory-audio-row">
+                                    <button class="audio-btn" type="button" onclick="speakTheory('${name}')">🔊 Escuchar teoría</button>
+                                </div>
+                                <div class="formula-banner">${formatMathExpression(modules[name].formula)}</div>
+                                <div class="rule">${modules[name].theoryAudio}</div>
+                                ${buildTheoryCards(modules[name].laws)}
+                                <div class="steps">
+                                    ${modules[name].steps.map((x, j) => `<div class="step">${j + 1}️⃣ ${x}</div>`).join("")}
+                                </div>
+                            </div>
+
+                            <div class="panel examples">
+                                <h2 class="panel-title">👀 Ejemplos resueltos</h2>
+                                <div class="visual-note">Observa la ley aplicada en cada ejemplo antes de responder los ejercicios.</div>
+                                <div class="visual-examples-grid" id="examples-${name}"></div>
+                            </div>
+
+                            <div class="panel practice">
+                                <h2 class="panel-title">✏️ 10 ejercicios</h2>
+                                <div class="question-card" id="practice-${name}"></div>
+                            </div>`;
+                    }
+
+                    cont.appendChild(s);
+                });
+            }
+
+            function showModule(name) {
+                state.currentModule = name;
+                window.speechSynthesis?.cancel();
+                document.querySelectorAll(".module").forEach(m => m.classList.remove("active"));
+                document.getElementById("module-" + name).classList.add("active");
+                document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+                document.getElementById("tab-" + name).classList.add("active");
+                renderPractice(name);
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+
+            function renderExampleCards() {
+                order.forEach(name => {
+                    if (name === "olimpiadas") return;
+                    const c = document.getElementById("examples-" + name);
+                    if (!c) return;
+                    c.innerHTML = modules[name].examples.map(visualExampleHTML).join("");
+                });
+            }
+
+            function renderPractice(moduleName) {
+                const data = modules[moduleName];
+                const target = document.getElementById("practice-" + moduleName);
+                if (!target) return;
+
+                const idx = state.index[moduleName];
+                const q = data.questions[idx];
+                target.innerHTML = "";
+
+                if (!q) {
+                    const isLast = moduleName === order[order.length - 1];
+                    target.innerHTML = `
+                        <div class="question-title">🎉 Terminaste este módulo</div>
+                        <div class="feedback good">Muy bien. Has completado los ejercicios de ${data.tab.replace(/^\d+\.\s*/, "")}.</div>
+                        <div class="controls">
+                            <button class="main-btn" onclick="restartModule('${moduleName}')">Practicar otra vez</button>
+                            <button class="main-btn secondary" onclick="${isLast ? "showModule('conceptos')" : `goNextModule('${moduleName}')`}">${isLast ? "Volver al inicio" : "Siguiente módulo"}</button>
+                        </div>`;
+                    return;
+                }
+
+                const opts = [...q.options];
+                shuffleArray(opts);
+
+                target.innerHTML = `
+                    <div class="question-title">Ejercicio ${idx + 1} de ${data.questions.length}</div>
+                    <div class="question-text">${q.prompt}</div>
+                    <div class="big-word">${formatQuestionExpression(q)}</div>
+                    <div class="options">
+                        ${opts.map(o => `<button class="option-btn" data-answer="${escapeAttr(o)}" onclick="checkAnswer('${moduleName}',this)">${formatMathExpression(o)}</button>`).join("")}
+                    </div>
+                    <div class="feedback" id="feedback-${moduleName}"></div>
+                    <div class="controls">
+                        <button class="main-btn" onclick="nextQuestion('${moduleName}')">Siguiente</button>
+                        <button class="main-btn secondary" onclick="shareApp()">📤 Compartir app</button>
+                    </div>`;
+            }
+
+            function escapeAttr(s) {
+                return String(s)
+                    .replace(/&/g, "&amp;")
+                    .replace(/"/g, "&quot;")
+                    .replace(/'/g, "&#39;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;");
+            }
+
+            function checkAnswer(moduleName, btn) {
+                const answer = btn.dataset.answer;
+                const q = modules[moduleName].questions[state.index[moduleName]];
+                const fb = document.getElementById("feedback-" + moduleName);
+
+                if (!q || state.answered[moduleName].has(state.index[moduleName])) return;
+
+                if (answer === q.answer) {
+                    state.answered[moduleName].add(state.index[moduleName]);
+                    state.correct++;
+                    btn.classList.add("correct-choice");
+                    fb.textContent = "✅ Muy bien. " + q.explain;
+                    fb.className = "feedback good";
+                    disableOptions(moduleName, q.answer);
+                } else {
+                    state.wrong++;
+                    btn.classList.add("wrong-choice");
+                    btn.disabled = true;
+                    fb.textContent = "❌ Aún no. Revisa la ley y vuelve a intentarlo.";
+                    fb.className = "feedback bad";
+                }
+                updateProgress();
+            }
+
+            function disableOptions(moduleName, correct) {
+                document.getElementById("practice-" + moduleName).querySelectorAll(".option-btn").forEach(b => {
+                    b.disabled = true;
+                    if (b.dataset.answer === correct) b.classList.add("correct-choice");
+                });
+            }
+
+            function nextQuestion(moduleName) {
+                if (!state.answered[moduleName].has(state.index[moduleName])) {
+                    const fb = document.getElementById("feedback-" + moduleName);
+                    if (fb) {
+                        fb.textContent = "👉 Primero responde correctamente para avanzar.";
+                        fb.className = "feedback bad";
+                    }
+                    return;
+                }
+                state.index[moduleName]++;
+                renderPractice(moduleName);
+            }
+
+            function restartModule(moduleName) {
+                state.correct -= state.answered[moduleName].size;
+                state.index[moduleName] = 0;
+                state.answered[moduleName] = new Set();
+                renderPractice(moduleName);
+                updateProgress();
+            }
+
+            function goNextModule(moduleName) {
+                const next = order[order.indexOf(moduleName) + 1];
+                if (next) showModule(next);
+            }
+
+            function updateProgress() {
+                document.getElementById("correctCount").textContent = state.correct;
+                document.getElementById("wrongCount").textContent = state.wrong;
+
+                const done = Object.values(state.answered).reduce((sum, set) => sum + set.size, 0);
+                document.getElementById("progressText").textContent = `${done}/${state.totalQuestions}`;
+                document.getElementById("progressBar").style.width = (done / state.totalQuestions * 100) + "%";
+            }
+
+            function shuffleArray(a) {
+                for (let i = a.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [a[i], a[j]] = [a[j], a[i]];
+                }
+            }
+
+            function speakTheory(moduleName) {
+                if (!("speechSynthesis" in window)) {
+                    alert("Este navegador no admite lectura en voz alta.");
+                    return;
+                }
+                window.speechSynthesis.cancel();
+                const text = `${modules[moduleName].title}. ${modules[moduleName].theoryAudio}`;
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = "es-PE";
+                utterance.rate = 0.9;
+                utterance.pitch = 1.05;
+                window.speechSynthesis.speak(utterance);
+            }
+
+            function shareApp() {
+                const data = {
+                    title: "Marie Kids - Leyes de exponentes",
+                    text: "📚 Aprende y practica las leyes de exponentes.",
+                    url: window.location.href
+                };
+
+                if (navigator.share) {
+                    navigator.share(data).catch(() => {});
+                } else if (navigator.clipboard) {
+                    navigator.clipboard.writeText(data.url).then(() => alert("🔗 Link copiado para compartir"));
+                } else {
+                    alert("Copia este enlace: " + data.url);
+                }
+            }
+
+            buildPage();
+            renderExampleCards();
+            order.forEach(renderPractice);
+            updateProgress();
+</script>
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker.register("./service-worker.js").catch(() => {});
+            });
+        }
+    </script>
+</body>
+</html>

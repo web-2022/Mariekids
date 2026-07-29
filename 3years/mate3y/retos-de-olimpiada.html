@@ -1,0 +1,1934 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>MVG | Simulacro de Olimpiada de Matemáticas - 3 años</title>
+<meta name="theme-color" content="#0b73ff" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="icon" type="image/png" sizes="192x192" href="../../icons/icon-192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="../../icons/icon-512.png" />
+    <link rel="apple-touch-icon" href="../../icons/icon-192.png" />
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap");
+:root{--blue:#0b73ff;--sky:#12a8ff;--green:#58cc02;--yellow:#ffc800;--orange:#ff9600;--red:#ff4b4b;--purple:#8b5cf6;--pink:#ff6aa9;--ink:#183153;--muted:#6d7f96;--line:#dbe7f4;--bg:#f3f8ff}
+*{box-sizing:border-box}html{min-height:100%;background:var(--bg)}body{margin:0;min-height:100vh;overflow-x:hidden;font-family:"Nunito",Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at 10% 8%,rgba(95,212,255,.18),transparent 18%),linear-gradient(180deg,#eef7ff,#f8fbff 45%,#eef8ff)}
+button{font:inherit}button:focus-visible,a:focus-visible{outline:5px solid rgba(18,168,255,.35);outline-offset:4px}
+.hero{position:relative;min-height:168px;overflow:hidden;color:#fff;background:linear-gradient(120deg,#0b73ff,#12a8ff 58%,#5fd4ff);box-shadow:0 12px 30px rgba(11,115,255,.25)}
+.hero:before{content:"MK";position:absolute;right:5vw;top:50%;transform:translateY(-52%) rotate(-8deg);font-family:"Baloo 2";font-size:clamp(120px,18vw,230px);font-weight:800;letter-spacing:-18px;color:rgba(255,255,255,.11)}
+.header{width:min(1600px,calc(100% - 42px));min-height:168px;margin:auto;position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1fr) max-content;align-items:center;gap:30px;padding:20px 0}
+.brand{display:flex;align-items:center;gap:18px;min-width:0}.logo{width:88px;aspect-ratio:1;display:grid;place-items:center;flex:0 0 auto;border:6px solid #fff;border-radius:27px;color:#fff;text-decoration:none;font-family:"Baloo 2";font-size:40px;font-weight:800;letter-spacing:-4px;background:linear-gradient(145deg,#ff6aa9,#8b5cf6);box-shadow:0 10px 0 rgba(46,30,142,.45);transform:rotate(-4deg)}
+.brand-copy small{display:inline-block;padding:4px 12px;border-radius:999px;color:#0c5aa8;font-size:13px;letter-spacing:1.4px;background:rgba(255,255,255,.9)}.brand-copy h1{margin:2px 0 0;font-family:"Baloo 2";font-size:clamp(33px,4.8vw,59px);line-height:.98;text-shadow:0 5px 0 rgba(0,70,160,.18)}.brand-copy p{margin:5px 0 0;font-size:clamp(15px,1.8vw,21px)}
+.stats{display:grid;grid-template-columns:repeat(3,max-content);gap:10px;align-items:center}.pill,.route{min-height:50px;padding:9px 15px;display:flex;align-items:center;justify-content:center;gap:8px;border:4px solid rgba(255,255,255,.92);border-radius:999px;font-size:16px;font-weight:900;white-space:nowrap}.pill{background:rgba(10,77,171,.26);box-shadow:0 7px 0 rgba(4,64,142,.28)}.pill.score{color:#775300;background:var(--yellow);box-shadow:0 7px 0 #d9a500}.route{color:#0a5aa8;text-decoration:none;background:#fff;box-shadow:0 7px 0 rgba(4,64,142,.24)}
+.progress-top{height:14px;overflow:hidden;background:#dbefff}.progress-top span{display:block;width:0;height:100%;background:linear-gradient(90deg,#58cc02,#ffc800,#ff9600);transition:.4s}
+main{width:calc(100% - 14px);max-width:1900px;margin:auto;padding:22px 0 42px}.card{overflow:hidden;border:2px solid rgba(182,209,237,.7);border-radius:34px;background:rgba(255,255,255,.97);box-shadow:0 14px 0 rgba(21,64,118,.12),0 24px 55px rgba(32,75,128,.14)}
+.lesson-head{padding:26px 25px 17px;text-align:center}.level{width:max-content;margin:0 auto 7px;padding:7px 17px;border:4px solid #fff;border-radius:999px;color:#fff;font-size:14px;letter-spacing:1.2px;box-shadow:0 6px 0 rgba(0,0,0,.12)}.level.basic{background:var(--green)}.level.intermediate{background:var(--orange)}.level.advanced{background:var(--purple)}.lesson-head h2{margin:0;font-family:"Baloo 2";font-size:clamp(36px,5vw,60px);line-height:1}.lesson-head p{margin:7px 0 0;color:var(--muted);font-size:clamp(16px,2vw,22px)}
+.layout{padding:0 9px 28px;display:grid;grid-template-columns:minmax(0,1fr) clamp(430px,34vw,580px);gap:18px}.scene{min-height:570px;position:relative;overflow:hidden;border:7px solid #fff;border-radius:30px;background:radial-gradient(circle at 13% 12%,rgba(255,255,255,.9) 0 3%,transparent 3.5%),linear-gradient(180deg,#7edaff 0 51%,#b8ef82 51% 70%,#68cc5e 70%);box-shadow:0 12px 0 rgba(46,141,184,.2)}.scene:after{content:"";position:absolute;inset:auto 0 0;height:31%;background:radial-gradient(ellipse at 8% 100%,#39aa50 0 48%,transparent 49%),radial-gradient(ellipse at 31% 100%,#59c85c 0 52%,transparent 53%),radial-gradient(ellipse at 62% 100%,#3faf51 0 48%,transparent 49%),radial-gradient(ellipse at 92% 100%,#68cc61 0 52%,transparent 53%)}
+.deco{position:absolute;z-index:1;user-select:none}.sun{right:22px;top:15px;font-size:72px}.cloud1{left:24px;top:12px;font-size:66px}.cloud2{right:21%;top:72px;font-size:46px}.butter{left:29%;top:105px;font-size:31px}
+.scene-top{position:relative;z-index:4;min-height:145px;display:flex;align-items:flex-end;justify-content:center;gap:16px;padding:80px 18px 8px}.mascot{font-size:92px;filter:drop-shadow(0 8px 0 rgba(0,0,0,.12))}.speech{max-width:650px;padding:14px 20px;border:5px solid #fff;border-radius:23px;color:#285579;font-size:clamp(17px,2.1vw,24px);font-weight:900;text-align:center;background:rgba(255,255,255,.94);box-shadow:0 8px 0 rgba(24,103,154,.18)}
+.challenge{position:relative;z-index:5;padding:8px 20px 36px}.target{width:max-content;max-width:90%;min-width:170px;margin:0 auto 16px;padding:10px 16px;border:4px dashed rgba(11,115,255,.35);border-radius:23px;text-align:center;background:rgba(255,255,255,.9);box-shadow:0 7px 0 rgba(27,113,171,.14)}.target small{display:block;margin-bottom:6px;color:#0b73c8;letter-spacing:1px}.target-content{min-height:100px;display:grid;place-items:center}.hidden{display:none!important}
+.options{width:min(900px,100%);margin:auto;display:grid;grid-template-columns:repeat(3,minmax(135px,1fr));gap:14px}.option{min-height:155px;position:relative;display:grid;place-items:center;padding:12px;border:6px solid #fff;border-radius:27px;cursor:pointer;background:linear-gradient(145deg,#fff,#eef8ff);box-shadow:0 10px 0 #acd6ec,0 16px 24px rgba(37,94,139,.13);transition:.15s}.option:nth-child(2){background:linear-gradient(145deg,#fffdf4,#fff1b9);box-shadow:0 10px 0 #e9c95d}.option:nth-child(3){background:linear-gradient(145deg,#fff5fb,#ffd8eb);box-shadow:0 10px 0 #e9a8cb}.option:nth-child(4){background:linear-gradient(145deg,#f7f4ff,#e5dbff);box-shadow:0 10px 0 #baa7ed}.option:hover:not(:disabled){transform:translateY(-5px) scale(1.02)}.option.correct{background:linear-gradient(145deg,#eaffdf,#bff58e);box-shadow:0 10px 0 #55a929}.option.correct:after{content:"✓";position:absolute;right:7px;top:7px;width:45px;height:45px;display:grid;place-items:center;border:4px solid #fff;border-radius:50%;color:#fff;font-size:29px;background:var(--green)}.option.wrong{animation:shake .42s;background:#ffd1d1;box-shadow:0 10px 0 #d94b4b}.option:disabled{cursor:default}
+.side{display:flex;flex-direction:column;gap:15px}.panel{padding:17px;border:2px solid var(--line);border-radius:23px;background:#f9fcff;box-shadow:0 8px 0 rgba(56,104,158,.08)}.panel p{margin:0 0 10px;color:var(--muted);font-weight:900;text-align:center}.audio,.hint-btn,.next,.overlay button{width:100%;min-height:61px;border:0;border-radius:18px;color:#fff;font-size:20px;font-weight:900;cursor:pointer;background:linear-gradient(180deg,#16aaff,#087ee8);box-shadow:0 8px 0 #0865b9}.hint-panel{margin-top:13px;padding:13px;border:3px dashed #e9bd25;border-radius:17px;background:#fff}.hint-btn{color:#704c00;background:linear-gradient(180deg,#ffe56d,#ffc800);box-shadow:0 8px 0 #d6a600}.feedback{min-height:78px;display:grid;place-items:center;padding:11px;border-radius:16px;text-align:center;color:var(--muted);font-size:17px;font-weight:900;background:#edf6ff}.feedback.good{color:#24743a;background:#e8ffdb}.feedback.try{color:#973838;background:#fff0f0}.track{height:13px;overflow:hidden;border-radius:999px;background:#dce8f4}.track span{display:block;width:0;height:100%;background:linear-gradient(90deg,var(--green),var(--yellow));transition:.4s}.next-row{padding:0 24px 28px;display:flex;justify-content:center}.next{width:min(430px,100%);background:linear-gradient(180deg,#68d900,#4db700);box-shadow:0 9px 0 #379000}
+.overlay{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:18px;background:rgba(18,49,89,.58);backdrop-filter:blur(8px)}.overlay-card{width:min(610px,100%);padding:clamp(27px,5vw,46px);text-align:center;border:8px solid #fff;border-radius:37px;background:linear-gradient(145deg,#fff,#dff4ff);box-shadow:0 17px 0 rgba(8,87,169,.32),0 30px 60px rgba(7,43,93,.34)}.overlay-icon{font-size:104px}.overlay-label{width:max-content;margin:14px auto 5px;padding:6px 14px;border-radius:999px;color:#fff;background:linear-gradient(90deg,var(--pink),var(--purple))}.overlay h3{margin:0;font-family:"Baloo 2";font-size:clamp(39px,7vw,60px)}.overlay p{color:var(--muted);font-size:19px}.chips{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:0 0 22px}.chips span{padding:7px 12px;border-radius:999px;color:#fff;background:var(--green)}.chips span:nth-child(2){background:var(--orange)}.chips span:nth-child(3){background:var(--purple)}.finish-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}.finish-actions a{min-width:220px;min-height:61px;display:grid;place-items:center;border-radius:18px;color:#fff;text-decoration:none;background:linear-gradient(180deg,#68d900,#4db700);box-shadow:0 8px 0 #379000}.final-score{width:max-content;margin:0 auto 22px;padding:10px 25px;border-radius:20px;color:#fff;font-family:"Baloo 2";font-size:48px;background:linear-gradient(180deg,#8b73ff,#624fd9);box-shadow:0 8px 0 #4636ad}
+.confetti-layer{position:fixed;inset:0;z-index:130;pointer-events:none;overflow:hidden}.confetti{width:13px;height:21px;position:absolute;top:-30px;border-radius:4px;animation:fall var(--time) linear forwards}
+.emoji-view{display:inline-block;line-height:1;filter:drop-shadow(0 5px 0 rgba(0,0,0,.08))}.emoji-view.xl{font-size:82px}.emoji-view.md{font-size:58px}.emoji-view.flip{transform:scaleX(-1)}.emoji-group{max-width:230px;display:flex;align-items:center;justify-content:center;gap:3px;flex-wrap:wrap;line-height:1}.emoji-group.lg{font-size:45px}.emoji-group.sm{font-size:34px}.empty-group{min-width:120px;min-height:82px;display:grid;place-items:center;border:4px dashed #9bb8cc;border-radius:18px;color:#67809a;background:#fff}
+.number-view{display:inline-block;color:#6b4de2;font-family:"Baloo 2";font-size:88px;line-height:1;font-weight:800;text-shadow:0 5px 0 rgba(0,0,0,.1)}.number-view.mirror{transform:scaleX(-1)}.number-view.rotate{transform:rotate(180deg)}.trace-number{display:inline-block;padding:4px 22px;border:6px dashed #0b73ff;border-radius:20px;color:transparent;font-family:"Baloo 2";font-size:92px;line-height:1;-webkit-text-stroke:4px #0b73ff;background:repeating-linear-gradient(90deg,#fff,#fff 7px,#eaf6ff 7px,#eaf6ff 14px)}
+.word-view{display:inline-grid;place-items:center;min-width:118px;min-height:82px;padding:8px 13px;border-radius:20px;color:#fff;font-family:"Baloo 2";font-size:39px;background:#8b5cf6;box-shadow:0 7px 0 #6246c8}.word-view.blue{background:#168cff}.word-view.orange{background:#ff9600}
+.shape{display:inline-block;width:82px;height:82px;background:currentColor;box-shadow:inset 0 6px 0 rgba(255,255,255,.25),0 7px 0 rgba(0,0,0,.1)}.shape.sm{width:43px;height:43px}.shape.circle{border-radius:50%}.shape.square{border-radius:0;}.shape.rectangle{width:112px;height:68px;border-radius:0;}.shape.triangle{width:0;height:0;background:transparent;border-left:46px solid transparent;border-right:46px solid transparent;border-bottom:82px solid currentColor;box-shadow:none;filter:drop-shadow(0 7px 0 rgba(0,0,0,.1))}.shape.triangle.sm{border-left-width:24px;border-right-width:24px;border-bottom-width:43px}.shape.star{background:transparent;box-shadow:none}.shape.star:before{content:"★";font-size:96px;line-height:.8}.shape.star.sm:before{font-size:51px}.red{color:#ff5b5b}.blue{color:#168cff}.yellow{color:#ffc800}.green{color:#58c85b}.purple{color:#8b5cf6}.pink{color:#ff6aa9}.orange{color:#ff9600}.teal{color:#18b8aa}.brown{color:#9b6b43}.gray{color:#8796a8}
+.pattern-view{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:nowrap}.pattern-question{min-width:44px;height:44px;display:grid;place-items:center;border-radius:10px;color:#6d4d00;font-size:30px;background:#ffe56d}.sequence-view{display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap}.sequence-view b{color:#7992a9}.seq{min-width:52px;height:52px;display:grid;place-items:center;border:4px solid #fff;border-radius:14px;color:#fff;font-family:"Baloo 2";font-size:27px;background:#168cff;box-shadow:0 5px 0 #0864b4}.seq.blank{color:#765100;background:#ffc800;box-shadow:0 5px 0 #d29f00}
+.lineup,.trio{display:flex;align-items:flex-end;justify-content:center;gap:14px;font-size:66px}.trio span:nth-child(2){padding:4px 8px;border:4px dashed #ffc800;border-radius:15px}.bars-view{height:125px;display:flex;align-items:flex-end;justify-content:center;gap:12px}.bar{width:38px;border-radius:12px 12px 5px 5px;background:linear-gradient(#12a8ff,#0b73ff);box-shadow:0 6px 0 #0864b4}.length-view{min-width:170px;height:32px;display:flex;align-items:center}.length-view span{display:block;height:16px;border-radius:999px;background:currentColor;box-shadow:0 5px 0 rgba(0,0,0,.12)}.multi-length{display:grid;gap:8px}
+.scale-view{min-width:210px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:5px;font-size:54px}.scale-view b{font-size:70px}.scale-view.left-down span:first-child{transform:translateY(18px)}.scale-view.right-down span:last-child{transform:translateY(18px)}
+.compare-view{display:flex;align-items:center;justify-content:center;gap:8px}.compare-view b{color:#8b5cf6}.scene-mini{width:180px;height:112px;position:relative;margin:auto;border:6px solid #31506c;background:rgba(255,255,255,.7)}.scene-mini.box{border-radius:15px}.scene-object{position:absolute;font-size:45px}.inside-center{left:50%;top:50%;transform:translate(-50%,-50%)}.inside-left{left:20px;top:50%;transform:translateY(-50%)}.inside-right{right:20px;top:50%;transform:translateY(-50%)}.outside-right{right:-45px;top:50%;transform:translateY(-50%)}.outside-left{left:-45px;top:50%;transform:translateY(-50%)}.top-center{left:50%;top:6px;transform:translateX(-50%)}.bottom-center{left:50%;bottom:4px;transform:translateX(-50%)}
+.lr-scene{min-width:220px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;font-size:55px}.lr-scene span:first-child{text-align:right}.lr-scene span:last-child{text-align:left}.vertical-scene{min-width:150px;display:grid;justify-items:center;font-size:52px}.vertical-scene hr{width:120px;border:0;border-top:5px solid #31506c}.near-far-scene{min-width:250px;display:flex;align-items:center;font-size:50px}.near-far-scene .near{margin-left:8px}.near-far-scene .far{margin-left:auto}.grid-pos{width:150px;height:110px;position:relative;border:4px solid #31506c;border-radius:15px}.grid-pos span{position:absolute;font-size:40px}.grid-pos .tl{left:8px;top:5px}.grid-pos .tr{right:8px;top:5px}.grid-pos .bl{left:8px;bottom:5px}.grid-pos .br{right:8px;bottom:5px}.depth-view{width:170px;height:105px;position:relative}.depth-view span{position:absolute;font-size:72px}.depth-view .back{left:18px;top:0;opacity:.72;transform:scale(.82)}.depth-view .front{right:18px;bottom:0}.distance-row{min-width:255px;display:flex;align-items:center;gap:7px;font-size:48px}.distance-row i{display:block;flex:1;height:4px;background:repeating-linear-gradient(90deg,#789 0 8px,transparent 8px 16px)}
+.face-view{width:98px;height:98px;position:relative;border:5px solid #27445f;border-radius:50%;background:currentColor;box-shadow:inset 0 6px 0 rgba(255,255,255,.35),0 7px 0 rgba(0,0,0,.1)}.face-view .eye{position:absolute;top:20px;color:#27445f;font-size:24px;font-weight:900}.face-view .eye.left{left:19px}.face-view .eye.right{right:19px}.face-view .mouth{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);color:#27445f;font-size:38px}.poly{display:inline-block;width:92px;height:92px;background:currentColor;clip-path:polygon(50% 0,95% 35%,78% 100%,22% 100%,5% 35%)}.poly.hexagon{clip-path:polygon(25% 5%,75% 5%,100% 50%,75% 95%,25% 95%,0 50%)}.svg-view{width:180px;height:120px}.math-story{display:flex;align-items:center;justify-content:center;gap:10px}.math-story b{color:#8b5cf6;font-size:28px}.crossed-group{position:relative;opacity:.55}.crossed-group:after{content:"";position:absolute;left:0;right:0;top:50%;height:7px;background:#ff4b4b;transform:rotate(-14deg)}.missing-view{display:grid;justify-items:center;gap:8px}.missing-view strong{padding:5px 12px;border-radius:999px;color:#fff;background:#8b5cf6}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-10px)}50%{transform:translateX(10px)}75%{transform:translateX(-6px)}}@keyframes fall{to{transform:translate3d(var(--drift),110vh,0) rotate(760deg)}}
+@media(max-width:1120px){.header{grid-template-columns:1fr auto}.stats{grid-template-columns:repeat(2,max-content)}.stats .route{grid-column:1/-1}.layout{grid-template-columns:minmax(0,1fr) minmax(380px,480px)}.options{grid-template-columns:repeat(2,minmax(130px,1fr))}}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.side{display:grid;grid-template-columns:1fr 1fr}.side .panel:nth-child(3),.side .panel:nth-child(4){grid-column:1/-1}.header{grid-template-columns:1fr auto}.stats{grid-template-columns:1fr}.stats .route{grid-column:auto}}
+@media(max-width:680px){.hero{min-height:218px}.header{min-height:218px;display:flex;align-items:flex-start;padding-bottom:76px}.logo{width:70px;font-size:33px}.stats{position:absolute;left:0;right:0;bottom:14px;grid-template-columns:1.35fr 1fr 1fr;gap:7px}.pill,.route{min-height:42px;padding:6px 8px;font-size:12px}.layout{padding-inline:12px}.side{grid-template-columns:1fr}.side .panel:nth-child(3),.side .panel:nth-child(4){grid-column:auto}.scene{min-height:620px}.scene-top{padding-top:78px}.mascot{font-size:69px}.options{grid-template-columns:repeat(2,minmax(115px,1fr))}.option{min-height:137px}.challenge{padding-inline:8px}}
+@media(max-width:470px){.header{width:calc(100% - 16px)}.logo{width:58px;border-width:4px;font-size:28px}.brand{gap:9px}.brand-copy small{font-size:9px}.brand-copy h1{font-size:27px}.brand-copy p{font-size:12px;max-width:175px}.stats{gap:5px}.pill,.route{font-size:10px}.scene{min-height:600px;border-width:5px}.scene-top{gap:7px;padding-inline:8px}.speech{padding:11px;font-size:15px}.option{min-height:126px;border-width:4px;padding:8px}.emoji-view.xl{font-size:64px}.number-view{font-size:72px}.shape{width:67px;height:67px}.shape.rectangle{width:92px;height:56px}.shape.triangle{border-left-width:38px;border-right-width:38px;border-bottom-width:67px}.shape.star:before{font-size:78px}.pattern-view{gap:5px}.shape.sm{width:34px;height:34px}.shape.triangle.sm{border-left-width:19px;border-right-width:19px;border-bottom-width:34px}.shape.star.sm:before{font-size:41px}}
+
+/* Corrección geométrica:
+   un cuadrado y un rectángulo tienen vértices rectos. */
+.shape.square,
+.shape.rectangle {
+  border-radius: 0 !important;
+}
+
+
+/* =========================================
+   BOTÓN COMPARTIR APP
+========================================= */
+.share-btn {
+  width: 100%;
+  min-height: 61px;
+  border: 0;
+  border-radius: 18px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 900;
+  cursor: pointer;
+  background: linear-gradient(180deg, #9b6cff, #7148db);
+  box-shadow: 0 8px 0 #5132aa;
+  transition:
+    transform .15s,
+    box-shadow .15s,
+    filter .15s;
+}
+
+.share-btn:hover {
+  filter: brightness(1.06);
+  transform: translateY(-2px);
+}
+
+.share-btn:active {
+  transform: translateY(5px);
+  box-shadow: 0 3px 0 #5132aa;
+}
+
+.share-btn:disabled {
+  cursor: default;
+  opacity: .75;
+  transform: none;
+}
+
+.share-status {
+  min-height: 22px;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 900;
+  text-align: center;
+}
+
+.share-status.good {
+  color: #24743a;
+}
+
+.share-status.error {
+  color: #973838;
+}
+
+.share-panel {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 680px) {
+  .share-panel {
+    grid-column: auto;
+  }
+}
+
+</style>
+
+<style>
+  .pill.timer {
+    color: #ffffff;
+    background: linear-gradient(180deg, #8b73ff, #624fd9);
+    box-shadow: 0 7px 0 #4636ad;
+  }
+
+  .pill.timer.warning {
+    color: #694900;
+    background: linear-gradient(180deg, #ffe56d, #ffc800);
+    box-shadow: 0 7px 0 #d29f00;
+    animation: timerPulse 1s ease-in-out infinite;
+  }
+
+  .pill.timer.danger {
+    color: #ffffff;
+    background: linear-gradient(180deg, #ff6b6b, #e63f3f);
+    box-shadow: 0 7px 0 #b82626;
+    animation: timerPulse .55s ease-in-out infinite;
+  }
+
+  .result-card {
+    width: min(900px, 100%);
+    max-height: 94vh;
+    overflow-y: auto;
+  }
+
+  .results-grid {
+    margin: 20px 0;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(120px, 1fr));
+    gap: 12px;
+  }
+
+  .result-box {
+    min-height: 128px;
+    padding: 13px 9px;
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    border: 4px solid #ffffff;
+    border-radius: 21px;
+    background: linear-gradient(145deg, #ffffff, #eaf6ff);
+    box-shadow: 0 7px 0 #bfd9eb;
+  }
+
+  .result-box:nth-child(2) {
+    background: linear-gradient(145deg, #fffdf0, #fff1a9);
+    box-shadow: 0 7px 0 #e0bd42;
+  }
+
+  .result-box:nth-child(3) {
+    background: linear-gradient(145deg, #f4edff, #ded0ff);
+    box-shadow: 0 7px 0 #a890e4;
+  }
+
+  .result-box:nth-child(4) {
+    background: linear-gradient(145deg, #edffe5, #c9f5ae);
+    box-shadow: 0 7px 0 #7fbe58;
+  }
+
+  .result-box:nth-child(5) {
+    background: linear-gradient(145deg, #fff0f6, #ffd1e4);
+    box-shadow: 0 7px 0 #e19ab9;
+  }
+
+  .result-box span {
+    color: #536b83;
+    font-size: 14px;
+    font-weight: 900;
+  }
+
+  .result-box strong {
+    color: #183153;
+    font-family: "Baloo 2", sans-serif;
+    font-size: clamp(31px, 4vw, 45px);
+    line-height: 1;
+  }
+
+  .result-box small {
+    color: #6d7f96;
+    font-size: 12px;
+    font-weight: 900;
+    text-align: center;
+  }
+
+  .recommendation-card {
+    margin: 21px 0;
+    padding: 18px 22px;
+    border: 4px solid #ffffff;
+    border-radius: 24px;
+    text-align: left;
+    background: linear-gradient(145deg, #fffdf2, #fff1b8);
+    box-shadow: 0 8px 0 #dfbb3c;
+  }
+
+  .recommendation-card h4 {
+    margin: 0 0 8px;
+    color: #654800;
+    font-family: "Baloo 2", sans-serif;
+    font-size: 23px;
+  }
+
+  .recommendation-card p {
+    margin: 0 0 10px;
+    color: #6d5c25;
+    font-size: 15px;
+    text-align: left;
+  }
+
+  .recommendation-card ol {
+    margin: 0;
+    padding-left: 29px;
+    columns: 2;
+    column-gap: 36px;
+  }
+
+  .recommendation-card li {
+    margin: 5px 0;
+    break-inside: avoid;
+    color: #354b61;
+    font-size: 15px;
+    font-weight: 900;
+  }
+
+  .finish-actions button,
+  .finish-actions a {
+    min-width: 285px;
+  }
+
+  .finish-actions button {
+    min-height: 61px;
+    border: 0;
+    border-radius: 18px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 900;
+    cursor: pointer;
+    background: linear-gradient(180deg, #16aaff, #087ee8);
+    box-shadow: 0 8px 0 #0865b9;
+  }
+
+  @keyframes timerPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+
+  @media (max-width: 1120px) {
+    .stats {
+      grid-template-columns: repeat(2, max-content);
+    }
+
+    .stats .route {
+      grid-column: 1 / -1;
+    }
+
+    .results-grid {
+      grid-template-columns: repeat(3, minmax(120px, 1fr));
+    }
+  }
+
+  @media (max-width: 680px) {
+    .hero {
+      min-height: 272px;
+    }
+
+    .header {
+      min-height: 272px;
+      padding-bottom: 127px;
+    }
+
+    .stats {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .stats .route {
+      grid-column: 1 / -1;
+    }
+
+    .results-grid {
+      grid-template-columns: repeat(2, minmax(115px, 1fr));
+    }
+
+    .result-box:last-child {
+      grid-column: 1 / -1;
+    }
+
+    .recommendation-card ol {
+      columns: 1;
+    }
+  }
+
+  @media (max-width: 470px) {
+    .hero {
+      min-height: 264px;
+    }
+
+    .header {
+      min-height: 264px;
+      padding-bottom: 122px;
+    }
+
+    .result-card {
+      padding: 22px 14px;
+    }
+
+    .results-grid {
+      gap: 9px;
+    }
+
+    .result-box {
+      min-height: 116px;
+    }
+
+    .finish-actions button,
+    .finish-actions a {
+      min-width: 100%;
+    }
+  }
+</style>
+
+
+<style>
+  .question-map {
+    margin-top: 14px;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(40px, 1fr));
+    gap: 9px;
+  }
+
+  .question-dot {
+    min-height: 43px;
+    display: grid;
+    place-items: center;
+    border: 3px solid #ffffff;
+    border-radius: 13px;
+    color: #5d7185;
+    font-family: "Baloo 2", sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    background: #e7eef5;
+    box-shadow: 0 5px 0 #c4d1dc;
+    transition: transform .18s ease, background .18s ease;
+  }
+
+  .question-dot.current {
+    color: #ffffff;
+    background: #168cff;
+    box-shadow: 0 5px 0 #0864b4;
+    transform: translateY(-2px) scale(1.05);
+  }
+
+  .question-dot.clean {
+    color: #ffffff;
+    background: #58cc02;
+    box-shadow: 0 5px 0 #379000;
+  }
+
+  .question-dot.review {
+    color: #704c00;
+    background: #ffc800;
+    box-shadow: 0 5px 0 #d29f00;
+  }
+
+  .question-dot.unanswered {
+    color: #ffffff;
+    background: #ff5b5b;
+    box-shadow: 0 5px 0 #c43838;
+  }
+
+  .map-legend {
+    margin-top: 13px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 7px 10px;
+    color: #60758a;
+    font-size: 11px;
+    font-weight: 900;
+  }
+
+  .map-legend span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .map-legend i {
+    width: 13px;
+    height: 13px;
+    display: inline-block;
+    border-radius: 4px;
+    background: #dce6ef;
+  }
+
+  .map-legend i.current { background: #168cff; }
+  .map-legend i.clean { background: #58cc02; }
+  .map-legend i.review { background: #ffc800; }
+
+  .performance-card,
+  .review-card {
+    margin: 21px 0;
+    padding: 18px 22px;
+    border: 4px solid #ffffff;
+    border-radius: 24px;
+    text-align: left;
+    background: linear-gradient(145deg, #eef8ff, #d8efff);
+    box-shadow: 0 8px 0 #9fc9e6;
+  }
+
+  .section-heading h4,
+  .review-card summary {
+    margin: 0;
+    color: #174f7b;
+    font-family: "Baloo 2", sans-serif;
+    font-size: 23px;
+    font-weight: 800;
+  }
+
+  .section-heading p {
+    margin: 2px 0 14px;
+    color: #5e7890;
+    font-size: 14px;
+    text-align: left;
+  }
+
+  .level-results {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 11px;
+  }
+
+  .level-result {
+    min-height: 112px;
+    padding: 12px;
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    border: 4px solid #ffffff;
+    border-radius: 19px;
+    background: #ffffff;
+    box-shadow: 0 6px 0 #bfd8e9;
+  }
+
+  .level-result.basic {
+    background: linear-gradient(145deg, #efffe6, #c9f3ad);
+    box-shadow: 0 6px 0 #80bd59;
+  }
+
+  .level-result.intermediate {
+    background: linear-gradient(145deg, #fff8de, #ffe49a);
+    box-shadow: 0 6px 0 #e1b83e;
+  }
+
+  .level-result.advanced {
+    background: linear-gradient(145deg, #f3edff, #ddceff);
+    box-shadow: 0 6px 0 #a48be0;
+  }
+
+  .level-result span {
+    color: #4f6478;
+    font-size: 13px;
+    font-weight: 900;
+  }
+
+  .level-result strong {
+    color: #183153;
+    font-family: "Baloo 2", sans-serif;
+    font-size: 34px;
+    line-height: 1;
+  }
+
+  .level-result small {
+    color: #64788c;
+    font-size: 11px;
+    font-weight: 900;
+    text-align: center;
+  }
+
+  .record-banner {
+    margin-top: 14px;
+    display: grid;
+    grid-template-columns: 1.35fr .8fr 1fr;
+    gap: 10px;
+  }
+
+  .record-banner > div {
+    padding: 11px 13px;
+    display: grid;
+    gap: 3px;
+    border: 3px solid #ffffff;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, .82);
+  }
+
+  .record-banner span {
+    color: #667b90;
+    font-size: 12px;
+    font-weight: 900;
+  }
+
+  .record-banner strong {
+    color: #183153;
+    font-size: 16px;
+    font-weight: 900;
+  }
+
+  .review-card {
+    background: linear-gradient(145deg, #f7f4ff, #e9e0ff);
+    box-shadow: 0 8px 0 #b8a6e6;
+  }
+
+  .review-card summary {
+    cursor: pointer;
+    color: #563f9d;
+  }
+
+  .review-list {
+    margin-top: 15px;
+    display: grid;
+    gap: 10px;
+  }
+
+  .review-item {
+    padding: 12px 14px;
+    display: grid;
+    grid-template-columns: 42px 1fr auto;
+    align-items: center;
+    gap: 11px;
+    border: 3px solid #ffffff;
+    border-radius: 17px;
+    background: rgba(255,255,255,.86);
+    box-shadow: 0 5px 0 rgba(82, 62, 140, .13);
+  }
+
+  .review-number {
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    color: #ffffff;
+    font-family: "Baloo 2", sans-serif;
+    font-size: 19px;
+    background: #8b5cf6;
+  }
+
+  .review-copy {
+    min-width: 0;
+    display: grid;
+    gap: 2px;
+  }
+
+  .review-copy strong {
+    color: #263f58;
+    font-size: 15px;
+  }
+
+  .review-copy small {
+    color: #6a7d90;
+    font-size: 12px;
+    line-height: 1.3;
+  }
+
+  .review-status {
+    min-width: 106px;
+    padding: 7px 9px;
+    border-radius: 999px;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 900;
+  }
+
+  .review-status.clean {
+    color: #24743a;
+    background: #ddffcf;
+  }
+
+  .review-status.review {
+    color: #7b5600;
+    background: #fff0a9;
+  }
+
+  .review-status.unanswered {
+    color: #943535;
+    background: #ffd5d5;
+  }
+
+  @media (max-width: 760px) {
+    .level-results {
+      grid-template-columns: 1fr;
+    }
+
+    .record-banner {
+      grid-template-columns: 1fr;
+    }
+
+    .review-item {
+      grid-template-columns: 38px 1fr;
+    }
+
+    .review-status {
+      grid-column: 1 / -1;
+      justify-self: stretch;
+    }
+  }
+
+  @media (max-width: 470px) {
+    .question-map {
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+    }
+
+    .question-dot {
+      min-height: 36px;
+      font-size: 15px;
+    }
+
+    .performance-card,
+    .review-card {
+      padding: 15px 12px;
+    }
+  }
+</style>
+
+</head>
+<body>
+<header class="hero">
+  <div class="header">
+    <div class="brand">
+      <a class="logo" href="../../index.html" aria-label="Ir al menú de cursos">MVG</a>
+      <div class="brand-copy">
+        <small>3 AÑOS · MATEMÁTICAS · TEMA 44</small>
+        <h1>44. Simulacro de Olimpiada de Matemáticas</h1>
+        <p>Resolver retos de conteo, posiciones, números, figuras, patrones y lógica visual.</p>
+      </div>
+    </div>
+    <div class="stats">
+      <a class="route" href="../ruta-mate3Y.html">🗺️ Ruta de aprendizaje</a>
+      <div class="pill"><span>🏆</span><span id="exerciseText">Ejercicio 1 de 10</span></div>
+      <div class="pill score"><span>🏅</span><span id="scoreText">0 puntos</span></div><div class="pill timer" id="timerPill"><span>⏱️</span><span id="timerText">30:00</span></div>
+    </div>
+  </div>
+</header>
+<div class="progress-top"><span id="topProgress"></span></div>
+<main>
+  <section class="card">
+    <div class="lesson-head">
+      <div class="level basic" id="levelBadge">NIVEL BÁSICO</div>
+      <h2 id="questionTitle">¡Empecemos!</h2>
+      <p id="instructionText">Observa con atención.</p>
+    </div>
+    <div class="layout">
+      <div class="scene">
+        <span class="deco cloud1">☁️</span><span class="deco cloud2">☁️</span>
+        <span class="deco sun">☀️</span><span class="deco butter">🦋</span>
+        <div class="scene-top">
+          <div class="mascot">🏆</div>
+          <div class="speech" id="sceneSpeech">Observa y elige la respuesta correcta.</div>
+        </div>
+        <div class="challenge">
+          <div class="target hidden" id="targetWrap"><small>MODELO O RETO</small><div class="target-content" id="targetContent"></div></div>
+          <div class="options" id="options"></div>
+        </div>
+      </div>
+      <aside class="side">
+        <section class="panel"><p>Escucha la consigna</p><button class="audio" id="audioBtn">🔊 Escuchar</button></section>
+        <section class="panel"><button class="hint-btn" id="hintBtn">💡 Dame una pista</button><div class="hint-panel hidden" id="hintPanel"><strong>🔎 Pista</strong><p id="hintText"></p></div></section>
+        <section class="panel"><p>Responde en la escena</p><div class="feedback" id="feedback" aria-live="assertive">Toca una tarjeta.</div></section>
+        <section class="panel progress-panel">
+  <p>Tu progreso</p>
+  <div class="track"><span id="miniProgress"></span></div>
+
+  <div class="question-map" id="questionMap"
+       aria-label="Estado de las diez preguntas"></div>
+
+  <div class="map-legend">
+    <span><i class="pending"></i>Pendiente</span>
+    <span><i class="current"></i>Actual</span>
+    <span><i class="clean"></i>Correcta</span>
+    <span><i class="review"></i>Reforzar</span>
+  </div>
+</section>
+      
+        <section class="panel share-panel">
+          <p>Comparte este tema</p>
+          <button
+            class="share-btn"
+            id="shareBtn"
+            type="button"
+          >📤 Compartir App</button>
+          <div
+            class="share-status"
+            id="shareStatus"
+            aria-live="polite"
+          ></div>
+        </section>
+      </aside>
+    </div>
+    <div class="next-row"><button class="next hidden" id="nextBtn">Siguiente ejercicio ➡️</button></div>
+  </section>
+</main>
+<div class="overlay" id="welcome">
+  <div class="overlay-card">
+    <div class="overlay-icon">🏆</div>
+    <div class="overlay-label">MVG · 3 AÑOS</div>
+    <h3>44. Simulacro de Olimpiada de Matemáticas</h3>
+    <p>Resolver retos de conteo, posiciones, números, figuras, patrones y lógica visual. Resuelve 10 preguntas aleatorias: 3 básicas, 3 intermedias y 4 avanzadas. Los diez bloques representan los 52 temas de la ruta. La batería contiene 120 preguntas. Cada respuesta correcta vale 10 puntos y cada intento incorrecto resta 2 puntos. Dispones de 30 minutos.</p>
+    <div class="chips"><span>⏱️ 30 minutos</span><span>3 básicos · 3 intermedios</span><span>4 avanzados</span></div>
+    <button id="startBtn">▶️ Comenzar</button>
+  </div>
+</div>
+<div class="overlay hidden" id="finish">
+  <div class="overlay-card result-card">
+    <div class="overlay-icon" id="resultIcon">🏆</div>
+    <div class="overlay-label">RESULTADO DEL EXAMEN</div>
+    <h3 id="resultTitle">¡Terminaste!</h3>
+    <p id="finalMessage">Completaste las 10 preguntas del examen.</p>
+
+    <div class="results-grid">
+      <div class="result-box">
+        <span>Nota</span>
+        <strong id="finalGrade">20.0</strong>
+        <small>de 0 a 20</small>
+      </div>
+
+      <div class="result-box">
+        <span>Porcentaje</span>
+        <strong id="finalPercent">100%</strong>
+        <small>de 0 a 100%</small>
+      </div>
+
+      <div class="result-box">
+        <span>Puntaje</span>
+        <strong id="finalPoints">100</strong>
+        <small>+10 correcta · −2 incorrecta</small>
+      </div>
+
+      <div class="result-box">
+        <span>Correctas</span>
+        <strong id="finalCorrect">10 / 10</strong>
+        <small id="finalWrongText">0 intentos incorrectos</small>
+      </div>
+
+      <div class="result-box">
+        <span>Tiempo utilizado</span>
+        <strong id="finalTime">00:00</strong>
+        <small>límite: 30 minutos</small>
+      </div>
+    </div>
+
+    <section class="performance-card">
+      <div class="section-heading">
+        <h4>📊 Rendimiento por nivel</h4>
+        <p>Observa en qué nivel obtuviste mejores resultados.</p>
+      </div>
+
+      <div class="level-results" id="levelResults"></div>
+
+      <div class="record-banner">
+        <div>
+          <span>🏆 Récord personal</span>
+          <strong id="bestRecord">Sin registro anterior</strong>
+        </div>
+
+        <div>
+          <span>📝 Intentos realizados</span>
+          <strong id="attemptCount">1</strong>
+        </div>
+
+        <div>
+          <span>⏱️ Promedio por pregunta</span>
+          <strong id="averageTime">00:00</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="recommendation-card">
+      <h4>📚 Temas que debes estudiar para lograr el 100%</h4>
+      <p id="recommendationIntro"></p>
+      <ol id="recommendationList"></ol>
+    </section>
+
+    <details class="review-card" open>
+      <summary>🔎 Revisar las 10 preguntas del examen</summary>
+      <div class="review-list" id="reviewList"></div>
+    </details>
+
+    <div class="finish-actions">
+      <button id="restartBtn">🔄 Volver a dar el examen</button>
+      <a href="../ruta-mate3Y.html">🗺️ Volver a la ruta de aprendizaje</a>
+    </div>
+  </div>
+</div>
+<div class="confetti-layer" id="confetti"></div>
+<script>
+const exercisePools=[{"slot":"B1","level":"Básico","area":"Percepción, clasificación, colores, formas y tamaños","coverage":[1,2,3,4,5],"variants":[{"id":"B1-A","level":"Básico","title":"El elemento diferente","instruction":"Tres figuras son círculos rojos. Encuentra la diferente.","speech":"Tres figuras son círculos rojos. Encuentra la diferente.","hint":"Compara forma, color y tamaño.","options":[{"view":"<span class=\"shape circle red md\"></span>","label":"círculo rojo"},{"view":"<span class=\"shape circle red md\"></span>","label":"círculo rojo"},{"view":"<span class=\"shape square blue md\"></span>","label":"cuadrado azul"},{"view":"<span class=\"shape circle red md\"></span>","label":"círculo rojo"}],"answer":2,"success":"¡Correcto! El cuadrado azul no pertenece al grupo.","target":null},{"id":"B1-B","level":"Básico","title":"Busca el grupo igual","instruction":"Encuentra el grupo que tiene las mismas figuras y colores.","speech":"Encuentra el grupo que tiene las mismas figuras y colores.","hint":"Revisa una figura a la vez: forma, color y posición.","options":[{"view":"<div class=\"pattern-view\"><span class=\"shape circle red sm\"></span><span class=\"shape square blue sm\"></span><span class=\"shape triangle yellow sm\"></span></div>","label":"grupo igual"},{"view":"<div class=\"pattern-view\"><span class=\"shape circle blue sm\"></span><span class=\"shape square red sm\"></span><span class=\"shape triangle yellow sm\"></span></div>","label":"colores cambiados"},{"view":"<div class=\"pattern-view\"><span class=\"shape circle red sm\"></span><span class=\"shape triangle blue sm\"></span><span class=\"shape square yellow sm\"></span></div>","label":"formas cambiadas"}],"answer":0,"success":"¡Muy bien! Encontraste el grupo exactamente igual.","target":"<div class=\"pattern-view\"><span class=\"shape circle red sm\"></span><span class=\"shape square blue sm\"></span><span class=\"shape triangle yellow sm\"></span></div>"},{"id":"B1-C","level":"Básico","title":"Agrupamos por tamaño","instruction":"Toca el grupo donde todos los animales son pequeños.","speech":"Toca el grupo donde todos los animales son pequeños.","hint":"Todos los elementos del grupo deben tener el mismo tamaño.","options":[{"view":"<div class=\"lineup\"><span style=\"transform:scale(.55)\">🐘</span><span style=\"transform:scale(.55)\">🐘</span><span style=\"transform:scale(.55)\">🐘</span></div>","label":"elefantes pequeños"},{"view":"<div class=\"lineup\"><span style=\"transform:scale(1)\">🐘</span><span style=\"transform:scale(.55)\">🐘</span><span style=\"transform:scale(.8)\">🐘</span></div>","label":"tamaños mezclados"},{"view":"<div class=\"lineup\"><span style=\"transform:scale(1)\">🐘</span><span style=\"transform:scale(1)\">🐘</span><span style=\"transform:scale(1)\">🐘</span></div>","label":"elefantes grandes"}],"answer":0,"success":"¡Excelente! Agrupaste correctamente los animales pequeños.","target":null},{"id":"B1-D","level":"Básico","title":"Uno, muchos y ninguno","instruction":"Toca la tarjeta donde hay una sola estrella amarilla.","speech":"Toca la tarjeta donde hay una sola estrella amarilla.","hint":"Una significa que hay un solo elemento.","options":[{"view":"<div class=\"emoji-group sm\"><span>⭐</span></div>","label":"una estrella"},{"view":"<div class=\"emoji-group sm\"><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span></div>","label":"muchas estrellas"},{"view":"<div class=\"empty-group\">VACÍO</div>","label":"ninguna estrella"}],"answer":0,"success":"¡Correcto! Allí hay una estrella.","target":null},{"id":"B1-E","level":"Básico","title":"La fruta diferente","instruction":"Tres dibujos son pelotas. Encuentra la fruta.","speech":"Tres dibujos son pelotas. Encuentra la fruta.","hint":"Tres objetos sirven para jugar y uno es una fruta.","options":[{"view":"<span class=\"emoji-view xl\">⚽</span>","label":"pelota"},{"view":"<span class=\"emoji-view xl\">⚽</span>","label":"pelota"},{"view":"<span class=\"emoji-view xl\">🍎</span>","label":"manzana"},{"view":"<span class=\"emoji-view xl\">⚽</span>","label":"pelota"}],"answer":2,"success":"¡Correcto! La manzana es diferente de las pelotas.","target":null},{"id":"B1-F","level":"Básico","title":"Agrupamos por color","instruction":"Toca el grupo donde todos los objetos son rosados.","speech":"Toca el grupo donde todos los objetos son rosados.","hint":"Mira el color de los dos objetos de cada grupo.","options":[{"view":"<div class=\"emoji-group sm\"><span>🐷</span><span>🦩</span></div>","label":"cerdito y flamenco rosados"},{"view":"<div class=\"emoji-group sm\"><span>🐸</span><span>🐢</span></div>","label":"animales verdes"},{"view":"<div class=\"emoji-group sm\"><span>🐥</span><span>⭐</span></div>","label":"objetos amarillos"}],"answer":0,"success":"¡Muy bien! El cerdito y el flamenco pertenecen al grupo rosado.","target":null},{"id":"B1-G","level":"Básico","title":"Misma forma","instruction":"Toca la tarjeta donde todas las figuras son círculos.","speech":"Toca la tarjeta donde todas las figuras son círculos.","hint":"Los colores pueden cambiar. Observa solamente la forma.","options":[{"view":"<div class=\"pattern-view\"><span class=\"shape circle red sm\"></span><span class=\"shape circle blue sm\"></span><span class=\"shape circle yellow sm\"></span></div>","label":"tres círculos"},{"view":"<div class=\"pattern-view\"><span class=\"shape circle red sm\"></span><span class=\"shape square blue sm\"></span><span class=\"shape circle yellow sm\"></span></div>","label":"círculo, cuadrado y círculo"},{"view":"<div class=\"pattern-view\"><span class=\"shape triangle red sm\"></span><span class=\"shape triangle blue sm\"></span><span class=\"shape triangle yellow sm\"></span></div>","label":"tres triángulos"}],"answer":0,"success":"¡Excelente! Todas esas figuras son círculos.","target":null},{"id":"B1-H","level":"Básico","title":"Busca el dibujo igual","instruction":"Encuentra el animal exactamente igual al modelo.","speech":"Encuentra el animal exactamente igual al modelo.","hint":"Compara el animal y la dirección hacia la que mira.","options":[{"view":"<span class=\"emoji-view xl\">🐰</span>","label":"conejo igual"},{"view":"<span class=\"emoji-view xl\">🐱</span>","label":"gato"},{"view":"<span class=\"emoji-view xl\" style=\"transform:scaleX(-1)\">🐰</span>","label":"conejo invertido"}],"answer":0,"success":"¡Muy bien! Encontraste el conejo exactamente igual.","target":"<span class=\"emoji-view xl\">🐰</span>"},{"id":"B1-I","level":"Básico","title":"La figura que no corresponde","instruction":"Cuatro dibujos son frutas. Encuentra el que no pertenece.","speech":"Cuatro dibujos son frutas. Encuentra el que no pertenece.","hint":"Tres dibujos son alimentos y uno es un vehículo.","options":[{"view":"<span class=\"emoji-view xl\">🍎</span>","label":"manzana"},{"view":"<span class=\"emoji-view xl\">🍊</span>","label":"naranja"},{"view":"<span class=\"emoji-view xl\">🚗</span>","label":"carro"},{"view":"<span class=\"emoji-view xl\">🍐</span>","label":"pera"}],"answer":2,"success":"¡Correcto! El carro no pertenece al grupo de frutas.","target":null},{"id":"B1-J","level":"Básico","title":"¿Dónde hay muchos?","instruction":"Toca el grupo que tiene muchos pepinos.","speech":"Toca el grupo que tiene muchos pepinos.","hint":"Compara los tres grupos y busca el que tiene más elementos.","options":[{"view":"<div class=\"emoji-group sm\"><span>🥒</span><span>🥒</span><span>🥒</span></div>","label":"tres pepinos"},{"view":"<div class=\"emoji-group sm\"><span>🥒</span><span>🥒</span><span>🥒</span><span>🥒</span></div>","label":"cuatro pepinos"},{"view":"<div class=\"emoji-group sm\"><span>🥒</span><span>🥒</span><span>🥒</span><span>🥒</span><span>🥒</span><span>🥒</span></div>","label":"seis pepinos"}],"answer":2,"success":"¡Muy bien! Ese grupo tiene muchos pepinos.","target":null},{"id":"B1-K","level":"Básico","title":"El animal diferente","instruction":"Cinco animales son aves. Encuentra el animal diferente.","speech":"Cinco animales son aves. Encuentra el animal diferente.","hint":"Busca el animal que no tiene alas.","options":[{"view":"<span class=\"emoji-view xl\">🐦</span>","label":"pájaro"},{"view":"<span class=\"emoji-view xl\">🐔</span>","label":"gallina"},{"view":"<span class=\"emoji-view xl\">🐢</span>","label":"tortuga"},{"view":"<span class=\"emoji-view xl\">🦆</span>","label":"pato"}],"answer":2,"success":"¡Correcto! La tortuga es diferente de las aves.","target":null},{"id":"B1-L","level":"Básico","title":"El avioncito diferente","instruction":"Tres aviones miran hacia la derecha. Encuentra el diferente.","speech":"Tres aviones miran hacia la derecha. Encuentra el diferente.","hint":"Compara la dirección de la punta de cada avión.","options":[{"view":"<span class=\"emoji-view xl\">✈️</span>","label":"avión hacia la derecha"},{"view":"<span class=\"emoji-view xl\" style=\"transform:scaleX(-1)\">✈️</span>","label":"avión hacia la izquierda"},{"view":"<span class=\"emoji-view xl\">✈️</span>","label":"avión hacia la derecha"},{"view":"<span class=\"emoji-view xl\">✈️</span>","label":"avión hacia la derecha"}],"answer":1,"success":"¡Excelente! Ese avión apunta hacia el lado contrario.","target":null}]},{"slot":"B2","level":"Básico","area":"Comparaciones de tamaño, altura, longitud, peso y cantidad","coverage":[6,7,8,9,10],"variants":[{"id":"B2-A","level":"Básico","title":"Grande, mediano y pequeño","instruction":"Toca el objeto mediano.","speech":"Toca el objeto mediano.","hint":"El mediano queda entre el grande y el pequeño.","options":[{"view":"<span class=\"emoji-view xl\" style=\"transform:scale(1.15)\">🐻</span>","label":"oso grande"},{"view":"<span class=\"emoji-view xl\" style=\"transform:scale(.83)\">🐻</span>","label":"oso mediano"},{"view":"<span class=\"emoji-view xl\" style=\"transform:scale(.55)\">🐻</span>","label":"oso pequeño"}],"answer":1,"success":"¡Muy bien! Elegiste el tamaño mediano.","target":null},{"id":"B2-B","level":"Básico","title":"Alto y bajo","instruction":"Toca la barra más alta.","speech":"Toca la barra más alta.","hint":"La barra más alta llega más arriba.","options":[{"view":"<div class=\"bars-view\"><span class=\"bar\" style=\"height:60px\"></span></div>","label":"barra baja"},{"view":"<div class=\"bars-view\"><span class=\"bar\" style=\"height:118px\"></span></div>","label":"barra alta"},{"view":"<div class=\"bars-view\"><span class=\"bar\" style=\"height:88px\"></span></div>","label":"barra mediana"}],"answer":1,"success":"¡Correcto! Encontraste la barra más alta.","target":null},{"id":"B2-C","level":"Básico","title":"Largo y corto","instruction":"Toca la línea más corta.","speech":"Toca la línea más corta.","hint":"Compara dónde termina cada línea.","options":[{"view":"<div class=\"length-view\"><span class=\"red\" style=\"width:145px\"></span></div>","label":"línea larga"},{"view":"<div class=\"length-view\"><span class=\"blue\" style=\"width:68px\"></span></div>","label":"línea corta"},{"view":"<div class=\"length-view\"><span class=\"green\" style=\"width:105px\"></span></div>","label":"línea mediana"}],"answer":1,"success":"¡Muy bien! Esa es la línea más corta.","target":null},{"id":"B2-D","level":"Básico","title":"Más, menos e igual","instruction":"Toca el grupo que tiene más manzanas.","speech":"Toca el grupo que tiene más manzanas.","hint":"Puedes contar o comparar visualmente los grupos.","options":[{"view":"<div class=\"emoji-group sm\"><span>🍎</span><span>🍎</span></div>","label":"dos manzanas"},{"view":"<div class=\"emoji-group sm\"><span>🍎</span><span>🍎</span><span>🍎</span><span>🍎</span><span>🍎</span></div>","label":"cinco manzanas"},{"view":"<div class=\"emoji-group sm\"><span>🍎</span><span>🍎</span><span>🍎</span></div>","label":"tres manzanas"}],"answer":1,"success":"¡Excelente! Ese grupo tiene más manzanas.","target":null},{"id":"B2-E","level":"Básico","title":"El niño más alto","instruction":"Toca al niño que es más alto.","speech":"Toca al niño que es más alto.","hint":"El más alto llega más arriba.","options":[{"view":"<div class=\"bars-view\"><span class=\"bar\" style=\"height:72px\"></span></div><span class=\"emoji-view md\">🧒</span>","label":"niño bajo"},{"view":"<div class=\"bars-view\"><span class=\"bar\" style=\"height:118px\"></span></div><span class=\"emoji-view md\">🧒</span>","label":"niño alto"},{"view":"<div class=\"bars-view\"><span class=\"bar\" style=\"height:92px\"></span></div><span class=\"emoji-view md\">🧒</span>","label":"niño mediano"}],"answer":1,"success":"¡Correcto! Encontraste al niño más alto.","target":null},{"id":"B2-F","level":"Básico","title":"El lápiz más largo","instruction":"Toca el lápiz más largo.","speech":"Toca el lápiz más largo.","hint":"Compara dónde termina cada línea.","options":[{"view":"<div class=\"length-view\"><span class=\"red\" style=\"width:82px\"></span></div><span class=\"emoji-view md\">✏️</span>","label":"lápiz corto"},{"view":"<div class=\"length-view\"><span class=\"blue\" style=\"width:142px\"></span></div><span class=\"emoji-view md\">✏️</span>","label":"lápiz largo"},{"view":"<div class=\"length-view\"><span class=\"green\" style=\"width:108px\"></span></div><span class=\"emoji-view md\">✏️</span>","label":"lápiz mediano"}],"answer":1,"success":"¡Muy bien! Ese lápiz es el más largo.","target":null},{"id":"B2-G","level":"Básico","title":"El animal más grande","instruction":"Toca el animal que normalmente es más grande.","speech":"Toca el animal que normalmente es más grande.","hint":"Piensa en el tamaño real de los animales.","options":[{"view":"<span class=\"emoji-view xl\">🐭</span>","label":"ratón"},{"view":"<span class=\"emoji-view xl\">🐘</span>","label":"elefante"},{"view":"<span class=\"emoji-view xl\">🐱</span>","label":"gato"}],"answer":1,"success":"¡Correcto! El elefante es el animal más grande.","target":null},{"id":"B2-H","level":"Básico","title":"Pesado y liviano","instruction":"Toca el objeto más liviano.","speech":"Toca el objeto más liviano.","hint":"El objeto liviano es fácil de levantar.","options":[{"view":"<span class=\"emoji-view xl\">🪨</span>","label":"piedra"},{"view":"<span class=\"emoji-view xl\">🪶</span>","label":"pluma"},{"view":"<span class=\"emoji-view xl\">📚</span>","label":"libros"}],"answer":1,"success":"¡Muy bien! La pluma es el objeto más liviano.","target":null},{"id":"B2-I","level":"Básico","title":"Menos ladrillos","instruction":"Toca el bloque que está formado por menos ladrillos.","speech":"Toca el bloque que está formado por menos ladrillos.","hint":"Cuenta los ladrillos de cada bloque.","options":[{"view":"<div style=\"display:flex;max-width:180px;justify-content:center;gap:4px;flex-wrap:wrap\"><span style=\"width:43px;height:43px;display:block;border:4px solid #31506c;background:#7fdcff;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35),0 4px 0 rgba(0,0,0,.12)\"></span><span style=\"width:43px;height:43px;display:block;border:4px solid #31506c;background:#7fdcff;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35),0 4px 0 rgba(0,0,0,.12)\"></span><span style=\"width:43px;height:43px;display:block;border:4px solid #31506c;background:#7fdcff;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35),0 4px 0 rgba(0,0,0,.12)\"></span><span style=\"width:43px;height:43px;display:block;border:4px solid #31506c;background:#7fdcff;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35),0 4px 0 rgba(0,0,0,.12)\"></span><span style=\"width:43px;height:43px;display:block;border:4px solid #31506c;background:#7fdcff;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35),0 4px 0 rgba(0,0,0,.12)\"></span><span style=\"width:43px;height:43px;display:block;border:4px solid #31506c;background:#7fdcff;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35),0 4px 0 rgba(0,0,0,.12)\"></span></div>","label":"seis ladrillos"},{"view":"<div style=\"display:flex;max-width:180px;justify-content:center;gap:4px;flex-wrap:wrap\"><span style=\"width:43px;height:43px;display:block;border:4px solid #31506c;background:#7fdcff;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35),0 4px 0 rgba(0,0,0,.12)\"></span><span style=\"width:43px;height:43px;display:block;border:4px solid #31506c;background:#7fdcff;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35),0 4px 0 rgba(0,0,0,.12)\"></span><span style=\"width:43px;height:43px;display:block;border:4px solid #31506c;background:#7fdcff;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35),0 4px 0 rgba(0,0,0,.12)\"></span><span style=\"width:43px;height:43px;display:block;border:4px solid #31506c;background:#7fdcff;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35),0 4px 0 rgba(0,0,0,.12)\"></span></div>","label":"cuatro ladrillos"},{"view":"<div style=\"display:flex;max-width:180px;justify-content:center;gap:4px;flex-wrap:wrap\"><span style=\"width:43px;height:43px;display:block;border:4px solid #31506c;background:#7fdcff;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35),0 4px 0 rgba(0,0,0,.12)\"></span><span style=\"width:43px;height:43px;display:block;border:4px solid #31506c;background:#7fdcff;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35),0 4px 0 rgba(0,0,0,.12)\"></span><span style=\"width:43px;height:43px;display:block;border:4px solid #31506c;background:#7fdcff;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35),0 4px 0 rgba(0,0,0,.12)\"></span><span style=\"width:43px;height:43px;display:block;border:4px solid #31506c;background:#7fdcff;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35),0 4px 0 rgba(0,0,0,.12)\"></span><span style=\"width:43px;height:43px;display:block;border:4px solid #31506c;background:#7fdcff;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35),0 4px 0 rgba(0,0,0,.12)\"></span><span style=\"width:43px;height:43px;display:block;border:4px solid #31506c;background:#7fdcff;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35),0 4px 0 rgba(0,0,0,.12)\"></span><span style=\"width:43px;height:43px;display:block;border:4px solid #31506c;background:#7fdcff;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35),0 4px 0 rgba(0,0,0,.12)\"></span><span style=\"width:43px;height:43px;display:block;border:4px solid #31506c;background:#7fdcff;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35),0 4px 0 rgba(0,0,0,.12)\"></span></div>","label":"ocho ladrillos"}],"answer":1,"success":"¡Correcto! Cuatro es la menor cantidad.","target":null},{"id":"B2-J","level":"Básico","title":"El huevo más lejano","instruction":"Toca el huevo que está más lejos de la gallina.","speech":"Toca el huevo que está más lejos de la gallina.","hint":"Compara el espacio entre la gallina y cada huevo.","options":[{"view":"<span class=\"emoji-view xl\">🥚</span>","label":"huevo izquierdo"},{"view":"<span class=\"emoji-view xl\">🥚</span>","label":"huevo cercano"},{"view":"<span class=\"emoji-view xl\">🥚</span>","label":"huevo derecho lejano"}],"answer":2,"success":"¡Muy bien! Ese huevo está más lejos.","target":"<div style=\"min-width:280px;display:flex;align-items:center;justify-content:center;gap:25px;font-size:54px\"><span>🥚</span><b>🐔</b><span style=\"margin-left:45px\">🥚</span></div>"},{"id":"B2-K","level":"Básico","title":"La mariquita con más puntos","instruction":"Toca la mariquita que tiene más puntos negros.","speech":"Toca la mariquita que tiene más puntos negros.","hint":"Cuenta los puntos negros de cada mariquita.","options":[{"view":"<div style=\"width:105px;height:105px;position:relative;border:5px solid #273f58;border-radius:50%;background:#fff\"><span style=\"position:absolute;inset:0;display:grid;grid-template-columns:repeat(2,1fr);gap:4px;padding:16px\"><i style=\"width:16px;height:16px;border-radius:50%;background:#1d2733\"></i><i style=\"width:16px;height:16px;border-radius:50%;background:#1d2733\"></i><i style=\"width:16px;height:16px;border-radius:50%;background:#1d2733\"></i><i style=\"width:16px;height:16px;border-radius:50%;background:#1d2733\"></i></span></div>","label":"cuatro puntos"},{"view":"<div style=\"width:105px;height:105px;position:relative;border:5px solid #273f58;border-radius:50%;background:#fff\"><span style=\"position:absolute;inset:0;display:grid;grid-template-columns:repeat(2,1fr);gap:4px;padding:16px\"><i style=\"width:16px;height:16px;border-radius:50%;background:#1d2733\"></i><i style=\"width:16px;height:16px;border-radius:50%;background:#1d2733\"></i><i style=\"width:16px;height:16px;border-radius:50%;background:#1d2733\"></i><i style=\"width:16px;height:16px;border-radius:50%;background:#1d2733\"></i><i style=\"width:16px;height:16px;border-radius:50%;background:#1d2733\"></i><i style=\"width:16px;height:16px;border-radius:50%;background:#1d2733\"></i></span></div>","label":"seis puntos"},{"view":"<div style=\"width:105px;height:105px;position:relative;border:5px solid #273f58;border-radius:50%;background:#fff\"><span style=\"position:absolute;inset:0;display:grid;grid-template-columns:repeat(2,1fr);gap:4px;padding:16px\"><i style=\"width:16px;height:16px;border-radius:50%;background:#1d2733\"></i><i style=\"width:16px;height:16px;border-radius:50%;background:#1d2733\"></i><i style=\"width:16px;height:16px;border-radius:50%;background:#1d2733\"></i><i style=\"width:16px;height:16px;border-radius:50%;background:#1d2733\"></i><i style=\"width:16px;height:16px;border-radius:50%;background:#1d2733\"></i></span></div>","label":"cinco puntos"}],"answer":1,"success":"¡Correcto! Esa mariquita tiene más puntos.","target":null},{"id":"B2-L","level":"Básico","title":"El carrito más pequeño","instruction":"Toca el carrito más pequeño.","speech":"Toca el carrito más pequeño.","hint":"Compara cuánto espacio ocupa cada carrito.","options":[{"view":"<span class=\"emoji-view xl\" style=\"transform:scale(1.08)\">🚗</span>","label":"carro grande"},{"view":"<span class=\"emoji-view xl\" style=\"transform:scale(.58)\">🚗</span>","label":"carro pequeño"},{"view":"<span class=\"emoji-view xl\" style=\"transform:scale(.82)\">🚗</span>","label":"carro mediano"}],"answer":1,"success":"¡Excelente! Elegiste el carrito más pequeño.","target":null}]},{"slot":"B3","level":"Básico","area":"Posiciones: dentro, arriba, detrás, lados, centro y distancia","coverage":[11,12,13,14,15,16,45],"variants":[{"id":"B3-A","level":"Básico","title":"Dentro y fuera","instruction":"Toca la escena donde la pelota está dentro de la caja.","speech":"Toca la escena donde la pelota está dentro de la caja.","hint":"Mira si la pelota está rodeada por el borde de la caja.","options":[{"view":"<div class=\"scene-mini box\"><span class=\"scene-object inside-center\">⚽</span></div>","label":"pelota dentro"},{"view":"<div class=\"scene-mini box\"><span class=\"scene-object outside-right\">⚽</span></div>","label":"pelota fuera"},{"view":"<div class=\"scene-mini box\"><span class=\"scene-object top-center\">⚽</span></div>","label":"pelota arriba"}],"answer":0,"success":"¡Correcto! La pelota está dentro.","target":null},{"id":"B3-B","level":"Básico","title":"Arriba y abajo","instruction":"¿En cuál escena la estrella está arriba de la casa?","speech":"¿En cuál escena la estrella está arriba de la casa?","hint":"Arriba significa que aparece en la parte superior.","options":[{"view":"<div class=\"vertical-scene\"><span>⭐</span><hr><span>🏠</span></div>","label":"estrella arriba"},{"view":"<div class=\"vertical-scene\"><span>🏠</span><hr><span>⭐</span></div>","label":"estrella abajo"},{"view":"<div class=\"vertical-scene\"><span>☁️</span><hr><span>🏠</span></div>","label":"nube arriba"}],"answer":0,"success":"¡Muy bien! La estrella está arriba de la casa.","target":null},{"id":"B3-C","level":"Básico","title":"Derecha e izquierda","instruction":"Toca la escena donde el pez está a la derecha del niño.","speech":"Toca la escena donde el pez está a la derecha del niño.","hint":"Observa el lado derecho del niño según se ve en la pantalla.","options":[{"view":"<div class=\"lr-scene\"><span>🐟</span><b>🧒</b><span>⚽</span></div>","label":"pez a la izquierda"},{"view":"<div class=\"lr-scene\"><span>⚽</span><b>🧒</b><span>🐟</span></div>","label":"pez a la derecha"},{"view":"<div class=\"lr-scene\"><span></span><b>🧒</b><span>⚽</span></div>","label":"sin pez"}],"answer":1,"success":"¡Correcto! El pez está a la derecha.","target":null},{"id":"B3-D","level":"Básico","title":"Centro y distancia","instruction":"Toca al niño que está en el centro y más cerca de la profesora.","speech":"Toca al niño que está en el centro y más cerca de la profesora.","hint":"Compara el espacio entre la profesora y cada niño.","options":[{"view":"<div class=\"distance-row\"><b>👩‍🏫</b><span>🧒</span><i></i><span>🧒</span></div>","label":"primer niño cerca"},{"view":"<div class=\"trio\"><span>🧒</span><span>🧒</span><span>🧒</span></div>","label":"niño del centro"},{"view":"<div class=\"distance-row\"><b>👩‍🏫</b><i></i><span>🧒</span><span>🧒</span></div>","label":"niños lejos"}],"answer":0,"success":"¡Muy bien! Elegiste al niño más cercano.","target":null},{"id":"B3-E","level":"Básico","title":"Arriba y al centro","instruction":"¿Qué animal está arriba y al centro de la cuadrícula?","speech":"¿Qué animal está arriba y al centro de la cuadrícula?","hint":"Busca la casilla de la fila superior que está en medio.","options":[{"view":"<span class=\"emoji-view xl\">🐔</span>","label":"gallina"},{"view":"<span class=\"emoji-view xl\">🐰</span>","label":"conejo"},{"view":"<span class=\"emoji-view xl\">🐶</span>","label":"perro"}],"answer":0,"success":"¡Correcto! La gallina está arriba y al centro.","target":"<div class=\"grid-pos\" style=\"width:190px;height:125px\">\n  <span style=\"left:14px;top:8px;position:absolute;font-size:34px\">🐶</span>\n  <span style=\"left:76px;top:8px;position:absolute;font-size:34px\">🐔</span>\n  <span style=\"right:14px;top:8px;position:absolute;font-size:34px\">🐱</span>\n  <span style=\"left:14px;bottom:8px;position:absolute;font-size:34px\">🐟</span>\n  <span style=\"left:76px;bottom:8px;position:absolute;font-size:34px\">🐰</span>\n  <span style=\"right:14px;bottom:8px;position:absolute;font-size:34px\">🦆</span>\n</div>"},{"id":"B3-F","level":"Básico","title":"Detrás de la bicicleta","instruction":"¿Cuántas gallinas están detrás de la bicicleta?","speech":"¿Cuántas gallinas están detrás de la bicicleta?","hint":"La bicicleta avanza hacia la derecha. Mira los animales que quedan a su izquierda.","options":[{"view":"<span class=\"number-view normal\">1</span>","label":"una"},{"view":"<span class=\"number-view normal\">2</span>","label":"dos"},{"view":"<span class=\"number-view normal\">3</span>","label":"tres"}],"answer":1,"success":"¡Muy bien! Hay dos gallinas detrás de la bicicleta.","target":"<div class=\"lineup\"><span style=\"transform:scale(1)\">🐔</span><span style=\"transform:scale(1)\">🐔</span><span style=\"transform:scale(1)\">🚲</span></div>"},{"id":"B3-G","level":"Básico","title":"A la derecha de la niña","instruction":"Toca el objeto que está a la derecha de la niña.","speech":"Toca el objeto que está a la derecha de la niña.","hint":"Mira el lado derecho de la niña en la escena.","options":[{"view":"<span class=\"emoji-view xl\">⚽</span>","label":"pelota"},{"view":"<span class=\"emoji-view xl\">🐟</span>","label":"pez"},{"view":"<span class=\"emoji-view xl\">🧸</span>","label":"oso"}],"answer":1,"success":"¡Correcto! El pez está a la derecha.","target":"<div class=\"lr-scene\"><span>⚽</span><b>👧</b><span>🐟</span></div>"},{"id":"B3-H","level":"Básico","title":"El más cercano","instruction":"Toca al niño que está más cerca de la profesora.","speech":"Toca al niño que está más cerca de la profesora.","hint":"El más cercano tiene menos espacio entre él y la profesora.","options":[{"view":"<span class=\"emoji-view xl\">🧒</span>","label":"niño cercano"},{"view":"<span class=\"emoji-view xl\">🧒</span>","label":"niño lejano"},{"view":"<span class=\"emoji-view xl\">🧒</span>","label":"otro niño"}],"answer":0,"success":"¡Excelente! Elegiste al niño más cercano.","target":"<div class=\"distance-row\"><b>👩‍🏫</b><span>🧒</span><i></i><span>🧒</span></div>"},{"id":"B3-I","level":"Básico","title":"Abajo a la derecha","instruction":"¿Qué fruta está abajo a la derecha?","speech":"¿Qué fruta está abajo a la derecha?","hint":"Mira la fila inferior y luego el lado derecho.","options":[{"view":"<span class=\"emoji-view xl\">🍍</span>","label":"piña"},{"view":"<span class=\"emoji-view xl\">🍌</span>","label":"plátano"},{"view":"<span class=\"emoji-view xl\">🍎</span>","label":"manzana"},{"view":"<span class=\"emoji-view xl\">🍊</span>","label":"naranja"}],"answer":2,"success":"¡Correcto! La manzana está abajo a la derecha.","target":"<div class=\"grid-pos\" style=\"width:180px;height:145px\"><span class=\"tl\" style=\"font-size:39px\">🍍</span><span class=\"tr\" style=\"font-size:39px\">🍌</span><span class=\"bl\" style=\"font-size:39px\">🍊</span><span class=\"br\" style=\"font-size:39px\">🍎</span></div>"},{"id":"B3-J","level":"Básico","title":"Encima de la mesa","instruction":"¿Cuántos objetos están encima de la mesa?","speech":"¿Cuántos objetos están encima de la mesa?","hint":"Cuenta solamente el televisor y las dos velas.","options":[{"view":"<span class=\"number-view normal\">2</span>","label":"dos"},{"view":"<span class=\"number-view normal\">3</span>","label":"tres"},{"view":"<span class=\"number-view normal\">4</span>","label":"cuatro"}],"answer":1,"success":"¡Muy bien! Hay tres objetos encima de la mesa.","target":"<div style=\"display:grid;justify-items:center;gap:4px\"><div class=\"lineup\"><span>📺</span><span>🕯️</span><span>🕯️</span></div><div style=\"width:250px;height:16px;background:#8b5a2b\"></div><div class=\"lineup\"><span>⚽</span><span>🐦</span></div></div>"},{"id":"B3-K","level":"Básico","title":"¿Quién va último?","instruction":"Toca a la persona que ocupa el último lugar en la carrera.","speech":"Toca a la persona que ocupa el último lugar en la carrera.","hint":"El último está al final de la fila.","options":[{"view":"<span class=\"emoji-view xl\">🏃</span>","label":"primer corredor"},{"view":"<span class=\"emoji-view xl\">🏃</span>","label":"segundo corredor"},{"view":"<span class=\"emoji-view xl\">🏃</span>","label":"tercer corredor"},{"view":"<span class=\"emoji-view xl\">🏃</span>","label":"último corredor"}],"answer":3,"success":"¡Correcto! Ese corredor ocupa el último lugar.","target":"<div style=\"display:grid;justify-items:center;gap:8px\"><span style=\"font-size:35px\">➡️</span><div class=\"lineup\"><span style=\"display:grid;justify-items:center;gap:3px\"><b style=\"font-size:50px\">🏃</b><small style=\"padding:3px 7px;border-radius:999px;color:#fff;background:#8b5cf6\">1.º</small></span><span style=\"display:grid;justify-items:center;gap:3px\"><b style=\"font-size:50px\">🏃</b><small style=\"padding:3px 7px;border-radius:999px;color:#fff;background:#8b5cf6\">2.º</small></span><span style=\"display:grid;justify-items:center;gap:3px\"><b style=\"font-size:50px\">🏃</b><small style=\"padding:3px 7px;border-radius:999px;color:#fff;background:#8b5cf6\">3.º</small></span><span style=\"display:grid;justify-items:center;gap:3px\"><b style=\"font-size:50px\">🏃</b><small style=\"padding:3px 7px;border-radius:999px;color:#fff;background:#8b5cf6\">4.º</small></span></div></div>"},{"id":"B3-L","level":"Básico","title":"Tercer ciclista","instruction":"Toca al ciclista que va en tercer lugar.","speech":"Toca al ciclista que va en tercer lugar.","hint":"Cuenta desde el inicio: primero, segundo y tercero.","options":[{"view":"<span class=\"number-view normal\">1</span>","label":"primero"},{"view":"<span class=\"number-view normal\">2</span>","label":"segundo"},{"view":"<span class=\"number-view normal\">3</span>","label":"tercero"}],"answer":2,"success":"¡Excelente! Elegiste la tercera posición.","target":"<div style=\"display:grid;justify-items:center;gap:8px\"><span style=\"font-size:35px\">➡️</span><div class=\"lineup\"><span style=\"display:grid;justify-items:center;gap:3px\"><b style=\"font-size:50px\">🚴</b><small style=\"padding:3px 7px;border-radius:999px;color:#fff;background:#8b5cf6\">1.º</small></span><span style=\"display:grid;justify-items:center;gap:3px\"><b style=\"font-size:50px\">🚴</b><small style=\"padding:3px 7px;border-radius:999px;color:#fff;background:#8b5cf6\">2.º</small></span><span style=\"display:grid;justify-items:center;gap:3px\"><b style=\"font-size:50px\">🚴</b><small style=\"padding:3px 7px;border-radius:999px;color:#fff;background:#8b5cf6\">3.º</small></span></div></div>"}]},{"slot":"I1","level":"Intermedio","area":"Figuras geométricas y cantidad de lados","coverage":[17,18,19,20,21,22,51],"variants":[{"id":"I1-A","level":"Intermedio","title":"Figuras y sus lados","instruction":"Toca la figura que tiene menos lados.","speech":"Toca la figura que tiene menos lados.","hint":"Cuenta los lados de cada figura.","options":[{"view":"<span class=\"shape triangle yellow md\"></span>","label":"triángulo"},{"view":"<span class=\"poly pentagon blue\"></span>","label":"pentágono"},{"view":"<span class=\"poly hexagon green\"></span>","label":"hexágono"}],"answer":0,"success":"¡Correcto! El triángulo tiene menos lados.","target":null},{"id":"I1-B","level":"Intermedio","title":"Reconoce el rectángulo","instruction":"Toca la figura que es un rectángulo.","speech":"Toca la figura que es un rectángulo.","hint":"El rectángulo tiene dos lados largos y dos cortos.","options":[{"view":"<span class=\"shape square blue md\"></span>","label":"cuadrado"},{"view":"<span class=\"shape rectangle orange md\"></span>","label":"rectángulo"},{"view":"<span class=\"shape circle green md\"></span>","label":"círculo"}],"answer":1,"success":"¡Muy bien! Elegiste el rectángulo.","target":null},{"id":"I1-C","level":"Intermedio","title":"Código de figuras","instruction":"Busca la fila: círculo, cuadrado, triángulo y rectángulo.","speech":"Busca la fila: círculo, cuadrado, triángulo y rectángulo.","hint":"Compara las figuras de izquierda a derecha.","options":[{"view":"<div class=\"pattern-view\"><span class=\"shape circle red sm\"></span><span class=\"shape square blue sm\"></span><span class=\"shape triangle yellow sm\"></span><span class=\"shape rectangle green sm\"></span></div>","label":"orden correcto"},{"view":"<div class=\"pattern-view\"><span class=\"shape square red sm\"></span><span class=\"shape circle blue sm\"></span><span class=\"shape triangle yellow sm\"></span><span class=\"shape rectangle green sm\"></span></div>","label":"círculo y cuadrado cambiados"},{"view":"<div class=\"pattern-view\"><span class=\"shape circle red sm\"></span><span class=\"shape square blue sm\"></span><span class=\"shape rectangle yellow sm\"></span><span class=\"shape triangle green sm\"></span></div>","label":"triángulo y rectángulo cambiados"}],"answer":0,"success":"¡Excelente! Reconociste las cuatro figuras.","target":null},{"id":"I1-D","level":"Intermedio","title":"¿Cuántos lados tiene?","instruction":"Cuenta los lados del pentágono.","speech":"Cuenta los lados del pentágono.","hint":"Recorre el borde y cuenta cada segmento.","options":[{"view":"<span class=\"number-view normal\">4</span>","label":"cuatro"},{"view":"<span class=\"number-view normal\">5</span>","label":"cinco"},{"view":"<span class=\"number-view normal\">6</span>","label":"seis"}],"answer":1,"success":"¡Correcto! El pentágono tiene cinco lados.","target":"<span class=\"poly pentagon purple\"></span>"},{"id":"I1-E","level":"Intermedio","title":"Busca el círculo","instruction":"Toca el círculo entre las figuras.","speech":"Toca el círculo entre las figuras.","hint":"El círculo es redondo y no tiene lados rectos.","options":[{"view":"<span class=\"shape triangle yellow md\"></span>","label":"triángulo"},{"view":"<span class=\"shape circle red md\"></span>","label":"círculo"},{"view":"<span class=\"shape square blue md\"></span>","label":"cuadrado"}],"answer":1,"success":"¡Muy bien! Elegiste el círculo.","target":null},{"id":"I1-F","level":"Intermedio","title":"Figura con menos lados","instruction":"Toca la figura que tiene menos lados.","speech":"Toca la figura que tiene menos lados.","hint":"Cuenta los lados de cada figura.","options":[{"view":"<span class=\"poly pentagon purple\"></span>","label":"pentágono"},{"view":"<span class=\"poly hexagon green\"></span>","label":"hexágono"},{"view":"<span class=\"shape triangle orange md\"></span>","label":"triángulo"}],"answer":2,"success":"¡Correcto! El triángulo tiene menos lados.","target":null},{"id":"I1-G","level":"Intermedio","title":"Cuadrado o rectángulo","instruction":"Toca el cuadrado.","speech":"Toca el cuadrado.","hint":"El cuadrado tiene cuatro lados iguales.","options":[{"view":"<span class=\"shape rectangle orange md\"></span>","label":"rectángulo"},{"view":"<span class=\"shape square blue md\"></span>","label":"cuadrado"},{"view":"<span class=\"shape circle green md\"></span>","label":"círculo"}],"answer":1,"success":"¡Excelente! Esa figura es un cuadrado.","target":null},{"id":"I1-H","level":"Intermedio","title":"Figuras superpuestas","instruction":"Toca la opción donde un círculo está parcialmente sobre un cuadrado.","speech":"Toca la opción donde un círculo está parcialmente sobre un cuadrado.","hint":"Superpuestas significa que una figura cubre una parte de la otra.","options":[{"view":"<svg class=\"svg-view\" viewBox=\"0 0 180 120\"><circle cx=\"65\" cy=\"60\" r=\"40\" fill=\"#ffc800\" stroke=\"#31506c\" stroke-width=\"5\"/><rect x=\"78\" y=\"28\" width=\"68\" height=\"68\" rx=\"8\" fill=\"#168cff\" fill-opacity=\".8\" stroke=\"#31506c\" stroke-width=\"5\"/></svg>","label":"círculo y cuadrado superpuestos"},{"view":"<div class=\"pattern-view\"><span class=\"shape circle yellow sm\"></span><span class=\"shape square blue sm\"></span></div>","label":"figuras separadas"},{"view":"<div class=\"pattern-view\"><span class=\"shape triangle yellow sm\"></span><span class=\"shape square blue sm\"></span></div>","label":"triángulo y cuadrado"}],"answer":0,"success":"¡Muy bien! Las figuras están superpuestas.","target":null},{"id":"I1-I","level":"Intermedio","title":"Figuras de tres lados","instruction":"¿Cuántos triángulos hay entre las figuras?","speech":"¿Cuántos triángulos hay entre las figuras?","hint":"Cuenta solamente las figuras que tienen tres lados.","options":[{"view":"<span class=\"number-view normal\">3</span>","label":"tres"},{"view":"<span class=\"number-view normal\">4</span>","label":"cuatro"},{"view":"<span class=\"number-view normal\">5</span>","label":"cinco"}],"answer":1,"success":"¡Correcto! Hay cuatro triángulos.","target":"<div class=\"pattern-view\"><span class=\"shape triangle green sm\"></span><span class=\"shape square blue sm\"></span><span class=\"shape triangle yellow sm\"></span><span class=\"shape circle red sm\"></span><span class=\"shape triangle purple sm\"></span><span class=\"shape triangle orange sm\"></span></div>"},{"id":"I1-J","level":"Intermedio","title":"Figuras de cuatro lados","instruction":"Toca la tarjeta formada únicamente por figuras de cuatro lados.","speech":"Toca la tarjeta formada únicamente por figuras de cuatro lados.","hint":"Los cuadrados y rectángulos tienen cuatro lados.","options":[{"view":"<div class=\"pattern-view\"><span class=\"shape square blue sm\"></span><span class=\"shape rectangle green sm\"></span><span class=\"shape square yellow sm\"></span></div>","label":"cuadrados y rectángulo"},{"view":"<div class=\"pattern-view\"><span class=\"shape triangle blue sm\"></span><span class=\"shape square green sm\"></span><span class=\"shape circle yellow sm\"></span></div>","label":"figuras mezcladas"},{"view":"<div class=\"pattern-view\"><span class=\"shape triangle red sm\"></span><span class=\"shape triangle blue sm\"></span><span class=\"shape triangle green sm\"></span></div>","label":"triángulos"}],"answer":0,"success":"¡Muy bien! Todas esas figuras tienen cuatro lados.","target":null},{"id":"I1-K","level":"Intermedio","title":"Lados de una figura irregular","instruction":"¿Cuántos lados tiene la figura verde?","speech":"¿Cuántos lados tiene la figura verde?","hint":"Recorre el borde y cuenta cada segmento.","options":[{"view":"<span class=\"number-view normal\">3</span>","label":"tres"},{"view":"<span class=\"number-view normal\">4</span>","label":"cuatro"},{"view":"<span class=\"number-view normal\">5</span>","label":"cinco"}],"answer":2,"success":"¡Correcto! La figura tiene cinco lados.","target":"<svg class=\"svg-view\" viewBox=\"0 0 180 125\" aria-hidden=\"true\">\n  <polygon points=\"35,105 20,60 70,12 92,62 160,105\"\n           fill=\"#58cc5b\" stroke=\"#31506c\" stroke-width=\"5\"/>\n</svg>"},{"id":"I1-L","level":"Intermedio","title":"Construcción con más cubos","instruction":"Toca la construcción que tiene más cubos.","speech":"Toca la construcción que tiene más cubos.","hint":"Suma los cubos visibles de cada construcción.","options":[{"view":"<div style=\"min-width:220px;min-height:145px;display:flex;align-items:flex-end;justify-content:center;gap:6px;border-bottom:7px solid #586f86;padding:8px\"><div style=\"display:flex;flex-direction:column-reverse;gap:3px\"><span style=\"width:43px;height:43px;border:4px solid #31506c;background:#76d7f1;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35)\"></span><span style=\"width:43px;height:43px;border:4px solid #31506c;background:#76d7f1;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35)\"></span></div><div style=\"display:flex;flex-direction:column-reverse;gap:3px\"><span style=\"width:43px;height:43px;border:4px solid #31506c;background:#76d7f1;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35)\"></span><span style=\"width:43px;height:43px;border:4px solid #31506c;background:#76d7f1;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35)\"></span></div></div>","label":"cuatro cubos"},{"view":"<div style=\"min-width:220px;min-height:145px;display:flex;align-items:flex-end;justify-content:center;gap:6px;border-bottom:7px solid #586f86;padding:8px\"><div style=\"display:flex;flex-direction:column-reverse;gap:3px\"><span style=\"width:43px;height:43px;border:4px solid #31506c;background:#76d7f1;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35)\"></span><span style=\"width:43px;height:43px;border:4px solid #31506c;background:#76d7f1;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35)\"></span></div><div style=\"display:flex;flex-direction:column-reverse;gap:3px\"><span style=\"width:43px;height:43px;border:4px solid #31506c;background:#76d7f1;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35)\"></span><span style=\"width:43px;height:43px;border:4px solid #31506c;background:#76d7f1;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35)\"></span><span style=\"width:43px;height:43px;border:4px solid #31506c;background:#76d7f1;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35)\"></span></div></div>","label":"cinco cubos"},{"view":"<div style=\"min-width:220px;min-height:145px;display:flex;align-items:flex-end;justify-content:center;gap:6px;border-bottom:7px solid #586f86;padding:8px\"><div style=\"display:flex;flex-direction:column-reverse;gap:3px\"><span style=\"width:43px;height:43px;border:4px solid #31506c;background:#76d7f1;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35)\"></span><span style=\"width:43px;height:43px;border:4px solid #31506c;background:#76d7f1;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35)\"></span><span style=\"width:43px;height:43px;border:4px solid #31506c;background:#76d7f1;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35)\"></span></div><div style=\"display:flex;flex-direction:column-reverse;gap:3px\"><span style=\"width:43px;height:43px;border:4px solid #31506c;background:#76d7f1;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35)\"></span><span style=\"width:43px;height:43px;border:4px solid #31506c;background:#76d7f1;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35)\"></span><span style=\"width:43px;height:43px;border:4px solid #31506c;background:#76d7f1;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35)\"></span></div></div>","label":"seis cubos"}],"answer":2,"success":"¡Excelente! Esa construcción tiene seis cubos.","target":null}]},{"slot":"I2","level":"Intermedio","area":"Números, conteo y relación número-cantidad","coverage":[23,24,25,26,27,28,29,46],"variants":[{"id":"I2-A","level":"Intermedio","title":"Número y cantidad","instruction":"Cuenta las manzanas y toca el número correcto.","speech":"Cuenta las manzanas y toca el número correcto.","hint":"Señala cada manzana una sola vez mientras cuentas.","options":[{"view":"<span class=\"number-view normal\">3</span>","label":"tres"},{"view":"<span class=\"number-view normal\">4</span>","label":"cuatro"},{"view":"<span class=\"number-view normal\">5</span>","label":"cinco"}],"answer":1,"success":"¡Muy bien! Hay cuatro manzanas.","target":"<div class=\"emoji-group sm\"><span>🍎</span><span>🍎</span><span>🍎</span><span>🍎</span></div>"},{"id":"I2-B","level":"Intermedio","title":"Busca la cantidad","instruction":"Toca el grupo que representa el número 5.","speech":"Toca el grupo que representa el número 5.","hint":"Mira el número y cuenta cada grupo.","options":[{"view":"<div class=\"emoji-group sm\"><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span></div>","label":"cuatro estrellas"},{"view":"<div class=\"emoji-group sm\"><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span></div>","label":"cinco estrellas"},{"view":"<div class=\"emoji-group sm\"><span>⭐</span><span>⭐</span><span>⭐</span></div>","label":"tres estrellas"}],"answer":1,"success":"¡Correcto! Ese grupo representa el número cinco.","target":"<span class=\"number-view normal\">5</span>"},{"id":"I2-C","level":"Intermedio","title":"Número bien trazado","instruction":"Toca el número 3 que está escrito correctamente.","speech":"Toca el número 3 que está escrito correctamente.","hint":"Observa hacia qué lado se abren las curvas.","options":[{"view":"<span class=\"number-view mirror\">3</span>","label":"tres invertido"},{"view":"<span class=\"number-view normal\">3</span>","label":"tres correcto"},{"view":"<span class=\"number-view rotate\">3</span>","label":"tres volteado"}],"answer":1,"success":"¡Excelente! Ese número 3 está bien escrito.","target":null},{"id":"I2-D","level":"Intermedio","title":"Cuenta hasta cinco","instruction":"¿Cuántos peces hay?","speech":"¿Cuántos peces hay?","hint":"Cuenta cada pez una sola vez.","options":[{"view":"<span class=\"number-view normal\">3</span>","label":"tres"},{"view":"<span class=\"number-view normal\">5</span>","label":"cinco"},{"view":"<span class=\"number-view normal\">4</span>","label":"cuatro"}],"answer":1,"success":"¡Muy bien! Hay cinco peces.","target":"<div class=\"emoji-group sm\"><span>🐟</span><span>🐠</span><span>🐟</span><span>🐠</span><span>🐟</span></div>"},{"id":"I2-E","level":"Intermedio","title":"Busca el número uno","instruction":"Toca el número 1.","speech":"Toca el número 1.","hint":"El número uno parece una línea recta inclinada.","options":[{"view":"<span class=\"number-view normal\">0</span>","label":"cero"},{"view":"<span class=\"number-view normal\">1</span>","label":"uno"},{"view":"<span class=\"number-view normal\">7</span>","label":"siete"}],"answer":1,"success":"¡Correcto! Ese es el número uno.","target":null},{"id":"I2-F","level":"Intermedio","title":"Dedos levantados","instruction":"¿Cuántos dedos están levantados?","speech":"¿Cuántos dedos están levantados?","hint":"Cuenta los dedos que están arriba.","options":[{"view":"<span class=\"number-view normal\">3</span>","label":"tres"},{"view":"<span class=\"number-view normal\">4</span>","label":"cuatro"},{"view":"<span class=\"number-view normal\">5</span>","label":"cinco"}],"answer":1,"success":"¡Muy bien! Hay cuatro dedos levantados.","target":"<span class=\"emoji-view xl\">🖐️</span>"},{"id":"I2-G","level":"Intermedio","title":"Ruedas del triciclo","instruction":"¿Cuántas ruedas tiene un triciclo?","speech":"¿Cuántas ruedas tiene un triciclo?","hint":"La palabra triciclo empieza con tri, que indica tres.","options":[{"view":"<span class=\"number-view normal\">2</span>","label":"dos"},{"view":"<span class=\"number-view normal\">3</span>","label":"tres"},{"view":"<span class=\"number-view normal\">4</span>","label":"cuatro"}],"answer":1,"success":"¡Correcto! Un triciclo tiene tres ruedas.","target":"<span class=\"emoji-view xl\">🚲</span>"},{"id":"I2-H","level":"Intermedio","title":"Carritos en el camión","instruction":"Cuenta los carritos que transporta el camión.","speech":"Cuenta los carritos que transporta el camión.","hint":"Cuenta cada carrito una sola vez.","options":[{"view":"<span class=\"number-view normal\">5</span>","label":"cinco"},{"view":"<span class=\"number-view normal\">6</span>","label":"seis"},{"view":"<span class=\"number-view normal\">7</span>","label":"siete"}],"answer":1,"success":"¡Excelente! El camión transporta seis carritos.","target":"<div class=\"math-story\">\n  <span class=\"emoji-view xl\">🚛</span>\n  <div class=\"emoji-group sm\">\n    <span>🚗</span><span>🚗</span><span>🚗</span>\n    <span>🚗</span><span>🚗</span><span>🚗</span>\n  </div>\n</div>"},{"id":"I2-I","level":"Intermedio","title":"El número mayor","instruction":"Toca el número mayor entre 8, 10 y 9.","speech":"Toca el número mayor entre 8, 10 y 9.","hint":"Diez viene después de ocho y nueve.","options":[{"view":"<span class=\"number-view normal\">8</span>","label":"ocho"},{"view":"<span class=\"number-view normal\">10</span>","label":"diez"},{"view":"<span class=\"number-view normal\">9</span>","label":"nueve"}],"answer":1,"success":"¡Correcto! Diez es el número mayor.","target":"<div class=\"number-compare\" style=\"display:flex;justify-content:center;gap:12px;flex-wrap:wrap\"><span style=\"min-width:65px;min-height:65px;display:grid;place-items:center;border:4px solid #fff;border-radius:14px;color:#fff;font-family:Baloo 2;font-size:39px;background:#8b5cf6;box-shadow:0 5px 0 #5d43bd\">8</span><span style=\"min-width:65px;min-height:65px;display:grid;place-items:center;border:4px solid #fff;border-radius:14px;color:#fff;font-family:Baloo 2;font-size:39px;background:#8b5cf6;box-shadow:0 5px 0 #5d43bd\">10</span><span style=\"min-width:65px;min-height:65px;display:grid;place-items:center;border:4px solid #fff;border-radius:14px;color:#fff;font-family:Baloo 2;font-size:39px;background:#8b5cf6;box-shadow:0 5px 0 #5d43bd\">9</span></div>"},{"id":"I2-J","level":"Intermedio","title":"Número y estrellas","instruction":"Toca el número que corresponde a la cantidad de estrellas.","speech":"Toca el número que corresponde a la cantidad de estrellas.","hint":"Cuenta cada estrella una sola vez.","options":[{"view":"<span class=\"number-view normal\">4</span>","label":"cuatro"},{"view":"<span class=\"number-view normal\">5</span>","label":"cinco"},{"view":"<span class=\"number-view normal\">6</span>","label":"seis"}],"answer":1,"success":"¡Muy bien! Hay cinco estrellas.","target":"<div class=\"emoji-group sm\"><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span></div>"},{"id":"I2-K","level":"Intermedio","title":"Conjunto de cinco","instruction":"Toca el grupo que tiene exactamente cinco carritos.","speech":"Toca el grupo que tiene exactamente cinco carritos.","hint":"Cuenta cada carrito y detente en cinco.","options":[{"view":"<div class=\"emoji-group sm\"><span>🚗</span><span>🚗</span><span>🚗</span><span>🚗</span></div>","label":"cuatro carros"},{"view":"<div class=\"emoji-group sm\"><span>🚗</span><span>🚗</span><span>🚗</span></div>","label":"tres carros"},{"view":"<div class=\"emoji-group sm\"><span>🚗</span><span>🚗</span><span>🚗</span><span>🚗</span><span>🚗</span></div>","label":"cinco carros"}],"answer":2,"success":"¡Correcto! Ese grupo tiene cinco elementos.","target":null},{"id":"I2-L","level":"Intermedio","title":"El número menor","instruction":"Toca el número menor entre 8, 4 y 9.","speech":"Toca el número menor entre 8, 4 y 9.","hint":"El número menor aparece antes al contar.","options":[{"view":"<span class=\"number-view normal\">8</span>","label":"ocho"},{"view":"<span class=\"number-view normal\">4</span>","label":"cuatro"},{"view":"<span class=\"number-view normal\">9</span>","label":"nueve"}],"answer":1,"success":"¡Excelente! Cuatro es el número menor.","target":"<div class=\"number-compare\" style=\"display:flex;justify-content:center;gap:12px;flex-wrap:wrap\"><span style=\"min-width:65px;min-height:65px;display:grid;place-items:center;border:4px solid #fff;border-radius:14px;color:#fff;font-family:Baloo 2;font-size:39px;background:#8b5cf6;box-shadow:0 5px 0 #5d43bd\">8</span><span style=\"min-width:65px;min-height:65px;display:grid;place-items:center;border:4px solid #fff;border-radius:14px;color:#fff;font-family:Baloo 2;font-size:39px;background:#8b5cf6;box-shadow:0 5px 0 #5d43bd\">4</span><span style=\"min-width:65px;min-height:65px;display:grid;place-items:center;border:4px solid #fff;border-radius:14px;color:#fff;font-family:Baloo 2;font-size:39px;background:#8b5cf6;box-shadow:0 5px 0 #5d43bd\">9</span></div>"}]},{"slot":"I3","level":"Intermedio","area":"Conjuntos, secuencias, orientación numérica y conteo hasta 10","coverage":[30,31,32,33,34,35,49],"variants":[{"id":"I3-A","level":"Intermedio","title":"Conjunto exacto","instruction":"Toca el grupo que tiene exactamente cuatro objetos.","speech":"Toca el grupo que tiene exactamente cuatro objetos.","hint":"Cuenta y detente exactamente en cuatro.","options":[{"view":"<div class=\"emoji-group sm\"><span>⚽</span><span>⚽</span><span>⚽</span></div>","label":"tres pelotas"},{"view":"<div class=\"emoji-group sm\"><span>⚽</span><span>⚽</span><span>⚽</span><span>⚽</span></div>","label":"cuatro pelotas"},{"view":"<div class=\"emoji-group sm\"><span>⚽</span><span>⚽</span><span>⚽</span><span>⚽</span><span>⚽</span></div>","label":"cinco pelotas"}],"answer":1,"success":"¡Correcto! Ese conjunto tiene cuatro objetos.","target":null},{"id":"I3-B","level":"Intermedio","title":"Número anterior y siguiente","instruction":"¿Qué número falta en la secuencia?","speech":"¿Qué número falta en la secuencia?","hint":"La secuencia disminuye de uno en uno.","options":[{"view":"<span class=\"number-view normal\">5</span>","label":"cinco"},{"view":"<span class=\"number-view normal\">6</span>","label":"seis"},{"view":"<span class=\"number-view normal\">7</span>","label":"siete"}],"answer":1,"success":"¡Muy bien! Falta el número seis.","target":"<div class=\"sequence-view\"><span class=\"seq\">8</span><b>→</b><span class=\"seq\">7</span><b>→</b><span class=\"seq blank\">?</span><b>→</b><span class=\"seq\">5</span><b>→</b><span class=\"seq\">4</span></div>"},{"id":"I3-C","level":"Intermedio","title":"Número correcto","instruction":"Toca el número 7 que no está invertido ni volteado.","speech":"Toca el número 7 que no está invertido ni volteado.","hint":"Compara la orientación de sus líneas.","options":[{"view":"<span class=\"number-view mirror\">7</span>","label":"siete invertido"},{"view":"<span class=\"number-view normal\">7</span>","label":"siete correcto"},{"view":"<span class=\"number-view rotate\">7</span>","label":"siete volteado"}],"answer":1,"success":"¡Correcto! Ese número 7 está bien escrito.","target":null},{"id":"I3-D","level":"Intermedio","title":"Contamos hasta diez","instruction":"Cuenta las mariquitas y toca la respuesta.","speech":"Cuenta las mariquitas y toca la respuesta.","hint":"Cuenta de izquierda a derecha sin repetir.","options":[{"view":"<span class=\"number-view normal\">7</span>","label":"siete"},{"view":"<span class=\"number-view normal\">8</span>","label":"ocho"},{"view":"<span class=\"number-view normal\">9</span>","label":"nueve"}],"answer":1,"success":"¡Excelente! Hay ocho mariquitas.","target":"<div class=\"emoji-group sm\"><span>🐞</span><span>🐞</span><span>🐞</span><span>🐞</span><span>🐞</span><span>🐞</span><span>🐞</span><span>🐞</span></div>"},{"id":"I3-E","level":"Intermedio","title":"Secuencia desde cero","instruction":"¿Qué número sigue después del 2?","speech":"¿Qué número sigue después del 2?","hint":"La secuencia aumenta de uno en uno.","options":[{"view":"<span class=\"number-view normal\">2</span>","label":"dos"},{"view":"<span class=\"number-view normal\">3</span>","label":"tres"},{"view":"<span class=\"number-view normal\">4</span>","label":"cuatro"}],"answer":1,"success":"¡Correcto! Después del 2 sigue el 3.","target":"<div class=\"sequence-view\"><span class=\"seq\">0</span><b>→</b><span class=\"seq\">1</span><b>→</b><span class=\"seq\">2</span><b>→</b><span class=\"seq blank\">?</span></div>"},{"id":"I3-F","level":"Intermedio","title":"Antes y después del 2","instruction":"¿Qué pareja muestra el número anterior y el siguiente del 2?","speech":"¿Qué pareja muestra el número anterior y el siguiente del 2?","hint":"Cuenta: uno, dos, tres.","options":[{"view":"<div class=\"emoji-group sm\"><span>1</span><span>3</span></div>","label":"uno y tres"},{"view":"<div class=\"emoji-group sm\"><span>2</span><span>3</span></div>","label":"dos y tres"},{"view":"<div class=\"emoji-group sm\"><span>0</span><span>1</span></div>","label":"cero y uno"}],"answer":0,"success":"¡Muy bien! Antes del 2 está el 1 y después está el 3.","target":"<span class=\"number-view normal\">2</span>"},{"id":"I3-G","level":"Intermedio","title":"Conjunto de cuatro","instruction":"Toca el grupo que tiene exactamente cuatro pollitos.","speech":"Toca el grupo que tiene exactamente cuatro pollitos.","hint":"Cuenta y detente al llegar a cuatro.","options":[{"view":"<div class=\"emoji-group sm\"><span>🐥</span><span>🐥</span><span>🐥</span></div>","label":"tres pollitos"},{"view":"<div class=\"emoji-group sm\"><span>🐥</span><span>🐥</span><span>🐥</span><span>🐥</span></div>","label":"cuatro pollitos"},{"view":"<div class=\"emoji-group sm\"><span>🐥</span><span>🐥</span><span>🐥</span><span>🐥</span><span>🐥</span></div>","label":"cinco pollitos"}],"answer":1,"success":"¡Correcto! Ese grupo tiene cuatro pollitos.","target":null},{"id":"I3-H","level":"Intermedio","title":"Cuenta las mariquitas","instruction":"¿Cuántas mariquitas hay?","speech":"¿Cuántas mariquitas hay?","hint":"Cuenta de izquierda a derecha.","options":[{"view":"<span class=\"number-view normal\">7</span>","label":"siete"},{"view":"<span class=\"number-view normal\">8</span>","label":"ocho"},{"view":"<span class=\"number-view normal\">9</span>","label":"nueve"}],"answer":1,"success":"¡Excelente! Hay ocho mariquitas.","target":"<div class=\"emoji-group sm\"><span>🐞</span><span>🐞</span><span>🐞</span><span>🐞</span><span>🐞</span><span>🐞</span><span>🐞</span><span>🐞</span></div>"},{"id":"I3-I","level":"Intermedio","title":"Secuencia de fresas","instruction":"La secuencia tiene 1, 3 y 5 fresas. ¿Cuántas siguen?","speech":"La secuencia tiene 1, 3 y 5 fresas. ¿Cuántas siguen?","hint":"La cantidad aumenta de dos en dos.","options":[{"view":"<span class=\"number-view normal\">6</span>","label":"seis"},{"view":"<span class=\"number-view normal\">7</span>","label":"siete"},{"view":"<span class=\"number-view normal\">8</span>","label":"ocho"}],"answer":1,"success":"¡Correcto! Después de cinco siguen siete fresas.","target":"<div class=\"sequence-view\"><span class=\"seq\">1</span><b>→</b><span class=\"seq\">3</span><b>→</b><span class=\"seq\">5</span><b>→</b><span class=\"seq\">?</span></div>"},{"id":"I3-J","level":"Intermedio","title":"Número siete bien escrito","instruction":"Toca el número 7 escrito correctamente.","speech":"Toca el número 7 escrito correctamente.","hint":"Compara la orientación de la línea superior.","options":[{"view":"<span class=\"number-view mirror\">7</span>","label":"siete invertido"},{"view":"<span class=\"number-view normal\">7</span>","label":"siete correcto"},{"view":"<span class=\"number-view rotate\">7</span>","label":"siete volteado"}],"answer":1,"success":"¡Muy bien! Ese número siete está bien escrito.","target":null},{"id":"I3-K","level":"Intermedio","title":"Forma un par","instruction":"Toca la tarjeta que muestra un par de bolitas.","speech":"Toca la tarjeta que muestra un par de bolitas.","hint":"Un par está formado por dos elementos.","options":[{"view":"<div class=\"emoji-group sm\"><span>🔵</span></div>","label":"una bolita"},{"view":"<div class=\"emoji-group sm\"><span>🔵</span><span>🔵</span></div>","label":"dos bolitas"},{"view":"<div class=\"emoji-group sm\"><span>🔵</span><span>🔵</span><span>🔵</span></div>","label":"tres bolitas"}],"answer":1,"success":"¡Correcto! Dos bolitas forman un par.","target":null},{"id":"I3-L","level":"Intermedio","title":"Pares de patitas","instruction":"Se observan seis patitas. ¿Cuántos pares forman?","speech":"Se observan seis patitas. ¿Cuántos pares forman?","hint":"Agrupa las patitas de dos en dos.","options":[{"view":"<span class=\"number-view normal\">2</span>","label":"dos pares"},{"view":"<span class=\"number-view normal\">3</span>","label":"tres pares"},{"view":"<span class=\"number-view normal\">4</span>","label":"cuatro pares"}],"answer":1,"success":"¡Excelente! Se forman tres pares.","target":"<div class=\"emoji-group sm\"><span>🦶</span><span>🦶</span><span>🦶</span><span>🦶</span><span>🦶</span><span>🦶</span></div>"}]},{"slot":"A1","level":"Avanzado","area":"Patrones, elemento intruso e igualdad exacta","coverage":[36,37,38,52],"variants":[{"id":"A1-A","level":"Avanzado","title":"Completa el patrón","instruction":"¿Qué figura continúa la secuencia?","speech":"¿Qué figura continúa la secuencia?","hint":"El patrón repite círculo rojo y cuadrado azul.","options":[{"view":"<span class=\"shape circle red md\"></span>","label":"círculo rojo"},{"view":"<span class=\"shape square blue md\"></span>","label":"cuadrado azul"},{"view":"<span class=\"shape triangle yellow md\"></span>","label":"triángulo amarillo"}],"answer":1,"success":"¡Correcto! Continúa el cuadrado azul.","target":"<div class=\"pattern-view\"><span class=\"shape circle red sm\"></span><span class=\"shape square blue sm\"></span><span class=\"shape circle red sm\"></span><span class=\"pattern-question\">?</span></div>"},{"id":"A1-B","level":"Avanzado","title":"El elemento que no pertenece","instruction":"Encuentra el dibujo que no pertenece al grupo.","speech":"Encuentra el dibujo que no pertenece al grupo.","hint":"Tres dibujos son medios de transporte.","options":[{"view":"<span class=\"emoji-view xl\" >🚗</span>","label":"carro"},{"view":"<span class=\"emoji-view xl\" >🚌</span>","label":"autobús"},{"view":"<span class=\"emoji-view xl\" >🚲</span>","label":"bicicleta"},{"view":"<span class=\"emoji-view xl\" >🍌</span>","label":"plátano"}],"answer":3,"success":"¡Muy bien! El plátano no pertenece al grupo.","target":null},{"id":"A1-C","level":"Avanzado","title":"Caritas exactamente iguales","instruction":"Busca la cara exactamente igual al modelo.","speech":"Busca la cara exactamente igual al modelo.","hint":"Compara ojo izquierdo, ojo derecho y boca.","options":[{"view":"<div class=\"face-view pink\"><span class=\"eye left\">+</span><span class=\"eye right\">—</span><span class=\"mouth\">⌢</span></div>","label":"ojos cambiados"},{"view":"<div class=\"face-view pink\"><span class=\"eye left\">—</span><span class=\"eye right\">+</span><span class=\"mouth\">⌣</span></div>","label":"boca diferente"},{"view":"<div class=\"face-view pink\"><span class=\"eye left\">—</span><span class=\"eye right\">+</span><span class=\"mouth\">⌢</span></div>","label":"cara igual"},{"view":"<div class=\"face-view pink\"><span class=\"eye left\">—</span><span class=\"eye right\">—</span><span class=\"mouth\">⌢</span></div>","label":"dos ojos iguales"}],"answer":2,"success":"¡Fantástico! Encontraste la cara exactamente igual.","target":"<div class=\"face-view pink\"><span class=\"eye left\">—</span><span class=\"eye right\">+</span><span class=\"mouth\">⌢</span></div>"},{"id":"A1-D","level":"Avanzado","title":"Patrón con un cambio","instruction":"Tres filas siguen el mismo patrón. Encuentra la diferente.","speech":"Tres filas siguen el mismo patrón. Encuentra la diferente.","hint":"Mira con cuidado el color de la figura central.","options":[{"view":"<div class=\"pattern-view\"><span class=\"shape triangle yellow sm\"></span><span class=\"shape circle blue sm\"></span><span class=\"shape triangle yellow sm\"></span></div>","label":"patrón correcto"},{"view":"<div class=\"pattern-view\"><span class=\"shape triangle yellow sm\"></span><span class=\"shape circle red sm\"></span><span class=\"shape triangle yellow sm\"></span></div>","label":"círculo rojo"},{"view":"<div class=\"pattern-view\"><span class=\"shape triangle yellow sm\"></span><span class=\"shape circle blue sm\"></span><span class=\"shape triangle yellow sm\"></span></div>","label":"patrón correcto"},{"view":"<div class=\"pattern-view\"><span class=\"shape triangle yellow sm\"></span><span class=\"shape circle blue sm\"></span><span class=\"shape triangle yellow sm\"></span></div>","label":"patrón correcto"}],"answer":1,"success":"¡Correcto! El círculo rojo cambió el patrón.","target":null},{"id":"A1-E","level":"Avanzado","title":"El intruso del tránsito","instruction":"Camión y semáforo pertenecen al tránsito terrestre. ¿Cuál es diferente?","speech":"Camión y semáforo pertenecen al tránsito terrestre. ¿Cuál es diferente?","hint":"Busca el objeto que se mueve por el aire.","options":[{"view":"<span class=\"emoji-view xl\">🚚</span>","label":"camión"},{"view":"<span class=\"emoji-view xl\">🚦</span>","label":"semáforo"},{"view":"<span class=\"emoji-view xl\">🚁</span>","label":"helicóptero"}],"answer":2,"success":"¡Correcto! El helicóptero es diferente.","target":null},{"id":"A1-F","level":"Avanzado","title":"Número invertido","instruction":"Toca el número 5 escrito correctamente.","speech":"Toca el número 5 escrito correctamente.","hint":"Compara la orientación de la parte superior y la curva.","options":[{"view":"<span class=\"number-view mirror\">5</span>","label":"cinco invertido"},{"view":"<span class=\"number-view normal\">5</span>","label":"cinco correcto"},{"view":"<span class=\"number-view rotate\">5</span>","label":"cinco volteado"}],"answer":1,"success":"¡Muy bien! Ese número 5 está bien escrito.","target":null},{"id":"A1-G","level":"Avanzado","title":"Carita gemela","instruction":"Encuentra la carita exactamente igual al modelo.","speech":"Encuentra la carita exactamente igual al modelo.","hint":"Compara los ojos y después la boca.","options":[{"view":"<div class=\"face-view yellow\"><span class=\"eye left\">●</span><span class=\"eye right\">—</span><span class=\"mouth\">⌣</span></div>","label":"ojo derecho cerrado"},{"view":"<div class=\"face-view yellow\"><span class=\"eye left\">—</span><span class=\"eye right\">●</span><span class=\"mouth\">⌣</span></div>","label":"cara igual"},{"view":"<div class=\"face-view yellow\"><span class=\"eye left\">—</span><span class=\"eye right\">●</span><span class=\"mouth\">⌢</span></div>","label":"boca triste"},{"view":"<div class=\"face-view yellow\"><span class=\"eye left\">●</span><span class=\"eye right\">●</span><span class=\"mouth\">⌣</span></div>","label":"dos ojos abiertos"}],"answer":1,"success":"¡Fantástico! Encontraste la carita gemela.","target":"<div class=\"face-view yellow\"><span class=\"eye left\">—</span><span class=\"eye right\">●</span><span class=\"mouth\">⌣</span></div>"},{"id":"A1-H","level":"Avanzado","title":"Patrón de posiciones","instruction":"¿Qué figura continúa la secuencia de posiciones?","speech":"¿Qué figura continúa la secuencia de posiciones?","hint":"La posición sube por el lado izquierdo y después baja por el lado derecho.","options":[{"view":"<span class=\"word-view blue\">↗</span>","label":"arriba derecha"},{"view":"<span class=\"word-view orange\">→</span>","label":"derecha"},{"view":"<span class=\"word-view purple\">↘</span>","label":"abajo derecha"}],"answer":1,"success":"¡Correcto! Continúa en el centro derecho.","target":"<div class=\"emoji-group sm\"><span>↙</span><span>←</span><span>↖</span><span>↗</span><span>?</span></div>"},{"id":"A1-I","level":"Avanzado","title":"Serie sol y nube","instruction":"¿Qué figura continúa la serie?","speech":"¿Qué figura continúa la serie?","hint":"La serie alterna sol y nube.","options":[{"view":"<span class=\"emoji-view xl\">☀️</span>","label":"sol"},{"view":"<span class=\"emoji-view xl\">☁️</span>","label":"nube"},{"view":"<span class=\"emoji-view xl\">⭐</span>","label":"estrella"}],"answer":1,"success":"¡Correcto! Después del sol sigue una nube.","target":"<div class=\"lineup\"><span>☀️</span><span>☁️</span><span>☀️</span><span>☁️</span><span>☀️</span><span>❓</span></div>"},{"id":"A1-J","level":"Avanzado","title":"Más puntos negros","instruction":"Toca el animalito que tiene más puntos negros.","speech":"Toca el animalito que tiene más puntos negros.","hint":"Cuenta los puntos de cada animal.","options":[{"view":"<div style=\"width:105px;height:105px;position:relative;border:5px solid #273f58;border-radius:50%;background:#fff\"><span style=\"position:absolute;inset:0;display:grid;grid-template-columns:repeat(2,1fr);gap:4px;padding:16px\"><i style=\"width:16px;height:16px;border-radius:50%;background:#1d2733\"></i><i style=\"width:16px;height:16px;border-radius:50%;background:#1d2733\"></i><i style=\"width:16px;height:16px;border-radius:50%;background:#1d2733\"></i><i style=\"width:16px;height:16px;border-radius:50%;background:#1d2733\"></i><i style=\"width:16px;height:16px;border-radius:50%;background:#1d2733\"></i></span></div>","label":"cinco puntos"},{"view":"<div style=\"width:105px;height:105px;position:relative;border:5px solid #273f58;border-radius:50%;background:#fff\"><span style=\"position:absolute;inset:0;display:grid;grid-template-columns:repeat(2,1fr);gap:4px;padding:16px\"><i style=\"width:16px;height:16px;border-radius:50%;background:#1d2733\"></i><i style=\"width:16px;height:16px;border-radius:50%;background:#1d2733\"></i><i style=\"width:16px;height:16px;border-radius:50%;background:#1d2733\"></i><i style=\"width:16px;height:16px;border-radius:50%;background:#1d2733\"></i><i style=\"width:16px;height:16px;border-radius:50%;background:#1d2733\"></i><i style=\"width:16px;height:16px;border-radius:50%;background:#1d2733\"></i></span></div>","label":"seis puntos"},{"view":"<div style=\"width:105px;height:105px;position:relative;border:5px solid #273f58;border-radius:50%;background:#fff\"><span style=\"position:absolute;inset:0;display:grid;grid-template-columns:repeat(2,1fr);gap:4px;padding:16px\"><i style=\"width:16px;height:16px;border-radius:50%;background:#1d2733\"></i><i style=\"width:16px;height:16px;border-radius:50%;background:#1d2733\"></i><i style=\"width:16px;height:16px;border-radius:50%;background:#1d2733\"></i><i style=\"width:16px;height:16px;border-radius:50%;background:#1d2733\"></i><i style=\"width:16px;height:16px;border-radius:50%;background:#1d2733\"></i><i style=\"width:16px;height:16px;border-radius:50%;background:#1d2733\"></i><i style=\"width:16px;height:16px;border-radius:50%;background:#1d2733\"></i></span></div>","label":"siete puntos"}],"answer":2,"success":"¡Muy bien! Ese animal tiene siete puntos.","target":null},{"id":"A1-K","level":"Avanzado","title":"Maneras de llegar","instruction":"¿De cuántas maneras puede llegar la niña a la casa?","speech":"¿De cuántas maneras puede llegar la niña a la casa?","hint":"Cuenta cada camino blanco diferente.","options":[{"view":"<span class=\"number-view normal\">2</span>","label":"dos"},{"view":"<span class=\"number-view normal\">3</span>","label":"tres"},{"view":"<span class=\"number-view normal\">4</span>","label":"cuatro"}],"answer":1,"success":"¡Correcto! Hay tres caminos.","target":"<div style=\"width:290px;height:165px;position:relative;border:5px solid #fff;border-radius:22px;background:linear-gradient(#88ddff 0 52%,#72d168 52%);box-shadow:0 7px 0 rgba(0,0,0,.12)\"><span style=\"position:absolute;left:8px;top:55px;font-size:45px\">👧</span><span style=\"position:absolute;left:55px;right:55px;top:30px;height:7px;border-radius:999px;background:#fff;transform:rotate(-8deg)\"></span><span style=\"position:absolute;left:55px;right:55px;top:62px;height:7px;border-radius:999px;background:#fff;transform:rotate(0deg)\"></span><span style=\"position:absolute;left:55px;right:55px;top:94px;height:7px;border-radius:999px;background:#fff;transform:rotate(8deg)\"></span><span style=\"position:absolute;right:8px;top:55px;font-size:45px\">🏠</span></div>"},{"id":"A1-L","level":"Avanzado","title":"Avión con un detalle distinto","instruction":"Observa dirección y color. Toca el avión diferente.","speech":"Observa dirección y color. Toca el avión diferente.","hint":"Compara la forma del cuerpo y las alas.","options":[{"view":"<span class=\"emoji-view xl\">✈️</span>","label":"avión igual"},{"view":"<span class=\"emoji-view xl\">✈️</span>","label":"avión igual"},{"view":"<span class=\"emoji-view xl\">🛩️</span>","label":"avión diferente"},{"view":"<span class=\"emoji-view xl\">✈️</span>","label":"avión igual"}],"answer":2,"success":"¡Excelente! Encontraste el avión diferente.","target":null}]},{"slot":"A2","level":"Avanzado","area":"Conteo condicionado y suma visual","coverage":[39,40,48,50],"variants":[{"id":"A2-A","level":"Avanzado","title":"Cuenta solo los peces","instruction":"Cuenta únicamente los peces. No cuentes los patitos.","speech":"Cuenta únicamente los peces. No cuentes los patitos.","hint":"Primero identifica los peces y después cuéntalos.","options":[{"view":"<span class=\"number-view normal\">2</span>","label":"dos"},{"view":"<span class=\"number-view normal\">3</span>","label":"tres"},{"view":"<span class=\"number-view normal\">4</span>","label":"cuatro"}],"answer":1,"success":"¡Muy bien! Hay tres peces.","target":"<div class=\"emoji-group sm\"><span>🐟</span><span>🦆</span><span>🐠</span><span>🦆</span><span>🐟</span></div>"},{"id":"A2-B","level":"Avanzado","title":"Cuenta las flechas a la derecha","instruction":"Cuenta solo las flechas que señalan hacia la derecha.","speech":"Cuenta solo las flechas que señalan hacia la derecha.","hint":"Ignora las flechas que señalan hacia la izquierda.","options":[{"view":"<span class=\"number-view normal\">4</span>","label":"cuatro"},{"view":"<span class=\"number-view normal\">5</span>","label":"cinco"},{"view":"<span class=\"number-view normal\">6</span>","label":"seis"}],"answer":1,"success":"¡Correcto! Cinco flechas señalan a la derecha.","target":"<div class=\"emoji-group sm\"><span>➜</span><span>⬅️</span><span>➜</span><span>➜</span><span>⬅️</span><span>➜</span><span>➜</span></div>"},{"id":"A2-C","level":"Avanzado","title":"Juntamos y sumamos","instruction":"Junta los dos grupos. ¿Cuántas estrellas hay en total?","speech":"Junta los dos grupos. ¿Cuántas estrellas hay en total?","hint":"Cuenta tres estrellas y continúa con las otras tres.","options":[{"view":"<span class=\"number-view normal\">5</span>","label":"cinco"},{"view":"<span class=\"number-view normal\">6</span>","label":"seis"},{"view":"<span class=\"number-view normal\">7</span>","label":"siete"}],"answer":1,"success":"¡Excelente! Tres más tres es seis.","target":"<div class=\"math-story\"><div class=\"emoji-group sm\"><span>⭐</span><span>⭐</span><span>⭐</span></div><b>+</b><div class=\"emoji-group sm\"><span>⭐</span><span>⭐</span><span>⭐</span></div></div>"},{"id":"A2-D","level":"Avanzado","title":"Dentro del rectángulo","instruction":"Cuenta solo las pelotas que están dentro del rectángulo.","speech":"Cuenta solo las pelotas que están dentro del rectángulo.","hint":"Las pelotas pueden estar también dentro del círculo, pero cuenta si permanecen dentro del rectángulo.","options":[{"view":"<span class=\"number-view normal\">2</span>","label":"dos"},{"view":"<span class=\"number-view normal\">3</span>","label":"tres"},{"view":"<span class=\"number-view normal\">4</span>","label":"cuatro"}],"answer":1,"success":"¡Muy bien! Hay tres pelotas dentro del rectángulo.","target":"<div class=\"scene-mini box\"><span class=\"scene-object inside-left\">⚽</span><span class=\"scene-object inside-center\">⚽</span><span class=\"scene-object inside-right\">⚽</span><span class=\"scene-object outside-right\">⚽</span></div>"},{"id":"A2-E","level":"Avanzado","title":"Manzanas debajo de la mesa","instruction":"Cuenta solo las manzanas que están debajo de la mesa.","speech":"Cuenta solo las manzanas que están debajo de la mesa.","hint":"No cuentes las dos manzanas que están arriba.","options":[{"view":"<span class=\"number-view normal\">5</span>","label":"cinco"},{"view":"<span class=\"number-view normal\">6</span>","label":"seis"},{"view":"<span class=\"number-view normal\">7</span>","label":"siete"}],"answer":1,"success":"¡Correcto! Hay seis manzanas debajo de la mesa.","target":"<div class=\"vertical-scene\"><span><div class=\"emoji-group sm\"><span>🍎</span><span>🍎</span></div></span><hr><span><div class=\"emoji-group sm\"><span>🍎</span><span>🍎</span><span>🍎</span><span>🍎</span><span>🍎</span><span>🍎</span></div></span></div>"},{"id":"A2-F","level":"Avanzado","title":"Globos a la izquierda","instruction":"Cuenta los globos que están a la izquierda del payaso.","speech":"Cuenta los globos que están a la izquierda del payaso.","hint":"Cuenta solamente el grupo que aparece al lado izquierdo.","options":[{"view":"<span class=\"number-view normal\">4</span>","label":"cuatro"},{"view":"<span class=\"number-view normal\">5</span>","label":"cinco"},{"view":"<span class=\"number-view normal\">6</span>","label":"seis"}],"answer":1,"success":"¡Muy bien! Hay cinco globos a la izquierda.","target":"<div class=\"lr-scene\"><span><div class=\"emoji-group sm\"><span>🎈</span><span>🎈</span><span>🎈</span><span>🎈</span><span>🎈</span></div></span><b>🤡</b><span><div class=\"emoji-group sm\"><span>🎈</span><span>🎈</span></div></span></div>"},{"id":"A2-G","level":"Avanzado","title":"Flechas hacia la derecha","instruction":"Cuenta únicamente las flechas que señalan a la derecha.","speech":"Cuenta únicamente las flechas que señalan a la derecha.","hint":"Ignora las flechas que apuntan a la izquierda.","options":[{"view":"<span class=\"number-view normal\">6</span>","label":"seis"},{"view":"<span class=\"number-view normal\">7</span>","label":"siete"},{"view":"<span class=\"number-view normal\">8</span>","label":"ocho"}],"answer":1,"success":"¡Excelente! Siete flechas apuntan a la derecha.","target":"<div class=\"emoji-group sm\"><span>➜</span><span>⬅️</span><span>➜</span><span>➜</span><span>⬅️</span><span>➜</span><span>➜</span><span>➜</span><span>➜</span></div>"},{"id":"A2-H","level":"Avanzado","title":"Suma con dados","instruction":"Un dado muestra 3 puntos y el otro también 3. ¿Cuántos puntos hay en total?","speech":"Un dado muestra 3 puntos y el otro también 3. ¿Cuántos puntos hay en total?","hint":"Junta los tres puntos de cada dado.","options":[{"view":"<span class=\"number-view normal\">5</span>","label":"cinco"},{"view":"<span class=\"number-view normal\">6</span>","label":"seis"},{"view":"<span class=\"number-view normal\">7</span>","label":"siete"}],"answer":1,"success":"¡Correcto! Tres más tres es seis.","target":"<div class=\"math-story\"><span class=\"emoji-view xl\">⚂</span><b>+</b><span class=\"emoji-view xl\">⚂</span></div>"},{"id":"A2-I","level":"Avanzado","title":"Carritos hacia la izquierda","instruction":"Cuenta únicamente los carritos que se dirigen hacia la izquierda.","speech":"Cuenta únicamente los carritos que se dirigen hacia la izquierda.","hint":"Mira la dirección de la parte delantera de cada carro.","options":[{"view":"<span class=\"number-view normal\">4</span>","label":"cuatro"},{"view":"<span class=\"number-view normal\">5</span>","label":"cinco"},{"view":"<span class=\"number-view normal\">6</span>","label":"seis"}],"answer":1,"success":"¡Correcto! Cinco carritos van hacia la izquierda.","target":"<div class=\"emoji-group sm\"><span>🚙</span><span>🚗</span><span>🚙</span><span>🚗</span><span>🚙</span><span>🚗</span><span>🚙</span><span>🚗</span><span>🚙</span></div>"},{"id":"A2-J","level":"Avanzado","title":"Ruedas de bicicletas","instruction":"Hay cuatro bicicletas. ¿Cuántas ruedas hay en total?","speech":"Hay cuatro bicicletas. ¿Cuántas ruedas hay en total?","hint":"Cada bicicleta tiene dos ruedas.","options":[{"view":"<span class=\"number-view normal\">6</span>","label":"seis"},{"view":"<span class=\"number-view normal\">8</span>","label":"ocho"},{"view":"<span class=\"number-view normal\">10</span>","label":"diez"}],"answer":1,"success":"¡Muy bien! Cuatro bicicletas tienen ocho ruedas.","target":"<div class=\"emoji-group sm\"><span>🚲</span><span>🚲</span><span>🚲</span><span>🚲</span></div>"},{"id":"A2-K","level":"Avanzado","title":"Patas en total","instruction":"Un pingüino, un perro y un pájaro tienen cuántas patas en total?","speech":"Un pingüino, un perro y un pájaro tienen cuántas patas en total?","hint":"El pingüino tiene 2, el perro 4 y el pájaro 2.","options":[{"view":"<span class=\"number-view normal\">6</span>","label":"seis"},{"view":"<span class=\"number-view normal\">8</span>","label":"ocho"},{"view":"<span class=\"number-view normal\">10</span>","label":"diez"}],"answer":1,"success":"¡Correcto! En total hay ocho patas.","target":"<div class=\"lineup\"><span>🐧</span><span>🐶</span><span>🐦</span></div>"},{"id":"A2-L","level":"Avanzado","title":"El doble de los que suben","instruction":"Tres pájaros se dirigen hacia arriba. ¿Cuál es su doble?","speech":"Tres pájaros se dirigen hacia arriba. ¿Cuál es su doble?","hint":"El doble de tres es tres más tres.","options":[{"view":"<span class=\"number-view normal\">5</span>","label":"cinco"},{"view":"<span class=\"number-view normal\">6</span>","label":"seis"},{"view":"<span class=\"number-view normal\">7</span>","label":"siete"}],"answer":1,"success":"¡Excelente! El doble de tres es seis.","target":"<div class=\"emoji-group sm\"><span>⬆️🐦</span><span>⬆️🐦</span><span>⬆️🐦</span></div>"}]},{"slot":"A3","level":"Avanzado","area":"Complementos, resta y figuras compuestas","coverage":[41,42,43,47,51],"variants":[{"id":"A3-A","level":"Avanzado","title":"¿Cuántos faltan?","instruction":"Hay seis peces. ¿Cuántos faltan para completar ocho?","speech":"Hay seis peces. ¿Cuántos faltan para completar ocho?","hint":"Continúa contando desde seis hasta ocho.","options":[{"view":"<span class=\"number-view normal\">1</span>","label":"uno"},{"view":"<span class=\"number-view normal\">2</span>","label":"dos"},{"view":"<span class=\"number-view normal\">3</span>","label":"tres"}],"answer":1,"success":"¡Correcto! Faltan dos peces.","target":"<div class=\"missing-view\"><strong>Meta: 8</strong><div class=\"emoji-group sm\"><span>🐟</span><span>🐟</span><span>🐟</span><span>🐟</span><span>🐟</span><span>🐟</span></div><span>Faltan ?</span></div>"},{"id":"A3-B","level":"Avanzado","title":"Quitamos objetos","instruction":"Había cinco manzanas y quitamos dos. ¿Cuántas quedan?","speech":"Había cinco manzanas y quitamos dos. ¿Cuántas quedan?","hint":"Cuenta solo las manzanas que no se quitaron.","options":[{"view":"<span class=\"number-view normal\">2</span>","label":"dos"},{"view":"<span class=\"number-view normal\">3</span>","label":"tres"},{"view":"<span class=\"number-view normal\">4</span>","label":"cuatro"}],"answer":1,"success":"¡Muy bien! Quedan tres manzanas.","target":"<div class=\"math-story\"><div class=\"emoji-group sm\"><span>🍎</span><span>🍎</span><span>🍎</span><span>🍎</span><span>🍎</span></div><b>− 2</b><span class=\"word-view orange\">?</span></div>"},{"id":"A3-C","level":"Avanzado","title":"Triángulos dentro de figuras","instruction":"¿Cuántos triángulos encuentras en el dibujo?","speech":"¿Cuántos triángulos encuentras en el dibujo?","hint":"Cuenta los triángulos pequeños y el triángulo grande.","options":[{"view":"<span class=\"number-view normal\">3</span>","label":"tres"},{"view":"<span class=\"number-view normal\">4</span>","label":"cuatro"},{"view":"<span class=\"number-view normal\">5</span>","label":"cinco"}],"answer":1,"success":"¡Correcto! Hay cuatro triángulos.","target":"<svg class=\"svg-view\" viewBox=\"0 0 180 120\" aria-hidden=\"true\">\n  <polygon points=\"20,100 90,15 160,100\"\n           fill=\"#ffd659\" stroke=\"#31506c\" stroke-width=\"5\"/>\n  <line x1=\"55\" y1=\"58\" x2=\"125\" y2=\"58\"\n        stroke=\"#31506c\" stroke-width=\"5\"/>\n  <line x1=\"55\" y1=\"58\" x2=\"90\" y2=\"100\"\n        stroke=\"#31506c\" stroke-width=\"5\"/>\n  <line x1=\"125\" y1=\"58\" x2=\"90\" y2=\"100\"\n        stroke=\"#31506c\" stroke-width=\"5\"/>\n</svg>"},{"id":"A3-D","level":"Avanzado","title":"Figuras superpuestas","instruction":"¿Cuántos cuadrados se distinguen en el dibujo?","speech":"¿Cuántos cuadrados se distinguen en el dibujo?","hint":"Observa los dos cuadrados completos y la zona cuadrada de intersección.","options":[{"view":"<span class=\"number-view normal\">2</span>","label":"dos"},{"view":"<span class=\"number-view normal\">3</span>","label":"tres"},{"view":"<span class=\"number-view normal\">4</span>","label":"cuatro"}],"answer":1,"success":"¡Excelente! Se distinguen tres cuadrados.","target":"<svg class=\"svg-view\" viewBox=\"0 0 180 120\" aria-hidden=\"true\">\n  <rect x=\"25\" y=\"20\" width=\"80\" height=\"80\"\n        fill=\"#8fd8ff\" stroke=\"#31506c\" stroke-width=\"5\"/>\n  <rect x=\"75\" y=\"20\" width=\"80\" height=\"80\"\n        fill=\"#ffb3d1\" fill-opacity=\".75\"\n        stroke=\"#31506c\" stroke-width=\"5\"/>\n</svg>"},{"id":"A3-E","level":"Avanzado","title":"Completa ocho peces","instruction":"Hay seis peces. ¿Cuántos faltan para tener ocho?","speech":"Hay seis peces. ¿Cuántos faltan para tener ocho?","hint":"Cuenta desde seis hasta ocho.","options":[{"view":"<span class=\"number-view normal\">1</span>","label":"uno"},{"view":"<span class=\"number-view normal\">2</span>","label":"dos"},{"view":"<span class=\"number-view normal\">3</span>","label":"tres"}],"answer":1,"success":"¡Correcto! Faltan dos peces.","target":"<div class=\"emoji-group sm\"><span>🐟</span><span>🐟</span><span>🐟</span><span>🐟</span><span>🐟</span><span>🐟</span></div>"},{"id":"A3-F","level":"Avanzado","title":"Quitamos caramelos","instruction":"Había cinco caramelos y quitamos dos. ¿Cuántos quedan?","speech":"Había cinco caramelos y quitamos dos. ¿Cuántos quedan?","hint":"Quita dos y cuenta los que quedan.","options":[{"view":"<span class=\"number-view normal\">2</span>","label":"dos"},{"view":"<span class=\"number-view normal\">3</span>","label":"tres"},{"view":"<span class=\"number-view normal\">4</span>","label":"cuatro"}],"answer":1,"success":"¡Muy bien! Quedan tres caramelos.","target":"<div class=\"math-story\"><div class=\"emoji-group sm\"><span>🍬</span><span>🍬</span><span>🍬</span><span>🍬</span><span>🍬</span></div><b>− 2</b><span class=\"word-view orange\">?</span></div>"},{"id":"A3-G","level":"Avanzado","title":"Triángulos en la cometa","instruction":"Cuenta los triángulos visibles en la cometa.","speech":"Cuenta los triángulos visibles en la cometa.","hint":"Cuenta los cuatro del cuerpo y los cuatro pequeños de la cola.","options":[{"view":"<span class=\"number-view normal\">6</span>","label":"seis"},{"view":"<span class=\"number-view normal\">8</span>","label":"ocho"},{"view":"<span class=\"number-view normal\">10</span>","label":"diez"}],"answer":1,"success":"¡Excelente! Hay ocho triángulos visibles.","target":"<svg class=\"svg-view\" viewBox=\"0 0 180 145\" aria-hidden=\"true\">\n  <polygon points=\"90,8 155,62 90,116 25,62\"\n           fill=\"#8fd8ff\" stroke=\"#31506c\" stroke-width=\"5\"/>\n  <line x1=\"90\" y1=\"8\" x2=\"90\" y2=\"116\"\n        stroke=\"#31506c\" stroke-width=\"4\"/>\n  <line x1=\"25\" y1=\"62\" x2=\"155\" y2=\"62\"\n        stroke=\"#31506c\" stroke-width=\"4\"/>\n  <line x1=\"90\" y1=\"116\" x2=\"90\" y2=\"140\"\n        stroke=\"#31506c\" stroke-width=\"4\"/>\n  <polygon points=\"76,121 90,132 76,141\"\n           fill=\"#ff6aa9\" stroke=\"#31506c\" stroke-width=\"3\"/>\n  <polygon points=\"104,121 90,132 104,141\"\n           fill=\"#ffc800\" stroke=\"#31506c\" stroke-width=\"3\"/>\n</svg>"},{"id":"A3-H","level":"Avanzado","title":"Cuadrados dentro del círculo","instruction":"¿Cuántos cuadrados están dentro del círculo?","speech":"¿Cuántos cuadrados están dentro del círculo?","hint":"Cuenta solamente los cuadrados que están dentro del borde circular.","options":[{"view":"<span class=\"number-view normal\">3</span>","label":"tres"},{"view":"<span class=\"number-view normal\">4</span>","label":"cuatro"},{"view":"<span class=\"number-view normal\">5</span>","label":"cinco"}],"answer":1,"success":"¡Correcto! Hay cuatro cuadrados dentro del círculo.","target":"<svg class=\"svg-view\" viewBox=\"0 0 180 125\" aria-hidden=\"true\">\n  <circle cx=\"90\" cy=\"62\" r=\"56\"\n          fill=\"#eaf7ff\" stroke=\"#31506c\" stroke-width=\"5\"/>\n  <rect x=\"45\" y=\"22\" width=\"32\" height=\"32\" rx=\"4\"\n        fill=\"#ff6aa9\" stroke=\"#31506c\" stroke-width=\"3\"/>\n  <rect x=\"103\" y=\"22\" width=\"32\" height=\"32\" rx=\"4\"\n        fill=\"#ffc800\" stroke=\"#31506c\" stroke-width=\"3\"/>\n  <rect x=\"45\" y=\"72\" width=\"32\" height=\"32\" rx=\"4\"\n        fill=\"#58c85b\" stroke=\"#31506c\" stroke-width=\"3\"/>\n  <rect x=\"103\" y=\"72\" width=\"32\" height=\"32\" rx=\"4\"\n        fill=\"#168cff\" stroke=\"#31506c\" stroke-width=\"3\"/>\n</svg>"},{"id":"A3-I","level":"Avanzado","title":"Completa diez conejos","instruction":"Hay seis conejos. ¿Cuántos faltan para completar diez?","speech":"Hay seis conejos. ¿Cuántos faltan para completar diez?","hint":"Cuenta desde seis hasta diez.","options":[{"view":"<span class=\"number-view normal\">3</span>","label":"tres"},{"view":"<span class=\"number-view normal\">4</span>","label":"cuatro"},{"view":"<span class=\"number-view normal\">5</span>","label":"cinco"}],"answer":1,"success":"¡Correcto! Faltan cuatro conejos.","target":"<div class=\"emoji-group sm\"><span>🐰</span><span>🐰</span><span>🐰</span><span>🐰</span><span>🐰</span><span>🐰</span></div>"},{"id":"A3-J","level":"Avanzado","title":"La mitad de ocho","instruction":"¿Cuál es la mitad de ocho bolitas?","speech":"¿Cuál es la mitad de ocho bolitas?","hint":"Reparte ocho en dos grupos iguales.","options":[{"view":"<span class=\"number-view normal\">3</span>","label":"tres"},{"view":"<span class=\"number-view normal\">4</span>","label":"cuatro"},{"view":"<span class=\"number-view normal\">5</span>","label":"cinco"}],"answer":1,"success":"¡Muy bien! La mitad de ocho es cuatro.","target":"<div style=\"display:grid;grid-template-columns:1fr 7px 1fr;align-items:center;gap:13px;min-width:310px\"><div><div class=\"emoji-group sm\"><span>🔴</span><span>🔴</span><span>🔴</span><span>🔴</span></div></div><span style=\"width:7px;height:105px;border-radius:999px;background:#ff9600\"></span><div><div class=\"emoji-group sm\"><span>🔴</span><span>🔴</span><span>🔴</span><span>🔴</span></div></div></div>"},{"id":"A3-K","level":"Avanzado","title":"Quitamos pares de cubos","instruction":"Hay diez cubos. ¿Cuántos pares debemos quitar para que queden cuatro?","speech":"Hay diez cubos. ¿Cuántos pares debemos quitar para que queden cuatro?","hint":"Para pasar de diez a cuatro debemos quitar seis cubos, es decir tres pares.","options":[{"view":"<span class=\"number-view normal\">2</span>","label":"dos pares"},{"view":"<span class=\"number-view normal\">3</span>","label":"tres pares"},{"view":"<span class=\"number-view normal\">4</span>","label":"cuatro pares"}],"answer":1,"success":"¡Correcto! Debemos quitar tres pares.","target":"<div style=\"min-width:220px;min-height:145px;display:flex;align-items:flex-end;justify-content:center;gap:6px;border-bottom:7px solid #586f86;padding:8px\"><div style=\"display:flex;flex-direction:column-reverse;gap:3px\"><span style=\"width:43px;height:43px;border:4px solid #31506c;background:#76d7f1;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35)\"></span><span style=\"width:43px;height:43px;border:4px solid #31506c;background:#76d7f1;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35)\"></span></div><div style=\"display:flex;flex-direction:column-reverse;gap:3px\"><span style=\"width:43px;height:43px;border:4px solid #31506c;background:#76d7f1;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35)\"></span><span style=\"width:43px;height:43px;border:4px solid #31506c;background:#76d7f1;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35)\"></span><span style=\"width:43px;height:43px;border:4px solid #31506c;background:#76d7f1;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35)\"></span><span style=\"width:43px;height:43px;border:4px solid #31506c;background:#76d7f1;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35)\"></span></div><div style=\"display:flex;flex-direction:column-reverse;gap:3px\"><span style=\"width:43px;height:43px;border:4px solid #31506c;background:#76d7f1;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35)\"></span><span style=\"width:43px;height:43px;border:4px solid #31506c;background:#76d7f1;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35)\"></span><span style=\"width:43px;height:43px;border:4px solid #31506c;background:#76d7f1;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35)\"></span><span style=\"width:43px;height:43px;border:4px solid #31506c;background:#76d7f1;box-shadow:inset 6px 6px 0 rgba(255,255,255,.35)\"></span></div></div>"},{"id":"A3-L","level":"Avanzado","title":"Triángulos en la figura","instruction":"¿Cuántos triángulos encuentras en la figura compuesta?","speech":"¿Cuántos triángulos encuentras en la figura compuesta?","hint":"Cuenta los triángulos pequeños y el triángulo grande.","options":[{"view":"<span class=\"number-view normal\">3</span>","label":"tres"},{"view":"<span class=\"number-view normal\">4</span>","label":"cuatro"},{"view":"<span class=\"number-view normal\">5</span>","label":"cinco"}],"answer":1,"success":"¡Excelente! Hay cuatro triángulos.","target":"<svg class=\"svg-view\" viewBox=\"0 0 190 130\" aria-hidden=\"true\">\n  <polygon points=\"20,110 95,15 170,110\"\n           fill=\"#ffd85b\" stroke=\"#31506c\" stroke-width=\"5\"/>\n  <line x1=\"57\" y1=\"63\" x2=\"133\" y2=\"63\"\n        stroke=\"#31506c\" stroke-width=\"5\"/>\n  <line x1=\"57\" y1=\"63\" x2=\"95\" y2=\"110\"\n        stroke=\"#31506c\" stroke-width=\"5\"/>\n  <line x1=\"133\" y1=\"63\" x2=\"95\" y2=\"110\"\n        stroke=\"#31506c\" stroke-width=\"5\"/>\n</svg>"}]},{"slot":"A4","level":"Avanzado","area":"Reto integrador de olimpiada","coverage":[44,45,46,47,48,49,50,51,52],"variants":[{"id":"A4-A","level":"Avanzado","title":"Reto integrado","instruction":"¿Qué opción completa correctamente la secuencia y mantiene el color?","speech":"¿Qué opción completa correctamente la secuencia y mantiene el color?","hint":"La secuencia repite círculo, cuadrado y triángulo; todos son amarillos.","options":[{"view":"<span class=\"shape triangle yellow md\"></span>","label":"triángulo amarillo"},{"view":"<span class=\"shape circle blue md\"></span>","label":"círculo azul"},{"view":"<span class=\"shape square yellow md\"></span>","label":"cuadrado amarillo"}],"answer":0,"success":"¡Reto superado! Continúa el triángulo amarillo.","target":"<div class=\"pattern-view\"><span class=\"shape circle yellow sm\"></span><span class=\"shape square yellow sm\"></span><span class=\"shape triangle yellow sm\"></span><span class=\"shape circle yellow sm\"></span><span class=\"shape square yellow sm\"></span><span class=\"pattern-question\">?</span></div>"},{"id":"A4-B","level":"Avanzado","title":"Conteo por agrupación","instruction":"Hay seis monos. ¿Cuántas orejas tienen en total?","speech":"Hay seis monos. ¿Cuántas orejas tienen en total?","hint":"Cada mono tiene dos orejas.","options":[{"view":"<span class=\"number-view normal\">10</span>","label":"diez"},{"view":"<span class=\"number-view normal\">12</span>","label":"doce"},{"view":"<span class=\"number-view normal\">14</span>","label":"catorce"}],"answer":1,"success":"¡Excelente! Seis monos tienen doce orejas.","target":"<div class=\"emoji-group sm\"><span>🐵</span><span>🐵</span><span>🐵</span><span>🐵</span><span>🐵</span><span>🐵</span></div>"},{"id":"A4-C","level":"Avanzado","title":"Posición y conteo","instruction":"Cuenta las manzanas que están debajo de la mesa.","speech":"Cuenta las manzanas que están debajo de la mesa.","hint":"No cuentes las manzanas de la parte superior.","options":[{"view":"<span class=\"number-view normal\">4</span>","label":"cuatro"},{"view":"<span class=\"number-view normal\">6</span>","label":"seis"},{"view":"<span class=\"number-view normal\">8</span>","label":"ocho"}],"answer":1,"success":"¡Muy bien! Hay seis manzanas debajo.","target":"<div class=\"vertical-scene\"><span><div class=\"emoji-group sm\"><span>🍎</span><span>🍎</span></div></span><hr><span><div class=\"emoji-group sm\"><span>🍎</span><span>🍎</span><span>🍎</span><span>🍎</span><span>🍎</span><span>🍎</span></div></span></div>"},{"id":"A4-D","level":"Avanzado","title":"Figura, posición y color","instruction":"Busca el círculo amarillo que está parcialmente dentro del cuadrado azul.","speech":"Busca el círculo amarillo que está parcialmente dentro del cuadrado azul.","hint":"Observa forma, color y posición al mismo tiempo.","options":[{"view":"<svg class=\"svg-view\" viewBox=\"0 0 180 120\" aria-hidden=\"true\">\n  <circle cx=\"65\" cy=\"60\" r=\"42\"\n          fill=\"#ffda65\" stroke=\"#31506c\" stroke-width=\"5\"/>\n  <rect x=\"75\" y=\"25\" width=\"70\" height=\"70\" rx=\"8\"\n        fill=\"#6ec8ff\" fill-opacity=\".8\"\n        stroke=\"#31506c\" stroke-width=\"5\"/>\n</svg>","label":"círculo y cuadrado superpuestos"},{"view":"<div class=\"pattern-view\"><span class=\"shape circle yellow sm\"></span><span class=\"shape square blue sm\"></span></div>","label":"figuras separadas"},{"view":"<div class=\"pattern-view\"><span class=\"shape circle blue sm\"></span><span class=\"shape square yellow sm\"></span></div>","label":"colores cambiados"}],"answer":0,"success":"¡Fantástico! Elegiste la composición correcta.","target":null},{"id":"A4-E","level":"Avanzado","title":"Orejas de los monos","instruction":"Hay seis monos. ¿Cuántas orejas tienen en total?","speech":"Hay seis monos. ¿Cuántas orejas tienen en total?","hint":"Cada mono tiene dos orejas.","options":[{"view":"<span class=\"number-view normal\">10</span>","label":"diez"},{"view":"<span class=\"number-view normal\">12</span>","label":"doce"},{"view":"<span class=\"number-view normal\">14</span>","label":"catorce"}],"answer":1,"success":"¡Excelente! Seis monos tienen doce orejas.","target":"<div class=\"emoji-group sm\"><span>🐵</span><span>🐵</span><span>🐵</span><span>🐵</span><span>🐵</span><span>🐵</span></div>"},{"id":"A4-F","level":"Avanzado","title":"Transporte de carritos","instruction":"Un camión transporta seis carritos. ¿Qué número representa la cantidad?","speech":"Un camión transporta seis carritos. ¿Qué número representa la cantidad?","hint":"Cuenta los carritos que están junto al camión.","options":[{"view":"<span class=\"number-view normal\">5</span>","label":"cinco"},{"view":"<span class=\"number-view normal\">6</span>","label":"seis"},{"view":"<span class=\"number-view normal\">7</span>","label":"siete"}],"answer":1,"success":"¡Muy bien! La cantidad se representa con el número seis.","target":"<div class=\"math-story\">\n  <span class=\"emoji-view xl\">🚛</span>\n  <div class=\"emoji-group sm\">\n    <span>🚗</span><span>🚗</span><span>🚗</span>\n    <span>🚗</span><span>🚗</span><span>🚗</span>\n  </div>\n</div>"},{"id":"A4-G","level":"Avanzado","title":"Estrellas de seis puntas","instruction":"Cuenta solo las estrellas que tienen seis puntas.","speech":"Cuenta solo las estrellas que tienen seis puntas.","hint":"Observa cada estrella y cuenta únicamente las de seis puntas.","options":[{"view":"<span class=\"number-view normal\">5</span>","label":"cinco"},{"view":"<span class=\"number-view normal\">6</span>","label":"seis"},{"view":"<span class=\"number-view normal\">7</span>","label":"siete"}],"answer":2,"success":"¡Correcto! Hay siete estrellas de seis puntas.","target":"<div class=\"emoji-group sm\"><span>✡</span><span>✡</span><span>★</span><span>✡</span><span>✡</span><span>✡</span><span>✡</span><span>✡</span></div>"},{"id":"A4-H","level":"Avanzado","title":"Reto de dirección y cantidad","instruction":"¿Cuántas flechas azules señalan hacia la derecha?","speech":"¿Cuántas flechas azules señalan hacia la derecha?","hint":"Debes revisar dos condiciones: color azul y dirección derecha.","options":[{"view":"<span class=\"number-view normal\">3</span>","label":"tres"},{"view":"<span class=\"number-view normal\">4</span>","label":"cuatro"},{"view":"<span class=\"number-view normal\">5</span>","label":"cinco"}],"answer":1,"success":"¡Fantástico! Hay cuatro flechas azules hacia la derecha.","target":"<div class=\"pattern-view\"><span class=\"word-view blue\">➜</span><span class=\"word-view orange\">➜</span><span class=\"word-view blue\">⬅</span><span class=\"word-view blue\">➜</span><span class=\"word-view blue\">➜</span><span class=\"word-view purple\">⬅</span><span class=\"word-view blue\">➜</span></div>"},{"id":"A4-I","level":"Avanzado","title":"Suma y relaciona","instruction":"Resuelve 5 + 4.","speech":"Resuelve 5 + 4.","hint":"Junta cinco objetos con cuatro objetos.","options":[{"view":"<span class=\"number-view normal\">8</span>","label":"ocho"},{"view":"<span class=\"number-view normal\">9</span>","label":"nueve"},{"view":"<span class=\"number-view normal\">10</span>","label":"diez"}],"answer":1,"success":"¡Correcto! Cinco más cuatro es nueve.","target":"<div class=\"number-compare\" style=\"display:flex;justify-content:center;gap:12px;flex-wrap:wrap\"><span style=\"min-width:65px;min-height:65px;display:grid;place-items:center;border:4px solid #fff;border-radius:14px;color:#fff;font-family:Baloo 2;font-size:39px;background:#8b5cf6;box-shadow:0 5px 0 #5d43bd\">5</span><span style=\"min-width:65px;min-height:65px;display:grid;place-items:center;border:4px solid #fff;border-radius:14px;color:#fff;font-family:Baloo 2;font-size:39px;background:#8b5cf6;box-shadow:0 5px 0 #5d43bd\">+</span><span style=\"min-width:65px;min-height:65px;display:grid;place-items:center;border:4px solid #fff;border-radius:14px;color:#fff;font-family:Baloo 2;font-size:39px;background:#8b5cf6;box-shadow:0 5px 0 #5d43bd\">4</span></div>"},{"id":"A4-J","level":"Avanzado","title":"Último en la fila","instruction":"La flecha indica la dirección del recorrido. ¿Qué animal va último?","speech":"La flecha indica la dirección del recorrido. ¿Qué animal va último?","hint":"El último queda al final del recorrido.","options":[{"view":"<span class=\"emoji-view xl\">🐴</span>","label":"burro"},{"view":"<span class=\"emoji-view xl\">🐶</span>","label":"perro"},{"view":"<span class=\"emoji-view xl\">🐄</span>","label":"vaca"}],"answer":2,"success":"¡Muy bien! La vaca ocupa el último lugar.","target":"<div style=\"display:grid;justify-items:center;gap:8px\"><span style=\"font-size:35px\">➡️</span><div class=\"lineup\"><span style=\"display:grid;justify-items:center;gap:3px\"><b style=\"font-size:50px\">🐴</b><small style=\"padding:3px 7px;border-radius:999px;color:#fff;background:#8b5cf6\">1.º</small></span><span style=\"display:grid;justify-items:center;gap:3px\"><b style=\"font-size:50px\">🐶</b><small style=\"padding:3px 7px;border-radius:999px;color:#fff;background:#8b5cf6\">2.º</small></span><span style=\"display:grid;justify-items:center;gap:3px\"><b style=\"font-size:50px\">🐑</b><small style=\"padding:3px 7px;border-radius:999px;color:#fff;background:#8b5cf6\">3.º</small></span><span style=\"display:grid;justify-items:center;gap:3px\"><b style=\"font-size:50px\">🦁</b><small style=\"padding:3px 7px;border-radius:999px;color:#fff;background:#8b5cf6\">4.º</small></span><span style=\"display:grid;justify-items:center;gap:3px\"><b style=\"font-size:50px\">🐄</b><small style=\"padding:3px 7px;border-radius:999px;color:#fff;background:#8b5cf6\">5.º</small></span></div></div>"},{"id":"A4-K","level":"Avanzado","title":"Triángulo más lejano","instruction":"Toca el triángulo que está más lejos del perro.","speech":"Toca el triángulo que está más lejos del perro.","hint":"Compara la distancia desde el perro hacia ambos lados.","options":[{"view":"<span class=\"shape triangle blue md\"></span>","label":"triángulo izquierdo"},{"view":"<span class=\"shape triangle green md\"></span>","label":"triángulo cercano"},{"view":"<span class=\"shape triangle yellow md\"></span>","label":"triángulo derecho lejano"}],"answer":0,"success":"¡Correcto! El triángulo del extremo izquierdo está más lejos.","target":"<div style=\"min-width:280px;display:flex;align-items:center;justify-content:center;gap:25px;font-size:54px\"><span>🔺</span><b>🐶</b><span style=\"margin-left:45px\">🔺</span></div>"},{"id":"A4-L","level":"Avanzado","title":"Número central del tren","instruction":"¿Qué número ocupa la posición central de los cinco vagones?","speech":"¿Qué número ocupa la posición central de los cinco vagones?","hint":"El centro de cinco elementos es la tercera posición.","options":[{"view":"<span class=\"number-view normal\">1</span>","label":"uno"},{"view":"<span class=\"number-view normal\">3</span>","label":"tres"},{"view":"<span class=\"number-view normal\">6</span>","label":"seis"}],"answer":1,"success":"¡Reto superado! El número 3 ocupa la posición central.","target":"<div style=\"display:grid;justify-items:center;gap:8px\"><span style=\"font-size:35px\">➡️</span><div class=\"lineup\"><span style=\"display:grid;justify-items:center;gap:3px\"><b style=\"font-size:50px\">4</b><small style=\"padding:3px 7px;border-radius:999px;color:#fff;background:#8b5cf6\">1.º</small></span><span style=\"display:grid;justify-items:center;gap:3px\"><b style=\"font-size:50px\">1</b><small style=\"padding:3px 7px;border-radius:999px;color:#fff;background:#8b5cf6\">2.º</small></span><span style=\"display:grid;justify-items:center;gap:3px\"><b style=\"font-size:50px\">3</b><small style=\"padding:3px 7px;border-radius:999px;color:#fff;background:#8b5cf6\">3.º</small></span><span style=\"display:grid;justify-items:center;gap:3px\"><b style=\"font-size:50px\">6</b><small style=\"padding:3px 7px;border-radius:999px;color:#fff;background:#8b5cf6\">4.º</small></span><span style=\"display:grid;justify-items:center;gap:3px\"><b style=\"font-size:50px\">2</b><small style=\"padding:3px 7px;border-radius:999px;color:#fff;background:#8b5cf6\">5.º</small></span></div></div>"}]}];
+
+const EXAM_HISTORY_KEY="mk_retos_olimpiada_random_history_v4";
+const RECENT_LIMIT=11;
+
+function shuffleArray(values){
+  const array=[...values];
+
+  for(let index=array.length-1;index>0;index-=1){
+    const randomIndex=Math.floor(Math.random()*(index+1));
+    [array[index],array[randomIndex]]=[
+      array[randomIndex],
+      array[index]
+    ];
+  }
+
+  return array;
+}
+
+function readExamHistory(){
+  try{
+    const saved=JSON.parse(
+      localStorage.getItem(EXAM_HISTORY_KEY)||"{}"
+    );
+
+    return saved&&typeof saved==="object"?saved:{};
+  }catch(error){
+    console.info("No se pudo leer el historial del examen.",error);
+    return {};
+  }
+}
+
+function saveExamHistory(history){
+  try{
+    localStorage.setItem(
+      EXAM_HISTORY_KEY,
+      JSON.stringify(history)
+    );
+  }catch(error){
+    console.info("No se pudo guardar el historial.",error);
+  }
+}
+
+function cloneExercise(exercise){
+  return JSON.parse(JSON.stringify(exercise));
+}
+
+function randomizeOptions(exercise){
+  const decorated=exercise.options.map(
+    (item,index)=>({
+      ...item,
+      correct:index===exercise.answer
+    })
+  );
+
+  const randomized=shuffleArray(decorated);
+
+  exercise.options=randomized.map(
+    ({correct,...item})=>item
+  );
+
+  exercise.answer=randomized.findIndex(
+    item=>item.correct
+  );
+
+  return exercise;
+}
+
+function chooseVariant(pool,history){
+  const recent=Array.isArray(history[pool.slot])
+    ? history[pool.slot]
+    : [];
+
+  let candidates=pool.variants.filter(
+    variant=>!recent.includes(variant.id)
+  );
+
+  if(candidates.length===0){
+    candidates=[...pool.variants];
+  }
+
+  const selected=cloneExercise(
+    candidates[
+      Math.floor(Math.random()*candidates.length)
+    ]
+  );
+
+  selected.area=pool.area;
+  selected.coverage=pool.coverage;
+
+  history[pool.slot]=[
+    selected.id,
+    ...recent.filter(id=>id!==selected.id)
+  ].slice(0,RECENT_LIMIT);
+
+  return randomizeOptions(selected);
+}
+
+function buildRandomExam(){
+  const history=readExamHistory();
+
+  const selected=exercisePools.map(
+    pool=>chooseVariant(pool,history)
+  );
+
+  saveExamHistory(history);
+
+  const basics=shuffleArray(
+    selected.filter(item=>item.level==="Básico")
+  );
+
+  const intermediate=shuffleArray(
+    selected.filter(item=>item.level==="Intermedio")
+  );
+
+  const advanced=shuffleArray(
+    selected.filter(item=>item.level==="Avanzado")
+  );
+
+  return [
+    ...basics,
+    ...intermediate,
+    ...advanced
+  ];
+}
+
+let exercises=buildRandomExam();
+
+const EXAM_DURATION_SECONDS=30*60;
+const RESULT_HISTORY_KEY="mk_retos_olimpiada_results_v1";
+const BEST_RESULT_KEY="mk_retos_olimpiada_best_v1";
+const TOPIC_NAMES=["Iguales y diferentes","Uno, muchos y ninguno","Agrupamos por colores","Agrupamos por formas","Agrupamos por tamaños","Grande, mediano y pequeño","Alto y bajo","Largo y corto","Pesado y liviano","Más, menos e igual","Dentro y fuera","Arriba y abajo","Delante y detrás","Derecha e izquierda","Centro y en medio","Cerca y lejos","Conozco el círculo","Conozco el cuadrado","Conozco el triángulo","Conozco el rectángulo","Jugamos con figuras","Figuras y sus lados","Descubro los números del 0 al 3","Contamos hasta 3","Número y cantidad hasta 3","Trazamos los números 1, 2 y 3","Descubro los números 4 y 5","Contamos hasta 5","Número y cantidad hasta 5","Formamos conjuntos exactos","Antes, después y número siguiente","Secuencias numéricas","Números bien escritos","Descubro los números del 6 al 9","Contamos hasta 10","Patrones de colores y figuras","El elemento que no pertenece","Figuras exactamente iguales","Conteo con condiciones","Juntamos y sumamos","¿Cuántos faltan?","Quitamos objetos","Figuras dentro de figuras","Simulacro de Olimpiada de Matemáticas","Posiciones ordinales","Número mayor y número menor","La mitad de una cantidad","El doble de una cantidad","Pares y conteo de dos en dos","Contamos patas, ruedas, orejas y colas","Cubos y construcciones tridimensionales","Caminos, recorridos y maneras de llegar"];
+
+const state={
+  index:0,
+  score:0,
+  points:0,
+  wrongAttempts:0,
+  answered:false,
+  finished:false,
+  timeRemaining:EXAM_DURATION_SECONDS,
+  startedAt:null,
+  timerId:null,
+  warningFive:false,
+  warningOne:false,
+  records:[]
+};
+
+const $=id=>document.getElementById(id);
+
+const el={
+  exerciseText:$("exerciseText"),
+  scoreText:$("scoreText"),
+  timerText:$("timerText"),
+  timerPill:$("timerPill"),
+  top:$("topProgress"),
+  mini:$("miniProgress"),
+  level:$("levelBadge"),
+  title:$("questionTitle"),
+  instruction:$("instructionText"),
+  speech:$("sceneSpeech"),
+  targetWrap:$("targetWrap"),
+  target:$("targetContent"),
+  options:$("options"),
+  feedback:$("feedback"),
+  next:$("nextBtn"),
+  hintBtn:$("hintBtn"),
+  hintPanel:$("hintPanel"),
+  hintText:$("hintText"),
+  welcome:$("welcome"),
+  finish:$("finish"),
+  finalMessage:$("finalMessage"),
+  finalGrade:$("finalGrade"),
+  finalPercent:$("finalPercent"),
+  finalPoints:$("finalPoints"),
+  finalCorrect:$("finalCorrect"),
+  finalWrongText:$("finalWrongText"),
+  finalTime:$("finalTime"),
+  resultIcon:$("resultIcon"),
+  resultTitle:$("resultTitle"),
+  recommendationIntro:$("recommendationIntro"),
+  recommendationList:$("recommendationList"),
+  questionMap:$("questionMap"),
+  levelResults:$("levelResults"),
+  bestRecord:$("bestRecord"),
+  attemptCount:$("attemptCount"),
+  averageTime:$("averageTime"),
+  reviewList:$("reviewList"),
+  confetti:$("confetti")
+};
+
+function current(){
+  return exercises[state.index];
+}
+
+function currentRecord(){
+  return state.records[state.index];
+}
+
+function levelClass(value){
+  return value==="Intermedio"
+    ?"intermediate"
+    :value==="Avanzado"
+      ?"advanced"
+      :"basic";
+}
+
+function stopSpeech(){
+  if("speechSynthesis" in window){
+    speechSynthesis.cancel();
+  }
+}
+
+function speak(text){
+  if(!("speechSynthesis" in window)){
+    return;
+  }
+
+  stopSpeech();
+
+  const utterance=new SpeechSynthesisUtterance(text);
+  utterance.lang="es-PE";
+  utterance.rate=.76;
+  utterance.pitch=1.08;
+
+  const voices=speechSynthesis.getVoices();
+
+  utterance.voice=
+    voices.find(voice=>voice.lang.toLowerCase()==="es-pe")
+    ||voices.find(voice=>voice.lang.toLowerCase().startsWith("es"))
+    ||null;
+
+  speechSynthesis.speak(utterance);
+}
+
+function formatTime(totalSeconds){
+  const safeSeconds=Math.max(0,totalSeconds);
+  const minutes=Math.floor(safeSeconds/60);
+  const seconds=safeSeconds%60;
+
+  return `${String(minutes).padStart(2,"0")}:${String(seconds).padStart(2,"0")}`;
+}
+
+function updateTimerDisplay(){
+  el.timerText.textContent=formatTime(state.timeRemaining);
+  el.timerPill.classList.remove("warning","danger");
+
+  if(state.timeRemaining<=60){
+    el.timerPill.classList.add("danger");
+
+    if(!state.warningOne&&state.timeRemaining>0){
+      state.warningOne=true;
+      speak("Atención. Queda un minuto para terminar el examen.");
+    }
+  }else if(state.timeRemaining<=300){
+    el.timerPill.classList.add("warning");
+
+    if(!state.warningFive){
+      state.warningFive=true;
+      speak("Quedan cinco minutos para terminar el examen.");
+    }
+  }
+}
+
+function stopTimer(){
+  if(state.timerId){
+    clearInterval(state.timerId);
+    state.timerId=null;
+  }
+}
+
+function startTimer(){
+  stopTimer();
+
+  state.startedAt=Date.now();
+  const endTime=state.startedAt+(EXAM_DURATION_SECONDS*1000);
+
+  state.timerId=setInterval(()=>{
+    state.timeRemaining=Math.max(
+      0,
+      Math.ceil((endTime-Date.now())/1000)
+    );
+
+    updateTimerDisplay();
+
+    if(state.timeRemaining<=0){
+      finishExam("time");
+    }
+  },250);
+
+  updateTimerDisplay();
+}
+
+function resetAttempt(createNewExam=false){
+  stopTimer();
+
+  if(createNewExam){
+    exercises=buildRandomExam();
+  }
+
+  state.index=0;
+  state.score=0;
+  state.points=0;
+  state.wrongAttempts=0;
+  state.answered=false;
+  state.finished=false;
+  state.timeRemaining=EXAM_DURATION_SECONDS;
+  state.startedAt=null;
+  state.warningFive=false;
+  state.warningOne=false;
+
+  state.records=exercises.map(exercise=>({
+    id:exercise.id,
+    title:exercise.title,
+    level:exercise.level,
+    area:exercise.area||"Reto matemático",
+    correct:false,
+    answered:false,
+    mistakes:0,
+    coverage:Array.isArray(exercise.coverage)
+      ?exercise.coverage
+      :[]
+  }));
+
+  updateTimerDisplay();
+  renderQuestionMap();
+}
+
+
+function renderQuestionMap(){
+  el.questionMap.innerHTML="";
+
+  state.records.forEach((record,index)=>{
+    const dot=document.createElement("span");
+    dot.className="question-dot";
+    dot.textContent=String(index+1);
+
+    if(state.finished&&!record.answered){
+      dot.classList.add("unanswered");
+      dot.title=`Pregunta ${index+1}: no contestada`;
+    }else if(record.correct&&record.mistakes===0){
+      dot.classList.add("clean");
+      dot.title=`Pregunta ${index+1}: correcta al primer intento`;
+    }else if(record.correct&&record.mistakes>0){
+      dot.classList.add("review");
+      dot.title=`Pregunta ${index+1}: correcta después de ${record.mistakes} error(es)`;
+    }else if(index===state.index&&!state.finished){
+      dot.classList.add("current");
+      dot.title=`Pregunta ${index+1}: actual`;
+    }else{
+      dot.title=`Pregunta ${index+1}: pendiente`;
+    }
+
+    el.questionMap.appendChild(dot);
+  });
+}
+
+function getLevelSummary(){
+  const levels=["Básico","Intermedio","Avanzado"];
+
+  return levels.map(level=>{
+    const records=state.records.filter(
+      record=>record.level===level
+    );
+
+    return {
+      level,
+      total:records.length,
+      correct:records.filter(record=>record.correct).length,
+      mistakes:records.reduce(
+        (sum,record)=>sum+record.mistakes,
+        0
+      )
+    };
+  });
+}
+
+function renderLevelResults(){
+  el.levelResults.innerHTML="";
+
+  getLevelSummary().forEach(item=>{
+    const card=document.createElement("div");
+    const cssClass=item.level==="Básico"
+      ?"basic"
+      :item.level==="Intermedio"
+        ?"intermediate"
+        :"advanced";
+
+    card.className=`level-result ${cssClass}`;
+
+    card.innerHTML=`
+      <span>Nivel ${item.level}</span>
+      <strong>${item.correct} / ${item.total}</strong>
+      <small>${item.mistakes} ${item.mistakes===1
+        ?"intento incorrecto"
+        :"intentos incorrectos"}</small>
+    `;
+
+    el.levelResults.appendChild(card);
+  });
+}
+
+function readResultHistory(){
+  try{
+    const history=JSON.parse(
+      localStorage.getItem(RESULT_HISTORY_KEY)||"[]"
+    );
+
+    return Array.isArray(history)?history:[];
+  }catch(error){
+    console.info("No se pudo leer el historial.",error);
+    return [];
+  }
+}
+
+function readBestResult(){
+  try{
+    const result=JSON.parse(
+      localStorage.getItem(BEST_RESULT_KEY)||"null"
+    );
+
+    return result&&typeof result==="object"
+      ?result
+      :null;
+  }catch(error){
+    console.info("No se pudo leer el récord.",error);
+    return null;
+  }
+}
+
+function saveResult(result){
+  const history=readResultHistory();
+  history.unshift(result);
+
+  try{
+    localStorage.setItem(
+      RESULT_HISTORY_KEY,
+      JSON.stringify(history.slice(0,20))
+    );
+  }catch(error){
+    console.info("No se pudo guardar el historial.",error);
+  }
+
+  const previousBest=readBestResult();
+
+  const isBetter=
+    !previousBest
+    ||result.officialPoints>previousBest.officialPoints
+    ||(
+      result.officialPoints===previousBest.officialPoints
+      &&result.usedSeconds<previousBest.usedSeconds
+    );
+
+  if(isBetter){
+    try{
+      localStorage.setItem(
+        BEST_RESULT_KEY,
+        JSON.stringify(result)
+      );
+    }catch(error){
+      console.info("No se pudo guardar el récord.",error);
+    }
+  }
+
+  return {
+    historyCount:history.length,
+    best:isBetter?result:previousBest
+  };
+}
+
+function renderRecord(resultData){
+  const best=resultData.best;
+
+  el.attemptCount.textContent=String(
+    resultData.historyCount
+  );
+
+  if(best){
+    el.bestRecord.textContent=
+      `${(best.officialPoints/5).toFixed(1)}/20 · ${best.officialPoints}% · ${formatTime(best.usedSeconds)}`;
+  }else{
+    el.bestRecord.textContent=
+      "Este es tu primer intento";
+  }
+}
+
+function renderReview(){
+  el.reviewList.innerHTML="";
+
+  state.records.forEach((record,index)=>{
+    const item=document.createElement("article");
+    let statusClass="unanswered";
+    let statusText="Sin responder";
+
+    if(record.correct&&record.mistakes===0){
+      statusClass="clean";
+      statusText="Correcta al primer intento";
+    }else if(record.correct&&record.mistakes>0){
+      statusClass="review";
+      statusText=`Correcta con ${record.mistakes} error(es)`;
+    }
+
+    const themes=record.coverage
+      .map(topicId=>`Tema ${topicId}`)
+      .join(", ");
+
+    item.className="review-item";
+
+    item.innerHTML=`
+      <span class="review-number">${index+1}</span>
+
+      <div class="review-copy">
+        <strong>${record.title}</strong>
+        <small>
+          ${record.level} · ${record.area}
+          ${themes?` · ${themes}`:""}
+        </small>
+      </div>
+
+      <span class="review-status ${statusClass}">
+        ${statusText}
+      </span>
+    `;
+
+    el.reviewList.appendChild(item);
+  });
+}
+
+function update(){
+  const exercise=current();
+  const number=state.index+1;
+  const progress=(number/exercises.length)*100;
+
+  el.exerciseText.textContent=
+    `Ejercicio ${number} de ${exercises.length}`;
+
+  el.scoreText.textContent=
+    `${state.points} ${state.points===1?"punto":"puntos"}`;
+
+  el.top.style.width=progress+"%";
+  el.mini.style.width=progress+"%";
+
+  el.level.textContent=
+    "NIVEL "+exercise.level.toUpperCase();
+
+  el.level.className=
+    "level "+levelClass(exercise.level);
+
+  el.title.textContent=exercise.title;
+  el.instruction.textContent=exercise.instruction;
+  el.speech.textContent=exercise.speech;
+  renderQuestionMap();
+}
+
+function render(){
+  if(state.finished){
+    return;
+  }
+
+  stopSpeech();
+  state.answered=false;
+
+  const exercise=current();
+
+  update();
+
+  el.options.innerHTML="";
+  el.feedback.className="feedback";
+  el.feedback.textContent="Observa y toca tu respuesta.";
+
+  el.next.classList.add("hidden");
+  el.next.textContent=
+    state.index===exercises.length-1
+      ?"Ver resultado 🏆"
+      :"Siguiente ejercicio ➡️";
+
+  el.hintPanel.classList.add("hidden");
+  el.hintBtn.textContent="💡 Dame una pista";
+
+  if(exercise.target){
+    el.targetWrap.classList.remove("hidden");
+    el.target.innerHTML=exercise.target;
+  }else{
+    el.targetWrap.classList.add("hidden");
+    el.target.innerHTML="";
+  }
+
+  exercise.options.forEach((option,index)=>{
+    const button=document.createElement("button");
+
+    button.className="option";
+    button.type="button";
+
+    button.setAttribute(
+      "aria-label",
+      `Opción ${index+1}: ${option.label}`
+    );
+
+    button.innerHTML=option.view;
+    button.onclick=()=>check(index,button);
+
+    el.options.appendChild(button);
+  });
+
+  setTimeout(()=>{
+    if(!state.finished){
+      speak(
+        `Ejercicio ${state.index+1}. ${exercise.speech}`
+      );
+    }
+  },350);
+}
+
+function check(selectedIndex,button){
+  if(state.answered||state.finished){
+    return;
+  }
+
+  const exercise=current();
+  const record=currentRecord();
+
+  if(selectedIndex===exercise.answer){
+    state.answered=true;
+    state.score+=1;
+    state.points+=10;
+
+    record.correct=true;
+    record.answered=true;
+
+    button.classList.add("correct");
+
+    [...el.options.children].forEach(optionButton=>{
+      optionButton.disabled=true;
+    });
+
+    el.feedback.className="feedback good";
+    el.feedback.textContent=
+      `${exercise.success} +10 puntos.`;
+
+    el.next.classList.remove("hidden");
+
+    update();
+    celebrate(38);
+    speak(`${exercise.success} Ganaste diez puntos.`);
+  }else{
+    state.points-=2;
+    state.wrongAttempts+=1;
+    record.mistakes+=1;
+
+    button.disabled=true;
+    button.classList.add("wrong");
+
+    el.feedback.className="feedback try";
+    el.feedback.textContent=
+      "Respuesta incorrecta: −2 puntos. Observa nuevamente.";
+
+    update();
+
+    speak(
+      "Respuesta incorrecta. Pierdes dos puntos. Observa nuevamente."
+    );
+
+    setTimeout(()=>{
+      button.classList.remove("wrong");
+    },520);
+  }
+}
+
+function celebrate(amount){
+  const colors=[
+    "#ff5f8f",
+    "#ffc800",
+    "#58cc02",
+    "#12a8ff",
+    "#8b5cf6",
+    "#ff9600"
+  ];
+
+  for(let index=0;index<amount;index+=1){
+    const piece=document.createElement("span");
+
+    piece.className="confetti";
+    piece.style.left=Math.random()*100+"%";
+
+    piece.style.background=
+      colors[Math.floor(Math.random()*colors.length)];
+
+    piece.style.setProperty(
+      "--drift",
+      (Math.random()*240-120)+"px"
+    );
+
+    piece.style.setProperty(
+      "--time",
+      (1.8+Math.random()*1.5)+"s"
+    );
+
+    el.confetti.appendChild(piece);
+
+    setTimeout(()=>piece.remove(),3600);
+  }
+}
+
+function getRecommendedTopicIds(){
+  const topicIds=new Set();
+
+  state.records.forEach(record=>{
+    const needsReview=
+      !record.correct
+      ||record.mistakes>0;
+
+    if(needsReview){
+      record.coverage.forEach(topicId=>{
+        topicIds.add(topicId);
+      });
+    }
+  });
+
+  return [...topicIds].sort((a,b)=>a-b);
+}
+
+function renderRecommendations(){
+  const topicIds=getRecommendedTopicIds();
+
+  el.recommendationList.innerHTML="";
+
+  if(topicIds.length===0){
+    el.recommendationIntro.textContent=
+      "¡Excelente! Respondiste todo correctamente al primer intento. Mantén una práctica breve para conservar tu nivel.";
+
+    const item=document.createElement("li");
+    item.textContent=
+      "Repaso general de Retos de olimpiada.";
+
+    el.recommendationList.appendChild(item);
+    return;
+  }
+
+  el.recommendationIntro.textContent=
+    "Refuerza estos temas, especialmente aquellos relacionados con las preguntas incorrectas, respondidas después de varios intentos o no contestadas por falta de tiempo:";
+
+  topicIds.forEach(topicId=>{
+    const item=document.createElement("li");
+    const topicName=TOPIC_NAMES[topicId-1]
+      ||`Tema ${topicId}`;
+
+    item.textContent=
+      `Tema ${topicId}: ${topicName}`;
+
+    el.recommendationList.appendChild(item);
+  });
+}
+
+function getResultMessage(percentage,reason){
+  if(reason==="time"){
+    return {
+      title:"¡Se terminó el tiempo!",
+      icon:"⏰",
+      message:
+        "El cronómetro llegó a 00:00. Revisa tus resultados y estudia los temas recomendados antes del siguiente intento."
+    };
+  }
+
+  if(percentage===100){
+    return {
+      title:"¡Felicitaciones, puntaje perfecto!",
+      icon:"🏆",
+      message:
+        "Lograste el 100%, sin perder puntos. Tu preparación para la olimpiada es excelente."
+    };
+  }
+
+  if(percentage>=80){
+    return {
+      title:"¡Excelente trabajo!",
+      icon:"🌟",
+      message:
+        "Estás muy cerca del puntaje perfecto. Repasa los temas indicados y vuelve a intentarlo."
+    };
+  }
+
+  if(percentage>=60){
+    return {
+      title:"¡Buen esfuerzo!",
+      icon:"👏",
+      message:
+        "Tienes una buena base, pero necesitas reforzar algunos temas para alcanzar el 100%."
+    };
+  }
+
+  return {
+    title:"Sigue estudiando",
+    icon:"📚",
+    message:
+      "Necesitas practicar un poco más. Empieza por los temas recomendados y luego vuelve a dar el examen."
+  };
+}
+
+function finishExam(reason="completed"){
+  if(state.finished){
+    return;
+  }
+
+  state.finished=true;
+  stopTimer();
+  stopSpeech();
+
+  const rawPoints=state.points;
+  const officialPoints=Math.max(
+    0,
+    Math.min(100,rawPoints)
+  );
+
+  const percentage=Math.round(officialPoints);
+  const grade=(officialPoints/5).toFixed(1);
+
+  const usedSeconds=
+    EXAM_DURATION_SECONDS-state.timeRemaining;
+
+  const result=getResultMessage(
+    percentage,
+    reason
+  );
+
+  el.resultTitle.textContent=result.title;
+  el.resultIcon.textContent=result.icon;
+  el.finalMessage.textContent=result.message;
+
+  el.finalGrade.textContent=grade;
+  el.finalPercent.textContent=percentage+"%";
+  el.finalPoints.textContent=rawPoints;
+  el.finalCorrect.textContent=
+    `${state.score} / ${exercises.length}`;
+
+  el.finalWrongText.textContent=
+    `${state.wrongAttempts} ${state.wrongAttempts===1
+      ?"intento incorrecto"
+      :"intentos incorrectos"}`;
+
+  el.finalTime.textContent=
+    formatTime(usedSeconds);
+
+  const averageSeconds=Math.round(
+    usedSeconds/exercises.length
+  );
+
+  el.averageTime.textContent=
+    formatTime(averageSeconds);
+
+  renderRecommendations();
+  renderLevelResults();
+  renderReview();
+  renderQuestionMap();
+
+  const resultData=saveResult({
+    date:new Date().toISOString(),
+    rawPoints,
+    officialPoints,
+    percentage,
+    grade:Number(grade),
+    correct:state.score,
+    wrongAttempts:state.wrongAttempts,
+    usedSeconds
+  });
+
+  renderRecord(resultData);
+
+  try{
+    localStorage.setItem(
+      "mk_topic_retos-de-olimpiada_complete",
+      "true"
+    );
+  }catch(error){
+    console.info(error);
+  }
+
+  el.finish.classList.remove("hidden");
+
+  if(percentage>=80){
+    celebrate(100);
+  }
+
+  speak(
+    `${result.title} Tu nota es ${grade} de veinte. Obtuviste ${percentage} por ciento y ${rawPoints} puntos.`
+  );
+}
+
+$("audioBtn").onclick=()=>{
+  if(!state.finished){
+    speak(
+      `Ejercicio ${state.index+1}. ${current().speech}`
+    );
+  }
+};
+
+el.hintBtn.onclick=()=>{
+  if(state.finished){
+    return;
+  }
+
+  const open=
+    el.hintPanel.classList.contains("hidden");
+
+  if(open){
+    el.hintText.textContent=current().hint;
+    el.hintPanel.classList.remove("hidden");
+    el.hintBtn.textContent="🙈 Ocultar pista";
+    speak("Pista. "+current().hint);
+  }else{
+    el.hintPanel.classList.add("hidden");
+    el.hintBtn.textContent="💡 Dame una pista";
+  }
+};
+
+el.next.onclick=()=>{
+  if(state.finished){
+    return;
+  }
+
+  if(state.index===exercises.length-1){
+    finishExam("completed");
+  }else{
+    state.index+=1;
+    render();
+  }
+};
+
+$("startBtn").onclick=()=>{
+  resetAttempt(false);
+  el.welcome.classList.add("hidden");
+  startTimer();
+  render();
+};
+
+$("restartBtn").onclick=()=>{
+  resetAttempt(true);
+  el.finish.classList.add("hidden");
+  startTimer();
+  render();
+};
+
+window.addEventListener("beforeunload",event=>{
+  stopSpeech();
+
+  if(
+    state.startedAt
+    &&!state.finished
+    &&state.timeRemaining>0
+  ){
+    event.preventDefault();
+    event.returnValue="";
+    return "";
+  }
+
+  stopTimer();
+  return undefined;
+});
+</script>
+<script>
+      // Registrar Service Worker (PWA)
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", async () => {
+          try {
+            const registration = await navigator.serviceWorker.register(
+              "../../service-worker.js"
+            );
+
+            console.info(
+              "Service Worker registrado correctamente:",
+              registration.scope
+            );
+
+            registration.addEventListener("updatefound", () => {
+              const worker = registration.installing;
+
+              if (!worker) return;
+
+              worker.addEventListener("statechange", () => {
+                if (
+                  worker.state === "installed" &&
+                  navigator.serviceWorker.controller
+                ) {
+                  console.info(
+                    "Hay una nueva versión de Marie Kids disponible."
+                  );
+                }
+              });
+            });
+          } catch (error) {
+            console.error(
+              "No se pudo registrar el Service Worker:",
+              error
+            );
+          }
+        });
+      }
+    </script>
+<script>
+  // Compartir el tema actual o copiar su enlace.
+  (() => {
+    const shareButton = document.getElementById("shareBtn");
+    const shareStatus = document.getElementById("shareStatus");
+
+    if (!shareButton || !shareStatus) return;
+
+    function setShareStatus(message, type = "") {
+      shareStatus.textContent = message;
+      shareStatus.className =
+        "share-status" + (type ? ` ${type}` : "");
+
+      clearTimeout(setShareStatus.timer);
+
+      setShareStatus.timer = setTimeout(() => {
+        shareStatus.textContent = "";
+        shareStatus.className = "share-status";
+      }, 3500);
+    }
+
+    async function copyShareLink(url) {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(url);
+        return;
+      }
+
+      const textArea = document.createElement("textarea");
+
+      textArea.value = url;
+      textArea.setAttribute("readonly", "");
+      textArea.style.position = "fixed";
+      textArea.style.left = "-9999px";
+
+      document.body.appendChild(textArea);
+      textArea.select();
+
+      const copied = document.execCommand("copy");
+
+      textArea.remove();
+
+      if (!copied) {
+        throw new Error("No se pudo copiar el enlace.");
+      }
+    }
+
+    async function sharePage() {
+      const topicTitle =
+        document.querySelector(".brand-copy h1")
+          ?.textContent
+          ?.trim()
+        || document.title;
+
+      const topicDescription =
+        document.querySelector(".brand-copy p")
+          ?.textContent
+          ?.trim()
+        || "Aprende matemáticas con MVG.";
+
+      const shareData = {
+        title: document.title,
+        text: `${topicTitle}. ${topicDescription}`,
+        url: window.location.href
+      };
+
+      shareButton.disabled = true;
+      shareButton.textContent = "⏳ Preparando...";
+
+      try {
+        if (typeof navigator.share === "function") {
+          await navigator.share(shareData);
+
+          setShareStatus(
+            "¡Tema compartido correctamente!",
+            "good"
+          );
+        } else {
+          await copyShareLink(shareData.url);
+
+          setShareStatus(
+            "¡Enlace copiado! Ya puedes compartirlo.",
+            "good"
+          );
+        }
+      } catch (error) {
+        if (error && error.name === "AbortError") {
+          setShareStatus(
+            "Se canceló la acción de compartir."
+          );
+        } else {
+          try {
+            await copyShareLink(shareData.url);
+
+            setShareStatus(
+              "¡Enlace copiado! Ya puedes compartirlo.",
+              "good"
+            );
+          } catch (copyError) {
+            console.error(
+              "No se pudo compartir el tema:",
+              copyError
+            );
+
+            setShareStatus(
+              "No se pudo compartir. Inténtalo nuevamente.",
+              "error"
+            );
+          }
+        }
+      } finally {
+        shareButton.disabled = false;
+        shareButton.textContent = "📤 Compartir App";
+      }
+    }
+
+    shareButton.addEventListener("click", sharePage);
+  })();
+</script>
+</body>
+</html>

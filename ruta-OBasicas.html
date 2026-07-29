@@ -561,7 +561,7 @@
                             <div>
                                 <h1 class="hero-title">Ruta de Aprendizaje</h1>
                                 <div class="hero-sub">
-                                    <span class="pill">🔢 1 → 25</span>
+                                    <span class="pill">🔢 1 → 29</span>
                                     <!-- <span class="pill">✅ Guarda progreso</span> -->
                                 </div>
                             </div>
@@ -596,7 +596,7 @@
 
             <section class="progress-wrap" aria-label="Progreso general">
                 <div class="progress-row">
-                    <div>Progreso: <span id="doneCount">0</span>/<span id="totalCount">25</span></div>
+                    <div>Progreso: <span id="doneCount">0</span>/<span id="totalCount">29</span></div>
                     <div class="progress-tag">📚 Temas</div>
                 </div>
                 <div class="bar">
@@ -616,35 +616,39 @@
             // ✅ AQUÍ LINKEAS cada uno de tus 25 HTML:
             //    Edita el campo href: "tema01.html", "tema02.html", etc.
             const topics = [
-                { id: 1, emoji: "🔢", title: "Suma Algebraica", desc: "Domina la suma algebraica", href: "OB-SumaAlgebraica.html" },
-                { id: 2, emoji: "🧩", title: "Ecuaciones de primer grado", desc: "DDomina las ecuaciones de primer grado", href: "#" },
-                { id: 3, emoji: "🔺", title: "Patrones visuales", desc: "Completar figuras.", href: "EM-PatronesVisuales.html" },
-                { id: 4, emoji: "🧠", title: "Memoria visual", desc: "Recordar imágenes.", href: "EM-MemoriaVisual.html" },
-                { id: 5, emoji: "🗺️", title: "Laberintos", desc: "Encontrar la salida.", href: "EM-Laberintos.html" },
+                { id: 1, emoji: "🔢", title: "Suma Algebraica 1", desc: "Domina la suma algebraica", href: "OB-Salg1.html" },
+                { id: 2, emoji: "🔢", title: "Suma Algebraica 2", desc: "Domina la suma algebraica", href: "OB-Salg2.html" },
+                { id: 3, emoji: "🔢", title: "Suma Algebraica 3", desc: "Domina la suma algebraica", href: "OB-Salg3.html" },
+                { id: 4, emoji: "🧩", title: "Ecuaciones de primer grado 1", desc: "DDomina las ecuaciones de primer grado", href: "OB-Ecpg1.html" },
+                { id: 5, emoji: "🧩", title: "Ecuaciones de primer grado 2", desc: "DDomina las ecuaciones de primer grado", href: "OB-Ecpg2.html" },
+                { id: 6, emoji: "🧩", title: "Ecuaciones de primer grado 3", desc: "DDomina las ecuaciones de primer grado", href: "OB-Ecpg3.html" },
+                { id: 7, emoji: "🔺", title: "Patrones visuales", desc: "Completar figuras.", href: "EM-PatronesVisuales.html" },
+                { id: 8, emoji: "🧠", title: "Memoria visual", desc: "Recordar imágenes.", href: "EM-MemoriaVisual.html" },
+                { id: 9, emoji: "🗺️", title: "Laberintos", desc: "Encontrar la salida.", href: "EM-Laberintos.html" },
 
-                { id: 6, emoji: "🎨", title: "Completa el dibujo", desc: "Creatividad.", href: "EM-CompletaElDibujo.html" },
-                { id: 7, emoji: "🔍", title: "Busca diferencias", desc: "Atención visual.", href: "EM-BuscaDiferencias.html" },
-                { id: 8, emoji: "📐", title: "Figuras geométricas", desc: "Clasificar formas.", href: "EM-FigurasGeometricas.html" },
-                { id: 9, emoji: "🗣️", title: "Adivinanzas", desc: "Pensar con pistas.", href: "EM-Adivinanzas.html" },
-                { id: 10, emoji: "⏱️", title: "Rapidez mental", desc: "Responder rápido.", href: "EM-RapidezMental.html" },
+                { id: 10, emoji: "🎨", title: "Completa el dibujo", desc: "Creatividad.", href: "EM-CompletaElDibujo.html" },
+                { id: 11, emoji: "🔍", title: "Busca diferencias", desc: "Atención visual.", href: "EM-BuscaDiferencias.html" },
+                { id: 12, emoji: "📐", title: "Figuras geométricas", desc: "Clasificar formas.", href: "EM-FigurasGeometricas.html" },
+                { id: 13, emoji: "🗣️", title: "Adivinanzas", desc: "Pensar con pistas.", href: "EM-Adivinanzas.html" },
+                { id: 14, emoji: "⏱️", title: "Rapidez mental", desc: "Responder rápido.", href: "EM-RapidezMental.html" },
 
-                { id: 11, emoji: "♟️", title: "Pensar antes de mover", desc: "Estrategia.", href: "EM-PensarAntesDeMover.html" },
-                { id: 12, emoji: "📖", title: "Ordena la historia", desc: "Secuencia lógica.", href: "EM-OrdenaLaHistoria.html" },
-                { id: 13, emoji: "🤔", title: "¿Por qué pasó?", desc: "Causa y efecto.", href: "EM-CausaYEfecto.html" },
-                { id: 14, emoji: "🔄", title: "Secuencias", desc: "Orden correcto.", href: "EM-Secuencias.html" },
-                { id: 15, emoji: "🎯", title: "Problemas cortos", desc: "Retos simples.", href: "EM-ProblemasCortos.html" },
+                { id: 15, emoji: "♟️", title: "Pensar antes de mover", desc: "Estrategia.", href: "EM-PensarAntesDeMover.html" },
+                { id: 16, emoji: "📖", title: "Ordena la historia", desc: "Secuencia lógica.", href: "EM-OrdenaLaHistoria.html" },
+                { id: 17, emoji: "🤔", title: "¿Por qué pasó?", desc: "Causa y efecto.", href: "EM-CausaYEfecto.html" },
+                { id: 18, emoji: "🔄", title: "Secuencias", desc: "Orden correcto.", href: "EM-Secuencias.html" },
+                { id: 19, emoji: "🎯", title: "Problemas cortos", desc: "Retos simples.", href: "EM-ProblemasCortos.html" },
 
-                { id: 16, emoji: "👀", title: "Atención visual", desc: "Detectar detalles.", href: "EM-AtencionVisual.html" },
-                { id: 17, emoji: "🧠", title: "Memoria auditiva", desc: "Recordar sonidos.", href: "EM-MemoriaAuditiva.html" },
-                { id: 18, emoji: "🧩", title: "Rompecabezas", desc: "Armar mentalmente.", href: "EM-Rompecabezas.html" },
-                { id: 19, emoji: "💡", title: "Usos alternativos", desc: "Creatividad.", href: "EM-UsosAlternativos.html" },
-                { id: 20, emoji: "📊", title: "Comparar soluciones", desc: "Elegir mejor opción.", href: "EM-CompararSoluciones.html" },
+                { id: 20, emoji: "👀", title: "Atención visual", desc: "Detectar detalles.", href: "EM-AtencionVisual.html" },
+                { id: 21, emoji: "🧠", title: "Memoria auditiva", desc: "Recordar sonidos.", href: "EM-MemoriaAuditiva.html" },
+                { id: 22, emoji: "🧩", title: "Rompecabezas", desc: "Armar mentalmente.", href: "EM-Rompecabezas.html" },
+                { id: 23, emoji: "💡", title: "Usos alternativos", desc: "Creatividad.", href: "EM-UsosAlternativos.html" },
+                { id: 24, emoji: "📊", title: "Comparar soluciones", desc: "Elegir mejor opción.", href: "EM-CompararSoluciones.html" },
 
-                { id: 21, emoji: "🧠", title: "Memoria mixta", desc: "Visual + auditiva.", href: "EM-MemoriaMixta.html" },
-                { id: 22, emoji: "🔢", title: "Sumas mentales", desc: "Cálculo rápido.", href: "EM-SumasMentales.html" },
-                { id: 23, emoji: "📐", title: "Rotación de figuras", desc: "Imaginar giros.", href: "EM-RotacionDeFiguras.html" },
-                { id: 24, emoji: "🗺️", title: "Mapas simples", desc: "Ubicar caminos.", href: "EM-MapasSimples.html" },
-                { id: 25, emoji: "🏆", title: "Reto final", desc: "Todo lo aprendido.", href: "EM-RetoFinal.html" }
+                { id: 25, emoji: "🧠", title: "Memoria mixta", desc: "Visual + auditiva.", href: "EM-MemoriaMixta.html" },
+                { id: 26, emoji: "🔢", title: "Sumas mentales", desc: "Cálculo rápido.", href: "EM-SumasMentales.html" },
+                { id: 27, emoji: "📐", title: "Rotación de figuras", desc: "Imaginar giros.", href: "EM-RotacionDeFiguras.html" },
+                { id: 28, emoji: "🗺️", title: "Mapas simples", desc: "Ubicar caminos.", href: "EM-MapasSimples.html" },
+                { id: 29, emoji: "🏆", title: "Reto final", desc: "Todo lo aprendido.", href: "EM-RetoFinal.html" }
             ];
 
 

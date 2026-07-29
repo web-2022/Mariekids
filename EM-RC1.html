@@ -1,0 +1,1030 @@
+<!doctype html>
+<html lang="es">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Marie Kids • Rompecabezas (Reordenar)</title>
+
+        <!-- PWA -->
+        <link rel="manifest" href="manifest.json">
+        <meta name="theme-color" content="#1976d2">
+
+        <style>
+            :root {
+                --bg1: #dbeafe;
+                --bg2: #e0f2fe;
+                --card: #fff;
+                --shadow: 0 18px 40px rgba(0, 0, 0, .14);
+                --accent: #2563eb;
+                --muted: #64748b;
+                --ok: #16a34a;
+                --radius: clamp(16px, 3vw, 22px);
+                --app-max: 720px;
+            }
+
+            * {
+                box-sizing: border-box;
+                font-family: system-ui, -apple-system, "Segoe UI", sans-serif
+            }
+
+            body {
+                margin: 0;
+                min-height: 100dvh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: linear-gradient(145deg, var(--bg2), var(--bg1));
+                padding: 12px;
+            }
+
+            .app {
+                width: 100%;
+                max-width: var(--app-max);
+                background: var(--card);
+                border-radius: var(--radius);
+                box-shadow: var(--shadow);
+                padding: clamp(10px, 2.5vw, 16px);
+            }
+
+
+            /* Header */
+            .header {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+                margin-bottom: 10px
+            }
+
+            .logo {
+                width: 44px;
+                height: 44px;
+                border-radius: 14px;
+                background: linear-gradient(135deg, #2563eb, #6366f1);
+                color: #fff;
+                font-weight: 900;
+                display: grid;
+                place-items: center;
+                flex: 0 0 auto;
+                text-decoration: none;
+            }
+
+            .titleWrap {
+                min-width: 0
+            }
+
+            .title {
+                font-weight: 950;
+                font-size: clamp(16px, 4vw, 20px);
+                line-height: 1.1;
+            }
+
+            .sub {
+                font-size: clamp(11px, 3vw, 13px);
+            }
+
+            /* HUD */
+            .hud {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                align-items: center;
+                justify-content: space-between;
+                margin: 8px 0 10px;
+                padding: 10px;
+                border-radius: 16px;
+                background: rgba(2, 6, 23, .04);
+                border: 1px solid rgba(2, 6, 23, .06);
+            }
+
+            .pill {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                padding: 8px 10px;
+                border-radius: 999px;
+                background: #fff;
+                border: 1px solid rgba(2, 6, 23, .10);
+                font-weight: 900;
+                color: #0f172a;
+                font-size: 12px;
+                white-space: nowrap;
+            }
+
+            .dot {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: var(--accent);
+                box-shadow: 0 8px 18px rgba(37, 99, 235, .25);
+            }
+
+            /* Controls */
+            .controls {
+                display: flex;
+                gap: 8px;
+                flex-direction: column;
+                align-items: stretch;
+                margin-bottom: 10px;
+            }
+
+            /* En pantallas medianas y grandes */
+            @media (min-width: 520px) {
+                .controls {
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: space-between;
+                }
+            }
+
+
+            .rowCtl {
+                display: flex;
+                gap: 8px;
+                flex-wrap: wrap;
+                align-items: center
+            }
+
+            select,
+            button,
+            .btnMenu {
+                border-radius: 12px;
+                border: 1px solid rgba(2, 6, 23, .12);
+                padding: 10px 12px;
+                font-weight: 900;
+                background: #fff;
+                color: #0f172a;
+                min-height: 44px;
+                /* 👈 tamaño táctil */
+                font-size: clamp(13px, 3.5vw, 14px);
+            }
+
+
+            button.primary {
+                border: none;
+                color: #fff;
+                background: linear-gradient(135deg, #22c55e, #16a34a);
+            }
+
+            .btnMenu {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                padding: 10px 12px;
+                border-radius: 12px;
+                font-weight: 900;
+                text-decoration: none;
+                color: #0f172a;
+                background: #fff;
+                border: 1px solid rgba(2, 6, 23, .12);
+            }
+
+
+            .hint {
+                font-size: 12px;
+                color: var(--muted);
+                font-weight: 800;
+                text-align: center;
+                /* 📱 móvil */
+            }
+
+            /* 💻 tablet y desktop */
+            @media (min-width: 520px) {
+                .hint {
+                    text-align: left;
+                }
+            }
+
+
+            /* Gallery */
+            .gallery {
+                display: flex;
+                gap: 10px;
+                overflow: auto;
+                padding-bottom: 6px;
+                -webkit-overflow-scrolling: touch;
+                scroll-snap-type: x mandatory;
+                margin-bottom: 10px;
+            }
+
+            .thumb {
+                width: clamp(56px, 16vw, 72px);
+                height: clamp(56px, 16vw, 72px);
+                border-radius: 16px;
+                flex: 0 0 auto;
+                overflow: hidden;
+                border: 2px solid rgba(2, 6, 23, .10);
+                background: #fff;
+                box-shadow: 0 10px 24px rgba(0, 0, 0, .10);
+                cursor: pointer;
+                position: relative;
+                scroll-snap-align: start;
+                user-select: none;
+                transition: transform .12s ease, border-color .12s ease;
+            }
+
+            .thumb:hover {
+                transform: translateY(-2px)
+            }
+
+            .thumb.active {
+                border-color: rgba(37, 99, 235, .70);
+                outline: 3px solid rgba(37, 99, 235, .22);
+                outline-offset: 2px;
+            }
+
+            .thumb .img {
+                width: 100%;
+                height: 100%;
+                background-size: cover;
+                background-position: center
+            }
+
+            .thumb .tag {
+                position: absolute;
+                left: 7px;
+                bottom: 7px;
+                font-size: 10px;
+                font-weight: 950;
+                padding: 3px 7px;
+                border-radius: 999px;
+                background: rgba(255, 255, 255, .82);
+                border: 1px solid rgba(2, 6, 23, .12);
+                color: #0f172a;
+                backdrop-filter: blur(6px);
+            }
+
+            /* Board */
+            .board {
+                width: 100%;
+                max-width: min(92vw, 520px);
+                margin-inline: auto;
+                aspect-ratio: 1/1;
+                display: grid;
+                gap: 6px;
+                padding: 6px;
+                border-radius: 18px;
+                background: rgba(0, 0, 0, .04);
+                touch-action: none;
+            }
+
+            .slot {
+                background: #fff;
+                border-radius: 14px;
+                overflow: hidden;
+                position: relative;
+                border: 1px solid rgba(2, 6, 23, .08);
+            }
+
+            .piece {
+                width: 100%;
+                height: 100%;
+                background-repeat: no-repeat;
+                cursor: grab;
+                touch-action: none;
+                user-select: none;
+            }
+
+            .ghost {
+                position: fixed;
+                pointer-events: none;
+                z-index: 9999;
+                transform: scale(1.06);
+                box-shadow: 0 20px 50px rgba(0, 0, 0, .35);
+                border-radius: 14px;
+            }
+
+            /* Win */
+            .win {
+                position: fixed;
+                inset: 0;
+                background: rgba(2, 6, 23, .45);
+                display: none;
+                align-items: center;
+                justify-content: center;
+                padding: 16px;
+            }
+
+            .winCard {
+                width: min(92vw, 380px);
+                background: #fff;
+                border-radius: 22px;
+                padding: 20px;
+                text-align: center;
+                box-shadow: 0 26px 80px rgba(0, 0, 0, .35);
+                border: 1px solid rgba(2, 6, 23, .10);
+            }
+
+            .winCard h2 {
+                margin: 0 0 8px;
+                font-weight: 950
+            }
+
+            .winCard p {
+                margin: 0 0 14px;
+                color: rgba(15, 23, 42, .68);
+                font-weight: 800
+            }
+
+            .winCard .row {
+                display: flex;
+                gap: 8px;
+                justify-content: center;
+                flex-wrap: wrap
+            }
+
+            html {
+                touch-action: manipulation;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="app">
+            <div class="header">
+                <a href="index.html" class="logo">MK</a>
+                <div class="titleWrap">
+                    <div class="title">Rompecabezas</div>
+                    <div class="sub">Arrastra y reordena en el tablero</div>
+                </div>
+            </div>
+
+            <!-- ✅ HUD (tiempo + movimientos) -->
+            <div class="hud" aria-label="Estado del juego">
+                <div class="pill"><span class="dot"></span> ⏱️ Tiempo: <span id="time">00:00</span></div>
+                <div class="pill"><span class="dot" style="background: var(--ok)"></span> 🔁 Movimientos: <span
+                        id="moves">0</span></div>
+            </div>
+
+            <div class="controls">
+                <div class="rowCtl">
+                    <select id="cat">
+                        <option value="animal">🐾 Animales</option>
+                        <option value="fruit">🍓 Frutas</option>
+                        <option value="other">✨ Otros</option>
+                    </select>
+
+                    <select id="imgPick"></select>
+
+                    <select id="level">
+                        <option value="2">2×2</option>
+                        <option value="3" selected>3×3</option>
+                        <option value="4">4×4</option>
+                    </select>
+                </div>
+
+                <div class="rowCtl">
+                    <button id="btnNew" class="primary">🔄 Nuevo</button>
+                    <a href="ruta-cuentos.html" class="btnMenu">📚 Cuentos</a>
+                </div>
+
+
+                <div class="hint">Tip: suelta sobre otra pieza para intercambiar.</div>
+            </div>
+
+            <div id="gallery" class="gallery"></div>
+            <div id="board" class="board" aria-label="Tablero del rompecabezas"></div>
+        </div>
+
+        <div id="win" class="win">
+            <div class="winCard">
+                <h2>🎉 ¡Muy bien!</h2>
+                <p>Completaste el rompecabezas</p>
+                <div class="row">
+                    <button id="btnAgain" class="primary">🔄 Jugar otra vez</button>
+                    <a href="ruta-cuentos.html" class="btnMenu">📚 Cuentos</a>
+                    <button id="btnClose">❌ Cerrar</button>
+                </div>
+
+            </div>
+        </div>
+
+        <script>
+            (() => {
+                /* =========================
+                   ✅ Procedural image makers
+                   (todo se dibuja en canvas)
+                ========================= */
+                function makeCanvas(size = 900) {
+                    const c = document.createElement('canvas'); c.width = c.height = size; return c;
+                }
+                function bgGradient(ctx, S, a, b) {
+                    const g = ctx.createLinearGradient(0, 0, S, S);
+                    g.addColorStop(0, a); g.addColorStop(1, b);
+                    ctx.fillStyle = g; ctx.fillRect(0, 0, S, S);
+                }
+                function text(ctx, str, x, y, size, color = 'rgba(255,255,255,.92)', w = 950, align = 'center') {
+                    ctx.save();
+                    ctx.fillStyle = color; ctx.font = `${w} ${size}px system-ui,Segoe UI,sans-serif`;
+                    ctx.textAlign = align; ctx.textBaseline = 'middle';
+                    ctx.fillText(str, x, y);
+                    ctx.restore();
+                }
+                function clouds(ctx, S) {
+                    function cloud(x, y, s) {
+                        ctx.fillStyle = 'rgba(255,255,255,.92)';
+                        ctx.beginPath();
+                        ctx.arc(x, y, s * 0.55, 0, Math.PI * 2);
+                        ctx.arc(x + s * 0.5, y + s * 0.08, s * 0.45, 0, Math.PI * 2);
+                        ctx.arc(x + s * 0.95, y, s * 0.52, 0, Math.PI * 2);
+                        ctx.arc(x + s * 0.55, y - s * 0.28, s * 0.45, 0, Math.PI * 2);
+                        ctx.closePath(); ctx.fill();
+                        ctx.fillStyle = 'rgba(255,255,255,.35)';
+                        ctx.fillRect(x - s * 0.1, y, s * 1.25, s * 0.7);
+                    }
+                    cloud(S * 0.16, S * 0.28, S * 0.12);
+                    cloud(S * 0.62, S * 0.26, S * 0.14);
+                }
+                function face(ctx, x, y, r, base = '#fde047') {
+                    ctx.fillStyle = 'rgba(255,255,255,.18)';
+                    ctx.beginPath(); ctx.arc(x, y, r * 1.2, 0, Math.PI * 2); ctx.fill();
+
+                    ctx.fillStyle = base;
+                    ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
+                    ctx.strokeStyle = 'rgba(15,23,42,.12)';
+                    ctx.lineWidth = r * 0.08; ctx.stroke();
+
+                    ctx.fillStyle = '#0f172a';
+                    ctx.beginPath(); ctx.arc(x - r * 0.35, y - r * 0.15, r * 0.10, 0, Math.PI * 2); ctx.fill();
+                    ctx.beginPath(); ctx.arc(x + r * 0.35, y - r * 0.15, r * 0.10, 0, Math.PI * 2); ctx.fill();
+
+                    ctx.strokeStyle = '#0f172a';
+                    ctx.lineWidth = r * 0.12; ctx.lineCap = 'round';
+                    ctx.beginPath();
+                    ctx.arc(x, y + r * 0.05, r * 0.45, 0.15 * Math.PI, 0.85 * Math.PI);
+                    ctx.stroke();
+                }
+
+                function animalCard(title, emoji, bg1, bg2, drawFn, size = 900) {
+                    const c = makeCanvas(size), ctx = c.getContext('2d');
+                    bgGradient(ctx, size, bg1, bg2); clouds(ctx, size);
+                    drawFn(ctx, size);
+                    text(ctx, title.toUpperCase(), size * 0.5, size * 0.16, Math.floor(size * 0.09));
+                    text(ctx, emoji, size * 0.5, size * 0.26, Math.floor(size * 0.08));
+                    return c.toDataURL('image/png');
+                }
+                function fruitCard(title, emoji, bg1, bg2, drawFn, size = 900) {
+                    const c = makeCanvas(size), ctx = c.getContext('2d');
+                    bgGradient(ctx, size, bg1, bg2);
+                    drawFn(ctx, size);
+                    text(ctx, title.toUpperCase(), size * 0.5, size * 0.16, Math.floor(size * 0.09));
+                    text(ctx, emoji, size * 0.5, size * 0.26, Math.floor(size * 0.08));
+                    return c.toDataURL('image/png');
+                }
+                function otherCard(title, emoji, bg1, bg2, drawFn, size = 900) {
+                    const c = makeCanvas(size), ctx = c.getContext('2d');
+                    bgGradient(ctx, size, bg1, bg2);
+                    drawFn(ctx, size);
+                    text(ctx, title.toUpperCase(), size * 0.5, size * 0.16, Math.floor(size * 0.09));
+                    text(ctx, emoji, size * 0.5, size * 0.26, Math.floor(size * 0.08));
+                    return c.toDataURL('image/png');
+                }
+
+                // ===== Animales (procedural) =====
+                function makeCat() {
+                    return animalCard('Gatito', '🐱', '#60a5fa', '#a78bfa', (ctx, S) => {
+                        const cx = S * 0.5, cy = S * 0.60, r = S * 0.22;
+                        ctx.fillStyle = 'rgba(0,0,0,.12)'; ctx.beginPath(); ctx.ellipse(cx, cy + r * 0.95, r * 0.95, r * 0.25, 0, 0, Math.PI * 2); ctx.fill();
+                        ctx.fillStyle = '#fbbf24'; ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.fill();
+                        ctx.fillStyle = '#f59e0b';
+                        ctx.beginPath(); ctx.moveTo(cx - r * 0.72, cy - r * 0.25); ctx.lineTo(cx - r * 0.95, cy - r * 0.95); ctx.lineTo(cx - r * 0.25, cy - r * 0.70); ctx.closePath(); ctx.fill();
+                        ctx.beginPath(); ctx.moveTo(cx + r * 0.72, cy - r * 0.25); ctx.lineTo(cx + r * 0.95, cy - r * 0.95); ctx.lineTo(cx + r * 0.25, cy - r * 0.70); ctx.closePath(); ctx.fill();
+                        face(ctx, cx, cy, r * 0.70, '#fbbf24');
+                        ctx.fillStyle = '#fb7185'; ctx.beginPath(); ctx.arc(cx, cy + r * 0.10, r * 0.06, 0, Math.PI * 2); ctx.fill();
+                    });
+                }
+                function makeDog() {
+                    return animalCard('Perrito', '🐶', '#34d399', '#60a5fa', (ctx, S) => {
+                        const cx = S * 0.5, cy = S * 0.62, r = S * 0.20;
+                        ctx.fillStyle = 'rgba(0,0,0,.12)'; ctx.beginPath(); ctx.ellipse(cx, cy + r * 1.05, r * 1.05, r * 0.25, 0, 0, Math.PI * 2); ctx.fill();
+                        ctx.fillStyle = '#d97706'; ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.fill();
+                        ctx.fillStyle = '#b45309';
+                        ctx.beginPath(); ctx.ellipse(cx - r * 0.85, cy - r * 0.25, r * 0.40, r * 0.55, -0.5, 0, Math.PI * 2); ctx.fill();
+                        ctx.beginPath(); ctx.ellipse(cx + r * 0.85, cy - r * 0.25, r * 0.40, r * 0.55, 0.5, 0, Math.PI * 2); ctx.fill();
+                        face(ctx, cx, cy, r * 0.70, '#d97706');
+                        ctx.fillStyle = '#0f172a'; ctx.beginPath(); ctx.ellipse(cx, cy + r * 0.18, r * 0.18, r * 0.14, 0, 0, Math.PI * 2); ctx.fill();
+                    });
+                }
+                function makeFrog() {
+                    return animalCard('Rana', '🐸', '#22c55e', '#60a5fa', (ctx, S) => {
+                        const cx = S * 0.5, cy = S * 0.64, r = S * 0.20;
+                        ctx.fillStyle = '#22c55e'; ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.fill();
+                        ctx.fillStyle = '#16a34a';
+                        ctx.beginPath(); ctx.arc(cx - r * 0.45, cy - r * 0.75, r * 0.35, 0, Math.PI * 2); ctx.fill();
+                        ctx.beginPath(); ctx.arc(cx + r * 0.45, cy - r * 0.75, r * 0.35, 0, Math.PI * 2); ctx.fill();
+                        ctx.fillStyle = 'rgba(255,255,255,.92)';
+                        ctx.beginPath(); ctx.arc(cx - r * 0.45, cy - r * 0.75, r * 0.20, 0, Math.PI * 2); ctx.fill();
+                        ctx.beginPath(); ctx.arc(cx + r * 0.45, cy - r * 0.75, r * 0.20, 0, Math.PI * 2); ctx.fill();
+                        ctx.fillStyle = '#0f172a';
+                        ctx.beginPath(); ctx.arc(cx - r * 0.45, cy - r * 0.75, r * 0.10, 0, Math.PI * 2); ctx.fill();
+                        ctx.beginPath(); ctx.arc(cx + r * 0.45, cy - r * 0.75, r * 0.10, 0, Math.PI * 2); ctx.fill();
+                        ctx.strokeStyle = '#0f172a'; ctx.lineWidth = r * 0.06; ctx.lineCap = 'round';
+                        ctx.beginPath(); ctx.arc(cx, cy + r * 0.10, r * 0.55, 0.15 * Math.PI, 0.85 * Math.PI); ctx.stroke();
+                    });
+                }
+                function makeLion() {
+                    return animalCard('León', '🦁', '#f59e0b', '#60a5fa', (ctx, S) => {
+                        const cx = S * 0.5, cy = S * 0.62, r = S * 0.18;
+                        ctx.fillStyle = '#f59e0b';
+                        for (let i = 0; i < 18; i++) {
+                            const a = i * (Math.PI * 2 / 18);
+                            ctx.beginPath();
+                            ctx.ellipse(cx + Math.cos(a) * r * 1.05, cy + Math.sin(a) * r * 1.05, r * 0.35, r * 0.20, a, 0, Math.PI * 2);
+                            ctx.fill();
+                        }
+                        face(ctx, cx, cy, r * 0.95, '#fcd34d');
+                    });
+                }
+
+                // ===== Frutas (procedural) =====
+                function makeApple() {
+                    return fruitCard('Manzana', '🍎', '#60a5fa', '#22c55e', (ctx, S) => {
+                        const cx = S * 0.5, cy = S * 0.64, r = S * 0.20;
+                        ctx.fillStyle = '#ef4444';
+                        ctx.beginPath(); ctx.arc(cx - r * 0.55, cy, r, 0, Math.PI * 2); ctx.arc(cx + r * 0.55, cy, r, 0, Math.PI * 2); ctx.fill();
+                        ctx.strokeStyle = '#7c2d12'; ctx.lineWidth = S * 0.02; ctx.lineCap = 'round';
+                        ctx.beginPath(); ctx.moveTo(cx, cy - r * 1.15); ctx.quadraticCurveTo(cx + r * 0.08, cy - r * 1.55, cx + r * 0.12, cy - r * 1.80); ctx.stroke();
+                        ctx.fillStyle = '#22c55e';
+                        ctx.beginPath(); ctx.ellipse(cx + r * 0.45, cy - r * 1.35, r * 0.50, r * 0.25, -0.5, 0, Math.PI * 2); ctx.fill();
+                        face(ctx, cx, cy + r * 0.12, r * 0.62, '#ef4444');
+                    });
+                }
+                function makeBanana() {
+                    return fruitCard('Plátano', '🍌', '#a78bfa', '#60a5fa', (ctx, S) => {
+                        const cx = S * 0.52, cy = S * 0.64;
+                        ctx.lineCap = 'round';
+                        ctx.strokeStyle = '#facc15'; ctx.lineWidth = S * 0.14;
+                        ctx.beginPath(); ctx.arc(cx, cy, S * 0.26, 1.10 * Math.PI, 1.90 * Math.PI); ctx.stroke();
+                        ctx.strokeStyle = 'rgba(15,23,42,.10)'; ctx.lineWidth = S * 0.015;
+                        ctx.beginPath(); ctx.arc(cx, cy, S * 0.26, 1.10 * Math.PI, 1.90 * Math.PI); ctx.stroke();
+                        face(ctx, S * 0.48, S * 0.62, S * 0.10, '#facc15');
+                    });
+                }
+                function makeGrape() {
+                    return fruitCard('Uva', '🍇', '#60a5fa', '#a78bfa', (ctx, S) => {
+                        const cx = S * 0.52, cy = S * 0.64;
+                        ctx.fillStyle = '#8b5cf6';
+                        const pts = [[0, 0], [-0.12, -0.02], [0.12, -0.02], [-0.06, 0.11], [0.06, 0.11], [0, 0.22]];
+                        pts.forEach(([dx, dy]) => { ctx.beginPath(); ctx.arc(cx + S * dx, cy + S * dy, S * 0.08, 0, Math.PI * 2); ctx.fill(); });
+                        ctx.fillStyle = '#22c55e';
+                        ctx.beginPath(); ctx.ellipse(cx + S * 0.08, cy - S * 0.16, S * 0.10, S * 0.05, -0.4, 0, Math.PI * 2); ctx.fill();
+                        face(ctx, cx, cy + S * 0.03, S * 0.08, '#8b5cf6');
+                    });
+                }
+                function makeOrange() {
+                    return fruitCard('Naranja', '🍊', '#f59e0b', '#60a5fa', (ctx, S) => {
+                        const cx = S * 0.5, cy = S * 0.64, r = S * 0.20;
+                        ctx.fillStyle = '#fb923c'; ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.fill();
+                        ctx.fillStyle = '#22c55e'; ctx.beginPath(); ctx.ellipse(cx + r * 0.35, cy - r * 0.75, r * 0.40, r * 0.20, -0.5, 0, Math.PI * 2); ctx.fill();
+                        face(ctx, cx, cy + r * 0.05, r * 0.62, '#fb923c');
+                    });
+                }
+
+                // ===== Otros (procedural) =====
+                function makeRainbow() {
+                    return otherCard('Arcoíris', '🌈', '#60a5fa', '#34d399', (ctx, S) => {
+                        clouds(ctx, S);
+                        const cx = S * 0.5, cy = S * 0.66;
+                        const rings = [['#ef4444', 0.42], ['#f59e0b', 0.38], ['#facc15', 0.34], ['#22c55e', 0.30], ['#3b82f6', 0.26], ['#8b5cf6', 0.22]];
+                        rings.forEach(([col, rr]) => {
+                            ctx.beginPath(); ctx.arc(cx, cy, S * rr, Math.PI, 2 * Math.PI);
+                            ctx.lineWidth = S * 0.06; ctx.strokeStyle = col; ctx.globalAlpha = 0.85; ctx.stroke();
+                        });
+                        ctx.globalAlpha = 1;
+                        face(ctx, S * 0.78, S * 0.56, S * 0.12, '#fde047');
+                    });
+                }
+                function makeRocket() {
+                    return otherCard('Cohete', '🚀', '#a78bfa', '#60a5fa', (ctx, S) => {
+                        const cx = S * 0.52, cy = S * 0.66;
+                        ctx.fillStyle = 'rgba(255,255,255,.20)';
+                        for (let i = 0; i < 80; i++) ctx.fillRect(Math.random() * S, Math.random() * S, 2, 2);
+                        ctx.fillStyle = '#e2e8f0';
+                        ctx.beginPath(); ctx.ellipse(cx, cy, S * 0.13, S * 0.24, 0, 0, Math.PI * 2); ctx.fill();
+                        ctx.fillStyle = '#ef4444';
+                        ctx.beginPath(); ctx.moveTo(cx, cy - S * 0.28); ctx.lineTo(cx - S * 0.10, cy - S * 0.14); ctx.lineTo(cx + S * 0.10, cy - S * 0.14); ctx.closePath(); ctx.fill();
+                        ctx.fillStyle = '#3b82f6';
+                        ctx.beginPath(); ctx.ellipse(cx, cy - S * 0.05, S * 0.05, S * 0.05, 0, 0, Math.PI * 2); ctx.fill();
+                        ctx.fillStyle = '#f59e0b';
+                        ctx.beginPath(); ctx.moveTo(cx, cy + S * 0.28); ctx.lineTo(cx - S * 0.07, cy + S * 0.18); ctx.lineTo(cx + S * 0.07, cy + S * 0.18); ctx.closePath(); ctx.fill();
+                    });
+                }
+                function makeCar() {
+                    return otherCard('Carro', '🚗', '#22c55e', '#60a5fa', (ctx, S) => {
+                        const y = S * 0.70;
+                        ctx.fillStyle = 'rgba(255,255,255,.20)';
+                        ctx.fillRect(0, y + S * 0.14, S, S * 0.16);
+                        ctx.fillStyle = '#ef4444';
+                        ctx.beginPath();
+                        ctx.roundRect(S * 0.22, y, S * 0.56, S * 0.16, S * 0.06);
+                        ctx.fill();
+                        ctx.fillStyle = 'rgba(255,255,255,.85)';
+                        ctx.beginPath(); ctx.roundRect(S * 0.34, y - S * 0.08, S * 0.24, S * 0.10, S * 0.04); ctx.fill();
+                        ctx.fillStyle = '#0f172a';
+                        ctx.beginPath(); ctx.arc(S * 0.30, y + S * 0.16, S * 0.05, 0, Math.PI * 2); ctx.fill();
+                        ctx.beginPath(); ctx.arc(S * 0.70, y + S * 0.16, S * 0.05, 0, Math.PI * 2); ctx.fill();
+                    });
+                }
+
+                // Polyfill-ish for roundRect (older browsers)
+                CanvasRenderingContext2D.prototype.roundRect ||= function (x, y, w, h, r) {
+                    const rr = Math.min(r, w / 2, h / 2);
+                    this.beginPath();
+                    this.moveTo(x + rr, y);
+                    this.arcTo(x + w, y, x + w, y + h, rr);
+                    this.arcTo(x + w, y + h, x, y + h, rr);
+                    this.arcTo(x, y + h, x, y, rr);
+                    this.arcTo(x, y, x + w, y, rr);
+                    this.closePath();
+                    return this;
+                };
+
+                /* =========================
+                   ✅ Items (categorías)
+                ========================= */
+                const itemsBase = [
+                    { id: 'a_cat', title: 'Gatito', tag: 'Animal', type: 'animal', make: makeCat },
+                    { id: 'a_dog', title: 'Perrito', tag: 'Animal', type: 'animal', make: makeDog },
+                    { id: 'a_frog', title: 'Rana', tag: 'Animal', type: 'animal', make: makeFrog },
+                    { id: 'a_lion', title: 'León', tag: 'Animal', type: 'animal', make: makeLion },
+
+                    { id: 'f_apple', title: 'Manzana', tag: 'Fruta', type: 'fruit', make: makeApple },
+                    { id: 'f_banana', title: 'Plátano', tag: 'Fruta', type: 'fruit', make: makeBanana },
+                    { id: 'f_grape', title: 'Uva', tag: 'Fruta', type: 'fruit', make: makeGrape },
+                    { id: 'f_orange', title: 'Naranja', tag: 'Fruta', type: 'fruit', make: makeOrange },
+
+                    { id: 'o_rainbow', title: 'Arcoíris', tag: 'Otros', type: 'other', make: makeRainbow },
+                    { id: 'o_rocket', title: 'Cohete', tag: 'Otros', type: 'other', make: makeRocket },
+                    { id: 'o_car', title: 'Carro', tag: 'Otros', type: 'other', make: makeCar },
+                ];
+
+                // Generar dataURLs una sola vez
+                const items = itemsBase.map(it => ({ ...it, url: it.make() }));
+
+                /* =========================
+                   ✅ DOM
+                ========================= */
+                const boardEl = document.getElementById('board');
+                const catSel = document.getElementById('cat');
+                const imgPick = document.getElementById('imgPick');
+                const levelSel = document.getElementById('level');
+                const gallery = document.getElementById('gallery');
+                const btnNew = document.getElementById('btnNew');
+
+                const win = document.getElementById('win');
+                const btnAgain = document.getElementById('btnAgain');
+                const btnClose = document.getElementById('btnClose');
+
+                // HUD
+                const timeEl = document.getElementById('time');
+                const movesEl = document.getElementById('moves');
+
+                /* =========================
+                   ✅ Mini audio (beeps)
+                ========================= */
+                let audioCtx = null;
+                function beep(freq = 660, ms = 70, gain = 0.05) {
+                    try {
+                        audioCtx ||= new (window.AudioContext || window.webkitAudioContext)();
+                        const o = audioCtx.createOscillator();
+                        const g = audioCtx.createGain();
+                        o.type = 'sine';
+                        o.frequency.value = freq;
+                        g.gain.value = gain;
+                        o.connect(g); g.connect(audioCtx.destination);
+                        o.start();
+                        setTimeout(() => { o.stop(); }, ms);
+                    } catch { }
+                }
+
+                /* =========================
+                   ✅ State + localStorage
+                ========================= */
+                const LS = { cat: 'mk_sort_cat', img: 'mk_sort_img', lvl: 'mk_sort_lvl' };
+                const lsGet = (k, d) => { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch { return d; } };
+                const lsSet = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch { } };
+
+                let cat = lsGet(LS.cat, 'animal');
+                let lvl = lsGet(LS.lvl, 3);
+                let activeId = lsGet(LS.img, 'a_cat');
+
+                if (!items.some(x => x.id === activeId)) activeId = items[0].id;
+
+                catSel.value = cat;
+                levelSel.value = String(lvl);
+
+                let N = parseInt(levelSel.value, 10);
+                let imgURL = items.find(x => x.id === activeId)?.url || items[0].url;
+
+                function persist() {
+                    lsSet(LS.cat, catSel.value);
+                    lsSet(LS.lvl, parseInt(levelSel.value, 10));
+                    lsSet(LS.img, activeId);
+                }
+
+                function filtered() {
+                    const c = catSel.value;
+                    return items.filter(it => it.type === c);
+                }
+
+                /* =========================
+                   ✅ Timer + Moves
+                ========================= */
+                let t0 = 0;
+                let timerId = null;
+                let moves = 0;
+
+                function fmtTime(sec) {
+                    const m = Math.floor(sec / 60);
+                    const s = sec % 60;
+                    return String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+                }
+
+                function startTimer() {
+                    stopTimer();
+                    t0 = Date.now();
+                    timerId = setInterval(() => {
+                        const sec = Math.floor((Date.now() - t0) / 1000);
+                        timeEl.textContent = fmtTime(sec);
+                    }, 250);
+                }
+                function stopTimer() {
+                    if (timerId) clearInterval(timerId);
+                    timerId = null;
+                }
+                function resetHUD() {
+                    moves = 0;
+                    movesEl.textContent = '0';
+                    timeEl.textContent = '00:00';
+                    startTimer();
+                }
+
+                /* =========================
+                   ✅ UI: select + gallery
+                ========================= */
+                function renderPick() {
+                    const list = filtered();
+                    imgPick.innerHTML = '';
+                    list.forEach(it => {
+                        const opt = document.createElement('option');
+                        opt.value = it.id;
+                        opt.textContent = it.title;
+                        if (it.id === activeId) opt.selected = true;
+                        imgPick.appendChild(opt);
+                    });
+                    if (!list.some(x => x.id === activeId)) {
+                        activeId = list[0]?.id || items[0].id;
+                        imgPick.value = activeId;
+                        imgURL = items.find(x => x.id === activeId).url;
+                        persist();
+                    }
+                }
+
+                function renderGallery() {
+                    const list = filtered();
+                    gallery.innerHTML = '';
+                    list.forEach(it => {
+                        const t = document.createElement('div');
+                        t.className = 'thumb' + (it.id === activeId ? ' active' : '');
+                        const img = document.createElement('div');
+                        img.className = 'img';
+                        img.style.backgroundImage = `url("${it.url}")`;
+                        const tag = document.createElement('div');
+                        tag.className = 'tag';
+                        tag.textContent = it.tag;
+                        t.appendChild(img); t.appendChild(tag);
+
+                        t.addEventListener('click', () => {
+                            activeId = it.id;
+                            imgURL = it.url;
+                            persist();
+                            renderPick();
+                            renderGallery();
+                            build();
+                        });
+                        gallery.appendChild(t);
+                    });
+                }
+
+                /* =========================
+                   ✅ Puzzle (swap con arrastre fantasma)
+                ========================= */
+                let draggingPiece = null;
+                let ghost = null;
+                let sourceSlot = null;
+                let offX = 0, offY = 0;
+
+                function setGrid(n) {
+                    N = n;
+                    boardEl.style.gridTemplateColumns = `repeat(${N}, 1fr)`;
+                    boardEl.style.gridTemplateRows = `repeat(${N}, 1fr)`;
+                }
+
+                // ✅ más robusto: usa "paso" (N-1) para que 2x2 también sea exacto
+                function pieceStyle(r, c) {
+                    const sizePct = N * 100;
+                    const denom = (N - 1) || 1;
+                    const x = (c / denom) * 100;
+                    const y = (r / denom) * 100;
+                    return {
+                        backgroundImage: `url("${imgURL}")`,
+                        backgroundSize: `${sizePct}% ${sizePct}%`,
+                        backgroundPosition: `${x}% ${y}%`
+                    };
+                }
+
+                function shuffleBoard() {
+                    const slots = [...boardEl.querySelectorAll('.slot')];
+                    const pcs = slots.map(s => s.firstChild);
+
+                    let tries = 0;
+                    do {
+                        pcs.sort(() => Math.random() - 0.5);
+                        tries++;
+                        slots.forEach((s, i) => {
+                            s.innerHTML = '';
+                            s.appendChild(pcs[i]);
+                            pcs[i].dataset.current = s.dataset.slot;
+                        });
+                    } while (isSolved() && tries < 10);
+                }
+
+                function isSolved() {
+                    return [...boardEl.querySelectorAll('.piece')]
+                        .every(p => p.dataset.current === p.dataset.correct);
+                }
+
+                function build() {
+                    win.style.display = 'none';
+                    boardEl.innerHTML = '';
+                    setGrid(parseInt(levelSel.value, 10));
+
+                    for (let r = 0; r < N; r++) {
+                        for (let c = 0; c < N; c++) {
+                            const slot = document.createElement('div');
+                            slot.className = 'slot';
+                            slot.dataset.slot = `${r}-${c}`;
+
+                            const p = document.createElement('div');
+                            p.className = 'piece';
+                            p.dataset.correct = `${r}-${c}`;
+                            p.dataset.current = `${r}-${c}`;
+
+                            Object.assign(p.style, pieceStyle(r, c));
+                            p.addEventListener('pointerdown', startDrag);
+
+                            slot.appendChild(p);
+                            boardEl.appendChild(slot);
+                        }
+                    }
+                    shuffleBoard();
+                    resetHUD();
+                }
+
+                function cleanupDrag() {
+                    if (ghost) ghost.remove();
+                    ghost = null;
+                    if (draggingPiece) draggingPiece.style.visibility = 'visible';
+                    draggingPiece = null;
+                    sourceSlot = null;
+                }
+
+                function startDrag(e) {
+                    draggingPiece = e.currentTarget;
+                    sourceSlot = draggingPiece.parentElement;
+
+                    const r = draggingPiece.getBoundingClientRect();
+                    offX = e.clientX - r.left;
+                    offY = e.clientY - r.top;
+
+                    ghost = draggingPiece.cloneNode(true);
+                    ghost.classList.add('ghost');
+                    ghost.style.width = r.width + 'px';
+                    ghost.style.height = r.height + 'px';
+                    ghost.style.left = r.left + 'px';
+                    ghost.style.top = r.top + 'px';
+                    document.body.appendChild(ghost);
+
+                    draggingPiece.style.visibility = 'hidden';
+                    draggingPiece.setPointerCapture(e.pointerId);
+                }
+
+                window.addEventListener('pointermove', (e) => {
+                    if (!ghost) return;
+                    ghost.style.left = (e.clientX - offX) + 'px';
+                    ghost.style.top = (e.clientY - offY) + 'px';
+                }, { passive: false });
+
+                function doSwap(targetSlot) {
+                    if (!targetSlot || targetSlot === sourceSlot) return false;
+
+                    const other = targetSlot.firstChild;
+                    if (!other || !draggingPiece) return false;
+
+                    sourceSlot.appendChild(other);
+                    targetSlot.appendChild(draggingPiece);
+
+                    other.dataset.current = sourceSlot.dataset.slot;
+                    draggingPiece.dataset.current = targetSlot.dataset.slot;
+
+                    moves++;
+                    movesEl.textContent = String(moves);
+
+                    // feedback
+                    if (navigator.vibrate) navigator.vibrate(15);
+                    beep(640, 60, 0.05);
+
+                    return true;
+                }
+
+                function finishDrop(e) {
+                    if (!ghost) return;
+
+                    // ✅ si sueltas sobre la pieza, sube al .slot
+                    const el = document.elementFromPoint(e.clientX, e.clientY);
+                    const targetSlot = el?.closest('.slot');
+
+                    // show original piece
+                    if (draggingPiece) draggingPiece.style.visibility = 'visible';
+
+                    doSwap(targetSlot);
+
+                    cleanupDrag();
+
+                    if (isSolved()) {
+                        stopTimer();
+                        beep(880, 120, 0.06);
+                        setTimeout(() => beep(990, 120, 0.06), 140);
+                        win.style.display = 'flex';
+                    }
+                }
+
+                window.addEventListener('pointerup', finishDrop, { passive: false });
+                window.addEventListener('pointercancel', cleanupDrag, { passive: false });
+
+                /* =========================
+                   ✅ Events
+                ========================= */
+                btnNew.addEventListener('click', build);
+
+                btnAgain.addEventListener('click', () => {
+                    win.style.display = 'none';
+                    build();
+                });
+                btnClose.addEventListener('click', () => win.style.display = 'none');
+
+                catSel.addEventListener('change', () => {
+                    const list = filtered();
+                    activeId = list[0]?.id || items[0].id;
+                    imgURL = items.find(x => x.id === activeId).url;
+                    persist();
+                    renderPick();
+                    renderGallery();
+                    build();
+                });
+
+                imgPick.addEventListener('change', () => {
+                    const id = imgPick.value;
+                    const it = items.find(x => x.id === id);
+                    if (!it) return;
+                    activeId = id;
+                    imgURL = it.url;
+                    persist();
+                    renderGallery();
+                    build();
+                });
+
+                levelSel.addEventListener('change', () => {
+                    persist();
+                    build();
+                });
+
+                /* =========================
+                   ✅ Init
+                ========================= */
+                catSel.value = cat;
+                levelSel.value = String(lvl);
+
+                if (!filtered().some(x => x.id === activeId)) {
+                    activeId = filtered()[0]?.id || items[0].id;
+                    imgURL = items.find(x => x.id === activeId).url;
+                    persist();
+                }
+
+                renderPick();
+                renderGallery();
+                build();
+            })();
+        </script>
+
+        <script>
+            // Registrar Service Worker (PWA)
+            if ("serviceWorker" in navigator) {
+                window.addEventListener("load", () => {
+                    navigator.serviceWorker.register("./service-worker.js").catch(() => { });
+                });
+            }
+        </script>
+    </body>
+
+</html>

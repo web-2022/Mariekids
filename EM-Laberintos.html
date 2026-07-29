@@ -358,7 +358,7 @@
                         <h1>🗺️ Laberinto</h1>
                         <button id="btnNew" class="btn primary">✨ Nuevo</button>
                     </div>
-                    
+
 
                     <div class="controls">
                         <label style="display:flex; gap:8px; align-items:center;">
@@ -375,7 +375,7 @@
                         <button id="btnClear" class="btn">🧼 Borrar ruta</button>
                     </div>
 
-                    
+
 
                     <div class="canvasWrap">
                         <canvas id="maze"></canvas>
@@ -664,6 +664,10 @@
                     else ctx.lineTo(x, y);
                 });
 
+                ctx.shadowColor = "rgba(37, 99, 235, 0.4)";
+                ctx.shadowBlur = Math.max(4, cellSize * 0.4);
+
+
                 ctx.stroke();
             }
 
@@ -802,6 +806,7 @@
             }
 
             function movePlayer(dir) {
+
                 const map = {
                     U: { dr: -1, dc: 0 },
                     D: { dr: 1, dc: 0 },
@@ -829,6 +834,7 @@
                     finished = true;
                     $("hint").textContent = "🏁 ¡Llegaste! Excelente trabajo.";
                 }
+
 
 
                 draw();
@@ -871,17 +877,25 @@
             }
 
             function tryMoveToCell(cell) {
+                if (finished) return;
                 if (!cell) return;
 
                 const dr = cell.r - player.r;
                 const dc = cell.c - player.c;
 
-                // Solo permitir movimientos adyacentes (no saltos)
-                if (Math.abs(dr) + Math.abs(dc) !== 1) return;
+                // Permitir movimiento si está cerca (tolerancia)
+                let step = null;
 
-                if (!canMoveTo(cell.r, cell.c)) return;
+                if (Math.abs(dr) > Math.abs(dc)) {
+                    step = { r: player.r + Math.sign(dr), c: player.c };
+                } else if (Math.abs(dc) > 0) {
+                    step = { r: player.r, c: player.c + Math.sign(dc) };
+                }
 
-                player = { r: cell.r, c: cell.c };
+                if (!step) return;
+                if (!canMoveTo(step.r, step.c)) return;
+
+                player = step;
                 breadcrumbs.push({ ...player });
 
                 moves++;
@@ -890,11 +904,13 @@
                 if (player.r === exit.r && player.c === exit.c) {
                     stopTimer();
                     saveBestIfNeeded();
+                    finished = true;
                     $("hint").textContent = "🏁 ¡Llegaste! Ruta trazada con éxito.";
                 }
 
                 draw();
             }
+
 
 
             // ===== Eventos =====
