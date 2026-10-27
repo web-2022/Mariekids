@@ -501,6 +501,7 @@
                 margin: 0;
             }
         </style>
+        <link rel="stylesheet" href="assets/mk-ingles.css?v=1">
     </head>
 
     <body>
@@ -537,7 +538,7 @@
             <!-- ================== INGLÉS ================== -->
             <section class="section active" id="courseEnglish">
                 <h1>A2 · Semana 5: Modales (can, could, should, have to)</h1>
-                <p class="subtitle">Lee la situación, toca 🔊 para escuchar y elige la frase correcta en inglés. 🧭</p>
+                <p class="subtitle">Practica con ejercicios variados. 👆 Toca cualquier palabra en inglés para escuchar cómo se pronuncia. 🧭</p>
 
                 <div class="status-bar">
                     <div class="xp">✅ Correctas: <span id="xpValue">0</span></div>
@@ -554,26 +555,10 @@
                     </div>
                 </div>
 
-                <div class="card" id="lessonCard">
-                    <div class="emoji-container">
-                        <div class="emoji" id="emoji">🛋️</div>
-                        <button class="speak-btn" aria-label="Escuchar pronunciación" onclick="speakWord()">🔊</button>
-                    </div>
-
-                    <div class="word" id="wordEn">sofa</div>
-                    <div class="translation" id="wordEs">sofá</div>
-
-                    <p class="example-en"><span class="label">Inglés:</span> <span id="exampleEn">This is a sofa.</span></p>
-                    <p class="example-es"><span class="label">Español:</span> <span id="exampleEs">Este es un sofá.</span></p>
-
-                    <p class="question" id="question">What is this?</p>
-
-                    <div class="options" id="optionsContainer"></div>
-                    <div class="feedback" id="feedback"></div>
-                </div>
+                <div class="card" id="lessonCard"></div>
 
                 <div class="controls">
-                    <button class="main-btn" onclick="nextLesson()">Next</button>
+                    <button class="main-btn" onclick="goHome()">⬅ Ruta de Inglés</button>
                     <button class="main-btn" onclick="shareApp()">📤 Compartir app</button>
                 </div>
             </section>
@@ -593,367 +578,184 @@
         </script>
 
         <script>
-            // ====== INGLÉS ======
-            const itemsData = [
-              {
-                "emoji": "🏊",
-                "en": "I can swim",
-                "es": "Sé nadar",
-                "examplesEn": [
-                  "I can swim very fast.",
-                  "I can swim, but I can't dive."
-                ],
-                "examplesEs": [
-                  "Sé nadar muy rápido.",
-                  "Sé nadar, pero no sé bucear."
-                ],
-                "questions": [
-                  "Cuentas una habilidad que tienes en la piscina. ¿Qué dices?",
-                  "¿Cómo se dice «Sé nadar» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🚗",
-                "en": "I can't drive",
-                "es": "No sé manejar",
-                "examplesEn": [
-                  "I'm ten. I can't drive.",
-                  "I can't drive, but I can ride a bike."
-                ],
-                "examplesEs": [
-                  "Tengo diez años. No sé manejar.",
-                  "No sé manejar, pero sé montar bici."
-                ],
-                "questions": [
-                  "Cuentas algo que todavía no sabes hacer (manejar un auto). ¿Qué dices?",
-                  "¿Cómo se dice «No sé manejar» en inglés?"
-                ]
-              },
-              {
-                "emoji": "👶",
-                "en": "I could read when I was five",
-                "es": "Sabía leer cuando tenía cinco",
-                "examplesEn": [
-                  "I could read when I was five years old.",
-                  "My sister could read when she was four."
-                ],
-                "examplesEs": [
-                  "Sabía leer cuando tenía cinco años.",
-                  "Mi hermana sabía leer cuando tenía cuatro."
-                ],
-                "questions": [
-                  "Cuentas una habilidad que tenías en el PASADO. ¿Qué dices?",
-                  "¿Cómo se dice «Sabía leer cuando tenía cinco» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🙏",
-                "en": "Could you help me, please?",
-                "es": "¿Podrías ayudarme, por favor?",
-                "examplesEn": [
-                  "This box is heavy. Could you help me, please?",
-                  "Excuse me, could you help me, please?"
-                ],
-                "examplesEs": [
-                  "Esta caja pesa. ¿Podrías ayudarme, por favor?",
-                  "Disculpe, ¿podría ayudarme, por favor?"
-                ],
-                "questions": [
-                  "Pides ayuda de manera MUY educada. ¿Qué dices?",
-                  "Significa: ¿Podrías ayudarme, por favor? ¿Cuál es la frase en inglés?"
-                ]
-              },
-              {
-                "emoji": "💡",
-                "en": "You should rest",
-                "es": "Deberías descansar",
-                "examplesEn": [
-                  "You look tired. You should rest.",
-                  "You have a cold. You should rest."
-                ],
-                "examplesEs": [
-                  "Te ves cansado. Deberías descansar.",
-                  "Tienes resfrío. Deberías descansar."
-                ],
-                "questions": [
-                  "Tu amigo está cansado y le das un consejo. ¿Qué dices?",
-                  "¿Cómo se dice «Deberías descansar» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🍬",
-                "en": "You shouldn't eat so much candy",
-                "es": "No deberías comer tantos dulces",
-                "examplesEn": [
-                  "You shouldn't eat so much candy. It's bad for your teeth.",
-                  "Leo, you shouldn't eat so much candy."
-                ],
-                "examplesEs": [
-                  "No deberías comer tantos dulces. Es malo para tus dientes.",
-                  "Leo, no deberías comer tantos dulces."
-                ],
-                "questions": [
-                  "Aconsejas a alguien que no coma tantos caramelos. ¿Qué dices?",
-                  "¿Cómo se dice «No deberías comer tantos dulces» en inglés?"
-                ]
-              },
-              {
-                "emoji": "📋",
-                "en": "I have to do my homework",
-                "es": "Tengo que hacer mi tarea",
-                "examplesEn": [
-                  "I can't play now. I have to do my homework.",
-                  "I have to do my homework before dinner."
-                ],
-                "examplesEs": [
-                  "No puedo jugar ahora. Tengo que hacer mi tarea.",
-                  "Tengo que hacer mi tarea antes de la cena."
-                ],
-                "questions": [
-                  "Tienes una obligación del colegio. ¿Qué dices?",
-                  "¿Cómo se dice «Tengo que hacer mi tarea» en inglés?"
-                ]
-              },
-              {
-                "emoji": "👕",
-                "en": "We have to wear a uniform",
-                "es": "Tenemos que usar uniforme",
-                "examplesEn": [
-                  "At my school, we have to wear a uniform.",
-                  "We have to wear a uniform on Mondays."
-                ],
-                "examplesEs": [
-                  "En mi colegio tenemos que usar uniforme.",
-                  "Los lunes tenemos que usar uniforme."
-                ],
-                "questions": [
-                  "Explicas una regla de tu colegio sobre la ropa. ¿Qué dices?",
-                  "¿Cómo se dice «Tenemos que usar uniforme» en inglés?"
-                ]
-              },
-              {
-                "emoji": "😌",
-                "en": "You don't have to come",
-                "es": "No tienes que venir",
-                "examplesEn": [
-                  "It's OK. You don't have to come.",
-                  "You don't have to come early tomorrow."
-                ],
-                "examplesEs": [
-                  "Está bien. No tienes que venir.",
-                  "Mañana no tienes que venir temprano."
-                ],
-                "questions": [
-                  "Le dices a alguien que venir NO es obligatorio. ¿Qué dices?",
-                  "¿Cómo se dice «No tienes que venir» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🪟",
-                "en": "Can I open the window?",
-                "es": "¿Puedo abrir la ventana?",
-                "examplesEn": [
-                  "It's hot. Can I open the window?",
-                  "Teacher, can I open the window?"
-                ],
-                "examplesEs": [
-                  "Hace calor. ¿Puedo abrir la ventana?",
-                  "Profesora, ¿puedo abrir la ventana?"
-                ],
-                "questions": [
-                  "Pides permiso porque hace calor en el salón. ¿Qué preguntas?",
-                  "Significa: ¿Puedo abrir la ventana? ¿Cuál es la frase en inglés?"
-                ]
-              }
-            ];
-
-            let currentItem = null;
-            let correctCount = 0;
-            let wrongCount = 0;
-            let answeredCorrectly = false;
-
-            let progress = 0;
-            const maxProgress = 10;
-
-            const correctSpan = document.getElementById("xpValue");
-            const wrongSpan = document.getElementById("heartsValue");
-            const feedbackEl = document.getElementById("feedback");
-            const lessonCard = document.getElementById("lessonCard");
-            const progressBar = document.getElementById("progressBar");
-            const progressText = document.getElementById("progressText");
-
-            const soundCorrect = document.getElementById("sound-correct");
-            const soundWrong = document.getElementById("sound-wrong");
-            const soundLevelup = document.getElementById("sound-levelup");
-
-            function updateProgressBar() {
-                const percent = (progress / maxProgress) * 100;
-                progressBar.style.width = percent + "%";
-                progressText.textContent = `${progress}/${maxProgress}`;
-            }
-
-            function getRandomItem() {
-                return itemsData[Math.floor(Math.random() * itemsData.length)];
-            }
-            function randomFromArray(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
-
-            function generateLesson() {
-                const item = getRandomItem();
-                const idx = Math.floor(Math.random() * item.examplesEn.length);
-                return {
-                    data: item,
-                    emoji: item.emoji,
-                    word: item.en,
-                    translation: item.es,
-                    exampleEn: item.examplesEn[idx],
-                    exampleEs: item.examplesEs[idx],
-                    question: randomFromArray(item.questions)
-                };
-            }
-
-            function renderLesson() {
-                answeredCorrectly = false;
-                const lesson = generateLesson();
-                currentItem = lesson.data;
-
-                document.getElementById("emoji").textContent = lesson.emoji;
-                document.getElementById("wordEn").textContent = "❓ ❓ ❓";
-                document.getElementById("wordEn").dataset.answer = lesson.word;
-                document.getElementById("exampleEn").parentElement.style.visibility = "hidden";
-                document.getElementById("wordEs").textContent = lesson.translation;
-                document.getElementById("exampleEn").textContent = lesson.exampleEn;
-                document.getElementById("exampleEs").textContent = lesson.exampleEs;
-                document.getElementById("question").textContent = lesson.question;
-
-                feedbackEl.textContent = "";
-                feedbackEl.classList.remove("good", "bad");
-                lessonCard.classList.remove("correct", "wrong");
-
-                createOptions();
-            }
-
-            function createOptions() {
-                const container = document.getElementById("optionsContainer");
-                container.innerHTML = "";
-
-                const correct = currentItem;
-                const others = itemsData.filter(i => i.en !== correct.en);
-                shuffleArray(others);
-
-                const options = [correct.en, others[0].en, others[1].en];
-                shuffleArray(options);
-
-                options.forEach(optionText => {
-                    const btn = document.createElement("button");
-                    btn.textContent = optionText;
-                    btn.className = "option-btn";
-                    btn.onclick = () => checkAnswer(optionText, btn);
-                    container.appendChild(btn);
-                });
-            }
-
-            function speakFeedbackCorrect() {
-                const phrases = ["Great job!", "Awesome!", "Perfect!", "Nice work!"];
-                speakText(randomFromArray(phrases));
-            }
-            function speakFeedbackWrong() {
-                const phrases = ["Not yet, try again.", "Almost, try again.", "Keep trying.", "Don't give up."];
-                speakText(randomFromArray(phrases));
-            }
-
-            function speakText(text) {
-                if (!("speechSynthesis" in window)) return;
-                const utter = new SpeechSynthesisUtterance(text);
-                utter.lang = "en-US";
-                utter.rate = 0.95;
-                utter.pitch = 1.02;
-                window.speechSynthesis.cancel();
-                window.speechSynthesis.speak(utter);
-            }
-
-            function checkAnswer(answer, clickedBtn) {
-                if (!currentItem) return;
-                if (answeredCorrectly) return;
-
-                if (answer === currentItem.en) {
-                    answeredCorrectly = true;
-                    document.getElementById("wordEn").textContent = currentItem.en;
-                    document.getElementById("exampleEn").parentElement.style.visibility = "visible";
-
-                    correctCount++;
-                    correctSpan.textContent = correctCount;
-
-                    if (progress < maxProgress) {
-                        progress += 1;
-                        updateProgressBar();
-                    }
-
-                    feedbackEl.textContent = randomFromArray(["✅ Great job!", "✅ Awesome!", "✅ Perfect!", "✅ Nice!"]);
-                    feedbackEl.classList.remove("bad");
-                    feedbackEl.classList.add("good");
-
-                    playSound(soundCorrect);
-                    speakFeedbackCorrect();
-
-                    lessonCard.classList.remove("wrong");
-                    lessonCard.classList.add("correct");
-
-                    document.querySelectorAll(".option-btn").forEach(b => { b.disabled = true; });
-
-                    if (correctCount > 0 && correctCount % 5 === 0) playSound(soundLevelup);
-
-                    if (progress >= maxProgress) {
-                        try { localStorage.setItem("mk_topic_" + location.pathname.split("/").pop().replace(/\.html$/i, "") + "_complete", "true"); } catch (e) { }
-                        feedbackEl.textContent = "🎉 Lesson complete! Keep practicing.";
-                        feedbackEl.classList.add("good");
-                        playSound(soundLevelup);
-                    }
-                } else {
-                    wrongCount++;
-                    wrongSpan.textContent = wrongCount;
-
-                    feedbackEl.textContent = `❌ Not yet. Try again.`;
-                    feedbackEl.classList.remove("good");
-                    feedbackEl.classList.add("bad");
-
-                    playSound(soundWrong);
-                    speakFeedbackWrong();
-
-                    lessonCard.classList.remove("correct");
-                    lessonCard.classList.add("wrong");
-
-                    if (clickedBtn) clickedBtn.disabled = true;
-                }
-            }
-
-            function shuffleArray(arr) {
-                for (let i = arr.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [arr[i], arr[j]] = [arr[j], arr[i]];
-                }
-            }
-
-            function nextLesson() { renderLesson(); }
-
-            function speakWord() {
-                const word = document.getElementById("wordEn").dataset.answer || document.getElementById("wordEn").textContent;
-                if (!("speechSynthesis" in window)) return;
-                const utter = new SpeechSynthesisUtterance(word);
-                utter.lang = "en-US";
-                utter.rate = 0.9;
-                window.speechSynthesis.cancel();
-                window.speechSynthesis.speak(utter);
-            }
-
-            function playSound(audioElement) {
-                if (!audioElement) return;
-                audioElement.currentTime = 0;
-                audioElement.play().catch(() => { });
-            }
-
-            updateProgressBar();
-            renderLesson();
+            window.MK_LESSON = {
+ "items": [
+  {
+   "emoji": "🏊",
+   "en": "I can swim",
+   "es": "Sé nadar",
+   "examplesEn": [
+    "I can swim very fast.",
+    "I can swim, but I can't dive."
+   ],
+   "examplesEs": [
+    "Sé nadar muy rápido.",
+    "Sé nadar, pero no sé bucear."
+   ],
+   "questions": [
+    "Cuentas una habilidad que tienes en la piscina. ¿Qué dices?",
+    "¿Cómo se dice «Sé nadar» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🚗",
+   "en": "I can't drive",
+   "es": "No sé manejar",
+   "examplesEn": [
+    "I'm ten. I can't drive.",
+    "I can't drive, but I can ride a bike."
+   ],
+   "examplesEs": [
+    "Tengo diez años. No sé manejar.",
+    "No sé manejar, pero sé montar bici."
+   ],
+   "questions": [
+    "Cuentas algo que todavía no sabes hacer (manejar un auto). ¿Qué dices?",
+    "¿Cómo se dice «No sé manejar» en inglés?"
+   ]
+  },
+  {
+   "emoji": "👶",
+   "en": "I could read when I was five",
+   "es": "Sabía leer cuando tenía cinco",
+   "examplesEn": [
+    "I could read when I was five years old.",
+    "My sister could read when she was four."
+   ],
+   "examplesEs": [
+    "Sabía leer cuando tenía cinco años.",
+    "Mi hermana sabía leer cuando tenía cuatro."
+   ],
+   "questions": [
+    "Cuentas una habilidad que tenías en el PASADO. ¿Qué dices?",
+    "¿Cómo se dice «Sabía leer cuando tenía cinco» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🙏",
+   "en": "Could you help me, please?",
+   "es": "¿Podrías ayudarme, por favor?",
+   "examplesEn": [
+    "This box is heavy. Could you help me, please?",
+    "Excuse me, could you help me, please?"
+   ],
+   "examplesEs": [
+    "Esta caja pesa. ¿Podrías ayudarme, por favor?",
+    "Disculpe, ¿podría ayudarme, por favor?"
+   ],
+   "questions": [
+    "Pides ayuda de manera MUY educada. ¿Qué dices?",
+    "Significa: ¿Podrías ayudarme, por favor? ¿Cuál es la frase en inglés?"
+   ]
+  },
+  {
+   "emoji": "💡",
+   "en": "You should rest",
+   "es": "Deberías descansar",
+   "examplesEn": [
+    "You look tired. You should rest.",
+    "You have a cold. You should rest."
+   ],
+   "examplesEs": [
+    "Te ves cansado. Deberías descansar.",
+    "Tienes resfrío. Deberías descansar."
+   ],
+   "questions": [
+    "Tu amigo está cansado y le das un consejo. ¿Qué dices?",
+    "¿Cómo se dice «Deberías descansar» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🍬",
+   "en": "You shouldn't eat so much candy",
+   "es": "No deberías comer tantos dulces",
+   "examplesEn": [
+    "You shouldn't eat so much candy. It's bad for your teeth.",
+    "Leo, you shouldn't eat so much candy."
+   ],
+   "examplesEs": [
+    "No deberías comer tantos dulces. Es malo para tus dientes.",
+    "Leo, no deberías comer tantos dulces."
+   ],
+   "questions": [
+    "Aconsejas a alguien que no coma tantos caramelos. ¿Qué dices?",
+    "¿Cómo se dice «No deberías comer tantos dulces» en inglés?"
+   ]
+  },
+  {
+   "emoji": "📋",
+   "en": "I have to do my homework",
+   "es": "Tengo que hacer mi tarea",
+   "examplesEn": [
+    "I can't play now. I have to do my homework.",
+    "I have to do my homework before dinner."
+   ],
+   "examplesEs": [
+    "No puedo jugar ahora. Tengo que hacer mi tarea.",
+    "Tengo que hacer mi tarea antes de la cena."
+   ],
+   "questions": [
+    "Tienes una obligación del colegio. ¿Qué dices?",
+    "¿Cómo se dice «Tengo que hacer mi tarea» en inglés?"
+   ]
+  },
+  {
+   "emoji": "👕",
+   "en": "We have to wear a uniform",
+   "es": "Tenemos que usar uniforme",
+   "examplesEn": [
+    "At my school, we have to wear a uniform.",
+    "We have to wear a uniform on Mondays."
+   ],
+   "examplesEs": [
+    "En mi colegio tenemos que usar uniforme.",
+    "Los lunes tenemos que usar uniforme."
+   ],
+   "questions": [
+    "Explicas una regla de tu colegio sobre la ropa. ¿Qué dices?",
+    "¿Cómo se dice «Tenemos que usar uniforme» en inglés?"
+   ]
+  },
+  {
+   "emoji": "😌",
+   "en": "You don't have to come",
+   "es": "No tienes que venir",
+   "examplesEn": [
+    "It's OK. You don't have to come.",
+    "You don't have to come early tomorrow."
+   ],
+   "examplesEs": [
+    "Está bien. No tienes que venir.",
+    "Mañana no tienes que venir temprano."
+   ],
+   "questions": [
+    "Le dices a alguien que venir NO es obligatorio. ¿Qué dices?",
+    "¿Cómo se dice «No tienes que venir» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🪟",
+   "en": "Can I open the window?",
+   "es": "¿Puedo abrir la ventana?",
+   "examplesEn": [
+    "It's hot. Can I open the window?",
+    "Teacher, can I open the window?"
+   ],
+   "examplesEs": [
+    "Hace calor. ¿Puedo abrir la ventana?",
+    "Profesora, ¿puedo abrir la ventana?"
+   ],
+   "questions": [
+    "Pides permiso porque hace calor en el salón. ¿Qué preguntas?",
+    "Significa: ¿Puedo abrir la ventana? ¿Cuál es la frase en inglés?"
+   ]
+  }
+ ],
+ "total": 10,
+ "pass": 0.8
+};
         </script>
+        <script src="assets/mk-ingles.js?v=1"></script>
 
         <script>
             // Registrar Service Worker (PWA)

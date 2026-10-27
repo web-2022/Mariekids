@@ -501,6 +501,7 @@
                 margin: 0;
             }
         </style>
+        <link rel="stylesheet" href="assets/mk-ingles.css?v=1">
     </head>
 
     <body>
@@ -537,7 +538,7 @@
             <!-- ================== INGLÉS ================== -->
             <section class="section active" id="courseEnglish">
                 <h1>B2 · Semana 6: Escuchar y tomar notas</h1>
-                <p class="subtitle">Lee la situación, toca 🔊 para escuchar y elige la frase correcta en inglés. 🗒️</p>
+                <p class="subtitle">Practica con ejercicios variados. 👆 Toca cualquier palabra en inglés para escuchar cómo se pronuncia. 🗒️</p>
 
                 <div class="status-bar">
                     <div class="xp">✅ Correctas: <span id="xpValue">0</span></div>
@@ -554,26 +555,10 @@
                     </div>
                 </div>
 
-                <div class="card" id="lessonCard">
-                    <div class="emoji-container">
-                        <div class="emoji" id="emoji">🛋️</div>
-                        <button class="speak-btn" aria-label="Escuchar pronunciación" onclick="speakWord()">🔊</button>
-                    </div>
-
-                    <div class="word" id="wordEn">sofa</div>
-                    <div class="translation" id="wordEs">sofá</div>
-
-                    <p class="example-en"><span class="label">Inglés:</span> <span id="exampleEn">This is a sofa.</span></p>
-                    <p class="example-es"><span class="label">Español:</span> <span id="exampleEs">Este es un sofá.</span></p>
-
-                    <p class="question" id="question">What is this?</p>
-
-                    <div class="options" id="optionsContainer"></div>
-                    <div class="feedback" id="feedback"></div>
-                </div>
+                <div class="card" id="lessonCard"></div>
 
                 <div class="controls">
-                    <button class="main-btn" onclick="nextLesson()">Next</button>
+                    <button class="main-btn" onclick="goHome()">⬅ Ruta de Inglés</button>
                     <button class="main-btn" onclick="shareApp()">📤 Compartir app</button>
                 </div>
             </section>
@@ -593,367 +578,184 @@
         </script>
 
         <script>
-            // ====== INGLÉS ======
-            const itemsData = [
-              {
-                "emoji": "🔑",
-                "en": "The key point is",
-                "es": "El punto clave es",
-                "examplesEn": [
-                  "The key point is that we need more data.",
-                  "The key point is the cost."
-                ],
-                "examplesEs": [
-                  "El punto clave es que necesitamos más datos.",
-                  "El punto clave es el costo."
-                ],
-                "questions": [
-                  "Resaltas lo más importante del audio. ¿Qué dices?",
-                  "¿Cómo se dice «El punto clave es» en inglés?"
-                ]
-              },
-              {
-                "emoji": "📝",
-                "en": "Let me take notes",
-                "es": "Déjame tomar notas",
-                "examplesEn": [
-                  "Wait, let me take notes.",
-                  "This is important. Let me take notes."
-                ],
-                "examplesEs": [
-                  "Espera, déjame tomar notas.",
-                  "Esto es importante. Déjame tomar notas."
-                ],
-                "questions": [
-                  "Quieres escribir lo que se dice. ¿Qué dices?",
-                  "¿Cómo se dice «Déjame tomar notas» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🎧",
-                "en": "The speaker argues that",
-                "es": "El hablante sostiene que",
-                "examplesEn": [
-                  "The speaker argues that cities need more trees.",
-                  "The speaker argues that exams are outdated."
-                ],
-                "examplesEs": [
-                  "El hablante sostiene que las ciudades necesitan más árboles.",
-                  "El hablante sostiene que los exámenes son obsoletos."
-                ],
-                "questions": [
-                  "Reportas la POSTURA del hablante. ¿Qué dices?",
-                  "¿Cómo se dice «El hablante sostiene que» en inglés?"
-                ]
-              },
-              {
-                "emoji": "📊",
-                "en": "According to the speaker",
-                "es": "Según el hablante",
-                "examplesEn": [
-                  "According to the speaker, sales doubled.",
-                  "According to the speaker, it's not safe."
-                ],
-                "examplesEs": [
-                  "Según el hablante, las ventas se duplicaron.",
-                  "Según el hablante, no es seguro."
-                ],
-                "questions": [
-                  "Citas información del audio. ¿Cómo empiezas?",
-                  "¿Cómo se dice «Según el hablante» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🔁",
-                "en": "In other words",
-                "es": "En otras palabras",
-                "examplesEn": [
-                  "In other words, we have no money.",
-                  "It's obsolete — in other words, it's old."
-                ],
-                "examplesEs": [
-                  "En otras palabras, no tenemos dinero.",
-                  "Es obsoleto; en otras palabras, es viejo."
-                ],
-                "questions": [
-                  "Reformulas una idea de forma más simple. ¿Qué usas?",
-                  "¿Cómo se dice «En otras palabras» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🧾",
-                "en": "To summarize",
-                "es": "Para resumir",
-                "examplesEn": [
-                  "To summarize, there were three main ideas.",
-                  "To summarize, the talk was about health."
-                ],
-                "examplesEs": [
-                  "Para resumir, hubo tres ideas principales.",
-                  "Para resumir, la charla fue sobre salud."
-                ],
-                "questions": [
-                  "Empiezas tu resumen oral del audio. ¿Qué dices?",
-                  "¿Cómo se dice «Para resumir» en inglés?"
-                ]
-              },
-              {
-                "emoji": "⭐",
-                "en": "The most important thing is",
-                "es": "Lo más importante es",
-                "examplesEn": [
-                  "The most important thing is to stay calm.",
-                  "The most important thing is the main idea."
-                ],
-                "examplesEs": [
-                  "Lo más importante es mantener la calma.",
-                  "Lo más importante es la idea principal."
-                ],
-                "questions": [
-                  "Destacas una prioridad. ¿Qué dices?",
-                  "¿Cómo se dice «Lo más importante es» en inglés?"
-                ]
-              },
-              {
-                "emoji": "📌",
-                "en": "It's worth mentioning",
-                "es": "Vale la pena mencionar",
-                "examplesEn": [
-                  "It's worth mentioning that it's free.",
-                  "It's worth mentioning the speaker's examples."
-                ],
-                "examplesEs": [
-                  "Vale la pena mencionar que es gratis.",
-                  "Vale la pena mencionar los ejemplos del hablante."
-                ],
-                "questions": [
-                  "Agregas un detalle relevante. ¿Qué dices?",
-                  "¿Cómo se dice «Vale la pena mencionar» en inglés?"
-                ]
-              },
-              {
-                "emoji": "❓",
-                "en": "It wasn't clear whether",
-                "es": "No quedó claro si",
-                "examplesEn": [
-                  "It wasn't clear whether the event was cancelled.",
-                  "It wasn't clear whether he agreed."
-                ],
-                "examplesEs": [
-                  "No quedó claro si el evento se canceló.",
-                  "No quedó claro si él estaba de acuerdo."
-                ],
-                "questions": [
-                  "Señalas una duda que dejó el audio. ¿Qué dices?",
-                  "¿Cómo se dice «No quedó claro si» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🔗",
-                "en": "This is related to",
-                "es": "Esto está relacionado con",
-                "examplesEn": [
-                  "This is related to what we heard yesterday.",
-                  "This is related to climate change."
-                ],
-                "examplesEs": [
-                  "Esto está relacionado con lo que escuchamos ayer.",
-                  "Esto está relacionado con el cambio climático."
-                ],
-                "questions": [
-                  "Conectas dos ideas en tus notas. ¿Qué dices?",
-                  "¿Cómo se dice «Esto está relacionado con» en inglés?"
-                ]
-              }
-            ];
-
-            let currentItem = null;
-            let correctCount = 0;
-            let wrongCount = 0;
-            let answeredCorrectly = false;
-
-            let progress = 0;
-            const maxProgress = 10;
-
-            const correctSpan = document.getElementById("xpValue");
-            const wrongSpan = document.getElementById("heartsValue");
-            const feedbackEl = document.getElementById("feedback");
-            const lessonCard = document.getElementById("lessonCard");
-            const progressBar = document.getElementById("progressBar");
-            const progressText = document.getElementById("progressText");
-
-            const soundCorrect = document.getElementById("sound-correct");
-            const soundWrong = document.getElementById("sound-wrong");
-            const soundLevelup = document.getElementById("sound-levelup");
-
-            function updateProgressBar() {
-                const percent = (progress / maxProgress) * 100;
-                progressBar.style.width = percent + "%";
-                progressText.textContent = `${progress}/${maxProgress}`;
-            }
-
-            function getRandomItem() {
-                return itemsData[Math.floor(Math.random() * itemsData.length)];
-            }
-            function randomFromArray(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
-
-            function generateLesson() {
-                const item = getRandomItem();
-                const idx = Math.floor(Math.random() * item.examplesEn.length);
-                return {
-                    data: item,
-                    emoji: item.emoji,
-                    word: item.en,
-                    translation: item.es,
-                    exampleEn: item.examplesEn[idx],
-                    exampleEs: item.examplesEs[idx],
-                    question: randomFromArray(item.questions)
-                };
-            }
-
-            function renderLesson() {
-                answeredCorrectly = false;
-                const lesson = generateLesson();
-                currentItem = lesson.data;
-
-                document.getElementById("emoji").textContent = lesson.emoji;
-                document.getElementById("wordEn").textContent = "❓ ❓ ❓";
-                document.getElementById("wordEn").dataset.answer = lesson.word;
-                document.getElementById("exampleEn").parentElement.style.visibility = "hidden";
-                document.getElementById("wordEs").textContent = lesson.translation;
-                document.getElementById("exampleEn").textContent = lesson.exampleEn;
-                document.getElementById("exampleEs").textContent = lesson.exampleEs;
-                document.getElementById("question").textContent = lesson.question;
-
-                feedbackEl.textContent = "";
-                feedbackEl.classList.remove("good", "bad");
-                lessonCard.classList.remove("correct", "wrong");
-
-                createOptions();
-            }
-
-            function createOptions() {
-                const container = document.getElementById("optionsContainer");
-                container.innerHTML = "";
-
-                const correct = currentItem;
-                const others = itemsData.filter(i => i.en !== correct.en);
-                shuffleArray(others);
-
-                const options = [correct.en, others[0].en, others[1].en];
-                shuffleArray(options);
-
-                options.forEach(optionText => {
-                    const btn = document.createElement("button");
-                    btn.textContent = optionText;
-                    btn.className = "option-btn";
-                    btn.onclick = () => checkAnswer(optionText, btn);
-                    container.appendChild(btn);
-                });
-            }
-
-            function speakFeedbackCorrect() {
-                const phrases = ["Great job!", "Awesome!", "Perfect!", "Nice work!"];
-                speakText(randomFromArray(phrases));
-            }
-            function speakFeedbackWrong() {
-                const phrases = ["Not yet, try again.", "Almost, try again.", "Keep trying.", "Don't give up."];
-                speakText(randomFromArray(phrases));
-            }
-
-            function speakText(text) {
-                if (!("speechSynthesis" in window)) return;
-                const utter = new SpeechSynthesisUtterance(text);
-                utter.lang = "en-US";
-                utter.rate = 0.95;
-                utter.pitch = 1.02;
-                window.speechSynthesis.cancel();
-                window.speechSynthesis.speak(utter);
-            }
-
-            function checkAnswer(answer, clickedBtn) {
-                if (!currentItem) return;
-                if (answeredCorrectly) return;
-
-                if (answer === currentItem.en) {
-                    answeredCorrectly = true;
-                    document.getElementById("wordEn").textContent = currentItem.en;
-                    document.getElementById("exampleEn").parentElement.style.visibility = "visible";
-
-                    correctCount++;
-                    correctSpan.textContent = correctCount;
-
-                    if (progress < maxProgress) {
-                        progress += 1;
-                        updateProgressBar();
-                    }
-
-                    feedbackEl.textContent = randomFromArray(["✅ Great job!", "✅ Awesome!", "✅ Perfect!", "✅ Nice!"]);
-                    feedbackEl.classList.remove("bad");
-                    feedbackEl.classList.add("good");
-
-                    playSound(soundCorrect);
-                    speakFeedbackCorrect();
-
-                    lessonCard.classList.remove("wrong");
-                    lessonCard.classList.add("correct");
-
-                    document.querySelectorAll(".option-btn").forEach(b => { b.disabled = true; });
-
-                    if (correctCount > 0 && correctCount % 5 === 0) playSound(soundLevelup);
-
-                    if (progress >= maxProgress) {
-                        try { localStorage.setItem("mk_topic_" + location.pathname.split("/").pop().replace(/\.html$/i, "") + "_complete", "true"); } catch (e) { }
-                        feedbackEl.textContent = "🎉 Lesson complete! Keep practicing.";
-                        feedbackEl.classList.add("good");
-                        playSound(soundLevelup);
-                    }
-                } else {
-                    wrongCount++;
-                    wrongSpan.textContent = wrongCount;
-
-                    feedbackEl.textContent = `❌ Not yet. Try again.`;
-                    feedbackEl.classList.remove("good");
-                    feedbackEl.classList.add("bad");
-
-                    playSound(soundWrong);
-                    speakFeedbackWrong();
-
-                    lessonCard.classList.remove("correct");
-                    lessonCard.classList.add("wrong");
-
-                    if (clickedBtn) clickedBtn.disabled = true;
-                }
-            }
-
-            function shuffleArray(arr) {
-                for (let i = arr.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [arr[i], arr[j]] = [arr[j], arr[i]];
-                }
-            }
-
-            function nextLesson() { renderLesson(); }
-
-            function speakWord() {
-                const word = document.getElementById("wordEn").dataset.answer || document.getElementById("wordEn").textContent;
-                if (!("speechSynthesis" in window)) return;
-                const utter = new SpeechSynthesisUtterance(word);
-                utter.lang = "en-US";
-                utter.rate = 0.9;
-                window.speechSynthesis.cancel();
-                window.speechSynthesis.speak(utter);
-            }
-
-            function playSound(audioElement) {
-                if (!audioElement) return;
-                audioElement.currentTime = 0;
-                audioElement.play().catch(() => { });
-            }
-
-            updateProgressBar();
-            renderLesson();
+            window.MK_LESSON = {
+ "items": [
+  {
+   "emoji": "🔑",
+   "en": "The key point is",
+   "es": "El punto clave es",
+   "examplesEn": [
+    "The key point is that we need more data.",
+    "The key point is the cost."
+   ],
+   "examplesEs": [
+    "El punto clave es que necesitamos más datos.",
+    "El punto clave es el costo."
+   ],
+   "questions": [
+    "Resaltas lo más importante del audio. ¿Qué dices?",
+    "¿Cómo se dice «El punto clave es» en inglés?"
+   ]
+  },
+  {
+   "emoji": "📝",
+   "en": "Let me take notes",
+   "es": "Déjame tomar notas",
+   "examplesEn": [
+    "Wait, let me take notes.",
+    "This is important. Let me take notes."
+   ],
+   "examplesEs": [
+    "Espera, déjame tomar notas.",
+    "Esto es importante. Déjame tomar notas."
+   ],
+   "questions": [
+    "Quieres escribir lo que se dice. ¿Qué dices?",
+    "¿Cómo se dice «Déjame tomar notas» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🎧",
+   "en": "The speaker argues that",
+   "es": "El hablante sostiene que",
+   "examplesEn": [
+    "The speaker argues that cities need more trees.",
+    "The speaker argues that exams are outdated."
+   ],
+   "examplesEs": [
+    "El hablante sostiene que las ciudades necesitan más árboles.",
+    "El hablante sostiene que los exámenes son obsoletos."
+   ],
+   "questions": [
+    "Reportas la POSTURA del hablante. ¿Qué dices?",
+    "¿Cómo se dice «El hablante sostiene que» en inglés?"
+   ]
+  },
+  {
+   "emoji": "📊",
+   "en": "According to the speaker",
+   "es": "Según el hablante",
+   "examplesEn": [
+    "According to the speaker, sales doubled.",
+    "According to the speaker, it's not safe."
+   ],
+   "examplesEs": [
+    "Según el hablante, las ventas se duplicaron.",
+    "Según el hablante, no es seguro."
+   ],
+   "questions": [
+    "Citas información del audio. ¿Cómo empiezas?",
+    "¿Cómo se dice «Según el hablante» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🔁",
+   "en": "In other words",
+   "es": "En otras palabras",
+   "examplesEn": [
+    "In other words, we have no money.",
+    "It's obsolete — in other words, it's old."
+   ],
+   "examplesEs": [
+    "En otras palabras, no tenemos dinero.",
+    "Es obsoleto; en otras palabras, es viejo."
+   ],
+   "questions": [
+    "Reformulas una idea de forma más simple. ¿Qué usas?",
+    "¿Cómo se dice «En otras palabras» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🧾",
+   "en": "To summarize",
+   "es": "Para resumir",
+   "examplesEn": [
+    "To summarize, there were three main ideas.",
+    "To summarize, the talk was about health."
+   ],
+   "examplesEs": [
+    "Para resumir, hubo tres ideas principales.",
+    "Para resumir, la charla fue sobre salud."
+   ],
+   "questions": [
+    "Empiezas tu resumen oral del audio. ¿Qué dices?",
+    "¿Cómo se dice «Para resumir» en inglés?"
+   ]
+  },
+  {
+   "emoji": "⭐",
+   "en": "The most important thing is",
+   "es": "Lo más importante es",
+   "examplesEn": [
+    "The most important thing is to stay calm.",
+    "The most important thing is the main idea."
+   ],
+   "examplesEs": [
+    "Lo más importante es mantener la calma.",
+    "Lo más importante es la idea principal."
+   ],
+   "questions": [
+    "Destacas una prioridad. ¿Qué dices?",
+    "¿Cómo se dice «Lo más importante es» en inglés?"
+   ]
+  },
+  {
+   "emoji": "📌",
+   "en": "It's worth mentioning",
+   "es": "Vale la pena mencionar",
+   "examplesEn": [
+    "It's worth mentioning that it's free.",
+    "It's worth mentioning the speaker's examples."
+   ],
+   "examplesEs": [
+    "Vale la pena mencionar que es gratis.",
+    "Vale la pena mencionar los ejemplos del hablante."
+   ],
+   "questions": [
+    "Agregas un detalle relevante. ¿Qué dices?",
+    "¿Cómo se dice «Vale la pena mencionar» en inglés?"
+   ]
+  },
+  {
+   "emoji": "❓",
+   "en": "It wasn't clear whether",
+   "es": "No quedó claro si",
+   "examplesEn": [
+    "It wasn't clear whether the event was cancelled.",
+    "It wasn't clear whether he agreed."
+   ],
+   "examplesEs": [
+    "No quedó claro si el evento se canceló.",
+    "No quedó claro si él estaba de acuerdo."
+   ],
+   "questions": [
+    "Señalas una duda que dejó el audio. ¿Qué dices?",
+    "¿Cómo se dice «No quedó claro si» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🔗",
+   "en": "This is related to",
+   "es": "Esto está relacionado con",
+   "examplesEn": [
+    "This is related to what we heard yesterday.",
+    "This is related to climate change."
+   ],
+   "examplesEs": [
+    "Esto está relacionado con lo que escuchamos ayer.",
+    "Esto está relacionado con el cambio climático."
+   ],
+   "questions": [
+    "Conectas dos ideas en tus notas. ¿Qué dices?",
+    "¿Cómo se dice «Esto está relacionado con» en inglés?"
+   ]
+  }
+ ],
+ "total": 10,
+ "pass": 0.8
+};
         </script>
+        <script src="assets/mk-ingles.js?v=1"></script>
 
         <script>
             // Registrar Service Worker (PWA)

@@ -501,6 +501,7 @@
                 margin: 0;
             }
         </style>
+        <link rel="stylesheet" href="assets/mk-ingles.css?v=1">
     </head>
 
     <body>
@@ -537,7 +538,7 @@
             <!-- ================== INGLÉS ================== -->
             <section class="section active" id="courseEnglish">
                 <h1>C2 · Semana 3: Pragmática, tacto y diplomacia</h1>
-                <p class="subtitle">Lee la situación, toca 🔊 para escuchar y elige la frase correcta en inglés. 🕊️</p>
+                <p class="subtitle">Practica con ejercicios variados. 👆 Toca cualquier palabra en inglés para escuchar cómo se pronuncia. 🕊️</p>
 
                 <div class="status-bar">
                     <div class="xp">✅ Correctas: <span id="xpValue">0</span></div>
@@ -554,26 +555,10 @@
                     </div>
                 </div>
 
-                <div class="card" id="lessonCard">
-                    <div class="emoji-container">
-                        <div class="emoji" id="emoji">🛋️</div>
-                        <button class="speak-btn" aria-label="Escuchar pronunciación" onclick="speakWord()">🔊</button>
-                    </div>
-
-                    <div class="word" id="wordEn">sofa</div>
-                    <div class="translation" id="wordEs">sofá</div>
-
-                    <p class="example-en"><span class="label">Inglés:</span> <span id="exampleEn">This is a sofa.</span></p>
-                    <p class="example-es"><span class="label">Español:</span> <span id="exampleEs">Este es un sofá.</span></p>
-
-                    <p class="question" id="question">What is this?</p>
-
-                    <div class="options" id="optionsContainer"></div>
-                    <div class="feedback" id="feedback"></div>
-                </div>
+                <div class="card" id="lessonCard"></div>
 
                 <div class="controls">
-                    <button class="main-btn" onclick="nextLesson()">Next</button>
+                    <button class="main-btn" onclick="goHome()">⬅ Ruta de Inglés</button>
                     <button class="main-btn" onclick="shareApp()">📤 Compartir app</button>
                 </div>
             </section>
@@ -593,367 +578,184 @@
         </script>
 
         <script>
-            // ====== INGLÉS ======
-            const itemsData = [
-              {
-                "emoji": "🕊️",
-                "en": "I was wondering if",
-                "es": "Me preguntaba si",
-                "examplesEn": [
-                  "I was wondering if you could help me.",
-                  "I was wondering if we could meet on Friday."
-                ],
-                "examplesEs": [
-                  "Me preguntaba si podrías ayudarme.",
-                  "Me preguntaba si podríamos reunirnos el viernes."
-                ],
-                "questions": [
-                  "Haces una petición MUY indirecta y cortés. ¿Cómo empiezas?",
-                  "¿Cómo se dice «Me preguntaba si» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🤝",
-                "en": "Would you mind if I",
-                "es": "¿Le molestaría si yo",
-                "examplesEn": [
-                  "Would you mind if I opened the window?",
-                  "Would you mind if I left a bit early?"
-                ],
-                "examplesEs": [
-                  "¿Le molestaría si abro la ventana?",
-                  "¿Le molestaría si me voy un poco antes?"
-                ],
-                "questions": [
-                  "Pides permiso con mucho tacto. ¿Qué dices?",
-                  "Significa: ¿Le molestaría si yo ¿Cuál es la frase en inglés?"
-                ]
-              },
-              {
-                "emoji": "🌫️",
-                "en": "I'm not sure that's entirely accurate",
-                "es": "No estoy seguro de que sea del todo exacto",
-                "examplesEn": [
-                  "I'm not sure that's entirely accurate, actually.",
-                  "With respect, I'm not sure that's entirely accurate."
-                ],
-                "examplesEs": [
-                  "En realidad, no estoy seguro de que sea del todo exacto.",
-                  "Con respeto, no estoy seguro de que sea del todo exacto."
-                ],
-                "questions": [
-                  "Corriges a alguien SIN decir «you're wrong». ¿Qué dices?",
-                  "¿Cómo se dice «No estoy seguro de que sea del todo exacto» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🧊",
-                "en": "Let's agree to disagree",
-                "es": "Aceptemos que no estamos de acuerdo",
-                "examplesEn": [
-                  "We won't solve this today. Let's agree to disagree.",
-                  "Fine, let's agree to disagree."
-                ],
-                "examplesEs": [
-                  "No lo resolveremos hoy. Aceptemos que no coincidimos.",
-                  "Está bien, aceptemos que pensamos distinto."
-                ],
-                "questions": [
-                  "Cierras una discusión sin pelear. ¿Qué dices?",
-                  "¿Cómo se dice «Aceptemos que no estamos de acuerdo» en inglés?"
-                ]
-              },
-              {
-                "emoji": "💐",
-                "en": "I appreciate your feedback",
-                "es": "Agradezco tus comentarios",
-                "examplesEn": [
-                  "I appreciate your feedback; it's very helpful.",
-                  "Thank you. I appreciate your feedback."
-                ],
-                "examplesEs": [
-                  "Agradezco tus comentarios; son muy útiles.",
-                  "Gracias. Agradezco tu retroalimentación."
-                ],
-                "questions": [
-                  "Respondes con elegancia a una crítica. ¿Qué dices?",
-                  "¿Cómo se dice «Agradezco tus comentarios» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🛑",
-                "en": "I'm afraid that won't be possible",
-                "es": "Me temo que no será posible",
-                "examplesEn": [
-                  "I'm afraid that won't be possible this week.",
-                  "I'm sorry, but I'm afraid that won't be possible."
-                ],
-                "examplesEs": [
-                  "Me temo que no será posible esta semana.",
-                  "Lo siento, pero me temo que no será posible."
-                ],
-                "questions": [
-                  "Dices «no» de forma diplomática. ¿Qué dices?",
-                  "¿Cómo se dice «Me temo que no será posible» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🔄",
-                "en": "Perhaps we could revisit this",
-                "es": "Quizás podríamos retomar esto",
-                "examplesEn": [
-                  "Perhaps we could revisit this next week.",
-                  "Perhaps we could revisit this when we have more data."
-                ],
-                "examplesEs": [
-                  "Quizás podríamos retomar esto la próxima semana.",
-                  "Quizás podríamos retomar esto cuando tengamos más datos."
-                ],
-                "questions": [
-                  "Pospones un tema tenso con cortesía. ¿Qué dices?",
-                  "¿Cómo se dice «Quizás podríamos retomar esto» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🫶",
-                "en": "I see where you're coming from",
-                "es": "Entiendo de dónde viene tu postura",
-                "examplesEn": [
-                  "I see where you're coming from, but consider this.",
-                  "I see where you're coming from; it's a fair point."
-                ],
-                "examplesEs": [
-                  "Entiendo tu postura, pero considera esto.",
-                  "Entiendo tu postura; es un punto justo."
-                ],
-                "questions": [
-                  "Muestras empatía con la opinión del otro. ¿Qué dices?",
-                  "¿Cómo se dice «Entiendo de dónde viene tu postura» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🧱",
-                "en": "I'd push back on that",
-                "es": "Objetaría eso",
-                "examplesEn": [
-                  "With respect, I'd push back on that.",
-                  "I'd push back on that assumption."
-                ],
-                "examplesEs": [
-                  "Con respeto, objetaría eso.",
-                  "Objetaría esa suposición."
-                ],
-                "questions": [
-                  "Te opones a una idea con firmeza, pero educadamente. ¿Qué dices?",
-                  "¿Cómo se dice «Objetaría eso» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🎁",
-                "en": "That's very generous of you",
-                "es": "Es muy generoso de tu parte",
-                "examplesEn": [
-                  "You'll cover the cost? That's very generous of you.",
-                  "Thank you, that's very generous of you."
-                ],
-                "examplesEs": [
-                  "¿Cubrirás el costo? Es muy generoso de tu parte.",
-                  "Gracias, es muy generoso de tu parte."
-                ],
-                "questions": [
-                  "Agradeces con elegancia una oferta. ¿Qué dices?",
-                  "¿Cómo se dice «Es muy generoso de tu parte» en inglés?"
-                ]
-              }
-            ];
-
-            let currentItem = null;
-            let correctCount = 0;
-            let wrongCount = 0;
-            let answeredCorrectly = false;
-
-            let progress = 0;
-            const maxProgress = 10;
-
-            const correctSpan = document.getElementById("xpValue");
-            const wrongSpan = document.getElementById("heartsValue");
-            const feedbackEl = document.getElementById("feedback");
-            const lessonCard = document.getElementById("lessonCard");
-            const progressBar = document.getElementById("progressBar");
-            const progressText = document.getElementById("progressText");
-
-            const soundCorrect = document.getElementById("sound-correct");
-            const soundWrong = document.getElementById("sound-wrong");
-            const soundLevelup = document.getElementById("sound-levelup");
-
-            function updateProgressBar() {
-                const percent = (progress / maxProgress) * 100;
-                progressBar.style.width = percent + "%";
-                progressText.textContent = `${progress}/${maxProgress}`;
-            }
-
-            function getRandomItem() {
-                return itemsData[Math.floor(Math.random() * itemsData.length)];
-            }
-            function randomFromArray(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
-
-            function generateLesson() {
-                const item = getRandomItem();
-                const idx = Math.floor(Math.random() * item.examplesEn.length);
-                return {
-                    data: item,
-                    emoji: item.emoji,
-                    word: item.en,
-                    translation: item.es,
-                    exampleEn: item.examplesEn[idx],
-                    exampleEs: item.examplesEs[idx],
-                    question: randomFromArray(item.questions)
-                };
-            }
-
-            function renderLesson() {
-                answeredCorrectly = false;
-                const lesson = generateLesson();
-                currentItem = lesson.data;
-
-                document.getElementById("emoji").textContent = lesson.emoji;
-                document.getElementById("wordEn").textContent = "❓ ❓ ❓";
-                document.getElementById("wordEn").dataset.answer = lesson.word;
-                document.getElementById("exampleEn").parentElement.style.visibility = "hidden";
-                document.getElementById("wordEs").textContent = lesson.translation;
-                document.getElementById("exampleEn").textContent = lesson.exampleEn;
-                document.getElementById("exampleEs").textContent = lesson.exampleEs;
-                document.getElementById("question").textContent = lesson.question;
-
-                feedbackEl.textContent = "";
-                feedbackEl.classList.remove("good", "bad");
-                lessonCard.classList.remove("correct", "wrong");
-
-                createOptions();
-            }
-
-            function createOptions() {
-                const container = document.getElementById("optionsContainer");
-                container.innerHTML = "";
-
-                const correct = currentItem;
-                const others = itemsData.filter(i => i.en !== correct.en);
-                shuffleArray(others);
-
-                const options = [correct.en, others[0].en, others[1].en];
-                shuffleArray(options);
-
-                options.forEach(optionText => {
-                    const btn = document.createElement("button");
-                    btn.textContent = optionText;
-                    btn.className = "option-btn";
-                    btn.onclick = () => checkAnswer(optionText, btn);
-                    container.appendChild(btn);
-                });
-            }
-
-            function speakFeedbackCorrect() {
-                const phrases = ["Great job!", "Awesome!", "Perfect!", "Nice work!"];
-                speakText(randomFromArray(phrases));
-            }
-            function speakFeedbackWrong() {
-                const phrases = ["Not yet, try again.", "Almost, try again.", "Keep trying.", "Don't give up."];
-                speakText(randomFromArray(phrases));
-            }
-
-            function speakText(text) {
-                if (!("speechSynthesis" in window)) return;
-                const utter = new SpeechSynthesisUtterance(text);
-                utter.lang = "en-US";
-                utter.rate = 0.95;
-                utter.pitch = 1.02;
-                window.speechSynthesis.cancel();
-                window.speechSynthesis.speak(utter);
-            }
-
-            function checkAnswer(answer, clickedBtn) {
-                if (!currentItem) return;
-                if (answeredCorrectly) return;
-
-                if (answer === currentItem.en) {
-                    answeredCorrectly = true;
-                    document.getElementById("wordEn").textContent = currentItem.en;
-                    document.getElementById("exampleEn").parentElement.style.visibility = "visible";
-
-                    correctCount++;
-                    correctSpan.textContent = correctCount;
-
-                    if (progress < maxProgress) {
-                        progress += 1;
-                        updateProgressBar();
-                    }
-
-                    feedbackEl.textContent = randomFromArray(["✅ Great job!", "✅ Awesome!", "✅ Perfect!", "✅ Nice!"]);
-                    feedbackEl.classList.remove("bad");
-                    feedbackEl.classList.add("good");
-
-                    playSound(soundCorrect);
-                    speakFeedbackCorrect();
-
-                    lessonCard.classList.remove("wrong");
-                    lessonCard.classList.add("correct");
-
-                    document.querySelectorAll(".option-btn").forEach(b => { b.disabled = true; });
-
-                    if (correctCount > 0 && correctCount % 5 === 0) playSound(soundLevelup);
-
-                    if (progress >= maxProgress) {
-                        try { localStorage.setItem("mk_topic_" + location.pathname.split("/").pop().replace(/\.html$/i, "") + "_complete", "true"); } catch (e) { }
-                        feedbackEl.textContent = "🎉 Lesson complete! Keep practicing.";
-                        feedbackEl.classList.add("good");
-                        playSound(soundLevelup);
-                    }
-                } else {
-                    wrongCount++;
-                    wrongSpan.textContent = wrongCount;
-
-                    feedbackEl.textContent = `❌ Not yet. Try again.`;
-                    feedbackEl.classList.remove("good");
-                    feedbackEl.classList.add("bad");
-
-                    playSound(soundWrong);
-                    speakFeedbackWrong();
-
-                    lessonCard.classList.remove("correct");
-                    lessonCard.classList.add("wrong");
-
-                    if (clickedBtn) clickedBtn.disabled = true;
-                }
-            }
-
-            function shuffleArray(arr) {
-                for (let i = arr.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [arr[i], arr[j]] = [arr[j], arr[i]];
-                }
-            }
-
-            function nextLesson() { renderLesson(); }
-
-            function speakWord() {
-                const word = document.getElementById("wordEn").dataset.answer || document.getElementById("wordEn").textContent;
-                if (!("speechSynthesis" in window)) return;
-                const utter = new SpeechSynthesisUtterance(word);
-                utter.lang = "en-US";
-                utter.rate = 0.9;
-                window.speechSynthesis.cancel();
-                window.speechSynthesis.speak(utter);
-            }
-
-            function playSound(audioElement) {
-                if (!audioElement) return;
-                audioElement.currentTime = 0;
-                audioElement.play().catch(() => { });
-            }
-
-            updateProgressBar();
-            renderLesson();
+            window.MK_LESSON = {
+ "items": [
+  {
+   "emoji": "🕊️",
+   "en": "I was wondering if",
+   "es": "Me preguntaba si",
+   "examplesEn": [
+    "I was wondering if you could help me.",
+    "I was wondering if we could meet on Friday."
+   ],
+   "examplesEs": [
+    "Me preguntaba si podrías ayudarme.",
+    "Me preguntaba si podríamos reunirnos el viernes."
+   ],
+   "questions": [
+    "Haces una petición MUY indirecta y cortés. ¿Cómo empiezas?",
+    "¿Cómo se dice «Me preguntaba si» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🤝",
+   "en": "Would you mind if I",
+   "es": "¿Le molestaría si yo",
+   "examplesEn": [
+    "Would you mind if I opened the window?",
+    "Would you mind if I left a bit early?"
+   ],
+   "examplesEs": [
+    "¿Le molestaría si abro la ventana?",
+    "¿Le molestaría si me voy un poco antes?"
+   ],
+   "questions": [
+    "Pides permiso con mucho tacto. ¿Qué dices?",
+    "Significa: ¿Le molestaría si yo ¿Cuál es la frase en inglés?"
+   ]
+  },
+  {
+   "emoji": "🌫️",
+   "en": "I'm not sure that's entirely accurate",
+   "es": "No estoy seguro de que sea del todo exacto",
+   "examplesEn": [
+    "I'm not sure that's entirely accurate, actually.",
+    "With respect, I'm not sure that's entirely accurate."
+   ],
+   "examplesEs": [
+    "En realidad, no estoy seguro de que sea del todo exacto.",
+    "Con respeto, no estoy seguro de que sea del todo exacto."
+   ],
+   "questions": [
+    "Corriges a alguien SIN decir «you're wrong». ¿Qué dices?",
+    "¿Cómo se dice «No estoy seguro de que sea del todo exacto» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🧊",
+   "en": "Let's agree to disagree",
+   "es": "Aceptemos que no estamos de acuerdo",
+   "examplesEn": [
+    "We won't solve this today. Let's agree to disagree.",
+    "Fine, let's agree to disagree."
+   ],
+   "examplesEs": [
+    "No lo resolveremos hoy. Aceptemos que no coincidimos.",
+    "Está bien, aceptemos que pensamos distinto."
+   ],
+   "questions": [
+    "Cierras una discusión sin pelear. ¿Qué dices?",
+    "¿Cómo se dice «Aceptemos que no estamos de acuerdo» en inglés?"
+   ]
+  },
+  {
+   "emoji": "💐",
+   "en": "I appreciate your feedback",
+   "es": "Agradezco tus comentarios",
+   "examplesEn": [
+    "I appreciate your feedback; it's very helpful.",
+    "Thank you. I appreciate your feedback."
+   ],
+   "examplesEs": [
+    "Agradezco tus comentarios; son muy útiles.",
+    "Gracias. Agradezco tu retroalimentación."
+   ],
+   "questions": [
+    "Respondes con elegancia a una crítica. ¿Qué dices?",
+    "¿Cómo se dice «Agradezco tus comentarios» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🛑",
+   "en": "I'm afraid that won't be possible",
+   "es": "Me temo que no será posible",
+   "examplesEn": [
+    "I'm afraid that won't be possible this week.",
+    "I'm sorry, but I'm afraid that won't be possible."
+   ],
+   "examplesEs": [
+    "Me temo que no será posible esta semana.",
+    "Lo siento, pero me temo que no será posible."
+   ],
+   "questions": [
+    "Dices «no» de forma diplomática. ¿Qué dices?",
+    "¿Cómo se dice «Me temo que no será posible» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🔄",
+   "en": "Perhaps we could revisit this",
+   "es": "Quizás podríamos retomar esto",
+   "examplesEn": [
+    "Perhaps we could revisit this next week.",
+    "Perhaps we could revisit this when we have more data."
+   ],
+   "examplesEs": [
+    "Quizás podríamos retomar esto la próxima semana.",
+    "Quizás podríamos retomar esto cuando tengamos más datos."
+   ],
+   "questions": [
+    "Pospones un tema tenso con cortesía. ¿Qué dices?",
+    "¿Cómo se dice «Quizás podríamos retomar esto» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🫶",
+   "en": "I see where you're coming from",
+   "es": "Entiendo de dónde viene tu postura",
+   "examplesEn": [
+    "I see where you're coming from, but consider this.",
+    "I see where you're coming from; it's a fair point."
+   ],
+   "examplesEs": [
+    "Entiendo tu postura, pero considera esto.",
+    "Entiendo tu postura; es un punto justo."
+   ],
+   "questions": [
+    "Muestras empatía con la opinión del otro. ¿Qué dices?",
+    "¿Cómo se dice «Entiendo de dónde viene tu postura» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🧱",
+   "en": "I'd push back on that",
+   "es": "Objetaría eso",
+   "examplesEn": [
+    "With respect, I'd push back on that.",
+    "I'd push back on that assumption."
+   ],
+   "examplesEs": [
+    "Con respeto, objetaría eso.",
+    "Objetaría esa suposición."
+   ],
+   "questions": [
+    "Te opones a una idea con firmeza, pero educadamente. ¿Qué dices?",
+    "¿Cómo se dice «Objetaría eso» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🎁",
+   "en": "That's very generous of you",
+   "es": "Es muy generoso de tu parte",
+   "examplesEn": [
+    "You'll cover the cost? That's very generous of you.",
+    "Thank you, that's very generous of you."
+   ],
+   "examplesEs": [
+    "¿Cubrirás el costo? Es muy generoso de tu parte.",
+    "Gracias, es muy generoso de tu parte."
+   ],
+   "questions": [
+    "Agradeces con elegancia una oferta. ¿Qué dices?",
+    "¿Cómo se dice «Es muy generoso de tu parte» en inglés?"
+   ]
+  }
+ ],
+ "total": 10,
+ "pass": 0.8
+};
         </script>
+        <script src="assets/mk-ingles.js?v=1"></script>
 
         <script>
             // Registrar Service Worker (PWA)

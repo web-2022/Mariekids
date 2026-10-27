@@ -501,6 +501,7 @@
                 margin: 0;
             }
         </style>
+        <link rel="stylesheet" href="assets/mk-ingles.css?v=1">
     </head>
 
     <body>
@@ -537,7 +538,7 @@
             <!-- ================== INGLÉS ================== -->
             <section class="section active" id="courseEnglish">
                 <h1>A2 · Semana 7: Escuchar, hablar y describir imágenes</h1>
-                <p class="subtitle">Lee la situación, toca 🔊 para escuchar y elige la frase correcta en inglés. 🖼️</p>
+                <p class="subtitle">Practica con ejercicios variados. 👆 Toca cualquier palabra en inglés para escuchar cómo se pronuncia. 🖼️</p>
 
                 <div class="status-bar">
                     <div class="xp">✅ Correctas: <span id="xpValue">0</span></div>
@@ -554,26 +555,10 @@
                     </div>
                 </div>
 
-                <div class="card" id="lessonCard">
-                    <div class="emoji-container">
-                        <div class="emoji" id="emoji">🛋️</div>
-                        <button class="speak-btn" aria-label="Escuchar pronunciación" onclick="speakWord()">🔊</button>
-                    </div>
-
-                    <div class="word" id="wordEn">sofa</div>
-                    <div class="translation" id="wordEs">sofá</div>
-
-                    <p class="example-en"><span class="label">Inglés:</span> <span id="exampleEn">This is a sofa.</span></p>
-                    <p class="example-es"><span class="label">Español:</span> <span id="exampleEs">Este es un sofá.</span></p>
-
-                    <p class="question" id="question">What is this?</p>
-
-                    <div class="options" id="optionsContainer"></div>
-                    <div class="feedback" id="feedback"></div>
-                </div>
+                <div class="card" id="lessonCard"></div>
 
                 <div class="controls">
-                    <button class="main-btn" onclick="nextLesson()">Next</button>
+                    <button class="main-btn" onclick="goHome()">⬅ Ruta de Inglés</button>
                     <button class="main-btn" onclick="shareApp()">📤 Compartir app</button>
                 </div>
             </section>
@@ -593,367 +578,184 @@
         </script>
 
         <script>
-            // ====== INGLÉS ======
-            const itemsData = [
-              {
-                "emoji": "🖼️",
-                "en": "In this picture, I can see",
-                "es": "En esta imagen puedo ver",
-                "examplesEn": [
-                  "In this picture, I can see a family.",
-                  "In this picture, I can see two dogs."
-                ],
-                "examplesEs": [
-                  "En esta imagen puedo ver una familia.",
-                  "En esta imagen puedo ver dos perros."
-                ],
-                "questions": [
-                  "Empiezas a describir una foto. ¿Qué dices?",
-                  "¿Cómo se dice «En esta imagen puedo ver» en inglés?"
-                ]
-              },
-              {
-                "emoji": "⬅️",
-                "en": "On the left",
-                "es": "A la izquierda",
-                "examplesEn": [
-                  "On the left, there is a big tree.",
-                  "On the left, a boy is reading."
-                ],
-                "examplesEs": [
-                  "A la izquierda hay un árbol grande.",
-                  "A la izquierda, un niño está leyendo."
-                ],
-                "questions": [
-                  "Describes lo que está al lado IZQUIERDO de la foto. ¿Qué dices?",
-                  "¿Cómo se dice «A la izquierda» en inglés?"
-                ]
-              },
-              {
-                "emoji": "➡️",
-                "en": "On the right",
-                "es": "A la derecha",
-                "examplesEn": [
-                  "On the right, there is a red car.",
-                  "On the right, a girl is smiling."
-                ],
-                "examplesEs": [
-                  "A la derecha hay un auto rojo.",
-                  "A la derecha, una niña sonríe."
-                ],
-                "questions": [
-                  "Describes lo que está al lado DERECHO de la foto. ¿Qué dices?",
-                  "¿Cómo se dice «A la derecha» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🎯",
-                "en": "In the middle",
-                "es": "En el medio",
-                "examplesEn": [
-                  "In the middle, there is a table.",
-                  "In the middle of the picture, I see a cat."
-                ],
-                "examplesEs": [
-                  "En el medio hay una mesa.",
-                  "En el medio de la imagen veo un gato."
-                ],
-                "questions": [
-                  "Describes lo que está al CENTRO de la foto. ¿Qué dices?",
-                  "¿Cómo se dice «En el medio» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🏔️",
-                "en": "In the background",
-                "es": "Al fondo",
-                "examplesEn": [
-                  "In the background, there are mountains.",
-                  "In the background, I can see the sea."
-                ],
-                "examplesEs": [
-                  "Al fondo hay montañas.",
-                  "Al fondo puedo ver el mar."
-                ],
-                "questions": [
-                  "Describes lo que se ve LEJOS, detrás de todo. ¿Qué dices?",
-                  "¿Cómo se dice «Al fondo» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🤔",
-                "en": "It looks like a park",
-                "es": "Parece un parque",
-                "examplesEn": [
-                  "It looks like a park in summer.",
-                  "It looks like a park, maybe in Lima."
-                ],
-                "examplesEs": [
-                  "Parece un parque en verano.",
-                  "Parece un parque, quizás en Lima."
-                ],
-                "questions": [
-                  "No estás seguro del lugar, pero crees que es un parque. ¿Qué dices?",
-                  "¿Cómo se dice «Parece un parque» en inglés?"
-                ]
-              },
-              {
-                "emoji": "😊",
-                "en": "They look happy",
-                "es": "Se ven felices",
-                "examplesEn": [
-                  "They are laughing. They look happy.",
-                  "The children look happy."
-                ],
-                "examplesEs": [
-                  "Se están riendo. Se ven felices.",
-                  "Los niños se ven felices."
-                ],
-                "questions": [
-                  "Describes cómo se ven las personas de la foto. ¿Qué dices?",
-                  "¿Cómo se dice «Se ven felices» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🔊",
-                "en": "Could you say that again?",
-                "es": "¿Podrías decir eso otra vez?",
-                "examplesEn": [
-                  "Sorry, could you say that again?",
-                  "Could you say that again, please?"
-                ],
-                "examplesEs": [
-                  "Perdón, ¿podrías decir eso otra vez?",
-                  "¿Podrías decir eso otra vez, por favor?"
-                ],
-                "questions": [
-                  "No escuchaste bien el audio. ¿Qué pides?",
-                  "Significa: ¿Podrías decir eso otra vez? ¿Cuál es la frase en inglés?"
-                ]
-              },
-              {
-                "emoji": "🐢",
-                "en": "Could you speak more slowly?",
-                "es": "¿Podrías hablar más despacio?",
-                "examplesEn": [
-                  "Could you speak more slowly, please?",
-                  "You speak very fast. Could you speak more slowly?"
-                ],
-                "examplesEs": [
-                  "¿Podrías hablar más despacio, por favor?",
-                  "Hablas muy rápido. ¿Podrías hablar más despacio?"
-                ],
-                "questions": [
-                  "La persona habla demasiado rápido. ¿Qué pides?",
-                  "Significa: ¿Podrías hablar más despacio? ¿Cuál es la frase en inglés?"
-                ]
-              },
-              {
-                "emoji": "💬",
-                "en": "What does 'busy' mean?",
-                "es": "¿Qué significa 'busy'?",
-                "examplesEn": [
-                  "Excuse me, what does 'busy' mean?",
-                  "What does 'busy' mean? — It means 'ocupado'."
-                ],
-                "examplesEs": [
-                  "Disculpe, ¿qué significa 'busy'?",
-                  "¿Qué significa 'busy'? — Significa 'ocupado'."
-                ],
-                "questions": [
-                  "No conoces la palabra «busy». ¿Qué preguntas?",
-                  "Significa: ¿Qué significa 'busy'? ¿Cuál es la frase en inglés?"
-                ]
-              }
-            ];
-
-            let currentItem = null;
-            let correctCount = 0;
-            let wrongCount = 0;
-            let answeredCorrectly = false;
-
-            let progress = 0;
-            const maxProgress = 10;
-
-            const correctSpan = document.getElementById("xpValue");
-            const wrongSpan = document.getElementById("heartsValue");
-            const feedbackEl = document.getElementById("feedback");
-            const lessonCard = document.getElementById("lessonCard");
-            const progressBar = document.getElementById("progressBar");
-            const progressText = document.getElementById("progressText");
-
-            const soundCorrect = document.getElementById("sound-correct");
-            const soundWrong = document.getElementById("sound-wrong");
-            const soundLevelup = document.getElementById("sound-levelup");
-
-            function updateProgressBar() {
-                const percent = (progress / maxProgress) * 100;
-                progressBar.style.width = percent + "%";
-                progressText.textContent = `${progress}/${maxProgress}`;
-            }
-
-            function getRandomItem() {
-                return itemsData[Math.floor(Math.random() * itemsData.length)];
-            }
-            function randomFromArray(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
-
-            function generateLesson() {
-                const item = getRandomItem();
-                const idx = Math.floor(Math.random() * item.examplesEn.length);
-                return {
-                    data: item,
-                    emoji: item.emoji,
-                    word: item.en,
-                    translation: item.es,
-                    exampleEn: item.examplesEn[idx],
-                    exampleEs: item.examplesEs[idx],
-                    question: randomFromArray(item.questions)
-                };
-            }
-
-            function renderLesson() {
-                answeredCorrectly = false;
-                const lesson = generateLesson();
-                currentItem = lesson.data;
-
-                document.getElementById("emoji").textContent = lesson.emoji;
-                document.getElementById("wordEn").textContent = "❓ ❓ ❓";
-                document.getElementById("wordEn").dataset.answer = lesson.word;
-                document.getElementById("exampleEn").parentElement.style.visibility = "hidden";
-                document.getElementById("wordEs").textContent = lesson.translation;
-                document.getElementById("exampleEn").textContent = lesson.exampleEn;
-                document.getElementById("exampleEs").textContent = lesson.exampleEs;
-                document.getElementById("question").textContent = lesson.question;
-
-                feedbackEl.textContent = "";
-                feedbackEl.classList.remove("good", "bad");
-                lessonCard.classList.remove("correct", "wrong");
-
-                createOptions();
-            }
-
-            function createOptions() {
-                const container = document.getElementById("optionsContainer");
-                container.innerHTML = "";
-
-                const correct = currentItem;
-                const others = itemsData.filter(i => i.en !== correct.en);
-                shuffleArray(others);
-
-                const options = [correct.en, others[0].en, others[1].en];
-                shuffleArray(options);
-
-                options.forEach(optionText => {
-                    const btn = document.createElement("button");
-                    btn.textContent = optionText;
-                    btn.className = "option-btn";
-                    btn.onclick = () => checkAnswer(optionText, btn);
-                    container.appendChild(btn);
-                });
-            }
-
-            function speakFeedbackCorrect() {
-                const phrases = ["Great job!", "Awesome!", "Perfect!", "Nice work!"];
-                speakText(randomFromArray(phrases));
-            }
-            function speakFeedbackWrong() {
-                const phrases = ["Not yet, try again.", "Almost, try again.", "Keep trying.", "Don't give up."];
-                speakText(randomFromArray(phrases));
-            }
-
-            function speakText(text) {
-                if (!("speechSynthesis" in window)) return;
-                const utter = new SpeechSynthesisUtterance(text);
-                utter.lang = "en-US";
-                utter.rate = 0.95;
-                utter.pitch = 1.02;
-                window.speechSynthesis.cancel();
-                window.speechSynthesis.speak(utter);
-            }
-
-            function checkAnswer(answer, clickedBtn) {
-                if (!currentItem) return;
-                if (answeredCorrectly) return;
-
-                if (answer === currentItem.en) {
-                    answeredCorrectly = true;
-                    document.getElementById("wordEn").textContent = currentItem.en;
-                    document.getElementById("exampleEn").parentElement.style.visibility = "visible";
-
-                    correctCount++;
-                    correctSpan.textContent = correctCount;
-
-                    if (progress < maxProgress) {
-                        progress += 1;
-                        updateProgressBar();
-                    }
-
-                    feedbackEl.textContent = randomFromArray(["✅ Great job!", "✅ Awesome!", "✅ Perfect!", "✅ Nice!"]);
-                    feedbackEl.classList.remove("bad");
-                    feedbackEl.classList.add("good");
-
-                    playSound(soundCorrect);
-                    speakFeedbackCorrect();
-
-                    lessonCard.classList.remove("wrong");
-                    lessonCard.classList.add("correct");
-
-                    document.querySelectorAll(".option-btn").forEach(b => { b.disabled = true; });
-
-                    if (correctCount > 0 && correctCount % 5 === 0) playSound(soundLevelup);
-
-                    if (progress >= maxProgress) {
-                        try { localStorage.setItem("mk_topic_" + location.pathname.split("/").pop().replace(/\.html$/i, "") + "_complete", "true"); } catch (e) { }
-                        feedbackEl.textContent = "🎉 Lesson complete! Keep practicing.";
-                        feedbackEl.classList.add("good");
-                        playSound(soundLevelup);
-                    }
-                } else {
-                    wrongCount++;
-                    wrongSpan.textContent = wrongCount;
-
-                    feedbackEl.textContent = `❌ Not yet. Try again.`;
-                    feedbackEl.classList.remove("good");
-                    feedbackEl.classList.add("bad");
-
-                    playSound(soundWrong);
-                    speakFeedbackWrong();
-
-                    lessonCard.classList.remove("correct");
-                    lessonCard.classList.add("wrong");
-
-                    if (clickedBtn) clickedBtn.disabled = true;
-                }
-            }
-
-            function shuffleArray(arr) {
-                for (let i = arr.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [arr[i], arr[j]] = [arr[j], arr[i]];
-                }
-            }
-
-            function nextLesson() { renderLesson(); }
-
-            function speakWord() {
-                const word = document.getElementById("wordEn").dataset.answer || document.getElementById("wordEn").textContent;
-                if (!("speechSynthesis" in window)) return;
-                const utter = new SpeechSynthesisUtterance(word);
-                utter.lang = "en-US";
-                utter.rate = 0.9;
-                window.speechSynthesis.cancel();
-                window.speechSynthesis.speak(utter);
-            }
-
-            function playSound(audioElement) {
-                if (!audioElement) return;
-                audioElement.currentTime = 0;
-                audioElement.play().catch(() => { });
-            }
-
-            updateProgressBar();
-            renderLesson();
+            window.MK_LESSON = {
+ "items": [
+  {
+   "emoji": "🖼️",
+   "en": "In this picture, I can see",
+   "es": "En esta imagen puedo ver",
+   "examplesEn": [
+    "In this picture, I can see a family.",
+    "In this picture, I can see two dogs."
+   ],
+   "examplesEs": [
+    "En esta imagen puedo ver una familia.",
+    "En esta imagen puedo ver dos perros."
+   ],
+   "questions": [
+    "Empiezas a describir una foto. ¿Qué dices?",
+    "¿Cómo se dice «En esta imagen puedo ver» en inglés?"
+   ]
+  },
+  {
+   "emoji": "⬅️",
+   "en": "On the left",
+   "es": "A la izquierda",
+   "examplesEn": [
+    "On the left, there is a big tree.",
+    "On the left, a boy is reading."
+   ],
+   "examplesEs": [
+    "A la izquierda hay un árbol grande.",
+    "A la izquierda, un niño está leyendo."
+   ],
+   "questions": [
+    "Describes lo que está al lado IZQUIERDO de la foto. ¿Qué dices?",
+    "¿Cómo se dice «A la izquierda» en inglés?"
+   ]
+  },
+  {
+   "emoji": "➡️",
+   "en": "On the right",
+   "es": "A la derecha",
+   "examplesEn": [
+    "On the right, there is a red car.",
+    "On the right, a girl is smiling."
+   ],
+   "examplesEs": [
+    "A la derecha hay un auto rojo.",
+    "A la derecha, una niña sonríe."
+   ],
+   "questions": [
+    "Describes lo que está al lado DERECHO de la foto. ¿Qué dices?",
+    "¿Cómo se dice «A la derecha» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🎯",
+   "en": "In the middle",
+   "es": "En el medio",
+   "examplesEn": [
+    "In the middle, there is a table.",
+    "In the middle of the picture, I see a cat."
+   ],
+   "examplesEs": [
+    "En el medio hay una mesa.",
+    "En el medio de la imagen veo un gato."
+   ],
+   "questions": [
+    "Describes lo que está al CENTRO de la foto. ¿Qué dices?",
+    "¿Cómo se dice «En el medio» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🏔️",
+   "en": "In the background",
+   "es": "Al fondo",
+   "examplesEn": [
+    "In the background, there are mountains.",
+    "In the background, I can see the sea."
+   ],
+   "examplesEs": [
+    "Al fondo hay montañas.",
+    "Al fondo puedo ver el mar."
+   ],
+   "questions": [
+    "Describes lo que se ve LEJOS, detrás de todo. ¿Qué dices?",
+    "¿Cómo se dice «Al fondo» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🤔",
+   "en": "It looks like a park",
+   "es": "Parece un parque",
+   "examplesEn": [
+    "It looks like a park in summer.",
+    "It looks like a park, maybe in Lima."
+   ],
+   "examplesEs": [
+    "Parece un parque en verano.",
+    "Parece un parque, quizás en Lima."
+   ],
+   "questions": [
+    "No estás seguro del lugar, pero crees que es un parque. ¿Qué dices?",
+    "¿Cómo se dice «Parece un parque» en inglés?"
+   ]
+  },
+  {
+   "emoji": "😊",
+   "en": "They look happy",
+   "es": "Se ven felices",
+   "examplesEn": [
+    "They are laughing. They look happy.",
+    "The children look happy."
+   ],
+   "examplesEs": [
+    "Se están riendo. Se ven felices.",
+    "Los niños se ven felices."
+   ],
+   "questions": [
+    "Describes cómo se ven las personas de la foto. ¿Qué dices?",
+    "¿Cómo se dice «Se ven felices» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🔊",
+   "en": "Could you say that again?",
+   "es": "¿Podrías decir eso otra vez?",
+   "examplesEn": [
+    "Sorry, could you say that again?",
+    "Could you say that again, please?"
+   ],
+   "examplesEs": [
+    "Perdón, ¿podrías decir eso otra vez?",
+    "¿Podrías decir eso otra vez, por favor?"
+   ],
+   "questions": [
+    "No escuchaste bien el audio. ¿Qué pides?",
+    "Significa: ¿Podrías decir eso otra vez? ¿Cuál es la frase en inglés?"
+   ]
+  },
+  {
+   "emoji": "🐢",
+   "en": "Could you speak more slowly?",
+   "es": "¿Podrías hablar más despacio?",
+   "examplesEn": [
+    "Could you speak more slowly, please?",
+    "You speak very fast. Could you speak more slowly?"
+   ],
+   "examplesEs": [
+    "¿Podrías hablar más despacio, por favor?",
+    "Hablas muy rápido. ¿Podrías hablar más despacio?"
+   ],
+   "questions": [
+    "La persona habla demasiado rápido. ¿Qué pides?",
+    "Significa: ¿Podrías hablar más despacio? ¿Cuál es la frase en inglés?"
+   ]
+  },
+  {
+   "emoji": "💬",
+   "en": "What does 'busy' mean?",
+   "es": "¿Qué significa 'busy'?",
+   "examplesEn": [
+    "Excuse me, what does 'busy' mean?",
+    "What does 'busy' mean? — It means 'ocupado'."
+   ],
+   "examplesEs": [
+    "Disculpe, ¿qué significa 'busy'?",
+    "¿Qué significa 'busy'? — Significa 'ocupado'."
+   ],
+   "questions": [
+    "No conoces la palabra «busy». ¿Qué preguntas?",
+    "Significa: ¿Qué significa 'busy'? ¿Cuál es la frase en inglés?"
+   ]
+  }
+ ],
+ "total": 10,
+ "pass": 0.8
+};
         </script>
+        <script src="assets/mk-ingles.js?v=1"></script>
 
         <script>
             // Registrar Service Worker (PWA)

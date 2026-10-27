@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>MK • A0 · Semana 5: Living Room</title>
+        <title>MK • A0 · Semana 5: Living Room • La sala de la casa</title>
 
         <!-- PWA -->
         <meta name="apple-mobile-web-app-title" content="MK" />
@@ -501,6 +501,7 @@
                 margin: 0;
             }
         </style>
+        <link rel="stylesheet" href="assets/mk-ingles.css?v=1">
     </head>
 
     <body>
@@ -537,7 +538,7 @@
             <!-- ================== INGLÉS ================== -->
             <section class="section active" id="courseEnglish">
                 <h1>A0 · Semana 5: Living Room • La sala de la casa</h1>
-                <p class="subtitle">Mira el emoji, escucha la palabra y elige el objeto correcto en inglés. 🛋️</p>
+                <p class="subtitle">Practica con ejercicios variados. 👆 Toca cualquier palabra en inglés para escuchar cómo se pronuncia. 🛋️</p>
 
                 <div class="status-bar">
                     <div class="xp">✅ Correctas: <span id="xpValue">0</span></div>
@@ -554,26 +555,10 @@
                     </div>
                 </div>
 
-                <div class="card" id="lessonCard">
-                    <div class="emoji-container">
-                        <div class="emoji" id="emoji">🛋️</div>
-                        <button class="speak-btn" aria-label="Escuchar pronunciación" onclick="speakWord()">🔊</button>
-                    </div>
-
-                    <div class="word" id="wordEn">sofa</div>
-                    <div class="translation" id="wordEs">sofá</div>
-
-                    <p class="example-en"><span class="label">Inglés:</span> <span id="exampleEn">This is a sofa.</span></p>
-                    <p class="example-es"><span class="label">Español:</span> <span id="exampleEs">Este es un sofá.</span></p>
-
-                    <p class="question" id="question">What is this?</p>
-
-                    <div class="options" id="optionsContainer"></div>
-                    <div class="feedback" id="feedback"></div>
-                </div>
+                <div class="card" id="lessonCard"></div>
 
                 <div class="controls">
-                    <button class="main-btn" onclick="nextLesson()">Next</button>
+                    <button class="main-btn" onclick="goHome()">⬅ Ruta de Inglés</button>
                     <button class="main-btn" onclick="shareApp()">📤 Compartir app</button>
                 </div>
             </section>
@@ -593,253 +578,214 @@
         </script>
 
         <script>
-            // ====== INGLÉS ======
-            const itemsData = [
-                {
-                    emoji: "🛋️", en: "sofa", es: "sofá",
-                    examplesEn: ["This is a sofa.", "I sit on the sofa.", "The sofa is in the living room."],
-                    examplesEs: ["Este es un sofá.", "Yo me siento en el sofá.", "El sofá está en la sala."],
-                    questions: ["What is this?", "What is it?", "What can you see in the living room?"]
-                },
-                {
-                    emoji: "🪑", en: "chair", es: "silla",
-                    examplesEn: ["This is a chair.", "I sit on the chair.", "The chair is next to the sofa."],
-                    examplesEs: ["Esta es una silla.", "Yo me siento en la silla.", "La silla está al lado del sofá."],
-                    questions: ["What is this?", "Is this a chair or a sofa?", "What can you see?"]
-                },
-                {
-                    emoji: "📺", en: "TV", es: "televisión",
-                    examplesEn: ["This is a TV.", "I watch TV in the living room.", "The TV is on the wall."],
-                    examplesEs: ["Esta es una televisión.", "Veo televisión en la sala.", "La televisión está en la pared."],
-                    questions: ["What is this?", "What do you watch?", "Is this a TV?"]
-                },
-                {
-                    emoji: "🪟", en: "window", es: "ventana",
-                    examplesEn: ["This is a window.", "I open the window.", "The window is big."],
-                    examplesEs: ["Esta es una ventana.", "Yo abro la ventana.", "La ventana es grande."],
-                    questions: ["What is this?", "What can you open?", "What is in the living room?"]
-                },
-                {
-                    emoji: "🚪", en: "door", es: "puerta",
-                    examplesEn: ["This is a door.", "I close the door.", "The door is brown."],
-                    examplesEs: ["Esta es una puerta.", "Yo cierro la puerta.", "La puerta es marrón."],
-                    questions: ["What is this?", "What do you close?", "Is this a door?"]
-                },
-                {
-                    emoji: "💡", en: "lamp", es: "lámpara",
-                    examplesEn: ["This is a lamp.", "The lamp is on the table.", "The lamp is bright."],
-                    examplesEs: ["Esta es una lámpara.", "La lámpara está sobre la mesa.", "La lámpara es brillante."],
-                    questions: ["What is this?", "What gives light?", "Is this a lamp?"]
-                },
-                {
-                    emoji: "🧶", en: "rug", es: "alfombra",
-                    examplesEn: ["This is a rug.", "The rug is on the floor.", "The rug is soft."],
-                    examplesEs: ["Esta es una alfombra.", "La alfombra está en el piso.", "La alfombra es suave."],
-                    questions: ["What is this?", "What is on the floor?", "Is this a rug?"]
-                },
-                {
-                    emoji: "🖼️", en: "picture", es: "cuadro",
-                    examplesEn: ["This is a picture.", "The picture is on the wall.", "I like this picture."],
-                    examplesEs: ["Este es un cuadro.", "El cuadro está en la pared.", "Me gusta este cuadro."],
-                    questions: ["What is this?", "What is on the wall?", "Is this a picture?"]
-                },
-                {
-                    emoji: "📚", en: "bookshelf", es: "librero",
-                    examplesEn: ["This is a bookshelf.", "The books are on the bookshelf.", "The bookshelf is in the living room."],
-                    examplesEs: ["Este es un librero.", "Los libros están en el librero.", "El librero está en la sala."],
-                    questions: ["What is this?", "Where are the books?", "Is this a bookshelf?"]
-                },
-                {
-                    emoji: "🎛️", en: "remote control", es: "control remoto",
-                    examplesEn: ["This is a remote control.", "I use the remote control for the TV.", "The remote control is on the sofa."],
-                    examplesEs: ["Este es un control remoto.", "Uso el control remoto para la televisión.", "El control remoto está en el sofá."],
-                    questions: ["What is this?", "What do you use for the TV?", "Is this a remote control?"]
-                }
-            ];
-
-            let currentItem = null;
-            let correctCount = 0;
-            let wrongCount = 0;
-            let answeredCorrectly = false;
-
-            let progress = 0;
-            const maxProgress = 10;
-
-            const correctSpan = document.getElementById("xpValue");
-            const wrongSpan = document.getElementById("heartsValue");
-            const feedbackEl = document.getElementById("feedback");
-            const lessonCard = document.getElementById("lessonCard");
-            const progressBar = document.getElementById("progressBar");
-            const progressText = document.getElementById("progressText");
-
-            const soundCorrect = document.getElementById("sound-correct");
-            const soundWrong = document.getElementById("sound-wrong");
-            const soundLevelup = document.getElementById("sound-levelup");
-
-            function updateProgressBar() {
-                const percent = (progress / maxProgress) * 100;
-                progressBar.style.width = percent + "%";
-                progressText.textContent = `${progress}/${maxProgress}`;
-            }
-
-            function getRandomItem() {
-                return itemsData[Math.floor(Math.random() * itemsData.length)];
-            }
-            function randomFromArray(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
-
-            function generateLesson() {
-                const item = getRandomItem();
-                const idx = Math.floor(Math.random() * item.examplesEn.length);
-                return {
-                    data: item,
-                    emoji: item.emoji,
-                    word: item.en,
-                    translation: item.es,
-                    exampleEn: item.examplesEn[idx],
-                    exampleEs: item.examplesEs[idx],
-                    question: randomFromArray(item.questions)
-                };
-            }
-
-            function renderLesson() {
-                answeredCorrectly = false;
-                const lesson = generateLesson();
-                currentItem = lesson.data;
-
-                document.getElementById("emoji").textContent = lesson.emoji;
-                document.getElementById("wordEn").textContent = lesson.word;
-                document.getElementById("wordEs").textContent = lesson.translation;
-                document.getElementById("exampleEn").textContent = lesson.exampleEn;
-                document.getElementById("exampleEs").textContent = lesson.exampleEs;
-                document.getElementById("question").textContent = lesson.question;
-
-                feedbackEl.textContent = "";
-                feedbackEl.classList.remove("good", "bad");
-                lessonCard.classList.remove("correct", "wrong");
-
-                createOptions();
-            }
-
-            function createOptions() {
-                const container = document.getElementById("optionsContainer");
-                container.innerHTML = "";
-
-                const correct = currentItem;
-                const others = itemsData.filter(i => i.en !== correct.en);
-                shuffleArray(others);
-
-                const options = [correct.en, others[0].en, others[1].en];
-                shuffleArray(options);
-
-                options.forEach(optionText => {
-                    const btn = document.createElement("button");
-                    btn.textContent = optionText;
-                    btn.className = "option-btn";
-                    btn.onclick = () => checkAnswer(optionText, btn);
-                    container.appendChild(btn);
-                });
-            }
-
-            function speakFeedbackCorrect() {
-                const phrases = ["Great job!", "Awesome!", "Perfect!", "Nice work!"];
-                speakText(randomFromArray(phrases));
-            }
-            function speakFeedbackWrong() {
-                const phrases = ["Not yet, try again.", "Almost, try again.", "Keep trying.", "Don't give up."];
-                speakText(randomFromArray(phrases));
-            }
-
-            function speakText(text) {
-                if (!("speechSynthesis" in window)) return;
-                const utter = new SpeechSynthesisUtterance(text);
-                utter.lang = "en-US";
-                utter.rate = 0.95;
-                utter.pitch = 1.02;
-                window.speechSynthesis.cancel();
-                window.speechSynthesis.speak(utter);
-            }
-
-            function checkAnswer(answer, clickedBtn) {
-                if (!currentItem) return;
-                if (answeredCorrectly) return;
-
-                if (answer === currentItem.en) {
-                    answeredCorrectly = true;
-
-                    correctCount++;
-                    correctSpan.textContent = correctCount;
-
-                    if (progress < maxProgress) {
-                        progress += 1;
-                        updateProgressBar();
-                    }
-
-                    feedbackEl.textContent = randomFromArray(["✅ Great job!", "✅ Awesome!", "✅ Perfect!", "✅ Nice!"]);
-                    feedbackEl.classList.remove("bad");
-                    feedbackEl.classList.add("good");
-
-                    playSound(soundCorrect);
-                    speakFeedbackCorrect();
-
-                    lessonCard.classList.remove("wrong");
-                    lessonCard.classList.add("correct");
-
-                    document.querySelectorAll(".option-btn").forEach(b => { b.disabled = true; });
-
-                    if (correctCount > 0 && correctCount % 5 === 0) playSound(soundLevelup);
-
-                    if (progress >= maxProgress) {
-                        try { localStorage.setItem("mk_topic_" + location.pathname.split("/").pop().replace(/\.html$/i, "") + "_complete", "true"); } catch (e) { }
-                        feedbackEl.textContent = "🎉 Lesson complete! Keep practicing.";
-                        feedbackEl.classList.add("good");
-                        playSound(soundLevelup);
-                    }
-                } else {
-                    wrongCount++;
-                    wrongSpan.textContent = wrongCount;
-
-                    feedbackEl.textContent = `❌ Not yet. Try again.`;
-                    feedbackEl.classList.remove("good");
-                    feedbackEl.classList.add("bad");
-
-                    playSound(soundWrong);
-                    speakFeedbackWrong();
-
-                    lessonCard.classList.remove("correct");
-                    lessonCard.classList.add("wrong");
-
-                    if (clickedBtn) clickedBtn.disabled = true;
-                }
-            }
-
-            function shuffleArray(arr) {
-                for (let i = arr.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [arr[i], arr[j]] = [arr[j], arr[i]];
-                }
-            }
-
-            function nextLesson() { renderLesson(); }
-
-            function speakWord() {
-                const word = document.getElementById("wordEn").textContent;
-                if (!("speechSynthesis" in window)) return;
-                const utter = new SpeechSynthesisUtterance(word);
-                utter.lang = "en-US";
-                utter.rate = 0.9;
-                window.speechSynthesis.cancel();
-                window.speechSynthesis.speak(utter);
-            }
-
-            function playSound(audioElement) {
-                if (!audioElement) return;
-                audioElement.currentTime = 0;
-                audioElement.play().catch(() => { });
-            }
-
-            updateProgressBar();
-            renderLesson();
+            window.MK_LESSON = {
+ "items": [
+  {
+   "emoji": "🛋️",
+   "en": "sofa",
+   "es": "sofá",
+   "examplesEn": [
+    "This is a sofa.",
+    "I sit on the sofa.",
+    "The sofa is in the living room."
+   ],
+   "examplesEs": [
+    "Este es un sofá.",
+    "Yo me siento en el sofá.",
+    "El sofá está en la sala."
+   ],
+   "questions": [
+    "¿Qué es esto? 👀 Elige la palabra en inglés.",
+    "What is it?",
+    "What can you see in the living room?"
+   ]
+  },
+  {
+   "emoji": "🪑",
+   "en": "chair",
+   "es": "silla",
+   "examplesEn": [
+    "This is a chair.",
+    "I sit on the chair.",
+    "The chair is next to the sofa."
+   ],
+   "examplesEs": [
+    "Esta es una silla.",
+    "Yo me siento en la silla.",
+    "La silla está al lado del sofá."
+   ],
+   "questions": [
+    "¿Qué es esto? 👀 Elige la palabra en inglés.",
+    "Is this a chair or a sofa?",
+    "What can you see?"
+   ]
+  },
+  {
+   "emoji": "📺",
+   "en": "TV",
+   "es": "televisión",
+   "examplesEn": [
+    "This is a TV.",
+    "I watch TV in the living room.",
+    "The TV is on the wall."
+   ],
+   "examplesEs": [
+    "Esta es una televisión.",
+    "Veo televisión en la sala.",
+    "La televisión está en la pared."
+   ],
+   "questions": [
+    "¿Qué es esto? 👀 Elige la palabra en inglés.",
+    "What do you watch?",
+    "Is this a TV?"
+   ]
+  },
+  {
+   "emoji": "🪟",
+   "en": "window",
+   "es": "ventana",
+   "examplesEn": [
+    "This is a window.",
+    "I open the window.",
+    "The window is big."
+   ],
+   "examplesEs": [
+    "Esta es una ventana.",
+    "Yo abro la ventana.",
+    "La ventana es grande."
+   ],
+   "questions": [
+    "¿Qué es esto? 👀 Elige la palabra en inglés.",
+    "What can you open?",
+    "What is in the living room?"
+   ]
+  },
+  {
+   "emoji": "🚪",
+   "en": "door",
+   "es": "puerta",
+   "examplesEn": [
+    "This is a door.",
+    "I close the door.",
+    "The door is brown."
+   ],
+   "examplesEs": [
+    "Esta es una puerta.",
+    "Yo cierro la puerta.",
+    "La puerta es marrón."
+   ],
+   "questions": [
+    "¿Qué es esto? 👀 Elige la palabra en inglés.",
+    "What do you close?",
+    "Is this a door?"
+   ]
+  },
+  {
+   "emoji": "💡",
+   "en": "lamp",
+   "es": "lámpara",
+   "examplesEn": [
+    "This is a lamp.",
+    "The lamp is on the table.",
+    "The lamp is bright."
+   ],
+   "examplesEs": [
+    "Esta es una lámpara.",
+    "La lámpara está sobre la mesa.",
+    "La lámpara es brillante."
+   ],
+   "questions": [
+    "¿Qué es esto? 👀 Elige la palabra en inglés.",
+    "What gives light?",
+    "Is this a lamp?"
+   ]
+  },
+  {
+   "emoji": "🧶",
+   "en": "rug",
+   "es": "alfombra",
+   "examplesEn": [
+    "This is a rug.",
+    "The rug is on the floor.",
+    "The rug is soft."
+   ],
+   "examplesEs": [
+    "Esta es una alfombra.",
+    "La alfombra está en el piso.",
+    "La alfombra es suave."
+   ],
+   "questions": [
+    "¿Qué es esto? 👀 Elige la palabra en inglés.",
+    "What is on the floor?",
+    "Is this a rug?"
+   ]
+  },
+  {
+   "emoji": "🖼️",
+   "en": "picture",
+   "es": "cuadro",
+   "examplesEn": [
+    "This is a picture.",
+    "The picture is on the wall.",
+    "I like this picture."
+   ],
+   "examplesEs": [
+    "Este es un cuadro.",
+    "El cuadro está en la pared.",
+    "Me gusta este cuadro."
+   ],
+   "questions": [
+    "¿Qué es esto? 👀 Elige la palabra en inglés.",
+    "What is on the wall?",
+    "Is this a picture?"
+   ]
+  },
+  {
+   "emoji": "📚",
+   "en": "bookshelf",
+   "es": "librero",
+   "examplesEn": [
+    "This is a bookshelf.",
+    "The books are on the bookshelf.",
+    "The bookshelf is in the living room."
+   ],
+   "examplesEs": [
+    "Este es un librero.",
+    "Los libros están en el librero.",
+    "El librero está en la sala."
+   ],
+   "questions": [
+    "¿Qué es esto? 👀 Elige la palabra en inglés.",
+    "Where are the books?",
+    "Is this a bookshelf?"
+   ]
+  },
+  {
+   "emoji": "🎛️",
+   "en": "remote control",
+   "es": "control remoto",
+   "examplesEn": [
+    "This is a remote control.",
+    "I use the remote control for the TV.",
+    "The remote control is on the sofa."
+   ],
+   "examplesEs": [
+    "Este es un control remoto.",
+    "Uso el control remoto para la televisión.",
+    "El control remoto está en el sofá."
+   ],
+   "questions": [
+    "¿Qué es esto? 👀 Elige la palabra en inglés.",
+    "What do you use for the TV?",
+    "Is this a remote control?"
+   ]
+  }
+ ],
+ "total": 10,
+ "pass": 0.8
+};
         </script>
+        <script src="assets/mk-ingles.js?v=1"></script>
 
         <script>
             // Registrar Service Worker (PWA)

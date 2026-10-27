@@ -501,6 +501,7 @@
                 margin: 0;
             }
         </style>
+        <link rel="stylesheet" href="assets/mk-ingles.css?v=1">
     </head>
 
     <body>
@@ -537,7 +538,7 @@
             <!-- ================== INGLÉS ================== -->
             <section class="section active" id="courseEnglish">
                 <h1>A1 · Semana 5: La ciudad y direcciones</h1>
-                <p class="subtitle">Lee la situación, toca 🔊 para escuchar y elige la frase correcta en inglés. 🗺️</p>
+                <p class="subtitle">Practica con ejercicios variados. 👆 Toca cualquier palabra en inglés para escuchar cómo se pronuncia. 🗺️</p>
 
                 <div class="status-bar">
                     <div class="xp">✅ Correctas: <span id="xpValue">0</span></div>
@@ -554,26 +555,10 @@
                     </div>
                 </div>
 
-                <div class="card" id="lessonCard">
-                    <div class="emoji-container">
-                        <div class="emoji" id="emoji">🛋️</div>
-                        <button class="speak-btn" aria-label="Escuchar pronunciación" onclick="speakWord()">🔊</button>
-                    </div>
-
-                    <div class="word" id="wordEn">sofa</div>
-                    <div class="translation" id="wordEs">sofá</div>
-
-                    <p class="example-en"><span class="label">Inglés:</span> <span id="exampleEn">This is a sofa.</span></p>
-                    <p class="example-es"><span class="label">Español:</span> <span id="exampleEs">Este es un sofá.</span></p>
-
-                    <p class="question" id="question">What is this?</p>
-
-                    <div class="options" id="optionsContainer"></div>
-                    <div class="feedback" id="feedback"></div>
-                </div>
+                <div class="card" id="lessonCard"></div>
 
                 <div class="controls">
-                    <button class="main-btn" onclick="nextLesson()">Next</button>
+                    <button class="main-btn" onclick="goHome()">⬅ Ruta de Inglés</button>
                     <button class="main-btn" onclick="shareApp()">📤 Compartir app</button>
                 </div>
             </section>
@@ -593,367 +578,184 @@
         </script>
 
         <script>
-            // ====== INGLÉS ======
-            const itemsData = [
-              {
-                "emoji": "🏦",
-                "en": "There is a bank",
-                "es": "Hay un banco",
-                "examplesEn": [
-                  "There is a bank on this street.",
-                  "There is a bank next to the park."
-                ],
-                "examplesEs": [
-                  "Hay un banco en esta calle.",
-                  "Hay un banco al lado del parque."
-                ],
-                "questions": [
-                  "En la calle hay UN banco. ¿Qué dices?",
-                  "¿Cómo se dice «Hay un banco» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🏪",
-                "en": "There are two stores",
-                "es": "Hay dos tiendas",
-                "examplesEn": [
-                  "There are two stores near my house.",
-                  "There are two stores on the corner."
-                ],
-                "examplesEs": [
-                  "Hay dos tiendas cerca de mi casa.",
-                  "Hay dos tiendas en la esquina."
-                ],
-                "questions": [
-                  "En la calle hay DOS tiendas. ¿Qué dices?",
-                  "¿Cómo se dice «Hay dos tiendas» en inglés?"
-                ]
-              },
-              {
-                "emoji": "↔️",
-                "en": "Next to",
-                "es": "Al lado de",
-                "examplesEn": [
-                  "The school is next to the park.",
-                  "My house is next to a bakery."
-                ],
-                "examplesEs": [
-                  "El colegio está al lado del parque.",
-                  "Mi casa está al lado de una panadería."
-                ],
-                "questions": [
-                  "Algo está junto a otra cosa. ¿Qué palabras usas?",
-                  "¿Cómo se dice «Al lado de» en inglés?"
-                ]
-              },
-              {
-                "emoji": "⬆️",
-                "en": "Go straight",
-                "es": "Sigue derecho",
-                "examplesEn": [
-                  "Go straight for two blocks.",
-                  "Go straight and you will see it."
-                ],
-                "examplesEs": [
-                  "Sigue derecho dos cuadras.",
-                  "Sigue derecho y lo verás."
-                ],
-                "questions": [
-                  "Le dices a alguien que no gire. ¿Qué dices?",
-                  "¿Cómo se dice «Sigue derecho» en inglés?"
-                ]
-              },
-              {
-                "emoji": "⬅️",
-                "en": "Turn left",
-                "es": "Gira a la izquierda",
-                "examplesEn": [
-                  "Turn left at the corner.",
-                  "Turn left after the bank."
-                ],
-                "examplesEs": [
-                  "Gira a la izquierda en la esquina.",
-                  "Gira a la izquierda después del banco."
-                ],
-                "questions": [
-                  "Le indicas girar hacia la izquierda. ¿Qué dices?",
-                  "¿Cómo se dice «Gira a la izquierda» en inglés?"
-                ]
-              },
-              {
-                "emoji": "➡️",
-                "en": "Turn right",
-                "es": "Gira a la derecha",
-                "examplesEn": [
-                  "Turn right at the traffic light.",
-                  "Turn right and go straight."
-                ],
-                "examplesEs": [
-                  "Gira a la derecha en el semáforo.",
-                  "Gira a la derecha y sigue derecho."
-                ],
-                "questions": [
-                  "Le indicas girar hacia la derecha. ¿Qué dices?",
-                  "¿Cómo se dice «Gira a la derecha» en inglés?"
-                ]
-              },
-              {
-                "emoji": "📍",
-                "en": "Where is the park?",
-                "es": "¿Dónde está el parque?",
-                "examplesEn": [
-                  "Excuse me, where is the park?",
-                  "Where is the park? — It's next to the school."
-                ],
-                "examplesEs": [
-                  "Disculpe, ¿dónde está el parque?",
-                  "¿Dónde está el parque? — Está al lado del colegio."
-                ],
-                "questions": [
-                  "Estás perdido y buscas el parque. ¿Qué preguntas?",
-                  "Significa: ¿Dónde está el parque? ¿Cuál es la frase en inglés?"
-                ]
-              },
-              {
-                "emoji": "🏥",
-                "en": "Across from",
-                "es": "Frente a",
-                "examplesEn": [
-                  "The hospital is across from the school.",
-                  "The bakery is across from my house."
-                ],
-                "examplesEs": [
-                  "El hospital está frente al colegio.",
-                  "La panadería está frente a mi casa."
-                ],
-                "questions": [
-                  "Algo está al otro lado de la calle. ¿Qué palabras usas?",
-                  "¿Cómo se dice «Frente a» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🚏",
-                "en": "The bus stop",
-                "es": "El paradero",
-                "examplesEn": [
-                  "The bus stop is on the corner.",
-                  "I wait at the bus stop."
-                ],
-                "examplesEs": [
-                  "El paradero está en la esquina.",
-                  "Espero en el paradero."
-                ],
-                "questions": [
-                  "¿Dónde esperas el bus?",
-                  "¿Cómo se dice «El paradero» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🏁",
-                "en": "It's on the corner",
-                "es": "Está en la esquina",
-                "examplesEn": [
-                  "The store? It's on the corner.",
-                  "The pharmacy is on the corner."
-                ],
-                "examplesEs": [
-                  "¿La tienda? Está en la esquina.",
-                  "La farmacia está en la esquina."
-                ],
-                "questions": [
-                  "El lugar está donde se cruzan dos calles. ¿Qué dices?",
-                  "¿Cómo se dice «Está en la esquina» en inglés?"
-                ]
-              }
-            ];
-
-            let currentItem = null;
-            let correctCount = 0;
-            let wrongCount = 0;
-            let answeredCorrectly = false;
-
-            let progress = 0;
-            const maxProgress = 10;
-
-            const correctSpan = document.getElementById("xpValue");
-            const wrongSpan = document.getElementById("heartsValue");
-            const feedbackEl = document.getElementById("feedback");
-            const lessonCard = document.getElementById("lessonCard");
-            const progressBar = document.getElementById("progressBar");
-            const progressText = document.getElementById("progressText");
-
-            const soundCorrect = document.getElementById("sound-correct");
-            const soundWrong = document.getElementById("sound-wrong");
-            const soundLevelup = document.getElementById("sound-levelup");
-
-            function updateProgressBar() {
-                const percent = (progress / maxProgress) * 100;
-                progressBar.style.width = percent + "%";
-                progressText.textContent = `${progress}/${maxProgress}`;
-            }
-
-            function getRandomItem() {
-                return itemsData[Math.floor(Math.random() * itemsData.length)];
-            }
-            function randomFromArray(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
-
-            function generateLesson() {
-                const item = getRandomItem();
-                const idx = Math.floor(Math.random() * item.examplesEn.length);
-                return {
-                    data: item,
-                    emoji: item.emoji,
-                    word: item.en,
-                    translation: item.es,
-                    exampleEn: item.examplesEn[idx],
-                    exampleEs: item.examplesEs[idx],
-                    question: randomFromArray(item.questions)
-                };
-            }
-
-            function renderLesson() {
-                answeredCorrectly = false;
-                const lesson = generateLesson();
-                currentItem = lesson.data;
-
-                document.getElementById("emoji").textContent = lesson.emoji;
-                document.getElementById("wordEn").textContent = "❓ ❓ ❓";
-                document.getElementById("wordEn").dataset.answer = lesson.word;
-                document.getElementById("exampleEn").parentElement.style.visibility = "hidden";
-                document.getElementById("wordEs").textContent = lesson.translation;
-                document.getElementById("exampleEn").textContent = lesson.exampleEn;
-                document.getElementById("exampleEs").textContent = lesson.exampleEs;
-                document.getElementById("question").textContent = lesson.question;
-
-                feedbackEl.textContent = "";
-                feedbackEl.classList.remove("good", "bad");
-                lessonCard.classList.remove("correct", "wrong");
-
-                createOptions();
-            }
-
-            function createOptions() {
-                const container = document.getElementById("optionsContainer");
-                container.innerHTML = "";
-
-                const correct = currentItem;
-                const others = itemsData.filter(i => i.en !== correct.en);
-                shuffleArray(others);
-
-                const options = [correct.en, others[0].en, others[1].en];
-                shuffleArray(options);
-
-                options.forEach(optionText => {
-                    const btn = document.createElement("button");
-                    btn.textContent = optionText;
-                    btn.className = "option-btn";
-                    btn.onclick = () => checkAnswer(optionText, btn);
-                    container.appendChild(btn);
-                });
-            }
-
-            function speakFeedbackCorrect() {
-                const phrases = ["Great job!", "Awesome!", "Perfect!", "Nice work!"];
-                speakText(randomFromArray(phrases));
-            }
-            function speakFeedbackWrong() {
-                const phrases = ["Not yet, try again.", "Almost, try again.", "Keep trying.", "Don't give up."];
-                speakText(randomFromArray(phrases));
-            }
-
-            function speakText(text) {
-                if (!("speechSynthesis" in window)) return;
-                const utter = new SpeechSynthesisUtterance(text);
-                utter.lang = "en-US";
-                utter.rate = 0.95;
-                utter.pitch = 1.02;
-                window.speechSynthesis.cancel();
-                window.speechSynthesis.speak(utter);
-            }
-
-            function checkAnswer(answer, clickedBtn) {
-                if (!currentItem) return;
-                if (answeredCorrectly) return;
-
-                if (answer === currentItem.en) {
-                    answeredCorrectly = true;
-                    document.getElementById("wordEn").textContent = currentItem.en;
-                    document.getElementById("exampleEn").parentElement.style.visibility = "visible";
-
-                    correctCount++;
-                    correctSpan.textContent = correctCount;
-
-                    if (progress < maxProgress) {
-                        progress += 1;
-                        updateProgressBar();
-                    }
-
-                    feedbackEl.textContent = randomFromArray(["✅ Great job!", "✅ Awesome!", "✅ Perfect!", "✅ Nice!"]);
-                    feedbackEl.classList.remove("bad");
-                    feedbackEl.classList.add("good");
-
-                    playSound(soundCorrect);
-                    speakFeedbackCorrect();
-
-                    lessonCard.classList.remove("wrong");
-                    lessonCard.classList.add("correct");
-
-                    document.querySelectorAll(".option-btn").forEach(b => { b.disabled = true; });
-
-                    if (correctCount > 0 && correctCount % 5 === 0) playSound(soundLevelup);
-
-                    if (progress >= maxProgress) {
-                        try { localStorage.setItem("mk_topic_" + location.pathname.split("/").pop().replace(/\.html$/i, "") + "_complete", "true"); } catch (e) { }
-                        feedbackEl.textContent = "🎉 Lesson complete! Keep practicing.";
-                        feedbackEl.classList.add("good");
-                        playSound(soundLevelup);
-                    }
-                } else {
-                    wrongCount++;
-                    wrongSpan.textContent = wrongCount;
-
-                    feedbackEl.textContent = `❌ Not yet. Try again.`;
-                    feedbackEl.classList.remove("good");
-                    feedbackEl.classList.add("bad");
-
-                    playSound(soundWrong);
-                    speakFeedbackWrong();
-
-                    lessonCard.classList.remove("correct");
-                    lessonCard.classList.add("wrong");
-
-                    if (clickedBtn) clickedBtn.disabled = true;
-                }
-            }
-
-            function shuffleArray(arr) {
-                for (let i = arr.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [arr[i], arr[j]] = [arr[j], arr[i]];
-                }
-            }
-
-            function nextLesson() { renderLesson(); }
-
-            function speakWord() {
-                const word = document.getElementById("wordEn").dataset.answer || document.getElementById("wordEn").textContent;
-                if (!("speechSynthesis" in window)) return;
-                const utter = new SpeechSynthesisUtterance(word);
-                utter.lang = "en-US";
-                utter.rate = 0.9;
-                window.speechSynthesis.cancel();
-                window.speechSynthesis.speak(utter);
-            }
-
-            function playSound(audioElement) {
-                if (!audioElement) return;
-                audioElement.currentTime = 0;
-                audioElement.play().catch(() => { });
-            }
-
-            updateProgressBar();
-            renderLesson();
+            window.MK_LESSON = {
+ "items": [
+  {
+   "emoji": "🏦",
+   "en": "There is a bank",
+   "es": "Hay un banco",
+   "examplesEn": [
+    "There is a bank on this street.",
+    "There is a bank next to the park."
+   ],
+   "examplesEs": [
+    "Hay un banco en esta calle.",
+    "Hay un banco al lado del parque."
+   ],
+   "questions": [
+    "En la calle hay UN banco. ¿Qué dices?",
+    "¿Cómo se dice «Hay un banco» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🏪",
+   "en": "There are two stores",
+   "es": "Hay dos tiendas",
+   "examplesEn": [
+    "There are two stores near my house.",
+    "There are two stores on the corner."
+   ],
+   "examplesEs": [
+    "Hay dos tiendas cerca de mi casa.",
+    "Hay dos tiendas en la esquina."
+   ],
+   "questions": [
+    "En la calle hay DOS tiendas. ¿Qué dices?",
+    "¿Cómo se dice «Hay dos tiendas» en inglés?"
+   ]
+  },
+  {
+   "emoji": "↔️",
+   "en": "Next to",
+   "es": "Al lado de",
+   "examplesEn": [
+    "The school is next to the park.",
+    "My house is next to a bakery."
+   ],
+   "examplesEs": [
+    "El colegio está al lado del parque.",
+    "Mi casa está al lado de una panadería."
+   ],
+   "questions": [
+    "Algo está junto a otra cosa. ¿Qué palabras usas?",
+    "¿Cómo se dice «Al lado de» en inglés?"
+   ]
+  },
+  {
+   "emoji": "⬆️",
+   "en": "Go straight",
+   "es": "Sigue derecho",
+   "examplesEn": [
+    "Go straight for two blocks.",
+    "Go straight and you will see it."
+   ],
+   "examplesEs": [
+    "Sigue derecho dos cuadras.",
+    "Sigue derecho y lo verás."
+   ],
+   "questions": [
+    "Le dices a alguien que no gire. ¿Qué dices?",
+    "¿Cómo se dice «Sigue derecho» en inglés?"
+   ]
+  },
+  {
+   "emoji": "⬅️",
+   "en": "Turn left",
+   "es": "Gira a la izquierda",
+   "examplesEn": [
+    "Turn left at the corner.",
+    "Turn left after the bank."
+   ],
+   "examplesEs": [
+    "Gira a la izquierda en la esquina.",
+    "Gira a la izquierda después del banco."
+   ],
+   "questions": [
+    "Le indicas girar hacia la izquierda. ¿Qué dices?",
+    "¿Cómo se dice «Gira a la izquierda» en inglés?"
+   ]
+  },
+  {
+   "emoji": "➡️",
+   "en": "Turn right",
+   "es": "Gira a la derecha",
+   "examplesEn": [
+    "Turn right at the traffic light.",
+    "Turn right and go straight."
+   ],
+   "examplesEs": [
+    "Gira a la derecha en el semáforo.",
+    "Gira a la derecha y sigue derecho."
+   ],
+   "questions": [
+    "Le indicas girar hacia la derecha. ¿Qué dices?",
+    "¿Cómo se dice «Gira a la derecha» en inglés?"
+   ]
+  },
+  {
+   "emoji": "📍",
+   "en": "Where is the park?",
+   "es": "¿Dónde está el parque?",
+   "examplesEn": [
+    "Excuse me, where is the park?",
+    "Where is the park? — It's next to the school."
+   ],
+   "examplesEs": [
+    "Disculpe, ¿dónde está el parque?",
+    "¿Dónde está el parque? — Está al lado del colegio."
+   ],
+   "questions": [
+    "Estás perdido y buscas el parque. ¿Qué preguntas?",
+    "Significa: ¿Dónde está el parque? ¿Cuál es la frase en inglés?"
+   ]
+  },
+  {
+   "emoji": "🏥",
+   "en": "Across from",
+   "es": "Frente a",
+   "examplesEn": [
+    "The hospital is across from the school.",
+    "The bakery is across from my house."
+   ],
+   "examplesEs": [
+    "El hospital está frente al colegio.",
+    "La panadería está frente a mi casa."
+   ],
+   "questions": [
+    "Algo está al otro lado de la calle. ¿Qué palabras usas?",
+    "¿Cómo se dice «Frente a» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🚏",
+   "en": "The bus stop",
+   "es": "El paradero",
+   "examplesEn": [
+    "The bus stop is on the corner.",
+    "I wait at the bus stop."
+   ],
+   "examplesEs": [
+    "El paradero está en la esquina.",
+    "Espero en el paradero."
+   ],
+   "questions": [
+    "¿Dónde esperas el bus?",
+    "¿Cómo se dice «El paradero» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🏁",
+   "en": "It's on the corner",
+   "es": "Está en la esquina",
+   "examplesEn": [
+    "The store? It's on the corner.",
+    "The pharmacy is on the corner."
+   ],
+   "examplesEs": [
+    "¿La tienda? Está en la esquina.",
+    "La farmacia está en la esquina."
+   ],
+   "questions": [
+    "El lugar está donde se cruzan dos calles. ¿Qué dices?",
+    "¿Cómo se dice «Está en la esquina» en inglés?"
+   ]
+  }
+ ],
+ "total": 10,
+ "pass": 0.8
+};
         </script>
+        <script src="assets/mk-ingles.js?v=1"></script>
 
         <script>
             // Registrar Service Worker (PWA)

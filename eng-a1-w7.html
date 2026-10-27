@@ -501,6 +501,7 @@
                 margin: 0;
             }
         </style>
+        <link rel="stylesheet" href="assets/mk-ingles.css?v=1">
     </head>
 
     <body>
@@ -537,7 +538,7 @@
             <!-- ================== INGLÉS ================== -->
             <section class="section active" id="courseEnglish">
                 <h1>A1 · Semana 7: El fin de semana</h1>
-                <p class="subtitle">Lee la situación, toca 🔊 para escuchar y elige la frase correcta en inglés. 🌳</p>
+                <p class="subtitle">Practica con ejercicios variados. 👆 Toca cualquier palabra en inglés para escuchar cómo se pronuncia. 🌳</p>
 
                 <div class="status-bar">
                     <div class="xp">✅ Correctas: <span id="xpValue">0</span></div>
@@ -554,26 +555,10 @@
                     </div>
                 </div>
 
-                <div class="card" id="lessonCard">
-                    <div class="emoji-container">
-                        <div class="emoji" id="emoji">🛋️</div>
-                        <button class="speak-btn" aria-label="Escuchar pronunciación" onclick="speakWord()">🔊</button>
-                    </div>
-
-                    <div class="word" id="wordEn">sofa</div>
-                    <div class="translation" id="wordEs">sofá</div>
-
-                    <p class="example-en"><span class="label">Inglés:</span> <span id="exampleEn">This is a sofa.</span></p>
-                    <p class="example-es"><span class="label">Español:</span> <span id="exampleEs">Este es un sofá.</span></p>
-
-                    <p class="question" id="question">What is this?</p>
-
-                    <div class="options" id="optionsContainer"></div>
-                    <div class="feedback" id="feedback"></div>
-                </div>
+                <div class="card" id="lessonCard"></div>
 
                 <div class="controls">
-                    <button class="main-btn" onclick="nextLesson()">Next</button>
+                    <button class="main-btn" onclick="goHome()">⬅ Ruta de Inglés</button>
                     <button class="main-btn" onclick="shareApp()">📤 Compartir app</button>
                 </div>
             </section>
@@ -593,367 +578,184 @@
         </script>
 
         <script>
-            // ====== INGLÉS ======
-            const itemsData = [
-              {
-                "emoji": "🌳",
-                "en": "On weekends I go to the park",
-                "es": "Los fines de semana voy al parque",
-                "examplesEn": [
-                  "On weekends I go to the park with my dog.",
-                  "On weekends I go to the park and play."
-                ],
-                "examplesEs": [
-                  "Los fines de semana voy al parque con mi perro.",
-                  "Los fines de semana voy al parque y juego."
-                ],
-                "questions": [
-                  "Cuentas a dónde vas los sábados y domingos. ¿Qué dices?",
-                  "¿Cómo se dice «Los fines de semana voy al parque» en inglés?"
-                ]
-              },
-              {
-                "emoji": "👨‍👩‍👧",
-                "en": "With my family",
-                "es": "Con mi familia",
-                "examplesEn": [
-                  "I have lunch with my family.",
-                  "I go to the beach with my family."
-                ],
-                "examplesEs": [
-                  "Almuerzo con mi familia.",
-                  "Voy a la playa con mi familia."
-                ],
-                "questions": [
-                  "Cuentas con quién sales: papá, mamá, hermanos. ¿Qué dices?",
-                  "¿Cómo se dice «Con mi familia» en inglés?"
-                ]
-              },
-              {
-                "emoji": "👫",
-                "en": "With my friends",
-                "es": "Con mis amigos",
-                "examplesEn": [
-                  "I play soccer with my friends.",
-                  "I go to the cinema with my friends."
-                ],
-                "examplesEs": [
-                  "Juego fútbol con mis amigos.",
-                  "Voy al cine con mis amigos."
-                ],
-                "questions": [
-                  "Cuentas que sales con tus amigos. ¿Qué dices?",
-                  "¿Cómo se dice «Con mis amigos» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🎬",
-                "en": "We watch movies",
-                "es": "Vemos películas",
-                "examplesEn": [
-                  "On Saturdays we watch movies.",
-                  "We watch movies with popcorn."
-                ],
-                "examplesEs": [
-                  "Los sábados vemos películas.",
-                  "Vemos películas con canchita."
-                ],
-                "questions": [
-                  "Cuentas lo que hacen en familia frente a la pantalla. ¿Qué dices?",
-                  "¿Cómo se dice «Vemos películas» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🛌",
-                "en": "I sleep late",
-                "es": "Duermo hasta tarde",
-                "examplesEn": [
-                  "On Sundays I sleep late.",
-                  "I sleep late because there is no school."
-                ],
-                "examplesEs": [
-                  "Los domingos duermo hasta tarde.",
-                  "Duermo hasta tarde porque no hay colegio."
-                ],
-                "questions": [
-                  "Cuentas que te levantas tarde el domingo. ¿Qué dices?",
-                  "¿Cómo se dice «Duermo hasta tarde» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🍦",
-                "en": "We eat ice cream",
-                "es": "Comemos helado",
-                "examplesEn": [
-                  "We eat ice cream at the park.",
-                  "On Sundays we eat ice cream."
-                ],
-                "examplesEs": [
-                  "Comemos helado en el parque.",
-                  "Los domingos comemos helado."
-                ],
-                "questions": [
-                  "Cuentas el postre favorito del fin de semana. ¿Qué dices?",
-                  "¿Cómo se dice «Comemos helado» en inglés?"
-                ]
-              },
-              {
-                "emoji": "⚽",
-                "en": "Last weekend I played soccer",
-                "es": "El fin de semana pasado jugué fútbol",
-                "examplesEn": [
-                  "Last weekend I played soccer with Leo.",
-                  "Last weekend I played soccer and won!"
-                ],
-                "examplesEs": [
-                  "El fin de semana pasado jugué fútbol con Leo.",
-                  "¡El fin de semana pasado jugué fútbol y gané!"
-                ],
-                "questions": [
-                  "Cuentas lo que hiciste el fin de semana PASADO. ¿Qué dices?",
-                  "¿Cómo se dice «El fin de semana pasado jugué fútbol» en inglés?"
-                ]
-              },
-              {
-                "emoji": "👵",
-                "en": "I visited my grandma",
-                "es": "Visité a mi abuelita",
-                "examplesEn": [
-                  "On Sunday I visited my grandma.",
-                  "I visited my grandma and we made a cake."
-                ],
-                "examplesEs": [
-                  "El domingo visité a mi abuelita.",
-                  "Visité a mi abuelita e hicimos un pastel."
-                ],
-                "questions": [
-                  "Cuentas que fuiste a ver a tu abuelita. ¿Qué dices?",
-                  "¿Cómo se dice «Visité a mi abuelita» en inglés?"
-                ]
-              },
-              {
-                "emoji": "😃",
-                "en": "It was fun!",
-                "es": "¡Fue divertido!",
-                "examplesEn": [
-                  "The party was great. It was fun!",
-                  "We played all day. It was fun!"
-                ],
-                "examplesEs": [
-                  "La fiesta estuvo genial. ¡Fue divertido!",
-                  "Jugamos todo el día. ¡Fue divertido!"
-                ],
-                "questions": [
-                  "Cuentas que lo pasaste muy bien. ¿Qué dices?",
-                  "¿Cómo se dice «¡Fue divertido!» en inglés?"
-                ]
-              },
-              {
-                "emoji": "❓",
-                "en": "What do you do on weekends?",
-                "es": "¿Qué haces los fines de semana?",
-                "examplesEn": [
-                  "What do you do on weekends? — I swim.",
-                  "Ana, what do you do on weekends?"
-                ],
-                "examplesEs": [
-                  "¿Qué haces los fines de semana? — Nado.",
-                  "Ana, ¿qué haces los fines de semana?"
-                ],
-                "questions": [
-                  "Quieres saber qué hace tu amigo sábado y domingo. ¿Qué preguntas?",
-                  "Significa: ¿Qué haces los fines de semana? ¿Cuál es la frase en inglés?"
-                ]
-              }
-            ];
-
-            let currentItem = null;
-            let correctCount = 0;
-            let wrongCount = 0;
-            let answeredCorrectly = false;
-
-            let progress = 0;
-            const maxProgress = 10;
-
-            const correctSpan = document.getElementById("xpValue");
-            const wrongSpan = document.getElementById("heartsValue");
-            const feedbackEl = document.getElementById("feedback");
-            const lessonCard = document.getElementById("lessonCard");
-            const progressBar = document.getElementById("progressBar");
-            const progressText = document.getElementById("progressText");
-
-            const soundCorrect = document.getElementById("sound-correct");
-            const soundWrong = document.getElementById("sound-wrong");
-            const soundLevelup = document.getElementById("sound-levelup");
-
-            function updateProgressBar() {
-                const percent = (progress / maxProgress) * 100;
-                progressBar.style.width = percent + "%";
-                progressText.textContent = `${progress}/${maxProgress}`;
-            }
-
-            function getRandomItem() {
-                return itemsData[Math.floor(Math.random() * itemsData.length)];
-            }
-            function randomFromArray(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
-
-            function generateLesson() {
-                const item = getRandomItem();
-                const idx = Math.floor(Math.random() * item.examplesEn.length);
-                return {
-                    data: item,
-                    emoji: item.emoji,
-                    word: item.en,
-                    translation: item.es,
-                    exampleEn: item.examplesEn[idx],
-                    exampleEs: item.examplesEs[idx],
-                    question: randomFromArray(item.questions)
-                };
-            }
-
-            function renderLesson() {
-                answeredCorrectly = false;
-                const lesson = generateLesson();
-                currentItem = lesson.data;
-
-                document.getElementById("emoji").textContent = lesson.emoji;
-                document.getElementById("wordEn").textContent = "❓ ❓ ❓";
-                document.getElementById("wordEn").dataset.answer = lesson.word;
-                document.getElementById("exampleEn").parentElement.style.visibility = "hidden";
-                document.getElementById("wordEs").textContent = lesson.translation;
-                document.getElementById("exampleEn").textContent = lesson.exampleEn;
-                document.getElementById("exampleEs").textContent = lesson.exampleEs;
-                document.getElementById("question").textContent = lesson.question;
-
-                feedbackEl.textContent = "";
-                feedbackEl.classList.remove("good", "bad");
-                lessonCard.classList.remove("correct", "wrong");
-
-                createOptions();
-            }
-
-            function createOptions() {
-                const container = document.getElementById("optionsContainer");
-                container.innerHTML = "";
-
-                const correct = currentItem;
-                const others = itemsData.filter(i => i.en !== correct.en);
-                shuffleArray(others);
-
-                const options = [correct.en, others[0].en, others[1].en];
-                shuffleArray(options);
-
-                options.forEach(optionText => {
-                    const btn = document.createElement("button");
-                    btn.textContent = optionText;
-                    btn.className = "option-btn";
-                    btn.onclick = () => checkAnswer(optionText, btn);
-                    container.appendChild(btn);
-                });
-            }
-
-            function speakFeedbackCorrect() {
-                const phrases = ["Great job!", "Awesome!", "Perfect!", "Nice work!"];
-                speakText(randomFromArray(phrases));
-            }
-            function speakFeedbackWrong() {
-                const phrases = ["Not yet, try again.", "Almost, try again.", "Keep trying.", "Don't give up."];
-                speakText(randomFromArray(phrases));
-            }
-
-            function speakText(text) {
-                if (!("speechSynthesis" in window)) return;
-                const utter = new SpeechSynthesisUtterance(text);
-                utter.lang = "en-US";
-                utter.rate = 0.95;
-                utter.pitch = 1.02;
-                window.speechSynthesis.cancel();
-                window.speechSynthesis.speak(utter);
-            }
-
-            function checkAnswer(answer, clickedBtn) {
-                if (!currentItem) return;
-                if (answeredCorrectly) return;
-
-                if (answer === currentItem.en) {
-                    answeredCorrectly = true;
-                    document.getElementById("wordEn").textContent = currentItem.en;
-                    document.getElementById("exampleEn").parentElement.style.visibility = "visible";
-
-                    correctCount++;
-                    correctSpan.textContent = correctCount;
-
-                    if (progress < maxProgress) {
-                        progress += 1;
-                        updateProgressBar();
-                    }
-
-                    feedbackEl.textContent = randomFromArray(["✅ Great job!", "✅ Awesome!", "✅ Perfect!", "✅ Nice!"]);
-                    feedbackEl.classList.remove("bad");
-                    feedbackEl.classList.add("good");
-
-                    playSound(soundCorrect);
-                    speakFeedbackCorrect();
-
-                    lessonCard.classList.remove("wrong");
-                    lessonCard.classList.add("correct");
-
-                    document.querySelectorAll(".option-btn").forEach(b => { b.disabled = true; });
-
-                    if (correctCount > 0 && correctCount % 5 === 0) playSound(soundLevelup);
-
-                    if (progress >= maxProgress) {
-                        try { localStorage.setItem("mk_topic_" + location.pathname.split("/").pop().replace(/\.html$/i, "") + "_complete", "true"); } catch (e) { }
-                        feedbackEl.textContent = "🎉 Lesson complete! Keep practicing.";
-                        feedbackEl.classList.add("good");
-                        playSound(soundLevelup);
-                    }
-                } else {
-                    wrongCount++;
-                    wrongSpan.textContent = wrongCount;
-
-                    feedbackEl.textContent = `❌ Not yet. Try again.`;
-                    feedbackEl.classList.remove("good");
-                    feedbackEl.classList.add("bad");
-
-                    playSound(soundWrong);
-                    speakFeedbackWrong();
-
-                    lessonCard.classList.remove("correct");
-                    lessonCard.classList.add("wrong");
-
-                    if (clickedBtn) clickedBtn.disabled = true;
-                }
-            }
-
-            function shuffleArray(arr) {
-                for (let i = arr.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [arr[i], arr[j]] = [arr[j], arr[i]];
-                }
-            }
-
-            function nextLesson() { renderLesson(); }
-
-            function speakWord() {
-                const word = document.getElementById("wordEn").dataset.answer || document.getElementById("wordEn").textContent;
-                if (!("speechSynthesis" in window)) return;
-                const utter = new SpeechSynthesisUtterance(word);
-                utter.lang = "en-US";
-                utter.rate = 0.9;
-                window.speechSynthesis.cancel();
-                window.speechSynthesis.speak(utter);
-            }
-
-            function playSound(audioElement) {
-                if (!audioElement) return;
-                audioElement.currentTime = 0;
-                audioElement.play().catch(() => { });
-            }
-
-            updateProgressBar();
-            renderLesson();
+            window.MK_LESSON = {
+ "items": [
+  {
+   "emoji": "🌳",
+   "en": "On weekends I go to the park",
+   "es": "Los fines de semana voy al parque",
+   "examplesEn": [
+    "On weekends I go to the park with my dog.",
+    "On weekends I go to the park and play."
+   ],
+   "examplesEs": [
+    "Los fines de semana voy al parque con mi perro.",
+    "Los fines de semana voy al parque y juego."
+   ],
+   "questions": [
+    "Cuentas a dónde vas los sábados y domingos. ¿Qué dices?",
+    "¿Cómo se dice «Los fines de semana voy al parque» en inglés?"
+   ]
+  },
+  {
+   "emoji": "👨‍👩‍👧",
+   "en": "With my family",
+   "es": "Con mi familia",
+   "examplesEn": [
+    "I have lunch with my family.",
+    "I go to the beach with my family."
+   ],
+   "examplesEs": [
+    "Almuerzo con mi familia.",
+    "Voy a la playa con mi familia."
+   ],
+   "questions": [
+    "Cuentas con quién sales: papá, mamá, hermanos. ¿Qué dices?",
+    "¿Cómo se dice «Con mi familia» en inglés?"
+   ]
+  },
+  {
+   "emoji": "👫",
+   "en": "With my friends",
+   "es": "Con mis amigos",
+   "examplesEn": [
+    "I play soccer with my friends.",
+    "I go to the cinema with my friends."
+   ],
+   "examplesEs": [
+    "Juego fútbol con mis amigos.",
+    "Voy al cine con mis amigos."
+   ],
+   "questions": [
+    "Cuentas que sales con tus amigos. ¿Qué dices?",
+    "¿Cómo se dice «Con mis amigos» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🎬",
+   "en": "We watch movies",
+   "es": "Vemos películas",
+   "examplesEn": [
+    "On Saturdays we watch movies.",
+    "We watch movies with popcorn."
+   ],
+   "examplesEs": [
+    "Los sábados vemos películas.",
+    "Vemos películas con canchita."
+   ],
+   "questions": [
+    "Cuentas lo que hacen en familia frente a la pantalla. ¿Qué dices?",
+    "¿Cómo se dice «Vemos películas» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🛌",
+   "en": "I sleep late",
+   "es": "Duermo hasta tarde",
+   "examplesEn": [
+    "On Sundays I sleep late.",
+    "I sleep late because there is no school."
+   ],
+   "examplesEs": [
+    "Los domingos duermo hasta tarde.",
+    "Duermo hasta tarde porque no hay colegio."
+   ],
+   "questions": [
+    "Cuentas que te levantas tarde el domingo. ¿Qué dices?",
+    "¿Cómo se dice «Duermo hasta tarde» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🍦",
+   "en": "We eat ice cream",
+   "es": "Comemos helado",
+   "examplesEn": [
+    "We eat ice cream at the park.",
+    "On Sundays we eat ice cream."
+   ],
+   "examplesEs": [
+    "Comemos helado en el parque.",
+    "Los domingos comemos helado."
+   ],
+   "questions": [
+    "Cuentas el postre favorito del fin de semana. ¿Qué dices?",
+    "¿Cómo se dice «Comemos helado» en inglés?"
+   ]
+  },
+  {
+   "emoji": "⚽",
+   "en": "Last weekend I played soccer",
+   "es": "El fin de semana pasado jugué fútbol",
+   "examplesEn": [
+    "Last weekend I played soccer with Leo.",
+    "Last weekend I played soccer and won!"
+   ],
+   "examplesEs": [
+    "El fin de semana pasado jugué fútbol con Leo.",
+    "¡El fin de semana pasado jugué fútbol y gané!"
+   ],
+   "questions": [
+    "Cuentas lo que hiciste el fin de semana PASADO. ¿Qué dices?",
+    "¿Cómo se dice «El fin de semana pasado jugué fútbol» en inglés?"
+   ]
+  },
+  {
+   "emoji": "👵",
+   "en": "I visited my grandma",
+   "es": "Visité a mi abuelita",
+   "examplesEn": [
+    "On Sunday I visited my grandma.",
+    "I visited my grandma and we made a cake."
+   ],
+   "examplesEs": [
+    "El domingo visité a mi abuelita.",
+    "Visité a mi abuelita e hicimos un pastel."
+   ],
+   "questions": [
+    "Cuentas que fuiste a ver a tu abuelita. ¿Qué dices?",
+    "¿Cómo se dice «Visité a mi abuelita» en inglés?"
+   ]
+  },
+  {
+   "emoji": "😃",
+   "en": "It was fun!",
+   "es": "¡Fue divertido!",
+   "examplesEn": [
+    "The party was great. It was fun!",
+    "We played all day. It was fun!"
+   ],
+   "examplesEs": [
+    "La fiesta estuvo genial. ¡Fue divertido!",
+    "Jugamos todo el día. ¡Fue divertido!"
+   ],
+   "questions": [
+    "Cuentas que lo pasaste muy bien. ¿Qué dices?",
+    "¿Cómo se dice «¡Fue divertido!» en inglés?"
+   ]
+  },
+  {
+   "emoji": "❓",
+   "en": "What do you do on weekends?",
+   "es": "¿Qué haces los fines de semana?",
+   "examplesEn": [
+    "What do you do on weekends? — I swim.",
+    "Ana, what do you do on weekends?"
+   ],
+   "examplesEs": [
+    "¿Qué haces los fines de semana? — Nado.",
+    "Ana, ¿qué haces los fines de semana?"
+   ],
+   "questions": [
+    "Quieres saber qué hace tu amigo sábado y domingo. ¿Qué preguntas?",
+    "Significa: ¿Qué haces los fines de semana? ¿Cuál es la frase en inglés?"
+   ]
+  }
+ ],
+ "total": 10,
+ "pass": 0.8
+};
         </script>
+        <script src="assets/mk-ingles.js?v=1"></script>
 
         <script>
             // Registrar Service Worker (PWA)

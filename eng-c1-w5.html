@@ -501,6 +501,7 @@
                 margin: 0;
             }
         </style>
+        <link rel="stylesheet" href="assets/mk-ingles.css?v=1">
     </head>
 
     <body>
@@ -537,7 +538,7 @@
             <!-- ================== INGLÉS ================== -->
             <section class="section active" id="courseEnglish">
                 <h1>C1 · Semana 5: Matices al escuchar</h1>
-                <p class="subtitle">Lee la situación, toca 🔊 para escuchar y elige la frase correcta en inglés. 🎧</p>
+                <p class="subtitle">Practica con ejercicios variados. 👆 Toca cualquier palabra en inglés para escuchar cómo se pronuncia. 🎧</p>
 
                 <div class="status-bar">
                     <div class="xp">✅ Correctas: <span id="xpValue">0</span></div>
@@ -554,26 +555,10 @@
                     </div>
                 </div>
 
-                <div class="card" id="lessonCard">
-                    <div class="emoji-container">
-                        <div class="emoji" id="emoji">🛋️</div>
-                        <button class="speak-btn" aria-label="Escuchar pronunciación" onclick="speakWord()">🔊</button>
-                    </div>
-
-                    <div class="word" id="wordEn">sofa</div>
-                    <div class="translation" id="wordEs">sofá</div>
-
-                    <p class="example-en"><span class="label">Inglés:</span> <span id="exampleEn">This is a sofa.</span></p>
-                    <p class="example-es"><span class="label">Español:</span> <span id="exampleEs">Este es un sofá.</span></p>
-
-                    <p class="question" id="question">What is this?</p>
-
-                    <div class="options" id="optionsContainer"></div>
-                    <div class="feedback" id="feedback"></div>
-                </div>
+                <div class="card" id="lessonCard"></div>
 
                 <div class="controls">
-                    <button class="main-btn" onclick="nextLesson()">Next</button>
+                    <button class="main-btn" onclick="goHome()">⬅ Ruta de Inglés</button>
                     <button class="main-btn" onclick="shareApp()">📤 Compartir app</button>
                 </div>
             </section>
@@ -593,367 +578,184 @@
         </script>
 
         <script>
-            // ====== INGLÉS ======
-            const itemsData = [
-              {
-                "emoji": "😏",
-                "en": "Oh, great. Just what I needed",
-                "es": "Ah, genial. Justo lo que necesitaba",
-                "examplesEn": [
-                  "My car broke down. Oh, great. Just what I needed.",
-                  "More homework? Oh, great. Just what I needed."
-                ],
-                "examplesEs": [
-                  "Se malogró mi auto. Ah, genial. Justo lo que necesitaba.",
-                  "¿Más tarea? Ah, genial. Justo lo que necesitaba."
-                ],
-                "questions": [
-                  "Expresas fastidio con IRONÍA. ¿Qué dices?",
-                  "¿Cómo se dice «Ah, genial. Justo lo que necesitaba» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🙄",
-                "en": "Yeah, right",
-                "es": "Sí, claro (incredulidad)",
-                "examplesEn": [
-                  "He'll finish on time? Yeah, right.",
-                  "You cleaned your room? Yeah, right."
-                ],
-                "examplesEs": [
-                  "¿Terminará a tiempo? Sí, claro.",
-                  "¿Ordenaste tu cuarto? Sí, claro."
-                ],
-                "questions": [
-                  "No le crees nada a alguien (sarcasmo). ¿Qué dices?",
-                  "¿Cómo se dice «Sí, claro (incredulidad)» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🤏",
-                "en": "I'm not entirely convinced",
-                "es": "No estoy del todo convencido",
-                "examplesEn": [
-                  "It sounds good, but I'm not entirely convinced.",
-                  "I'm not entirely convinced by his argument."
-                ],
-                "examplesEs": [
-                  "Suena bien, pero no estoy del todo convencido.",
-                  "No estoy del todo convencido con su argumento."
-                ],
-                "questions": [
-                  "Expresas duda de manera suave y educada. ¿Qué dices?",
-                  "¿Cómo se dice «No estoy del todo convencido» en inglés?"
-                ]
-              },
-              {
-                "emoji": "📜",
-                "en": "Reading between the lines",
-                "es": "Leyendo entre líneas",
-                "examplesEn": [
-                  "Reading between the lines, he wants to quit.",
-                  "Reading between the lines, she wasn't happy."
-                ],
-                "examplesEs": [
-                  "Leyendo entre líneas, él quiere renunciar.",
-                  "Leyendo entre líneas, ella no estaba contenta."
-                ],
-                "questions": [
-                  "Interpretas el mensaje OCULTO. ¿Qué expresión usas?",
-                  "¿Cómo se dice «Leyendo entre líneas» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🎭",
-                "en": "She was being sarcastic",
-                "es": "Ella estaba siendo sarcástica",
-                "examplesEn": [
-                  "Don't worry, she was being sarcastic.",
-                  "I think she was being sarcastic, not rude."
-                ],
-                "examplesEs": [
-                  "No te preocupes, estaba siendo sarcástica.",
-                  "Creo que estaba siendo sarcástica, no grosera."
-                ],
-                "questions": [
-                  "Explicas que alguien no hablaba en serio. ¿Qué dices?",
-                  "¿Cómo se dice «Ella estaba siendo sarcástica» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🧊",
-                "en": "That's one way of putting it",
-                "es": "Esa es una forma de decirlo",
-                "examplesEn": [
-                  "'A small problem'? That's one way of putting it.",
-                  "That's one way of putting it, I suppose."
-                ],
-                "examplesEs": [
-                  "¿'Un pequeño problema'? Esa es una forma de decirlo.",
-                  "Supongo que esa es una forma de decirlo."
-                ],
-                "questions": [
-                  "Insinúas que alguien suavizó demasiado la realidad. ¿Qué dices?",
-                  "¿Cómo se dice «Esa es una forma de decirlo» en inglés?"
-                ]
-              },
-              {
-                "emoji": "👀",
-                "en": "It remains to be seen",
-                "es": "Está por verse",
-                "examplesEn": [
-                  "Whether it works remains to be seen.",
-                  "It remains to be seen if he'll accept."
-                ],
-                "examplesEs": [
-                  "Si funciona o no, está por verse.",
-                  "Está por verse si aceptará."
-                ],
-                "questions": [
-                  "Dices que el resultado aún es incierto. ¿Qué usas?",
-                  "¿Cómo se dice «Está por verse» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🫤",
-                "en": "I'll believe it when I see it",
-                "es": "Lo creeré cuando lo vea",
-                "examplesEn": [
-                  "He says he'll change. I'll believe it when I see it.",
-                  "A new metro line? I'll believe it when I see it."
-                ],
-                "examplesEs": [
-                  "Dice que cambiará. Lo creeré cuando lo vea.",
-                  "¿Una nueva línea de metro? Lo creeré cuando lo vea."
-                ],
-                "questions": [
-                  "Expresas escepticismo ante una promesa. ¿Qué dices?",
-                  "¿Cómo se dice «Lo creeré cuando lo vea» en inglés?"
-                ]
-              },
-              {
-                "emoji": "📝",
-                "en": "The gist of it",
-                "es": "Lo esencial",
-                "examplesEn": [
-                  "I didn't get every word, but I got the gist of it.",
-                  "The gist of it is that we need to wait."
-                ],
-                "examplesEs": [
-                  "No entendí cada palabra, pero capté lo esencial.",
-                  "Lo esencial es que tenemos que esperar."
-                ],
-                "questions": [
-                  "Dices que entendiste la IDEA GENERAL. ¿Qué expresión usas?",
-                  "¿Cómo se dice «Lo esencial» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🔑",
-                "en": "The underlying message",
-                "es": "El mensaje de fondo",
-                "examplesEn": [
-                  "The underlying message is about respect.",
-                  "What's the underlying message of the speech?"
-                ],
-                "examplesEs": [
-                  "El mensaje de fondo es sobre el respeto.",
-                  "¿Cuál es el mensaje de fondo del discurso?"
-                ],
-                "questions": [
-                  "Hablas de la intención PROFUNDA del hablante. ¿Qué usas?",
-                  "¿Cómo se dice «El mensaje de fondo» en inglés?"
-                ]
-              }
-            ];
-
-            let currentItem = null;
-            let correctCount = 0;
-            let wrongCount = 0;
-            let answeredCorrectly = false;
-
-            let progress = 0;
-            const maxProgress = 10;
-
-            const correctSpan = document.getElementById("xpValue");
-            const wrongSpan = document.getElementById("heartsValue");
-            const feedbackEl = document.getElementById("feedback");
-            const lessonCard = document.getElementById("lessonCard");
-            const progressBar = document.getElementById("progressBar");
-            const progressText = document.getElementById("progressText");
-
-            const soundCorrect = document.getElementById("sound-correct");
-            const soundWrong = document.getElementById("sound-wrong");
-            const soundLevelup = document.getElementById("sound-levelup");
-
-            function updateProgressBar() {
-                const percent = (progress / maxProgress) * 100;
-                progressBar.style.width = percent + "%";
-                progressText.textContent = `${progress}/${maxProgress}`;
-            }
-
-            function getRandomItem() {
-                return itemsData[Math.floor(Math.random() * itemsData.length)];
-            }
-            function randomFromArray(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
-
-            function generateLesson() {
-                const item = getRandomItem();
-                const idx = Math.floor(Math.random() * item.examplesEn.length);
-                return {
-                    data: item,
-                    emoji: item.emoji,
-                    word: item.en,
-                    translation: item.es,
-                    exampleEn: item.examplesEn[idx],
-                    exampleEs: item.examplesEs[idx],
-                    question: randomFromArray(item.questions)
-                };
-            }
-
-            function renderLesson() {
-                answeredCorrectly = false;
-                const lesson = generateLesson();
-                currentItem = lesson.data;
-
-                document.getElementById("emoji").textContent = lesson.emoji;
-                document.getElementById("wordEn").textContent = "❓ ❓ ❓";
-                document.getElementById("wordEn").dataset.answer = lesson.word;
-                document.getElementById("exampleEn").parentElement.style.visibility = "hidden";
-                document.getElementById("wordEs").textContent = lesson.translation;
-                document.getElementById("exampleEn").textContent = lesson.exampleEn;
-                document.getElementById("exampleEs").textContent = lesson.exampleEs;
-                document.getElementById("question").textContent = lesson.question;
-
-                feedbackEl.textContent = "";
-                feedbackEl.classList.remove("good", "bad");
-                lessonCard.classList.remove("correct", "wrong");
-
-                createOptions();
-            }
-
-            function createOptions() {
-                const container = document.getElementById("optionsContainer");
-                container.innerHTML = "";
-
-                const correct = currentItem;
-                const others = itemsData.filter(i => i.en !== correct.en);
-                shuffleArray(others);
-
-                const options = [correct.en, others[0].en, others[1].en];
-                shuffleArray(options);
-
-                options.forEach(optionText => {
-                    const btn = document.createElement("button");
-                    btn.textContent = optionText;
-                    btn.className = "option-btn";
-                    btn.onclick = () => checkAnswer(optionText, btn);
-                    container.appendChild(btn);
-                });
-            }
-
-            function speakFeedbackCorrect() {
-                const phrases = ["Great job!", "Awesome!", "Perfect!", "Nice work!"];
-                speakText(randomFromArray(phrases));
-            }
-            function speakFeedbackWrong() {
-                const phrases = ["Not yet, try again.", "Almost, try again.", "Keep trying.", "Don't give up."];
-                speakText(randomFromArray(phrases));
-            }
-
-            function speakText(text) {
-                if (!("speechSynthesis" in window)) return;
-                const utter = new SpeechSynthesisUtterance(text);
-                utter.lang = "en-US";
-                utter.rate = 0.95;
-                utter.pitch = 1.02;
-                window.speechSynthesis.cancel();
-                window.speechSynthesis.speak(utter);
-            }
-
-            function checkAnswer(answer, clickedBtn) {
-                if (!currentItem) return;
-                if (answeredCorrectly) return;
-
-                if (answer === currentItem.en) {
-                    answeredCorrectly = true;
-                    document.getElementById("wordEn").textContent = currentItem.en;
-                    document.getElementById("exampleEn").parentElement.style.visibility = "visible";
-
-                    correctCount++;
-                    correctSpan.textContent = correctCount;
-
-                    if (progress < maxProgress) {
-                        progress += 1;
-                        updateProgressBar();
-                    }
-
-                    feedbackEl.textContent = randomFromArray(["✅ Great job!", "✅ Awesome!", "✅ Perfect!", "✅ Nice!"]);
-                    feedbackEl.classList.remove("bad");
-                    feedbackEl.classList.add("good");
-
-                    playSound(soundCorrect);
-                    speakFeedbackCorrect();
-
-                    lessonCard.classList.remove("wrong");
-                    lessonCard.classList.add("correct");
-
-                    document.querySelectorAll(".option-btn").forEach(b => { b.disabled = true; });
-
-                    if (correctCount > 0 && correctCount % 5 === 0) playSound(soundLevelup);
-
-                    if (progress >= maxProgress) {
-                        try { localStorage.setItem("mk_topic_" + location.pathname.split("/").pop().replace(/\.html$/i, "") + "_complete", "true"); } catch (e) { }
-                        feedbackEl.textContent = "🎉 Lesson complete! Keep practicing.";
-                        feedbackEl.classList.add("good");
-                        playSound(soundLevelup);
-                    }
-                } else {
-                    wrongCount++;
-                    wrongSpan.textContent = wrongCount;
-
-                    feedbackEl.textContent = `❌ Not yet. Try again.`;
-                    feedbackEl.classList.remove("good");
-                    feedbackEl.classList.add("bad");
-
-                    playSound(soundWrong);
-                    speakFeedbackWrong();
-
-                    lessonCard.classList.remove("correct");
-                    lessonCard.classList.add("wrong");
-
-                    if (clickedBtn) clickedBtn.disabled = true;
-                }
-            }
-
-            function shuffleArray(arr) {
-                for (let i = arr.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [arr[i], arr[j]] = [arr[j], arr[i]];
-                }
-            }
-
-            function nextLesson() { renderLesson(); }
-
-            function speakWord() {
-                const word = document.getElementById("wordEn").dataset.answer || document.getElementById("wordEn").textContent;
-                if (!("speechSynthesis" in window)) return;
-                const utter = new SpeechSynthesisUtterance(word);
-                utter.lang = "en-US";
-                utter.rate = 0.9;
-                window.speechSynthesis.cancel();
-                window.speechSynthesis.speak(utter);
-            }
-
-            function playSound(audioElement) {
-                if (!audioElement) return;
-                audioElement.currentTime = 0;
-                audioElement.play().catch(() => { });
-            }
-
-            updateProgressBar();
-            renderLesson();
+            window.MK_LESSON = {
+ "items": [
+  {
+   "emoji": "😏",
+   "en": "Oh, great. Just what I needed",
+   "es": "Ah, genial. Justo lo que necesitaba",
+   "examplesEn": [
+    "My car broke down. Oh, great. Just what I needed.",
+    "More homework? Oh, great. Just what I needed."
+   ],
+   "examplesEs": [
+    "Se malogró mi auto. Ah, genial. Justo lo que necesitaba.",
+    "¿Más tarea? Ah, genial. Justo lo que necesitaba."
+   ],
+   "questions": [
+    "Expresas fastidio con IRONÍA. ¿Qué dices?",
+    "¿Cómo se dice «Ah, genial. Justo lo que necesitaba» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🙄",
+   "en": "Yeah, right",
+   "es": "Sí, claro (incredulidad)",
+   "examplesEn": [
+    "He'll finish on time? Yeah, right.",
+    "You cleaned your room? Yeah, right."
+   ],
+   "examplesEs": [
+    "¿Terminará a tiempo? Sí, claro.",
+    "¿Ordenaste tu cuarto? Sí, claro."
+   ],
+   "questions": [
+    "No le crees nada a alguien (sarcasmo). ¿Qué dices?",
+    "¿Cómo se dice «Sí, claro (incredulidad)» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🤏",
+   "en": "I'm not entirely convinced",
+   "es": "No estoy del todo convencido",
+   "examplesEn": [
+    "It sounds good, but I'm not entirely convinced.",
+    "I'm not entirely convinced by his argument."
+   ],
+   "examplesEs": [
+    "Suena bien, pero no estoy del todo convencido.",
+    "No estoy del todo convencido con su argumento."
+   ],
+   "questions": [
+    "Expresas duda de manera suave y educada. ¿Qué dices?",
+    "¿Cómo se dice «No estoy del todo convencido» en inglés?"
+   ]
+  },
+  {
+   "emoji": "📜",
+   "en": "Reading between the lines",
+   "es": "Leyendo entre líneas",
+   "examplesEn": [
+    "Reading between the lines, he wants to quit.",
+    "Reading between the lines, she wasn't happy."
+   ],
+   "examplesEs": [
+    "Leyendo entre líneas, él quiere renunciar.",
+    "Leyendo entre líneas, ella no estaba contenta."
+   ],
+   "questions": [
+    "Interpretas el mensaje OCULTO. ¿Qué expresión usas?",
+    "¿Cómo se dice «Leyendo entre líneas» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🎭",
+   "en": "She was being sarcastic",
+   "es": "Ella estaba siendo sarcástica",
+   "examplesEn": [
+    "Don't worry, she was being sarcastic.",
+    "I think she was being sarcastic, not rude."
+   ],
+   "examplesEs": [
+    "No te preocupes, estaba siendo sarcástica.",
+    "Creo que estaba siendo sarcástica, no grosera."
+   ],
+   "questions": [
+    "Explicas que alguien no hablaba en serio. ¿Qué dices?",
+    "¿Cómo se dice «Ella estaba siendo sarcástica» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🧊",
+   "en": "That's one way of putting it",
+   "es": "Esa es una forma de decirlo",
+   "examplesEn": [
+    "'A small problem'? That's one way of putting it.",
+    "That's one way of putting it, I suppose."
+   ],
+   "examplesEs": [
+    "¿'Un pequeño problema'? Esa es una forma de decirlo.",
+    "Supongo que esa es una forma de decirlo."
+   ],
+   "questions": [
+    "Insinúas que alguien suavizó demasiado la realidad. ¿Qué dices?",
+    "¿Cómo se dice «Esa es una forma de decirlo» en inglés?"
+   ]
+  },
+  {
+   "emoji": "👀",
+   "en": "It remains to be seen",
+   "es": "Está por verse",
+   "examplesEn": [
+    "Whether it works remains to be seen.",
+    "It remains to be seen if he'll accept."
+   ],
+   "examplesEs": [
+    "Si funciona o no, está por verse.",
+    "Está por verse si aceptará."
+   ],
+   "questions": [
+    "Dices que el resultado aún es incierto. ¿Qué usas?",
+    "¿Cómo se dice «Está por verse» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🫤",
+   "en": "I'll believe it when I see it",
+   "es": "Lo creeré cuando lo vea",
+   "examplesEn": [
+    "He says he'll change. I'll believe it when I see it.",
+    "A new metro line? I'll believe it when I see it."
+   ],
+   "examplesEs": [
+    "Dice que cambiará. Lo creeré cuando lo vea.",
+    "¿Una nueva línea de metro? Lo creeré cuando lo vea."
+   ],
+   "questions": [
+    "Expresas escepticismo ante una promesa. ¿Qué dices?",
+    "¿Cómo se dice «Lo creeré cuando lo vea» en inglés?"
+   ]
+  },
+  {
+   "emoji": "📝",
+   "en": "The gist of it",
+   "es": "Lo esencial",
+   "examplesEn": [
+    "I didn't get every word, but I got the gist of it.",
+    "The gist of it is that we need to wait."
+   ],
+   "examplesEs": [
+    "No entendí cada palabra, pero capté lo esencial.",
+    "Lo esencial es que tenemos que esperar."
+   ],
+   "questions": [
+    "Dices que entendiste la IDEA GENERAL. ¿Qué expresión usas?",
+    "¿Cómo se dice «Lo esencial» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🔑",
+   "en": "The underlying message",
+   "es": "El mensaje de fondo",
+   "examplesEn": [
+    "The underlying message is about respect.",
+    "What's the underlying message of the speech?"
+   ],
+   "examplesEs": [
+    "El mensaje de fondo es sobre el respeto.",
+    "¿Cuál es el mensaje de fondo del discurso?"
+   ],
+   "questions": [
+    "Hablas de la intención PROFUNDA del hablante. ¿Qué usas?",
+    "¿Cómo se dice «El mensaje de fondo» en inglés?"
+   ]
+  }
+ ],
+ "total": 10,
+ "pass": 0.8
+};
         </script>
+        <script src="assets/mk-ingles.js?v=1"></script>
 
         <script>
             // Registrar Service Worker (PWA)

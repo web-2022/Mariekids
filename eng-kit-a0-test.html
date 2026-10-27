@@ -501,6 +501,7 @@
                 margin: 0;
             }
         </style>
+        <link rel="stylesheet" href="assets/mk-ingles.css?v=1">
     </head>
 
     <body>
@@ -554,26 +555,10 @@
                     </div>
                 </div>
 
-                <div class="card" id="lessonCard">
-                    <div class="emoji-container">
-                        <div class="emoji" id="emoji">🛋️</div>
-                        <button class="speak-btn" aria-label="Escuchar pronunciación" onclick="speakWord()">🔊</button>
-                    </div>
-
-                    <div class="word" id="wordEn">sofa</div>
-                    <div class="translation" id="wordEs">sofá</div>
-
-                    <p class="example-en"><span class="label">Inglés:</span> <span id="exampleEn">This is a sofa.</span></p>
-                    <p class="example-es"><span class="label">Español:</span> <span id="exampleEs">Este es un sofá.</span></p>
-
-                    <p class="question" id="question">What is this?</p>
-
-                    <div class="options" id="optionsContainer"></div>
-                    <div class="feedback" id="feedback"></div>
-                </div>
+                <div class="card" id="lessonCard"></div>
 
                 <div class="controls">
-                    <button class="main-btn" onclick="nextLesson()">Next</button>
+                    <button class="main-btn" onclick="goHome()">⬅ Ruta de Inglés</button>
                     <button class="main-btn" onclick="shareApp()">📤 Compartir app</button>
                 </div>
             </section>
@@ -593,877 +578,894 @@
         </script>
 
         <script>
-            // ====== INGLÉS ======
-            const itemsData = [
-              {
-                "emoji": "🔢",
-                "en": "One, two, three",
-                "es": "Uno, dos, tres",
-                "examplesEn": [
-                  "I can count: one, two, three!",
-                  "One, two, three, go!"
-                ],
-                "examplesEs": [
-                  "¡Sé contar: uno, dos, tres!",
-                  "¡Uno, dos, tres, ya!"
-                ],
-                "questions": [
-                  "Cuentas los primeros números. ¿Qué dices?",
-                  "¿Cómo se dice «Uno, dos, tres» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🔟",
-                "en": "Ten",
-                "es": "Diez",
-                "examplesEn": [
-                  "I have ten fingers.",
-                  "Ten little apples."
-                ],
-                "examplesEs": [
-                  "Tengo diez dedos.",
-                  "Diez manzanitas."
-                ],
-                "questions": [
-                  "¿Cuántos dedos tienes en las dos manos?",
-                  "¿Cómo se dice «Diez» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🎈",
-                "en": "Twenty",
-                "es": "Veinte",
-                "examplesEn": [
-                  "There are twenty kids in my class.",
-                  "Count to twenty!"
-                ],
-                "examplesEs": [
-                  "Hay veinte niños en mi clase.",
-                  "¡Cuenta hasta veinte!"
-                ],
-                "questions": [
-                  "En tu clase hay 20 niños. ¿Qué número dices?",
-                  "¿Cómo se dice «Veinte» en inglés?"
-                ]
-              },
-              {
-                "emoji": "❓",
-                "en": "How old are you?",
-                "es": "¿Cuántos años tienes?",
-                "examplesEn": [
-                  "Hi, Leo! How old are you?",
-                  "How old are you? — I'm six."
-                ],
-                "examplesEs": [
-                  "¡Hola, Leo! ¿Cuántos años tienes?",
-                  "¿Cuántos años tienes? — Tengo seis."
-                ],
-                "questions": [
-                  "Quieres saber la edad de tu amigo. ¿Qué preguntas?",
-                  "Significa: ¿Cuántos años tienes? ¿Cuál es la frase en inglés?"
-                ]
-              },
-              {
-                "emoji": "🎂",
-                "en": "I'm six years old",
-                "es": "Tengo seis años",
-                "examplesEn": [
-                  "I'm six years old today!",
-                  "My name is Ana. I'm six years old."
-                ],
-                "examplesEs": [
-                  "¡Hoy cumplo seis años!",
-                  "Me llamo Ana. Tengo seis años."
-                ],
-                "questions": [
-                  "Te preguntan tu edad y tienes 6. ¿Qué respondes?",
-                  "¿Cómo se dice «Tengo seis años» en inglés?"
-                ]
-              },
-              {
-                "emoji": "👩",
-                "en": "This is my mom",
-                "es": "Esta es mi mamá",
-                "examplesEn": [
-                  "This is my mom. Her name is Rosa.",
-                  "Look! This is my mom."
-                ],
-                "examplesEs": [
-                  "Esta es mi mamá. Se llama Rosa.",
-                  "¡Mira! Esta es mi mamá."
-                ],
-                "questions": [
-                  "Presentas a tu mamá. ¿Qué dices?",
-                  "¿Cómo se dice «Esta es mi mamá» en inglés?"
-                ]
-              },
-              {
-                "emoji": "👨",
-                "en": "This is my dad",
-                "es": "Este es mi papá",
-                "examplesEn": [
-                  "This is my dad. He is tall.",
-                  "Hello! This is my dad."
-                ],
-                "examplesEs": [
-                  "Este es mi papá. Es alto.",
-                  "¡Hola! Este es mi papá."
-                ],
-                "questions": [
-                  "Presentas a tu papá. ¿Qué dices?",
-                  "¿Cómo se dice «Este es mi papá» en inglés?"
-                ]
-              },
-              {
-                "emoji": "👦",
-                "en": "I have one brother",
-                "es": "Tengo un hermano",
-                "examplesEn": [
-                  "I have one brother. His name is Tom.",
-                  "I have one brother and one sister."
-                ],
-                "examplesEs": [
-                  "Tengo un hermano. Se llama Tom.",
-                  "Tengo un hermano y una hermana."
-                ],
-                "questions": [
-                  "Cuentas que tienes un hermano. ¿Qué dices?",
-                  "¿Cómo se dice «Tengo un hermano» en inglés?"
-                ]
-              },
-              {
-                "emoji": "👧",
-                "en": "My sister",
-                "es": "Mi hermana",
-                "examplesEn": [
-                  "My sister is eight.",
-                  "I play with my sister."
-                ],
-                "examplesEs": [
-                  "Mi hermana tiene ocho años.",
-                  "Juego con mi hermana."
-                ],
-                "questions": [
-                  "Hablas de tu hermana. ¿Qué dices?",
-                  "¿Cómo se dice «Mi hermana» en inglés?"
-                ]
-              },
-              {
-                "emoji": "👵",
-                "en": "My grandma",
-                "es": "Mi abuelita",
-                "examplesEn": [
-                  "My grandma makes cakes.",
-                  "I love my grandma."
-                ],
-                "examplesEs": [
-                  "Mi abuelita hace pasteles.",
-                  "Quiero mucho a mi abuelita."
-                ],
-                "questions": [
-                  "Hablas de tu abuelita. ¿Qué dices?",
-                  "¿Cómo se dice «Mi abuelita» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🔴",
-                "en": "It's red",
-                "es": "Es rojo",
-                "examplesEn": [
-                  "The apple is red.",
-                  "It's red like a tomato."
-                ],
-                "examplesEs": [
-                  "La manzana es roja.",
-                  "Es rojo como un tomate."
-                ],
-                "questions": [
-                  "Te preguntan el color de una fresa. ¿Qué dices?",
-                  "¿Cómo se dice «Es rojo» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🔵",
-                "en": "It's blue",
-                "es": "Es azul",
-                "examplesEn": [
-                  "The sky is blue.",
-                  "My bag is blue."
-                ],
-                "examplesEs": [
-                  "El cielo es azul.",
-                  "Mi mochila es azul."
-                ],
-                "questions": [
-                  "Te preguntan el color del cielo. ¿Qué dices?",
-                  "¿Cómo se dice «Es azul» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🟡",
-                "en": "It's yellow",
-                "es": "Es amarillo",
-                "examplesEn": [
-                  "The sun is yellow.",
-                  "The banana is yellow."
-                ],
-                "examplesEs": [
-                  "El sol es amarillo.",
-                  "El plátano es amarillo."
-                ],
-                "questions": [
-                  "Te preguntan el color del plátano. ¿Qué dices?",
-                  "¿Cómo se dice «Es amarillo» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🟢",
-                "en": "It's green",
-                "es": "Es verde",
-                "examplesEn": [
-                  "The frog is green.",
-                  "The tree is green."
-                ],
-                "examplesEs": [
-                  "La rana es verde.",
-                  "El árbol es verde."
-                ],
-                "questions": [
-                  "Te preguntan el color de una rana. ¿Qué dices?",
-                  "¿Cómo se dice «Es verde» en inglés?"
-                ]
-              },
-              {
-                "emoji": "⚫",
-                "en": "It's black",
-                "es": "Es negro",
-                "examplesEn": [
-                  "My cat is black.",
-                  "The board is black."
-                ],
-                "examplesEs": [
-                  "Mi gato es negro.",
-                  "La pizarra es negra."
-                ],
-                "questions": [
-                  "Te preguntan el color de la noche. ¿Qué dices?",
-                  "¿Cómo se dice «Es negro» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🎨",
-                "en": "What color is it?",
-                "es": "¿De qué color es?",
-                "examplesEn": [
-                  "What color is it? — It's blue.",
-                  "What color is your pencil?"
-                ],
-                "examplesEs": [
-                  "¿De qué color es? — Es azul.",
-                  "¿De qué color es tu lápiz?"
-                ],
-                "questions": [
-                  "Quieres saber el color de algo. ¿Qué preguntas?",
-                  "Significa: ¿De qué color es? ¿Cuál es la frase en inglés?"
-                ]
-              },
-              {
-                "emoji": "📕",
-                "en": "This is a red book",
-                "es": "Este es un libro rojo",
-                "examplesEn": [
-                  "Look! This is a red book.",
-                  "This is a red book. It's my book."
-                ],
-                "examplesEs": [
-                  "¡Mira! Este es un libro rojo.",
-                  "Este es un libro rojo. Es mi libro."
-                ],
-                "questions": [
-                  "Muestras tu libro rojo. ¿Qué dices?",
-                  "¿Cómo se dice «Este es un libro rojo» en inglés?"
-                ]
-              },
-              {
-                "emoji": "✏️",
-                "en": "A pencil",
-                "es": "Un lápiz",
-                "examplesEn": [
-                  "This is my pencil.",
-                  "I write with a pencil."
-                ],
-                "examplesEs": [
-                  "Este es mi lápiz.",
-                  "Escribo con un lápiz."
-                ],
-                "questions": [
-                  "Necesitas algo para escribir. ¿Qué pides?",
-                  "¿Cómo se dice «Un lápiz» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🎒",
-                "en": "A bag",
-                "es": "Una mochila",
-                "examplesEn": [
-                  "My bag is big.",
-                  "This is my green bag."
-                ],
-                "examplesEs": [
-                  "Mi mochila es grande.",
-                  "Esta es mi mochila verde."
-                ],
-                "questions": [
-                  "¿Dónde guardas tus útiles?",
-                  "¿Cómo se dice «Una mochila» en inglés?"
-                ]
-              },
-              {
-                "emoji": "⚽",
-                "en": "A ball",
-                "es": "Una pelota",
-                "examplesEn": [
-                  "This is a ball. It's white.",
-                  "Let's play with the ball!"
-                ],
-                "examplesEs": [
-                  "Esto es una pelota. Es blanca.",
-                  "¡Juguemos con la pelota!"
-                ],
-                "questions": [
-                  "Quieres jugar fútbol. ¿Qué necesitas?",
-                  "¿Cómo se dice «Una pelota» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🍕",
-                "en": "I like pizza",
-                "es": "Me gusta la pizza",
-                "examplesEn": [
-                  "I like pizza very much.",
-                  "I like pizza with cheese."
-                ],
-                "examplesEs": [
-                  "Me gusta mucho la pizza.",
-                  "Me gusta la pizza con queso."
-                ],
-                "questions": [
-                  "Dices que te gusta la pizza. ¿Qué dices?",
-                  "¿Cómo se dice «Me gusta la pizza» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🥛",
-                "en": "I don't like milk",
-                "es": "No me gusta la leche",
-                "examplesEn": [
-                  "I don't like milk. I like juice.",
-                  "Sorry, I don't like milk."
-                ],
-                "examplesEs": [
-                  "No me gusta la leche. Me gusta el jugo.",
-                  "Lo siento, no me gusta la leche."
-                ],
-                "questions": [
-                  "Dices que no te gusta la leche. ¿Qué dices?",
-                  "¿Cómo se dice «No me gusta la leche» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🍎",
-                "en": "Do you like apples?",
-                "es": "¿Te gustan las manzanas?",
-                "examplesEn": [
-                  "Do you like apples? — Yes, I do.",
-                  "Ana, do you like apples?"
-                ],
-                "examplesEs": [
-                  "¿Te gustan las manzanas? — Sí.",
-                  "Ana, ¿te gustan las manzanas?"
-                ],
-                "questions": [
-                  "Preguntas a tu amigo si le gustan las manzanas. ¿Qué dices?",
-                  "Significa: ¿Te gustan las manzanas? ¿Cuál es la frase en inglés?"
-                ]
-              },
-              {
-                "emoji": "👍",
-                "en": "Yes, I do",
-                "es": "Sí, me gusta",
-                "examplesEn": [
-                  "Do you like ice cream? — Yes, I do!",
-                  "Yes, I do. It's yummy!"
-                ],
-                "examplesEs": [
-                  "¿Te gusta el helado? — ¡Sí!",
-                  "Sí, me gusta. ¡Es rico!"
-                ],
-                "questions": [
-                  "Te preguntan si te gusta algo y SÍ te gusta. ¿Qué respondes?",
-                  "¿Cómo se dice «Sí, me gusta» en inglés?"
-                ]
-              },
-              {
-                "emoji": "👎",
-                "en": "No, I don't",
-                "es": "No, no me gusta",
-                "examplesEn": [
-                  "Do you like fish? — No, I don't.",
-                  "No, I don't. I like chicken."
-                ],
-                "examplesEs": [
-                  "¿Te gusta el pescado? — No.",
-                  "No, no me gusta. Me gusta el pollo."
-                ],
-                "questions": [
-                  "Te preguntan si te gusta algo y NO te gusta. ¿Qué respondes?",
-                  "¿Cómo se dice «No, no me gusta» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🍌",
-                "en": "A banana",
-                "es": "Un plátano",
-                "examplesEn": [
-                  "Monkeys like bananas.",
-                  "I have a banana for lunch."
-                ],
-                "examplesEs": [
-                  "A los monos les gustan los plátanos.",
-                  "Tengo un plátano para el almuerzo."
-                ],
-                "questions": [
-                  "¿Cómo se llama la fruta amarilla y larga?",
-                  "¿Cómo se dice «Un plátano» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🍗",
-                "en": "Chicken",
-                "es": "Pollo",
-                "examplesEn": [
-                  "I like chicken and rice.",
-                  "Chicken is my favorite food."
-                ],
-                "examplesEs": [
-                  "Me gusta el pollo con arroz.",
-                  "El pollo es mi comida favorita."
-                ],
-                "questions": [
-                  "Pides pollo en un restaurante. ¿Qué palabra usas?",
-                  "¿Cómo se dice «Pollo» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🧃",
-                "en": "Juice",
-                "es": "Jugo",
-                "examplesEn": [
-                  "Orange juice, please.",
-                  "I drink juice at breakfast."
-                ],
-                "examplesEs": [
-                  "Jugo de naranja, por favor.",
-                  "Tomo jugo en el desayuno."
-                ],
-                "questions": [
-                  "Quieres una bebida de frutas. ¿Qué pides?",
-                  "¿Cómo se dice «Jugo» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🍦",
-                "en": "Ice cream",
-                "es": "Helado",
-                "examplesEn": [
-                  "I love chocolate ice cream.",
-                  "Can I have an ice cream?"
-                ],
-                "examplesEs": [
-                  "Me encanta el helado de chocolate.",
-                  "¿Me das un helado?"
-                ],
-                "questions": [
-                  "Hace calor y quieres algo frío y dulce. ¿Qué pides?",
-                  "¿Cómo se dice «Helado» en inglés?"
-                ]
-              },
-              {
-                "emoji": "😋",
-                "en": "It's yummy!",
-                "es": "¡Está rico!",
-                "examplesEn": [
-                  "Mmm, the cake is yummy!",
-                  "Thank you, Mom. It's yummy!"
-                ],
-                "examplesEs": [
-                  "¡Mmm, el pastel está rico!",
-                  "Gracias, mamá. ¡Está rico!"
-                ],
-                "questions": [
-                  "La comida está deliciosa. ¿Qué dices?",
-                  "¿Cómo se dice «¡Está rico!» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🙋",
-                "en": "Hello, my name is Ana",
-                "es": "Hola, me llamo Ana",
-                "examplesEn": [
-                  "Hello, my name is Ana. I'm seven.",
-                  "Hello, my name is Ana. Nice to meet you!"
-                ],
-                "examplesEs": [
-                  "Hola, me llamo Ana. Tengo siete años.",
-                  "Hola, me llamo Ana. ¡Mucho gusto!"
-                ],
-                "questions": [
-                  "Empiezas tu mini presentación. ¿Qué dices?",
-                  "¿Cómo se dice «Hola, me llamo Ana» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🏙️",
-                "en": "I live in Lima",
-                "es": "Vivo en Lima",
-                "examplesEn": [
-                  "I live in Lima, Peru.",
-                  "I live in Lima with my family."
-                ],
-                "examplesEs": [
-                  "Vivo en Lima, Perú.",
-                  "Vivo en Lima con mi familia."
-                ],
-                "questions": [
-                  "Cuentas en qué ciudad vives. ¿Qué dices?",
-                  "¿Cómo se dice «Vivo en Lima» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🤔",
-                "en": "I don't understand",
-                "es": "No entiendo",
-                "examplesEn": [
-                  "Sorry, I don't understand.",
-                  "I don't understand. Can you help me?"
-                ],
-                "examplesEs": [
-                  "Perdón, no entiendo.",
-                  "No entiendo. ¿Me puedes ayudar?"
-                ],
-                "questions": [
-                  "No entiendes lo que dice la profesora. ¿Qué dices?",
-                  "¿Cómo se dice «No entiendo» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🔁",
-                "en": "Can you repeat, please?",
-                "es": "¿Puedes repetir, por favor?",
-                "examplesEn": [
-                  "Sorry, can you repeat, please?",
-                  "Can you repeat, please? Thank you."
-                ],
-                "examplesEs": [
-                  "Perdón, ¿puedes repetir, por favor?",
-                  "¿Puedes repetir, por favor? Gracias."
-                ],
-                "questions": [
-                  "No escuchaste bien. ¿Qué pides?",
-                  "Significa: ¿Puedes repetir, por favor? ¿Cuál es la frase en inglés?"
-                ]
-              },
-              {
-                "emoji": "🐢",
-                "en": "Slowly, please",
-                "es": "Más despacio, por favor",
-                "examplesEn": [
-                  "Slowly, please. I'm learning.",
-                  "Can you speak slowly, please?"
-                ],
-                "examplesEs": [
-                  "Más despacio, por favor. Estoy aprendiendo.",
-                  "¿Puedes hablar despacio, por favor?"
-                ],
-                "questions": [
-                  "La persona habla muy rápido. ¿Qué pides?",
-                  "¿Cómo se dice «Más despacio, por favor» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🗣️",
-                "en": "How do you say 'gato'?",
-                "es": "¿Cómo se dice 'gato'?",
-                "examplesEn": [
-                  "How do you say 'gato' in English? — Cat!",
-                  "Teacher, how do you say 'gato'?"
-                ],
-                "examplesEs": [
-                  "¿Cómo se dice 'gato' en inglés? — ¡Cat!",
-                  "Profesora, ¿cómo se dice 'gato'?"
-                ],
-                "questions": [
-                  "No sabes cómo se dice «gato» en inglés. ¿Qué preguntas?",
-                  "Significa: ¿Cómo se dice 'gato'? ¿Cuál es la frase en inglés?"
-                ]
-              },
-              {
-                "emoji": "🙏",
-                "en": "Thank you",
-                "es": "Gracias",
-                "examplesEn": [
-                  "Thank you, teacher!",
-                  "Thank you very much!"
-                ],
-                "examplesEs": [
-                  "¡Gracias, profesora!",
-                  "¡Muchas gracias!"
-                ],
-                "questions": [
-                  "Alguien te ayuda. ¿Qué dices?",
-                  "¿Cómo se dice «Gracias» en inglés?"
-                ]
-              },
-              {
-                "emoji": "😊",
-                "en": "You're welcome",
-                "es": "De nada",
-                "examplesEn": [
-                  "Thank you! — You're welcome.",
-                  "You're welcome, my friend."
-                ],
-                "examplesEs": [
-                  "¡Gracias! — De nada.",
-                  "De nada, amigo."
-                ],
-                "questions": [
-                  "Tu amigo te da las gracias. ¿Qué respondes?",
-                  "¿Cómo se dice «De nada» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🚻",
-                "en": "Can I go to the bathroom?",
-                "es": "¿Puedo ir al baño?",
-                "examplesEn": [
-                  "Teacher, can I go to the bathroom?",
-                  "Excuse me, can I go to the bathroom?"
-                ],
-                "examplesEs": [
-                  "Profesora, ¿puedo ir al baño?",
-                  "Disculpe, ¿puedo ir al baño?"
-                ],
-                "questions": [
-                  "Necesitas ir al baño durante la clase. ¿Qué preguntas?",
-                  "Significa: ¿Puedo ir al baño? ¿Cuál es la frase en inglés?"
-                ]
-              },
-              {
-                "emoji": "🆘",
-                "en": "Help, please!",
-                "es": "¡Ayuda, por favor!",
-                "examplesEn": [
-                  "Help, please! I'm lost.",
-                  "Help, please! My dog is in the tree!"
-                ],
-                "examplesEs": [
-                  "¡Ayuda, por favor! Estoy perdido.",
-                  "¡Ayuda, por favor! ¡Mi perro está en el árbol!"
-                ],
-                "questions": [
-                  "Necesitas ayuda urgente. ¿Qué dices?",
-                  "¿Cómo se dice «¡Ayuda, por favor!» en inglés?"
-                ]
-              }
-            ];
-
-            let currentItem = null;
-            let correctCount = 0;
-            let wrongCount = 0;
-            let answeredCorrectly = false;
-
-            let progress = 0;
-            const maxProgress = 6;
-
-            const correctSpan = document.getElementById("xpValue");
-            const wrongSpan = document.getElementById("heartsValue");
-            const feedbackEl = document.getElementById("feedback");
-            const lessonCard = document.getElementById("lessonCard");
-            const progressBar = document.getElementById("progressBar");
-            const progressText = document.getElementById("progressText");
-
-            const soundCorrect = document.getElementById("sound-correct");
-            const soundWrong = document.getElementById("sound-wrong");
-            const soundLevelup = document.getElementById("sound-levelup");
-
-            function updateProgressBar() {
-                const percent = (progress / maxProgress) * 100;
-                progressBar.style.width = percent + "%";
-                progressText.textContent = `${progress}/${maxProgress}`;
-            }
-
-            function getRandomItem() {
-                return itemsData[Math.floor(Math.random() * itemsData.length)];
-            }
-            function randomFromArray(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
-
-            function generateLesson() {
-                const item = getRandomItem();
-                const idx = Math.floor(Math.random() * item.examplesEn.length);
-                return {
-                    data: item,
-                    emoji: item.emoji,
-                    word: item.en,
-                    translation: item.es,
-                    exampleEn: item.examplesEn[idx],
-                    exampleEs: item.examplesEs[idx],
-                    question: randomFromArray(item.questions)
-                };
-            }
-
-            function renderLesson() {
-                answeredCorrectly = false;
-                const lesson = generateLesson();
-                currentItem = lesson.data;
-
-                document.getElementById("emoji").textContent = lesson.emoji;
-                document.getElementById("wordEn").textContent = "❓ ❓ ❓";
-                document.getElementById("wordEn").dataset.answer = lesson.word;
-                document.getElementById("exampleEn").parentElement.style.visibility = "hidden";
-                document.getElementById("wordEs").textContent = lesson.translation;
-                document.getElementById("exampleEn").textContent = lesson.exampleEn;
-                document.getElementById("exampleEs").textContent = lesson.exampleEs;
-                document.getElementById("question").textContent = lesson.question;
-
-                feedbackEl.textContent = "";
-                feedbackEl.classList.remove("good", "bad");
-                lessonCard.classList.remove("correct", "wrong");
-
-                createOptions();
-            }
-
-            function createOptions() {
-                const container = document.getElementById("optionsContainer");
-                container.innerHTML = "";
-
-                const correct = currentItem;
-                const others = itemsData.filter(i => i.en !== correct.en);
-                shuffleArray(others);
-
-                const options = [correct.en, others[0].en, others[1].en];
-                shuffleArray(options);
-
-                options.forEach(optionText => {
-                    const btn = document.createElement("button");
-                    btn.textContent = optionText;
-                    btn.className = "option-btn";
-                    btn.onclick = () => checkAnswer(optionText, btn);
-                    container.appendChild(btn);
-                });
-            }
-
-            function speakFeedbackCorrect() {
-                const phrases = ["Great job!", "Awesome!", "Perfect!", "Nice work!"];
-                speakText(randomFromArray(phrases));
-            }
-            function speakFeedbackWrong() {
-                const phrases = ["Not yet, try again.", "Almost, try again.", "Keep trying.", "Don't give up."];
-                speakText(randomFromArray(phrases));
-            }
-
-            function speakText(text) {
-                if (!("speechSynthesis" in window)) return;
-                const utter = new SpeechSynthesisUtterance(text);
-                utter.lang = "en-US";
-                utter.rate = 0.95;
-                utter.pitch = 1.02;
-                window.speechSynthesis.cancel();
-                window.speechSynthesis.speak(utter);
-            }
-
-            function checkAnswer(answer, clickedBtn) {
-                if (!currentItem) return;
-                if (answeredCorrectly) return;
-
-                if (answer === currentItem.en) {
-                    answeredCorrectly = true;
-                    document.getElementById("wordEn").textContent = currentItem.en;
-                    document.getElementById("exampleEn").parentElement.style.visibility = "visible";
-
-                    correctCount++;
-                    correctSpan.textContent = correctCount;
-
-                    if (progress < maxProgress) {
-                        progress += 1;
-                        updateProgressBar();
-                    }
-
-                    feedbackEl.textContent = randomFromArray(["✅ Great job!", "✅ Awesome!", "✅ Perfect!", "✅ Nice!"]);
-                    feedbackEl.classList.remove("bad");
-                    feedbackEl.classList.add("good");
-
-                    playSound(soundCorrect);
-                    speakFeedbackCorrect();
-
-                    lessonCard.classList.remove("wrong");
-                    lessonCard.classList.add("correct");
-
-                    document.querySelectorAll(".option-btn").forEach(b => { b.disabled = true; });
-
-                    if (correctCount > 0 && correctCount % 5 === 0) playSound(soundLevelup);
-
-                    if (progress >= maxProgress) {
-                        try { localStorage.setItem("mk_topic_" + location.pathname.split("/").pop().replace(/\.html$/i, "") + "_complete", "true"); } catch (e) { }
-                        feedbackEl.textContent = "🎉 Lesson complete! Keep practicing.";
-                        feedbackEl.classList.add("good");
-                        playSound(soundLevelup);
-                    }
-                } else {
-                    wrongCount++;
-                    wrongSpan.textContent = wrongCount;
-
-                    feedbackEl.textContent = `❌ Not yet. Try again.`;
-                    feedbackEl.classList.remove("good");
-                    feedbackEl.classList.add("bad");
-
-                    playSound(soundWrong);
-                    speakFeedbackWrong();
-
-                    lessonCard.classList.remove("correct");
-                    lessonCard.classList.add("wrong");
-
-                    if (clickedBtn) clickedBtn.disabled = true;
-                }
-            }
-
-            function shuffleArray(arr) {
-                for (let i = arr.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [arr[i], arr[j]] = [arr[j], arr[i]];
-                }
-            }
-
-            function nextLesson() { renderLesson(); }
-
-            function speakWord() {
-                const word = document.getElementById("wordEn").dataset.answer || document.getElementById("wordEn").textContent;
-                if (!("speechSynthesis" in window)) return;
-                const utter = new SpeechSynthesisUtterance(word);
-                utter.lang = "en-US";
-                utter.rate = 0.9;
-                window.speechSynthesis.cancel();
-                window.speechSynthesis.speak(utter);
-            }
-
-            function playSound(audioElement) {
-                if (!audioElement) return;
-                audioElement.currentTime = 0;
-                audioElement.play().catch(() => { });
-            }
-
-            updateProgressBar();
-            renderLesson();
+            window.MK_LESSON = {
+ "items": [
+  {
+   "emoji": "👋",
+   "en": "Hello",
+   "es": "Hola",
+   "examplesEn": [
+    "Hello! I am Ana.",
+    "Hello, teacher!",
+    "Hello, Leo! How are you?"
+   ],
+   "examplesEs": [
+    "¡Hola! Soy Ana.",
+    "¡Hola, profesora!",
+    "¡Hola, Leo! ¿Cómo estás?"
+   ],
+   "questions": [
+    "Saludas a tu amigo. ¿Qué dices?",
+    "Llegas a clase. ¿Cómo saludas?",
+    "¿Cómo se dice «Hola»?"
+   ]
+  },
+  {
+   "emoji": "👋",
+   "en": "Goodbye",
+   "es": "Adiós",
+   "examplesEn": [
+    "Goodbye, Mom!",
+    "Goodbye! See you tomorrow.",
+    "Bye, bye!"
+   ],
+   "examplesEs": [
+    "¡Adiós, mamá!",
+    "¡Adiós! Nos vemos mañana.",
+    "¡Chau, chau!"
+   ],
+   "questions": [
+    "Te vas a casa. ¿Qué dices?",
+    "¿Cómo se dice «Adiós»?",
+    "Te despides de tu amigo. ¿Qué dices?"
+   ]
+  },
+  {
+   "emoji": "🌅",
+   "en": "Good morning",
+   "es": "Buenos días",
+   "examplesEn": [
+    "Good morning, class!",
+    "Good morning, Grandma!",
+    "Good morning! I am happy."
+   ],
+   "examplesEs": [
+    "¡Buenos días, clase!",
+    "¡Buenos días, abuelita!",
+    "¡Buenos días! Estoy feliz."
+   ],
+   "questions": [
+    "Es de mañana y llegas al colegio. ¿Qué dices?",
+    "¿Cómo se dice «Buenos días»?",
+    "Saludas a tu abuela en la mañana. ¿Qué dices?"
+   ]
+  },
+  {
+   "emoji": "🌙",
+   "en": "Good night",
+   "es": "Buenas noches",
+   "examplesEn": [
+    "Good night, Dad!",
+    "Good night! Sweet dreams.",
+    "Good night, my friend."
+   ],
+   "examplesEs": [
+    "¡Buenas noches, papá!",
+    "¡Buenas noches! Dulces sueños.",
+    "Buenas noches, amigo."
+   ],
+   "questions": [
+    "Te vas a dormir. ¿Qué dices?",
+    "¿Cómo se dice «Buenas noches»?",
+    "Es de noche y te despides. ¿Qué dices?"
+   ]
+  },
+  {
+   "emoji": "❓",
+   "en": "What is your name?",
+   "es": "¿Cómo te llamas?",
+   "examplesEn": [
+    "Hi! What is your name?",
+    "What is your name? — My name is Leo.",
+    "Hello! What is your name?"
+   ],
+   "examplesEs": [
+    "¡Hola! ¿Cómo te llamas?",
+    "¿Cómo te llamas? — Me llamo Leo.",
+    "¡Hola! ¿Cómo te llamas?"
+   ],
+   "questions": [
+    "Quieres saber el nombre de un niño. ¿Qué preguntas?",
+    "¿Cómo se dice «¿Cómo te llamas?»?",
+    "Conoces a una niña nueva. ¿Qué le preguntas?"
+   ]
+  },
+  {
+   "emoji": "😊",
+   "en": "My name is Ana",
+   "es": "Me llamo Ana",
+   "examplesEn": [
+    "Hello! My name is Ana.",
+    "My name is Ana. What is your name?",
+    "Hi, my name is Ana!"
+   ],
+   "examplesEs": [
+    "¡Hola! Me llamo Ana.",
+    "Me llamo Ana. ¿Cómo te llamas?",
+    "¡Hola, me llamo Ana!"
+   ],
+   "questions": [
+    "Ana dice su nombre. ¿Qué dice?",
+    "¿Cómo se dice «Me llamo Ana»?",
+    "Te preguntan tu nombre y eres Ana. ¿Qué respondes?"
+   ]
+  },
+  {
+   "emoji": "🙋",
+   "en": "I am Leo",
+   "es": "Yo soy Leo",
+   "examplesEn": [
+    "Hello! I am Leo.",
+    "I am Leo. I am six.",
+    "Hi! I am Leo, your friend."
+   ],
+   "examplesEs": [
+    "¡Hola! Yo soy Leo.",
+    "Yo soy Leo. Tengo seis años.",
+    "¡Hola! Soy Leo, tu amigo."
+   ],
+   "questions": [
+    "Leo se presenta. ¿Qué dice?",
+    "¿Cómo se dice «Yo soy Leo»?",
+    "Eres Leo y saludas a la clase. ¿Qué dices?"
+   ]
+  },
+  {
+   "emoji": "🌎",
+   "en": "Where are you from?",
+   "es": "¿De dónde eres?",
+   "examplesEn": [
+    "Where are you from? — I am from Peru.",
+    "Hello! Where are you from?",
+    "Where are you from, Ana?"
+   ],
+   "examplesEs": [
+    "¿De dónde eres? — Soy de Perú.",
+    "¡Hola! ¿De dónde eres?",
+    "¿De dónde eres, Ana?"
+   ],
+   "questions": [
+    "Quieres saber el país de tu amigo. ¿Qué preguntas?",
+    "¿Cómo se dice «¿De dónde eres?»?",
+    "Conoces a un niño de otro país. ¿Qué le preguntas?"
+   ]
+  },
+  {
+   "emoji": "🇵🇪",
+   "en": "I am from Peru",
+   "es": "Soy de Perú",
+   "examplesEn": [
+    "I am from Peru.",
+    "Hello! I am Leo. I am from Peru.",
+    "I am from Lima, Peru."
+   ],
+   "examplesEs": [
+    "Soy de Perú.",
+    "¡Hola! Soy Leo. Soy de Perú.",
+    "Soy de Lima, Perú."
+   ],
+   "questions": [
+    "Te preguntan de dónde eres. ¿Qué respondes?",
+    "¿Cómo se dice «Soy de Perú»?",
+    "Cuentas que vives en Perú. ¿Qué dices?"
+   ]
+  },
+  {
+   "emoji": "🤝",
+   "en": "Nice to meet you",
+   "es": "Mucho gusto",
+   "examplesEn": [
+    "Nice to meet you, Ana!",
+    "Hello, Leo. Nice to meet you.",
+    "Nice to meet you too!"
+   ],
+   "examplesEs": [
+    "¡Mucho gusto, Ana!",
+    "Hola, Leo. Mucho gusto.",
+    "¡Mucho gusto también!"
+   ],
+   "questions": [
+    "Conoces a alguien nuevo. ¿Qué dices?",
+    "¿Cómo se dice «Mucho gusto»?",
+    "Te presentan a una amiga. ¿Qué le dices?"
+   ]
+  },
+  {
+   "emoji": "🔢",
+   "en": "One, two, three",
+   "es": "Uno, dos, tres",
+   "examplesEn": [
+    "I can count: one, two, three!",
+    "One, two, three, go!"
+   ],
+   "examplesEs": [
+    "¡Sé contar: uno, dos, tres!",
+    "¡Uno, dos, tres, ya!"
+   ],
+   "questions": [
+    "Cuentas los primeros números. ¿Qué dices?",
+    "¿Cómo se dice «Uno, dos, tres» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🔟",
+   "en": "Ten",
+   "es": "Diez",
+   "examplesEn": [
+    "I have ten fingers.",
+    "Ten little apples."
+   ],
+   "examplesEs": [
+    "Tengo diez dedos.",
+    "Diez manzanitas."
+   ],
+   "questions": [
+    "¿Cuántos dedos tienes en las dos manos?",
+    "¿Cómo se dice «Diez» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🎈",
+   "en": "Twenty",
+   "es": "Veinte",
+   "examplesEn": [
+    "There are twenty kids in my class.",
+    "Count to twenty!"
+   ],
+   "examplesEs": [
+    "Hay veinte niños en mi clase.",
+    "¡Cuenta hasta veinte!"
+   ],
+   "questions": [
+    "En tu clase hay 20 niños. ¿Qué número dices?",
+    "¿Cómo se dice «Veinte» en inglés?"
+   ]
+  },
+  {
+   "emoji": "❓",
+   "en": "How old are you?",
+   "es": "¿Cuántos años tienes?",
+   "examplesEn": [
+    "Hi, Leo! How old are you?",
+    "How old are you? — I'm six."
+   ],
+   "examplesEs": [
+    "¡Hola, Leo! ¿Cuántos años tienes?",
+    "¿Cuántos años tienes? — Tengo seis."
+   ],
+   "questions": [
+    "Quieres saber la edad de tu amigo. ¿Qué preguntas?",
+    "Significa: ¿Cuántos años tienes? ¿Cuál es la frase en inglés?"
+   ]
+  },
+  {
+   "emoji": "🎂",
+   "en": "I'm six years old",
+   "es": "Tengo seis años",
+   "examplesEn": [
+    "I'm six years old today!",
+    "My name is Ana. I'm six years old."
+   ],
+   "examplesEs": [
+    "¡Hoy cumplo seis años!",
+    "Me llamo Ana. Tengo seis años."
+   ],
+   "questions": [
+    "Te preguntan tu edad y tienes 6. ¿Qué respondes?",
+    "¿Cómo se dice «Tengo seis años» en inglés?"
+   ]
+  },
+  {
+   "emoji": "👩",
+   "en": "This is my mom",
+   "es": "Esta es mi mamá",
+   "examplesEn": [
+    "This is my mom. Her name is Rosa.",
+    "Look! This is my mom."
+   ],
+   "examplesEs": [
+    "Esta es mi mamá. Se llama Rosa.",
+    "¡Mira! Esta es mi mamá."
+   ],
+   "questions": [
+    "Presentas a tu mamá. ¿Qué dices?",
+    "¿Cómo se dice «Esta es mi mamá» en inglés?"
+   ]
+  },
+  {
+   "emoji": "👨",
+   "en": "This is my dad",
+   "es": "Este es mi papá",
+   "examplesEn": [
+    "This is my dad. He is tall.",
+    "Hello! This is my dad."
+   ],
+   "examplesEs": [
+    "Este es mi papá. Es alto.",
+    "¡Hola! Este es mi papá."
+   ],
+   "questions": [
+    "Presentas a tu papá. ¿Qué dices?",
+    "¿Cómo se dice «Este es mi papá» en inglés?"
+   ]
+  },
+  {
+   "emoji": "👦",
+   "en": "I have one brother",
+   "es": "Tengo un hermano",
+   "examplesEn": [
+    "I have one brother. His name is Tom.",
+    "I have one brother and one sister."
+   ],
+   "examplesEs": [
+    "Tengo un hermano. Se llama Tom.",
+    "Tengo un hermano y una hermana."
+   ],
+   "questions": [
+    "Cuentas que tienes un hermano. ¿Qué dices?",
+    "¿Cómo se dice «Tengo un hermano» en inglés?"
+   ]
+  },
+  {
+   "emoji": "👧",
+   "en": "My sister",
+   "es": "Mi hermana",
+   "examplesEn": [
+    "My sister is eight.",
+    "I play with my sister."
+   ],
+   "examplesEs": [
+    "Mi hermana tiene ocho años.",
+    "Juego con mi hermana."
+   ],
+   "questions": [
+    "Hablas de tu hermana. ¿Qué dices?",
+    "¿Cómo se dice «Mi hermana» en inglés?"
+   ]
+  },
+  {
+   "emoji": "👵",
+   "en": "My grandma",
+   "es": "Mi abuelita",
+   "examplesEn": [
+    "My grandma makes cakes.",
+    "I love my grandma."
+   ],
+   "examplesEs": [
+    "Mi abuelita hace pasteles.",
+    "Quiero mucho a mi abuelita."
+   ],
+   "questions": [
+    "Hablas de tu abuelita. ¿Qué dices?",
+    "¿Cómo se dice «Mi abuelita» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🔴",
+   "en": "It's red",
+   "es": "Es rojo",
+   "examplesEn": [
+    "The apple is red.",
+    "It's red like a tomato."
+   ],
+   "examplesEs": [
+    "La manzana es roja.",
+    "Es rojo como un tomate."
+   ],
+   "questions": [
+    "Te preguntan el color de una fresa. ¿Qué dices?",
+    "¿Cómo se dice «Es rojo» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🔵",
+   "en": "It's blue",
+   "es": "Es azul",
+   "examplesEn": [
+    "The sky is blue.",
+    "My bag is blue."
+   ],
+   "examplesEs": [
+    "El cielo es azul.",
+    "Mi mochila es azul."
+   ],
+   "questions": [
+    "Te preguntan el color del cielo. ¿Qué dices?",
+    "¿Cómo se dice «Es azul» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🟡",
+   "en": "It's yellow",
+   "es": "Es amarillo",
+   "examplesEn": [
+    "The sun is yellow.",
+    "The banana is yellow."
+   ],
+   "examplesEs": [
+    "El sol es amarillo.",
+    "El plátano es amarillo."
+   ],
+   "questions": [
+    "Te preguntan el color del plátano. ¿Qué dices?",
+    "¿Cómo se dice «Es amarillo» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🟢",
+   "en": "It's green",
+   "es": "Es verde",
+   "examplesEn": [
+    "The frog is green.",
+    "The tree is green."
+   ],
+   "examplesEs": [
+    "La rana es verde.",
+    "El árbol es verde."
+   ],
+   "questions": [
+    "Te preguntan el color de una rana. ¿Qué dices?",
+    "¿Cómo se dice «Es verde» en inglés?"
+   ]
+  },
+  {
+   "emoji": "⚫",
+   "en": "It's black",
+   "es": "Es negro",
+   "examplesEn": [
+    "My cat is black.",
+    "The board is black."
+   ],
+   "examplesEs": [
+    "Mi gato es negro.",
+    "La pizarra es negra."
+   ],
+   "questions": [
+    "Te preguntan el color de la noche. ¿Qué dices?",
+    "¿Cómo se dice «Es negro» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🎨",
+   "en": "What color is it?",
+   "es": "¿De qué color es?",
+   "examplesEn": [
+    "What color is it? — It's blue.",
+    "What color is your pencil?"
+   ],
+   "examplesEs": [
+    "¿De qué color es? — Es azul.",
+    "¿De qué color es tu lápiz?"
+   ],
+   "questions": [
+    "Quieres saber el color de algo. ¿Qué preguntas?",
+    "Significa: ¿De qué color es? ¿Cuál es la frase en inglés?"
+   ]
+  },
+  {
+   "emoji": "📕",
+   "en": "This is a red book",
+   "es": "Este es un libro rojo",
+   "examplesEn": [
+    "Look! This is a red book.",
+    "This is a red book. It's my book."
+   ],
+   "examplesEs": [
+    "¡Mira! Este es un libro rojo.",
+    "Este es un libro rojo. Es mi libro."
+   ],
+   "questions": [
+    "Muestras tu libro rojo. ¿Qué dices?",
+    "¿Cómo se dice «Este es un libro rojo» en inglés?"
+   ]
+  },
+  {
+   "emoji": "✏️",
+   "en": "A pencil",
+   "es": "Un lápiz",
+   "examplesEn": [
+    "This is my pencil.",
+    "I write with a pencil."
+   ],
+   "examplesEs": [
+    "Este es mi lápiz.",
+    "Escribo con un lápiz."
+   ],
+   "questions": [
+    "Necesitas algo para escribir. ¿Qué pides?",
+    "¿Cómo se dice «Un lápiz» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🎒",
+   "en": "A bag",
+   "es": "Una mochila",
+   "examplesEn": [
+    "My bag is big.",
+    "This is my green bag."
+   ],
+   "examplesEs": [
+    "Mi mochila es grande.",
+    "Esta es mi mochila verde."
+   ],
+   "questions": [
+    "¿Dónde guardas tus útiles?",
+    "¿Cómo se dice «Una mochila» en inglés?"
+   ]
+  },
+  {
+   "emoji": "⚽",
+   "en": "A ball",
+   "es": "Una pelota",
+   "examplesEn": [
+    "This is a ball. It's white.",
+    "Let's play with the ball!"
+   ],
+   "examplesEs": [
+    "Esto es una pelota. Es blanca.",
+    "¡Juguemos con la pelota!"
+   ],
+   "questions": [
+    "Quieres jugar fútbol. ¿Qué necesitas?",
+    "¿Cómo se dice «Una pelota» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🍕",
+   "en": "I like pizza",
+   "es": "Me gusta la pizza",
+   "examplesEn": [
+    "I like pizza very much.",
+    "I like pizza with cheese."
+   ],
+   "examplesEs": [
+    "Me gusta mucho la pizza.",
+    "Me gusta la pizza con queso."
+   ],
+   "questions": [
+    "Dices que te gusta la pizza. ¿Qué dices?",
+    "¿Cómo se dice «Me gusta la pizza» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🥛",
+   "en": "I don't like milk",
+   "es": "No me gusta la leche",
+   "examplesEn": [
+    "I don't like milk. I like juice.",
+    "Sorry, I don't like milk."
+   ],
+   "examplesEs": [
+    "No me gusta la leche. Me gusta el jugo.",
+    "Lo siento, no me gusta la leche."
+   ],
+   "questions": [
+    "Dices que no te gusta la leche. ¿Qué dices?",
+    "¿Cómo se dice «No me gusta la leche» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🍎",
+   "en": "Do you like apples?",
+   "es": "¿Te gustan las manzanas?",
+   "examplesEn": [
+    "Do you like apples? — Yes, I do.",
+    "Ana, do you like apples?"
+   ],
+   "examplesEs": [
+    "¿Te gustan las manzanas? — Sí.",
+    "Ana, ¿te gustan las manzanas?"
+   ],
+   "questions": [
+    "Preguntas a tu amigo si le gustan las manzanas. ¿Qué dices?",
+    "Significa: ¿Te gustan las manzanas? ¿Cuál es la frase en inglés?"
+   ]
+  },
+  {
+   "emoji": "👍",
+   "en": "Yes, I do",
+   "es": "Sí, me gusta",
+   "examplesEn": [
+    "Do you like ice cream? — Yes, I do!",
+    "Yes, I do. It's yummy!"
+   ],
+   "examplesEs": [
+    "¿Te gusta el helado? — ¡Sí!",
+    "Sí, me gusta. ¡Es rico!"
+   ],
+   "questions": [
+    "Te preguntan si te gusta algo y SÍ te gusta. ¿Qué respondes?",
+    "¿Cómo se dice «Sí, me gusta» en inglés?"
+   ]
+  },
+  {
+   "emoji": "👎",
+   "en": "No, I don't",
+   "es": "No, no me gusta",
+   "examplesEn": [
+    "Do you like fish? — No, I don't.",
+    "No, I don't. I like chicken."
+   ],
+   "examplesEs": [
+    "¿Te gusta el pescado? — No.",
+    "No, no me gusta. Me gusta el pollo."
+   ],
+   "questions": [
+    "Te preguntan si te gusta algo y NO te gusta. ¿Qué respondes?",
+    "¿Cómo se dice «No, no me gusta» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🍌",
+   "en": "A banana",
+   "es": "Un plátano",
+   "examplesEn": [
+    "Monkeys like bananas.",
+    "I have a banana for lunch."
+   ],
+   "examplesEs": [
+    "A los monos les gustan los plátanos.",
+    "Tengo un plátano para el almuerzo."
+   ],
+   "questions": [
+    "¿Cómo se llama la fruta amarilla y larga?",
+    "¿Cómo se dice «Un plátano» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🍗",
+   "en": "Chicken",
+   "es": "Pollo",
+   "examplesEn": [
+    "I like chicken and rice.",
+    "Chicken is my favorite food."
+   ],
+   "examplesEs": [
+    "Me gusta el pollo con arroz.",
+    "El pollo es mi comida favorita."
+   ],
+   "questions": [
+    "Pides pollo en un restaurante. ¿Qué palabra usas?",
+    "¿Cómo se dice «Pollo» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🧃",
+   "en": "Juice",
+   "es": "Jugo",
+   "examplesEn": [
+    "Orange juice, please.",
+    "I drink juice at breakfast."
+   ],
+   "examplesEs": [
+    "Jugo de naranja, por favor.",
+    "Tomo jugo en el desayuno."
+   ],
+   "questions": [
+    "Quieres una bebida de frutas. ¿Qué pides?",
+    "¿Cómo se dice «Jugo» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🍦",
+   "en": "Ice cream",
+   "es": "Helado",
+   "examplesEn": [
+    "I love chocolate ice cream.",
+    "Can I have an ice cream?"
+   ],
+   "examplesEs": [
+    "Me encanta el helado de chocolate.",
+    "¿Me das un helado?"
+   ],
+   "questions": [
+    "Hace calor y quieres algo frío y dulce. ¿Qué pides?",
+    "¿Cómo se dice «Helado» en inglés?"
+   ]
+  },
+  {
+   "emoji": "😋",
+   "en": "It's yummy!",
+   "es": "¡Está rico!",
+   "examplesEn": [
+    "Mmm, the cake is yummy!",
+    "Thank you, Mom. It's yummy!"
+   ],
+   "examplesEs": [
+    "¡Mmm, el pastel está rico!",
+    "Gracias, mamá. ¡Está rico!"
+   ],
+   "questions": [
+    "La comida está deliciosa. ¿Qué dices?",
+    "¿Cómo se dice «¡Está rico!» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🙋",
+   "en": "Hello, my name is Ana",
+   "es": "Hola, me llamo Ana",
+   "examplesEn": [
+    "Hello, my name is Ana. I'm seven.",
+    "Hello, my name is Ana. Nice to meet you!"
+   ],
+   "examplesEs": [
+    "Hola, me llamo Ana. Tengo siete años.",
+    "Hola, me llamo Ana. ¡Mucho gusto!"
+   ],
+   "questions": [
+    "Empiezas tu mini presentación. ¿Qué dices?",
+    "¿Cómo se dice «Hola, me llamo Ana» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🏙️",
+   "en": "I live in Lima",
+   "es": "Vivo en Lima",
+   "examplesEn": [
+    "I live in Lima, Peru.",
+    "I live in Lima with my family."
+   ],
+   "examplesEs": [
+    "Vivo en Lima, Perú.",
+    "Vivo en Lima con mi familia."
+   ],
+   "questions": [
+    "Cuentas en qué ciudad vives. ¿Qué dices?",
+    "¿Cómo se dice «Vivo en Lima» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🤔",
+   "en": "I don't understand",
+   "es": "No entiendo",
+   "examplesEn": [
+    "Sorry, I don't understand.",
+    "I don't understand. Can you help me?"
+   ],
+   "examplesEs": [
+    "Perdón, no entiendo.",
+    "No entiendo. ¿Me puedes ayudar?"
+   ],
+   "questions": [
+    "No entiendes lo que dice la profesora. ¿Qué dices?",
+    "¿Cómo se dice «No entiendo» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🔁",
+   "en": "Can you repeat, please?",
+   "es": "¿Puedes repetir, por favor?",
+   "examplesEn": [
+    "Sorry, can you repeat, please?",
+    "Can you repeat, please? Thank you."
+   ],
+   "examplesEs": [
+    "Perdón, ¿puedes repetir, por favor?",
+    "¿Puedes repetir, por favor? Gracias."
+   ],
+   "questions": [
+    "No escuchaste bien. ¿Qué pides?",
+    "Significa: ¿Puedes repetir, por favor? ¿Cuál es la frase en inglés?"
+   ]
+  },
+  {
+   "emoji": "🐢",
+   "en": "Slowly, please",
+   "es": "Más despacio, por favor",
+   "examplesEn": [
+    "Slowly, please. I'm learning.",
+    "Can you speak slowly, please?"
+   ],
+   "examplesEs": [
+    "Más despacio, por favor. Estoy aprendiendo.",
+    "¿Puedes hablar despacio, por favor?"
+   ],
+   "questions": [
+    "La persona habla muy rápido. ¿Qué pides?",
+    "¿Cómo se dice «Más despacio, por favor» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🗣️",
+   "en": "How do you say 'gato'?",
+   "es": "¿Cómo se dice 'gato'?",
+   "examplesEn": [
+    "How do you say 'gato' in English? — Cat!",
+    "Teacher, how do you say 'gato'?"
+   ],
+   "examplesEs": [
+    "¿Cómo se dice 'gato' en inglés? — ¡Cat!",
+    "Profesora, ¿cómo se dice 'gato'?"
+   ],
+   "questions": [
+    "No sabes cómo se dice «gato» en inglés. ¿Qué preguntas?",
+    "Significa: ¿Cómo se dice 'gato'? ¿Cuál es la frase en inglés?"
+   ]
+  },
+  {
+   "emoji": "🙏",
+   "en": "Thank you",
+   "es": "Gracias",
+   "examplesEn": [
+    "Thank you, teacher!",
+    "Thank you very much!"
+   ],
+   "examplesEs": [
+    "¡Gracias, profesora!",
+    "¡Muchas gracias!"
+   ],
+   "questions": [
+    "Alguien te ayuda. ¿Qué dices?",
+    "¿Cómo se dice «Gracias» en inglés?"
+   ]
+  },
+  {
+   "emoji": "😊",
+   "en": "You're welcome",
+   "es": "De nada",
+   "examplesEn": [
+    "Thank you! — You're welcome.",
+    "You're welcome, my friend."
+   ],
+   "examplesEs": [
+    "¡Gracias! — De nada.",
+    "De nada, amigo."
+   ],
+   "questions": [
+    "Tu amigo te da las gracias. ¿Qué respondes?",
+    "¿Cómo se dice «De nada» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🚻",
+   "en": "Can I go to the bathroom?",
+   "es": "¿Puedo ir al baño?",
+   "examplesEn": [
+    "Teacher, can I go to the bathroom?",
+    "Excuse me, can I go to the bathroom?"
+   ],
+   "examplesEs": [
+    "Profesora, ¿puedo ir al baño?",
+    "Disculpe, ¿puedo ir al baño?"
+   ],
+   "questions": [
+    "Necesitas ir al baño durante la clase. ¿Qué preguntas?",
+    "Significa: ¿Puedo ir al baño? ¿Cuál es la frase en inglés?"
+   ]
+  },
+  {
+   "emoji": "🆘",
+   "en": "Help, please!",
+   "es": "¡Ayuda, por favor!",
+   "examplesEn": [
+    "Help, please! I'm lost.",
+    "Help, please! My dog is in the tree!"
+   ],
+   "examplesEs": [
+    "¡Ayuda, por favor! Estoy perdido.",
+    "¡Ayuda, por favor! ¡Mi perro está en el árbol!"
+   ],
+   "questions": [
+    "Necesitas ayuda urgente. ¿Qué dices?",
+    "¿Cómo se dice «¡Ayuda, por favor!» en inglés?"
+   ]
+  }
+ ],
+ "total": 6,
+ "pass": 0.8
+};
         </script>
+        <script src="assets/mk-ingles.js?v=1"></script>
 
         <script>
             // Registrar Service Worker (PWA)

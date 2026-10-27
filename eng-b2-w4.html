@@ -501,6 +501,7 @@
                 margin: 0;
             }
         </style>
+        <link rel="stylesheet" href="assets/mk-ingles.css?v=1">
     </head>
 
     <body>
@@ -537,7 +538,7 @@
             <!-- ================== INGLÉS ================== -->
             <section class="section active" id="courseEnglish">
                 <h1>B2 · Semana 4: Voz pasiva y estilo indirecto</h1>
-                <p class="subtitle">Lee la situación, toca 🔊 para escuchar y elige la frase correcta en inglés. 📰</p>
+                <p class="subtitle">Practica con ejercicios variados. 👆 Toca cualquier palabra en inglés para escuchar cómo se pronuncia. 📰</p>
 
                 <div class="status-bar">
                     <div class="xp">✅ Correctas: <span id="xpValue">0</span></div>
@@ -554,26 +555,10 @@
                     </div>
                 </div>
 
-                <div class="card" id="lessonCard">
-                    <div class="emoji-container">
-                        <div class="emoji" id="emoji">🛋️</div>
-                        <button class="speak-btn" aria-label="Escuchar pronunciación" onclick="speakWord()">🔊</button>
-                    </div>
-
-                    <div class="word" id="wordEn">sofa</div>
-                    <div class="translation" id="wordEs">sofá</div>
-
-                    <p class="example-en"><span class="label">Inglés:</span> <span id="exampleEn">This is a sofa.</span></p>
-                    <p class="example-es"><span class="label">Español:</span> <span id="exampleEs">Este es un sofá.</span></p>
-
-                    <p class="question" id="question">What is this?</p>
-
-                    <div class="options" id="optionsContainer"></div>
-                    <div class="feedback" id="feedback"></div>
-                </div>
+                <div class="card" id="lessonCard"></div>
 
                 <div class="controls">
-                    <button class="main-btn" onclick="nextLesson()">Next</button>
+                    <button class="main-btn" onclick="goHome()">⬅ Ruta de Inglés</button>
                     <button class="main-btn" onclick="shareApp()">📤 Compartir app</button>
                 </div>
             </section>
@@ -593,367 +578,184 @@
         </script>
 
         <script>
-            // ====== INGLÉS ======
-            const itemsData = [
-              {
-                "emoji": "🌉",
-                "en": "The bridge was built in 1990",
-                "es": "El puente fue construido en 1990",
-                "examplesEn": [
-                  "The bridge was built in 1990 by local engineers.",
-                  "This bridge was built in 1990 and repaired in 2015."
-                ],
-                "examplesEs": [
-                  "El puente fue construido en 1990 por ingenieros locales.",
-                  "Este puente fue construido en 1990 y reparado en 2015."
-                ],
-                "questions": [
-                  "Importa la OBRA, no quién la hizo (pasado). ¿Qué dices?",
-                  "¿Cómo se dice «El puente fue construido en 1990» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🗞️",
-                "en": "It is said that",
-                "es": "Se dice que",
-                "examplesEn": [
-                  "It is said that the house is haunted.",
-                  "It is said that he is a genius."
-                ],
-                "examplesEs": [
-                  "Se dice que la casa está embrujada.",
-                  "Se dice que es un genio."
-                ],
-                "questions": [
-                  "Comunicas un rumor de forma impersonal. ¿Qué usas?",
-                  "¿Cómo se dice «Se dice que» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🏆",
-                "en": "The winner will be announced",
-                "es": "El ganador será anunciado",
-                "examplesEn": [
-                  "The winner will be announced on Friday.",
-                  "The winner will be announced at the end."
-                ],
-                "examplesEs": [
-                  "El ganador será anunciado el viernes.",
-                  "El ganador será anunciado al final."
-                ],
-                "questions": [
-                  "Noticia: anuncio FUTURO en voz pasiva. ¿Qué dices?",
-                  "¿Cómo se dice «El ganador será anunciado» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🔬",
-                "en": "The study was carried out by",
-                "es": "El estudio fue realizado por",
-                "examplesEn": [
-                  "The study was carried out by a team in Lima.",
-                  "The study was carried out by two universities."
-                ],
-                "examplesEs": [
-                  "El estudio fue realizado por un equipo en Lima.",
-                  "El estudio fue realizado por dos universidades."
-                ],
-                "questions": [
-                  "Lenguaje académico: dices quién hizo la investigación. ¿Qué usas?",
-                  "¿Cómo se dice «El estudio fue realizado por» en inglés?"
-                ]
-              },
-              {
-                "emoji": "💬",
-                "en": "She said that she was tired",
-                "es": "Ella dijo que estaba cansada",
-                "examplesEn": [
-                  "She said that she was tired and went home.",
-                  "Ana said that she was tired of waiting."
-                ],
-                "examplesEs": [
-                  "Dijo que estaba cansada y se fue a casa.",
-                  "Ana dijo que estaba cansada de esperar."
-                ],
-                "questions": [
-                  "Reportas lo que dijo alguien: «I'm tired». ¿Qué dices?",
-                  "¿Cómo se dice «Ella dijo que estaba cansada» en inglés?"
-                ]
-              },
-              {
-                "emoji": "❓",
-                "en": "He asked me where I lived",
-                "es": "Me preguntó dónde vivía",
-                "examplesEn": [
-                  "At the party, he asked me where I lived.",
-                  "The officer asked me where I lived."
-                ],
-                "examplesEs": [
-                  "En la fiesta me preguntó dónde vivía.",
-                  "El policía me preguntó dónde vivía."
-                ],
-                "questions": [
-                  "Reportas la pregunta «Where do you live?». ¿Qué dices?",
-                  "¿Cómo se dice «Me preguntó dónde vivía» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🤔",
-                "en": "She asked if I was ready",
-                "es": "Ella preguntó si yo estaba listo",
-                "examplesEn": [
-                  "The teacher asked if I was ready.",
-                  "She asked if I was ready to start."
-                ],
-                "examplesEs": [
-                  "La profesora preguntó si yo estaba listo.",
-                  "Ella preguntó si yo estaba listo para empezar."
-                ],
-                "questions": [
-                  "Reportas una pregunta de sí/no: «Are you ready?». ¿Qué dices?",
-                  "¿Cómo se dice «Ella preguntó si yo estaba listo» en inglés?"
-                ]
-              },
-              {
-                "emoji": "✋",
-                "en": "He told me to wait",
-                "es": "Me dijo que esperara",
-                "examplesEn": [
-                  "The guard told me to wait outside.",
-                  "He told me to wait for ten minutes."
-                ],
-                "examplesEs": [
-                  "El guardia me dijo que esperara afuera.",
-                  "Me dijo que esperara diez minutos."
-                ],
-                "questions": [
-                  "Reportas una ORDEN: «Wait!». ¿Qué dices?",
-                  "¿Cómo se dice «Me dijo que esperara» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🔧",
-                "en": "My car is being repaired",
-                "es": "Están reparando mi auto",
-                "examplesEn": [
-                  "I took a taxi because my car is being repaired.",
-                  "My car is being repaired this week."
-                ],
-                "examplesEs": [
-                  "Tomé un taxi porque están reparando mi auto.",
-                  "Esta semana están reparando mi auto."
-                ],
-                "questions": [
-                  "Una acción en PROCESO hecha por otros (pasiva continua). ¿Qué dices?",
-                  "¿Cómo se dice «Están reparando mi auto» en inglés?"
-                ]
-              },
-              {
-                "emoji": "🌐",
-                "en": "English is spoken here",
-                "es": "Aquí se habla inglés",
-                "examplesEn": [
-                  "Don't worry, English is spoken here.",
-                  "English is spoken here and in many countries."
-                ],
-                "examplesEs": [
-                  "No te preocupes, aquí se habla inglés.",
-                  "Se habla inglés aquí y en muchos países."
-                ],
-                "questions": [
-                  "Un cartel informa el idioma que se usa. ¿Qué dice?",
-                  "¿Cómo se dice «Aquí se habla inglés» en inglés?"
-                ]
-              }
-            ];
-
-            let currentItem = null;
-            let correctCount = 0;
-            let wrongCount = 0;
-            let answeredCorrectly = false;
-
-            let progress = 0;
-            const maxProgress = 10;
-
-            const correctSpan = document.getElementById("xpValue");
-            const wrongSpan = document.getElementById("heartsValue");
-            const feedbackEl = document.getElementById("feedback");
-            const lessonCard = document.getElementById("lessonCard");
-            const progressBar = document.getElementById("progressBar");
-            const progressText = document.getElementById("progressText");
-
-            const soundCorrect = document.getElementById("sound-correct");
-            const soundWrong = document.getElementById("sound-wrong");
-            const soundLevelup = document.getElementById("sound-levelup");
-
-            function updateProgressBar() {
-                const percent = (progress / maxProgress) * 100;
-                progressBar.style.width = percent + "%";
-                progressText.textContent = `${progress}/${maxProgress}`;
-            }
-
-            function getRandomItem() {
-                return itemsData[Math.floor(Math.random() * itemsData.length)];
-            }
-            function randomFromArray(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
-
-            function generateLesson() {
-                const item = getRandomItem();
-                const idx = Math.floor(Math.random() * item.examplesEn.length);
-                return {
-                    data: item,
-                    emoji: item.emoji,
-                    word: item.en,
-                    translation: item.es,
-                    exampleEn: item.examplesEn[idx],
-                    exampleEs: item.examplesEs[idx],
-                    question: randomFromArray(item.questions)
-                };
-            }
-
-            function renderLesson() {
-                answeredCorrectly = false;
-                const lesson = generateLesson();
-                currentItem = lesson.data;
-
-                document.getElementById("emoji").textContent = lesson.emoji;
-                document.getElementById("wordEn").textContent = "❓ ❓ ❓";
-                document.getElementById("wordEn").dataset.answer = lesson.word;
-                document.getElementById("exampleEn").parentElement.style.visibility = "hidden";
-                document.getElementById("wordEs").textContent = lesson.translation;
-                document.getElementById("exampleEn").textContent = lesson.exampleEn;
-                document.getElementById("exampleEs").textContent = lesson.exampleEs;
-                document.getElementById("question").textContent = lesson.question;
-
-                feedbackEl.textContent = "";
-                feedbackEl.classList.remove("good", "bad");
-                lessonCard.classList.remove("correct", "wrong");
-
-                createOptions();
-            }
-
-            function createOptions() {
-                const container = document.getElementById("optionsContainer");
-                container.innerHTML = "";
-
-                const correct = currentItem;
-                const others = itemsData.filter(i => i.en !== correct.en);
-                shuffleArray(others);
-
-                const options = [correct.en, others[0].en, others[1].en];
-                shuffleArray(options);
-
-                options.forEach(optionText => {
-                    const btn = document.createElement("button");
-                    btn.textContent = optionText;
-                    btn.className = "option-btn";
-                    btn.onclick = () => checkAnswer(optionText, btn);
-                    container.appendChild(btn);
-                });
-            }
-
-            function speakFeedbackCorrect() {
-                const phrases = ["Great job!", "Awesome!", "Perfect!", "Nice work!"];
-                speakText(randomFromArray(phrases));
-            }
-            function speakFeedbackWrong() {
-                const phrases = ["Not yet, try again.", "Almost, try again.", "Keep trying.", "Don't give up."];
-                speakText(randomFromArray(phrases));
-            }
-
-            function speakText(text) {
-                if (!("speechSynthesis" in window)) return;
-                const utter = new SpeechSynthesisUtterance(text);
-                utter.lang = "en-US";
-                utter.rate = 0.95;
-                utter.pitch = 1.02;
-                window.speechSynthesis.cancel();
-                window.speechSynthesis.speak(utter);
-            }
-
-            function checkAnswer(answer, clickedBtn) {
-                if (!currentItem) return;
-                if (answeredCorrectly) return;
-
-                if (answer === currentItem.en) {
-                    answeredCorrectly = true;
-                    document.getElementById("wordEn").textContent = currentItem.en;
-                    document.getElementById("exampleEn").parentElement.style.visibility = "visible";
-
-                    correctCount++;
-                    correctSpan.textContent = correctCount;
-
-                    if (progress < maxProgress) {
-                        progress += 1;
-                        updateProgressBar();
-                    }
-
-                    feedbackEl.textContent = randomFromArray(["✅ Great job!", "✅ Awesome!", "✅ Perfect!", "✅ Nice!"]);
-                    feedbackEl.classList.remove("bad");
-                    feedbackEl.classList.add("good");
-
-                    playSound(soundCorrect);
-                    speakFeedbackCorrect();
-
-                    lessonCard.classList.remove("wrong");
-                    lessonCard.classList.add("correct");
-
-                    document.querySelectorAll(".option-btn").forEach(b => { b.disabled = true; });
-
-                    if (correctCount > 0 && correctCount % 5 === 0) playSound(soundLevelup);
-
-                    if (progress >= maxProgress) {
-                        try { localStorage.setItem("mk_topic_" + location.pathname.split("/").pop().replace(/\.html$/i, "") + "_complete", "true"); } catch (e) { }
-                        feedbackEl.textContent = "🎉 Lesson complete! Keep practicing.";
-                        feedbackEl.classList.add("good");
-                        playSound(soundLevelup);
-                    }
-                } else {
-                    wrongCount++;
-                    wrongSpan.textContent = wrongCount;
-
-                    feedbackEl.textContent = `❌ Not yet. Try again.`;
-                    feedbackEl.classList.remove("good");
-                    feedbackEl.classList.add("bad");
-
-                    playSound(soundWrong);
-                    speakFeedbackWrong();
-
-                    lessonCard.classList.remove("correct");
-                    lessonCard.classList.add("wrong");
-
-                    if (clickedBtn) clickedBtn.disabled = true;
-                }
-            }
-
-            function shuffleArray(arr) {
-                for (let i = arr.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [arr[i], arr[j]] = [arr[j], arr[i]];
-                }
-            }
-
-            function nextLesson() { renderLesson(); }
-
-            function speakWord() {
-                const word = document.getElementById("wordEn").dataset.answer || document.getElementById("wordEn").textContent;
-                if (!("speechSynthesis" in window)) return;
-                const utter = new SpeechSynthesisUtterance(word);
-                utter.lang = "en-US";
-                utter.rate = 0.9;
-                window.speechSynthesis.cancel();
-                window.speechSynthesis.speak(utter);
-            }
-
-            function playSound(audioElement) {
-                if (!audioElement) return;
-                audioElement.currentTime = 0;
-                audioElement.play().catch(() => { });
-            }
-
-            updateProgressBar();
-            renderLesson();
+            window.MK_LESSON = {
+ "items": [
+  {
+   "emoji": "🌉",
+   "en": "The bridge was built in 1990",
+   "es": "El puente fue construido en 1990",
+   "examplesEn": [
+    "The bridge was built in 1990 by local engineers.",
+    "This bridge was built in 1990 and repaired in 2015."
+   ],
+   "examplesEs": [
+    "El puente fue construido en 1990 por ingenieros locales.",
+    "Este puente fue construido en 1990 y reparado en 2015."
+   ],
+   "questions": [
+    "Importa la OBRA, no quién la hizo (pasado). ¿Qué dices?",
+    "¿Cómo se dice «El puente fue construido en 1990» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🗞️",
+   "en": "It is said that",
+   "es": "Se dice que",
+   "examplesEn": [
+    "It is said that the house is haunted.",
+    "It is said that he is a genius."
+   ],
+   "examplesEs": [
+    "Se dice que la casa está embrujada.",
+    "Se dice que es un genio."
+   ],
+   "questions": [
+    "Comunicas un rumor de forma impersonal. ¿Qué usas?",
+    "¿Cómo se dice «Se dice que» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🏆",
+   "en": "The winner will be announced",
+   "es": "El ganador será anunciado",
+   "examplesEn": [
+    "The winner will be announced on Friday.",
+    "The winner will be announced at the end."
+   ],
+   "examplesEs": [
+    "El ganador será anunciado el viernes.",
+    "El ganador será anunciado al final."
+   ],
+   "questions": [
+    "Noticia: anuncio FUTURO en voz pasiva. ¿Qué dices?",
+    "¿Cómo se dice «El ganador será anunciado» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🔬",
+   "en": "The study was carried out by",
+   "es": "El estudio fue realizado por",
+   "examplesEn": [
+    "The study was carried out by a team in Lima.",
+    "The study was carried out by two universities."
+   ],
+   "examplesEs": [
+    "El estudio fue realizado por un equipo en Lima.",
+    "El estudio fue realizado por dos universidades."
+   ],
+   "questions": [
+    "Lenguaje académico: dices quién hizo la investigación. ¿Qué usas?",
+    "¿Cómo se dice «El estudio fue realizado por» en inglés?"
+   ]
+  },
+  {
+   "emoji": "💬",
+   "en": "She said that she was tired",
+   "es": "Ella dijo que estaba cansada",
+   "examplesEn": [
+    "She said that she was tired and went home.",
+    "Ana said that she was tired of waiting."
+   ],
+   "examplesEs": [
+    "Dijo que estaba cansada y se fue a casa.",
+    "Ana dijo que estaba cansada de esperar."
+   ],
+   "questions": [
+    "Reportas lo que dijo alguien: «I'm tired». ¿Qué dices?",
+    "¿Cómo se dice «Ella dijo que estaba cansada» en inglés?"
+   ]
+  },
+  {
+   "emoji": "❓",
+   "en": "He asked me where I lived",
+   "es": "Me preguntó dónde vivía",
+   "examplesEn": [
+    "At the party, he asked me where I lived.",
+    "The officer asked me where I lived."
+   ],
+   "examplesEs": [
+    "En la fiesta me preguntó dónde vivía.",
+    "El policía me preguntó dónde vivía."
+   ],
+   "questions": [
+    "Reportas la pregunta «Where do you live?». ¿Qué dices?",
+    "¿Cómo se dice «Me preguntó dónde vivía» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🤔",
+   "en": "She asked if I was ready",
+   "es": "Ella preguntó si yo estaba listo",
+   "examplesEn": [
+    "The teacher asked if I was ready.",
+    "She asked if I was ready to start."
+   ],
+   "examplesEs": [
+    "La profesora preguntó si yo estaba listo.",
+    "Ella preguntó si yo estaba listo para empezar."
+   ],
+   "questions": [
+    "Reportas una pregunta de sí/no: «Are you ready?». ¿Qué dices?",
+    "¿Cómo se dice «Ella preguntó si yo estaba listo» en inglés?"
+   ]
+  },
+  {
+   "emoji": "✋",
+   "en": "He told me to wait",
+   "es": "Me dijo que esperara",
+   "examplesEn": [
+    "The guard told me to wait outside.",
+    "He told me to wait for ten minutes."
+   ],
+   "examplesEs": [
+    "El guardia me dijo que esperara afuera.",
+    "Me dijo que esperara diez minutos."
+   ],
+   "questions": [
+    "Reportas una ORDEN: «Wait!». ¿Qué dices?",
+    "¿Cómo se dice «Me dijo que esperara» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🔧",
+   "en": "My car is being repaired",
+   "es": "Están reparando mi auto",
+   "examplesEn": [
+    "I took a taxi because my car is being repaired.",
+    "My car is being repaired this week."
+   ],
+   "examplesEs": [
+    "Tomé un taxi porque están reparando mi auto.",
+    "Esta semana están reparando mi auto."
+   ],
+   "questions": [
+    "Una acción en PROCESO hecha por otros (pasiva continua). ¿Qué dices?",
+    "¿Cómo se dice «Están reparando mi auto» en inglés?"
+   ]
+  },
+  {
+   "emoji": "🌐",
+   "en": "English is spoken here",
+   "es": "Aquí se habla inglés",
+   "examplesEn": [
+    "Don't worry, English is spoken here.",
+    "English is spoken here and in many countries."
+   ],
+   "examplesEs": [
+    "No te preocupes, aquí se habla inglés.",
+    "Se habla inglés aquí y en muchos países."
+   ],
+   "questions": [
+    "Un cartel informa el idioma que se usa. ¿Qué dice?",
+    "¿Cómo se dice «Aquí se habla inglés» en inglés?"
+   ]
+  }
+ ],
+ "total": 10,
+ "pass": 0.8
+};
         </script>
+        <script src="assets/mk-ingles.js?v=1"></script>
 
         <script>
             // Registrar Service Worker (PWA)

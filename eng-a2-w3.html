@@ -548,7 +548,9 @@
             border-color:#93c5fd;
         }
         .theory-body.hidden{ display:none; }
-    </style>
+        .en-tap { cursor: pointer; border-radius: 6px; text-decoration: underline dotted rgba(37, 99, 235, .35); text-underline-offset: 4px; }
+    .en-tap:hover, .en-tap.on { background: #fde68a; }
+</style>
 </head>
 
 <body>
@@ -1000,7 +1002,15 @@
 
         // ejercicio
         currentItem = pickExercise();
-        sentenceEnEl.textContent = currentItem.en;
+        sentenceEnEl.innerHTML = "";
+        currentItem.en.split(/(\s+)/).forEach(function (tok) {
+            const w = tok.replace(/^[^A-Za-z']+|[^A-Za-z']+$/g, "");
+            if (!w) { sentenceEnEl.appendChild(document.createTextNode(tok)); return; }
+            const sp = document.createElement("span");
+            sp.className = "en-tap"; sp.textContent = tok; sp.title = "Toca para escuchar";
+            sp.onclick = function () { speakText(w); sp.classList.add("on"); setTimeout(function () { sp.classList.remove("on"); }, 600); };
+            sentenceEnEl.appendChild(sp);
+        });
         sentenceEsEl.textContent = currentItem.es;
         hintLineEl.textContent = currentItem.hint || "Elige la forma correcta.";
 
