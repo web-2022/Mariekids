@@ -8,7 +8,7 @@
    v1 → v2 → v3...
 ========================================================= */
 
-const CACHE_VERSION = "v13";
+const CACHE_VERSION = "v14";
 const CACHE_PREFIX = "mvg-learning";
 const STATIC_CACHE = `${CACHE_PREFIX}-static-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `${CACHE_PREFIX}-runtime-${CACHE_VERSION}`;
