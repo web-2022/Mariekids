@@ -1924,17 +1924,41 @@
             };
 
             function loadProgress() {
+                let completed = [];
+
                 try {
                     const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
 
                     if (Array.isArray(saved)) {
-                        return saved.filter(id => Number.isInteger(id));
+                        completed = saved.filter(id => Number.isInteger(id));
                     }
                 } catch (error) {
                     console.warn("No se pudo leer el progreso guardado.", error);
                 }
 
-                return [];
+                /* Cada lección de 3 años guarda "mk_topic_<tema>_complete" al terminar.
+                   Aquí se suman esos temas a la ruta para que el avance se actualice solo. */
+                try {
+                    topics.forEach(topic => {
+                        const slug = String(topic.href || "").split("/").pop().replace(/\.html$/i, "");
+                        if (!slug || completed.includes(topic.id)) return;
+
+                        const keys = [
+                            `mk_topic_${slug}_complete`,
+                            `mk_topic_${slug.replaceAll("-", "_")}_complete`
+                        ];
+
+                        if (keys.some(key => localStorage.getItem(key) === "true")) {
+                            completed.push(topic.id);
+                        }
+                    });
+
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(completed));
+                } catch (error) {
+                    console.warn("No se pudo leer el avance de las lecciones.", error);
+                }
+
+                return completed;
             }
 
             function saveProgress() {
@@ -1951,6 +1975,14 @@
             function toggleCompleted(topicId) {
                 if (isCompleted(topicId)) {
                     state.completed = state.completed.filter(id => id !== topicId);
+
+                    // También se borra la marca de la lección para que no vuelva a sumarse
+                    try {
+                        const topic = topics.find(t => t.id === topicId);
+                        const slug = String(topic?.href || "").split("/").pop().replace(/\.html$/i, "");
+                        localStorage.removeItem(`mk_topic_${slug}_complete`);
+                        localStorage.removeItem(`mk_topic_${slug.replaceAll("-", "_")}_complete`);
+                    } catch (error) { /* sin almacenamiento */ }
                 } else {
                     state.completed = [...state.completed, topicId];
                 }
@@ -2239,6 +2271,7 @@
                 });
             }
         </script>
-    </body>
+        <script src="../assets/proximamente.js" defer></script>
+</body>
 
 </html>
