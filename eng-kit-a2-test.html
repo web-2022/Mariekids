@@ -1,0 +1,2007 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MK • Kit · Test rápido A2</title>
+
+        <!-- PWA -->
+        <meta name="apple-mobile-web-app-title" content="MK" />
+        <link rel="manifest" href="manifest.json">
+        <meta name="theme-color" content="#1976d2">
+        <style>
+            * {
+                box-sizing: border-box;
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            }
+
+            body {
+                margin: 0;
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: linear-gradient(145deg, #dbeafe, #e0f2fe);
+                padding: 18px;
+            }
+
+            .app {
+                background: #ffffff;
+                width: 100%;
+                max-width: 520px;
+                padding: 18px;
+                border-radius: 24px;
+                box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+                border: 3px solid #2563eb;
+            }
+
+            /* 🌟 Encabezado infantil */
+            /* Contenedor*/
+            .brand-header-kids {
+                position: relative;
+                overflow: hidden;
+                padding: 14px 14px 12px;
+                border-radius: 22px;
+                margin-bottom: 12px;
+                background: linear-gradient(135deg, #93c5fd, #60a5fa, #2563eb);
+                border: 2px solid rgba(255, 255, 255, .65);
+                box-shadow: 0 14px 28px rgba(37, 99, 235, .25);
+                color: #fff;
+            }
+
+            /* ✅ Clickable (ir a index.html) */
+            .brand-header-kids.clickable {
+                cursor: pointer;
+                user-select: none;
+                transition: transform 0.12s ease, filter 0.12s ease, box-shadow 0.12s ease;
+            }
+
+            .brand-header-kids.clickable:hover {
+                transform: translateY(-1px);
+                filter: brightness(1.02);
+                box-shadow: 0 18px 34px rgba(37, 99, 235, .28);
+            }
+
+            .brand-header-kids.clickable:active {
+                transform: translateY(0px) scale(0.995);
+            }
+
+            /* Para que el click funcione aunque toques estrellas/burbujas */
+            .brand-header-kids .bubble,
+            .brand-header-kids .star {
+                pointer-events: none;
+            }
+
+            .brand-row {
+                position: relative;
+                z-index: 2;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+
+            .kids-badge {
+                width: 52px;
+                height: 52px;
+                border-radius: 18px;
+                display: grid;
+                place-items: center;
+                font-size: 1.55rem;
+                background: rgba(255, 255, 255, .22);
+                border: 1px solid rgba(255, 255, 255, .35);
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35);
+            }
+
+            .kids-title {
+                font-weight: 950;
+                font-size: 1.55rem;
+                letter-spacing: .02em;
+                line-height: 1.05;
+                text-shadow: 0 2px 0 rgba(0, 0, 0, .12);
+            }
+
+            .kids-subtitle {
+                margin-top: 4px;
+                font-size: .9rem;
+                font-weight: 750;
+                opacity: .95;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                flex-wrap: wrap;
+            }
+
+            .kids-pill {
+                background: rgba(255, 255, 255, .22);
+                border: 1px solid rgba(255, 255, 255, .35);
+                padding: 4px 10px;
+                border-radius: 999px;
+                font-size: .82rem;
+                font-weight: 850;
+            }
+
+            /* ⭐ estrellas (si las quieres) */
+            .star {
+                position: absolute;
+                z-index: 1;
+                opacity: .9;
+                filter: drop-shadow(0 2px 0 rgba(0, 0, 0, .12));
+                animation: twinkle 2.8s ease-in-out infinite;
+                pointer-events: none;
+            }
+
+            .star.s1 {
+                top: 8px;
+                right: 18px;
+                font-size: 1.15rem;
+                animation-delay: 0s;
+            }
+
+            .star.s2 {
+                top: 40px;
+                right: 60px;
+                font-size: .95rem;
+                animation-delay: .6s;
+            }
+
+            .star.s3 {
+                bottom: 12px;
+                right: 26px;
+                font-size: 1.25rem;
+                animation-delay: 1.1s;
+            }
+
+            /* Estilo base de burbuja + animación*/
+            .bubble {
+                position: absolute;
+                z-index: 0;
+                border-radius: 999px;
+                background: rgba(255, 255, 255, .22);
+                border: 1px solid rgba(255, 255, 255, .28);
+                box-shadow: inset 0 2px 0 rgba(255, 255, 255, .45);
+                pointer-events: none;
+
+                /* mejor compatibilidad */
+                -webkit-backdrop-filter: blur(2px);
+                backdrop-filter: blur(2px);
+
+                animation: floaty 6s ease-in-out infinite;
+            }
+
+            /* Posición de cada burbuja*/
+            .b1 {
+                left: -16px;
+                top: -18px;
+                animation-delay: 0s;
+                transform: rotate(5deg);
+                width: 84px;
+                height: 84px;
+            }
+
+            .b2 {
+                left: 40px;
+                bottom: -22px;
+                width: 52px;
+                height: 52px;
+                animation-delay: .8s;
+            }
+
+            .b3 {
+                right: -22px;
+                bottom: -26px;
+                width: 76px;
+                height: 76px;
+                animation-delay: 1.3s;
+            }
+
+            /* Movimiento flotante*/
+            @keyframes floaty {
+                0%,
+                100% {
+                    transform: translateY(0) scale(1);
+                }
+
+                50% {
+                    transform: translateY(-8px) scale(1.03);
+                }
+            }
+
+            /* NAV */
+            .nav {
+                display: flex;
+                gap: 10px;
+                background: #eff6ff;
+                border: 1px solid #bfdbfe;
+                padding: 10px;
+                border-radius: 18px;
+                margin-bottom: 14px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-btn {
+                border: 1px solid #bfdbfe;
+                background: #ffffff;
+                border-radius: 999px;
+                padding: 8px 12px;
+                cursor: pointer;
+                font-weight: 700;
+                font-size: 0.95rem;
+                transition: transform 0.1s ease, background 0.15s ease, border-color 0.15s ease, opacity 0.1s ease;
+                min-width: 120px;
+            }
+
+            .nav-btn:hover {
+                transform: translateY(-1px);
+                background: #e0f2fe;
+                border-color: #93c5fd;
+            }
+
+            .nav-btn.active {
+                background: linear-gradient(90deg, #60a5fa, #2563eb);
+                color: #fff;
+                border-color: transparent;
+            }
+
+            h1 {
+                margin: 0 0 4px 0;
+                text-align: center;
+                font-size: 1.5rem;
+            }
+
+            .subtitle {
+                text-align: center;
+                font-size: 0.9rem;
+                color: #6b7280;
+                margin-bottom: 14px;
+            }
+
+            .status-bar {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 8px;
+                padding: 8px 12px;
+                border-radius: 999px;
+                background: #eff6ff;
+                border: 1px solid #bfdbfe;
+                font-size: 0.9rem;
+            }
+
+            .xp,
+            .hearts {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                font-weight: 600;
+            }
+
+            .xp span {
+                color: #16a34a;
+            }
+
+            .hearts span {
+                color: #f97316;
+            }
+
+            .progress-wrapper {
+                margin-bottom: 14px;
+            }
+
+            .progress-label {
+                display: flex;
+                justify-content: space-between;
+                font-size: 0.8rem;
+                color: #6b7280;
+                margin-bottom: 4px;
+            }
+
+            .progress {
+                width: 100%;
+                height: 10px;
+                background: #e5e7eb;
+                border-radius: 999px;
+                overflow: hidden;
+            }
+
+            .progress-inner {
+                height: 100%;
+                width: 0%;
+                border-radius: 999px;
+                background: linear-gradient(90deg, #60a5fa, #2563eb);
+                transition: width 0.2s ease;
+            }
+
+            .card {
+                border-radius: 20px;
+                padding: 5px;
+                background: #f9fafb;
+                border: 1px solid #e5e7eb;
+                margin-bottom: 5px;
+                transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+            }
+
+            .card.correct {
+                animation: pulse 0.4s ease;
+                border-color: #2563eb;
+                box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
+            }
+
+            .card.wrong {
+                animation: shake 0.3s ease;
+                border-color: #ef4444;
+                box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3);
+            }
+
+            @keyframes pulse {
+                0% { transform: scale(1) }
+                50% { transform: scale(1.03) }
+                100% { transform: scale(1) }
+            }
+
+            @keyframes shake {
+                0%, 100% { transform: translateX(0) }
+                20% { transform: translateX(-4px) }
+                40% { transform: translateX(4px) }
+                60% { transform: translateX(-4px) }
+                80% { transform: translateX(4px) }
+            }
+
+            .emoji-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 12px;
+                margin-bottom: 6px;
+            }
+
+            .emoji {
+                font-size: 5rem;
+                text-align: center;
+            }
+
+            .speak-btn {
+                font-size: 1.6rem;
+                cursor: pointer;
+                background: #eff6ff;
+                border-radius: 999px;
+                border: 1px solid #bfdbfe;
+                padding: 6px 10px;
+                transition: transform 0.1s ease, background 0.15s ease, border-color 0.15s ease;
+            }
+
+            .speak-btn:hover {
+                transform: scale(1.1);
+                background: #dbeafe;
+                border-color: #93c5fd;
+            }
+
+            .word {
+                text-align: center;
+                font-size: 1.6rem;
+                font-weight: 700;
+                margin-bottom: 2px;
+            }
+
+            .translation {
+                text-align: center;
+                font-size: 0.95rem;
+                color: #6b7280;
+                margin-bottom: 12px;
+            }
+
+            .example-en,
+            .example-es,
+            .question {
+                font-size: 0.98rem;
+                margin: 6px 0;
+            }
+
+            .label {
+                font-weight: 600;
+            }
+
+            .question {
+                margin-top: 12px;
+                font-weight: 700;
+                color: #111827;
+            }
+
+            .controls {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-top: 10px;
+            }
+
+            button.main-btn {
+                flex: 1;
+                border: none;
+                padding: 10px 12px;
+                border-radius: 999px;
+                font-size: 0.95rem;
+                cursor: pointer;
+                background: linear-gradient(90deg, #60a5fa, #2563eb);
+                color: #ffffff;
+                font-weight: 600;
+                letter-spacing: 0.02em;
+                transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.15s ease;
+                min-width: 120px;
+            }
+
+            button.main-btn:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+                filter: brightness(1.05);
+            }
+
+            .feedback {
+                margin-top: 10px;
+                font-size: 0.95rem;
+                text-align: center;
+                min-height: 5px;
+                font-weight: 600;
+            }
+
+            .feedback.good {
+                color: #16a34a;
+            }
+
+            .feedback.bad {
+                color: #ef4444;
+            }
+
+            .options {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                margin-top: 12px;
+            }
+
+            .option-btn {
+                flex: 1;
+                min-width: 80px;
+                border-radius: 14px;
+                border: 1px solid #d1d5db;
+                background: #ffffff;
+                padding: 8px 10px;
+                font-size: 0.9rem;
+                cursor: pointer;
+                transition: background 0.15s ease, transform 0.1s ease, border 0.1s ease, opacity 0.1s ease;
+                font-weight: 600;
+            }
+
+            .option-btn:hover:not(:disabled) {
+                background: #e0f2fe;
+                transform: translateY(-1px);
+                border-color: #93c5fd;
+            }
+
+            .option-btn:disabled {
+                cursor: default;
+                opacity: 0.6;
+            }
+
+            /* Secciones */
+            .section { display: none; }
+            .section.active { display: block; }
+
+            /* Tarjetas placeholder */
+            .placeholder-title {
+                text-align: center;
+                font-size: 1.2rem;
+                font-weight: 800;
+                margin: 6px 0 2px;
+            }
+
+            .placeholder-text {
+                text-align: center;
+                color: #6b7280;
+                margin: 0;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="app">
+
+            <!-- 🌟 Encabezado infantil: Marie Kids (CLICK -> index.html) -->
+            <div class="brand-header-kids clickable"
+                 aria-label="Marie Kids"
+                 role="link"
+                 tabindex="0"
+                 onclick="goHome()"
+                 onkeydown="if(event.key==='Enter' || event.key===' '){ event.preventDefault(); goHome(); }">
+                <div class="bubble b1"></div>
+                <div class="bubble b2"></div>
+                <div class="bubble b3"></div>
+
+                <div class="star s1">⭐</div>
+                <div class="star s2">✨</div>
+                <div class="star s3">🌟</div>
+
+                <div class="brand-row">
+                    <div class="kids-badge" aria-hidden="true">🧸</div>
+                    <div>
+                        <div class="kids-title">Marie Kids</div>
+                        <div class="kids-subtitle">
+                            Inglés divertido
+                            <span class="kids-pill">Escucha</span>
+                            <span class="kids-pill">👉 Responde</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================== INGLÉS ================== -->
+            <section class="section active" id="courseEnglish">
+                <h1>Kit · Test rápido A2</h1>
+                <p class="subtitle">Repaso mezclado del nivel: 10 preguntas al azar de todas las semanas. ¡A ver cuánto recuerdas! ⚡</p>
+
+                <div class="status-bar">
+                    <div class="xp">✅ Correctas: <span id="xpValue">0</span></div>
+                    <div class="hearts">🧠 Por mejorar: <span id="heartsValue">0</span></div>
+                </div>
+
+                <div class="progress-wrapper">
+                    <div class="progress-label">
+                        <span>Progreso de la lección</span>
+                        <span id="progressText">0/10</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-inner" id="progressBar"></div>
+                    </div>
+                </div>
+
+                <div class="card" id="lessonCard">
+                    <div class="emoji-container">
+                        <div class="emoji" id="emoji">🛋️</div>
+                        <button class="speak-btn" aria-label="Escuchar pronunciación" onclick="speakWord()">🔊</button>
+                    </div>
+
+                    <div class="word" id="wordEn">sofa</div>
+                    <div class="translation" id="wordEs">sofá</div>
+
+                    <p class="example-en"><span class="label">Inglés:</span> <span id="exampleEn">This is a sofa.</span></p>
+                    <p class="example-es"><span class="label">Español:</span> <span id="exampleEs">Este es un sofá.</span></p>
+
+                    <p class="question" id="question">What is this?</p>
+
+                    <div class="options" id="optionsContainer"></div>
+                    <div class="feedback" id="feedback"></div>
+                </div>
+
+                <div class="controls">
+                    <button class="main-btn" onclick="nextLesson()">Next</button>
+                    <button class="main-btn" onclick="shareApp()">📤 Compartir app</button>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Sonidos -->
+        <audio id="sound-correct" src="correct.mp3" preload="auto"></audio>
+        <audio id="sound-wrong" src="wrong.mp3" preload="auto"></audio>
+        <audio id="sound-levelup" src="levelup.mp3" preload="auto"></audio>
+
+        <script>
+            // ✅ IR A HOME (index.html)
+            function goHome() {
+                location.href = "ruta-ingles.html";
+            }
+        </script>
+
+        <script>
+            // ====== INGLÉS ======
+            const itemsData = [
+              {
+                "emoji": "📖",
+                "en": "I'm studying right now",
+                "es": "Estoy estudiando ahora mismo",
+                "examplesEn": [
+                  "I can't play. I'm studying right now.",
+                  "I'm studying right now for my test."
+                ],
+                "examplesEs": [
+                  "No puedo jugar. Estoy estudiando ahora mismo.",
+                  "Estoy estudiando ahora mismo para mi examen."
+                ],
+                "questions": [
+                  "Tu amigo te llama para jugar pero estás con los libros. ¿Qué dices?",
+                  "¿Cómo se dice «Estoy estudiando ahora mismo» en inglés?"
+                ]
+              },
+              {
+                "emoji": "❓",
+                "en": "What are you doing?",
+                "es": "¿Qué estás haciendo?",
+                "examplesEn": [
+                  "Hi, Ana! What are you doing?",
+                  "What are you doing? — I'm drawing."
+                ],
+                "examplesEs": [
+                  "¡Hola, Ana! ¿Qué estás haciendo?",
+                  "¿Qué estás haciendo? — Estoy dibujando."
+                ],
+                "questions": [
+                  "Quieres saber qué hace tu amigo en este momento. ¿Qué preguntas?",
+                  "Significa: ¿Qué estás haciendo? ¿Cuál es la frase en inglés?"
+                ]
+              },
+              {
+                "emoji": "🍳",
+                "en": "She is cooking dinner",
+                "es": "Ella está cocinando la cena",
+                "examplesEn": [
+                  "Mom is in the kitchen. She is cooking dinner.",
+                  "She is cooking dinner for the family."
+                ],
+                "examplesEs": [
+                  "Mamá está en la cocina. Está cocinando la cena.",
+                  "Ella está cocinando la cena para la familia."
+                ],
+                "questions": [
+                  "Tu mamá está en la cocina en este momento. ¿Qué dices?",
+                  "¿Cómo se dice «Ella está cocinando la cena» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🌧️",
+                "en": "It's raining",
+                "es": "Está lloviendo",
+                "examplesEn": [
+                  "Take an umbrella. It's raining.",
+                  "It's raining, so we are inside."
+                ],
+                "examplesEs": [
+                  "Lleva un paraguas. Está lloviendo.",
+                  "Está lloviendo, así que estamos adentro."
+                ],
+                "questions": [
+                  "Miras por la ventana y cae agua del cielo. ¿Qué dices?",
+                  "¿Cómo se dice «Está lloviendo» en inglés?"
+                ]
+              },
+              {
+                "emoji": "⚽",
+                "en": "They are playing soccer",
+                "es": "Ellos están jugando fútbol",
+                "examplesEn": [
+                  "Look! They are playing soccer in the park.",
+                  "The boys are playing soccer now."
+                ],
+                "examplesEs": [
+                  "¡Mira! Están jugando fútbol en el parque.",
+                  "Los niños están jugando fútbol ahora."
+                ],
+                "questions": [
+                  "Ves a unos niños con una pelota en la cancha. ¿Qué dices?",
+                  "¿Cómo se dice «Ellos están jugando fútbol» en inglés?"
+                ]
+              },
+              {
+                "emoji": "😴",
+                "en": "The baby is sleeping",
+                "es": "El bebé está durmiendo",
+                "examplesEn": [
+                  "Shh! The baby is sleeping.",
+                  "Be quiet, the baby is sleeping."
+                ],
+                "examplesEs": [
+                  "¡Shh! El bebé está durmiendo.",
+                  "Silencio, el bebé está durmiendo."
+                ],
+                "questions": [
+                  "Pides silencio porque el bebé duerme ahora. ¿Qué dices?",
+                  "¿Cómo se dice «El bebé está durmiendo» en inglés?"
+                ]
+              },
+              {
+                "emoji": "📞",
+                "en": "I'm talking on the phone",
+                "es": "Estoy hablando por teléfono",
+                "examplesEn": [
+                  "Wait, I'm talking on the phone.",
+                  "I'm talking on the phone with Grandma."
+                ],
+                "examplesEs": [
+                  "Espera, estoy hablando por teléfono.",
+                  "Estoy hablando por teléfono con la abuela."
+                ],
+                "questions": [
+                  "Estás en una llamada y alguien te interrumpe. ¿Qué dices?",
+                  "¿Cómo se dice «Estoy hablando por teléfono» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🚶",
+                "en": "We are walking to school",
+                "es": "Estamos caminando al colegio",
+                "examplesEn": [
+                  "We are walking to school together.",
+                  "It's sunny, so we are walking to school."
+                ],
+                "examplesEs": [
+                  "Estamos caminando juntos al colegio.",
+                  "Hace sol, así que estamos caminando al colegio."
+                ],
+                "questions": [
+                  "Cuentas lo que hacen tú y tu hermano ahora de camino a clases. ¿Qué dices?",
+                  "¿Cómo se dice «Estamos caminando al colegio» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🎧",
+                "en": "He isn't listening",
+                "es": "Él no está escuchando",
+                "examplesEn": [
+                  "He has headphones. He isn't listening.",
+                  "Leo, he isn't listening to the teacher."
+                ],
+                "examplesEs": [
+                  "Tiene audífonos. No está escuchando.",
+                  "Leo no está escuchando a la profesora."
+                ],
+                "questions": [
+                  "Un niño no presta atención en este momento. ¿Qué dices?",
+                  "¿Cómo se dice «Él no está escuchando» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🕐",
+                "en": "At the moment",
+                "es": "En este momento",
+                "examplesEn": [
+                  "I'm reading at the moment.",
+                  "At the moment, she is working."
+                ],
+                "examplesEs": [
+                  "En este momento estoy leyendo.",
+                  "En este momento, ella está trabajando."
+                ],
+                "questions": [
+                  "¿Qué expresión significa «ahora, en este momento»?",
+                  "¿Cómo se dice «En este momento» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🏛️",
+                "en": "I visited the museum",
+                "es": "Visité el museo",
+                "examplesEn": [
+                  "Yesterday I visited the museum.",
+                  "I visited the museum with my class."
+                ],
+                "examplesEs": [
+                  "Ayer visité el museo.",
+                  "Visité el museo con mi clase."
+                ],
+                "questions": [
+                  "Cuentas que ayer fuiste a ver dinosaurios en el museo. ¿Qué dices?",
+                  "¿Cómo se dice «Visité el museo» en inglés?"
+                ]
+              },
+              {
+                "emoji": "✈️",
+                "en": "I went to Cusco",
+                "es": "Fui a Cusco",
+                "examplesEn": [
+                  "Last summer I went to Cusco.",
+                  "I went to Cusco and saw Machu Picchu."
+                ],
+                "examplesEs": [
+                  "El verano pasado fui a Cusco.",
+                  "Fui a Cusco y vi Machu Picchu."
+                ],
+                "questions": [
+                  "Cuentas tu viaje pasado a Cusco (verbo irregular go → went). ¿Qué dices?",
+                  "¿Cómo se dice «Fui a Cusco» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🍕",
+                "en": "We ate pizza",
+                "es": "Comimos pizza",
+                "examplesEn": [
+                  "On Friday we ate pizza.",
+                  "We ate pizza at Leo's party."
+                ],
+                "examplesEs": [
+                  "El viernes comimos pizza.",
+                  "Comimos pizza en la fiesta de Leo."
+                ],
+                "questions": [
+                  "Cuentas qué comieron ayer en familia (eat → ate). ¿Qué dices?",
+                  "¿Cómo se dice «Comimos pizza» en inglés?"
+                ]
+              },
+              {
+                "emoji": "📷",
+                "en": "She took a lot of photos",
+                "es": "Ella tomó muchas fotos",
+                "examplesEn": [
+                  "At the beach, she took a lot of photos.",
+                  "My mom took a lot of photos of me."
+                ],
+                "examplesEs": [
+                  "En la playa, ella tomó muchas fotos.",
+                  "Mi mamá me tomó muchas fotos."
+                ],
+                "questions": [
+                  "Cuentas lo que hizo tu hermana con la cámara en el viaje. ¿Qué dices?",
+                  "¿Cómo se dice «Ella tomó muchas fotos» en inglés?"
+                ]
+              },
+              {
+                "emoji": "❓",
+                "en": "Did you like it?",
+                "es": "¿Te gustó?",
+                "examplesEn": [
+                  "You saw the movie. Did you like it?",
+                  "Did you like it? — Yes, I loved it!"
+                ],
+                "examplesEs": [
+                  "Viste la película. ¿Te gustó?",
+                  "¿Te gustó? — ¡Sí, me encantó!"
+                ],
+                "questions": [
+                  "Preguntas a tu amigo su opinión sobre algo que ya hizo. ¿Qué dices?",
+                  "Significa: ¿Te gustó? ¿Cuál es la frase en inglés?"
+                ]
+              },
+              {
+                "emoji": "👍",
+                "en": "Yes, I did",
+                "es": "Sí (lo hice)",
+                "examplesEn": [
+                  "Did you finish your homework? — Yes, I did.",
+                  "Did you call Grandma? — Yes, I did."
+                ],
+                "examplesEs": [
+                  "¿Terminaste tu tarea? — Sí.",
+                  "¿Llamaste a la abuela? — Sí."
+                ],
+                "questions": [
+                  "Te preguntan «Did you…?» y la respuesta es sí. ¿Qué respondes?",
+                  "¿Cómo se dice «Sí (lo hice)» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🙅",
+                "en": "I didn't go",
+                "es": "No fui",
+                "examplesEn": [
+                  "I was sick, so I didn't go to school.",
+                  "I didn't go to the party."
+                ],
+                "examplesEs": [
+                  "Estaba enfermo, así que no fui al colegio.",
+                  "No fui a la fiesta."
+                ],
+                "questions": [
+                  "Cuentas que no asististe a un lugar. ¿Qué dices?",
+                  "¿Cómo se dice «No fui» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🕰️",
+                "en": "Yesterday",
+                "es": "Ayer",
+                "examplesEn": [
+                  "Yesterday I played with my cousin.",
+                  "It rained yesterday."
+                ],
+                "examplesEs": [
+                  "Ayer jugué con mi primo.",
+                  "Ayer llovió."
+                ],
+                "questions": [
+                  "¿Qué palabra significa «el día antes de hoy»?",
+                  "¿Cómo se dice «Ayer» en inglés?"
+                ]
+              },
+              {
+                "emoji": "📅",
+                "en": "Last week",
+                "es": "La semana pasada",
+                "examplesEn": [
+                  "Last week we had a test.",
+                  "I saw Ana last week."
+                ],
+                "examplesEs": [
+                  "La semana pasada tuvimos un examen.",
+                  "Vi a Ana la semana pasada."
+                ],
+                "questions": [
+                  "¿Cómo dices «hace siete días, la semana anterior»?",
+                  "¿Cómo se dice «La semana pasada» en inglés?"
+                ]
+              },
+              {
+                "emoji": "⌛",
+                "en": "Two days ago",
+                "es": "Hace dos días",
+                "examplesEn": [
+                  "I bought this book two days ago.",
+                  "Two days ago it was my birthday."
+                ],
+                "examplesEs": [
+                  "Compré este libro hace dos días.",
+                  "Hace dos días fue mi cumpleaños."
+                ],
+                "questions": [
+                  "¿Cómo dices «hace dos días»?",
+                  "¿Cómo se dice «Hace dos días» en inglés?"
+                ]
+              },
+              {
+                "emoji": "✈️",
+                "en": "I'm going to travel",
+                "es": "Voy a viajar",
+                "examplesEn": [
+                  "In July I'm going to travel to Arequipa.",
+                  "I'm going to travel with my family."
+                ],
+                "examplesEs": [
+                  "En julio voy a viajar a Arequipa.",
+                  "Voy a viajar con mi familia."
+                ],
+                "questions": [
+                  "Cuentas tu plan de vacaciones: un viaje. ¿Qué dices?",
+                  "¿Cómo se dice «Voy a viajar» en inglés?"
+                ]
+              },
+              {
+                "emoji": "❓",
+                "en": "What are you going to do?",
+                "es": "¿Qué vas a hacer?",
+                "examplesEn": [
+                  "What are you going to do this weekend?",
+                  "What are you going to do after school?"
+                ],
+                "examplesEs": [
+                  "¿Qué vas a hacer este fin de semana?",
+                  "¿Qué vas a hacer después del colegio?"
+                ],
+                "questions": [
+                  "Quieres saber los planes de tu amigo. ¿Qué preguntas?",
+                  "Significa: ¿Qué vas a hacer? ¿Cuál es la frase en inglés?"
+                ]
+              },
+              {
+                "emoji": "🩺",
+                "en": "She's going to study medicine",
+                "es": "Ella va a estudiar medicina",
+                "examplesEn": [
+                  "My cousin is going to study medicine.",
+                  "She's going to study medicine in Lima."
+                ],
+                "examplesEs": [
+                  "Mi prima va a estudiar medicina.",
+                  "Ella va a estudiar medicina en Lima."
+                ],
+                "questions": [
+                  "Tu prima ya decidió que será doctora. ¿Qué dices?",
+                  "¿Cómo se dice «Ella va a estudiar medicina» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🌧️",
+                "en": "It's going to rain",
+                "es": "Va a llover",
+                "examplesEn": [
+                  "Look at those clouds! It's going to rain.",
+                  "Take your umbrella. It's going to rain."
+                ],
+                "examplesEs": [
+                  "¡Mira esas nubes! Va a llover.",
+                  "Lleva tu paraguas. Va a llover."
+                ],
+                "questions": [
+                  "Ves nubes negras en el cielo. ¿Qué predices?",
+                  "¿Cómo se dice «Va a llover» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🎉",
+                "en": "We're going to have a party",
+                "es": "Vamos a tener una fiesta",
+                "examplesEn": [
+                  "We're going to have a party on Saturday.",
+                  "We're going to have a party for Dad."
+                ],
+                "examplesEs": [
+                  "Vamos a tener una fiesta el sábado.",
+                  "Vamos a tener una fiesta para papá."
+                ],
+                "questions": [
+                  "Tu familia planea celebrar un cumpleaños. ¿Qué dices?",
+                  "¿Cómo se dice «Vamos a tener una fiesta» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🚫",
+                "en": "I'm not going to watch TV",
+                "es": "No voy a ver televisión",
+                "examplesEn": [
+                  "Tonight I'm not going to watch TV.",
+                  "I'm not going to watch TV. I'm going to read."
+                ],
+                "examplesEs": [
+                  "Esta noche no voy a ver televisión.",
+                  "No voy a ver tele. Voy a leer."
+                ],
+                "questions": [
+                  "Decides que hoy no prenderás la tele. ¿Qué dices?",
+                  "¿Cómo se dice «No voy a ver televisión» en inglés?"
+                ]
+              },
+              {
+                "emoji": "⚠️",
+                "en": "Be careful! You're going to fall!",
+                "es": "¡Cuidado! ¡Te vas a caer!",
+                "examplesEn": [
+                  "Be careful! You're going to fall!",
+                  "Get down! You're going to fall!"
+                ],
+                "examplesEs": [
+                  "¡Cuidado! ¡Te vas a caer!",
+                  "¡Bájate! ¡Te vas a caer!"
+                ],
+                "questions": [
+                  "Tu hermano se sube a una silla que se mueve. ¿Qué le gritas?",
+                  "¿Cómo se dice «¡Cuidado! ¡Te vas a caer!» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🌅",
+                "en": "Tomorrow",
+                "es": "Mañana",
+                "examplesEn": [
+                  "Tomorrow I'm going to visit Grandma.",
+                  "See you tomorrow!"
+                ],
+                "examplesEs": [
+                  "Mañana voy a visitar a la abuela.",
+                  "¡Nos vemos mañana!"
+                ],
+                "questions": [
+                  "¿Qué palabra significa «el día después de hoy»?",
+                  "¿Cómo se dice «Mañana» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🏖️",
+                "en": "Next summer",
+                "es": "El próximo verano",
+                "examplesEn": [
+                  "Next summer we're going to go to the beach.",
+                  "Next summer I'm going to learn to swim."
+                ],
+                "examplesEs": [
+                  "El próximo verano vamos a ir a la playa.",
+                  "El próximo verano voy a aprender a nadar."
+                ],
+                "questions": [
+                  "¿Cómo dices «el verano que viene»?",
+                  "¿Cómo se dice «El próximo verano» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🏡",
+                "en": "They're going to buy a house",
+                "es": "Ellos van a comprar una casa",
+                "examplesEn": [
+                  "My parents are going to buy a house.",
+                  "They're going to buy a house near the beach."
+                ],
+                "examplesEs": [
+                  "Mis papás van a comprar una casa.",
+                  "Ellos van a comprar una casa cerca de la playa."
+                ],
+                "questions": [
+                  "Tus tíos ya decidieron comprar una casa. ¿Qué dices?",
+                  "¿Cómo se dice «Ellos van a comprar una casa» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🏊",
+                "en": "I can swim",
+                "es": "Sé nadar",
+                "examplesEn": [
+                  "I can swim very fast.",
+                  "I can swim, but I can't dive."
+                ],
+                "examplesEs": [
+                  "Sé nadar muy rápido.",
+                  "Sé nadar, pero no sé bucear."
+                ],
+                "questions": [
+                  "Cuentas una habilidad que tienes en la piscina. ¿Qué dices?",
+                  "¿Cómo se dice «Sé nadar» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🚗",
+                "en": "I can't drive",
+                "es": "No sé manejar",
+                "examplesEn": [
+                  "I'm ten. I can't drive.",
+                  "I can't drive, but I can ride a bike."
+                ],
+                "examplesEs": [
+                  "Tengo diez años. No sé manejar.",
+                  "No sé manejar, pero sé montar bici."
+                ],
+                "questions": [
+                  "Cuentas algo que todavía no sabes hacer (manejar un auto). ¿Qué dices?",
+                  "¿Cómo se dice «No sé manejar» en inglés?"
+                ]
+              },
+              {
+                "emoji": "👶",
+                "en": "I could read when I was five",
+                "es": "Sabía leer cuando tenía cinco",
+                "examplesEn": [
+                  "I could read when I was five years old.",
+                  "My sister could read when she was four."
+                ],
+                "examplesEs": [
+                  "Sabía leer cuando tenía cinco años.",
+                  "Mi hermana sabía leer cuando tenía cuatro."
+                ],
+                "questions": [
+                  "Cuentas una habilidad que tenías en el PASADO. ¿Qué dices?",
+                  "¿Cómo se dice «Sabía leer cuando tenía cinco» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🙏",
+                "en": "Could you help me, please?",
+                "es": "¿Podrías ayudarme, por favor?",
+                "examplesEn": [
+                  "This box is heavy. Could you help me, please?",
+                  "Excuse me, could you help me, please?"
+                ],
+                "examplesEs": [
+                  "Esta caja pesa. ¿Podrías ayudarme, por favor?",
+                  "Disculpe, ¿podría ayudarme, por favor?"
+                ],
+                "questions": [
+                  "Pides ayuda de manera MUY educada. ¿Qué dices?",
+                  "Significa: ¿Podrías ayudarme, por favor? ¿Cuál es la frase en inglés?"
+                ]
+              },
+              {
+                "emoji": "💡",
+                "en": "You should rest",
+                "es": "Deberías descansar",
+                "examplesEn": [
+                  "You look tired. You should rest.",
+                  "You have a cold. You should rest."
+                ],
+                "examplesEs": [
+                  "Te ves cansado. Deberías descansar.",
+                  "Tienes resfrío. Deberías descansar."
+                ],
+                "questions": [
+                  "Tu amigo está cansado y le das un consejo. ¿Qué dices?",
+                  "¿Cómo se dice «Deberías descansar» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🍬",
+                "en": "You shouldn't eat so much candy",
+                "es": "No deberías comer tantos dulces",
+                "examplesEn": [
+                  "You shouldn't eat so much candy. It's bad for your teeth.",
+                  "Leo, you shouldn't eat so much candy."
+                ],
+                "examplesEs": [
+                  "No deberías comer tantos dulces. Es malo para tus dientes.",
+                  "Leo, no deberías comer tantos dulces."
+                ],
+                "questions": [
+                  "Aconsejas a alguien que no coma tantos caramelos. ¿Qué dices?",
+                  "¿Cómo se dice «No deberías comer tantos dulces» en inglés?"
+                ]
+              },
+              {
+                "emoji": "📋",
+                "en": "I have to do my homework",
+                "es": "Tengo que hacer mi tarea",
+                "examplesEn": [
+                  "I can't play now. I have to do my homework.",
+                  "I have to do my homework before dinner."
+                ],
+                "examplesEs": [
+                  "No puedo jugar ahora. Tengo que hacer mi tarea.",
+                  "Tengo que hacer mi tarea antes de la cena."
+                ],
+                "questions": [
+                  "Tienes una obligación del colegio. ¿Qué dices?",
+                  "¿Cómo se dice «Tengo que hacer mi tarea» en inglés?"
+                ]
+              },
+              {
+                "emoji": "👕",
+                "en": "We have to wear a uniform",
+                "es": "Tenemos que usar uniforme",
+                "examplesEn": [
+                  "At my school, we have to wear a uniform.",
+                  "We have to wear a uniform on Mondays."
+                ],
+                "examplesEs": [
+                  "En mi colegio tenemos que usar uniforme.",
+                  "Los lunes tenemos que usar uniforme."
+                ],
+                "questions": [
+                  "Explicas una regla de tu colegio sobre la ropa. ¿Qué dices?",
+                  "¿Cómo se dice «Tenemos que usar uniforme» en inglés?"
+                ]
+              },
+              {
+                "emoji": "😌",
+                "en": "You don't have to come",
+                "es": "No tienes que venir",
+                "examplesEn": [
+                  "It's OK. You don't have to come.",
+                  "You don't have to come early tomorrow."
+                ],
+                "examplesEs": [
+                  "Está bien. No tienes que venir.",
+                  "Mañana no tienes que venir temprano."
+                ],
+                "questions": [
+                  "Le dices a alguien que venir NO es obligatorio. ¿Qué dices?",
+                  "¿Cómo se dice «No tienes que venir» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🪟",
+                "en": "Can I open the window?",
+                "es": "¿Puedo abrir la ventana?",
+                "examplesEn": [
+                  "It's hot. Can I open the window?",
+                  "Teacher, can I open the window?"
+                ],
+                "examplesEs": [
+                  "Hace calor. ¿Puedo abrir la ventana?",
+                  "Profesora, ¿puedo abrir la ventana?"
+                ],
+                "questions": [
+                  "Pides permiso porque hace calor en el salón. ¿Qué preguntas?",
+                  "Significa: ¿Puedo abrir la ventana? ¿Cuál es la frase en inglés?"
+                ]
+              },
+              {
+                "emoji": "➕",
+                "en": "and",
+                "es": "y",
+                "examplesEn": [
+                  "I like cats and dogs.",
+                  "I have a pen and a notebook."
+                ],
+                "examplesEs": [
+                  "Me gustan los gatos y los perros.",
+                  "Tengo un lapicero y un cuaderno."
+                ],
+                "questions": [
+                  "Quieres UNIR dos ideas parecidas. ¿Qué conector usas?",
+                  "¿Cómo se dice «y» en inglés?"
+                ]
+              },
+              {
+                "emoji": "↔️",
+                "en": "but",
+                "es": "pero",
+                "examplesEn": [
+                  "I like tea, but I don't like coffee.",
+                  "It's sunny, but it's cold."
+                ],
+                "examplesEs": [
+                  "Me gusta el té, pero no me gusta el café.",
+                  "Hace sol, pero hace frío."
+                ],
+                "questions": [
+                  "Quieres mostrar un CONTRASTE entre dos ideas. ¿Qué conector usas?",
+                  "¿Cómo se dice «pero» en inglés?"
+                ]
+              },
+              {
+                "emoji": "➡️",
+                "en": "so",
+                "es": "así que",
+                "examplesEn": [
+                  "I was tired, so I went to bed.",
+                  "It was raining, so we stayed home."
+                ],
+                "examplesEs": [
+                  "Estaba cansado, así que me fui a dormir.",
+                  "Estaba lloviendo, así que nos quedamos en casa."
+                ],
+                "questions": [
+                  "Quieres decir la CONSECUENCIA de algo. ¿Qué conector usas?",
+                  "¿Cómo se dice «así que» en inglés?"
+                ]
+              },
+              {
+                "emoji": "❓",
+                "en": "because",
+                "es": "porque",
+                "examplesEn": [
+                  "I'm happy because it's Friday.",
+                  "I'm hungry because I didn't eat breakfast."
+                ],
+                "examplesEs": [
+                  "Estoy feliz porque es viernes.",
+                  "Tengo hambre porque no desayuné."
+                ],
+                "questions": [
+                  "Quieres explicar la RAZÓN de algo. ¿Qué conector usas?",
+                  "¿Cómo se dice «porque» en inglés?"
+                ]
+              },
+              {
+                "emoji": "1️⃣",
+                "en": "First",
+                "es": "Primero",
+                "examplesEn": [
+                  "First, I wash my hands.",
+                  "First, open your book."
+                ],
+                "examplesEs": [
+                  "Primero, me lavo las manos.",
+                  "Primero, abre tu libro."
+                ],
+                "questions": [
+                  "Empiezas a contar los pasos de una historia. ¿Qué palabra usas?",
+                  "¿Cómo se dice «Primero» en inglés?"
+                ]
+              },
+              {
+                "emoji": "⏭️",
+                "en": "Then",
+                "es": "Luego",
+                "examplesEn": [
+                  "Then, I eat my breakfast.",
+                  "First we played, then we ate."
+                ],
+                "examplesEs": [
+                  "Luego, tomo mi desayuno.",
+                  "Primero jugamos, luego comimos."
+                ],
+                "questions": [
+                  "Cuentas lo que pasó DESPUÉS en tu historia. ¿Qué palabra usas?",
+                  "¿Cómo se dice «Luego» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🏁",
+                "en": "Finally",
+                "es": "Finalmente",
+                "examplesEn": [
+                  "Finally, I went to bed.",
+                  "Finally, the prince found the princess."
+                ],
+                "examplesEs": [
+                  "Finalmente, me fui a dormir.",
+                  "Finalmente, el príncipe encontró a la princesa."
+                ],
+                "questions": [
+                  "Cuentas el ÚLTIMO paso de tu historia. ¿Qué palabra usas?",
+                  "¿Cómo se dice «Finalmente» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🔀",
+                "en": "or",
+                "es": "o",
+                "examplesEn": [
+                  "Do you want juice or water?",
+                  "We can play soccer or basketball."
+                ],
+                "examplesEs": [
+                  "¿Quieres jugo o agua?",
+                  "Podemos jugar fútbol o básquet."
+                ],
+                "questions": [
+                  "Ofreces elegir entre dos opciones. ¿Qué conector usas?",
+                  "¿Cómo se dice «o» en inglés?"
+                ]
+              },
+              {
+                "emoji": "⏳",
+                "en": "After that",
+                "es": "Después de eso",
+                "examplesEn": [
+                  "After that, we went to the park.",
+                  "After that, I did my homework."
+                ],
+                "examplesEs": [
+                  "Después de eso, fuimos al parque.",
+                  "Después de eso, hice mi tarea."
+                ],
+                "questions": [
+                  "Quieres decir «después de eso» en tu historia. ¿Qué usas?",
+                  "¿Cómo se dice «Después de eso» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🕰️",
+                "en": "When",
+                "es": "Cuando",
+                "examplesEn": [
+                  "When I got home, I ate dinner.",
+                  "When it rains, I stay inside."
+                ],
+                "examplesEs": [
+                  "Cuando llegué a casa, cené.",
+                  "Cuando llueve, me quedo adentro."
+                ],
+                "questions": [
+                  "Quieres decir EN QUÉ MOMENTO pasó algo. ¿Qué palabra usas?",
+                  "¿Cómo se dice «Cuando» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🖼️",
+                "en": "In this picture, I can see",
+                "es": "En esta imagen puedo ver",
+                "examplesEn": [
+                  "In this picture, I can see a family.",
+                  "In this picture, I can see two dogs."
+                ],
+                "examplesEs": [
+                  "En esta imagen puedo ver una familia.",
+                  "En esta imagen puedo ver dos perros."
+                ],
+                "questions": [
+                  "Empiezas a describir una foto. ¿Qué dices?",
+                  "¿Cómo se dice «En esta imagen puedo ver» en inglés?"
+                ]
+              },
+              {
+                "emoji": "⬅️",
+                "en": "On the left",
+                "es": "A la izquierda",
+                "examplesEn": [
+                  "On the left, there is a big tree.",
+                  "On the left, a boy is reading."
+                ],
+                "examplesEs": [
+                  "A la izquierda hay un árbol grande.",
+                  "A la izquierda, un niño está leyendo."
+                ],
+                "questions": [
+                  "Describes lo que está al lado IZQUIERDO de la foto. ¿Qué dices?",
+                  "¿Cómo se dice «A la izquierda» en inglés?"
+                ]
+              },
+              {
+                "emoji": "➡️",
+                "en": "On the right",
+                "es": "A la derecha",
+                "examplesEn": [
+                  "On the right, there is a red car.",
+                  "On the right, a girl is smiling."
+                ],
+                "examplesEs": [
+                  "A la derecha hay un auto rojo.",
+                  "A la derecha, una niña sonríe."
+                ],
+                "questions": [
+                  "Describes lo que está al lado DERECHO de la foto. ¿Qué dices?",
+                  "¿Cómo se dice «A la derecha» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🎯",
+                "en": "In the middle",
+                "es": "En el medio",
+                "examplesEn": [
+                  "In the middle, there is a table.",
+                  "In the middle of the picture, I see a cat."
+                ],
+                "examplesEs": [
+                  "En el medio hay una mesa.",
+                  "En el medio de la imagen veo un gato."
+                ],
+                "questions": [
+                  "Describes lo que está al CENTRO de la foto. ¿Qué dices?",
+                  "¿Cómo se dice «En el medio» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🏔️",
+                "en": "In the background",
+                "es": "Al fondo",
+                "examplesEn": [
+                  "In the background, there are mountains.",
+                  "In the background, I can see the sea."
+                ],
+                "examplesEs": [
+                  "Al fondo hay montañas.",
+                  "Al fondo puedo ver el mar."
+                ],
+                "questions": [
+                  "Describes lo que se ve LEJOS, detrás de todo. ¿Qué dices?",
+                  "¿Cómo se dice «Al fondo» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🤔",
+                "en": "It looks like a park",
+                "es": "Parece un parque",
+                "examplesEn": [
+                  "It looks like a park in summer.",
+                  "It looks like a park, maybe in Lima."
+                ],
+                "examplesEs": [
+                  "Parece un parque en verano.",
+                  "Parece un parque, quizás en Lima."
+                ],
+                "questions": [
+                  "No estás seguro del lugar, pero crees que es un parque. ¿Qué dices?",
+                  "¿Cómo se dice «Parece un parque» en inglés?"
+                ]
+              },
+              {
+                "emoji": "😊",
+                "en": "They look happy",
+                "es": "Se ven felices",
+                "examplesEn": [
+                  "They are laughing. They look happy.",
+                  "The children look happy."
+                ],
+                "examplesEs": [
+                  "Se están riendo. Se ven felices.",
+                  "Los niños se ven felices."
+                ],
+                "questions": [
+                  "Describes cómo se ven las personas de la foto. ¿Qué dices?",
+                  "¿Cómo se dice «Se ven felices» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🔊",
+                "en": "Could you say that again?",
+                "es": "¿Podrías decir eso otra vez?",
+                "examplesEn": [
+                  "Sorry, could you say that again?",
+                  "Could you say that again, please?"
+                ],
+                "examplesEs": [
+                  "Perdón, ¿podrías decir eso otra vez?",
+                  "¿Podrías decir eso otra vez, por favor?"
+                ],
+                "questions": [
+                  "No escuchaste bien el audio. ¿Qué pides?",
+                  "Significa: ¿Podrías decir eso otra vez? ¿Cuál es la frase en inglés?"
+                ]
+              },
+              {
+                "emoji": "🐢",
+                "en": "Could you speak more slowly?",
+                "es": "¿Podrías hablar más despacio?",
+                "examplesEn": [
+                  "Could you speak more slowly, please?",
+                  "You speak very fast. Could you speak more slowly?"
+                ],
+                "examplesEs": [
+                  "¿Podrías hablar más despacio, por favor?",
+                  "Hablas muy rápido. ¿Podrías hablar más despacio?"
+                ],
+                "questions": [
+                  "La persona habla demasiado rápido. ¿Qué pides?",
+                  "Significa: ¿Podrías hablar más despacio? ¿Cuál es la frase en inglés?"
+                ]
+              },
+              {
+                "emoji": "💬",
+                "en": "What does 'busy' mean?",
+                "es": "¿Qué significa 'busy'?",
+                "examplesEn": [
+                  "Excuse me, what does 'busy' mean?",
+                  "What does 'busy' mean? — It means 'ocupado'."
+                ],
+                "examplesEs": [
+                  "Disculpe, ¿qué significa 'busy'?",
+                  "¿Qué significa 'busy'? — Significa 'ocupado'."
+                ],
+                "questions": [
+                  "No conoces la palabra «busy». ¿Qué preguntas?",
+                  "Significa: ¿Qué significa 'busy'? ¿Cuál es la frase en inglés?"
+                ]
+              },
+              {
+                "emoji": "📖",
+                "en": "I study English every day",
+                "es": "Estudio inglés todos los días",
+                "examplesEn": [
+                  "I study English every day for twenty minutes.",
+                  "I study English every day after school."
+                ],
+                "examplesEs": [
+                  "Estudio inglés veinte minutos todos los días.",
+                  "Estudio inglés todos los días después del colegio."
+                ],
+                "questions": [
+                  "Hablas de tu HÁBITO (presente simple). ¿Qué dices?",
+                  "¿Cómo se dice «Estudio inglés todos los días» en inglés?"
+                ]
+              },
+              {
+                "emoji": "✍️",
+                "en": "I'm writing an email now",
+                "es": "Estoy escribiendo un correo ahora",
+                "examplesEn": [
+                  "Wait, I'm writing an email now.",
+                  "I'm writing an email now to my teacher."
+                ],
+                "examplesEs": [
+                  "Espera, estoy escribiendo un correo ahora.",
+                  "Estoy escribiendo ahora un correo a mi profesora."
+                ],
+                "questions": [
+                  "Hablas de lo que haces EN ESTE MOMENTO. ¿Qué dices?",
+                  "¿Cómo se dice «Estoy escribiendo un correo ahora» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🏖️",
+                "en": "Last year I went to the beach",
+                "es": "El año pasado fui a la playa",
+                "examplesEn": [
+                  "Last year I went to the beach in Máncora.",
+                  "Last year I went to the beach every weekend."
+                ],
+                "examplesEs": [
+                  "El año pasado fui a la playa en Máncora.",
+                  "El año pasado fui a la playa cada fin de semana."
+                ],
+                "questions": [
+                  "Hablas de algo del PASADO. ¿Qué dices?",
+                  "¿Cómo se dice «El año pasado fui a la playa» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🌍",
+                "en": "Next year I'm going to visit Chile",
+                "es": "El próximo año voy a visitar Chile",
+                "examplesEn": [
+                  "Next year I'm going to visit Chile with my parents.",
+                  "Next year I'm going to visit Chile and Argentina."
+                ],
+                "examplesEs": [
+                  "El próximo año voy a visitar Chile con mis papás.",
+                  "El próximo año voy a visitar Chile y Argentina."
+                ],
+                "questions": [
+                  "Hablas de un PLAN futuro. ¿Qué dices?",
+                  "¿Cómo se dice «El próximo año voy a visitar Chile» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🥇",
+                "en": "It was the best day",
+                "es": "Fue el mejor día",
+                "examplesEn": [
+                  "My birthday party was the best day!",
+                  "It was the best day of my vacation."
+                ],
+                "examplesEs": [
+                  "¡Mi fiesta de cumpleaños fue el mejor día!",
+                  "Fue el mejor día de mis vacaciones."
+                ],
+                "questions": [
+                  "Cuentas que un día fue el más bonito de todos. ¿Qué dices?",
+                  "¿Cómo se dice «Fue el mejor día» en inglés?"
+                ]
+              },
+              {
+                "emoji": "📈",
+                "en": "My English is better than before",
+                "es": "Mi inglés es mejor que antes",
+                "examplesEn": [
+                  "Now my English is better than before.",
+                  "My English is better than before because I practice."
+                ],
+                "examplesEs": [
+                  "Ahora mi inglés es mejor que antes.",
+                  "Mi inglés es mejor que antes porque practico."
+                ],
+                "questions": [
+                  "Comparas tu inglés de ahora con el de antes. ¿Qué dices?",
+                  "¿Cómo se dice «Mi inglés es mejor que antes» en inglés?"
+                ]
+              },
+              {
+                "emoji": "💪",
+                "en": "I can speak a little English",
+                "es": "Puedo hablar un poco de inglés",
+                "examplesEn": [
+                  "I can speak a little English and some French.",
+                  "Yes, I can speak a little English."
+                ],
+                "examplesEs": [
+                  "Puedo hablar un poco de inglés y algo de francés.",
+                  "Sí, puedo hablar un poco de inglés."
+                ],
+                "questions": [
+                  "Dices tu nivel con modestia. ¿Qué dices?",
+                  "¿Cómo se dice «Puedo hablar un poco de inglés» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🧠",
+                "en": "I should practice more",
+                "es": "Debería practicar más",
+                "examplesEn": [
+                  "I make mistakes. I should practice more.",
+                  "I should practice more speaking."
+                ],
+                "examplesEs": [
+                  "Cometo errores. Debería practicar más.",
+                  "Debería practicar más la conversación."
+                ],
+                "questions": [
+                  "Te das un consejo a ti mismo. ¿Qué dices?",
+                  "¿Cómo se dice «Debería practicar más» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🙌",
+                "en": "I'm proud of my progress",
+                "es": "Estoy orgulloso de mi progreso",
+                "examplesEn": [
+                  "I'm proud of my progress this year.",
+                  "I worked hard and I'm proud of my progress."
+                ],
+                "examplesEs": [
+                  "Estoy orgulloso de mi progreso este año.",
+                  "Trabajé duro y estoy orgulloso de mi progreso."
+                ],
+                "questions": [
+                  "Cuentas cómo te sientes con lo que lograste. ¿Qué dices?",
+                  "¿Cómo se dice «Estoy orgulloso de mi progreso» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🎯",
+                "en": "My goal is to travel",
+                "es": "Mi meta es viajar",
+                "examplesEn": [
+                  "My goal is to travel around the world.",
+                  "My goal is to travel and speak English."
+                ],
+                "examplesEs": [
+                  "Mi meta es viajar por el mundo.",
+                  "Mi meta es viajar y hablar inglés."
+                ],
+                "questions": [
+                  "Cuentas tu meta para el futuro. ¿Qué dices?",
+                  "¿Cómo se dice «Mi meta es viajar» en inglés?"
+                ]
+              }
+            ];
+
+            let currentItem = null;
+            let correctCount = 0;
+            let wrongCount = 0;
+            let answeredCorrectly = false;
+
+            let progress = 0;
+            const maxProgress = 10;
+
+            const correctSpan = document.getElementById("xpValue");
+            const wrongSpan = document.getElementById("heartsValue");
+            const feedbackEl = document.getElementById("feedback");
+            const lessonCard = document.getElementById("lessonCard");
+            const progressBar = document.getElementById("progressBar");
+            const progressText = document.getElementById("progressText");
+
+            const soundCorrect = document.getElementById("sound-correct");
+            const soundWrong = document.getElementById("sound-wrong");
+            const soundLevelup = document.getElementById("sound-levelup");
+
+            function updateProgressBar() {
+                const percent = (progress / maxProgress) * 100;
+                progressBar.style.width = percent + "%";
+                progressText.textContent = `${progress}/${maxProgress}`;
+            }
+
+            function getRandomItem() {
+                return itemsData[Math.floor(Math.random() * itemsData.length)];
+            }
+            function randomFromArray(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+            function generateLesson() {
+                const item = getRandomItem();
+                const idx = Math.floor(Math.random() * item.examplesEn.length);
+                return {
+                    data: item,
+                    emoji: item.emoji,
+                    word: item.en,
+                    translation: item.es,
+                    exampleEn: item.examplesEn[idx],
+                    exampleEs: item.examplesEs[idx],
+                    question: randomFromArray(item.questions)
+                };
+            }
+
+            function renderLesson() {
+                answeredCorrectly = false;
+                const lesson = generateLesson();
+                currentItem = lesson.data;
+
+                document.getElementById("emoji").textContent = lesson.emoji;
+                document.getElementById("wordEn").textContent = "❓ ❓ ❓";
+                document.getElementById("wordEn").dataset.answer = lesson.word;
+                document.getElementById("exampleEn").parentElement.style.visibility = "hidden";
+                document.getElementById("wordEs").textContent = lesson.translation;
+                document.getElementById("exampleEn").textContent = lesson.exampleEn;
+                document.getElementById("exampleEs").textContent = lesson.exampleEs;
+                document.getElementById("question").textContent = lesson.question;
+
+                feedbackEl.textContent = "";
+                feedbackEl.classList.remove("good", "bad");
+                lessonCard.classList.remove("correct", "wrong");
+
+                createOptions();
+            }
+
+            function createOptions() {
+                const container = document.getElementById("optionsContainer");
+                container.innerHTML = "";
+
+                const correct = currentItem;
+                const others = itemsData.filter(i => i.en !== correct.en);
+                shuffleArray(others);
+
+                const options = [correct.en, others[0].en, others[1].en];
+                shuffleArray(options);
+
+                options.forEach(optionText => {
+                    const btn = document.createElement("button");
+                    btn.textContent = optionText;
+                    btn.className = "option-btn";
+                    btn.onclick = () => checkAnswer(optionText, btn);
+                    container.appendChild(btn);
+                });
+            }
+
+            function speakFeedbackCorrect() {
+                const phrases = ["Great job!", "Awesome!", "Perfect!", "Nice work!"];
+                speakText(randomFromArray(phrases));
+            }
+            function speakFeedbackWrong() {
+                const phrases = ["Not yet, try again.", "Almost, try again.", "Keep trying.", "Don't give up."];
+                speakText(randomFromArray(phrases));
+            }
+
+            function speakText(text) {
+                if (!("speechSynthesis" in window)) return;
+                const utter = new SpeechSynthesisUtterance(text);
+                utter.lang = "en-US";
+                utter.rate = 0.95;
+                utter.pitch = 1.02;
+                window.speechSynthesis.cancel();
+                window.speechSynthesis.speak(utter);
+            }
+
+            function checkAnswer(answer, clickedBtn) {
+                if (!currentItem) return;
+                if (answeredCorrectly) return;
+
+                if (answer === currentItem.en) {
+                    answeredCorrectly = true;
+                    document.getElementById("wordEn").textContent = currentItem.en;
+                    document.getElementById("exampleEn").parentElement.style.visibility = "visible";
+
+                    correctCount++;
+                    correctSpan.textContent = correctCount;
+
+                    if (progress < maxProgress) {
+                        progress += 1;
+                        updateProgressBar();
+                    }
+
+                    feedbackEl.textContent = randomFromArray(["✅ Great job!", "✅ Awesome!", "✅ Perfect!", "✅ Nice!"]);
+                    feedbackEl.classList.remove("bad");
+                    feedbackEl.classList.add("good");
+
+                    playSound(soundCorrect);
+                    speakFeedbackCorrect();
+
+                    lessonCard.classList.remove("wrong");
+                    lessonCard.classList.add("correct");
+
+                    document.querySelectorAll(".option-btn").forEach(b => { b.disabled = true; });
+
+                    if (correctCount > 0 && correctCount % 5 === 0) playSound(soundLevelup);
+
+                    if (progress >= maxProgress) {
+                        try { localStorage.setItem("mk_topic_" + location.pathname.split("/").pop().replace(/\.html$/i, "") + "_complete", "true"); } catch (e) { }
+                        feedbackEl.textContent = "🎉 Lesson complete! Keep practicing.";
+                        feedbackEl.classList.add("good");
+                        playSound(soundLevelup);
+                    }
+                } else {
+                    wrongCount++;
+                    wrongSpan.textContent = wrongCount;
+
+                    feedbackEl.textContent = `❌ Not yet. Try again.`;
+                    feedbackEl.classList.remove("good");
+                    feedbackEl.classList.add("bad");
+
+                    playSound(soundWrong);
+                    speakFeedbackWrong();
+
+                    lessonCard.classList.remove("correct");
+                    lessonCard.classList.add("wrong");
+
+                    if (clickedBtn) clickedBtn.disabled = true;
+                }
+            }
+
+            function shuffleArray(arr) {
+                for (let i = arr.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [arr[i], arr[j]] = [arr[j], arr[i]];
+                }
+            }
+
+            function nextLesson() { renderLesson(); }
+
+            function speakWord() {
+                const word = document.getElementById("wordEn").dataset.answer || document.getElementById("wordEn").textContent;
+                if (!("speechSynthesis" in window)) return;
+                const utter = new SpeechSynthesisUtterance(word);
+                utter.lang = "en-US";
+                utter.rate = 0.9;
+                window.speechSynthesis.cancel();
+                window.speechSynthesis.speak(utter);
+            }
+
+            function playSound(audioElement) {
+                if (!audioElement) return;
+                audioElement.currentTime = 0;
+                audioElement.play().catch(() => { });
+            }
+
+            updateProgressBar();
+            renderLesson();
+        </script>
+
+        <script>
+            // Registrar Service Worker (PWA)
+            if ("serviceWorker" in navigator) {
+                window.addEventListener("load", () => {
+                    navigator.serviceWorker.register("./service-worker.js").catch(() => { });
+                });
+            }
+        </script>
+
+        <script>
+            function shareApp() {
+                const shareData = {
+                    title: "MK • Inglés",
+                    text: "📚 Aprende inglés jugando con MK",
+                    url: window.location.href
+                };
+
+                if (navigator.share) {
+                    navigator.share(shareData)
+                        .catch(() => { });
+                } else {
+                    navigator.clipboard.writeText(shareData.url);
+                    alert("🔗 Link copiado para compartir");
+                }
+            }
+        </script>
+
+    </body>
+
+</html>

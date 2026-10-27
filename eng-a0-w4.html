@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MK • A0 · Semana 4: Comida y gustos</title>
+
+        <!-- PWA -->
+        <meta name="apple-mobile-web-app-title" content="MK" />
+        <link rel="manifest" href="manifest.json">
+        <meta name="theme-color" content="#1976d2">
+        <style>
+            * {
+                box-sizing: border-box;
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            }
+
+            body {
+                margin: 0;
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: linear-gradient(145deg, #dbeafe, #e0f2fe);
+                padding: 18px;
+            }
+
+            .app {
+                background: #ffffff;
+                width: 100%;
+                max-width: 520px;
+                padding: 18px;
+                border-radius: 24px;
+                box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+                border: 3px solid #2563eb;
+            }
+
+            /* 🌟 Encabezado infantil */
+            /* Contenedor*/
+            .brand-header-kids {
+                position: relative;
+                overflow: hidden;
+                padding: 14px 14px 12px;
+                border-radius: 22px;
+                margin-bottom: 12px;
+                background: linear-gradient(135deg, #93c5fd, #60a5fa, #2563eb);
+                border: 2px solid rgba(255, 255, 255, .65);
+                box-shadow: 0 14px 28px rgba(37, 99, 235, .25);
+                color: #fff;
+            }
+
+            /* ✅ Clickable (ir a index.html) */
+            .brand-header-kids.clickable {
+                cursor: pointer;
+                user-select: none;
+                transition: transform 0.12s ease, filter 0.12s ease, box-shadow 0.12s ease;
+            }
+
+            .brand-header-kids.clickable:hover {
+                transform: translateY(-1px);
+                filter: brightness(1.02);
+                box-shadow: 0 18px 34px rgba(37, 99, 235, .28);
+            }
+
+            .brand-header-kids.clickable:active {
+                transform: translateY(0px) scale(0.995);
+            }
+
+            /* Para que el click funcione aunque toques estrellas/burbujas */
+            .brand-header-kids .bubble,
+            .brand-header-kids .star {
+                pointer-events: none;
+            }
+
+            .brand-row {
+                position: relative;
+                z-index: 2;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+
+            .kids-badge {
+                width: 52px;
+                height: 52px;
+                border-radius: 18px;
+                display: grid;
+                place-items: center;
+                font-size: 1.55rem;
+                background: rgba(255, 255, 255, .22);
+                border: 1px solid rgba(255, 255, 255, .35);
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35);
+            }
+
+            .kids-title {
+                font-weight: 950;
+                font-size: 1.55rem;
+                letter-spacing: .02em;
+                line-height: 1.05;
+                text-shadow: 0 2px 0 rgba(0, 0, 0, .12);
+            }
+
+            .kids-subtitle {
+                margin-top: 4px;
+                font-size: .9rem;
+                font-weight: 750;
+                opacity: .95;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                flex-wrap: wrap;
+            }
+
+            .kids-pill {
+                background: rgba(255, 255, 255, .22);
+                border: 1px solid rgba(255, 255, 255, .35);
+                padding: 4px 10px;
+                border-radius: 999px;
+                font-size: .82rem;
+                font-weight: 850;
+            }
+
+            /* ⭐ estrellas (si las quieres) */
+            .star {
+                position: absolute;
+                z-index: 1;
+                opacity: .9;
+                filter: drop-shadow(0 2px 0 rgba(0, 0, 0, .12));
+                animation: twinkle 2.8s ease-in-out infinite;
+                pointer-events: none;
+            }
+
+            .star.s1 {
+                top: 8px;
+                right: 18px;
+                font-size: 1.15rem;
+                animation-delay: 0s;
+            }
+
+            .star.s2 {
+                top: 40px;
+                right: 60px;
+                font-size: .95rem;
+                animation-delay: .6s;
+            }
+
+            .star.s3 {
+                bottom: 12px;
+                right: 26px;
+                font-size: 1.25rem;
+                animation-delay: 1.1s;
+            }
+
+            /* Estilo base de burbuja + animación*/
+            .bubble {
+                position: absolute;
+                z-index: 0;
+                border-radius: 999px;
+                background: rgba(255, 255, 255, .22);
+                border: 1px solid rgba(255, 255, 255, .28);
+                box-shadow: inset 0 2px 0 rgba(255, 255, 255, .45);
+                pointer-events: none;
+
+                /* mejor compatibilidad */
+                -webkit-backdrop-filter: blur(2px);
+                backdrop-filter: blur(2px);
+
+                animation: floaty 6s ease-in-out infinite;
+            }
+
+            /* Posición de cada burbuja*/
+            .b1 {
+                left: -16px;
+                top: -18px;
+                animation-delay: 0s;
+                transform: rotate(5deg);
+                width: 84px;
+                height: 84px;
+            }
+
+            .b2 {
+                left: 40px;
+                bottom: -22px;
+                width: 52px;
+                height: 52px;
+                animation-delay: .8s;
+            }
+
+            .b3 {
+                right: -22px;
+                bottom: -26px;
+                width: 76px;
+                height: 76px;
+                animation-delay: 1.3s;
+            }
+
+            /* Movimiento flotante*/
+            @keyframes floaty {
+                0%,
+                100% {
+                    transform: translateY(0) scale(1);
+                }
+
+                50% {
+                    transform: translateY(-8px) scale(1.03);
+                }
+            }
+
+            /* NAV */
+            .nav {
+                display: flex;
+                gap: 10px;
+                background: #eff6ff;
+                border: 1px solid #bfdbfe;
+                padding: 10px;
+                border-radius: 18px;
+                margin-bottom: 14px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-btn {
+                border: 1px solid #bfdbfe;
+                background: #ffffff;
+                border-radius: 999px;
+                padding: 8px 12px;
+                cursor: pointer;
+                font-weight: 700;
+                font-size: 0.95rem;
+                transition: transform 0.1s ease, background 0.15s ease, border-color 0.15s ease, opacity 0.1s ease;
+                min-width: 120px;
+            }
+
+            .nav-btn:hover {
+                transform: translateY(-1px);
+                background: #e0f2fe;
+                border-color: #93c5fd;
+            }
+
+            .nav-btn.active {
+                background: linear-gradient(90deg, #60a5fa, #2563eb);
+                color: #fff;
+                border-color: transparent;
+            }
+
+            h1 {
+                margin: 0 0 4px 0;
+                text-align: center;
+                font-size: 1.5rem;
+            }
+
+            .subtitle {
+                text-align: center;
+                font-size: 0.9rem;
+                color: #6b7280;
+                margin-bottom: 14px;
+            }
+
+            .status-bar {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 8px;
+                padding: 8px 12px;
+                border-radius: 999px;
+                background: #eff6ff;
+                border: 1px solid #bfdbfe;
+                font-size: 0.9rem;
+            }
+
+            .xp,
+            .hearts {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                font-weight: 600;
+            }
+
+            .xp span {
+                color: #16a34a;
+            }
+
+            .hearts span {
+                color: #f97316;
+            }
+
+            .progress-wrapper {
+                margin-bottom: 14px;
+            }
+
+            .progress-label {
+                display: flex;
+                justify-content: space-between;
+                font-size: 0.8rem;
+                color: #6b7280;
+                margin-bottom: 4px;
+            }
+
+            .progress {
+                width: 100%;
+                height: 10px;
+                background: #e5e7eb;
+                border-radius: 999px;
+                overflow: hidden;
+            }
+
+            .progress-inner {
+                height: 100%;
+                width: 0%;
+                border-radius: 999px;
+                background: linear-gradient(90deg, #60a5fa, #2563eb);
+                transition: width 0.2s ease;
+            }
+
+            .card {
+                border-radius: 20px;
+                padding: 5px;
+                background: #f9fafb;
+                border: 1px solid #e5e7eb;
+                margin-bottom: 5px;
+                transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+            }
+
+            .card.correct {
+                animation: pulse 0.4s ease;
+                border-color: #2563eb;
+                box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
+            }
+
+            .card.wrong {
+                animation: shake 0.3s ease;
+                border-color: #ef4444;
+                box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3);
+            }
+
+            @keyframes pulse {
+                0% { transform: scale(1) }
+                50% { transform: scale(1.03) }
+                100% { transform: scale(1) }
+            }
+
+            @keyframes shake {
+                0%, 100% { transform: translateX(0) }
+                20% { transform: translateX(-4px) }
+                40% { transform: translateX(4px) }
+                60% { transform: translateX(-4px) }
+                80% { transform: translateX(4px) }
+            }
+
+            .emoji-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 12px;
+                margin-bottom: 6px;
+            }
+
+            .emoji {
+                font-size: 5rem;
+                text-align: center;
+            }
+
+            .speak-btn {
+                font-size: 1.6rem;
+                cursor: pointer;
+                background: #eff6ff;
+                border-radius: 999px;
+                border: 1px solid #bfdbfe;
+                padding: 6px 10px;
+                transition: transform 0.1s ease, background 0.15s ease, border-color 0.15s ease;
+            }
+
+            .speak-btn:hover {
+                transform: scale(1.1);
+                background: #dbeafe;
+                border-color: #93c5fd;
+            }
+
+            .word {
+                text-align: center;
+                font-size: 1.6rem;
+                font-weight: 700;
+                margin-bottom: 2px;
+            }
+
+            .translation {
+                text-align: center;
+                font-size: 0.95rem;
+                color: #6b7280;
+                margin-bottom: 12px;
+            }
+
+            .example-en,
+            .example-es,
+            .question {
+                font-size: 0.98rem;
+                margin: 6px 0;
+            }
+
+            .label {
+                font-weight: 600;
+            }
+
+            .question {
+                margin-top: 12px;
+                font-weight: 700;
+                color: #111827;
+            }
+
+            .controls {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-top: 10px;
+            }
+
+            button.main-btn {
+                flex: 1;
+                border: none;
+                padding: 10px 12px;
+                border-radius: 999px;
+                font-size: 0.95rem;
+                cursor: pointer;
+                background: linear-gradient(90deg, #60a5fa, #2563eb);
+                color: #ffffff;
+                font-weight: 600;
+                letter-spacing: 0.02em;
+                transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.15s ease;
+                min-width: 120px;
+            }
+
+            button.main-btn:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+                filter: brightness(1.05);
+            }
+
+            .feedback {
+                margin-top: 10px;
+                font-size: 0.95rem;
+                text-align: center;
+                min-height: 5px;
+                font-weight: 600;
+            }
+
+            .feedback.good {
+                color: #16a34a;
+            }
+
+            .feedback.bad {
+                color: #ef4444;
+            }
+
+            .options {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                margin-top: 12px;
+            }
+
+            .option-btn {
+                flex: 1;
+                min-width: 80px;
+                border-radius: 14px;
+                border: 1px solid #d1d5db;
+                background: #ffffff;
+                padding: 8px 10px;
+                font-size: 0.9rem;
+                cursor: pointer;
+                transition: background 0.15s ease, transform 0.1s ease, border 0.1s ease, opacity 0.1s ease;
+                font-weight: 600;
+            }
+
+            .option-btn:hover:not(:disabled) {
+                background: #e0f2fe;
+                transform: translateY(-1px);
+                border-color: #93c5fd;
+            }
+
+            .option-btn:disabled {
+                cursor: default;
+                opacity: 0.6;
+            }
+
+            /* Secciones */
+            .section { display: none; }
+            .section.active { display: block; }
+
+            /* Tarjetas placeholder */
+            .placeholder-title {
+                text-align: center;
+                font-size: 1.2rem;
+                font-weight: 800;
+                margin: 6px 0 2px;
+            }
+
+            .placeholder-text {
+                text-align: center;
+                color: #6b7280;
+                margin: 0;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="app">
+
+            <!-- 🌟 Encabezado infantil: Marie Kids (CLICK -> index.html) -->
+            <div class="brand-header-kids clickable"
+                 aria-label="Marie Kids"
+                 role="link"
+                 tabindex="0"
+                 onclick="goHome()"
+                 onkeydown="if(event.key==='Enter' || event.key===' '){ event.preventDefault(); goHome(); }">
+                <div class="bubble b1"></div>
+                <div class="bubble b2"></div>
+                <div class="bubble b3"></div>
+
+                <div class="star s1">⭐</div>
+                <div class="star s2">✨</div>
+                <div class="star s3">🌟</div>
+
+                <div class="brand-row">
+                    <div class="kids-badge" aria-hidden="true">🧸</div>
+                    <div>
+                        <div class="kids-title">Marie Kids</div>
+                        <div class="kids-subtitle">
+                            Inglés divertido
+                            <span class="kids-pill">Escucha</span>
+                            <span class="kids-pill">👉 Responde</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================== INGLÉS ================== -->
+            <section class="section active" id="courseEnglish">
+                <h1>A0 · Semana 4: Comida y gustos</h1>
+                <p class="subtitle">Lee la situación, toca 🔊 para escuchar y elige la frase correcta en inglés. 🍕</p>
+
+                <div class="status-bar">
+                    <div class="xp">✅ Correctas: <span id="xpValue">0</span></div>
+                    <div class="hearts">🧠 Por mejorar: <span id="heartsValue">0</span></div>
+                </div>
+
+                <div class="progress-wrapper">
+                    <div class="progress-label">
+                        <span>Progreso de la lección</span>
+                        <span id="progressText">0/10</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-inner" id="progressBar"></div>
+                    </div>
+                </div>
+
+                <div class="card" id="lessonCard">
+                    <div class="emoji-container">
+                        <div class="emoji" id="emoji">🛋️</div>
+                        <button class="speak-btn" aria-label="Escuchar pronunciación" onclick="speakWord()">🔊</button>
+                    </div>
+
+                    <div class="word" id="wordEn">sofa</div>
+                    <div class="translation" id="wordEs">sofá</div>
+
+                    <p class="example-en"><span class="label">Inglés:</span> <span id="exampleEn">This is a sofa.</span></p>
+                    <p class="example-es"><span class="label">Español:</span> <span id="exampleEs">Este es un sofá.</span></p>
+
+                    <p class="question" id="question">What is this?</p>
+
+                    <div class="options" id="optionsContainer"></div>
+                    <div class="feedback" id="feedback"></div>
+                </div>
+
+                <div class="controls">
+                    <button class="main-btn" onclick="nextLesson()">Next</button>
+                    <button class="main-btn" onclick="shareApp()">📤 Compartir app</button>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Sonidos -->
+        <audio id="sound-correct" src="correct.mp3" preload="auto"></audio>
+        <audio id="sound-wrong" src="wrong.mp3" preload="auto"></audio>
+        <audio id="sound-levelup" src="levelup.mp3" preload="auto"></audio>
+
+        <script>
+            // ✅ IR A HOME (index.html)
+            function goHome() {
+                location.href = "ruta-ingles.html";
+            }
+        </script>
+
+        <script>
+            // ====== INGLÉS ======
+            const itemsData = [
+              {
+                "emoji": "🍕",
+                "en": "I like pizza",
+                "es": "Me gusta la pizza",
+                "examplesEn": [
+                  "I like pizza very much.",
+                  "I like pizza with cheese."
+                ],
+                "examplesEs": [
+                  "Me gusta mucho la pizza.",
+                  "Me gusta la pizza con queso."
+                ],
+                "questions": [
+                  "Dices que te gusta la pizza. ¿Qué dices?",
+                  "¿Cómo se dice «Me gusta la pizza» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🥛",
+                "en": "I don't like milk",
+                "es": "No me gusta la leche",
+                "examplesEn": [
+                  "I don't like milk. I like juice.",
+                  "Sorry, I don't like milk."
+                ],
+                "examplesEs": [
+                  "No me gusta la leche. Me gusta el jugo.",
+                  "Lo siento, no me gusta la leche."
+                ],
+                "questions": [
+                  "Dices que no te gusta la leche. ¿Qué dices?",
+                  "¿Cómo se dice «No me gusta la leche» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🍎",
+                "en": "Do you like apples?",
+                "es": "¿Te gustan las manzanas?",
+                "examplesEn": [
+                  "Do you like apples? — Yes, I do.",
+                  "Ana, do you like apples?"
+                ],
+                "examplesEs": [
+                  "¿Te gustan las manzanas? — Sí.",
+                  "Ana, ¿te gustan las manzanas?"
+                ],
+                "questions": [
+                  "Preguntas a tu amigo si le gustan las manzanas. ¿Qué dices?",
+                  "Significa: ¿Te gustan las manzanas? ¿Cuál es la frase en inglés?"
+                ]
+              },
+              {
+                "emoji": "👍",
+                "en": "Yes, I do",
+                "es": "Sí, me gusta",
+                "examplesEn": [
+                  "Do you like ice cream? — Yes, I do!",
+                  "Yes, I do. It's yummy!"
+                ],
+                "examplesEs": [
+                  "¿Te gusta el helado? — ¡Sí!",
+                  "Sí, me gusta. ¡Es rico!"
+                ],
+                "questions": [
+                  "Te preguntan si te gusta algo y SÍ te gusta. ¿Qué respondes?",
+                  "¿Cómo se dice «Sí, me gusta» en inglés?"
+                ]
+              },
+              {
+                "emoji": "👎",
+                "en": "No, I don't",
+                "es": "No, no me gusta",
+                "examplesEn": [
+                  "Do you like fish? — No, I don't.",
+                  "No, I don't. I like chicken."
+                ],
+                "examplesEs": [
+                  "¿Te gusta el pescado? — No.",
+                  "No, no me gusta. Me gusta el pollo."
+                ],
+                "questions": [
+                  "Te preguntan si te gusta algo y NO te gusta. ¿Qué respondes?",
+                  "¿Cómo se dice «No, no me gusta» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🍌",
+                "en": "A banana",
+                "es": "Un plátano",
+                "examplesEn": [
+                  "Monkeys like bananas.",
+                  "I have a banana for lunch."
+                ],
+                "examplesEs": [
+                  "A los monos les gustan los plátanos.",
+                  "Tengo un plátano para el almuerzo."
+                ],
+                "questions": [
+                  "¿Cómo se llama la fruta amarilla y larga?",
+                  "¿Cómo se dice «Un plátano» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🍗",
+                "en": "Chicken",
+                "es": "Pollo",
+                "examplesEn": [
+                  "I like chicken and rice.",
+                  "Chicken is my favorite food."
+                ],
+                "examplesEs": [
+                  "Me gusta el pollo con arroz.",
+                  "El pollo es mi comida favorita."
+                ],
+                "questions": [
+                  "Pides pollo en un restaurante. ¿Qué palabra usas?",
+                  "¿Cómo se dice «Pollo» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🧃",
+                "en": "Juice",
+                "es": "Jugo",
+                "examplesEn": [
+                  "Orange juice, please.",
+                  "I drink juice at breakfast."
+                ],
+                "examplesEs": [
+                  "Jugo de naranja, por favor.",
+                  "Tomo jugo en el desayuno."
+                ],
+                "questions": [
+                  "Quieres una bebida de frutas. ¿Qué pides?",
+                  "¿Cómo se dice «Jugo» en inglés?"
+                ]
+              },
+              {
+                "emoji": "🍦",
+                "en": "Ice cream",
+                "es": "Helado",
+                "examplesEn": [
+                  "I love chocolate ice cream.",
+                  "Can I have an ice cream?"
+                ],
+                "examplesEs": [
+                  "Me encanta el helado de chocolate.",
+                  "¿Me das un helado?"
+                ],
+                "questions": [
+                  "Hace calor y quieres algo frío y dulce. ¿Qué pides?",
+                  "¿Cómo se dice «Helado» en inglés?"
+                ]
+              },
+              {
+                "emoji": "😋",
+                "en": "It's yummy!",
+                "es": "¡Está rico!",
+                "examplesEn": [
+                  "Mmm, the cake is yummy!",
+                  "Thank you, Mom. It's yummy!"
+                ],
+                "examplesEs": [
+                  "¡Mmm, el pastel está rico!",
+                  "Gracias, mamá. ¡Está rico!"
+                ],
+                "questions": [
+                  "La comida está deliciosa. ¿Qué dices?",
+                  "¿Cómo se dice «¡Está rico!» en inglés?"
+                ]
+              }
+            ];
+
+            let currentItem = null;
+            let correctCount = 0;
+            let wrongCount = 0;
+            let answeredCorrectly = false;
+
+            let progress = 0;
+            const maxProgress = 10;
+
+            const correctSpan = document.getElementById("xpValue");
+            const wrongSpan = document.getElementById("heartsValue");
+            const feedbackEl = document.getElementById("feedback");
+            const lessonCard = document.getElementById("lessonCard");
+            const progressBar = document.getElementById("progressBar");
+            const progressText = document.getElementById("progressText");
+
+            const soundCorrect = document.getElementById("sound-correct");
+            const soundWrong = document.getElementById("sound-wrong");
+            const soundLevelup = document.getElementById("sound-levelup");
+
+            function updateProgressBar() {
+                const percent = (progress / maxProgress) * 100;
+                progressBar.style.width = percent + "%";
+                progressText.textContent = `${progress}/${maxProgress}`;
+            }
+
+            function getRandomItem() {
+                return itemsData[Math.floor(Math.random() * itemsData.length)];
+            }
+            function randomFromArray(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+            function generateLesson() {
+                const item = getRandomItem();
+                const idx = Math.floor(Math.random() * item.examplesEn.length);
+                return {
+                    data: item,
+                    emoji: item.emoji,
+                    word: item.en,
+                    translation: item.es,
+                    exampleEn: item.examplesEn[idx],
+                    exampleEs: item.examplesEs[idx],
+                    question: randomFromArray(item.questions)
+                };
+            }
+
+            function renderLesson() {
+                answeredCorrectly = false;
+                const lesson = generateLesson();
+                currentItem = lesson.data;
+
+                document.getElementById("emoji").textContent = lesson.emoji;
+                document.getElementById("wordEn").textContent = "❓ ❓ ❓";
+                document.getElementById("wordEn").dataset.answer = lesson.word;
+                document.getElementById("exampleEn").parentElement.style.visibility = "hidden";
+                document.getElementById("wordEs").textContent = lesson.translation;
+                document.getElementById("exampleEn").textContent = lesson.exampleEn;
+                document.getElementById("exampleEs").textContent = lesson.exampleEs;
+                document.getElementById("question").textContent = lesson.question;
+
+                feedbackEl.textContent = "";
+                feedbackEl.classList.remove("good", "bad");
+                lessonCard.classList.remove("correct", "wrong");
+
+                createOptions();
+            }
+
+            function createOptions() {
+                const container = document.getElementById("optionsContainer");
+                container.innerHTML = "";
+
+                const correct = currentItem;
+                const others = itemsData.filter(i => i.en !== correct.en);
+                shuffleArray(others);
+
+                const options = [correct.en, others[0].en, others[1].en];
+                shuffleArray(options);
+
+                options.forEach(optionText => {
+                    const btn = document.createElement("button");
+                    btn.textContent = optionText;
+                    btn.className = "option-btn";
+                    btn.onclick = () => checkAnswer(optionText, btn);
+                    container.appendChild(btn);
+                });
+            }
+
+            function speakFeedbackCorrect() {
+                const phrases = ["Great job!", "Awesome!", "Perfect!", "Nice work!"];
+                speakText(randomFromArray(phrases));
+            }
+            function speakFeedbackWrong() {
+                const phrases = ["Not yet, try again.", "Almost, try again.", "Keep trying.", "Don't give up."];
+                speakText(randomFromArray(phrases));
+            }
+
+            function speakText(text) {
+                if (!("speechSynthesis" in window)) return;
+                const utter = new SpeechSynthesisUtterance(text);
+                utter.lang = "en-US";
+                utter.rate = 0.95;
+                utter.pitch = 1.02;
+                window.speechSynthesis.cancel();
+                window.speechSynthesis.speak(utter);
+            }
+
+            function checkAnswer(answer, clickedBtn) {
+                if (!currentItem) return;
+                if (answeredCorrectly) return;
+
+                if (answer === currentItem.en) {
+                    answeredCorrectly = true;
+                    document.getElementById("wordEn").textContent = currentItem.en;
+                    document.getElementById("exampleEn").parentElement.style.visibility = "visible";
+
+                    correctCount++;
+                    correctSpan.textContent = correctCount;
+
+                    if (progress < maxProgress) {
+                        progress += 1;
+                        updateProgressBar();
+                    }
+
+                    feedbackEl.textContent = randomFromArray(["✅ Great job!", "✅ Awesome!", "✅ Perfect!", "✅ Nice!"]);
+                    feedbackEl.classList.remove("bad");
+                    feedbackEl.classList.add("good");
+
+                    playSound(soundCorrect);
+                    speakFeedbackCorrect();
+
+                    lessonCard.classList.remove("wrong");
+                    lessonCard.classList.add("correct");
+
+                    document.querySelectorAll(".option-btn").forEach(b => { b.disabled = true; });
+
+                    if (correctCount > 0 && correctCount % 5 === 0) playSound(soundLevelup);
+
+                    if (progress >= maxProgress) {
+                        try { localStorage.setItem("mk_topic_" + location.pathname.split("/").pop().replace(/\.html$/i, "") + "_complete", "true"); } catch (e) { }
+                        feedbackEl.textContent = "🎉 Lesson complete! Keep practicing.";
+                        feedbackEl.classList.add("good");
+                        playSound(soundLevelup);
+                    }
+                } else {
+                    wrongCount++;
+                    wrongSpan.textContent = wrongCount;
+
+                    feedbackEl.textContent = `❌ Not yet. Try again.`;
+                    feedbackEl.classList.remove("good");
+                    feedbackEl.classList.add("bad");
+
+                    playSound(soundWrong);
+                    speakFeedbackWrong();
+
+                    lessonCard.classList.remove("correct");
+                    lessonCard.classList.add("wrong");
+
+                    if (clickedBtn) clickedBtn.disabled = true;
+                }
+            }
+
+            function shuffleArray(arr) {
+                for (let i = arr.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [arr[i], arr[j]] = [arr[j], arr[i]];
+                }
+            }
+
+            function nextLesson() { renderLesson(); }
+
+            function speakWord() {
+                const word = document.getElementById("wordEn").dataset.answer || document.getElementById("wordEn").textContent;
+                if (!("speechSynthesis" in window)) return;
+                const utter = new SpeechSynthesisUtterance(word);
+                utter.lang = "en-US";
+                utter.rate = 0.9;
+                window.speechSynthesis.cancel();
+                window.speechSynthesis.speak(utter);
+            }
+
+            function playSound(audioElement) {
+                if (!audioElement) return;
+                audioElement.currentTime = 0;
+                audioElement.play().catch(() => { });
+            }
+
+            updateProgressBar();
+            renderLesson();
+        </script>
+
+        <script>
+            // Registrar Service Worker (PWA)
+            if ("serviceWorker" in navigator) {
+                window.addEventListener("load", () => {
+                    navigator.serviceWorker.register("./service-worker.js").catch(() => { });
+                });
+            }
+        </script>
+
+        <script>
+            function shareApp() {
+                const shareData = {
+                    title: "MK • Inglés",
+                    text: "📚 Aprende inglés jugando con MK",
+                    url: window.location.href
+                };
+
+                if (navigator.share) {
+                    navigator.share(shareData)
+                        .catch(() => { });
+                } else {
+                    navigator.clipboard.writeText(shareData.url);
+                    alert("🔗 Link copiado para compartir");
+                }
+            }
+        </script>
+
+    </body>
+
+</html>
