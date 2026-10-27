@@ -1,2226 +1,1930 @@
 <!DOCTYPE html>
 <html lang="es">
 
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Marie Kids | Ruta de Matemáticas · 4 años</title>
-
-        <!-- PWA -->
-        <meta name="theme-color" content="#0b73ff" />
-        <meta name="apple-mobile-web-app-title" content="MK" />
-        <link rel="manifest" href="../manifest.json" />
-        <link rel="icon" type="image/png" sizes="192x192" href="../icons/icon-192.png" />
-        <link rel="icon" type="image/png" sizes="512x512" href="../icons/icon-512.png" />
-        <link rel="apple-touch-icon" href="../icons/icon-192.png" />
-
-
-        <style>
-            @import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@600;700;800;900&display=swap");
-
-            :root {
-                --blue-1: #0867f2;
-                --blue-2: #0f9dff;
-                --blue-3: #64d8ff;
-                --green: #58cc02;
-                --green-dark: #3fa300;
-                --yellow: #ffc800;
-                --orange: #ff9600;
-                --pink: #ff6aa9;
-                --purple: #8b5cf6;
-                --red: #ff4b4b;
-                --ink: #17365d;
-                --muted: #6f8098;
-                --bg: #f2f8ff;
-                --white: #ffffff;
-                --line: #dbe8f6;
-                --shadow: 0 12px 0 rgba(28, 75, 128, 0.11);
-            }
-
-            * {
-                box-sizing: border-box;
-            }
-
-            html {
-                min-height: 100%;
-                scroll-behavior: smooth;
-                background: var(--bg);
-            }
-
-            body {
-                margin: 0;
-                min-height: 100vh;
-                overflow-x: hidden;
-                font-family: "Nunito", Arial, sans-serif;
-                color: var(--ink);
-                background:
-                    radial-gradient(circle at 7% 15%, rgba(100, 216, 255, .20), transparent 19%),
-                    radial-gradient(circle at 92% 28%, rgba(139, 92, 246, .11), transparent 20%),
-                    linear-gradient(180deg, #eef8ff 0%, #f9fcff 48%, #edf7ff 100%);
-            }
-
-            button,
-            input {
-                font: inherit;
-            }
-
-            a {
-                color: inherit;
-            }
-
-            button:focus-visible,
-            a:focus-visible,
-            input:focus-visible {
-                outline: 5px solid rgba(18, 168, 255, .30);
-                outline-offset: 4px;
-            }
-
-            /* =====================================
-       ENCABEZADO MARIE KIDS
-    ===================================== */
-            .hero-header {
-                position: relative;
-                min-height: 218px;
-                overflow: hidden;
-                color: #ffffff;
-                background:
-                    linear-gradient(115deg, rgba(255, 255, 255, .08), transparent 48%),
-                    linear-gradient(120deg, var(--blue-1), var(--blue-2) 58%, var(--blue-3));
-                box-shadow: 0 13px 32px rgba(7, 98, 210, .27);
-            }
-
-            .hero-header::before {
-                content: "MK";
-                position: absolute;
-                top: 50%;
-                right: clamp(28px, 6vw, 100px);
-                transform: translateY(-52%) rotate(-8deg);
-                font-family: "Baloo 2", sans-serif;
-                font-size: clamp(145px, 20vw, 260px);
-                line-height: .8;
-                font-weight: 800;
-                letter-spacing: -20px;
-                color: rgba(255, 255, 255, .105);
-                user-select: none;
-                pointer-events: none;
-            }
-
-            .hero-header::after {
-                content: "";
-                position: absolute;
-                inset: 0;
-                background:
-                    radial-gradient(circle at 13% 22%, rgba(255, 255, 255, .15) 0 2.7%, transparent 3.1%),
-                    radial-gradient(circle at 37% 76%, rgba(255, 255, 255, .10) 0 2%, transparent 2.4%),
-                    radial-gradient(circle at 74% 22%, rgba(255, 255, 255, .11) 0 2.5%, transparent 2.9%);
-                pointer-events: none;
-            }
-
-            .header-inner {
-                width: calc(100% - 48px);
-                max-width: none;
-                min-height: 218px;
-                margin: 0 auto;
-                padding: 24px 0;
-                position: relative;
-                z-index: 2;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                gap: clamp(22px, 3vw, 56px);
-            }
-
-            .brand-area {
-                display: flex;
-                align-items: center;
-                gap: 18px;
-                min-width: 0;
-                flex: 1 1 auto;
-            }
-
-            .logo-box {
-                width: 94px;
-                aspect-ratio: 1;
-                flex: 0 0 auto;
-                display: grid;
-                place-items: center;
-                border: 6px solid rgba(255, 255, 255, .97);
-                border-radius: 29px;
-                color: #ffffff;
-                font-family: "Baloo 2", sans-serif;
-                font-size: 43px;
-                line-height: 1;
-                font-weight: 800;
-                letter-spacing: -4px;
-                text-decoration: none;
-                background: linear-gradient(145deg, var(--pink), var(--purple));
-                box-shadow:
-                    0 10px 0 rgba(49, 32, 148, .48),
-                    0 18px 30px rgba(0, 52, 142, .26);
-                transform: rotate(-4deg);
-                transition: transform .18s ease, filter .18s ease;
-            }
-
-            .logo-box:hover {
-                transform: rotate(-4deg) translateY(-3px) scale(1.03);
-                filter: brightness(1.06);
-            }
-
-            .brand-copy {
-                min-width: 0;
-            }
-
-            .brand-label {
-                width: fit-content;
-                margin-bottom: 4px;
-                padding: 5px 13px;
-                border-radius: 999px;
-                color: #0c5eae;
-                font-size: 12px;
-                letter-spacing: 1.4px;
-                font-weight: 900;
-                background: rgba(255, 255, 255, .93);
-            }
-
-            .brand-copy h1 {
-                margin: 0;
-                font-family: "Baloo 2", sans-serif;
-                font-size: clamp(37px, 5.5vw, 67px);
-                line-height: .95;
-                text-shadow: 0 5px 0 rgba(0, 70, 160, .18);
-            }
-
-            .brand-copy p {
-                margin: 7px 0 0;
-                font-size: clamp(16px, 2vw, 23px);
-                font-weight: 900;
-                opacity: .97;
-            }
-
-            .header-actions {
-                display: flex;
-                flex: 0 0 auto;
-                flex-direction: row;
-                align-items: center;
-                justify-content: flex-end;
-                gap: clamp(10px, 1.2vw, 20px);
-                flex-wrap: nowrap;
-            }
-
-            .header-tags-row {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: flex-end;
-                gap: 12px;
-                flex-wrap: nowrap;
-                white-space: nowrap;
-            }
-
-            .header-tag {
-                min-height: 82px;
-                padding: 13px 25px;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                gap: 11px;
-                border: 5px solid rgba(255, 255, 255, .93);
-                border-radius: 27px;
-                color: #ffffff;
-                font-family: "Baloo 2", sans-serif;
-                font-size: clamp(26px, 3vw, 40px);
-                line-height: 1;
-                font-weight: 800;
-                white-space: nowrap;
-                backdrop-filter: blur(7px);
-                box-shadow: 0 9px 0 rgba(5, 61, 138, .26);
-            }
-
-            .header-tag span[aria-hidden="true"] {
-                font-size: clamp(27px, 3.2vw, 43px);
-                line-height: 1;
-            }
-
-            .header-tag.age {
-                background: linear-gradient(180deg, #ff8abc, #e94c91);
-            }
-
-            .header-tag.subject {
-                color: #704d00;
-                background: linear-gradient(180deg, #ffe36a, #ffc800);
-                box-shadow: 0 7px 0 #d9a500;
-            }
-
-            .header-pill,
-            .home-btn {
-                min-height: 52px;
-                padding: 9px 17px;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                gap: 8px;
-                border: 4px solid rgba(255, 255, 255, .93);
-                border-radius: 999px;
-                font-size: 16px;
-                font-weight: 900;
-                text-decoration: none;
-                backdrop-filter: blur(7px);
-            }
-
-            .header-pill {
-                color: #ffffff;
-                background: rgba(10, 73, 167, .28);
-                box-shadow: 0 7px 0 rgba(5, 61, 138, .28);
-            }
-
-            .header-pill.stars {
-                color: #775200;
-                background: var(--yellow);
-                box-shadow: 0 7px 0 #d9a500;
-            }
-
-            .home-btn {
-                color: #0a5ba9;
-                background: rgba(255, 255, 255, .96);
-                box-shadow: 0 7px 0 rgba(5, 61, 138, .22);
-                transition: transform .15s ease, filter .15s ease;
-            }
-
-            .home-btn:hover {
-                transform: translateY(-3px);
-                filter: brightness(1.03);
-            }
-
-            .global-progress {
-                height: 15px;
-                overflow: hidden;
-                background: #dceeff;
-                box-shadow: inset 0 2px 6px rgba(24, 49, 83, .14);
-            }
-
-            .global-progress-fill {
-                width: 0%;
-                height: 100%;
-                border-radius: 0 999px 999px 0;
-                background: linear-gradient(90deg, var(--green), var(--yellow), var(--orange));
-                transition: width .45s ease;
-            }
-
-            /* =====================================
-       CONTENIDO
-    ===================================== */
-            .page {
-                width: calc(100% - 48px);
-                max-width: none;
-                margin: 0 auto;
-                padding: 30px 0 54px;
-            }
-
-            .main-progress-panel {
-                margin-bottom: 22px;
-                padding: 18px 20px;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                gap: 18px;
-                border: 2px solid #d7e7f7;
-                border-radius: 24px;
-                background:
-                    radial-gradient(circle at 94% 12%, rgba(255, 200, 0, .15), transparent 24%),
-                    rgba(255, 255, 255, .97);
-                box-shadow:
-                    0 8px 0 rgba(44, 91, 145, .08),
-                    0 16px 28px rgba(42, 77, 119, .08);
-            }
-
-            .main-progress-copy {
-                min-width: 0;
-            }
-
-            .main-progress-copy span {
-                display: block;
-                color: #0b69b6;
-                font-size: 13px;
-                font-weight: 900;
-                letter-spacing: 1px;
-                text-transform: uppercase;
-            }
-
-            .main-progress-copy strong {
-                display: block;
-                margin-top: 3px;
-                font-family: "Baloo 2", sans-serif;
-                font-size: clamp(23px, 3vw, 32px);
-                line-height: 1;
-            }
-
-            .main-progress-items {
-                display: flex;
-                align-items: center;
-                justify-content: flex-end;
-                gap: 12px;
-                flex-wrap: wrap;
-            }
-
-            .main-stat-pill {
-                min-height: 52px;
-                padding: 9px 17px;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                gap: 8px;
-                border: 4px solid #ffffff;
-                border-radius: 999px;
-                color: #ffffff;
-                font-size: 16px;
-                font-weight: 900;
-                background: linear-gradient(180deg, #17aaff, #087fe9);
-                box-shadow: 0 7px 0 #0864b5;
-            }
-
-            .main-stat-pill.stars {
-                color: #775200;
-                background: linear-gradient(180deg, #ffe36a, #ffc800);
-                box-shadow: 0 7px 0 #d9a500;
-            }
-
-            .welcome-panel {
-                position: relative;
-                overflow: hidden;
-                padding: clamp(24px, 4vw, 40px);
-                border: 2px solid #d7e7f7;
-                border-radius: 34px;
-                background:
-                    radial-gradient(circle at 92% 15%, rgba(255, 200, 0, .16), transparent 22%),
-                    radial-gradient(circle at 10% 88%, rgba(88, 204, 2, .12), transparent 23%),
-                    rgba(255, 255, 255, .97);
-                box-shadow:
-                    var(--shadow),
-                    0 24px 50px rgba(36, 78, 126, .12);
-            }
-
-            .welcome-panel::before {
-                content: "";
-                position: absolute;
-                inset: 0 0 auto;
-                height: 8px;
-                background: linear-gradient(90deg, var(--green), var(--yellow), var(--pink), var(--purple), var(--blue-2));
-            }
-
-            .welcome-grid {
-                display: grid;
-                grid-template-columns: minmax(0, 1fr) 330px;
-                gap: 30px;
-                align-items: center;
-            }
-
-            .intro-label {
-                width: fit-content;
-                margin: 0 0 7px;
-                padding: 6px 14px;
-                border-radius: 999px;
-                color: #ffffff;
-                font-size: 13px;
-                letter-spacing: 1.2px;
-                font-weight: 900;
-                background: linear-gradient(90deg, var(--pink), var(--purple));
-            }
-
-            .welcome-copy h2 {
-                margin: 0;
-                font-family: "Baloo 2", sans-serif;
-                font-size: clamp(35px, 5vw, 58px);
-                line-height: 1;
-            }
-
-            .welcome-copy p {
-                max-width: 760px;
-                margin: 11px 0 0;
-                color: var(--muted);
-                font-size: clamp(17px, 2vw, 22px);
-                line-height: 1.45;
-                font-weight: 800;
-            }
-
-            .continue-btn {
-                margin-top: 20px;
-                min-height: 60px;
-                padding: 12px 24px;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                gap: 9px;
-                border: 0;
-                border-radius: 19px;
-                color: #ffffff;
-                font-size: 20px;
-                font-weight: 900;
-                text-decoration: none;
-                background: linear-gradient(180deg, #69d900, #4eb700);
-                box-shadow: 0 8px 0 #378f00;
-                transition: transform .15s ease, filter .15s ease;
-            }
-
-            .continue-btn:hover {
-                transform: translateY(-3px);
-                filter: brightness(1.04);
-            }
-
-            .welcome-actions {
-                margin-top: 20px;
-                display: flex;
-                align-items: center;
-                gap: 13px;
-                flex-wrap: wrap;
-            }
-
-            .welcome-actions .continue-btn {
-                margin-top: 0;
-            }
-
-            .share-btn {
-                min-height: 60px;
-                padding: 12px 24px;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                gap: 9px;
-                border: 0;
-                border-radius: 19px;
-                color: #ffffff;
-                font-size: 20px;
-                font-weight: 900;
-                cursor: pointer;
-                background: linear-gradient(180deg, #a879ff, #7957df);
-                box-shadow: 0 8px 0 #5840ae;
-                transition: transform .15s ease, filter .15s ease;
-            }
-
-            .share-btn:hover {
-                transform: translateY(-3px);
-                filter: brightness(1.04);
-            }
-
-            .share-btn:active,
-            .continue-btn:active {
-                transform: translateY(3px);
-                box-shadow: 0 4px 0 rgba(55, 64, 143, .55);
-            }
-
-            .share-feedback {
-                min-height: 24px;
-                margin: 10px 0 0 !important;
-                color: #42617f !important;
-                font-size: 14px !important;
-                line-height: 1.3 !important;
-                font-weight: 900 !important;
-            }
-
-            .mascot-card {
-                min-height: 218px;
-                position: relative;
-                overflow: hidden;
-                display: grid;
-                place-items: center;
-                border: 6px solid #ffffff;
-                border-radius: 29px;
-                background:
-                    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, .8) 0 4%, transparent 4.5%),
-                    linear-gradient(180deg, #73d8ff 0 62%, #7dd760 62%);
-                box-shadow: 0 11px 0 rgba(39, 127, 173, .20);
-            }
-
-            .mascot-card::after {
-                content: "1 2 3";
-                position: absolute;
-                right: 13px;
-                bottom: 5px;
-                font-family: "Baloo 2", sans-serif;
-                font-size: 46px;
-                font-weight: 800;
-                color: rgba(255, 255, 255, .40);
-                transform: rotate(-7deg);
-            }
-
-            .mascot {
-                position: relative;
-                z-index: 2;
-                font-size: 112px;
-                filter: drop-shadow(0 10px 0 rgba(20, 87, 53, .20));
-                animation: mascotHop 2s ease-in-out infinite;
-            }
-
-            .summary-cards {
-                margin-top: 22px;
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 14px;
-            }
-
-            .summary-card {
-                padding: 17px;
-                border: 2px solid var(--line);
-                border-radius: 22px;
-                background: #f9fcff;
-            }
-
-            .summary-card span {
-                display: block;
-                color: var(--muted);
-                font-size: 13px;
-                font-weight: 900;
-                text-transform: uppercase;
-                letter-spacing: .8px;
-            }
-
-            .summary-card strong {
-                display: block;
-                margin-top: 3px;
-                font-family: "Baloo 2", sans-serif;
-                font-size: 29px;
-                line-height: 1;
-            }
-
-            /* CONTROLES */
-            .toolbar {
-                margin: 28px 0 18px;
-                display: grid;
-                grid-template-columns: minmax(220px, 1fr) auto;
-                gap: 15px;
-                align-items: center;
-            }
-
-            .search-box {
-                min-height: 58px;
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                padding: 0 18px;
-                border: 2px solid var(--line);
-                border-radius: 19px;
-                background: #ffffff;
-                box-shadow: 0 7px 0 rgba(46, 91, 143, .07);
-            }
-
-            .search-box span {
-                font-size: 22px;
-            }
-
-            .search-box input {
-                width: 100%;
-                border: 0;
-                outline: 0;
-                color: var(--ink);
-                font-size: 17px;
-                font-weight: 800;
-                background: transparent;
-            }
-
-            .search-box input::placeholder {
-                color: #9aa9bb;
-            }
-
-            .filter-buttons {
-                display: flex;
-                gap: 9px;
-                flex-wrap: wrap;
-                justify-content: flex-end;
-            }
-
-            .filter-btn {
-                min-height: 48px;
-                padding: 9px 16px;
-                border: 3px solid #ffffff;
-                border-radius: 999px;
-                color: #5d7089;
-                font-size: 14px;
-                font-weight: 900;
-                cursor: pointer;
-                background: #eaf3fb;
-                box-shadow: 0 5px 0 #ccddec;
-                transition: transform .15s ease, filter .15s ease;
-            }
-
-            .filter-btn.active {
-                color: #ffffff;
-                background: linear-gradient(180deg, #17aaff, #087fe9);
-                box-shadow: 0 5px 0 #0864b5;
-            }
-
-            .filter-btn:hover {
-                transform: translateY(-2px);
-                filter: brightness(1.03);
-            }
-
-            /* ETAPAS */
-            .stage {
-                margin-top: 28px;
-                scroll-margin-top: 18px;
-            }
-
-            .stage-header {
-                margin-bottom: 14px;
-                display: flex;
-                align-items: center;
-                gap: 14px;
-            }
-
-            .stage-icon {
-                width: 62px;
-                aspect-ratio: 1;
-                flex: 0 0 auto;
-                display: grid;
-                place-items: center;
-                border: 5px solid #ffffff;
-                border-radius: 20px;
-                font-size: 31px;
-                background: linear-gradient(145deg, #70dfff, #0f9dff);
-                box-shadow: 0 7px 0 #0873c8;
-            }
-
-            .stage:nth-of-type(2) .stage-icon {
-                background: linear-gradient(145deg, #ffdc65, #ff9a00);
-                box-shadow: 0 7px 0 #c76a00;
-            }
-
-            .stage:nth-of-type(3) .stage-icon {
-                background: linear-gradient(145deg, #ff91bb, #e84b91);
-                box-shadow: 0 7px 0 #b93472;
-            }
-
-            .stage:nth-of-type(4) .stage-icon {
-                background: linear-gradient(145deg, #9c87ff, #6d56e6);
-                box-shadow: 0 7px 0 #4e3cb0;
-            }
-
-            .stage:nth-of-type(5) .stage-icon {
-                background: linear-gradient(145deg, #7be28c, #39b965);
-                box-shadow: 0 7px 0 #197d42;
-            }
-
-            .stage:nth-of-type(6) .stage-icon {
-                background: linear-gradient(145deg, #69ddca, #13a88e);
-                box-shadow: 0 7px 0 #087663;
-            }
-
-            .stage:nth-of-type(7) .stage-icon {
-                background: linear-gradient(145deg, #ff9d73, #ff654f);
-                box-shadow: 0 7px 0 #c43e2d;
-            }
-
-            .stage:nth-of-type(8) .stage-icon {
-                background: linear-gradient(145deg, #ffd966, #ff9a00);
-                box-shadow: 0 7px 0 #c76a00;
-            }
-
-            .stage:nth-of-type(9) .stage-icon {
-                background: linear-gradient(145deg, #ff8bb8, #e94c91);
-                box-shadow: 0 7px 0 #b93472;
-            }
-
-            .stage:nth-of-type(10) .stage-icon {
-                background: linear-gradient(145deg, #77e1f0, #16a9c5);
-                box-shadow: 0 7px 0 #08768c;
-            }
-
-            .stage-title h3 {
-                margin: 0;
-                font-family: "Baloo 2", sans-serif;
-                font-size: clamp(27px, 3.5vw, 39px);
-                line-height: 1;
-            }
-
-            .stage-title p {
-                margin: 4px 0 0;
-                color: var(--muted);
-                font-size: 15px;
-                font-weight: 800;
-            }
-
-            .topics-grid {
-                display: grid;
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-                gap: 18px;
-            }
-
-            .topic-card {
-                min-height: 240px;
-                position: relative;
-                overflow: hidden;
-                display: flex;
-                flex-direction: column;
-                border: 2px solid var(--line);
-                border-radius: 27px;
-                background: rgba(255, 255, 255, .98);
-                box-shadow:
-                    0 9px 0 rgba(44, 91, 145, .09),
-                    0 14px 28px rgba(42, 77, 119, .08);
-                transition:
-                    transform .18s ease,
-                    box-shadow .18s ease,
-                    border-color .18s ease;
-            }
-
-            .topic-card:hover {
-                transform: translateY(-6px);
-                border-color: #a9d9fb;
-                box-shadow:
-                    0 13px 0 rgba(44, 91, 145, .10),
-                    0 22px 38px rgba(42, 77, 119, .13);
-            }
-
-            .topic-card.completed {
-                border-color: #8bd95c;
-                background:
-                    radial-gradient(circle at 93% 8%, rgba(88, 204, 2, .16), transparent 24%),
-                    #ffffff;
-            }
-
-            .topic-card.hidden-card {
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Matemáticas: Retos para pensar, contar y comparar." />
+    <meta name="application-name" content="MK" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="MK" />
+    <title>MK | Matemáticas · 4 años</title>
+
+    <!-- PWA -->
+    <meta name="theme-color" content="#0b73ff" />
+    <link rel="manifest" href="../manifest.json" />
+    <link rel="icon" type="image/png" sizes="192x192" href="../icons/icon-192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="../icons/icon-512.png" />
+    <link rel="apple-touch-icon" href="../icons/icon-192.png" />
+
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet" />
+
+    <style>
+        /* =====================================
+           COLORES Y MEDIDAS GENERALES
+        ===================================== */
+        :root {
+            /* Paleta MVG Learning */
+            --blue-1: #0867f2;
+            --blue-2: #0f9dff;
+            --blue-3: #64d8ff;
+            --green: #58cc02;
+            --yellow: #ffc800;
+            --orange: #ff9600;
+            --pink: #ff6aa9;
+            --purple: #8b5cf6;
+            --ink: #17365d;
+            --muted: #6f8098;
+            --bg: #f2f8ff;
+            --line: #dbe8f6;
+            --white: #ffffff;
+            --shadow: 0 9px 0 rgba(44, 91, 145, 0.09), 0 14px 28px rgba(42, 77, 119, 0.08);
+
+            /* Colores por nivel (color, color oscuro, sombra, suave) */
+            --inicial: #ff78b2;
+            --inicial-2: #e94c91;
+            --inicial-shadow: #b93472;
+            --inicial-soft: #ffe3ef;
+            --primaria: #18b2ff;
+            --primaria-2: #087fe9;
+            --primaria-shadow: #0864b5;
+            --primaria-soft: #e4f4ff;
+            --secundaria: #9c87ff;
+            --secundaria-2: #6d56e6;
+            --secundaria-shadow: #4e3cb0;
+            --secundaria-soft: #eee8ff;
+            --todos: #17aaff;
+            --todos-2: #087fe9;
+            --todos-shadow: #0864b5;
+            --todos-soft: #e4f4ff;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html,
+        body {
+            margin: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+            font-family: "Nunito", Arial, sans-serif;
+            color: var(--ink);
+            background: var(--bg);
+            padding:
+                env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+        }
+
+        button {
+            font: inherit;
+            color: inherit;
+        }
+
+        button:focus-visible,
+        a:focus-visible {
+            outline: 4px solid rgba(108, 76, 245, 0.45);
+            outline-offset: 3px;
+        }
+
+        /* =====================================
+           CONTENEDOR
+        ===================================== */
+        .wrap {
+            position: relative;
+            z-index: 1;
+            width: min(100%, 1320px);
+            margin: 0 auto;
+            padding: 14px 16px 28px;
+        }
+
+        /* =====================================
+           ENCABEZADO DELGADO
+        ===================================== */
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            min-height: 60px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 0;
+            color: var(--ink);
+            text-decoration: none;
+        }
+
+        .logo-box {
+            width: 54px;
+            height: 54px;
+            flex: 0 0 auto;
+            display: grid;
+            place-items: center;
+            border: 4px solid var(--white);
+            border-radius: 18px;
+            color: var(--white);
+            font-family: "Baloo 2", sans-serif;
+            font-size: 19px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            background: linear-gradient(145deg, #FF6AA9, #8B5CF6);
+            box-shadow: 0 5px 0 rgba(78, 51, 170, 0.35);
+            transform: rotate(-4deg);
+        }
+
+        .brand-name {
+            font-family: "Baloo 2", sans-serif;
+            font-size: clamp(22px, 4vw, 28px);
+            font-weight: 800;
+            line-height: 1;
+            white-space: nowrap;
+        }
+
+        .brand-name b {
+            color: #8B5CF6;
+        }
+
+        .top-actions {
+            display: flex;
+            gap: 10px;
+            flex: 0 0 auto;
+        }
+
+        .round-btn {
+            width: 52px;
+            height: 52px;
+            display: grid;
+            place-items: center;
+            border: 0;
+            border-radius: 50%;
+            font-size: 24px;
+            background: var(--white);
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: transform 0.15s ease;
+        }
+
+        .round-btn:hover { transform: translateY(-2px); }
+        .round-btn:active { transform: translateY(3px); box-shadow: 0 2px 0 rgba(43, 34, 80, 0.12); }
+
+        /* =====================================
+           SALUDO
+        ===================================== */
+        .hero {
+            text-align: center;
+            margin: 12px 0 16px;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-family: "Baloo 2", sans-serif;
+            font-size: clamp(34px, 6vw, 52px);
+            line-height: 1;
+        }
+
+        .hero p {
+            margin: 4px 0 0;
+            color: var(--muted);
+            font-size: clamp(17px, 2.6vw, 21px);
+            font-weight: 800;
+        }
+
+        .wave {
+            display: inline-block;
+            transform-origin: 70% 70%;
+            animation: wave 2.2s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 60%, 100% { transform: rotate(0); }
+            10%, 30% { transform: rotate(16deg); }
+            20%, 40% { transform: rotate(-8deg); }
+        }
+
+        /* =====================================
+           PESTAÑAS DE NIVEL
+        ===================================== */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 0 0 18px;
+        }
+
+        .tab {
+            --c: var(--todos);
+            --c-soft: var(--todos-soft);
+            min-height: 52px;
+            padding: 8px 18px;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            border: 3px solid var(--c);
+            border-radius: 999px;
+            color: var(--ink);
+            font-family: "Baloo 2", sans-serif;
+            font-size: 19px;
+            font-weight: 800;
+            background: var(--white);
+            box-shadow: 0 4px 0 var(--c-soft);
+            cursor: pointer;
+            transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+        }
+
+        .tab[data-level="inicial"] { --c: var(--inicial); --c-soft: var(--inicial-soft); }
+        .tab[data-level="primaria"] { --c: var(--primaria); --c-soft: var(--primaria-soft); }
+        .tab[data-level="secundaria"] { --c: var(--secundaria); --c-soft: var(--secundaria-soft); }
+
+        .tab:hover { transform: translateY(-2px); }
+
+        .tab[aria-pressed="true"] {
+            color: var(--white);
+            background: var(--c);
+            box-shadow: 0 4px 0 rgba(43, 34, 80, 0.18);
+        }
+
+        /* =====================================
+           GRILLA DE TARJETAS
+        ===================================== */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 190px), 1fr));
+            gap: 16px;
+        }
+
+        /* Título de nivel (solo en la vista "Todos") */
+        .level-title {
+            grid-column: 1 / -1;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 8px 0 -4px;
+            font-family: "Baloo 2", sans-serif;
+            font-size: clamp(22px, 3vw, 27px);
+            line-height: 1;
+        }
+
+        .level-title:first-child {
+            margin-top: 0;
+        }
+
+
+        .card {
+            --c: var(--primaria);
+            --c-soft: var(--primaria-soft);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 22px 10px 18px;
+            border: 4px solid var(--c);
+            border-radius: 26px;
+            background: var(--white);
+            box-shadow: var(--shadow);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .card.lvl-inicial,
+        .level-title.lvl-inicial { --c: var(--inicial); --c-soft: var(--inicial-soft); }
+        .card.lvl-primaria,
+        .level-title.lvl-primaria { --c: var(--primaria); --c-soft: var(--primaria-soft); }
+        .card.lvl-secundaria,
+        .level-title.lvl-secundaria { --c: var(--secundaria); --c-soft: var(--secundaria-soft); }
+
+        .card:hover {
+            transform: translateY(-4px) rotate(-1deg);
+        }
+
+        .card:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 rgba(43, 34, 80, 0.12);
+        }
+
+        /* Enlace que cubre toda la tarjeta */
+        .card-link {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            border-radius: 22px;
+        }
+
+        .card-icon {
+            width: 88px;
+            height: 88px;
+            display: grid;
+            place-items: center;
+            margin-bottom: 8px;
+            border-radius: 50%;
+            font-size: 46px;
+            line-height: 1;
+            background: var(--c-soft);
+        }
+
+        .card-title {
+            margin: 0;
+            font-family: "Baloo 2", sans-serif;
+            font-size: 22px;
+            line-height: 1.05;
+            font-weight: 800;
+        }
+
+        .card-desc {
+            margin: 5px 0 0;
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 1.3;
+            font-weight: 700;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 2px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 900;
+            color: var(--ink);
+            background: var(--c-soft);
+        }
+
+        /* =====================================
+           PIE DE PÁGINA Y AVISO
+        ===================================== */
+        .footer {
+            margin-top: 26px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        .footer b {
+            color: var(--ink);
+        }
+
+        .toast {
+            position: fixed;
+            left: 50%;
+            bottom: calc(22px + env(safe-area-inset-bottom));
+            z-index: 10;
+            max-width: calc(100% - 32px);
+            padding: 13px 22px;
+            border-radius: 999px;
+            color: var(--white);
+            font-size: 17px;
+            font-weight: 900;
+            text-align: center;
+            background: var(--ink);
+            opacity: 0;
+            visibility: hidden;
+            transform: translate(-50%, 30px);
+            transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s;
+        }
+
+        .toast.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, 0);
+        }
+
+        /* =====================================
+           CONTENIDO DEL MENÚ ORIGINAL
+        ===================================== */
+        .brand-label {
+            display: inline-block;
+            margin-bottom: 6px;
+            padding: 3px 12px;
+            border-radius: 999px;
+            color: var(--white);
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 1.2px;
+            background: linear-gradient(90deg, #FF6AA9, #8B5CF6);
+        }
+
+        /* Desfile de amiguitos + compartir */
+        .friends {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            margin: 0 0 18px;
+            padding: 8px 10px 8px 16px;
+            border-radius: 24px;
+            background: var(--white);
+            box-shadow: var(--shadow);
+        }
+
+        .character-parade {
+            display: flex;
+            align-items: flex-end;
+            gap: clamp(6px, 1.6vw, 16px);
+            min-width: 0;
+            overflow: hidden;
+        }
+
+        .character {
+            line-height: 1;
+            font-size: clamp(28px, 3.4vw, 40px);
+            user-select: none;
+            animation: friendBounce 2.8s ease-in-out infinite;
+        }
+
+        .character.main {
+            font-size: clamp(38px, 4.6vw, 54px);
+        }
+
+        .character:nth-child(2n) { animation-delay: -0.7s; }
+        .character:nth-child(3n) { animation-delay: -1.4s; }
+
+        @keyframes friendBounce {
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-6px) rotate(2deg); }
+        }
+
+        .share-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 0 0 auto;
+        }
+
+        .share-box strong {
+            font-family: "Baloo 2", sans-serif;
+            font-size: 18px;
+            color: #145A71;
+            white-space: nowrap;
+        }
+
+        .share-app-btn {
+            min-height: 48px;
+            padding: 8px 18px;
+            border: 0;
+            border-radius: 16px;
+            color: var(--white);
+            font-size: 17px;
+            font-weight: 900;
+            white-space: nowrap;
+            background: linear-gradient(180deg, #9F7CFF, #7355E9);
+            box-shadow: 0 5px 0 #5036B7;
+            cursor: pointer;
+            transition: transform 0.15s ease;
+        }
+
+        .share-app-btn:hover { transform: translateY(-2px); }
+        .share-app-btn:active { transform: translateY(3px); box-shadow: 0 2px 0 #5036B7; }
+
+        /* Título de la sección */
+        .section-head {
+            text-align: center;
+            margin: 0 0 12px;
+        }
+
+        .section-head h2 {
+            margin: 0;
+            font-family: "Baloo 2", sans-serif;
+            font-size: clamp(24px, 3.4vw, 32px);
+            line-height: 1.05;
+        }
+
+        .section-head p {
+            margin: 2px 0 0;
+            color: var(--muted);
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        .level-title small {
+            display: block;
+            margin-top: 2px;
+            color: var(--muted);
+            font-family: "Nunito", Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        /* Etiqueta y botones de la tarjeta */
+        .card-stage {
+            margin-top: 8px;
+            padding: 3px 10px;
+            border-radius: 999px;
+            color: var(--white);
+            font-size: 12px;
+            font-weight: 900;
+            white-space: nowrap;
+            background: var(--c);
+        }
+
+        .card-footer {
+            align-self: stretch;
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .course-open {
+            flex: 1;
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            color: var(--white);
+            font-size: 15px;
+            font-weight: 900;
+            white-space: nowrap;
+            background: var(--c);
+            box-shadow: 0 4px 0 rgba(43, 34, 80, 0.22);
+        }
+
+        .card-share {
+            position: relative;
+            z-index: 2;
+            width: 44px;
+            height: 44px;
+            flex: 0 0 44px;
+            display: grid;
+            place-items: center;
+            border: 0;
+            border-radius: 14px;
+            font-size: 18px;
+            background: var(--c-soft);
+            box-shadow: 0 4px 0 rgba(43, 34, 80, 0.12);
+            cursor: pointer;
+        }
+
+        .card-share:hover {
+            filter: brightness(0.97);
+        }
+
+        .card {
+            container-type: inline-size;
+        }
+
+        .card .long { display: none; }
+        .card .short { display: inline; }
+
+        @container (min-width: 210px) {
+            .card .long { display: inline; }
+            .card .short { display: none; }
+        }
+
+        .share-app-btn .short { display: none; }
+
+        .empty-state {
+            grid-column: 1 / -1;
+            padding: 28px;
+            text-align: center;
+            border: 3px dashed #D9CFEA;
+            border-radius: 22px;
+            color: var(--muted);
+            font-size: 18px;
+            font-weight: 900;
+        }
+
+        @media (max-width: 900px) {
+            .character:nth-child(n+8) {
+                display: none;
+            }
+        }
+
+        .footer p {
+            margin: 2px 0 0;
+        }
+
+
+        /* =====================================
+           PALETA DE COLORES MVG LEARNING
+        ===================================== */
+        body {
+            background:
+                radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.45), transparent 14%),
+                radial-gradient(circle at 88% 14%, rgba(255, 255, 255, 0.38), transparent 15%),
+                linear-gradient(180deg, #c9efff 0%, #eefaff 43%, #e2f6df 100%);
+            background-attachment: fixed;
+            padding-top: 0;
+        }
+
+        /* Árboles al fondo de la pantalla */
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            left: 0;
+            width: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background-repeat: repeat-x;
+            background-position: center bottom;
+        }
+
+        body::before {
+            bottom: 0;
+            height: 230px;
+            opacity: 0.9;
+            background-size: 320px 210px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='210' viewBox='0 0 320 210'%3E%3Crect width='320' height='210' fill='none'/%3E%3Cg opacity='0.95'%3E%3Crect x='30' y='118' width='12' height='62' rx='5' fill='%23835a39'/%3E%3Ccircle cx='36' cy='102' r='28' fill='%236fd15b'/%3E%3Ccircle cx='18' cy='114' r='22' fill='%2381dc68'/%3E%3Ccircle cx='52' cy='116' r='24' fill='%2357b84f'/%3E%3Crect x='94' y='96' width='15' height='85' rx='6' fill='%23835a39'/%3E%3Ccircle cx='101' cy='83' r='32' fill='%2343b14d'/%3E%3Ccircle cx='78' cy='95' r='25' fill='%235ccf68'/%3E%3Ccircle cx='124' cy='97' r='25' fill='%2377da6a'/%3E%3Crect x='166' y='126' width='10' height='50' rx='4' fill='%23835a39'/%3E%3Cpolygon points='171,72 140,132 202,132' fill='%2351b45b'/%3E%3Cpolygon points='171,89 146,136 196,136' fill='%236ad36f'/%3E%3Crect x='236' y='106' width='13' height='74' rx='5' fill='%23835a39'/%3E%3Ccircle cx='242' cy='90' r='30' fill='%237ad364'/%3E%3Ccircle cx='221' cy='104' r='22' fill='%2362c854'/%3E%3Ccircle cx='262' cy='108' r='22' fill='%2347aa48'/%3E%3Crect y='176' width='320' height='34' fill='%2392dd73'/%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        body::after {
+            bottom: 135px;
+            height: 160px;
+            opacity: 0.4;
+            background-size: 260px 150px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='150' viewBox='0 0 260 150'%3E%3Crect width='260' height='150' fill='none'/%3E%3Cg opacity='0.75'%3E%3Crect x='28' y='76' width='10' height='46' rx='4' fill='%23987957'/%3E%3Ccircle cx='33' cy='66' r='24' fill='%23b9ef92'/%3E%3Ccircle cx='18' cy='76' r='18' fill='%23d1f4ad'/%3E%3Ccircle cx='48' cy='78' r='18' fill='%23a7e37f'/%3E%3Crect x='96' y='64' width='11' height='52' rx='4' fill='%23987957'/%3E%3Cpolygon points='102,30 74,86 130,86' fill='%23a8e084'/%3E%3Cpolygon points='102,44 81,88 123,88' fill='%23c4eea5'/%3E%3Crect x='174' y='72' width='10' height='48' rx='4' fill='%23987957'/%3E%3Ccircle cx='179' cy='62' r='24' fill='%23c1ef9c'/%3E%3Ccircle cx='164' cy='72' r='18' fill='%23d9f6bb'/%3E%3Ccircle cx='194' cy='74' r='18' fill='%23a9e283'/%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        /* Encabezado azul */
+        .top-band {
+            position: relative;
+            z-index: 2;
+            padding-top: env(safe-area-inset-top);
+            color: var(--white);
+            background:
+                linear-gradient(115deg, rgba(255, 255, 255, 0.08), transparent 48%),
+                linear-gradient(120deg, var(--blue-1), var(--blue-2) 58%, var(--blue-3));
+            box-shadow: 0 8px 22px rgba(7, 98, 210, 0.22);
+        }
+
+        .topbar {
+            width: min(100%, 1320px);
+            margin: 0 auto;
+            padding: 10px 16px;
+            min-height: 74px;
+        }
+
+        .brand,
+        .brand-name {
+            color: var(--white);
+        }
+
+        .brand-name b {
+            color: #fff3a6;
+        }
+
+        .logo-box {
+            background: linear-gradient(145deg, var(--pink), var(--purple));
+            box-shadow: 0 5px 0 rgba(49, 32, 148, 0.48);
+        }
+
+        .round-btn {
+            border: 3px solid rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.22);
+            box-shadow: 0 5px 0 rgba(5, 61, 138, 0.26);
+        }
+
+        .rainbow-bar {
+            position: relative;
+            z-index: 2;
+            height: 8px;
+            background: linear-gradient(90deg, var(--green), var(--yellow), var(--orange), var(--pink), var(--purple), var(--blue-2));
+        }
+
+        .wrap {
+            padding-top: 16px;
+            padding-bottom: 120px;
+        }
+
+        .hero h1,
+        .section-head h2,
+        .level-title {
+            color: var(--ink);
+        }
+
+        /* Panel de amiguitos: cielo y pasto */
+        .friends {
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #d7e7f7;
+            background:
+                radial-gradient(circle at 12% 22%, rgba(255, 255, 255, 0.92) 0 3.5%, transparent 4%),
+                radial-gradient(circle at 86% 20%, rgba(255, 255, 255, 0.72) 0 3%, transparent 3.5%),
+                linear-gradient(180deg, rgba(166, 230, 255, 0.96), rgba(198, 242, 178, 0.95));
+            box-shadow: 0 7px 0 rgba(39, 127, 173, 0.16), 0 14px 28px rgba(36, 78, 126, 0.10);
+        }
+
+        .character-parade,
+        .share-box {
+            position: relative;
+            z-index: 1;
+        }
+
+        .character {
+            filter: drop-shadow(0 5px 0 rgba(20, 87, 53, 0.16));
+        }
+
+        /* Pestañas como los filtros originales */
+        .tab {
+            border: 3px solid var(--white);
+            color: #5d7089;
+            background: #eaf3fb;
+            box-shadow: 0 5px 0 #ccddec;
+        }
+
+        .tab[data-level="inicial"] { --c-2: var(--inicial-2); --c-shadow: var(--inicial-shadow); }
+        .tab[data-level="primaria"] { --c-2: var(--primaria-2); --c-shadow: var(--primaria-shadow); }
+        .tab[data-level="secundaria"] { --c-2: var(--secundaria-2); --c-shadow: var(--secundaria-shadow); }
+
+        .tab[aria-pressed="true"] {
+            color: var(--white);
+            background: linear-gradient(180deg, var(--c), var(--c-2));
+            box-shadow: 0 5px 0 var(--c-shadow);
+        }
+
+        /* Colores por nivel en tarjetas y títulos */
+        .card.lvl-inicial,
+        .level-title.lvl-inicial { --c-2: var(--inicial-2); --c-shadow: var(--inicial-shadow); }
+        .card.lvl-primaria,
+        .level-title.lvl-primaria { --c-2: var(--primaria-2); --c-shadow: var(--primaria-shadow); }
+        .card.lvl-secundaria,
+        .level-title.lvl-secundaria { --c-2: var(--secundaria-2); --c-shadow: var(--secundaria-shadow); }
+
+        .lvl-icon {
+            width: 46px;
+            height: 46px;
+            flex: 0 0 auto;
+            display: grid;
+            place-items: center;
+            border: 4px solid var(--white);
+            border-radius: 15px;
+            font-size: 22px;
+            background: linear-gradient(145deg, var(--c), var(--c-2));
+            box-shadow: 0 5px 0 rgba(41, 82, 126, 0.17);
+        }
+
+        .level-title {
+            justify-self: start;
+            gap: 12px;
+            max-width: 100%;
+            padding: 6px 16px 6px 6px;
+            border: 2px solid var(--line);
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 5px 0 rgba(44, 91, 145, 0.07);
+        }
+
+        .card {
+            border: 4px solid var(--c);
+            background:
+                radial-gradient(circle at 95% 8%, color-mix(in srgb, var(--c) 16%, transparent), transparent 32%),
+                rgba(255, 255, 255, 0.98);
+            box-shadow: 0 7px 0 color-mix(in srgb, var(--c-shadow) 30%, transparent), 0 14px 28px rgba(42, 77, 119, 0.08);
+        }
+
+        .card-icon {
+            border: 4px solid var(--white);
+            background: linear-gradient(145deg, var(--white), var(--c-soft));
+            box-shadow: 0 6px 0 color-mix(in srgb, var(--c-shadow) 45%, #ffffff);
+        }
+
+        .card-tag {
+            color: #0b69b6;
+            background: #e4f4ff;
+        }
+
+        .card-stage {
+            background: linear-gradient(90deg, var(--c), var(--c-2));
+        }
+
+        .course-open {
+            background: linear-gradient(180deg, var(--c), var(--c-2));
+            box-shadow: 0 5px 0 var(--c-shadow);
+        }
+
+        .card-share {
+            color: #5b438f;
+            background: #eee8ff;
+            box-shadow: 0 5px 0 #d4c7f5;
+        }
+
+        /* Pie de página azul */
+        .footer {
+            padding: 16px 18px;
+            border-radius: 22px;
+            color: var(--white);
+            background: linear-gradient(120deg, #0b73ff, #12a8ff);
+            box-shadow: 0 8px 0 rgba(4, 93, 180, 0.20);
+        }
+
+        .footer b {
+            color: var(--white);
+            font-family: "Baloo 2", sans-serif;
+            font-size: 22px;
+        }
+
+        .toast {
+            border: 4px solid var(--white);
+            border-radius: 18px;
+            background: linear-gradient(180deg, #2e506f, #17365d);
+            box-shadow: 0 9px 0 rgba(10, 33, 57, 0.27);
+        }
+
+
+        /* =====================================
+           USO DEL ESPACIO
+        ===================================== */
+        .topbar {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            min-height: 70px;
+        }
+
+        .brand-text {
+            display: grid;
+            gap: 2px;
+        }
+
+        .brand-tagline {
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 1.3px;
+            opacity: 0.92;
+        }
+
+        /* Amiguitos dentro del encabezado */
+        .topbar .character-parade {
+            justify-content: center;
+            align-self: end;
+            gap: clamp(6px, 1.4vw, 16px);
+            overflow: hidden;
+        }
+
+        .topbar .character {
+            font-size: 30px;
+            filter: drop-shadow(0 4px 0 rgba(5, 61, 138, 0.22));
+        }
+
+        .topbar .character.main {
+            font-size: 40px;
+        }
+
+        .wrap {
+            padding-top: 14px;
+            padding-bottom: 56px;
+        }
+
+        /* Título a la izquierda y pestañas a la derecha */
+        .intro {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px 20px;
+            margin-bottom: 14px;
+        }
+
+        .intro h1 {
+            margin: 0;
+            font-family: "Baloo 2", sans-serif;
+            font-size: clamp(30px, 4vw, 44px);
+            line-height: 1;
+            color: var(--ink);
+        }
+
+        .intro p {
+            margin: 2px 0 0;
+            color: var(--muted);
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        .intro .tabs {
+            margin: 0;
+            flex-wrap: nowrap;
+        }
+
+        .tab {
+            min-height: 48px;
+            padding: 6px 16px;
+            font-size: 18px;
+        }
+
+        /* Títulos de nivel en una línea */
+        .level-title {
+            margin: 6px 0 -4px;
+            padding: 4px 14px 4px 4px;
+            font-size: clamp(20px, 2.4vw, 24px);
+            border-radius: 16px;
+        }
+
+        .level-title:first-child {
+            margin-top: 0;
+        }
+
+        .level-title > span:last-child {
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 0 10px;
+        }
+
+        .level-title small {
+            margin: 0;
+        }
+
+        .lvl-icon {
+            width: 38px;
+            height: 38px;
+            border-width: 3px;
+            border-radius: 12px;
+            font-size: 18px;
+        }
+
+        .grid {
+            gap: 14px;
+        }
+
+        .card {
+            padding: 14px 10px 12px;
+        }
+
+        .card-icon {
+            width: 70px;
+            height: 70px;
+            font-size: 36px;
+            margin-bottom: 6px;
+        }
+
+        .card-footer {
+            margin-top: 10px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            padding: 10px 16px;
+            border-radius: 16px;
+            font-size: 14px;
+        }
+
+        .footer b {
+            font-size: 18px;
+        }
+
+        /* Pantallas medianas: amiguitos fuera y pestañas debajo del título */
+        @media (max-width: 1000px) {
+            .topbar .character-parade {
                 display: none;
             }
 
-            .topic-main-link {
-                flex: 1;
-                padding: 21px 21px 13px;
-                color: inherit;
-                text-decoration: none;
+            .topbar {
+                grid-template-columns: 1fr auto;
             }
 
-            .topic-top {
-                display: flex;
-                align-items: flex-start;
-                justify-content: space-between;
-                gap: 12px;
-            }
-
-            .topic-number {
-                min-width: 45px;
-                height: 34px;
-                padding: 0 10px;
-                display: inline-flex;
-                align-items: center;
+            .intro {
                 justify-content: center;
-                border-radius: 999px;
-                color: #0b69b6;
-                font-size: 13px;
-                font-weight: 900;
-                background: #e4f4ff;
-            }
-
-            .topic-card.completed .topic-number {
-                color: #2d7b00;
-                background: #e5f8d9;
-            }
-
-            .topic-emoji {
-                width: 68px;
-                aspect-ratio: 1;
-                display: grid;
-                place-items: center;
-                border: 5px solid #ffffff;
-                border-radius: 21px;
-                font-size: 37px;
-                background: linear-gradient(145deg, #dff5ff, #b6e7ff);
-                box-shadow: 0 7px 0 #8dc9e8;
-                transform: rotate(3deg);
-            }
-
-            .topic-card:nth-child(3n + 2) .topic-emoji {
-                background: linear-gradient(145deg, #fff3ad, #ffd75c);
-                box-shadow: 0 7px 0 #dda92b;
-                transform: rotate(-3deg);
-            }
-
-            .topic-card:nth-child(3n) .topic-emoji {
-                background: linear-gradient(145deg, #f0dfff, #c6a9ff);
-                box-shadow: 0 7px 0 #9470dd;
-            }
-
-            .topic-card h4 {
-                margin: 15px 0 5px;
-                font-family: "Baloo 2", sans-serif;
-                font-size: 25px;
-                line-height: 1.05;
-            }
-
-            .topic-card .description {
-                margin: 0;
-                color: var(--muted);
-                font-size: 15px;
-                line-height: 1.42;
-                font-weight: 700;
-            }
-
-            .topic-footer {
-                padding: 13px 17px 17px;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                gap: 10px;
-                border-top: 2px solid #edf3f9;
-            }
-
-            .topic-open {
-                min-height: 43px;
-                padding: 8px 14px;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: 14px;
-                color: #ffffff;
-                font-size: 14px;
-                font-weight: 900;
-                text-decoration: none;
-                background: linear-gradient(180deg, #17aaff, #087fe9);
-                box-shadow: 0 5px 0 #0864b5;
-                transition: transform .15s ease;
-            }
-
-            .topic-open:hover {
-                transform: translateY(-2px);
-            }
-
-            .complete-btn {
-                min-height: 43px;
-                padding: 8px 12px;
-                border: 0;
-                border-radius: 14px;
-                color: #5d7088;
-                font-size: 13px;
-                font-weight: 900;
-                cursor: pointer;
-                background: #e9f1f8;
-                box-shadow: 0 5px 0 #cfdeeb;
-                transition: transform .15s ease, filter .15s ease;
-            }
-
-            .topic-card.completed .complete-btn {
-                color: #ffffff;
-                background: linear-gradient(180deg, #68d900, #4db700);
-                box-shadow: 0 5px 0 #378f00;
-            }
-
-            .complete-btn:hover {
-                transform: translateY(-2px);
-                filter: brightness(1.03);
-            }
-
-            .empty-state {
-                margin-top: 30px;
-                padding: 32px;
-                display: none;
                 text-align: center;
-                border: 3px dashed #b9d7ee;
-                border-radius: 25px;
-                color: var(--muted);
-                font-size: 18px;
-                font-weight: 900;
-                background: rgba(255, 255, 255, .78);
+            }
+        }
+
+        /* =====================================
+           CELULAR
+        ===================================== */
+        @media (max-width: 480px) {
+            .wrap {
+                padding-inline: 12px;
             }
 
-            .empty-state.visible {
-                display: block;
+            .brand-name {
+                font-size: 21px;
+            }
+
+            .topbar {
+                min-height: 64px;
+                padding-inline: 12px;
+            }
+
+            .round-btn {
+                width: 48px;
+                height: 48px;
+                font-size: 21px;
+            }
+
+            .tab {
+                min-height: 48px;
+                padding: 6px 14px;
+                font-size: 17px;
+            }
+
+            .grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 12px;
+            }
+
+            .card {
+                padding: 18px 8px 14px;
+                border-radius: 22px;
+            }
+
+            .card-icon {
+                width: 64px;
+                height: 64px;
+                font-size: 34px;
+            }
+
+            .card-title {
+                font-size: 20px;
+            }
+
+            .card-desc {
+                display: none;
+            }
+
+            .card-tag,
+            .card-stage,
+            .share-box strong,
+            .long,
+            .level-title small,
+            .section-head p {
+                display: none;
+            }
+
+            .share-app-btn .long { display: none; }
+
+            .friends {
+                padding: 8px 8px 8px 12px;
+            }
+
+            .character:nth-child(n+6) {
+                display: none;
+            }
+
+            .share-app-btn {
+                padding: 8px 12px;
+                font-size: 15px;
+            }
+
+            .card-footer {
+                gap: 6px;
+                margin-top: 10px;
+            }
+
+            .card-share {
+                width: 40px;
+                flex-basis: 40px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+        @media (max-width: 480px) {
+            .brand-tagline {
+                display: none;
+            }
+
+            .intro {
+                gap: 8px;
+                margin-bottom: 10px;
+            }
+
+            .intro h1 {
+                font-size: 28px;
+            }
+
+            .intro p {
+                font-size: 14px;
+            }
+
+            /* Las tres pestañas ocupan todo el ancho, en una sola fila */
+            .intro .tabs {
+                width: 100%;
+                gap: 8px;
+                padding-bottom: 6px;
+            }
+
+            .intro .tabs::-webkit-scrollbar {
+                display: none;
+            }
+
+            .tab {
+                flex: 1 1 0;
+                justify-content: center;
+                min-width: 0;
+                min-height: 46px;
+                padding: 5px 6px;
+                gap: 4px;
+                font-size: 15px;
+            }
+
+            .level-title {
+                font-size: 19px;
+            }
+
+            .card {
+                padding: 12px 8px 10px;
+            }
+
+            .card-icon {
+                width: 56px;
+                height: 56px;
+                font-size: 28px;
             }
 
             .footer {
-                margin-top: 40px;
-                padding: 25px 18px;
-                text-align: center;
-                border-radius: 26px;
-                color: #ffffff;
-                background: linear-gradient(120deg, #0b73ff, #12a8ff);
-                box-shadow: 0 10px 0 rgba(4, 93, 180, .20);
+                font-size: 13px;
+            }
+        }
+        /* Celulares muy angostos: pestañas sin emoji para que quepa "Secundaria" */
+        @media (max-width: 370px) {
+            .tab span[aria-hidden="true"] {
+                display: none;
             }
 
-            .footer strong {
-                font-family: "Baloo 2", sans-serif;
-                font-size: 26px;
+            .tab {
+                font-size: 14px;
             }
+        }
 
-            .footer p {
-                margin: 5px 0 0;
-                font-size: 15px;
-                font-weight: 800;
-                opacity: .95;
-            }
+        /* =====================================
+           RUTA DE CURSO
+        ===================================== */
+        :root { --t1: #18b2ff; --t2: #087fe9; --ts: #0864b5; --tsoft: #e4f4ff; }
+        .card { --c: var(--t1); --c-2: var(--t2); --c-shadow: var(--ts); --c-soft: var(--tsoft); }
+        .level-title { --c: var(--t1); --c-2: var(--t2); --c-shadow: var(--ts); --c-soft: var(--tsoft); }
+        .tab { --c: var(--t1) !important; --c-2: var(--t2) !important; --c-shadow: var(--ts) !important; }
 
-            @keyframes mascotHop {
+        .wrap > .tabs { flex-wrap: wrap; justify-content: center; }
 
-                0%,
-                100% {
-                    transform: translateY(0) rotate(-3deg);
-                }
+        .chip-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+        .grade-chip, .back-btn {
+            min-height: 44px; display: inline-flex; align-items: center; gap: 6px; padding: 6px 16px;
+            border: 3px solid #fff; border-radius: 999px; font-family: "Baloo 2", sans-serif;
+            font-size: 17px; font-weight: 800; text-decoration: none; white-space: nowrap;
+        }
+        .grade-chip { color: #fff; background: linear-gradient(180deg, var(--g1), var(--g2)); box-shadow: 0 5px 0 var(--gs); }
+        .grade-inicial    { --g1: #ff78b2; --g2: #e94c91; --gs: #b93472; }
+        .grade-primaria   { --g1: #18b2ff; --g2: #087fe9; --gs: #0864b5; }
+        .grade-secundaria { --g1: #9c87ff; --g2: #6d56e6; --gs: #4e3cb0; }
+        .back-btn { color: #5d7089; background: #eaf3fb; box-shadow: 0 5px 0 #ccddec; cursor: pointer; }
 
-                50% {
-                    transform: translateY(-14px) rotate(3deg);
-                }
-            }
+        .reading-bar {
+            display: grid; grid-template-columns: minmax(0, 1fr) minmax(200px, 320px); gap: 12px; align-items: center;
+            margin-bottom: 16px; padding: 10px 14px; border: 2px solid var(--line); border-radius: 20px;
+            background: rgba(255, 255, 255, .9); box-shadow: 0 5px 0 rgba(44, 91, 145, .07);
+        }
+        .reading-copy { display: flex; align-items: center; gap: 10px; font-weight: 900; min-width: 0; }
+        .reading-copy b { font-family: "Baloo 2", sans-serif; font-size: 22px; }
+        .meter { flex: 1; min-width: 60px; height: 14px; border-radius: 999px; background: #e7eef7; overflow: hidden; }
+        .meter i { display: block; height: 100%; width: 0; border-radius: 999px; background: linear-gradient(90deg, #58cc02, #ffc800); transition: width .4s; }
+        .continue {
+            min-height: 44px; display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 14px;
+            color: #fff; font-weight: 900; text-decoration: none; white-space: nowrap; max-width: 46%; overflow: hidden; text-overflow: ellipsis;
+            background: linear-gradient(180deg, #69d900, #4eb700); box-shadow: 0 5px 0 #378f00;
+        }
+        .continue[hidden] { display: none; }
+        .search { display: flex; align-items: center; gap: 8px; min-height: 46px; padding: 0 14px; border: 2px solid var(--line); border-radius: 16px; background: #fff; }
+        .search input { width: 100%; border: 0; outline: 0; font: inherit; font-weight: 800; font-size: 16px; color: var(--ink); background: transparent; }
 
+        .card .card-num {
+            position: absolute; top: 8px; left: 8px; min-width: 32px; height: 32px; display: grid; place-items: center; padding: 0 6px;
+            border-radius: 999px; color: #fff; font-family: "Baloo 2", sans-serif; font-size: 16px; font-weight: 800;
+            background: linear-gradient(180deg, var(--c), var(--c-2));
+        }
+        .card .card-cat { margin-top: 6px; padding: 2px 10px; border-radius: 999px; font-size: 12px; font-weight: 900; color: var(--ink); background: var(--c-soft); white-space: nowrap; max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
+        .card .ribbon { position: absolute; top: 8px; right: 8px; padding: 3px 9px; border-radius: 999px; font-size: 12px; font-weight: 900; color: #fff; background: #f59e0b; box-shadow: 0 3px 0 #b45309; z-index: 2; pointer-events: none; }
+        .card.done .ribbon { background: #58cc02; box-shadow: 0 3px 0 #378f00; }
+        .card.done .card-icon { box-shadow: 0 6px 0 #9be37a; }
+        .card .card-share[aria-pressed="true"] { background: #dcfce7; box-shadow: 0 5px 0 #86efac; }
+        .level-title small { font-family: "Nunito", Arial, sans-serif; }
+        .level-title .lvl-count { margin-left: auto; padding-left: 10px; font-family: "Nunito", Arial, sans-serif; font-size: 14px; font-weight: 900; color: var(--muted); white-space: nowrap; }
+        .card .card-title, .card .card-desc { overflow-wrap: anywhere; max-width: 100%; }
+        .empty { grid-column: 1 / -1; padding: 26px; text-align: center; border: 3px dashed #b9d7ee; border-radius: 22px; color: var(--muted); font-weight: 900; }
 
-            @media (min-width: 1450px) {
-                .topics-grid {
-                    grid-template-columns: repeat(4, minmax(0, 1fr));
-                }
+        @media (max-width: 760px) {
+            .reading-bar { grid-template-columns: 1fr; }
+            .intro { text-align: center; }
+            .chip-row { justify-content: center; }
+        }
+        @media (max-width: 480px) {
+            #tabs { width: calc(100% + 24px); margin: 0 -12px; padding: 2px 12px 8px; justify-content: flex-start; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+            #tabs::-webkit-scrollbar { display: none; }
+            #tabs .tab { flex: 0 0 auto; padding: 5px 13px; font-size: 15px; }
+            .reading-copy { flex-wrap: wrap; }
+            .reading-copy .meter { flex-basis: 100%; order: 3; }
+            .continue { max-width: 100%; }
+            .card .card-cat, .level-title .lvl-count { display: none; }
+            .card .ribbon { font-size: 11px; padding: 2px 7px; }
+            .card .card-num { min-width: 28px; height: 28px; font-size: 14px; }
+            .grade-chip, .back-btn { min-height: 40px; font-size: 15px; padding: 4px 12px; }
+        }
+    </style>
+</head>
 
-                .welcome-grid {
-                    grid-template-columns: minmax(0, 1fr) 390px;
-                }
-
-                .mascot-card {
-                    min-height: 238px;
-                }
-            }
-
-            @media (max-width: 980px) {
-                .header-inner {
-                    align-items: flex-start;
-                }
-
-                .header-actions {
-                    flex-direction: column;
-                    align-items: flex-end;
-                    justify-content: center;
-                }
-
-                .header-tags-row {
-                    flex-direction: row;
-                    flex-wrap: nowrap;
-                }
-
-                .welcome-grid {
-                    grid-template-columns: 1fr 280px;
-                }
-
-                .topics-grid {
-                    grid-template-columns: repeat(2, minmax(0, 1fr));
-                }
-            }
-
-            @media (max-width: 760px) {
-                .hero-header {
-                    min-height: 270px;
-                }
-
-                .header-inner {
-                    width: calc(100% - 24px);
-                    min-height: 270px;
-                    align-items: center;
-                }
-
-                .logo-box {
-                    width: 74px;
-                    border-radius: 23px;
-                    font-size: 35px;
-                }
-
-                .header-actions {
-                    position: absolute;
-                    right: 0;
-                    bottom: 14px;
-                    flex-direction: column;
-                    align-items: flex-end;
-                    justify-content: flex-end;
-                    gap: 8px;
-                }
-
-                .header-tags-row {
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-                    gap: 8px;
-                    flex-wrap: nowrap;
-                }
-
-                .header-tag {
-                    min-height: 62px;
-                    padding: 10px 16px;
-                    border-width: 4px;
-                    border-radius: 21px;
-                    font-size: clamp(21px, 4vw, 30px);
-                    gap: 7px;
-                }
-
-                .header-tag span[aria-hidden="true"] {
-                    font-size: clamp(22px, 4.2vw, 31px);
-                }
-
-                .home-btn {
-                    min-height: 43px;
-                    padding: 7px 11px;
-                    font-size: 13px;
-                }
-
-                .main-progress-panel {
-                    align-items: flex-start;
-                    flex-direction: column;
-                }
-
-                .main-progress-items {
-                    width: 100%;
-                    justify-content: flex-start;
-                }
-
-                .welcome-grid {
-                    grid-template-columns: 1fr;
-                }
-
-                .mascot-card {
-                    min-height: 180px;
-                }
-
-                .toolbar {
-                    grid-template-columns: 1fr;
-                }
-
-                .filter-buttons {
-                    justify-content: flex-start;
-                }
-
-                .summary-cards {
-                    grid-template-columns: 1fr;
-                }
-            }
-
-            @media (max-width: 620px) {
-                .topics-grid {
-                    grid-template-columns: 1fr;
-                }
-
-                .stage-header {
-                    align-items: flex-start;
-                }
-
-                .topic-card {
-                    min-height: 225px;
-                }
-            }
-
-            @media (max-width: 470px) {
-                .hero-header::before {
-                    right: 8px;
-                    font-size: 150px;
-                }
-
-                .header-inner {
-                    width: calc(100% - 16px);
-                }
-
-                .brand-area {
-                    gap: 10px;
-                }
-
-                .logo-box {
-                    width: 60px;
-                    border-width: 4px;
-                    border-radius: 19px;
-                    font-size: 29px;
-                }
-
-                .home-btn {
-                    min-height: 38px;
-                    padding: 6px 10px;
-                    border-width: 3px;
-                    font-size: 12px;
-                }
-
-                .brand-label {
-                    font-size: 9px;
-                }
-
-                .brand-copy h1 {
-                    font-size: 31px;
-                }
-
-                .brand-copy p {
-                    max-width: 190px;
-                    font-size: 13px;
-                }
-
-                .header-tags-row {
-                    width: auto;
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-                    justify-content: flex-end;
-                    gap: 6px;
-                    flex-wrap: nowrap;
-                }
-
-                .header-tag {
-                    min-height: 44px;
-                    padding: 7px 10px;
-                    border-width: 3px;
-                    border-radius: 15px;
-                    font-size: 15px;
-                    gap: 4px;
-                }
-
-                .header-tag span[aria-hidden="true"] {
-                    font-size: 17px;
-                }
-
-                .main-progress-panel {
-                    padding: 15px;
-                    border-radius: 20px;
-                }
-
-                .main-progress-items {
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
-                    gap: 9px;
-                }
-
-                .main-stat-pill {
-                    min-width: 0;
-                    min-height: 46px;
-                    padding: 7px 9px;
-                    font-size: 12px;
-                }
-
-                .page {
-                    width: calc(100% - 16px);
-                    padding-top: 17px;
-                }
-
-                .welcome-panel {
-                    padding: 23px 17px;
-                    border-radius: 26px;
-                }
-
-                .mascot {
-                    font-size: 91px;
-                }
-
-                .filter-btn {
-                    padding-inline: 12px;
-                }
-
-                .topic-main-link {
-                    padding-inline: 17px;
-                }
-
-                .topic-footer {
-                    flex-wrap: wrap;
-                }
-
-                .topic-open,
-                .complete-btn {
-                    flex: 1;
-                }
-
-                .welcome-actions {
-                    display: grid;
-                    grid-template-columns: 1fr;
-                }
-
-                .welcome-actions .continue-btn,
-                .share-btn {
-                    width: 100%;
-                    font-size: 17px;
-                }
-            }
-
-            @media (prefers-reduced-motion: reduce) {
-
-                *,
-                *::before,
-                *::after {
-                    animation-duration: .01ms !important;
-                    animation-iteration-count: 1 !important;
-                    transition-duration: .01ms !important;
-                }
-            }
-        </style>
-    </head>
-
-    <body>
-        <header class="hero-header">
-            <div class="header-inner">
-                <div class="brand-area">
-                    <a class="logo-box" href="../index.html" aria-label="Ir al inicio de Marie Kids">
-                        MK
-                    </a>
-
-                    <div class="brand-copy">
-                        <div class="brand-label">MARIE KIDS · MATEMÁTICAS</div>
-                        <h1>Ruta de aprendizaje</h1>
-                        <p>50 aventuras para descubrir, jugar y aprender</p>
-                    </div>
-                </div>
-
-                <div class="header-actions">
-                    <div class="header-tags-row">
-                        <div class="header-tag age">
-                            <span aria-hidden="true">🎈</span>
-                            <span>4 años</span>
-                        </div>
-
-                        <div class="header-tag subject">
-                            <span aria-hidden="true">➗</span>
-                            <span>Matemáticas</span>
-                        </div>
-                    </div>
-                </div>
+<body>
+    <div class="top-band">
+        <header class="topbar">
+            <a class="brand" href="../index.html" aria-label="MVG Learning, ir al inicio">
+                <span class="logo-box" aria-hidden="true">MVG</span>
+                <span class="brand-text">
+                    <span class="brand-name">MVG <b>Learning</b></span>
+                    <span class="brand-tagline">· MATEMÁTICAS</span>
+                </span>
+            </a>
+            <div class="character-parade" aria-hidden="true"><span class="character">🦁</span><span class="character">🔢</span><span class="character main">🎨</span><span class="character">🔷</span><span class="character main">🧸</span><span class="character">⭐</span><span class="character">🍓</span><span class="character">🏆</span></div>
+            <div class="top-actions">
+                <button class="round-btn" id="soundBtn" type="button" aria-label="Activar o desactivar sonido">🔊</button>
+                <button class="round-btn" id="shareAppBtn" type="button" aria-label="Compartir">📤</button>
             </div>
         </header>
+    </div>
+    <div class="rainbow-bar" aria-hidden="true"></div>
 
-        <div class="global-progress" aria-label="Progreso general">
-            <div class="global-progress-fill" id="globalProgressFill"></div>
-        </div>
-
-        <main class="page">
-            <section class="main-progress-panel" aria-label="Resumen de avance">
-                <div class="main-progress-copy">
-                    <span>Mi avance en la ruta</span>
-                    <strong>Sigue aprendiendo y gana estrellas</strong>
-                </div>
-
-                <div class="main-progress-items">
-                    <div class="main-stat-pill">
-                        <span aria-hidden="true">📚</span>
-                        <span id="headerProgressText">0 de 50 temas</span>
-                    </div>
-
-                    <div class="main-stat-pill stars">
-                        <span aria-hidden="true">⭐</span>
-                        <span id="headerStars">0 estrellas</span>
-                    </div>
-                </div>
-            </section>
-
-            <section class="welcome-panel">
-                <div class="welcome-grid">
-                    <div class="welcome-copy">
-                        <div class="intro-label">RUTA PARA NIÑOS DE 4 AÑOS</div>
-                        <h2>¡Cada tema es una nueva aventura!</h2>
-
-                        <p>
-                            Aprende números hasta 20, posiciones, secuencias, operaciones, mitad, doble, pares y
-                            geometría mediante actividades visuales y divertidas.
-                        </p>
-
-                        <div class="welcome-actions">
-                            <a class="continue-btn" id="continueBtn" href="mate4y/encuentro-las-diferencias.html">
-                                ▶️ Comenzar la ruta
-                            </a>
-
-                            <button class="share-btn" id="shareAppBtn" type="button">
-                                📤 Compartir app
-                            </button>
-                        </div>
-
-                        <p class="share-feedback" id="shareFeedback" role="status" aria-live="polite"></p>
-
-                        <div class="summary-cards">
-                            <div class="summary-card">
-                                <span>Temas completados</span>
-                                <strong id="completedSummary">0</strong>
-                            </div>
-
-                            <div class="summary-card">
-                                <span>Temas pendientes</span>
-                                <strong id="pendingSummary">50</strong>
-                            </div>
-
-                            <div class="summary-card">
-                                <span>Progreso general</span>
-                                <strong id="percentageSummary">0%</strong>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mascot-card" aria-hidden="true">
-                        <div class="mascot">🐸</div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="toolbar" aria-label="Herramientas de la ruta">
-                <label class="search-box">
-                    <span aria-hidden="true">🔍</span>
-                    <input type="search" id="searchInput" placeholder="Buscar un tema..." autocomplete="off" />
-                </label>
-
-                <div class="filter-buttons">
-                    <button class="filter-btn active" data-filter="all" type="button">
-                        Todos
-                    </button>
-
-                    <button class="filter-btn" data-filter="pending" type="button">
-                        Pendientes
-                    </button>
-
-                    <button class="filter-btn" data-filter="completed" type="button">
-                        Completados
-                    </button>
-                </div>
-            </section>
-
-            <div id="stagesContainer"></div>
-
-            <div class="empty-state" id="emptyState">
-                No encontramos temas con ese criterio.
+    <div class="wrap">
+        <section class="intro">
+            <div class="intro-copy">
+                <h1>Matemáticas <span class="wave" aria-hidden="true">➗</span></h1>
+                <p>Retos para pensar, contar y comparar</p>
             </div>
+            <div class="chip-row">
+                <span class="grade-chip grade-inicial">4 años</span>
+                <button class="back-btn" id="backBtn" type="button">⬅ Cursos</button>
+            </div>
+        </section>
+        <nav class="tabs" id="tabs" aria-label="Elegir sección" style="margin-bottom:14px"></nav>
 
-            <footer class="footer">
-                <strong>Marie Kids · MK</strong>
-                <p>Aprender matemáticas puede ser una gran aventura.</p>
-            </footer>
-        </main>
+        <section class="reading-bar" aria-label="Mi avance">
+            <div class="reading-copy">
+                <span aria-hidden="true">⭐</span>
+                <span><b id="doneCount">0</b> de <b id="totalCount">0</b> temas</span>
+                <div class="meter" aria-hidden="true"><i id="meter"></i></div>
+                <a class="continue" id="continueBtn" href="#" hidden>▶ Continuar</a>
+            </div>
+            <label class="search">
+                <span aria-hidden="true">🔎</span>
+                <input id="q" type="search" placeholder="Buscar tema…" autocomplete="off" />
+            </label>
+        </section>
 
-        <script>
-            const topics = [
-                {
-                    id: 1,
-                    emoji: "👀",
-                    title: "Encuentro las diferencias",
-                    desc: "Comparar imágenes y reconocer cambios pequeños en la forma, dirección, posición o cantidad de detalles.",
-                    href: "mate4y/encuentro-las-diferencias.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 2,
-                    emoji: "🕵️",
-                    title: "El elemento que no pertenece",
-                    desc: "Identificar el objeto, animal o figura que no guarda relación con los demás.",
-                    href: "mate4y/el-elemento-que-no-pertenece.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 3,
-                    emoji: "🐛",
-                    title: "Comparamos tamaños",
-                    desc: "Reconocer objetos y animales grandes, medianos y pequeños mediante comparaciones visuales.",
-                    href: "mate4y/comparamos-tamanos.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 4,
-                    emoji: "⚖️",
-                    title: "Más, menos y la misma cantidad",
-                    desc: "Comparar conjuntos contando sus elementos para determinar dónde hay más, menos o igual cantidad.",
-                    href: "mate4y/mas-menos-y-la-misma-cantidad.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 5,
-                    emoji: "🔄",
-                    title: "Igualamos dos conjuntos",
-                    desc: "Mover elementos de un conjunto a otro para que ambos tengan la misma cantidad.",
-                    href: "mate4y/igualamos-dos-conjuntos.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 6,
-                    emoji: "↔️",
-                    title: "Derecha e izquierda",
-                    desc: "Ubicar objetos que están a la derecha o a la izquierda de una persona, animal o punto de referencia.",
-                    href: "mate4y/derecha-e-izquierda.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 7,
-                    emoji: "🐢",
-                    title: "Direcciones y movimientos",
-                    desc: "Identificar y contar animales, flechas u objetos que se dirigen hacia la derecha, izquierda, arriba o abajo.",
-                    href: "mate4y/direcciones-y-movimientos.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 8,
-                    emoji: "⬆️",
-                    title: "Arriba, abajo, encima y debajo",
-                    desc: "Reconocer la posición de objetos utilizando diferentes relaciones espaciales verticales.",
-                    href: "mate4y/arriba-abajo-encima-y-debajo.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 9,
-                    emoji: "🐇",
-                    title: "Delante y detrás",
-                    desc: "Identificar y contar los elementos que están delante o detrás de una persona o animal.",
-                    href: "mate4y/delante-y-detras.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 10,
-                    emoji: "🎯",
-                    title: "Centro, extremos y cuadrículas",
-                    desc: "Localizar elementos en el centro, los extremos, las esquinas o una posición determinada de una cuadrícula.",
-                    href: "mate4y/centro-extremos-y-cuadriculas.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 11,
-                    emoji: "🔭",
-                    title: "Cerca y lejos",
-                    desc: "Comparar distancias para identificar qué objeto se encuentra más cerca o más lejos.",
-                    href: "mate4y/cerca-y-lejos.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 12,
-                    emoji: "🏁",
-                    title: "Primero, segundo, tercero y cuarto",
-                    desc: "Reconocer posiciones ordinales siguiendo el sentido indicado en una fila, carrera o recorrido.",
-                    href: "mate4y/posiciones-ordinales.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 13,
-                    emoji: "🔍",
-                    title: "Conteo con condiciones",
-                    desc: "Contar solamente los objetos que cumplen una condición e ignorar los elementos distractores.",
-                    href: "mate4y/conteo-con-condiciones.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 14,
-                    emoji: "5️⃣",
-                    title: "Números del 0 al 5",
-                    desc: "Reconocer, ordenar y relacionar los números del cero al cinco con sus cantidades.",
-                    href: "mate4y/numeros-del-0-al-5.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 15,
-                    emoji: "🔟",
-                    title: "Números del 6 al 10",
-                    desc: "Reconocer los números del seis al diez y utilizarlos para representar cantidades.",
-                    href: "mate4y/numeros-del-6-al-10.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 16,
-                    emoji: "🔗",
-                    title: "Relacionamos número y cantidad",
-                    desc: "Unir cada número con el conjunto que representa exactamente esa cantidad.",
-                    href: "mate4y/relacionamos-numero-y-cantidad.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 17,
-                    emoji: "⭕",
-                    title: "Formamos cantidades exactas",
-                    desc: "Pintar, encerrar, dibujar o seleccionar exactamente la cantidad solicitada.",
-                    href: "mate4y/formamos-cantidades-exactas.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 18,
-                    emoji: "🍎",
-                    title: "Contamos hasta 10",
-                    desc: "Contar grupos de frutas, animales, juguetes y figuras desde cero hasta diez.",
-                    href: "mate4y/contamos-hasta-10.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 19,
-                    emoji: "1️⃣5️⃣",
-                    title: "Números del 11 al 15",
-                    desc: "Contar, reconocer, ordenar y comparar cantidades comprendidas entre once y quince.",
-                    href: "mate4y/numeros-del-11-al-15.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 20,
-                    emoji: "🐟",
-                    title: "Contamos del 11 al 15",
-                    desc: "Resolver conteos de cantidades comprendidas entre once y quince.",
-                    href: "mate4y/contamos-del-11-al-15.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 21,
-                    emoji: "2️⃣0️⃣",
-                    title: "Números del 16 al 20",
-                    desc: "Reconocer cantidades mayores que quince mediante animales, objetos y representaciones gráficas.",
-                    href: "mate4y/numeros-del-16-al-20.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 22,
-                    emoji: "🍓",
-                    title: "Contamos del 16 al 20",
-                    desc: "Contar colecciones más numerosas y registrar correctamente la cantidad obtenida.",
-                    href: "mate4y/contamos-del-16-al-20.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 23,
-                    emoji: "⏮️",
-                    title: "Número anterior y posterior",
-                    desc: "Encontrar el número que está inmediatamente antes y después de otro.",
-                    href: "mate4y/numero-anterior-y-posterior.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 24,
-                    emoji: "🔼",
-                    title: "Número mayor y número menor",
-                    desc: "Comparar varios números para identificar el mayor y el menor.",
-                    href: "mate4y/numero-mayor-y-numero-menor.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 25,
-                    emoji: "><",
-                    title: "Comparamos con signos",
-                    desc: "Utilizar los signos mayor que, menor que e igual para comparar cantidades gráficas.",
-                    href: "mate4y/comparamos-con-signos.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 26,
-                    emoji: "🚂",
-                    title: "Secuencias numéricas ascendentes",
-                    desc: "Completar sucesiones en las que los números aumentan siguiendo una regla.",
-                    href: "mate4y/secuencias-numericas-ascendentes.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 27,
-                    emoji: "📉",
-                    title: "Secuencias numéricas descendentes",
-                    desc: "Completar sucesiones en las que los números disminuyen de manera ordenada.",
-                    href: "mate4y/secuencias-numericas-descendentes.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 28,
-                    emoji: "2️⃣",
-                    title: "Avanzamos de dos en dos",
-                    desc: "Descubrir secuencias como 1, 3, 5, 7 o 3, 5, 7, 9 y encontrar el número siguiente.",
-                    href: "mate4y/avanzamos-de-dos-en-dos.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 29,
-                    emoji: "❓",
-                    title: "El número equivocado",
-                    desc: "Analizar una secuencia y encontrar el número que no cumple la regla.",
-                    href: "mate4y/el-numero-equivocado.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 30,
-                    emoji: "➕",
-                    title: "Sumamos con dibujos",
-                    desc: "Juntar dos grupos de objetos, contar el total y completar pequeñas operaciones.",
-                    href: "mate4y/sumamos-con-dibujos.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 31,
-                    emoji: "✅",
-                    title: "Revisamos pequeñas sumas",
-                    desc: "Resolver operaciones sencillas e identificar cuál tiene un resultado equivocado.",
-                    href: "mate4y/revisamos-pequenas-sumas.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 32,
-                    emoji: "🔟",
-                    title: "Completamos 10",
-                    desc: "Calcular o dibujar los elementos que faltan para formar una decena.",
-                    href: "mate4y/completamos-10.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 33,
-                    emoji: "1️⃣2️⃣",
-                    title: "Completamos 12",
-                    desc: "Descubrir cuántos objetos faltan para completar una docena.",
-                    href: "mate4y/completamos-12.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 34,
-                    emoji: "🎯",
-                    title: "Completamos 15, 16 y 18",
-                    desc: "Resolver problemas de complemento con cantidades mayores que doce.",
-                    href: "mate4y/completamos-15-16-y-18.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 35,
-                    emoji: "➖",
-                    title: "Restamos con dibujos",
-                    desc: "Quitar elementos de un conjunto y contar cuántos quedan.",
-                    href: "mate4y/restamos-con-dibujos.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 36,
-                    emoji: "🛒",
-                    title: "Problemas de vender, comer y quitar",
-                    desc: "Resolver historias en las que una persona vende, come, utiliza o elimina algunos objetos.",
-                    href: "mate4y/problemas-de-vender-comer-y-quitar.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 37,
-                    emoji: "½",
-                    title: "La mitad de una cantidad",
-                    desc: "Repartir una cantidad en dos grupos iguales y descubrir cuánto representa la mitad.",
-                    href: "mate4y/la-mitad-de-una-cantidad.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 38,
-                    emoji: "✖️2",
-                    title: "El doble de una cantidad",
-                    desc: "Representar una cantidad dos veces y calcular su doble con objetos y dibujos.",
-                    href: "mate4y/el-doble-de-una-cantidad.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 39,
-                    emoji: "👟",
-                    title: "Formamos pares",
-                    desc: "Agrupar objetos de dos en dos y reconocer cuántos pares se forman.",
-                    href: "mate4y/formamos-pares.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 40,
-                    emoji: "🐶",
-                    title: "Contamos pares de patas y orejas",
-                    desc: "Calcular la cantidad de pares de patas u orejas que tienen varios animales.",
-                    href: "mate4y/contamos-pares-de-patas-y-orejas.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 41,
-                    emoji: "🔺",
-                    title: "Figuras geométricas básicas",
-                    desc: "Reconocer y diferenciar círculo, triángulo, cuadrado y rectángulo.",
-                    href: "mate4y/figuras-geometricas-basicas.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 42,
-                    emoji: "⬟",
-                    title: "Pentágono, hexágono y octágono",
-                    desc: "Reconocer figuras de cinco, seis y ocho lados.",
-                    href: "mate4y/pentagono-hexagono-y-octagono.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 43,
-                    emoji: "📐",
-                    title: "Contamos lados de figuras",
-                    desc: "Contar los lados de diferentes polígonos y comparar cuál tiene más o menos.",
-                    href: "mate4y/contamos-lados-de-figuras.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 44,
-                    emoji: "🥫",
-                    title: "Cuerpos geométricos",
-                    desc: "Reconocer cubos, cilindros y esferas en dibujos y objetos cotidianos.",
-                    href: "mate4y/cuerpos-geometricos.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 45,
-                    emoji: "🧊",
-                    title: "Cubos y construcciones",
-                    desc: "Contar cubos, comparar construcciones y reconocer cuál tiene más o menos piezas.",
-                    href: "mate4y/cubos-y-construcciones.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 46,
-                    emoji: "🔺",
-                    title: "Triángulos en figuras compuestas",
-                    desc: "Encontrar y contar triángulos que forman parte de animales y dibujos geométricos.",
-                    href: "mate4y/triangulos-en-figuras-compuestas.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 47,
-                    emoji: "🛤️",
-                    title: "Caminos y maneras de llegar",
-                    desc: "Seguir rutas sencillas y contar cuántas maneras existen para llegar a un lugar.",
-                    href: "mate4y/caminos-y-maneras-de-llegar.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 48,
-                    emoji: "🕒",
-                    title: "Números señalados en el reloj",
-                    desc: "Reconocer los números que indican las agujas y realizar pequeñas sumas con ellos.",
-                    href: "mate4y/numeros-senalados-en-el-reloj.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 49,
-                    emoji: "🧠",
-                    title: "Retos de razonamiento matemático",
-                    desc: "Resolver desafíos que combinan conteo, ubicación, comparación, secuencias y operaciones.",
-                    href: "mate4y/retos-de-razonamiento-matematico.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 50,
-                    emoji: "🏆",
-                    title: "Simulacro de Olimpiada de Matemáticas",
-                    desc: "Resolver un examen aleatorio con preguntas básicas, intermedias y avanzadas de todos los temas.",
-                    href: "mate4y/simulacro-de-olimpiada.html",
-                    category: "Matemáticas"
-                }
-            ];
-            const stages = [
-                {
-                    id: "stage-1",
-                    emoji: "👀",
-                    title: "Etapa 1 · Observo, comparo y clasifico",
-                    desc: "Diferencias, elementos que no pertenecen, tamaños, comparación e igualación de conjuntos.",
-                    topicIds: [1, 2, 3, 4, 5]
-                },
-                {
-                    id: "stage-2",
-                    emoji: "🧭",
-                    title: "Etapa 2 · Me ubico en el espacio",
-                    desc: "Derecha, izquierda, direcciones, arriba, abajo, delante, detrás, centro, distancia y posiciones ordinales.",
-                    topicIds: [6, 7, 8, 9, 10, 11, 12]
-                },
-                {
-                    id: "stage-3",
-                    emoji: "🔟",
-                    title: "Etapa 3 · Descubro los números hasta 10",
-                    desc: "Conteo con condiciones, números del 0 al 10, relación número-cantidad y formación de cantidades exactas.",
-                    topicIds: [13, 14, 15, 16, 17, 18]
-                },
-                {
-                    id: "stage-4",
-                    emoji: "2️⃣0️⃣",
-                    title: "Etapa 4 · Avanzo con los números hasta 20",
-                    desc: "Números y conteo del 11 al 20, anterior, posterior, mayor, menor y comparación con signos.",
-                    topicIds: [19, 20, 21, 22, 23, 24, 25]
-                },
-                {
-                    id: "stage-5",
-                    emoji: "🚂",
-                    title: "Etapa 5 · Descubro secuencias numéricas",
-                    desc: "Secuencias ascendentes, descendentes, conteo de dos en dos y reconocimiento del número equivocado.",
-                    topicIds: [26, 27, 28, 29]
-                },
-                {
-                    id: "stage-6",
-                    emoji: "➕",
-                    title: "Etapa 6 · Sumo, completo y resto",
-                    desc: "Sumas con dibujos, revisión de operaciones, complementos hasta 18, restas y problemas cotidianos.",
-                    topicIds: [30, 31, 32, 33, 34, 35, 36]
-                },
-                {
-                    id: "stage-7",
-                    emoji: "½",
-                    title: "Etapa 7 · Descubro la mitad, el doble y los pares",
-                    desc: "Mitad de una cantidad, doble, formación de pares y conteo de pares de patas y orejas.",
-                    topicIds: [37, 38, 39, 40]
-                },
-                {
-                    id: "stage-8",
-                    emoji: "🔷",
-                    title: "Etapa 8 · Exploro la geometría",
-                    desc: "Figuras geométricas básicas, polígonos, cantidad de lados y cuerpos geométricos.",
-                    topicIds: [41, 42, 43, 44]
-                },
-                {
-                    id: "stage-9",
-                    emoji: "🧊",
-                    title: "Etapa 9 · Desarrollo mi razonamiento espacial",
-                    desc: "Construcciones con cubos, triángulos en figuras compuestas, caminos y números señalados en el reloj.",
-                    topicIds: [45, 46, 47, 48]
-                },
-                {
-                    id: "stage-10",
-                    emoji: "🏆",
-                    title: "Etapa 10 · Retos y Olimpiadas de Matemáticas",
-                    desc: "Resuelve desafíos integradores y un simulacro con preguntas básicas, intermedias y avanzadas.",
-                    topicIds: [49, 50]
-                }
-            ];
+        <main class="grid" id="grid" aria-label="Temas de Matemáticas"></main>
 
+        <footer class="footer">
+            <b>MVG Learning</b> · Aprender, jugar y crecer juntos cada día.
+        </footer>
+    </div>
 
-            function validateRouteCoverage() {
-                const assignedIds = stages.flatMap(stage => stage.topicIds);
-                const uniqueAssignedIds = [...new Set(assignedIds)].sort((a, b) => a - b);
-                const topicIds = topics.map(topic => topic.id).sort((a, b) => a - b);
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-                const missingIds = topicIds.filter(id => !uniqueAssignedIds.includes(id));
-                const duplicatedIds = assignedIds.filter(
-                    (id, index) => assignedIds.indexOf(id) !== index
-                );
-
-                if (missingIds.length > 0 || duplicatedIds.length > 0) {
-                    console.error(
-                        "Error en la distribución de la ruta:",
-                        { missingIds, duplicatedIds }
-                    );
-                } else {
-                    console.info(
-                        `Ruta verificada correctamente: ${topicIds.length} temas distribuidos en ${stages.length} etapas.`
-                    );
-                }
+    <script>
+        /* =========================================================
+           TEMAS DE LA RUTA
+           Para agregar un tema: copia un bloque, cambia el id, el título
+           y el archivo (href). Si la ruta tiene etapas, agrega el id a su etapa.
+        ========================================================= */
+        const topics = [
+            {
+                "id": 1,
+                "emoji": "👀",
+                "title": "Encuentro las diferencias",
+                "desc": "Comparar imágenes y reconocer cambios pequeños en la forma, dirección, posición o cantidad de detalles.",
+                "href": "mate4y/encuentro-las-diferencias.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 2,
+                "emoji": "🕵️",
+                "title": "El elemento que no pertenece",
+                "desc": "Identificar el objeto, animal o figura que no guarda relación con los demás.",
+                "href": "mate4y/el-elemento-que-no-pertenece.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 3,
+                "emoji": "🐛",
+                "title": "Comparamos tamaños",
+                "desc": "Reconocer objetos y animales grandes, medianos y pequeños mediante comparaciones visuales.",
+                "href": "mate4y/comparamos-tamanos.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 4,
+                "emoji": "⚖️",
+                "title": "Más, menos y la misma cantidad",
+                "desc": "Comparar conjuntos contando sus elementos para determinar dónde hay más, menos o igual cantidad.",
+                "href": "mate4y/mas-menos-y-la-misma-cantidad.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 5,
+                "emoji": "🔄",
+                "title": "Igualamos dos conjuntos",
+                "desc": "Mover elementos de un conjunto a otro para que ambos tengan la misma cantidad.",
+                "href": "mate4y/igualamos-dos-conjuntos.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 6,
+                "emoji": "↔️",
+                "title": "Derecha e izquierda",
+                "desc": "Ubicar objetos que están a la derecha o a la izquierda de una persona, animal o punto de referencia.",
+                "href": "mate4y/derecha-e-izquierda.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 7,
+                "emoji": "🐢",
+                "title": "Direcciones y movimientos",
+                "desc": "Identificar y contar animales, flechas u objetos que se dirigen hacia la derecha, izquierda, arriba o abajo.",
+                "href": "mate4y/direcciones-y-movimientos.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 8,
+                "emoji": "⬆️",
+                "title": "Arriba, abajo, encima y debajo",
+                "desc": "Reconocer la posición de objetos utilizando diferentes relaciones espaciales verticales.",
+                "href": "mate4y/arriba-abajo-encima-y-debajo.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 9,
+                "emoji": "🐇",
+                "title": "Delante y detrás",
+                "desc": "Identificar y contar los elementos que están delante o detrás de una persona o animal.",
+                "href": "mate4y/delante-y-detras.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 10,
+                "emoji": "🎯",
+                "title": "Centro, extremos y cuadrículas",
+                "desc": "Localizar elementos en el centro, los extremos, las esquinas o una posición determinada de una cuadrícula.",
+                "href": "mate4y/centro-extremos-y-cuadriculas.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 11,
+                "emoji": "🔭",
+                "title": "Cerca y lejos",
+                "desc": "Comparar distancias para identificar qué objeto se encuentra más cerca o más lejos.",
+                "href": "mate4y/cerca-y-lejos.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 12,
+                "emoji": "🏁",
+                "title": "Primero, segundo, tercero y cuarto",
+                "desc": "Reconocer posiciones ordinales siguiendo el sentido indicado en una fila, carrera o recorrido.",
+                "href": "mate4y/posiciones-ordinales.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 13,
+                "emoji": "🔍",
+                "title": "Conteo con condiciones",
+                "desc": "Contar solamente los objetos que cumplen una condición e ignorar los elementos distractores.",
+                "href": "mate4y/conteo-con-condiciones.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 14,
+                "emoji": "5️⃣",
+                "title": "Números del 0 al 5",
+                "desc": "Reconocer, ordenar y relacionar los números del cero al cinco con sus cantidades.",
+                "href": "mate4y/numeros-del-0-al-5.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 15,
+                "emoji": "🔟",
+                "title": "Números del 6 al 10",
+                "desc": "Reconocer los números del seis al diez y utilizarlos para representar cantidades.",
+                "href": "mate4y/numeros-del-6-al-10.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 16,
+                "emoji": "🔗",
+                "title": "Relacionamos número y cantidad",
+                "desc": "Unir cada número con el conjunto que representa exactamente esa cantidad.",
+                "href": "mate4y/relacionamos-numero-y-cantidad.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 17,
+                "emoji": "⭕",
+                "title": "Formamos cantidades exactas",
+                "desc": "Pintar, encerrar, dibujar o seleccionar exactamente la cantidad solicitada.",
+                "href": "mate4y/formamos-cantidades-exactas.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 18,
+                "emoji": "🍎",
+                "title": "Contamos hasta 10",
+                "desc": "Contar grupos de frutas, animales, juguetes y figuras desde cero hasta diez.",
+                "href": "mate4y/contamos-hasta-10.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 19,
+                "emoji": "1️⃣5️⃣",
+                "title": "Números del 11 al 15",
+                "desc": "Contar, reconocer, ordenar y comparar cantidades comprendidas entre once y quince.",
+                "href": "mate4y/numeros-del-11-al-15.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 20,
+                "emoji": "🐟",
+                "title": "Contamos del 11 al 15",
+                "desc": "Resolver conteos de cantidades comprendidas entre once y quince.",
+                "href": "mate4y/contamos-del-11-al-15.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 21,
+                "emoji": "2️⃣0️⃣",
+                "title": "Números del 16 al 20",
+                "desc": "Reconocer cantidades mayores que quince mediante animales, objetos y representaciones gráficas.",
+                "href": "mate4y/numeros-del-16-al-20.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 22,
+                "emoji": "🍓",
+                "title": "Contamos del 16 al 20",
+                "desc": "Contar colecciones más numerosas y registrar correctamente la cantidad obtenida.",
+                "href": "mate4y/contamos-del-16-al-20.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 23,
+                "emoji": "⏮️",
+                "title": "Número anterior y posterior",
+                "desc": "Encontrar el número que está inmediatamente antes y después de otro.",
+                "href": "mate4y/numero-anterior-y-posterior.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 24,
+                "emoji": "🔼",
+                "title": "Número mayor y número menor",
+                "desc": "Comparar varios números para identificar el mayor y el menor.",
+                "href": "mate4y/numero-mayor-y-numero-menor.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 25,
+                "emoji": "><",
+                "title": "Comparamos con signos",
+                "desc": "Utilizar los signos mayor que, menor que e igual para comparar cantidades gráficas.",
+                "href": "mate4y/comparamos-con-signos.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 26,
+                "emoji": "🚂",
+                "title": "Secuencias numéricas ascendentes",
+                "desc": "Completar sucesiones en las que los números aumentan siguiendo una regla.",
+                "href": "mate4y/secuencias-numericas-ascendentes.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 27,
+                "emoji": "📉",
+                "title": "Secuencias numéricas descendentes",
+                "desc": "Completar sucesiones en las que los números disminuyen de manera ordenada.",
+                "href": "mate4y/secuencias-numericas-descendentes.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 28,
+                "emoji": "2️⃣",
+                "title": "Avanzamos de dos en dos",
+                "desc": "Descubrir secuencias como 1, 3, 5, 7 o 3, 5, 7, 9 y encontrar el número siguiente.",
+                "href": "mate4y/avanzamos-de-dos-en-dos.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 29,
+                "emoji": "❓",
+                "title": "El número equivocado",
+                "desc": "Analizar una secuencia y encontrar el número que no cumple la regla.",
+                "href": "mate4y/el-numero-equivocado.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 30,
+                "emoji": "➕",
+                "title": "Sumamos con dibujos",
+                "desc": "Juntar dos grupos de objetos, contar el total y completar pequeñas operaciones.",
+                "href": "mate4y/sumamos-con-dibujos.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 31,
+                "emoji": "✅",
+                "title": "Revisamos pequeñas sumas",
+                "desc": "Resolver operaciones sencillas e identificar cuál tiene un resultado equivocado.",
+                "href": "mate4y/revisamos-pequenas-sumas.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 32,
+                "emoji": "🔟",
+                "title": "Completamos 10",
+                "desc": "Calcular o dibujar los elementos que faltan para formar una decena.",
+                "href": "mate4y/completamos-10.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 33,
+                "emoji": "1️⃣2️⃣",
+                "title": "Completamos 12",
+                "desc": "Descubrir cuántos objetos faltan para completar una docena.",
+                "href": "mate4y/completamos-12.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 34,
+                "emoji": "🎯",
+                "title": "Completamos 15, 16 y 18",
+                "desc": "Resolver problemas de complemento con cantidades mayores que doce.",
+                "href": "mate4y/completamos-15-16-y-18.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 35,
+                "emoji": "➖",
+                "title": "Restamos con dibujos",
+                "desc": "Quitar elementos de un conjunto y contar cuántos quedan.",
+                "href": "mate4y/restamos-con-dibujos.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 36,
+                "emoji": "🛒",
+                "title": "Problemas de vender, comer y quitar",
+                "desc": "Resolver historias en las que una persona vende, come, utiliza o elimina algunos objetos.",
+                "href": "mate4y/problemas-de-vender-comer-y-quitar.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 37,
+                "emoji": "½",
+                "title": "La mitad de una cantidad",
+                "desc": "Repartir una cantidad en dos grupos iguales y descubrir cuánto representa la mitad.",
+                "href": "mate4y/la-mitad-de-una-cantidad.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 38,
+                "emoji": "✖️2",
+                "title": "El doble de una cantidad",
+                "desc": "Representar una cantidad dos veces y calcular su doble con objetos y dibujos.",
+                "href": "mate4y/el-doble-de-una-cantidad.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 39,
+                "emoji": "👟",
+                "title": "Formamos pares",
+                "desc": "Agrupar objetos de dos en dos y reconocer cuántos pares se forman.",
+                "href": "mate4y/formamos-pares.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 40,
+                "emoji": "🐶",
+                "title": "Contamos pares de patas y orejas",
+                "desc": "Calcular la cantidad de pares de patas u orejas que tienen varios animales.",
+                "href": "mate4y/contamos-pares-de-patas-y-orejas.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 41,
+                "emoji": "🔺",
+                "title": "Figuras geométricas básicas",
+                "desc": "Reconocer y diferenciar círculo, triángulo, cuadrado y rectángulo.",
+                "href": "mate4y/figuras-geometricas-basicas.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 42,
+                "emoji": "⬟",
+                "title": "Pentágono, hexágono y octágono",
+                "desc": "Reconocer figuras de cinco, seis y ocho lados.",
+                "href": "mate4y/pentagono-hexagono-y-octagono.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 43,
+                "emoji": "📐",
+                "title": "Contamos lados de figuras",
+                "desc": "Contar los lados de diferentes polígonos y comparar cuál tiene más o menos.",
+                "href": "mate4y/contamos-lados-de-figuras.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 44,
+                "emoji": "🥫",
+                "title": "Cuerpos geométricos",
+                "desc": "Reconocer cubos, cilindros y esferas en dibujos y objetos cotidianos.",
+                "href": "mate4y/cuerpos-geometricos.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 45,
+                "emoji": "🧊",
+                "title": "Cubos y construcciones",
+                "desc": "Contar cubos, comparar construcciones y reconocer cuál tiene más o menos piezas.",
+                "href": "mate4y/cubos-y-construcciones.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 46,
+                "emoji": "🔺",
+                "title": "Triángulos en figuras compuestas",
+                "desc": "Encontrar y contar triángulos que forman parte de animales y dibujos geométricos.",
+                "href": "mate4y/triangulos-en-figuras-compuestas.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 47,
+                "emoji": "🛤️",
+                "title": "Caminos y maneras de llegar",
+                "desc": "Seguir rutas sencillas y contar cuántas maneras existen para llegar a un lugar.",
+                "href": "mate4y/caminos-y-maneras-de-llegar.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 48,
+                "emoji": "🕒",
+                "title": "Números señalados en el reloj",
+                "desc": "Reconocer los números que indican las agujas y realizar pequeñas sumas con ellos.",
+                "href": "mate4y/numeros-senalados-en-el-reloj.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 49,
+                "emoji": "🧠",
+                "title": "Retos de razonamiento matemático",
+                "desc": "Resolver desafíos que combinan conteo, ubicación, comparación, secuencias y operaciones.",
+                "href": "mate4y/retos-de-razonamiento-matematico.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 50,
+                "emoji": "🏆",
+                "title": "Simulacro de Olimpiada de Matemáticas",
+                "desc": "Resolver un examen aleatorio con preguntas básicas, intermedias y avanzadas de todos los temas.",
+                "href": "mate4y/simulacro-de-olimpiada.html",
+                "category": "Matemáticas"
             }
+        ];
 
-            validateRouteCoverage();
-
-            const STORAGE_KEY = "marieKids_matematicas_4_anos_progreso_v1";
-
-            const state = {
-                completed: loadProgress(),
-                filter: "all",
-                search: ""
-            };
-
-            const elements = {
-                stagesContainer: document.getElementById("stagesContainer"),
-                searchInput: document.getElementById("searchInput"),
-                filterButtons: [...document.querySelectorAll(".filter-btn")],
-                emptyState: document.getElementById("emptyState"),
-                globalProgressFill: document.getElementById("globalProgressFill"),
-                headerProgressText: document.getElementById("headerProgressText"),
-                headerStars: document.getElementById("headerStars"),
-                completedSummary: document.getElementById("completedSummary"),
-                pendingSummary: document.getElementById("pendingSummary"),
-                percentageSummary: document.getElementById("percentageSummary"),
-                continueBtn: document.getElementById("continueBtn"),
-                shareAppBtn: document.getElementById("shareAppBtn"),
-                shareFeedback: document.getElementById("shareFeedback")
-            };
-
-            function loadProgress() {
-                try {
-                    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
-
-                    if (Array.isArray(saved)) {
-                        const validTopicIds = new Set(topics.map(topic => topic.id));
-
-                        return [...new Set(
-                            saved.filter(
-                                id => Number.isInteger(id) && validTopicIds.has(id)
-                            )
-                        )];
-                    }
-                } catch (error) {
-                    console.warn("No se pudo leer el progreso guardado.", error);
-                }
-
-                return [];
+        // Etapas o secciones (vacío si la ruta no se agrupa)
+        const groups = [
+            {
+                "id": "otros",
+                "emoji": "📘",
+                "title": "Más temas",
+                "desc": "",
+                "topicIds": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    17,
+                    18,
+                    19,
+                    20,
+                    21,
+                    22,
+                    23,
+                    24,
+                    25,
+                    26,
+                    27,
+                    28,
+                    29,
+                    30,
+                    31,
+                    32,
+                    33,
+                    34,
+                    35,
+                    36,
+                    37,
+                    38,
+                    39,
+                    40,
+                    41,
+                    42,
+                    43,
+                    44,
+                    45,
+                    46,
+                    47,
+                    48,
+                    49,
+                    50
+                ]
             }
+        ];
 
-            function saveProgress() {
-                try {
-                    localStorage.setItem(
-                        STORAGE_KEY,
-                        JSON.stringify(state.completed)
-                    );
-                } catch (error) {
-                    console.warn("No se pudo guardar el progreso.", error);
-                }
-            }
+        // Las lecciones guardan aquí los temas terminados: no cambiar el nombre
+        const STORAGE_KEY = "marieKids_matematicas_4_anos_progreso_v1";
+        const PAGE_KEY = "mk-ruta-4years-ruta-mate4y-html";
+        const DEFAULT_BACK = "index4Year.html";
+        const COURSE = "Matemáticas";
 
-            function isCompleted(topicId) {
-                return state.completed.includes(topicId);
-            }
+        const $ = id => document.getElementById(id);
+        function readPref(k, f) { try { return localStorage.getItem(k) ?? f; } catch (e) { return f; } }
+        function savePref(k, v) { try { localStorage.setItem(k, v); } catch (e) { } }
+        function esc(v) { return String(v).replace(/[&<>"']/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[ch])); }
 
-            function toggleCompleted(topicId) {
-                if (isCompleted(topicId)) {
-                    state.completed = state.completed.filter(id => id !== topicId);
-                } else {
-                    state.completed = [...state.completed, topicId];
-                }
+        /* ---------- Avance ---------- */
+        const validIds = new Set(topics.map(t => t.id));
+        function slugOf(t) { return String(t.href || "").split("/").pop().replace(/\.html$/i, ""); }
 
-                saveProgress();
-                render();
-            }
-
-            function getTopic(topicId) {
-                return topics.find(topic => topic.id === topicId);
-            }
-
-            function matchesCurrentView(topic) {
-                const text = `${topic.title} ${topic.desc}`.toLowerCase();
-                const matchesSearch = text.includes(state.search);
-
-                let matchesFilter = true;
-
-                if (state.filter === "completed") {
-                    matchesFilter = isCompleted(topic.id);
-                }
-
-                if (state.filter === "pending") {
-                    matchesFilter = !isCompleted(topic.id);
-                }
-
-                return matchesSearch && matchesFilter;
-            }
-
-            function createTopicCard(topic) {
-                const card = document.createElement("article");
-                const completed = isCompleted(topic.id);
-
-                card.className =
-                    `topic-card${completed ? " completed" : ""}`;
-
-                card.dataset.topicId = topic.id;
-
-                card.innerHTML = `
-        <a class="topic-main-link" href="${topic.href}">
-          <div class="topic-top">
-            <span class="topic-number">TEMA ${String(topic.id).padStart(2, "0")}</span>
-            <span class="topic-emoji" aria-hidden="true">${topic.emoji}</span>
-          </div>
-
-          <h4>${topic.title}</h4>
-          <p class="description">${topic.desc}</p>
-        </a>
-
-        <div class="topic-footer">
-          <a class="topic-open" href="${topic.href}">
-            Abrir tema ➜
-          </a>
-
-          <button
-            class="complete-btn"
-            type="button"
-            data-complete-id="${topic.id}"
-            aria-pressed="${completed}"
-          >
-            ${completed ? "✓ Completado" : "Marcar listo"}
-          </button>
-        </div>
-      `;
-
-                return card;
-            }
-
-            function createStage(stage) {
-                const visibleTopics = stage.topicIds
-                    .map(getTopic)
-                    .filter(topic => topic && matchesCurrentView(topic));
-
-                if (visibleTopics.length === 0) {
-                    return null;
-                }
-
-                const section = document.createElement("section");
-                section.className = "stage";
-                section.id = stage.id;
-
-                const header = document.createElement("div");
-                header.className = "stage-header";
-
-                header.innerHTML = `
-        <div class="stage-icon" aria-hidden="true">${stage.emoji}</div>
-
-        <div class="stage-title">
-          <h3>${stage.title}</h3>
-          <p>${stage.desc}</p>
-        </div>
-      `;
-
-                const grid = document.createElement("div");
-                grid.className = "topics-grid";
-
-                visibleTopics.forEach(topic => {
-                    grid.appendChild(createTopicCard(topic));
+        function loadDone() {
+            let ids = [];
+            try { const s = JSON.parse(localStorage.getItem(STORAGE_KEY)); if (Array.isArray(s)) ids = s.filter(id => validIds.has(id)); } catch (e) { }
+            // Lecciones que guardan "mk_topic_<tema>_complete" al terminar
+            try {
+                topics.forEach(t => {
+                    if (ids.includes(t.id)) return;
+                    const slug = slugOf(t);
+                    if (!slug) return;
+                    if ([`mk_topic_${slug}_complete`, `mk_topic_${slug.replaceAll("-", "_")}_complete`].some(k => localStorage.getItem(k) === "true")) ids.push(t.id);
                 });
+            } catch (e) { }
+            return new Set(ids);
+        }
+        function saveDone() { savePref(STORAGE_KEY, JSON.stringify([...done])); }
 
-                section.append(header, grid);
-                return section;
-            }
+        let done = loadDone();
+        let current = readPref(PAGE_KEY + "-tab", "todos");
+        let soundOn = readPref("mvg-sonido", "on") !== "off";
 
-            function updateProgress() {
-                const completedCount = state.completed.length;
-                const pendingCount = topics.length - completedCount;
-                const percentage = Math.round(
-                    (completedCount / topics.length) * 100
-                );
+        /* ---------- Sonido y aviso ---------- */
+        let audioCtx, toastTimer;
+        function pop(freq = 520) {
+            if (!soundOn) return;
+            try {
+                audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+                const o = audioCtx.createOscillator(), g = audioCtx.createGain(), t = audioCtx.currentTime;
+                o.frequency.setValueAtTime(freq, t); o.frequency.exponentialRampToValueAtTime(freq * 1.8, t + 0.12);
+                g.gain.setValueAtTime(0.25, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.18);
+                o.connect(g).connect(audioCtx.destination); o.start(); o.stop(t + 0.2);
+            } catch (e) { }
+        }
+        function showToast(msg) { $("toast").textContent = msg; $("toast").classList.add("show"); clearTimeout(toastTimer); toastTimer = setTimeout(() => $("toast").classList.remove("show"), 2400); }
 
-                elements.globalProgressFill.style.width = `${percentage}%`;
-                elements.headerProgressText.textContent =
-                    `${completedCount} de ${topics.length} temas`;
+        /* ---------- Grupos ---------- */
+        const GROUP_MODE = "headers";   // "tabs": pestañas · "headers": títulos por etapa
+        const useTabs = GROUP_MODE === "tabs" && groups.length > 1;
+        const groupOf = id => groups.find(g => g.topicIds.includes(id));
+        if (!useTabs || !groups.some(g => g.id === current)) current = "todos";
 
-                elements.headerStars.textContent =
-                    `${completedCount} ${completedCount === 1 ? "estrella" : "estrellas"}`;
+        function renderTabs() {
+            if (!useTabs) { $("tabs").hidden = true; return; }
+            $("tabs").innerHTML = [{ id: "todos", short: "Todos", emoji: "⭐" }, ...groups].map(g =>
+                `<button class="tab" type="button" data-level="${esc(g.id)}" aria-pressed="${g.id === current}"><span aria-hidden="true">${g.emoji || "📘"}</span> ${esc(g.short || g.title)}</button>`).join("");
+        }
+        $("tabs").addEventListener("click", e => {
+            const t = e.target.closest(".tab"); if (!t) return;
+            current = t.dataset.level; savePref(PAGE_KEY + "-tab", current); pop(440); renderTabs(); renderCards();
+        });
 
-                elements.completedSummary.textContent = completedCount;
-                elements.pendingSummary.textContent = pendingCount;
-                elements.percentageSummary.textContent = `${percentage}%`;
+        /* ---------- Tarjetas ---------- */
+        function cardHtml(t, n, nextId) {
+            const isDone = done.has(t.id);
+            const ribbon = isDone ? "✅ Hecho" : (t.id === nextId ? "⭐ Sigue" : "");
+            const cat = t.category && t.category !== COURSE && t.category !== (groupOf(t.id) || {}).title ? t.category : "";
+            return `
+                <article class="card${isDone ? " done" : ""}">
+                    <a class="card-link" href="${esc(t.href)}" data-pop="${n}" aria-label="Abrir ${esc(t.title)}"></a>
+                    <span class="card-num">${n}</span>
+                    ${ribbon ? `<span class="ribbon">${ribbon}</span>` : ""}
+                    <span class="card-icon" aria-hidden="true">${t.emoji || "📘"}</span>
+                    <h2 class="card-title">${esc(t.title)}</h2>
+                    <p class="card-desc">${esc(t.desc || "")}</p>
+                    ${cat ? `<span class="card-cat">${esc(cat)}</span>` : ""}
+                    <div class="card-footer">
+                        <span class="course-open" aria-hidden="true"><span class="long">Ingresar al tema</span><span class="short">Ingresar</span>&nbsp;➜</span>
+                        <button class="card-share" type="button" data-done="${n}" aria-pressed="${isDone}"
+                                aria-label="${isDone ? "Marcar como pendiente" : "Marcar como hecho"}: ${esc(t.title)}"
+                                title="${isDone ? "Hecho" : "Marcar como hecho"}">${isDone ? "✅" : "☑️"}</button>
+                    </div>
+                </article>`;
+        }
 
-                const nextTopic =
-                    topics.find(topic => !isCompleted(topic.id)) ||
-                    topics[topics.length - 1];
+        function renderCards() {
+            const q = $("q").value.trim().toLowerCase();
+            const match = t => !q || (t.title + " " + (t.desc || "") + " " + (t.category || "")).toLowerCase().includes(q);
+            const next = topics.find(t => !done.has(t.id));
+            const num = new Map(topics.map((t, i) => [t.id, i + 1]));
+            let html = "";
 
-                elements.continueBtn.href = nextTopic.href;
-
-                elements.continueBtn.innerHTML =
-                    completedCount === 0
-                        ? "▶️ Comenzar la ruta"
-                        : completedCount === topics.length
-                            ? "🏆 Ver reto final"
-                            : `▶️ Continuar con el tema ${nextTopic.id}`;
-            }
-
-            function render() {
-                elements.stagesContainer.innerHTML = "";
-
-                let visibleStages = 0;
-
-                stages.forEach(stage => {
-                    const stageElement = createStage(stage);
-
-                    if (stageElement) {
-                        visibleStages += 1;
-                        elements.stagesContainer.appendChild(stageElement);
-                    }
+            if (groups.length && !useTabs) {
+                // Etapas: un título por etapa
+                groups.forEach(g => {
+                    const list = g.topicIds.map(id => topics.find(t => t.id === id)).filter(Boolean).filter(match);
+                    if (!list.length) return;
+                    const hechos = g.topicIds.filter(id => done.has(id)).length;
+                    html += `<h2 class="level-title"><span class="lvl-icon" aria-hidden="true">${g.emoji || "📘"}</span>
+                        <span>${esc(g.title)}<small>${esc(g.desc || "")}</small></span><span class="lvl-count">${hechos}/${g.topicIds.length}</span></h2>`;
+                    html += list.map(t => cardHtml(t, num.get(t.id), next && next.id)).join("");
                 });
-
-                elements.emptyState.classList.toggle(
-                    "visible",
-                    visibleStages === 0
-                );
-
-                updateProgress();
+            } else {
+                const list = topics.filter(t => (current === "todos" || (groupOf(t.id) || {}).id === current) && match(t));
+                html = list.map(t => cardHtml(t, num.get(t.id), next && next.id)).join("");
             }
+            $("grid").innerHTML = html || `<div class="empty">🔎 No encontré temas con esa búsqueda</div>`;
 
-            let shareFeedbackTimer;
+            const n = topics.filter(t => done.has(t.id)).length;
+            $("doneCount").textContent = n;
+            $("totalCount").textContent = topics.length;
+            $("meter").style.width = (100 * n / topics.length) + "%";
+            const cb = $("continueBtn");
+            if (next) { cb.hidden = false; cb.href = next.href; cb.textContent = (n ? "▶ Continuar: " : "▶ Empezar: ") + next.title; }
+            else cb.hidden = true;
+        }
 
-            function showShareFeedback(message) {
-                clearTimeout(shareFeedbackTimer);
-                elements.shareFeedback.textContent = message;
-
-                shareFeedbackTimer = setTimeout(() => {
-                    elements.shareFeedback.textContent = "";
-                }, 4500);
-            }
-
-            async function copyShareLink(url) {
-                try {
-                    if (navigator.clipboard && window.isSecureContext) {
-                        await navigator.clipboard.writeText(url);
-                        return true;
-                    }
-
-                    const temporaryInput = document.createElement("textarea");
-                    temporaryInput.value = url;
-                    temporaryInput.setAttribute("readonly", "");
-                    temporaryInput.style.position = "fixed";
-                    temporaryInput.style.left = "-9999px";
-                    document.body.appendChild(temporaryInput);
-                    temporaryInput.select();
-
-                    const copied = document.execCommand("copy");
-                    temporaryInput.remove();
-                    return copied;
-                } catch (error) {
-                    console.error("No se pudo copiar el enlace:", error);
-                    return false;
+        $("grid").addEventListener("click", e => {
+            const btn = e.target.closest("[data-done]");
+            if (btn) {
+                const t = topics[Number(btn.dataset.done) - 1];
+                if (done.has(t.id)) done.delete(t.id); else { done.add(t.id); showToast("¡Muy bien! Tema hecho ⭐"); }
+                if (!done.has(t.id)) {
+                    const slug = slugOf(t);
+                    try { localStorage.removeItem(`mk_topic_${slug}_complete`); localStorage.removeItem(`mk_topic_${slug.replaceAll("-", "_")}_complete`); } catch (e2) { }
                 }
+                saveDone(); pop(done.has(t.id) ? 700 : 380); renderCards();
+                return;
             }
+            const link = e.target.closest("[data-pop]");
+            if (link) pop(400 + Number(link.dataset.pop) * 10);
+        });
+        $("q").addEventListener("input", renderCards);
 
-            async function shareApp() {
-                const shareData = {
-                    title: "Marie Kids · Ruta de aprendizaje",
-                    text: "Aprende matemáticas con esta ruta divertida para niños de 4 años.",
-                    url: window.location.href.split("#")[0]
-                };
+        /* ---------- Volver ---------- */
+        try {
+            const ref = document.referrer ? new URL(document.referrer) : null;
+            if (!true && ref && ref.origin === location.origin && /index[^/]*\.html$|\/$/i.test(ref.pathname)) sessionStorage.setItem(PAGE_KEY + "-volver", ref.href);
+        } catch (e) { }
+        $("backBtn").addEventListener("click", () => {
+            let url = DEFAULT_BACK;
+            if (!true) { try { url = sessionStorage.getItem(PAGE_KEY + "-volver") || url; } catch (e) { } }
+            location.href = url;
+        });
 
-                if (navigator.share) {
-                    try {
-                        await navigator.share(shareData);
-                        showShareFeedback("¡Gracias por compartir la app!");
-                        return;
-                    } catch (error) {
-                        if (error.name === "AbortError") return;
-                        console.warn("No se pudo abrir el menú para compartir:", error);
-                    }
-                }
+        $("soundBtn").addEventListener("click", () => { soundOn = !soundOn; savePref("mvg-sonido", soundOn ? "on" : "off"); $("soundBtn").textContent = soundOn ? "🔊" : "🔇"; pop(); });
+        $("soundBtn").textContent = soundOn ? "🔊" : "🔇";
+        $("shareAppBtn").addEventListener("click", async () => {
+            pop(620);
+            const data = { title: "MK · " + COURSE, text: "Aprende " + COURSE + " jugando en MVG Learning.", url: location.href };
+            if (navigator.share) { try { await navigator.share(data); return; } catch (e) { if (e.name === "AbortError") return; } }
+            try { await navigator.clipboard.writeText(location.href); showToast("¡Enlace copiado! 🔗"); } catch (e) { showToast("No se pudo copiar el enlace"); }
+        });
 
-                const copied = await copyShareLink(shareData.url);
+        addEventListener("pageshow", () => { done = loadDone(); renderCards(); });
+        renderTabs();
+        renderCards();
 
-                showShareFeedback(
-                    copied
-                        ? "✅ Enlace copiado. Ya puedes enviarlo por WhatsApp, correo o mensaje."
-                        : "No se pudo copiar el enlace. Copia la dirección desde la barra del navegador."
-                );
-            }
-
-            elements.shareAppBtn.addEventListener("click", shareApp);
-
-            elements.stagesContainer.addEventListener("click", event => {
-                const button = event.target.closest("[data-complete-id]");
-
-                if (!button) return;
-
-                const topicId = Number(button.dataset.completeId);
-                toggleCompleted(topicId);
-            });
-
-            elements.searchInput.addEventListener("input", event => {
-                state.search = event.target.value.trim().toLowerCase();
-                render();
-            });
-
-            elements.filterButtons.forEach(button => {
-                button.addEventListener("click", () => {
-                    state.filter = button.dataset.filter;
-
-                    elements.filterButtons.forEach(item => {
-                        item.classList.toggle(
-                            "active",
-                            item === button
-                        );
-                    });
-
-                    render();
-                });
-            });
-
-            render();
-        </script>
-
-        <script>
-            // Registrar Service Worker (PWA)
-            if ("serviceWorker" in navigator) {
-                window.addEventListener("load", async () => {
-                    try {
-                        const registration = await navigator.serviceWorker.register(
-                            "../service-worker.js"
-                        );
-
-                        console.info(
-                            "Service Worker registrado correctamente:",
-                            registration.scope
-                        );
-
-                        registration.addEventListener("updatefound", () => {
-                            const worker = registration.installing;
-
-                            if (!worker) return;
-
-                            worker.addEventListener("statechange", () => {
-                                if (
-                                    worker.state === "installed" &&
-                                    navigator.serviceWorker.controller
-                                ) {
-                                    console.info("Hay una nueva versión de Marie Kids disponible.");
-                                }
-                            });
-                        });
-                    } catch (error) {
-                        console.error("No se pudo registrar el Service Worker:", error);
-                    }
-                });
-            }
-        </script>
-        <script src="../assets/proximamente.js" defer></script>
+        if ("serviceWorker" in navigator) {
+            addEventListener("load", () => navigator.serviceWorker.register("../service-worker.js", { scope: "../" }).catch(() => { }));
+        }
+    </script>
+    <script src="../assets/proximamente.js" defer></script>
 </body>
 
 </html>

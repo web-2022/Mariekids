@@ -1,966 +1,1671 @@
 <!DOCTYPE html>
 <html lang="es">
 
-  <head>
+<head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Marie Kids • Ruta de Aprendizaje</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Matemáticas: Números, sumas, restas y pensamiento lógico." />
+    <meta name="application-name" content="MK" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="MK" />
+    <title>MK | Matemáticas</title>
 
     <!-- PWA -->
-    <meta name="apple-mobile-web-app-title" content="MK" />
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#1976d2">
+    <meta name="theme-color" content="#0b73ff" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png" />
+    <link rel="apple-touch-icon" href="icons/icon-192.png" />
+
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet" />
 
     <style>
-      * {
-        box-sizing: border-box;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif
-      }
+        /* =====================================
+           COLORES Y MEDIDAS GENERALES
+        ===================================== */
+        :root {
+            /* Paleta MVG Learning */
+            --blue-1: #0867f2;
+            --blue-2: #0f9dff;
+            --blue-3: #64d8ff;
+            --green: #58cc02;
+            --yellow: #ffc800;
+            --orange: #ff9600;
+            --pink: #ff6aa9;
+            --purple: #8b5cf6;
+            --ink: #17365d;
+            --muted: #6f8098;
+            --bg: #f2f8ff;
+            --line: #dbe8f6;
+            --white: #ffffff;
+            --shadow: 0 9px 0 rgba(44, 91, 145, 0.09), 0 14px 28px rgba(42, 77, 119, 0.08);
 
-      html {
-        -webkit-text-size-adjust: 100%
-      }
-
-      body {
-        margin: 0;
-        min-height: 100dvh;
-        background:
-          radial-gradient(1200px 800px at 10% 10%, #dbeafe 0%, transparent 60%),
-          radial-gradient(900px 700px at 90% 20%, #e0f2fe 0%, transparent 55%),
-          linear-gradient(145deg, #dbeafe, #e0f2fe);
-        padding: calc(10px + env(safe-area-inset-top)) calc(10px + env(safe-area-inset-right)) calc(12px + env(safe-area-inset-bottom)) calc(10px + env(safe-area-inset-left));
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-      }
-
-      :root {
-        --app-max: 980px;
-        --pad: clamp(12px, 3.2vw, 22px);
-        --radius: clamp(18px, 3.8vw, 26px);
-        --h1: clamp(1.25rem, 3.4vw, 1.7rem);
-        --sub: clamp(.9rem, 2.4vw, 1rem);
-        --btn: clamp(.92rem, 2.6vw, 1rem);
-
-        --blue: #2563eb;
-        --shadow: rgba(0, 0, 0, .14);
-      }
-
-      .app {
-        width: 100%;
-        max-width: var(--app-max);
-        background: #fff;
-        border-radius: var(--radius);
-        border: 3px solid var(--blue);
-        padding: var(--pad);
-        box-shadow: 0 18px 55px var(--shadow);
-        overflow: hidden;
-      }
-
-      /* ===== HERO ===== */
-      .hero {
-        position: relative;
-        overflow: hidden;
-        border-radius: calc(var(--radius) - 6px);
-        padding: clamp(14px, 3.2vw, 18px);
-        background: linear-gradient(135deg, #93c5fd 0%, #60a5fa 40%, #2563eb 100%);
-        border: 2px solid rgba(255, 255, 255, .65);
-        box-shadow: 0 16px 36px rgba(37, 99, 235, .28);
-        color: #fff;
-      }
-
-      .hero::after {
-        content: "";
-        position: absolute;
-        inset: -2px;
-        pointer-events: none;
-        background:
-          radial-gradient(600px 200px at 20% 10%, rgba(255, 255, 255, .22), transparent 60%),
-          radial-gradient(500px 240px at 85% 15%, rgba(255, 255, 255, .18), transparent 62%);
-      }
-
-      .hero-row {
-        position: relative;
-        z-index: 2;
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: center
-      }
-
-      .hero-left {
-        display: flex;
-        gap: 12px;
-        align-items: center;
-        min-width: 240px;
-        flex: 1
-      }
-
-      .badge {
-        width: clamp(52px, 10vw, 62px);
-        height: clamp(52px, 10vw, 62px);
-        border-radius: 18px;
-        display: grid;
-        place-items: center;
-        font-size: clamp(1.6rem, 4vw, 2rem);
-        background: linear-gradient(135deg, #2563eb, #6366f1);
-        border: 1px solid rgba(255, 255, 255, .35);
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35);
-      }
-
-      .hero-title {
-        margin: 0;
-        font-weight: 1000;
-        letter-spacing: .02em;
-        line-height: 1.05;
-        font-size: var(--h1);
-        text-shadow: 0 2px 0 rgba(0, 0, 0, .12)
-      }
-
-      .hero-sub {
-        margin: 6px 0 0;
-        font-size: var(--sub);
-        font-weight: 800;
-        opacity: .95;
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap
-      }
-
-      .pill {
-        background: rgba(255, 255, 255, .22);
-        border: 1px solid rgba(255, 255, 255, .35);
-        padding: 6px 10px;
-        border-radius: 999px;
-        font-size: clamp(.78rem, 2.2vw, .88rem);
-        font-weight: 950;
-        backdrop-filter: blur(2px);
-        -webkit-backdrop-filter: blur(2px);
-        white-space: nowrap;
-      }
-
-      /* ===== TOOLBAR ===== */
-      .toolbar {
-        margin-top: 12px;
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: space-between;
-      }
-
-      .search {
-        flex: 1;
-        min-width: min(100%, 340px);
-        display: flex;
-        gap: 8px;
-        align-items: center;
-        padding: 10px 12px;
-        border-radius: 999px;
-        background: #eff6ff;
-        border: 1px solid #bfdbfe;
-      }
-
-      .search input {
-        width: 100%;
-        border: none;
-        outline: none;
-        background: transparent;
-        font-weight: 900;
-        font-size: var(--btn)
-      }
-
-      /* ===== LINKS (chips) ===== */
-      .chips {
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
-        justify-content: flex-end
-      }
-
-      .chip {
-        border: 1px solid #bfdbfe;
-        background: #fff;
-        border-radius: 999px;
-        padding: 8px 12px;
-        cursor: pointer;
-        font-weight: 950;
-        font-size: clamp(.85rem, 2.4vw, .95rem);
-        transition: transform .1s ease, background .15s ease, border-color .15s ease;
-        white-space: nowrap;
-        text-decoration: none;
-        color: #111827;
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-      }
-
-      .chip:hover {
-        transform: translateY(-1px);
-        background: #e0f2fe;
-        border-color: #93c5fd
-      }
-
-      .chip.active {
-        background: linear-gradient(90deg, #60a5fa, #2563eb);
-        color: #fff;
-        border-color: transparent
-      }
-
-      /* ===== PROGRESS ===== */
-      .progress-wrap {
-        margin-top: 12px;
-        background: #eff6ff;
-        border: 1px solid #bfdbfe;
-        border-radius: 18px;
-        padding: 12px;
-      }
-
-      .progress-row {
-        display: flex;
-        justify-content: space-between;
-        gap: 10px;
-        flex-wrap: wrap;
-        font-weight: 1000;
-        color: #1f2937;
-        margin-bottom: 8px
-      }
-
-      .progress-tag {
-        display: inline-flex;
-        gap: 6px;
-        align-items: center;
-        padding: 6px 10px;
-        border-radius: 999px;
-        background: #eff6ff;
-        border: 1px solid #bfdbfe;
-        font-weight: 1000;
-        color: #1e3a8a;
-        font-size: clamp(.82rem, 2.3vw, .9rem);
-      }
-
-      .bar {
-        width: 100%;
-        height: 10px;
-        background: #e5e7eb;
-        border-radius: 999px;
-        overflow: hidden
-      }
-
-      .bar>div {
-        width: 0%;
-        height: 100%;
-        background: linear-gradient(90deg, #60a5fa, #2563eb);
-        border-radius: 999px;
-        transition: width .2s ease
-      }
-
-      /* ===== GRID ===== */
-      .grid {
-        margin-top: 12px;
-        display: grid;
-        grid-template-columns: repeat(12, 1fr);
-        gap: 12px;
-      }
-
-      @media (min-width: 860px) {
-        .topic {
-          grid-column: span 4;
+            /* Colores por nivel (color, color oscuro, sombra, suave) */
+            --inicial: #ff78b2;
+            --inicial-2: #e94c91;
+            --inicial-shadow: #b93472;
+            --inicial-soft: #ffe3ef;
+            --primaria: #18b2ff;
+            --primaria-2: #087fe9;
+            --primaria-shadow: #0864b5;
+            --primaria-soft: #e4f4ff;
+            --secundaria: #9c87ff;
+            --secundaria-2: #6d56e6;
+            --secundaria-shadow: #4e3cb0;
+            --secundaria-soft: #eee8ff;
+            --todos: #17aaff;
+            --todos-2: #087fe9;
+            --todos-shadow: #0864b5;
+            --todos-soft: #e4f4ff;
         }
-      }
 
-      @media (min-width: 560px) and (max-width: 859px) {
-        .topic {
-          grid-column: span 6;
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
-      }
 
-      @media (max-width: 559px) {
-        .topic {
-          grid-column: span 12;
+        html,
+        body {
+            margin: 0;
         }
-      }
 
-      .topic {
-        background: #f9fafb;
-        border: 1px solid #e5e7eb;
-        border-radius: 18px;
-        padding: 14px;
-        box-shadow: 0 10px 22px rgba(0, 0, 0, .06);
-        transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease, opacity .12s ease;
-        position: relative;
-        overflow: hidden;
-        border-left: 6px solid rgba(37, 99, 235, .35);
-      }
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+            font-family: "Nunito", Arial, sans-serif;
+            color: var(--ink);
+            background: var(--bg);
+            padding:
+                env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+        }
 
-      .topic:hover {
-        transform: translateY(-2px);
-        border-color: #93c5fd;
-        box-shadow: 0 16px 30px rgba(0, 0, 0, .09)
-      }
+        button {
+            font: inherit;
+            color: inherit;
+        }
 
-      .topic a {
-        display: block;
-        text-decoration: none;
-        color: inherit
-      }
+        button:focus-visible,
+        a:focus-visible {
+            outline: 4px solid rgba(108, 76, 245, 0.45);
+            outline-offset: 3px;
+        }
 
-      .topic.cat-Matemáticas {
-        border-left-color: rgba(37, 99, 235, .75)
-      }
+        /* =====================================
+           CONTENEDOR
+        ===================================== */
+        .wrap {
+            position: relative;
+            z-index: 1;
+            width: min(100%, 1320px);
+            margin: 0 auto;
+            padding: 14px 16px 28px;
+        }
 
-      .topic.cat-Inglés {
-        border-left-color: rgba(6, 182, 212, .75)
-      }
+        /* =====================================
+           ENCABEZADO DELGADO
+        ===================================== */
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            min-height: 60px;
+        }
 
-      .topic.cat-Ajedrez {
-        border-left-color: rgba(168, 85, 247, .75)
-      }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 0;
+            color: var(--ink);
+            text-decoration: none;
+        }
 
-      .topic.cat-General {
-        border-left-color: rgba(249, 115, 22, .75)
-      }
+        .logo-box {
+            width: 54px;
+            height: 54px;
+            flex: 0 0 auto;
+            display: grid;
+            place-items: center;
+            border: 4px solid var(--white);
+            border-radius: 18px;
+            color: var(--white);
+            font-family: "Baloo 2", sans-serif;
+            font-size: 19px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            background: linear-gradient(145deg, #FF6AA9, #8B5CF6);
+            box-shadow: 0 5px 0 rgba(78, 51, 170, 0.35);
+            transform: rotate(-4deg);
+        }
 
-      /* NUMERO BONITO */
-      .num {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        width: 40px;
-        height: 40px;
-        border-radius: 999px;
-        display: grid;
-        place-items: center;
-        font-weight: 1000;
-        font-size: 1.05rem;
-        color: #fff;
-        background: linear-gradient(135deg, #60a5fa, #2563eb);
-        box-shadow: 0 12px 22px rgba(37, 99, 235, .25);
-        border: 2px solid rgba(255, 255, 255, .75);
-      }
+        .brand-name {
+            font-family: "Baloo 2", sans-serif;
+            font-size: clamp(22px, 4vw, 28px);
+            font-weight: 800;
+            line-height: 1;
+            white-space: nowrap;
+        }
 
-      .num::after {
-        content: "";
-        position: absolute;
-        inset: -14px;
-        background:
-          radial-gradient(circle at 30% 30%, rgba(96, 165, 250, .22), transparent 55%),
-          radial-gradient(circle at 70% 70%, rgba(37, 99, 235, .18), transparent 55%);
-        border-radius: 999px;
-        z-index: -1;
-      }
+        .brand-name b {
+            color: #8B5CF6;
+        }
 
-      .topic-tag {
-        display: inline-flex;
-        gap: 6px;
-        align-items: center;
-        padding: 6px 10px;
-        border-radius: 999px;
-        background: #eff6ff;
-        border: 1px solid #bfdbfe;
-        font-weight: 1000;
-        color: #1e3a8a;
-        font-size: clamp(.82rem, 2.3vw, .9rem);
-      }
+        .top-actions {
+            display: flex;
+            gap: 10px;
+            flex: 0 0 auto;
+        }
 
-      .title {
-        margin: 10px 0 6px;
-        font-weight: 1000;
-        color: #111827;
-        font-size: clamp(1.05rem, 2.9vw, 1.15rem)
-      }
+        .round-btn {
+            width: 52px;
+            height: 52px;
+            display: grid;
+            place-items: center;
+            border: 0;
+            border-radius: 50%;
+            font-size: 24px;
+            background: var(--white);
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: transform 0.15s ease;
+        }
 
-      .desc {
-        margin: 0;
-        color: #6b7280;
-        font-weight: 780;
-        line-height: 1.35;
-        font-size: clamp(.92rem, 2.4vw, .98rem)
-      }
+        .round-btn:hover { transform: translateY(-2px); }
+        .round-btn:active { transform: translateY(3px); box-shadow: 0 2px 0 rgba(43, 34, 80, 0.12); }
 
-      .meta {
-        margin-top: 12px;
-        display: flex;
-        justify-content: space-between;
-        gap: 10px;
-        flex-wrap: wrap;
-        align-items: center
-      }
+        /* =====================================
+           SALUDO
+        ===================================== */
+        .hero {
+            text-align: center;
+            margin: 12px 0 16px;
+        }
 
-      .status {
-        display: inline-flex;
-        gap: 8px;
-        align-items: center;
-        padding: 7px 10px;
-        border-radius: 999px;
-        border: 1px solid #e5e7eb;
-        background: #fff;
-        font-weight: 1000;
-        font-size: clamp(.84rem, 2.3vw, .92rem)
-      }
+        .hero h1 {
+            margin: 0;
+            font-family: "Baloo 2", sans-serif;
+            font-size: clamp(34px, 6vw, 52px);
+            line-height: 1;
+        }
 
-      .status.done {
-        border-color: #86efac;
-        background: #f0fdf4;
-        color: #166534
-      }
+        .hero p {
+            margin: 4px 0 0;
+            color: var(--muted);
+            font-size: clamp(17px, 2.6vw, 21px);
+            font-weight: 800;
+        }
 
-      /* BOTON */
-      .mark {
-        border: none;
-        border-radius: 999px;
-        padding: 9px 12px;
-        font-weight: 1000;
-        cursor: pointer;
-        background: #e5e7eb;
-        color: #111827;
-        transition: transform .1s ease, filter .15s ease, background .15s ease, color .15s ease;
-      }
+        .wave {
+            display: inline-block;
+            transform-origin: 70% 70%;
+            animation: wave 2.2s ease-in-out infinite;
+        }
 
-      .mark:hover {
-        transform: translateY(-1px);
-        filter: brightness(1.02)
-      }
+        @keyframes wave {
+            0%, 60%, 100% { transform: rotate(0); }
+            10%, 30% { transform: rotate(16deg); }
+            20%, 40% { transform: rotate(-8deg); }
+        }
 
-      /* Botón DONE: VERDE */
-      .mark.done {
-        background: linear-gradient(90deg, #22c55e, #16a34a);
-        color: #fff;
-        box-shadow: 0 10px 18px rgba(34, 197, 94, .28);
-        border: 1px solid rgba(255, 255, 255, .55);
-      }
+        /* =====================================
+           PESTAÑAS DE NIVEL
+        ===================================== */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 0 0 18px;
+        }
 
-      .mark.done:hover {
-        filter: brightness(1.06)
-      }
+        .tab {
+            --c: var(--todos);
+            --c-soft: var(--todos-soft);
+            min-height: 52px;
+            padding: 8px 18px;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            border: 3px solid var(--c);
+            border-radius: 999px;
+            color: var(--ink);
+            font-family: "Baloo 2", sans-serif;
+            font-size: 19px;
+            font-weight: 800;
+            background: var(--white);
+            box-shadow: 0 4px 0 var(--c-soft);
+            cursor: pointer;
+            transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+        }
 
-      /* TARJETA HECHA: TODO GRIS, EXCEPTO BOTON VERDE */
-      .topic.done {
-        background: linear-gradient(145deg, #f3f4f6, #eef2f7);
-        border-color: #d1d5db;
-        box-shadow: 0 8px 18px rgba(0, 0, 0, .05);
-      }
+        .tab[data-level="inicial"] { --c: var(--inicial); --c-soft: var(--inicial-soft); }
+        .tab[data-level="primaria"] { --c: var(--primaria); --c-soft: var(--primaria-soft); }
+        .tab[data-level="secundaria"] { --c: var(--secundaria); --c-soft: var(--secundaria-soft); }
 
-      .topic.done:hover {
-        transform: none;
-        border-color: #cbd5e1;
-        box-shadow: 0 8px 18px rgba(0, 0, 0, .05);
-      }
+        .tab:hover { transform: translateY(-2px); }
 
-      .topic.done .topic-tag,
-      .topic.done .title,
-      .topic.done .desc,
-      .topic.done .status,
-      .topic.done .num {
-        filter: grayscale(1);
-        opacity: .55;
-      }
+        .tab[aria-pressed="true"] {
+            color: var(--white);
+            background: var(--c);
+            box-shadow: 0 4px 0 rgba(43, 34, 80, 0.18);
+        }
 
-      .topic.done .mark.done {
-        filter: none !important;
-        opacity: 1 !important;
-      }
+        /* =====================================
+           GRILLA DE TARJETAS
+        ===================================== */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 190px), 1fr));
+            gap: 16px;
+        }
 
-      /* siguiente recomendado */
-      .topic.next {
-        border-color: rgba(37, 99, 235, .55);
-        box-shadow: 0 0 0 3px rgba(37, 99, 235, .16), 0 16px 30px rgba(0, 0, 0, .09);
-        background: linear-gradient(145deg, #f9fafb, #eff6ff);
-      }
+        /* Título de nivel (solo en la vista "Todos") */
+        .level-title {
+            grid-column: 1 / -1;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 8px 0 -4px;
+            font-family: "Baloo 2", sans-serif;
+            font-size: clamp(22px, 3vw, 27px);
+            line-height: 1;
+        }
 
-      .topic.done.next {
-        box-shadow: 0 8px 18px rgba(0, 0, 0, .05);
-        border-color: #d1d5db;
-        background: linear-gradient(145deg, #f3f4f6, #eef2f7);
-      }
+        .level-title:first-child {
+            margin-top: 0;
+        }
 
-      .note {
-        margin-top: 12px;
-        text-align: center;
-        color: #6b7280;
-        font-weight: 800;
-        font-size: clamp(.85rem, 2.3vw, .95rem);
-      }
 
-      /*encabezado*/
+        .card {
+            --c: var(--primaria);
+            --c-soft: var(--primaria-soft);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 22px 10px 18px;
+            border: 4px solid var(--c);
+            border-radius: 26px;
+            background: var(--white);
+            box-shadow: var(--shadow);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
 
-      /* ===============================
-   HERO CLICKABLE
-   =============================== */
-      .hero-link {
-        padding: 0;
-      }
+        .card.lvl-inicial,
+        .level-title.lvl-inicial { --c: var(--inicial); --c-soft: var(--inicial-soft); }
+        .card.lvl-primaria,
+        .level-title.lvl-primaria { --c: var(--primaria); --c-soft: var(--primaria-soft); }
+        .card.lvl-secundaria,
+        .level-title.lvl-secundaria { --c: var(--secundaria); --c-soft: var(--secundaria-soft); }
 
-      .hero-click {
-        display: block;
-        text-decoration: none;
-        color: inherit;
-      }
+        .card:hover {
+            transform: translateY(-4px) rotate(-1deg);
+        }
 
-      /* separa izquierda y derecha */
-      .hero-space {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
+        .card:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 rgba(43, 34, 80, 0.12);
+        }
 
-      /* ===============================
-   CURSO (DERECHA)
-   =============================== */
-      .hero-course {
-        font-family: "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
-        font-size: clamp(1.2rem, 3vw, 1.6rem);
-        font-weight: 700;
-        letter-spacing: .08em;
-        text-transform: uppercase;
+        /* Enlace que cubre toda la tarjeta */
+        .card-link {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            border-radius: 22px;
+        }
 
-        color: rgba(255, 255, 255, 0.85);
+        .card-icon {
+            width: 88px;
+            height: 88px;
+            display: grid;
+            place-items: center;
+            margin-bottom: 8px;
+            border-radius: 50%;
+            font-size: 46px;
+            line-height: 1;
+            background: var(--c-soft);
+        }
 
-        padding: 10px 16px;
-        border-radius: 14px;
+        .card-title {
+            margin: 0;
+            font-family: "Baloo 2", sans-serif;
+            font-size: 22px;
+            line-height: 1.05;
+            font-weight: 800;
+        }
 
-        background: linear-gradient(135deg,
-            rgba(255, 255, 255, 0.18),
-            rgba(255, 255, 255, 0.05));
+        .card-desc {
+            margin: 5px 0 0;
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 1.3;
+            font-weight: 700;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
 
-        border: 1px solid rgba(255, 255, 255, 0.35);
-        backdrop-filter: blur(4px);
-        -webkit-backdrop-filter: blur(4px);
+        .card-tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 2px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 900;
+            color: var(--ink);
+            background: var(--c-soft);
+        }
 
-        box-shadow: 0 10px 22px rgba(0, 0, 0, .18);
+        /* =====================================
+           PIE DE PÁGINA Y AVISO
+        ===================================== */
+        .footer {
+            margin-top: 26px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 15px;
+            font-weight: 800;
+        }
 
-        white-space: nowrap;
-      }
+        .footer b {
+            color: var(--ink);
+        }
 
-      /* ===============================
-   EFECTO HOVER (FINO)
-   =============================== */
-      .hero-link:hover .hero-course {
-        transform: translateY(-1px);
-        filter: brightness(1.05);
-      }
+        .toast {
+            position: fixed;
+            left: 50%;
+            bottom: calc(22px + env(safe-area-inset-bottom));
+            z-index: 10;
+            max-width: calc(100% - 32px);
+            padding: 13px 22px;
+            border-radius: 999px;
+            color: var(--white);
+            font-size: 17px;
+            font-weight: 900;
+            text-align: center;
+            background: var(--ink);
+            opacity: 0;
+            visibility: hidden;
+            transform: translate(-50%, 30px);
+            transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s;
+        }
 
-      .hero-link:hover .badge {
-        transform: scale(1.05);
-      }
+        .toast.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, 0);
+        }
+
+        /* =====================================
+           CONTENIDO DEL MENÚ ORIGINAL
+        ===================================== */
+        .brand-label {
+            display: inline-block;
+            margin-bottom: 6px;
+            padding: 3px 12px;
+            border-radius: 999px;
+            color: var(--white);
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 1.2px;
+            background: linear-gradient(90deg, #FF6AA9, #8B5CF6);
+        }
+
+        /* Desfile de amiguitos + compartir */
+        .friends {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            margin: 0 0 18px;
+            padding: 8px 10px 8px 16px;
+            border-radius: 24px;
+            background: var(--white);
+            box-shadow: var(--shadow);
+        }
+
+        .character-parade {
+            display: flex;
+            align-items: flex-end;
+            gap: clamp(6px, 1.6vw, 16px);
+            min-width: 0;
+            overflow: hidden;
+        }
+
+        .character {
+            line-height: 1;
+            font-size: clamp(28px, 3.4vw, 40px);
+            user-select: none;
+            animation: friendBounce 2.8s ease-in-out infinite;
+        }
+
+        .character.main {
+            font-size: clamp(38px, 4.6vw, 54px);
+        }
+
+        .character:nth-child(2n) { animation-delay: -0.7s; }
+        .character:nth-child(3n) { animation-delay: -1.4s; }
+
+        @keyframes friendBounce {
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-6px) rotate(2deg); }
+        }
+
+        .share-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 0 0 auto;
+        }
+
+        .share-box strong {
+            font-family: "Baloo 2", sans-serif;
+            font-size: 18px;
+            color: #145A71;
+            white-space: nowrap;
+        }
+
+        .share-app-btn {
+            min-height: 48px;
+            padding: 8px 18px;
+            border: 0;
+            border-radius: 16px;
+            color: var(--white);
+            font-size: 17px;
+            font-weight: 900;
+            white-space: nowrap;
+            background: linear-gradient(180deg, #9F7CFF, #7355E9);
+            box-shadow: 0 5px 0 #5036B7;
+            cursor: pointer;
+            transition: transform 0.15s ease;
+        }
+
+        .share-app-btn:hover { transform: translateY(-2px); }
+        .share-app-btn:active { transform: translateY(3px); box-shadow: 0 2px 0 #5036B7; }
+
+        /* Título de la sección */
+        .section-head {
+            text-align: center;
+            margin: 0 0 12px;
+        }
+
+        .section-head h2 {
+            margin: 0;
+            font-family: "Baloo 2", sans-serif;
+            font-size: clamp(24px, 3.4vw, 32px);
+            line-height: 1.05;
+        }
+
+        .section-head p {
+            margin: 2px 0 0;
+            color: var(--muted);
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        .level-title small {
+            display: block;
+            margin-top: 2px;
+            color: var(--muted);
+            font-family: "Nunito", Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        /* Etiqueta y botones de la tarjeta */
+        .card-stage {
+            margin-top: 8px;
+            padding: 3px 10px;
+            border-radius: 999px;
+            color: var(--white);
+            font-size: 12px;
+            font-weight: 900;
+            white-space: nowrap;
+            background: var(--c);
+        }
+
+        .card-footer {
+            align-self: stretch;
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .course-open {
+            flex: 1;
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            color: var(--white);
+            font-size: 15px;
+            font-weight: 900;
+            white-space: nowrap;
+            background: var(--c);
+            box-shadow: 0 4px 0 rgba(43, 34, 80, 0.22);
+        }
+
+        .card-share {
+            position: relative;
+            z-index: 2;
+            width: 44px;
+            height: 44px;
+            flex: 0 0 44px;
+            display: grid;
+            place-items: center;
+            border: 0;
+            border-radius: 14px;
+            font-size: 18px;
+            background: var(--c-soft);
+            box-shadow: 0 4px 0 rgba(43, 34, 80, 0.12);
+            cursor: pointer;
+        }
+
+        .card-share:hover {
+            filter: brightness(0.97);
+        }
+
+        .card {
+            container-type: inline-size;
+        }
+
+        .card .long { display: none; }
+        .card .short { display: inline; }
+
+        @container (min-width: 210px) {
+            .card .long { display: inline; }
+            .card .short { display: none; }
+        }
+
+        .share-app-btn .short { display: none; }
+
+        .empty-state {
+            grid-column: 1 / -1;
+            padding: 28px;
+            text-align: center;
+            border: 3px dashed #D9CFEA;
+            border-radius: 22px;
+            color: var(--muted);
+            font-size: 18px;
+            font-weight: 900;
+        }
+
+        @media (max-width: 900px) {
+            .character:nth-child(n+8) {
+                display: none;
+            }
+        }
+
+        .footer p {
+            margin: 2px 0 0;
+        }
+
+
+        /* =====================================
+           PALETA DE COLORES MVG LEARNING
+        ===================================== */
+        body {
+            background:
+                radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.45), transparent 14%),
+                radial-gradient(circle at 88% 14%, rgba(255, 255, 255, 0.38), transparent 15%),
+                linear-gradient(180deg, #c9efff 0%, #eefaff 43%, #e2f6df 100%);
+            background-attachment: fixed;
+            padding-top: 0;
+        }
+
+        /* Árboles al fondo de la pantalla */
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            left: 0;
+            width: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background-repeat: repeat-x;
+            background-position: center bottom;
+        }
+
+        body::before {
+            bottom: 0;
+            height: 230px;
+            opacity: 0.9;
+            background-size: 320px 210px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='210' viewBox='0 0 320 210'%3E%3Crect width='320' height='210' fill='none'/%3E%3Cg opacity='0.95'%3E%3Crect x='30' y='118' width='12' height='62' rx='5' fill='%23835a39'/%3E%3Ccircle cx='36' cy='102' r='28' fill='%236fd15b'/%3E%3Ccircle cx='18' cy='114' r='22' fill='%2381dc68'/%3E%3Ccircle cx='52' cy='116' r='24' fill='%2357b84f'/%3E%3Crect x='94' y='96' width='15' height='85' rx='6' fill='%23835a39'/%3E%3Ccircle cx='101' cy='83' r='32' fill='%2343b14d'/%3E%3Ccircle cx='78' cy='95' r='25' fill='%235ccf68'/%3E%3Ccircle cx='124' cy='97' r='25' fill='%2377da6a'/%3E%3Crect x='166' y='126' width='10' height='50' rx='4' fill='%23835a39'/%3E%3Cpolygon points='171,72 140,132 202,132' fill='%2351b45b'/%3E%3Cpolygon points='171,89 146,136 196,136' fill='%236ad36f'/%3E%3Crect x='236' y='106' width='13' height='74' rx='5' fill='%23835a39'/%3E%3Ccircle cx='242' cy='90' r='30' fill='%237ad364'/%3E%3Ccircle cx='221' cy='104' r='22' fill='%2362c854'/%3E%3Ccircle cx='262' cy='108' r='22' fill='%2347aa48'/%3E%3Crect y='176' width='320' height='34' fill='%2392dd73'/%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        body::after {
+            bottom: 135px;
+            height: 160px;
+            opacity: 0.4;
+            background-size: 260px 150px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='150' viewBox='0 0 260 150'%3E%3Crect width='260' height='150' fill='none'/%3E%3Cg opacity='0.75'%3E%3Crect x='28' y='76' width='10' height='46' rx='4' fill='%23987957'/%3E%3Ccircle cx='33' cy='66' r='24' fill='%23b9ef92'/%3E%3Ccircle cx='18' cy='76' r='18' fill='%23d1f4ad'/%3E%3Ccircle cx='48' cy='78' r='18' fill='%23a7e37f'/%3E%3Crect x='96' y='64' width='11' height='52' rx='4' fill='%23987957'/%3E%3Cpolygon points='102,30 74,86 130,86' fill='%23a8e084'/%3E%3Cpolygon points='102,44 81,88 123,88' fill='%23c4eea5'/%3E%3Crect x='174' y='72' width='10' height='48' rx='4' fill='%23987957'/%3E%3Ccircle cx='179' cy='62' r='24' fill='%23c1ef9c'/%3E%3Ccircle cx='164' cy='72' r='18' fill='%23d9f6bb'/%3E%3Ccircle cx='194' cy='74' r='18' fill='%23a9e283'/%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        /* Encabezado azul */
+        .top-band {
+            position: relative;
+            z-index: 2;
+            padding-top: env(safe-area-inset-top);
+            color: var(--white);
+            background:
+                linear-gradient(115deg, rgba(255, 255, 255, 0.08), transparent 48%),
+                linear-gradient(120deg, var(--blue-1), var(--blue-2) 58%, var(--blue-3));
+            box-shadow: 0 8px 22px rgba(7, 98, 210, 0.22);
+        }
+
+        .topbar {
+            width: min(100%, 1320px);
+            margin: 0 auto;
+            padding: 10px 16px;
+            min-height: 74px;
+        }
+
+        .brand,
+        .brand-name {
+            color: var(--white);
+        }
+
+        .brand-name b {
+            color: #fff3a6;
+        }
+
+        .logo-box {
+            background: linear-gradient(145deg, var(--pink), var(--purple));
+            box-shadow: 0 5px 0 rgba(49, 32, 148, 0.48);
+        }
+
+        .round-btn {
+            border: 3px solid rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.22);
+            box-shadow: 0 5px 0 rgba(5, 61, 138, 0.26);
+        }
+
+        .rainbow-bar {
+            position: relative;
+            z-index: 2;
+            height: 8px;
+            background: linear-gradient(90deg, var(--green), var(--yellow), var(--orange), var(--pink), var(--purple), var(--blue-2));
+        }
+
+        .wrap {
+            padding-top: 16px;
+            padding-bottom: 120px;
+        }
+
+        .hero h1,
+        .section-head h2,
+        .level-title {
+            color: var(--ink);
+        }
+
+        /* Panel de amiguitos: cielo y pasto */
+        .friends {
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #d7e7f7;
+            background:
+                radial-gradient(circle at 12% 22%, rgba(255, 255, 255, 0.92) 0 3.5%, transparent 4%),
+                radial-gradient(circle at 86% 20%, rgba(255, 255, 255, 0.72) 0 3%, transparent 3.5%),
+                linear-gradient(180deg, rgba(166, 230, 255, 0.96), rgba(198, 242, 178, 0.95));
+            box-shadow: 0 7px 0 rgba(39, 127, 173, 0.16), 0 14px 28px rgba(36, 78, 126, 0.10);
+        }
+
+        .character-parade,
+        .share-box {
+            position: relative;
+            z-index: 1;
+        }
+
+        .character {
+            filter: drop-shadow(0 5px 0 rgba(20, 87, 53, 0.16));
+        }
+
+        /* Pestañas como los filtros originales */
+        .tab {
+            border: 3px solid var(--white);
+            color: #5d7089;
+            background: #eaf3fb;
+            box-shadow: 0 5px 0 #ccddec;
+        }
+
+        .tab[data-level="inicial"] { --c-2: var(--inicial-2); --c-shadow: var(--inicial-shadow); }
+        .tab[data-level="primaria"] { --c-2: var(--primaria-2); --c-shadow: var(--primaria-shadow); }
+        .tab[data-level="secundaria"] { --c-2: var(--secundaria-2); --c-shadow: var(--secundaria-shadow); }
+
+        .tab[aria-pressed="true"] {
+            color: var(--white);
+            background: linear-gradient(180deg, var(--c), var(--c-2));
+            box-shadow: 0 5px 0 var(--c-shadow);
+        }
+
+        /* Colores por nivel en tarjetas y títulos */
+        .card.lvl-inicial,
+        .level-title.lvl-inicial { --c-2: var(--inicial-2); --c-shadow: var(--inicial-shadow); }
+        .card.lvl-primaria,
+        .level-title.lvl-primaria { --c-2: var(--primaria-2); --c-shadow: var(--primaria-shadow); }
+        .card.lvl-secundaria,
+        .level-title.lvl-secundaria { --c-2: var(--secundaria-2); --c-shadow: var(--secundaria-shadow); }
+
+        .lvl-icon {
+            width: 46px;
+            height: 46px;
+            flex: 0 0 auto;
+            display: grid;
+            place-items: center;
+            border: 4px solid var(--white);
+            border-radius: 15px;
+            font-size: 22px;
+            background: linear-gradient(145deg, var(--c), var(--c-2));
+            box-shadow: 0 5px 0 rgba(41, 82, 126, 0.17);
+        }
+
+        .level-title {
+            justify-self: start;
+            gap: 12px;
+            max-width: 100%;
+            padding: 6px 16px 6px 6px;
+            border: 2px solid var(--line);
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 5px 0 rgba(44, 91, 145, 0.07);
+        }
+
+        .card {
+            border: 4px solid var(--c);
+            background:
+                radial-gradient(circle at 95% 8%, color-mix(in srgb, var(--c) 16%, transparent), transparent 32%),
+                rgba(255, 255, 255, 0.98);
+            box-shadow: 0 7px 0 color-mix(in srgb, var(--c-shadow) 30%, transparent), 0 14px 28px rgba(42, 77, 119, 0.08);
+        }
+
+        .card-icon {
+            border: 4px solid var(--white);
+            background: linear-gradient(145deg, var(--white), var(--c-soft));
+            box-shadow: 0 6px 0 color-mix(in srgb, var(--c-shadow) 45%, #ffffff);
+        }
+
+        .card-tag {
+            color: #0b69b6;
+            background: #e4f4ff;
+        }
+
+        .card-stage {
+            background: linear-gradient(90deg, var(--c), var(--c-2));
+        }
+
+        .course-open {
+            background: linear-gradient(180deg, var(--c), var(--c-2));
+            box-shadow: 0 5px 0 var(--c-shadow);
+        }
+
+        .card-share {
+            color: #5b438f;
+            background: #eee8ff;
+            box-shadow: 0 5px 0 #d4c7f5;
+        }
+
+        /* Pie de página azul */
+        .footer {
+            padding: 16px 18px;
+            border-radius: 22px;
+            color: var(--white);
+            background: linear-gradient(120deg, #0b73ff, #12a8ff);
+            box-shadow: 0 8px 0 rgba(4, 93, 180, 0.20);
+        }
+
+        .footer b {
+            color: var(--white);
+            font-family: "Baloo 2", sans-serif;
+            font-size: 22px;
+        }
+
+        .toast {
+            border: 4px solid var(--white);
+            border-radius: 18px;
+            background: linear-gradient(180deg, #2e506f, #17365d);
+            box-shadow: 0 9px 0 rgba(10, 33, 57, 0.27);
+        }
+
+
+        /* =====================================
+           USO DEL ESPACIO
+        ===================================== */
+        .topbar {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            min-height: 70px;
+        }
+
+        .brand-text {
+            display: grid;
+            gap: 2px;
+        }
+
+        .brand-tagline {
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 1.3px;
+            opacity: 0.92;
+        }
+
+        /* Amiguitos dentro del encabezado */
+        .topbar .character-parade {
+            justify-content: center;
+            align-self: end;
+            gap: clamp(6px, 1.4vw, 16px);
+            overflow: hidden;
+        }
+
+        .topbar .character {
+            font-size: 30px;
+            filter: drop-shadow(0 4px 0 rgba(5, 61, 138, 0.22));
+        }
+
+        .topbar .character.main {
+            font-size: 40px;
+        }
+
+        .wrap {
+            padding-top: 14px;
+            padding-bottom: 56px;
+        }
+
+        /* Título a la izquierda y pestañas a la derecha */
+        .intro {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px 20px;
+            margin-bottom: 14px;
+        }
+
+        .intro h1 {
+            margin: 0;
+            font-family: "Baloo 2", sans-serif;
+            font-size: clamp(30px, 4vw, 44px);
+            line-height: 1;
+            color: var(--ink);
+        }
+
+        .intro p {
+            margin: 2px 0 0;
+            color: var(--muted);
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        .intro .tabs {
+            margin: 0;
+            flex-wrap: nowrap;
+        }
+
+        .tab {
+            min-height: 48px;
+            padding: 6px 16px;
+            font-size: 18px;
+        }
+
+        /* Títulos de nivel en una línea */
+        .level-title {
+            margin: 6px 0 -4px;
+            padding: 4px 14px 4px 4px;
+            font-size: clamp(20px, 2.4vw, 24px);
+            border-radius: 16px;
+        }
+
+        .level-title:first-child {
+            margin-top: 0;
+        }
+
+        .level-title > span:last-child {
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 0 10px;
+        }
+
+        .level-title small {
+            margin: 0;
+        }
+
+        .lvl-icon {
+            width: 38px;
+            height: 38px;
+            border-width: 3px;
+            border-radius: 12px;
+            font-size: 18px;
+        }
+
+        .grid {
+            gap: 14px;
+        }
+
+        .card {
+            padding: 14px 10px 12px;
+        }
+
+        .card-icon {
+            width: 70px;
+            height: 70px;
+            font-size: 36px;
+            margin-bottom: 6px;
+        }
+
+        .card-footer {
+            margin-top: 10px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            padding: 10px 16px;
+            border-radius: 16px;
+            font-size: 14px;
+        }
+
+        .footer b {
+            font-size: 18px;
+        }
+
+        /* Pantallas medianas: amiguitos fuera y pestañas debajo del título */
+        @media (max-width: 1000px) {
+            .topbar .character-parade {
+                display: none;
+            }
+
+            .topbar {
+                grid-template-columns: 1fr auto;
+            }
+
+            .intro {
+                justify-content: center;
+                text-align: center;
+            }
+        }
+
+        /* =====================================
+           CELULAR
+        ===================================== */
+        @media (max-width: 480px) {
+            .wrap {
+                padding-inline: 12px;
+            }
+
+            .brand-name {
+                font-size: 21px;
+            }
+
+            .topbar {
+                min-height: 64px;
+                padding-inline: 12px;
+            }
+
+            .round-btn {
+                width: 48px;
+                height: 48px;
+                font-size: 21px;
+            }
+
+            .tab {
+                min-height: 48px;
+                padding: 6px 14px;
+                font-size: 17px;
+            }
+
+            .grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 12px;
+            }
+
+            .card {
+                padding: 18px 8px 14px;
+                border-radius: 22px;
+            }
+
+            .card-icon {
+                width: 64px;
+                height: 64px;
+                font-size: 34px;
+            }
+
+            .card-title {
+                font-size: 20px;
+            }
+
+            .card-desc {
+                display: none;
+            }
+
+            .card-tag,
+            .card-stage,
+            .share-box strong,
+            .long,
+            .level-title small,
+            .section-head p {
+                display: none;
+            }
+
+            .share-app-btn .long { display: none; }
+
+            .friends {
+                padding: 8px 8px 8px 12px;
+            }
+
+            .character:nth-child(n+6) {
+                display: none;
+            }
+
+            .share-app-btn {
+                padding: 8px 12px;
+                font-size: 15px;
+            }
+
+            .card-footer {
+                gap: 6px;
+                margin-top: 10px;
+            }
+
+            .card-share {
+                width: 40px;
+                flex-basis: 40px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+        @media (max-width: 480px) {
+            .brand-tagline {
+                display: none;
+            }
+
+            .intro {
+                gap: 8px;
+                margin-bottom: 10px;
+            }
+
+            .intro h1 {
+                font-size: 28px;
+            }
+
+            .intro p {
+                font-size: 14px;
+            }
+
+            /* Las tres pestañas ocupan todo el ancho, en una sola fila */
+            .intro .tabs {
+                width: 100%;
+                gap: 8px;
+                padding-bottom: 6px;
+            }
+
+            .intro .tabs::-webkit-scrollbar {
+                display: none;
+            }
+
+            .tab {
+                flex: 1 1 0;
+                justify-content: center;
+                min-width: 0;
+                min-height: 46px;
+                padding: 5px 6px;
+                gap: 4px;
+                font-size: 15px;
+            }
+
+            .level-title {
+                font-size: 19px;
+            }
+
+            .card {
+                padding: 12px 8px 10px;
+            }
+
+            .card-icon {
+                width: 56px;
+                height: 56px;
+                font-size: 28px;
+            }
+
+            .footer {
+                font-size: 13px;
+            }
+        }
+        /* Celulares muy angostos: pestañas sin emoji para que quepa "Secundaria" */
+        @media (max-width: 370px) {
+            .tab span[aria-hidden="true"] {
+                display: none;
+            }
+
+            .tab {
+                font-size: 14px;
+            }
+        }
+
+        /* =====================================
+           RUTA DE CURSO
+        ===================================== */
+        :root { --t1: #18b2ff; --t2: #087fe9; --ts: #0864b5; --tsoft: #e4f4ff; }
+        .card { --c: var(--t1); --c-2: var(--t2); --c-shadow: var(--ts); --c-soft: var(--tsoft); }
+        .level-title { --c: var(--t1); --c-2: var(--t2); --c-shadow: var(--ts); --c-soft: var(--tsoft); }
+        .tab { --c: var(--t1) !important; --c-2: var(--t2) !important; --c-shadow: var(--ts) !important; }
+
+        .wrap > .tabs { flex-wrap: wrap; justify-content: center; }
+
+        .chip-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+        .grade-chip, .back-btn {
+            min-height: 44px; display: inline-flex; align-items: center; gap: 6px; padding: 6px 16px;
+            border: 3px solid #fff; border-radius: 999px; font-family: "Baloo 2", sans-serif;
+            font-size: 17px; font-weight: 800; text-decoration: none; white-space: nowrap;
+        }
+        .grade-chip { color: #fff; background: linear-gradient(180deg, var(--g1), var(--g2)); box-shadow: 0 5px 0 var(--gs); }
+        .grade-inicial    { --g1: #ff78b2; --g2: #e94c91; --gs: #b93472; }
+        .grade-primaria   { --g1: #18b2ff; --g2: #087fe9; --gs: #0864b5; }
+        .grade-secundaria { --g1: #9c87ff; --g2: #6d56e6; --gs: #4e3cb0; }
+        .back-btn { color: #5d7089; background: #eaf3fb; box-shadow: 0 5px 0 #ccddec; cursor: pointer; }
+
+        .reading-bar {
+            display: grid; grid-template-columns: minmax(0, 1fr) minmax(200px, 320px); gap: 12px; align-items: center;
+            margin-bottom: 16px; padding: 10px 14px; border: 2px solid var(--line); border-radius: 20px;
+            background: rgba(255, 255, 255, .9); box-shadow: 0 5px 0 rgba(44, 91, 145, .07);
+        }
+        .reading-copy { display: flex; align-items: center; gap: 10px; font-weight: 900; min-width: 0; }
+        .reading-copy b { font-family: "Baloo 2", sans-serif; font-size: 22px; }
+        .meter { flex: 1; min-width: 60px; height: 14px; border-radius: 999px; background: #e7eef7; overflow: hidden; }
+        .meter i { display: block; height: 100%; width: 0; border-radius: 999px; background: linear-gradient(90deg, #58cc02, #ffc800); transition: width .4s; }
+        .continue {
+            min-height: 44px; display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 14px;
+            color: #fff; font-weight: 900; text-decoration: none; white-space: nowrap; max-width: 46%; overflow: hidden; text-overflow: ellipsis;
+            background: linear-gradient(180deg, #69d900, #4eb700); box-shadow: 0 5px 0 #378f00;
+        }
+        .continue[hidden] { display: none; }
+        .search { display: flex; align-items: center; gap: 8px; min-height: 46px; padding: 0 14px; border: 2px solid var(--line); border-radius: 16px; background: #fff; }
+        .search input { width: 100%; border: 0; outline: 0; font: inherit; font-weight: 800; font-size: 16px; color: var(--ink); background: transparent; }
+
+        .card .card-num {
+            position: absolute; top: 8px; left: 8px; min-width: 32px; height: 32px; display: grid; place-items: center; padding: 0 6px;
+            border-radius: 999px; color: #fff; font-family: "Baloo 2", sans-serif; font-size: 16px; font-weight: 800;
+            background: linear-gradient(180deg, var(--c), var(--c-2));
+        }
+        .card .card-cat { margin-top: 6px; padding: 2px 10px; border-radius: 999px; font-size: 12px; font-weight: 900; color: var(--ink); background: var(--c-soft); white-space: nowrap; max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
+        .card .ribbon { position: absolute; top: 8px; right: 8px; padding: 3px 9px; border-radius: 999px; font-size: 12px; font-weight: 900; color: #fff; background: #f59e0b; box-shadow: 0 3px 0 #b45309; z-index: 2; pointer-events: none; }
+        .card.done .ribbon { background: #58cc02; box-shadow: 0 3px 0 #378f00; }
+        .card.done .card-icon { box-shadow: 0 6px 0 #9be37a; }
+        .card .card-share[aria-pressed="true"] { background: #dcfce7; box-shadow: 0 5px 0 #86efac; }
+        .level-title small { font-family: "Nunito", Arial, sans-serif; }
+        .level-title .lvl-count { margin-left: auto; padding-left: 10px; font-family: "Nunito", Arial, sans-serif; font-size: 14px; font-weight: 900; color: var(--muted); white-space: nowrap; }
+        .card .card-title, .card .card-desc { overflow-wrap: anywhere; max-width: 100%; }
+        .empty { grid-column: 1 / -1; padding: 26px; text-align: center; border: 3px dashed #b9d7ee; border-radius: 22px; color: var(--muted); font-weight: 900; }
+
+        @media (max-width: 760px) {
+            .reading-bar { grid-template-columns: 1fr; }
+            .intro { text-align: center; }
+            .chip-row { justify-content: center; }
+        }
+        @media (max-width: 480px) {
+            #tabs { width: calc(100% + 24px); margin: 0 -12px; padding: 2px 12px 8px; justify-content: flex-start; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+            #tabs::-webkit-scrollbar { display: none; }
+            #tabs .tab { flex: 0 0 auto; padding: 5px 13px; font-size: 15px; }
+            .reading-copy { flex-wrap: wrap; }
+            .reading-copy .meter { flex-basis: 100%; order: 3; }
+            .continue { max-width: 100%; }
+            .card .card-cat, .level-title .lvl-count { display: none; }
+            .card .ribbon { font-size: 11px; padding: 2px 7px; }
+            .card .card-num { min-width: 28px; height: 28px; font-size: 14px; }
+            .grade-chip, .back-btn { min-height: 40px; font-size: 15px; padding: 4px 12px; }
+        }
     </style>
-  </head>
+</head>
 
-  <body>
-    <div class="app">
-
-      <header class="hero hero-link" aria-label="Ruta de Aprendizaje">
-        <a href="index.html" class="hero-click" aria-label="Volver al inicio">
-
-          <div class="hero-row hero-space">
-
-            <!-- IZQUIERDA -->
-            <div class="hero-left">
-              <div class="badge" aria-hidden="true">MK</div>
-
-              <div>
-                <h1 class="hero-title">Ruta de Aprendizaje</h1>
-                <div class="hero-sub">
-                  <span class="pill">🔢 1 → 25</span>
-                  <!-- <span class="pill">✅ Guarda progreso</span> -->
-                </div>
-              </div>
+<body>
+    <div class="top-band">
+        <header class="topbar">
+            <a class="brand" href="index.html" aria-label="MVG Learning, ir al inicio">
+                <span class="logo-box" aria-hidden="true">MVG</span>
+                <span class="brand-text">
+                    <span class="brand-name">MVG <b>Learning</b></span>
+                    <span class="brand-tagline">· MATEMÁTICAS</span>
+                </span>
+            </a>
+            <div class="character-parade" aria-hidden="true"><span class="character">🔢</span><span class="character">➕</span><span class="character main">➖</span><span class="character">🧮</span><span class="character main">📐</span><span class="character">🎲</span><span class="character">✏️</span><span class="character">🏆</span></div>
+            <div class="top-actions">
+                <button class="round-btn" id="soundBtn" type="button" aria-label="Activar o desactivar sonido">🔊</button>
+                <button class="round-btn" id="shareAppBtn" type="button" aria-label="Compartir">📤</button>
             </div>
+        </header>
+    </div>
+    <div class="rainbow-bar" aria-hidden="true"></div>
 
-            <!-- DERECHA -->
-            <div class="hero-course">
-              ∑
- MATEMÁTICAS
+    <div class="wrap">
+        <section class="intro">
+            <div class="intro-copy">
+                <h1>Matemáticas <span class="wave" aria-hidden="true">➗</span></h1>
+                <p>Números, sumas, restas y pensamiento lógico</p>
             </div>
+            <div class="chip-row">
+                
+                <button class="back-btn" id="backBtn" type="button">⬅ Cursos</button>
+            </div>
+        </section>
+        <nav class="tabs" id="tabs" aria-label="Elegir sección" style="margin-bottom:14px"></nav>
 
-          </div>
+        <section class="reading-bar" aria-label="Mi avance">
+            <div class="reading-copy">
+                <span aria-hidden="true">⭐</span>
+                <span><b id="doneCount">0</b> de <b id="totalCount">0</b> temas</span>
+                <div class="meter" aria-hidden="true"><i id="meter"></i></div>
+                <a class="continue" id="continueBtn" href="#" hidden>▶ Continuar</a>
+            </div>
+            <label class="search">
+                <span aria-hidden="true">🔎</span>
+                <input id="q" type="search" placeholder="Buscar tema…" autocomplete="off" />
+            </label>
+        </section>
 
-        </a>
-      </header>
+        <main class="grid" id="grid" aria-label="Temas de Matemáticas"></main>
 
-
-      <div class="toolbar">
-        <div class="search" role="search" aria-label="Buscar temas">
-          🔎 <input id="q" type="text" placeholder="Buscar: ecuaciones, fracciones, ajedrez..." />
-        </div>
-
-        <!-- ✅ Estos son los links a tus HTML por materia -->
-        <div class="chips" role="navigation" aria-label="Rutas por materia">
-          <!-- Cambia los nombres de archivo si quieres -->
-          <a class="chip active" href="index.html">🌟 Cursos</a>
-          <!-- <a class="chip" href="ruta-mate.html">➗ Matemáticas</a>
-                    <a class="chip" href="index.html">🇺🇸 Inglés</a>
-                    <a class="chip" href="ruta-chess.html">♟️ Ajedrez</a>
-                    <a class="chip" href="#">🏁 ??</a> -->
-        </div>
-      </div>
-
-      <section class="progress-wrap" aria-label="Progreso general">
-        <div class="progress-row">
-          <div>Progreso: <span id="doneCount">0</span>/<span id="totalCount">25</span></div>
-          <div class="progress-tag">📚 Temas</div>
-        </div>
-        <div class="bar">
-          <div id="barInner"></div>
-        </div>
-      </section>
-
-      <main class="grid" id="grid" aria-label="Lista de temas"></main>
-
-      <p class="note">Usa el buscador arriba para filtrar. Haz click en “Realizado” para marcar o desmarcar un
-        tema.</p>
+        <footer class="footer">
+            <b>MVG Learning</b> · Aprender, jugar y crecer juntos cada día.
+        </footer>
     </div>
 
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
     <script>
-      const STORAGE_KEY = "mk_learning_path_done_realizado_v3";
+        /* =========================================================
+           TEMAS DE LA RUTA
+           Para agregar un tema: copia un bloque, cambia el id, el título
+           y el archivo (href). Si la ruta tiene etapas, agrega el id a su etapa.
+        ========================================================= */
+        const topics = [
+            {
+                "id": 1,
+                "emoji": "🔢",
+                "title": "Sentido del número",
+                "desc": "Qué es un número, contar hasta 100, comparar cantidades sin contar.",
+                "href": "tema01.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 2,
+                "emoji": "➕",
+                "title": "Sumas concretas",
+                "desc": "Sumar usando objetos, dibujos y rectas numéricas.",
+                "href": "tema02.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 3,
+                "emoji": "➖",
+                "title": "Restas concretas",
+                "desc": "Quitar, comparar, cuántos faltan.",
+                "href": "tema03.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 4,
+                "emoji": "🧠",
+                "title": "Pensamiento lógico I",
+                "desc": "Verdadero/falso, patrones simples, clasificar objetos.",
+                "href": "tema04.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 5,
+                "emoji": "🔁",
+                "title": "Patrones y secuencias",
+                "desc": "Patrones visuales, numéricos y geométricos.",
+                "href": "tema05.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 6,
+                "emoji": "📐",
+                "title": "Geometría visual",
+                "desc": "Figuras, simetría, orientación espacial.",
+                "href": "tema06.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 7,
+                "emoji": "⚖️",
+                "title": "Igualdades y balanzas",
+                "desc": "Introducción intuitiva a ecuaciones con dibujos.",
+                "href": "tema07.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 8,
+                "emoji": "🧩",
+                "title": "Problemas sin cuentas",
+                "desc": "Resolver usando lógica, no operaciones.",
+                "href": "tema08.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 9,
+                "emoji": "🔢",
+                "title": "Conteo avanzado",
+                "desc": "Contar caminos, combinaciones pequeñas.",
+                "href": "tema09.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 10,
+                "emoji": "📊",
+                "title": "Tablas y organización",
+                "desc": "Organizar información para resolver problemas.",
+                "href": "tema10.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 11,
+                "emoji": "🧠",
+                "title": "Lógica matemática II",
+                "desc": "Si-entonces, deducción, eliminación de casos.",
+                "href": "tema11.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 12,
+                "emoji": "➗",
+                "title": "Multiplicación conceptual",
+                "desc": "Grupos, arreglos, no memorizar tablas aún.",
+                "href": "tema12.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 13,
+                "emoji": "🔄",
+                "title": "Invariantes (nivel inicial)",
+                "desc": "Qué cambia y qué no cambia en un problema.",
+                "href": "tema13.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 14,
+                "emoji": "📐",
+                "title": "Geometría olímpica temprana",
+                "desc": "Cortes, conteo de figuras, áreas visuales.",
+                "href": "tema14.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 15,
+                "emoji": "🧮",
+                "title": "Aritmética mental",
+                "desc": "Cálculo rápido, descomposición de números.",
+                "href": "tema15.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 16,
+                "emoji": "🧩",
+                "title": "Problemas tipo olimpiada I",
+                "desc": "Problemas largos, pensar antes de operar.",
+                "href": "tema16.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 17,
+                "emoji": "🔢",
+                "title": "Divisibilidad intuitiva",
+                "desc": "Pares, impares, múltiplos sin fórmulas.",
+                "href": "tema17.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 18,
+                "emoji": "📦",
+                "title": "Principio del palomar (visual)",
+                "desc": "Más objetos que cajas → algo se repite.",
+                "href": "tema18.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 19,
+                "emoji": "🧠",
+                "title": "Estrategias olímpicas",
+                "desc": "Ensayo y error, trabajar hacia atrás.",
+                "href": "tema19.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 20,
+                "emoji": "📐",
+                "title": "Geometría avanzada visual",
+                "desc": "Perímetros, áreas no evidentes.",
+                "href": "tema20.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 21,
+                "emoji": "🔄",
+                "title": "Patrones numéricos avanzados",
+                "desc": "Secuencias tipo Fibonacci simples.",
+                "href": "tema21.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 22,
+                "emoji": "🧩",
+                "title": "Problemas tipo olimpiada II",
+                "desc": "Problemas de varias etapas.",
+                "href": "tema22.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 23,
+                "emoji": "🧮",
+                "title": "Pre-álgebra intuitiva",
+                "desc": "Usar símbolos sin llamarlos variables.",
+                "href": "tema23.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 24,
+                "emoji": "🏆",
+                "title": "Mini olimpiadas",
+                "desc": "Simulación de pruebas matemáticas.",
+                "href": "tema24.html",
+                "category": "Matemáticas"
+            },
+            {
+                "id": 25,
+                "emoji": "🌍",
+                "title": "Base rumbo a la IMO",
+                "desc": "Mentalidad, disciplina y pensamiento profundo.",
+                "href": "tema25.html",
+                "category": "Matemáticas"
+            }
+        ];
 
-      // ✅ AQUÍ LINKEAS cada uno de tus 25 HTML:
+        // Etapas o secciones (vacío si la ruta no se agrupa)
+        const groups = [];
 
+        // Las lecciones guardan aquí los temas terminados: no cambiar el nombre
+        const STORAGE_KEY = "mk_ruta_matematicas_v1";
+        const PAGE_KEY = "mk-ruta-ruta-mate-html";
+        const DEFAULT_BACK = "index.html";
+        const COURSE = "Matemáticas";
 
+        const $ = id => document.getElementById(id);
+        function readPref(k, f) { try { return localStorage.getItem(k) ?? f; } catch (e) { return f; } }
+        function savePref(k, v) { try { localStorage.setItem(k, v); } catch (e) { } }
+        function esc(v) { return String(v).replace(/[&<>"']/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[ch])); }
 
-            const topics = [
-                {
-                    id: 1,
-                    emoji: "🔢",
-                    title: "Sentido del número",
-                    desc: "Qué es un número, contar hasta 100, comparar cantidades sin contar.",
-                    href: "tema01.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 2,
-                    emoji: "➕",
-                    title: "Sumas concretas",
-                    desc: "Sumar usando objetos, dibujos y rectas numéricas.",
-                    href: "tema02.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 3,
-                    emoji: "➖",
-                    title: "Restas concretas",
-                    desc: "Quitar, comparar, cuántos faltan.",
-                    href: "tema03.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 4,
-                    emoji: "🧠",
-                    title: "Pensamiento lógico I",
-                    desc: "Verdadero/falso, patrones simples, clasificar objetos.",
-                    href: "tema04.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 5,
-                    emoji: "🔁",
-                    title: "Patrones y secuencias",
-                    desc: "Patrones visuales, numéricos y geométricos.",
-                    href: "tema05.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 6,
-                    emoji: "📐",
-                    title: "Geometría visual",
-                    desc: "Figuras, simetría, orientación espacial.",
-                    href: "tema06.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 7,
-                    emoji: "⚖️",
-                    title: "Igualdades y balanzas",
-                    desc: "Introducción intuitiva a ecuaciones con dibujos.",
-                    href: "tema07.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 8,
-                    emoji: "🧩",
-                    title: "Problemas sin cuentas",
-                    desc: "Resolver usando lógica, no operaciones.",
-                    href: "tema08.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 9,
-                    emoji: "🔢",
-                    title: "Conteo avanzado",
-                    desc: "Contar caminos, combinaciones pequeñas.",
-                    href: "tema09.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 10,
-                    emoji: "📊",
-                    title: "Tablas y organización",
-                    desc: "Organizar información para resolver problemas.",
-                    href: "tema10.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 11,
-                    emoji: "🧠",
-                    title: "Lógica matemática II",
-                    desc: "Si-entonces, deducción, eliminación de casos.",
-                    href: "tema11.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 12,
-                    emoji: "➗",
-                    title: "Multiplicación conceptual",
-                    desc: "Grupos, arreglos, no memorizar tablas aún.",
-                    href: "tema12.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 13,
-                    emoji: "🔄",
-                    title: "Invariantes (nivel inicial)",
-                    desc: "Qué cambia y qué no cambia en un problema.",
-                    href: "tema13.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 14,
-                    emoji: "📐",
-                    title: "Geometría olímpica temprana",
-                    desc: "Cortes, conteo de figuras, áreas visuales.",
-                    href: "tema14.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 15,
-                    emoji: "🧮",
-                    title: "Aritmética mental",
-                    desc: "Cálculo rápido, descomposición de números.",
-                    href: "tema15.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 16,
-                    emoji: "🧩",
-                    title: "Problemas tipo olimpiada I",
-                    desc: "Problemas largos, pensar antes de operar.",
-                    href: "tema16.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 17,
-                    emoji: "🔢",
-                    title: "Divisibilidad intuitiva",
-                    desc: "Pares, impares, múltiplos sin fórmulas.",
-                    href: "tema17.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 18,
-                    emoji: "📦",
-                    title: "Principio del palomar (visual)",
-                    desc: "Más objetos que cajas → algo se repite.",
-                    href: "tema18.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 19,
-                    emoji: "🧠",
-                    title: "Estrategias olímpicas",
-                    desc: "Ensayo y error, trabajar hacia atrás.",
-                    href: "tema19.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 20,
-                    emoji: "📐",
-                    title: "Geometría avanzada visual",
-                    desc: "Perímetros, áreas no evidentes.",
-                    href: "tema20.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 21,
-                    emoji: "🔄",
-                    title: "Patrones numéricos avanzados",
-                    desc: "Secuencias tipo Fibonacci simples.",
-                    href: "tema21.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 22,
-                    emoji: "🧩",
-                    title: "Problemas tipo olimpiada II",
-                    desc: "Problemas de varias etapas.",
-                    href: "tema22.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 23,
-                    emoji: "🧮",
-                    title: "Pre-álgebra intuitiva",
-                    desc: "Usar símbolos sin llamarlos variables.",
-                    href: "tema23.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 24,
-                    emoji: "🏆",
-                    title: "Mini olimpiadas",
-                    desc: "Simulación de pruebas matemáticas.",
-                    href: "tema24.html",
-                    category: "Matemáticas"
-                },
-                {
-                    id: 25,
-                    emoji: "🌍",
-                    title: "Base rumbo a la IMO",
-                    desc: "Mentalidad, disciplina y pensamiento profundo.",
-                    href: "tema25.html",
-                    category: "Matemáticas"
+        /* ---------- Avance ---------- */
+        const validIds = new Set(topics.map(t => t.id));
+        function slugOf(t) { return String(t.href || "").split("/").pop().replace(/\.html$/i, ""); }
+
+        function loadDone() {
+            let ids = [];
+            try { const s = JSON.parse(localStorage.getItem(STORAGE_KEY)); if (Array.isArray(s)) ids = s.filter(id => validIds.has(id)); } catch (e) { }
+            // Lecciones que guardan "mk_topic_<tema>_complete" al terminar
+            try {
+                topics.forEach(t => {
+                    if (ids.includes(t.id)) return;
+                    const slug = slugOf(t);
+                    if (!slug) return;
+                    if ([`mk_topic_${slug}_complete`, `mk_topic_${slug.replaceAll("-", "_")}_complete`].some(k => localStorage.getItem(k) === "true")) ids.push(t.id);
+                });
+            } catch (e) { }
+            return new Set(ids);
+        }
+        function saveDone() { savePref(STORAGE_KEY, JSON.stringify([...done])); }
+
+        let done = loadDone();
+        let current = readPref(PAGE_KEY + "-tab", "todos");
+        let soundOn = readPref("mvg-sonido", "on") !== "off";
+
+        /* ---------- Sonido y aviso ---------- */
+        let audioCtx, toastTimer;
+        function pop(freq = 520) {
+            if (!soundOn) return;
+            try {
+                audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+                const o = audioCtx.createOscillator(), g = audioCtx.createGain(), t = audioCtx.currentTime;
+                o.frequency.setValueAtTime(freq, t); o.frequency.exponentialRampToValueAtTime(freq * 1.8, t + 0.12);
+                g.gain.setValueAtTime(0.25, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.18);
+                o.connect(g).connect(audioCtx.destination); o.start(); o.stop(t + 0.2);
+            } catch (e) { }
+        }
+        function showToast(msg) { $("toast").textContent = msg; $("toast").classList.add("show"); clearTimeout(toastTimer); toastTimer = setTimeout(() => $("toast").classList.remove("show"), 2400); }
+
+        /* ---------- Grupos ---------- */
+        const GROUP_MODE = "tabs";   // "tabs": pestañas · "headers": títulos por etapa
+        const useTabs = GROUP_MODE === "tabs" && groups.length > 1;
+        const groupOf = id => groups.find(g => g.topicIds.includes(id));
+        if (!useTabs || !groups.some(g => g.id === current)) current = "todos";
+
+        function renderTabs() {
+            if (!useTabs) { $("tabs").hidden = true; return; }
+            $("tabs").innerHTML = [{ id: "todos", short: "Todos", emoji: "⭐" }, ...groups].map(g =>
+                `<button class="tab" type="button" data-level="${esc(g.id)}" aria-pressed="${g.id === current}"><span aria-hidden="true">${g.emoji || "📘"}</span> ${esc(g.short || g.title)}</button>`).join("");
+        }
+        $("tabs").addEventListener("click", e => {
+            const t = e.target.closest(".tab"); if (!t) return;
+            current = t.dataset.level; savePref(PAGE_KEY + "-tab", current); pop(440); renderTabs(); renderCards();
+        });
+
+        /* ---------- Tarjetas ---------- */
+        function cardHtml(t, n, nextId) {
+            const isDone = done.has(t.id);
+            const ribbon = isDone ? "✅ Hecho" : (t.id === nextId ? "⭐ Sigue" : "");
+            const cat = t.category && t.category !== COURSE && t.category !== (groupOf(t.id) || {}).title ? t.category : "";
+            return `
+                <article class="card${isDone ? " done" : ""}">
+                    <a class="card-link" href="${esc(t.href)}" data-pop="${n}" aria-label="Abrir ${esc(t.title)}"></a>
+                    <span class="card-num">${n}</span>
+                    ${ribbon ? `<span class="ribbon">${ribbon}</span>` : ""}
+                    <span class="card-icon" aria-hidden="true">${t.emoji || "📘"}</span>
+                    <h2 class="card-title">${esc(t.title)}</h2>
+                    <p class="card-desc">${esc(t.desc || "")}</p>
+                    ${cat ? `<span class="card-cat">${esc(cat)}</span>` : ""}
+                    <div class="card-footer">
+                        <span class="course-open" aria-hidden="true"><span class="long">Ingresar al tema</span><span class="short">Ingresar</span>&nbsp;➜</span>
+                        <button class="card-share" type="button" data-done="${n}" aria-pressed="${isDone}"
+                                aria-label="${isDone ? "Marcar como pendiente" : "Marcar como hecho"}: ${esc(t.title)}"
+                                title="${isDone ? "Hecho" : "Marcar como hecho"}">${isDone ? "✅" : "☑️"}</button>
+                    </div>
+                </article>`;
+        }
+
+        function renderCards() {
+            const q = $("q").value.trim().toLowerCase();
+            const match = t => !q || (t.title + " " + (t.desc || "") + " " + (t.category || "")).toLowerCase().includes(q);
+            const next = topics.find(t => !done.has(t.id));
+            const num = new Map(topics.map((t, i) => [t.id, i + 1]));
+            let html = "";
+
+            if (groups.length && !useTabs) {
+                // Etapas: un título por etapa
+                groups.forEach(g => {
+                    const list = g.topicIds.map(id => topics.find(t => t.id === id)).filter(Boolean).filter(match);
+                    if (!list.length) return;
+                    const hechos = g.topicIds.filter(id => done.has(id)).length;
+                    html += `<h2 class="level-title"><span class="lvl-icon" aria-hidden="true">${g.emoji || "📘"}</span>
+                        <span>${esc(g.title)}<small>${esc(g.desc || "")}</small></span><span class="lvl-count">${hechos}/${g.topicIds.length}</span></h2>`;
+                    html += list.map(t => cardHtml(t, num.get(t.id), next && next.id)).join("");
+                });
+            } else {
+                const list = topics.filter(t => (current === "todos" || (groupOf(t.id) || {}).id === current) && match(t));
+                html = list.map(t => cardHtml(t, num.get(t.id), next && next.id)).join("");
+            }
+            $("grid").innerHTML = html || `<div class="empty">🔎 No encontré temas con esa búsqueda</div>`;
+
+            const n = topics.filter(t => done.has(t.id)).length;
+            $("doneCount").textContent = n;
+            $("totalCount").textContent = topics.length;
+            $("meter").style.width = (100 * n / topics.length) + "%";
+            const cb = $("continueBtn");
+            if (next) { cb.hidden = false; cb.href = next.href; cb.textContent = (n ? "▶ Continuar: " : "▶ Empezar: ") + next.title; }
+            else cb.hidden = true;
+        }
+
+        $("grid").addEventListener("click", e => {
+            const btn = e.target.closest("[data-done]");
+            if (btn) {
+                const t = topics[Number(btn.dataset.done) - 1];
+                if (done.has(t.id)) done.delete(t.id); else { done.add(t.id); showToast("¡Muy bien! Tema hecho ⭐"); }
+                if (!done.has(t.id)) {
+                    const slug = slugOf(t);
+                    try { localStorage.removeItem(`mk_topic_${slug}_complete`); localStorage.removeItem(`mk_topic_${slug.replaceAll("-", "_")}_complete`); } catch (e2) { }
                 }
-            ];
+                saveDone(); pop(done.has(t.id) ? 700 : 380); renderCards();
+                return;
+            }
+            const link = e.target.closest("[data-pop]");
+            if (link) pop(400 + Number(link.dataset.pop) * 10);
+        });
+        $("q").addEventListener("input", renderCards);
 
-
-      // Total
-      const totalEl = document.getElementById("totalCount");
-      totalEl.textContent = topics.length;
-
-      function loadDoneSet() {
+        /* ---------- Volver ---------- */
         try {
-          const raw = localStorage.getItem(STORAGE_KEY);
-          const arr = raw ? JSON.parse(raw) : [];
-          return new Set(arr.map(Number));
-        } catch {
-          return new Set();
+            const ref = document.referrer ? new URL(document.referrer) : null;
+            if (!false && ref && ref.origin === location.origin && /index[^/]*\.html$|\/$/i.test(ref.pathname)) sessionStorage.setItem(PAGE_KEY + "-volver", ref.href);
+        } catch (e) { }
+        $("backBtn").addEventListener("click", () => {
+            let url = DEFAULT_BACK;
+            if (!false) { try { url = sessionStorage.getItem(PAGE_KEY + "-volver") || url; } catch (e) { } }
+            location.href = url;
+        });
+
+        $("soundBtn").addEventListener("click", () => { soundOn = !soundOn; savePref("mvg-sonido", soundOn ? "on" : "off"); $("soundBtn").textContent = soundOn ? "🔊" : "🔇"; pop(); });
+        $("soundBtn").textContent = soundOn ? "🔊" : "🔇";
+        $("shareAppBtn").addEventListener("click", async () => {
+            pop(620);
+            const data = { title: "MK · " + COURSE, text: "Aprende " + COURSE + " jugando en MVG Learning.", url: location.href };
+            if (navigator.share) { try { await navigator.share(data); return; } catch (e) { if (e.name === "AbortError") return; } }
+            try { await navigator.clipboard.writeText(location.href); showToast("¡Enlace copiado! 🔗"); } catch (e) { showToast("No se pudo copiar el enlace"); }
+        });
+
+        addEventListener("pageshow", () => { done = loadDone(); renderCards(); });
+        renderTabs();
+        renderCards();
+
+        if ("serviceWorker" in navigator) {
+            addEventListener("load", () => navigator.serviceWorker.register("service-worker.js", { scope: "" }).catch(() => { }));
         }
-      }
-
-      function saveDoneSet(doneSet) {
-        try {
-          localStorage.setItem(STORAGE_KEY, JSON.stringify([...doneSet]));
-        } catch { }
-      }
-
-      function updateProgress(doneSet) {
-        const done = doneSet.size;
-        const total = topics.length;
-        document.getElementById("doneCount").textContent = done;
-        const pct = total === 0 ? 0 : (done / total) * 100;
-        document.getElementById("barInner").style.width = pct + "%";
-      }
-
-      function cssSafeCat(cat) {
-        return String(cat).replace(/\s+/g, "-");
-      }
-
-      function renderGrid(queryText, doneSet) {
-        const grid = document.getElementById("grid");
-        grid.innerHTML = "";
-
-        const q = String(queryText || "").trim().toLowerCase();
-
-        // ✅ FILTRO SOLO POR BUSCADOR (esta página es "Todos")
-        const filtered = topics.filter(t => {
-          if (!q) return true;
-          const hay = (t.title + " " + t.desc + " " + t.category).toLowerCase();
-          return hay.includes(q);
-        });
-
-        // recomendado: primer no hecho dentro del filtrado
-        const nextId = filtered.find(t => !doneSet.has(t.id))?.id ?? null;
-
-        // si no hay resultados
-        if (filtered.length === 0) {
-          const empty = document.createElement("div");
-          empty.style.gridColumn = "1 / -1";
-          empty.style.textAlign = "center";
-          empty.style.padding = "18px";
-          empty.style.fontWeight = "900";
-          empty.style.color = "#6b7280";
-          empty.textContent = "No encontré temas con esa búsqueda 🙂";
-          grid.appendChild(empty);
-          return;
-        }
-
-        filtered.forEach(t => {
-          const isDone = doneSet.has(t.id);
-          const isNext = nextId !== null && t.id === nextId;
-
-          const card = document.createElement("article");
-          card.className =
-            "topic " +
-            "cat-" + cssSafeCat(t.category) +
-            (isNext ? " next" : "") +
-            (isDone ? " done" : "");
-
-          card.innerHTML = `
-          <div class="num" aria-label="Tema ${t.id}">${t.id}</div>
-
-          <a href="${t.href}" aria-label="Abrir ${t.title}">
-
-
-            <div class="topic-tag">${t.emoji} ${t.category}${isNext ? " • ⭐ Recomendado" : ""}</div>
-            <div class="title">${t.title}</div>
-            <p class="desc">${t.desc}</p>
-          </a>
-
-          <div class="meta">
-            <div class="status ${isDone ? "done" : ""}">
-              ${isDone ? "✅ Realizado" : (isNext ? "👉 Recomendado" : "🔁 Practicar nuevamente")}
-            </div>
-
-            <button class="mark ${isDone ? "done" : ""}" type="button" data-id="${t.id}">
-              ${isDone ? "Realizado ✅" : "Realizado"}
-            </button>
-          </div>
-        `;
-
-          grid.appendChild(card);
-        });
-
-        grid.querySelectorAll(".mark").forEach(btn => {
-          btn.addEventListener("click", (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-
-            const id = Number(btn.dataset.id);
-            if (!Number.isFinite(id)) return;
-
-            if (doneSet.has(id)) doneSet.delete(id);
-            else doneSet.add(id);
-
-            saveDoneSet(doneSet);
-            updateProgress(doneSet);
-
-            const currentQuery = document.getElementById("q").value;
-            renderGrid(currentQuery, doneSet);
-          });
-        });
-      }
-
-      // INIT
-      const doneSet = loadDoneSet();
-      updateProgress(doneSet);
-      renderGrid("", doneSet);
-
-      // ✅ BUSCADOR FUNCIONA AQUÍ
-      const input = document.getElementById("q");
-      input.addEventListener("input", () => {
-        renderGrid(input.value, doneSet);
-      });
     </script>
-
-    <script>
-      // Registrar Service Worker (PWA)
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker.register("./service-worker.js").catch(() => { });
-        });
-      }
-    </script>
-      <script src="assets/proximamente.js" defer></script>
+    <script src="assets/proximamente.js" defer></script>
 </body>
 
 </html>
