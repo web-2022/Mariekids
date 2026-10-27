@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <title>MK Bloques: Carrera · 1.º de Primaria</title>
+    <meta name="theme-color" content="#0b73ff" />
+    <meta name="apple-mobile-web-app-title" content="MK" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../icons/icon-192.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/mk-juegos.css" />
+</head>
+
+<body>
+    <div class="bar">
+        <a class="pill" href="../juegos1P.html" aria-label="Volver a los juegos">⬅<span class="txt"> Juegos</span></a>
+        <h1>🏃 MK Bloques: Carrera</h1>
+        <button class="pill" id="soundBtn" type="button" aria-label="Sonido">🔊</button>
+    </div>
+
+    <div class="hud" aria-live="polite">
+        <span id="hudLevel">Nivel 1</span>
+        <span id="hudDoors">🚪 0/5</span>
+        <span id="hudCoins">🪙 0</span>
+    </div>
+
+    <canvas id="game" aria-label="Juego de plataformas con bloques"></canvas>
+
+    <div class="controls" id="controls">
+        <div class="group">
+            <button class="ctrl" data-key="left" type="button" aria-label="Izquierda">◀</button>
+            <button class="ctrl" data-key="right" type="button" aria-label="Derecha">▶</button>
+        </div>
+        <div class="group">
+            <button class="ctrl jump" data-key="jump" type="button" aria-label="Saltar">⤒</button>
+        </div>
+    </div>
+
+    <!-- Inicio -->
+    <div class="overlay show" id="startScreen">
+        <div class="panel">
+            <h2>🏃 MK Bloques: Carrera</h2>
+            <p>Salta las plataformas y abre cada 🚪 puerta resolviendo una operación.</p>
+            <div class="levels" id="levels"></div>
+            <p class="help">💻 Flechas ◀ ▶ y espacio para saltar · 📱 Usa los botones de la pantalla</p>
+        </div>
+    </div>
+
+    <!-- Pregunta -->
+    <div class="overlay" id="questionScreen" role="dialog" aria-modal="true" aria-labelledby="qText">
+        <div class="panel">
+            <p style="margin:0 0 4px">🚪 Para abrir la puerta…</p>
+            <button class="listen" id="listenBtn" type="button">🔊 Escuchar</button>
+            <div class="q-text" id="qText"></div>
+            <div class="q-visual" id="qVisual"></div>
+            <div class="answers" id="answers"></div>
+            <div class="feedback" id="feedback"></div>
+        </div>
+    </div>
+
+    <!-- Fin de nivel -->
+    <div class="overlay" id="endScreen">
+        <div class="panel">
+            <h2 id="endTitle">¡Nivel completado!</h2>
+            <div class="stars-big" id="endStars">⭐⭐⭐</div>
+            <p id="endText"></p>
+            <div class="row">
+                <button class="big-btn alt" id="menuBtn" type="button">📋 Niveles</button>
+                <button class="big-btn" id="nextBtn" type="button">▶ Siguiente</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../assets/mk-juegos.js"></script>
+    <script>
+        /* =========================================================
+           MK BLOQUES: CARRERA
+        ========================================================= */
+        const canvas = document.getElementById("game");
+        const ctx = canvas.getContext("2d");
+        const T = 40;              // tamaño de un bloque
+        const VIEW_H = 560;        // alto del mundo visible
+        const GROUND = 440;        // altura del piso inicial
+        const GRAVITY = 1800;
+        const JUMP = 700;
+        const SPEED = 250;
+
+        const LEVELS = [
+            { n: 1, name: "Nivel 1", desc: "Sumas y restas hasta 10 · Contar", cls: "lv1", q: 1, doors: 5, sky: ["#bfe7ff", "#eafaff"] },
+            { n: 2, name: "Nivel 2", desc: "Sumas y restas hasta 20", cls: "lv2", q: 2, doors: 5, sky: ["#ffe0b8", "#fff6e8"] },
+            { n: 3, name: "Nivel 3", desc: "Completa · Decenas y unidades", cls: "lv3", q: 3, doors: 6, sky: ["#d9ccff", "#f3eeff"] }
+        ];
+
+        let W = 0, H = 0, scale = 1, dpr = 1;
+        let world = null, player = null, camX = 0;
+        let level = LEVELS[0];
+        let state = "menu";        // menu | play | question | end
+        let keys = { left: false, right: false, jump: false };
+        let jumpQueued = 0, coyote = 0;
+        let coins = 0, doorsOpen = 0, mistakes = 0, checkpoint = null;
+        let currentDoor = null, currentQ = null;
+        let last = 0;
+
+        /* ---------- Tamaño de pantalla ---------- */
+        function resize() {
+            dpr = Math.min(window.devicePixelRatio || 1, 2);
+            canvas.width = Math.round(innerWidth * dpr);
+            canvas.height = Math.round(innerHeight * dpr);
+            scale = canvas.height / VIEW_H;
+            W = canvas.width / scale;
+            H = VIEW_H;
+        }
+        addEventListener("resize", resize);
+        resize();
+
+        /* ---------- Construcción del nivel ---------- */
+        function seeded(seed) {
+            return function () { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; };
+        }
+
+        function buildLevel(lv) {
+            const r = seeded(lv.n * 97 + 13);
+            const ri = (a, b) => Math.floor(r() * (b - a + 1)) + a;
+            const blocks = [], coinsList = [], doors = [], clouds = [];
+            let x = 0, y = GROUND;
+
+            const platform = (x0, y0, len) => blocks.push({ x: x0, y: y0, w: len * T, h: VIEW_H + 200 - y0 });
+
+            platform(-4 * T, y, 14);         // inicio
+            x = 10 * T;
+            let doorsPlaced = 0, seg = 0;
+
+            while (doorsPlaced < lv.doors) {
+                seg++;
+                const gap = (r() < 0.7 ? 2 : 3) * T;   // huecos cortos, aptos para 6 años
+                const dy = ri(-2, 2) * T;
+                y = Math.min(GROUND + T, Math.max(GROUND - 3 * T, y + dy));
+                x += gap;
+                const isDoor = seg % 3 === 0;
+                const len = isDoor ? 8 : ri(5, 7);   // plataformas amplias para aterrizar fácil
+                platform(x, y, len);
+
+                // escalón flotante en algunos tramos
+                if (!isDoor && len >= 7 && r() < 0.5) blocks.push({ x: x + T, y: y - 3 * T, w: 2 * T, h: T, float: true }); // con espacio para bajar
+
+                for (let c = 1; c < len - 1; c++) {
+                    if (r() < 0.5) coinsList.push({ x: x + c * T + T / 2, y: y - T * 1.2, taken: false });
+                }
+
+                if (isDoor) {
+                    doors.push({ x: x + 5 * T, y: y - 5 * T, w: T, h: 5 * T, open: 0, opening: false, solved: false });
+                    doorsPlaced++;
+                }
+                x += len * T;
+            }
+            // meta
+            x += 2 * T;
+            y = GROUND;
+            platform(x, y, 12);
+            const flag = { x: x + 6 * T, y: y };
+
+            for (let i = 0; i < 18; i++) clouds.push({ x: ri(0, x + 600), y: ri(30, 220), s: 0.6 + r() * 0.8 });
+            return { blocks, coins: coinsList, doors, flag, clouds, end: x + 12 * T };
+        }
+
+        function startLevel(lv) {
+            level = lv;
+            world = buildLevel(lv);
+            player = { x: 2 * T, y: GROUND - 64, w: 30, h: 60, vx: 0, vy: 0, onGround: false, face: 1, walk: 0 };
+            checkpoint = { x: player.x, y: player.y };
+            coins = 0; doorsOpen = 0; mistakes = 0; camX = 0;
+            updateHud();
+            hide("startScreen"); hide("endScreen");
+            state = "play";
+            MKJ.say("¡A correr! Abre las puertas resolviendo las operaciones.");
+        }
+
+        /* ---------- Física y colisiones ---------- */
+        function solids() {
+            const list = world.blocks.slice();
+            world.doors.forEach(d => { if (d.open < 1) list.push({ x: d.x, y: d.y + d.h * d.open, w: d.w, h: d.h * (1 - d.open), door: d }); });
+            return list;
+        }
+
+        function overlap(a, b) {
+            return a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y;
+        }
+
+        function update(dt) {
+            const p = player;
+            const dir = (keys.right ? 1 : 0) - (keys.left ? 1 : 0);
+            p.vx = dir * SPEED;
+            if (dir) p.face = dir;
+            p.walk += Math.abs(p.vx) * dt * 0.05;
+
+            coyote = p.onGround ? 0.12 : Math.max(0, coyote - dt);
+            jumpQueued = Math.max(0, jumpQueued - dt);
+            if (jumpQueued > 0 && coyote > 0) {
+                p.vy = -JUMP; jumpQueued = 0; coyote = 0; p.onGround = false;
+                MKJ.sound("salto");
+            }
+            // salto más corto si se suelta el botón
+            if (!keys.jump && p.vy < -260) p.vy += GRAVITY * 1.2 * dt;
+
+            p.vy = Math.min(p.vy + GRAVITY * dt, 1100);
+
+            const S = solids();
+
+            // horizontal
+            p.x += p.vx * dt;
+            for (const b of S) {
+                if (!overlap(p, b)) continue;
+                if (b.door && !b.door.solved && state === "play") askDoor(b.door);
+                if (p.vx > 0) p.x = b.x - p.w; else if (p.vx < 0) p.x = b.x + b.w;
+            }
+            p.x = Math.max(-3 * T, p.x);
+
+            // vertical
+            p.y += p.vy * dt;
+            p.onGround = false;
+            for (const b of S) {
+                if (!overlap(p, b)) continue;
+                if (p.vy > 0) { p.y = b.y - p.h; p.vy = 0; p.onGround = true; }
+                else if (p.vy < 0) { p.y = b.y + b.h; p.vy = 0; }
+            }
+
+            // monedas
+            for (const c of world.coins) {
+                if (!c.taken && Math.abs(p.x + p.w / 2 - c.x) < 26 && Math.abs(p.y + p.h / 2 - c.y) < 36) {
+                    c.taken = true; coins++; MKJ.sound("moneda"); updateHud();
+                }
+            }
+
+            // puertas abriéndose
+            for (const d of world.doors) if (d.opening && d.open < 1) d.open = Math.min(1, d.open + dt * 1.6);
+
+            // caída
+            if (p.y > VIEW_H + 160) {
+                MKJ.sound("caida");
+                p.x = checkpoint.x; p.y = checkpoint.y; p.vx = 0; p.vy = 0;
+            }
+
+            // meta
+            if (p.x + p.w > world.flag.x && state === "play") finishLevel();
+
+            // cámara
+            const target = p.x - W * 0.35;
+            camX += (target - camX) * Math.min(1, dt * 6);
+            camX = Math.max(-2 * T, Math.min(camX, world.end - W));
+        }
+
+        /* ---------- Preguntas ---------- */
+        function askDoor(door) {
+            state = "question";
+            currentDoor = door;
+            keys.left = keys.right = false;
+            showQuestion();
+        }
+
+        function showQuestion() {
+            currentQ = MKJ.question(level.q);
+            document.getElementById("qText").textContent = currentQ.text;
+            document.getElementById("qVisual").textContent = currentQ.visual || "";
+            document.getElementById("feedback").textContent = "";
+            const box = document.getElementById("answers");
+            box.innerHTML = "";
+            currentQ.options.forEach(v => {
+                const b = document.createElement("button");
+                b.className = "answer";
+                b.type = "button";
+                b.textContent = v;
+                b.addEventListener("click", () => answer(b, v));
+                box.appendChild(b);
+            });
+            show("questionScreen");
+            MKJ.say(currentQ.speak);
+        }
+
+        function answer(btn, v) {
+            if (state !== "question") return;
+            const fb = document.getElementById("feedback");
+            if (v === currentQ.answer) {
+                btn.classList.add("right");
+                fb.style.color = "#2f8f00";
+                fb.textContent = MKJ.pick(["¡Muy bien! 🎉", "¡Correcto! ⭐", "¡Excelente! 🙌"]);
+                MKJ.sound("ok");
+                MKJ.say(fb.textContent.replace(/[^\wáéíóúñ¡! ]/gi, ""));
+                state = "opening";
+                setTimeout(() => {
+                    hide("questionScreen");
+                    currentDoor.solved = true;
+                    currentDoor.opening = true;
+                    doorsOpen++;
+                    checkpoint = { x: currentDoor.x - 2 * T, y: currentDoor.y };
+                    updateHud();
+                    MKJ.sound("puerta");
+                    state = "play";
+                }, 900);
+            } else {
+                mistakes++;
+                btn.classList.add("wrong");
+                btn.disabled = true;
+                fb.style.color = "#c2410c";
+                fb.textContent = "¡Casi! Inténtalo otra vez 💪";
+                MKJ.sound("error");
+                MKJ.say("Casi. Inténtalo otra vez.");
+            }
+        }
+
+        document.getElementById("listenBtn").addEventListener("click", () => currentQ && MKJ.say(currentQ.speak));
+
+        /* ---------- Fin del nivel ---------- */
+        function finishLevel() {
+            state = "end";
+            keys.left = keys.right = false;
+            const st = mistakes <= 1 ? 3 : mistakes <= 3 ? 2 : 1;
+            MKJ.stars("carrera-" + level.n, st);
+            document.getElementById("endStars").textContent = "⭐".repeat(st) + "☆".repeat(3 - st);
+            document.getElementById("endText").textContent =
+                `Abriste ${doorsOpen} puertas y juntaste ${coins} monedas 🪙.` + (mistakes ? ` Te equivocaste ${mistakes} ${mistakes === 1 ? "vez" : "veces"}.` : " ¡Sin errores!");
+            const next = LEVELS[level.n];
+            document.getElementById("nextBtn").textContent = next ? "▶ Siguiente nivel" : "🔁 Jugar otra vez";
+            show("endScreen");
+            MKJ.sound("gana");
+            MKJ.confetti();
+            MKJ.say("¡Nivel completado! Ganaste " + st + (st === 1 ? " estrella" : " estrellas"));
+        }
+
+        document.getElementById("nextBtn").addEventListener("click", () => startLevel(LEVELS[level.n] || LEVELS[0]));
+        document.getElementById("menuBtn").addEventListener("click", () => { hide("endScreen"); showMenu(); });
+
+        /* ---------- Menú de niveles ---------- */
+        function showMenu() {
+            state = "menu";
+            const box = document.getElementById("levels");
+            box.innerHTML = "";
+            LEVELS.forEach(lv => {
+                const st = MKJ.stars("carrera-" + lv.n);
+                const b = document.createElement("button");
+                b.type = "button";
+                b.className = "level-btn " + lv.cls;
+                b.innerHTML = `<span class="num">${lv.n}</span><span><b>${lv.name}</b><small>${lv.desc}</small></span>` +
+                    `<span class="st">${"⭐".repeat(st)}${"☆".repeat(3 - st)}</span>`;
+                b.addEventListener("click", () => { MKJ.sound("ok"); startLevel(lv); });
+                box.appendChild(b);
+            });
+            show("startScreen");
+        }
+
+        function show(id) { document.getElementById(id).classList.add("show"); }
+        function hide(id) { document.getElementById(id).classList.remove("show"); }
+
+        function updateHud() {
+            document.getElementById("hudLevel").textContent = level.name;
+            document.getElementById("hudDoors").textContent = `🚪 ${doorsOpen}/${level.doors}`;
+            document.getElementById("hudCoins").textContent = `🪙 ${coins}`;
+        }
+
+        /* ---------- Dibujo ---------- */
+        function rr(x, y, w, h, r) {
+            ctx.beginPath();
+            ctx.moveTo(x + r, y);
+            ctx.arcTo(x + w, y, x + w, y + h, r);
+            ctx.arcTo(x + w, y + h, x, y + h, r);
+            ctx.arcTo(x, y + h, x, y, r);
+            ctx.arcTo(x, y, x + w, y, r);
+            ctx.closePath();
+        }
+
+        function drawCloud(x, y, s) {
+            ctx.fillStyle = "rgba(255,255,255,.9)";
+            ctx.beginPath();
+            ctx.arc(x, y, 24 * s, 0, 7); ctx.arc(x + 26 * s, y - 12 * s, 28 * s, 0, 7); ctx.arc(x + 56 * s, y, 24 * s, 0, 7);
+            ctx.fill();
+        }
+
+        function drawBlocks(b) {
+            const startX = Math.floor(b.x / T) * T;
+            for (let x = startX; x < b.x + b.w; x += T) {
+                if (x + T < camX || x > camX + W) continue;
+                for (let y = b.y; y < Math.min(b.y + b.h, VIEW_H + 10); y += T) {
+                    const top = y === b.y;
+                    ctx.fillStyle = top ? "#58cc02" : ((x / T + y / T) % 2 ? "#a26b3f" : "#94603a");
+                    ctx.fillRect(x, y, T, T);
+                    if (top) {
+                        ctx.fillStyle = "#94603a"; ctx.fillRect(x, y + T * 0.55, T, T * 0.45);
+                        ctx.fillStyle = "#3fa300"; ctx.fillRect(x, y + T * 0.45, T, 6);
+                    }
+                    ctx.strokeStyle = "rgba(0,0,0,.12)"; ctx.lineWidth = 2; ctx.strokeRect(x + 1, y + 1, T - 2, T - 2);
+                }
+            }
+        }
+
+        function drawDoor(d) {
+            const yOff = d.h * d.open;
+            ctx.save();
+            ctx.beginPath(); ctx.rect(d.x - 8, d.y - 14, d.w + 16, d.h + 14); ctx.clip();
+            // marco
+            ctx.fillStyle = "#6b4226"; ctx.fillRect(d.x - 6, d.y - 10, d.w + 12, 10);
+            // hoja de la puerta (sube al abrirse)
+            rr(d.x, d.y - yOff, d.w, d.h, 6);
+            ctx.fillStyle = d.solved ? "#58cc02" : "#ff9600"; ctx.fill();
+            ctx.strokeStyle = "rgba(0,0,0,.2)"; ctx.lineWidth = 3; ctx.stroke();
+            ctx.fillStyle = "#fff";
+            ctx.font = "800 30px 'Baloo 2', sans-serif"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+            ctx.fillText(d.solved ? "✓" : "?", d.x + d.w / 2, d.y - yOff + d.h / 2);
+            ctx.restore();
+            // cartel
+            if (!d.solved) {
+                ctx.font = "26px sans-serif"; ctx.textAlign = "center";
+                ctx.fillText("➕➖", d.x + d.w / 2, d.y - 34);
+            }
+        }
+
+        function drawCoin(c) {
+            const t = performance.now() / 300;
+            const sx = Math.abs(Math.cos(t + c.x));
+            ctx.save(); ctx.translate(c.x, c.y); ctx.scale(Math.max(0.2, sx), 1);
+            ctx.fillStyle = "#ffc800"; ctx.beginPath(); ctx.arc(0, 0, 13, 0, 7); ctx.fill();
+            ctx.strokeStyle = "#d99a00"; ctx.lineWidth = 3; ctx.stroke();
+            ctx.fillStyle = "#fff7c2"; ctx.fillRect(-2, -7, 4, 14);
+            ctx.restore();
+        }
+
+        // Personaje de bloques (diseño propio MK)
+        function drawPlayer(p) {
+            const legSwing = p.onGround && p.vx ? Math.sin(p.walk) * 8 : (p.onGround ? 0 : 6);
+            const cx = p.x + p.w / 2;
+            ctx.save();
+            ctx.translate(cx, p.y);
+            ctx.scale(p.face, 1);
+            // piernas
+            ctx.fillStyle = "#2f6fd6";
+            ctx.fillRect(-12, 40, 11, 20 - Math.max(0, -legSwing) * 0.2);
+            ctx.save(); ctx.translate(-6, 40); ctx.rotate(legSwing * 0.04); ctx.fillRect(-6, 0, 11, 20); ctx.restore();
+            ctx.save(); ctx.translate(6, 40); ctx.rotate(-legSwing * 0.04); ctx.fillRect(-5, 0, 11, 20); ctx.restore();
+            // cuerpo
+            ctx.fillStyle = "#ff6aa9"; ctx.fillRect(-14, 20, 28, 22);
+            ctx.fillStyle = "#fff"; ctx.font = "800 12px 'Baloo 2', sans-serif"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+            ctx.fillText("MK", 0, 31);
+            // brazos
+            ctx.fillStyle = "#ffcf9e";
+            ctx.save(); ctx.translate(-17, 22); ctx.rotate(-legSwing * 0.05); ctx.fillRect(-4, 0, 8, 18); ctx.restore();
+            ctx.save(); ctx.translate(17, 22); ctx.rotate(legSwing * 0.05); ctx.fillRect(-4, 0, 8, 18); ctx.restore();
+            // cabeza
+            ctx.fillStyle = "#ffcf9e"; rr(-13, -4, 26, 24, 5); ctx.fill();
+            ctx.fillStyle = "#6b3f1d"; ctx.fillRect(-14, -6, 28, 7);          // pelo
+            ctx.fillStyle = "#17365d"; ctx.fillRect(3, 6, 4, 5); ctx.fillRect(-5, 6, 4, 5); // ojos
+            ctx.strokeStyle = "#17365d"; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(1, 12, 5, 0.2, Math.PI - 0.2); ctx.stroke();
+            ctx.restore();
+        }
+
+        function drawFlag(f) {
+            ctx.fillStyle = "#8b5e34"; ctx.fillRect(f.x, f.y - 150, 8, 150);
+            const wave = Math.sin(performance.now() / 250) * 6;
+            ctx.fillStyle = "#ff6aa9";
+            ctx.beginPath(); ctx.moveTo(f.x + 8, f.y - 150); ctx.lineTo(f.x + 70, f.y - 128 + wave); ctx.lineTo(f.x + 8, f.y - 104); ctx.fill();
+            ctx.fillStyle = "#fff"; ctx.font = "800 18px 'Baloo 2'"; ctx.fillText("META", f.x + 34, f.y - 124 + wave / 2);
+        }
+
+        function draw() {
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+            const g = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            g.addColorStop(0, level.sky[0]); g.addColorStop(1, level.sky[1]);
+            ctx.fillStyle = g; ctx.fillRect(0, 0, canvas.width, canvas.height);
+            if (!world) return;
+
+            ctx.setTransform(scale, 0, 0, scale, -camX * scale, 0);
+            // nubes con paralaje
+            ctx.save(); ctx.translate(camX * 0.6, 0);
+            world.clouds.forEach(c => drawCloud(c.x, c.y + 60, c.s));
+            ctx.restore();
+
+            world.blocks.forEach(b => { if (b.x + b.w > camX - T && b.x < camX + W + T) drawBlocks(b); });
+            world.coins.forEach(c => { if (!c.taken) drawCoin(c); });
+            world.doors.forEach(drawDoor);
+            drawFlag(world.flag);
+            drawPlayer(player);
+        }
+
+        function loop(t) {
+            const dt = Math.min(0.033, (t - last) / 1000 || 0);
+            last = t;
+            if (state === "play") update(dt);
+            else if (world) world.doors.forEach(d => { if (d.opening && d.open < 1) d.open = Math.min(1, d.open + dt * 1.6); });
+            draw();
+            requestAnimationFrame(loop);
+        }
+
+        /* ---------- Controles ---------- */
+        const KEYMAP = { ArrowLeft: "left", KeyA: "left", ArrowRight: "right", KeyD: "right", ArrowUp: "jump", Space: "jump", KeyW: "jump" };
+        addEventListener("keydown", e => {
+            const k = KEYMAP[e.code];
+            if (!k) return;
+            e.preventDefault();
+            if (k === "jump" && !keys.jump) jumpQueued = 0.15;
+            keys[k] = true;
+        });
+        addEventListener("keyup", e => { const k = KEYMAP[e.code]; if (k) keys[k] = false; });
+
+        document.querySelectorAll(".ctrl").forEach(btn => {
+            const k = btn.dataset.key;
+            const down = e => { e.preventDefault(); if (k === "jump") jumpQueued = 0.15; keys[k] = true; btn.classList.add("active"); };
+            const up = e => { e.preventDefault(); keys[k] = false; btn.classList.remove("active"); };
+            btn.addEventListener("pointerdown", down);
+            btn.addEventListener("pointerup", up);
+            btn.addEventListener("pointercancel", up);
+            btn.addEventListener("pointerleave", up);
+            btn.addEventListener("contextmenu", e => e.preventDefault());
+        });
+
+        // Sonido
+        const soundBtn = document.getElementById("soundBtn");
+        const paintSound = () => soundBtn.textContent = MKJ.soundOn ? "🔊" : "🔇";
+        soundBtn.addEventListener("click", () => { MKJ.setSound(!MKJ.soundOn); paintSound(); });
+        paintSound();
+
+        // Ocultar controles táctiles en computadora
+        if (matchMedia("(hover: hover) and (pointer: fine)").matches) document.getElementById("controls").style.display = "none";
+
+        // Para pruebas automáticas
+        window.__carrera = { get state() { return state; }, get player() { return player; }, get world() { return world; }, keys, startLevel, LEVELS, get doorsOpen() { return doorsOpen; }, get q() { return currentQ; }, finishLevel };
+
+        world = buildLevel(LEVELS[0]);
+        player = { x: 2 * T, y: GROUND - 60, w: 30, h: 60, vx: 0, vy: 0, onGround: true, face: 1, walk: 0 };
+        showMenu();
+        requestAnimationFrame(loop);
+    </script>
+</body>
+
+</html>

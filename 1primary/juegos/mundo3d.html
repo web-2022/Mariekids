@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <title>MK Bloques: Mundo 3D · 1.º de Primaria</title>
+    <meta name="theme-color" content="#0b73ff" />
+    <meta name="apple-mobile-web-app-title" content="MK" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../icons/icon-192.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/mk-juegos.css" />
+    <style>
+        .question-bar {
+            position: fixed;
+            z-index: 4;
+            top: calc(118px + env(safe-area-inset-top));
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            max-width: calc(100% - 24px);
+            padding: 8px 10px 8px 18px;
+            border: 4px solid #fff;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, .95);
+            box-shadow: 0 7px 0 rgba(44, 91, 145, .18);
+        }
+
+        .question-bar .qt {
+            font-family: "Baloo 2", sans-serif;
+            font-size: clamp(24px, 5vw, 38px);
+            font-weight: 800;
+            line-height: 1.05;
+            text-align: center;
+        }
+
+        .question-bar .qv { font-size: 24px; letter-spacing: 3px; }
+        .question-bar .listen { margin: 0; }
+        .question-bar[hidden] { display: none; }
+
+        .result {
+            position: fixed;
+            z-index: 6;
+            left: 50%;
+            top: 42%;
+            transform: translate(-50%, -50%) scale(.6);
+            padding: 12px 22px;
+            border: 4px solid #fff;
+            border-radius: 22px;
+            color: #fff;
+            font-family: "Baloo 2", sans-serif;
+            font-size: clamp(26px, 5vw, 40px);
+            font-weight: 800;
+            text-align: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .2s, transform .25s;
+        }
+
+        .result.show { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        .result.good { background: linear-gradient(180deg, #69d900, #4eb700); box-shadow: 0 7px 0 #378f00; }
+        .result.bad { background: linear-gradient(180deg, #ff9a52, #f06a1d); box-shadow: 0 7px 0 #b94a0c; }
+
+        .controls .group:first-child { gap: 14px; }
+
+        @media (max-width: 480px) {
+            .question-bar { top: calc(112px + env(safe-area-inset-top)); }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bar">
+        <a class="pill" href="../juegos1P.html" aria-label="Volver a los juegos">⬅<span class="txt"> Juegos</span></a>
+        <h1>🌍 MK Bloques: Mundo 3D</h1>
+        <button class="pill" id="soundBtn" type="button" aria-label="Sonido">🔊</button>
+    </div>
+
+    <div class="hud" aria-live="polite">
+        <span id="hudLevel">Nivel 1</span>
+        <span id="hudQ">❓ 1/10</span>
+        <span id="hudOk">⭐ 0</span>
+    </div>
+
+    <div class="question-bar" id="qBar" hidden>
+        <div>
+            <div class="qt" id="qText"></div>
+            <div class="qv" id="qVisual"></div>
+        </div>
+        <button class="listen" id="listenBtn" type="button" aria-label="Escuchar la pregunta">🔊</button>
+    </div>
+
+    <div class="result" id="result" role="status" aria-live="assertive"></div>
+
+    <canvas id="game" aria-label="Carrera en 3D: elige la puerta con la respuesta correcta"></canvas>
+
+    <div class="controls" id="controls">
+        <div class="group">
+            <button class="ctrl" data-dir="-1" type="button" aria-label="Carril izquierdo">◀</button>
+        </div>
+        <div class="group">
+            <button class="ctrl" data-dir="1" type="button" aria-label="Carril derecho">▶</button>
+        </div>
+    </div>
+
+    <div class="overlay show" id="startScreen">
+        <div class="panel">
+            <h2>🌍 MK Bloques: Mundo 3D</h2>
+            <p>Corre por el mundo de bloques y pasa por la 🚪 puerta con la respuesta correcta.</p>
+            <div class="levels" id="levels"></div>
+            <p class="help">💻 Flechas ◀ ▶ · 📱 Botones o desliza el dedo a los lados</p>
+        </div>
+    </div>
+
+    <div class="overlay" id="endScreen">
+        <div class="panel">
+            <h2>¡Llegaste a la meta!</h2>
+            <div class="stars-big" id="endStars">⭐⭐⭐</div>
+            <p id="endText"></p>
+            <div class="row">
+                <button class="big-btn alt" id="menuBtn" type="button">📋 Niveles</button>
+                <button class="big-btn" id="nextBtn" type="button">▶ Siguiente</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../assets/mk-juegos.js"></script>
+    <script>
+        /* =========================================================
+           MK BLOQUES: MUNDO 3D
+           Motor 3D propio y liviano (sin librerías): cada objeto es
+           una caja que se proyecta en perspectiva y se dibuja de
+           atrás hacia adelante.
+        ========================================================= */
+        const canvas = document.getElementById("game");
+        const ctx = canvas.getContext("2d");
+        const $ = id => document.getElementById(id);
+
+        const LANE = 2.4;           // ancho de un carril
+        const ROUNDS = 10;          // preguntas por nivel
+        const GATE_DIST = 58;       // distancia a la que aparece cada puerta
+        const VIEW = 90;            // distancia visible
+
+        const LEVELS = [
+            { n: 1, name: "Nivel 1", desc: "Sumas y restas hasta 10 · Contar", cls: "lv1", q: 1, speed: 7.5, sky: ["#8fd8ff", "#dff5ff"] },
+            { n: 2, name: "Nivel 2", desc: "Sumas y restas hasta 20", cls: "lv2", q: 2, speed: 8.5, sky: ["#ffc98f", "#fff0d9"] },
+            { n: 3, name: "Nivel 3", desc: "Completa · Decenas y unidades", cls: "lv3", q: 3, speed: 9.5, sky: ["#b9a6ff", "#efe9ff"] }
+        ];
+
+        let W = 0, H = 0, dpr = 1, F = 1, HORIZON = 0;
+        let level = LEVELS[0];
+        let state = "menu";       // menu | run | end
+        let z = 0, lane = 0, px = 0, run = 0, stumble = 0;
+        let qIndex = 0, okCount = 0, mistakes = 0;
+        let gate = null, coins = [], trees = [], sparks = [];
+        let last = 0;
+
+        function resize() {
+            dpr = Math.min(window.devicePixelRatio || 1, 2);
+            canvas.width = Math.round(innerWidth * dpr);
+            canvas.height = Math.round(innerHeight * dpr);
+            W = canvas.width; H = canvas.height;
+            F = Math.min(W, H * 1.25) * 0.95;
+            HORIZON = H * (H > W * 1.3 ? 0.36 : 0.40);
+        }
+        addEventListener("resize", resize);
+        resize();
+
+        /* ---------- Cámara y proyección ---------- */
+        const cam = { x: 0, y: 3.4, z: -7.5 };
+
+        function project(x, y, wz) {
+            const dz = wz - cam.z;
+            if (dz < 0.4) return null;
+            const s = F / dz;
+            return { x: W / 2 + (x - cam.x) * s, y: HORIZON - (y - cam.y) * s, s };
+        }
+
+        function shade(hex, k) {
+            const n = parseInt(hex.slice(1), 16);
+            let r = n >> 16, g = (n >> 8) & 255, b = n & 255;
+            r = Math.max(0, Math.min(255, Math.round(r * k)));
+            g = Math.max(0, Math.min(255, Math.round(g * k)));
+            b = Math.max(0, Math.min(255, Math.round(b * k)));
+            return `rgb(${r},${g},${b})`;
+        }
+
+        function poly(pts, fill) {
+            ctx.beginPath();
+            ctx.moveTo(pts[0].x, pts[0].y);
+            for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i].x, pts[i].y);
+            ctx.closePath();
+            ctx.fillStyle = fill;
+            ctx.fill();
+            ctx.strokeStyle = "rgba(0,0,0,.12)";
+            ctx.lineWidth = Math.max(1, dpr);
+            ctx.stroke();
+        }
+
+        // Caja: centro x, base y, z cercano; ancho w, alto h, fondo d
+        function box(b) {
+            const x0 = b.x - b.w / 2, x1 = b.x + b.w / 2, y0 = b.y, y1 = b.y + b.h, z0 = b.z, z1 = b.z + b.d;
+            if (z0 - cam.z < 1.2 && !b.player) return;
+            const P = (x, y, zz) => project(x, y, Math.max(zz, cam.z + 0.45));
+            const f = [P(x0, y0, z0), P(x1, y0, z0), P(x1, y1, z0), P(x0, y1, z0)];
+            const k = [P(x0, y0, z1), P(x1, y0, z1), P(x1, y1, z1), P(x0, y1, z1)];
+            if (f.some(p => !p) || k.some(p => !p)) return;
+            const c = b.color;
+            if (cam.y > y1) poly([f[3], f[2], k[2], k[3]], shade(c, 1.18));   // arriba
+            if (cam.x < x0) poly([f[0], f[3], k[3], k[0]], shade(c, 0.78));   // izquierda
+            if (cam.x > x1) poly([f[1], f[2], k[2], k[1]], shade(c, 0.78));   // derecha
+            poly(f, c);                                                        // frente
+            if (b.label) {
+                const cx = (f[0].x + f[1].x) / 2, cy = (f[0].y + f[2].y) / 2, size = Math.abs(f[1].x - f[0].x);
+                ctx.fillStyle = b.labelColor || "#fff";
+                ctx.font = `800 ${Math.max(10, size * 0.62)}px 'Baloo 2', Nunito, sans-serif`;
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+                ctx.fillText(b.label, cx, cy + size * 0.04);
+            }
+        }
+
+        /* ---------- Mundo ---------- */
+        function makeTrees() {
+            trees = [];
+            for (let i = 0; i < 40; i++) {
+                const side = i % 2 ? 1 : -1;
+                trees.push({ z: i * 6 + Math.random() * 3, x: side * (LANE * 1.5 + 2.2 + Math.random() * 4), h: 1.6 + Math.random() * 1.6, kind: Math.random() < 0.25 ? "rock" : "tree" });
+            }
+        }
+
+        function newGate() {
+            const q = MKJ.question(level.q);
+            gate = { z: z + GATE_DIST, q, passed: false, opts: q.options.slice(0, 3) };
+            $("qText").textContent = q.text;
+            $("qVisual").textContent = q.visual || "";
+            $("qBar").hidden = false;
+            MKJ.say(q.speak);
+            // monedas en el camino hacia la puerta
+            coins = [];
+            for (let i = 1; i <= 5; i++) coins.push({ z: z + 12 + i * 6, lane: MKJ.rnd(-1, 1), taken: false });
+            updateHud();
+        }
+
+        function startLevel(lv) {
+            level = lv;
+            z = 0; lane = 0; px = 0; stumble = 0; qIndex = 0; okCount = 0; mistakes = 0;
+            makeTrees();
+            hide("startScreen"); hide("endScreen");
+            state = "run";
+            newGate();
+        }
+
+        function passGate() {
+            gate.passed = true;
+            const chosen = gate.opts[lane + 1];
+            const res = $("result");
+            if (chosen === gate.q.answer) {
+                okCount++;
+                res.className = "result good show";
+                res.textContent = MKJ.pick(["¡Correcto! ⭐", "¡Muy bien! 🎉", "¡Genial! 🙌"]);
+                MKJ.sound("ok");
+                for (let i = 0; i < 18; i++) sparks.push({ x: px, y: 1.5, z: z + 1, vx: (Math.random() - .5) * 4, vy: Math.random() * 5 + 2, vz: Math.random() * 3, t: 1, c: MKJ.pick(["#ffc800", "#ff6aa9", "#58cc02", "#0f9dff"]) });
+            } else {
+                mistakes++;
+                stumble = 1.1;
+                res.className = "result bad show";
+                res.textContent = `Era ${gate.q.answer} 💪`;
+                MKJ.sound("error");
+                MKJ.say(`Era ${gate.q.answer}. ¡Sigue intentando!`);
+            }
+            setTimeout(() => res.classList.remove("show"), 1200);
+            qIndex++;
+            updateHud();
+            setTimeout(() => {
+                if (state !== "run") return;
+                if (qIndex >= ROUNDS) finish(); else newGate();
+            }, 1300);
+        }
+
+        function finish() {
+            state = "end";
+            $("qBar").hidden = true;
+            const st = mistakes <= 1 ? 3 : mistakes <= 3 ? 2 : 1;
+            MKJ.stars("mundo3d-" + level.n, st);
+            $("endStars").textContent = "⭐".repeat(st) + "☆".repeat(3 - st);
+            $("endText").textContent = `Acertaste ${okCount} de ${ROUNDS} puertas.`;
+            $("nextBtn").textContent = LEVELS[level.n] ? "▶ Siguiente nivel" : "🔁 Jugar otra vez";
+            show("endScreen");
+            MKJ.sound("gana"); MKJ.confetti();
+            MKJ.say(`¡Llegaste a la meta! Acertaste ${okCount} de ${ROUNDS}`);
+        }
+
+        /* ---------- Actualización ---------- */
+        function update(dt) {
+            const speed = level.speed * (stumble > 0 ? 0.35 : 1);
+            stumble = Math.max(0, stumble - dt);
+            z += speed * dt;
+            run += speed * dt * 1.6;
+            px += (lane * LANE - px) * Math.min(1, dt * 10);
+
+            cam.x += (px * 0.55 - cam.x) * Math.min(1, dt * 5);
+            cam.z = z - 7.5;
+
+            // árboles infinitos
+            trees.forEach(t => { if (t.z < z - 10) t.z += 240; });
+
+            // monedas
+            coins.forEach(c => {
+                if (!c.taken && Math.abs(c.z - z) < 0.8 && c.lane === lane) { c.taken = true; MKJ.sound("moneda"); }
+            });
+
+            // puerta
+            if (gate && !gate.passed && z >= gate.z) passGate();
+
+            // chispas
+            sparks.forEach(s => { s.x += s.vx * dt; s.y += s.vy * dt; s.z += (s.vz + speed) * dt; s.vy -= 9 * dt; s.t -= dt; });
+            sparks = sparks.filter(s => s.t > 0);
+        }
+
+        /* ---------- Dibujo ---------- */
+        function drawGround() {
+            const g = ctx.createLinearGradient(0, 0, 0, HORIZON);
+            g.addColorStop(0, level.sky[0]); g.addColorStop(1, level.sky[1]);
+            ctx.fillStyle = g; ctx.fillRect(0, 0, W, HORIZON + 2);
+            // montañas de bloques al fondo
+            ctx.fillStyle = "rgba(88,180,90,.55)";
+            const off = (cam.x * F * 0.004) % 80;
+            for (let i = -2; i < W / 80 + 2; i++) {
+                const h = 30 + ((i * 37) % 5) * 14;
+                ctx.fillRect(i * 80 * dpr - off * dpr, HORIZON - h * dpr * 0.7, 80 * dpr, h * dpr * 0.7);
+            }
+            ctx.fillStyle = "#86d36b"; ctx.fillRect(0, HORIZON, W, H - HORIZON);
+
+            // camino a cuadros
+            const step = 2;
+            const start = Math.floor(z / step) * step;
+            for (let wz = start + VIEW; wz >= Math.floor(cam.z / step) * step; wz -= step) {
+                const nz = Math.max(wz, cam.z + 0.5);
+                const a = project(-LANE * 1.5, 0, nz), b = project(LANE * 1.5, 0, nz);
+                const c = project(LANE * 1.5, 0, wz + step), d = project(-LANE * 1.5, 0, wz + step);
+                if (!a || !b || !c || !d) continue;
+                const even = Math.round(wz / step) % 2 === 0;
+                poly([a, b, c, d], even ? "#d9b27c" : "#cfa56c");
+                // bordes de hierba
+                const ea = project(-LANE * 1.5 - 0.4, 0, nz), ed = project(-LANE * 1.5 - 0.4, 0, wz + step);
+                const eb = project(LANE * 1.5 + 0.4, 0, nz), ec = project(LANE * 1.5 + 0.4, 0, wz + step);
+                if (ea && ed) poly([ea, a, d, ed], even ? "#58cc02" : "#4fbb02");
+                if (eb && ec) poly([b, eb, ec, c], even ? "#58cc02" : "#4fbb02");
+                // líneas de carril
+                if (even) {
+                    for (const lx of [-LANE / 2, LANE / 2]) {
+                        const p1 = project(lx - 0.06, 0.01, nz), p2 = project(lx + 0.06, 0.01, nz), p3 = project(lx + 0.06, 0.01, wz + step * 0.6), p4 = project(lx - 0.06, 0.01, wz + step * 0.6);
+                        if (p1 && p2 && p3 && p4) poly([p1, p2, p3, p4], "rgba(255,255,255,.7)");
+                    }
+                }
+            }
+        }
+
+        function playerBoxes() {
+            const t = run;
+            const sw = state === "run" ? Math.sin(t) * 0.35 : 0;
+            const bob = state === "run" ? Math.abs(Math.sin(t)) * 0.08 : 0;
+            const lean = stumble > 0 ? Math.sin(stumble * 20) * 0.15 : 0;
+            const x = px + lean, zz = z;
+            return markPlayer([
+                { x: x - 0.22, y: 0 + bob, z: zz + sw, w: 0.36, h: 0.85, d: 0.36, color: "#2f6fd6" },     // pierna izq
+                { x: x + 0.22, y: 0 + bob, z: zz - sw, w: 0.36, h: 0.85, d: 0.36, color: "#2f6fd6" },     // pierna der
+                { x: x, y: 0.85 + bob, z: zz - 0.05, w: 0.9, h: 0.9, d: 0.5, color: "#ff6aa9", label: "MK" }, // cuerpo
+                { x: x - 0.6, y: 0.95 + bob, z: zz - sw * 0.8, w: 0.28, h: 0.75, d: 0.3, color: "#ffcf9e" }, // brazo
+                { x: x + 0.6, y: 0.95 + bob, z: zz + sw * 0.8, w: 0.28, h: 0.75, d: 0.3, color: "#ffcf9e" }, // brazo
+                { x: x, y: 1.75 + bob, z: zz - 0.05, w: 0.72, h: 0.66, d: 0.6, color: "#ffcf9e" },        // cabeza
+                { x: x, y: 2.33 + bob, z: zz - 0.08, w: 0.78, h: 0.16, d: 0.66, color: "#6b3f1d" }        // pelo
+            ]);
+        }
+
+        function markPlayer(list) { list.forEach(b => b.player = true); return list; }
+
+        function gateBoxes(g) {
+            const list = [];
+            const colors = ["#ff9600", "#8b5cf6", "#0f9dff"];
+            for (let i = 0; i < 3; i++) {
+                const cx = (i - 1) * LANE;
+                list.push({ x: cx - LANE / 2 + 0.18, y: 0, z: g.z, w: 0.3, h: 3.2, d: 0.3, color: "#8a5a3c" });
+                list.push({ x: cx + LANE / 2 - 0.18, y: 0, z: g.z, w: 0.3, h: 3.2, d: 0.3, color: "#8a5a3c" });
+                list.push({ x: cx, y: 2.25, z: g.z, w: LANE - 0.2, h: 1.15, d: 0.3, color: colors[i], label: String(g.opts[i]) });
+            }
+            return list;
+        }
+
+        function treeBoxes(t) {
+            if (t.kind === "rock") return [{ x: t.x, y: 0, z: t.z, w: 1.2, h: 0.8, d: 1.2, color: "#9aa4b2" }];
+            return [
+                { x: t.x, y: 0, z: t.z, w: 0.5, h: t.h, d: 0.5, color: "#8a5a3c" },
+                { x: t.x, y: t.h, z: t.z - 0.5, w: 1.8, h: 1.4, d: 1.8, color: "#3fae4a" },
+                { x: t.x, y: t.h + 1.4, z: t.z - 0.2, w: 1.1, h: 0.8, d: 1.1, color: "#58cc02" }
+            ];
+        }
+
+        function draw() {
+            drawGround();
+            const items = [];
+            trees.forEach(t => { if (t.z > cam.z && t.z < z + VIEW) treeBoxes(t).forEach(b => items.push(b)); });
+            if (gate && !gate.passed && gate.z - z > -0.3 && gate.z < z + VIEW) gateBoxes(gate).forEach(b => items.push(b));
+            coins.forEach(c => { if (!c.taken && c.z > cam.z) items.push({ x: c.lane * LANE, y: 0.6 + Math.sin(performance.now() / 200 + c.z) * 0.12, z: c.z, w: 0.55, h: 0.55, d: 0.15, color: "#ffc800", label: "★", labelColor: "#fff7c2" }); });
+            sparks.forEach(s => items.push({ x: s.x, y: s.y, z: s.z, w: 0.18, h: 0.18, d: 0.18, color: s.c }));
+            playerBoxes().forEach(b => items.push(b));
+            // de atrás hacia adelante
+            items.sort((a, b) => (b.z + b.d) - (a.z + a.d));
+            items.forEach(box);
+
+            // sombra del jugador
+            const sh = project(px, 0.01, z);
+            if (sh) { ctx.fillStyle = "rgba(0,0,0,.15)"; ctx.beginPath(); ctx.ellipse(sh.x, sh.y, sh.s * 0.6, sh.s * 0.18, 0, 0, 7); ctx.fill(); }
+        }
+
+        function loop(t) {
+            const dt = Math.min(0.033, (t - last) / 1000 || 0);
+            last = t;
+            if (state === "run") update(dt);
+            draw();
+            requestAnimationFrame(loop);
+        }
+
+        /* ---------- Controles ---------- */
+        function move(dir) {
+            if (state !== "run") return;
+            const nl = Math.max(-1, Math.min(1, lane + dir));
+            if (nl !== lane) { lane = nl; MKJ.sound("salto"); }
+        }
+
+        addEventListener("keydown", e => {
+            if (e.code === "ArrowLeft" || e.code === "KeyA") { e.preventDefault(); move(-1); }
+            if (e.code === "ArrowRight" || e.code === "KeyD") { e.preventDefault(); move(1); }
+        });
+
+        document.querySelectorAll(".ctrl").forEach(b => {
+            b.addEventListener("pointerdown", e => { e.preventDefault(); b.classList.add("active"); move(Number(b.dataset.dir)); });
+            const up = () => b.classList.remove("active");
+            b.addEventListener("pointerup", up); b.addEventListener("pointerleave", up); b.addEventListener("pointercancel", up);
+        });
+
+        // Deslizar el dedo o tocar un lado de la pantalla
+        let touchX = null;
+        canvas.addEventListener("pointerdown", e => { touchX = e.clientX; });
+        canvas.addEventListener("pointerup", e => {
+            if (touchX === null) return;
+            const dx = e.clientX - touchX;
+            if (Math.abs(dx) > 30) move(dx > 0 ? 1 : -1);
+            else move(e.clientX < innerWidth / 2 ? -1 : 1);
+            touchX = null;
+        });
+
+        $("listenBtn").addEventListener("click", () => gate && MKJ.say(gate.q.speak));
+        $("nextBtn").addEventListener("click", () => startLevel(LEVELS[level.n] || LEVELS[0]));
+        $("menuBtn").addEventListener("click", () => { hide("endScreen"); showMenu(); });
+
+        function showMenu() {
+            state = "menu";
+            $("qBar").hidden = true;
+            const box = $("levels");
+            box.innerHTML = "";
+            LEVELS.forEach(lv => {
+                const st = MKJ.stars("mundo3d-" + lv.n);
+                const b = document.createElement("button");
+                b.type = "button"; b.className = "level-btn " + lv.cls;
+                b.innerHTML = `<span class="num">${lv.n}</span><span><b>${lv.name}</b><small>${lv.desc}</small></span><span class="st">${"⭐".repeat(st)}${"☆".repeat(3 - st)}</span>`;
+                b.addEventListener("click", () => { MKJ.sound("ok"); startLevel(lv); });
+                box.appendChild(b);
+            });
+            show("startScreen");
+        }
+
+        function updateHud() {
+            $("hudLevel").textContent = level.name;
+            $("hudQ").textContent = `❓ ${Math.min(qIndex + 1, ROUNDS)}/${ROUNDS}`;
+            $("hudOk").textContent = `⭐ ${okCount}`;
+        }
+
+        function show(id) { $(id).classList.add("show"); }
+        function hide(id) { $(id).classList.remove("show"); }
+
+        const soundBtn = $("soundBtn");
+        const paintSound = () => soundBtn.textContent = MKJ.soundOn ? "🔊" : "🔇";
+        soundBtn.addEventListener("click", () => { MKJ.setSound(!MKJ.soundOn); paintSound(); });
+        paintSound();
+
+        // Para pruebas automáticas
+        window.__mundo = { get state() { return state; }, get gate() { return gate; }, get lane() { return lane; }, move, get qIndex() { return qIndex; }, get okCount() { return okCount; } };
+
+        makeTrees();
+        showMenu();
+        requestAnimationFrame(loop);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <title>MK Bloques: Constructor · 1.º de Primaria</title>
+    <meta name="theme-color" content="#0b73ff" />
+    <meta name="apple-mobile-web-app-title" content="MK" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../icons/icon-192.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/mk-juegos.css" />
+    <style>
+        html, body { height: auto; min-height: 100%; overflow: auto; touch-action: manipulation; background: linear-gradient(180deg, #c9efff 0%, #eefaff 50%, #e2f6df 100%); }
+
+        .stage {
+            width: min(100%, 980px);
+            margin: 0 auto;
+            padding: calc(78px + env(safe-area-inset-top)) 12px calc(18px + env(safe-area-inset-bottom));
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 300px;
+            gap: 14px;
+            align-items: start;
+        }
+
+        /* ---------- Reto ---------- */
+        .mission {
+            grid-column: 1 / -1;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border: 4px solid #fff;
+            border-radius: 24px;
+            background: #fff;
+            box-shadow: 0 7px 0 rgba(44, 91, 145, .12);
+        }
+
+        .mission .icon {
+            width: 54px; height: 54px;
+            flex: 0 0 auto;
+            display: grid; place-items: center;
+            border-radius: 16px;
+            font-size: 28px;
+            background: linear-gradient(145deg, #ffc93c, #ff9600);
+            box-shadow: 0 4px 0 #c76a00;
+        }
+
+        .mission .text { flex: 1; min-width: 0; }
+        .mission small { display: block; color: var(--muted); font-weight: 900; font-size: 13px; letter-spacing: .5px; }
+        .mission h2 { margin: 0; font-family: "Baloo 2", sans-serif; font-size: clamp(21px, 3.6vw, 28px); line-height: 1.1; }
+
+        .mission .listen { margin: 0; flex: 0 0 auto; }
+
+        .progress-dots { display: flex; gap: 5px; margin-top: 5px; }
+        .progress-dots i { width: 14px; height: 14px; border-radius: 50%; background: #e2e8f0; }
+        .progress-dots i.done { background: #58cc02; }
+        .progress-dots i.now { background: #ffc800; box-shadow: 0 0 0 3px #fff3b0; }
+
+        /* ---------- Tablero ---------- */
+        .board-wrap {
+            padding: 12px;
+            border: 4px solid #fff;
+            border-radius: 26px;
+            background: linear-gradient(180deg, #a6e6ff, #d8f6ff 70%);
+            box-shadow: 0 8px 0 rgba(39, 127, 173, .18);
+        }
+
+        .board {
+            --cols: 10;
+            --rows: 10;
+            display: grid;
+            grid-template-columns: repeat(var(--cols), 1fr);
+            gap: 0;
+            width: 100%;
+            aspect-ratio: var(--cols) / var(--rows);
+            max-height: calc(100vh - 260px);
+            margin: 0 auto;
+            border-bottom: 10px solid #58cc02;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .col {
+            position: relative;
+            display: flex;
+            flex-direction: column-reverse;
+            cursor: pointer;
+            border-left: 1px dashed rgba(23, 54, 93, .08);
+        }
+
+        .col:first-child { border-left: 0; }
+        @media (hover: hover) { .col:hover { background: rgba(255, 255, 255, .35); } }
+
+        .col .num {
+            position: absolute;
+            bottom: -34px;
+            left: 0; right: 0;
+            text-align: center;
+            font-weight: 900;
+            font-size: 13px;
+            color: #2f6d1a;
+        }
+
+        .block {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 6px;
+            background: var(--b);
+            box-shadow:
+                inset 0 6px 0 rgba(255, 255, 255, .35),
+                inset 0 -6px 0 rgba(0, 0, 0, .18),
+                inset 6px 0 0 rgba(255, 255, 255, .12),
+                inset -6px 0 0 rgba(0, 0, 0, .1);
+            animation: drop .22s ease-out;
+        }
+
+        .block::after {
+            content: "";
+            position: absolute;
+            inset: 28% 28%;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, .18);
+        }
+
+        .block.fixed::before {
+            content: "🔒";
+            position: absolute;
+            right: 2px; top: 0;
+            font-size: 10px;
+            opacity: .6;
+        }
+
+        .block.ten { outline: 2px solid rgba(255, 255, 255, .7); outline-offset: -2px; }
+        .block.out { animation: poof .25s ease-in forwards; }
+
+        @keyframes drop { from { transform: translateY(-60px); opacity: .3; } to { transform: none; opacity: 1; } }
+        @keyframes poof { to { transform: scale(.2); opacity: 0; } }
+
+        .b-red { --b: #ff4b4b; }
+        .b-blue { --b: #1d8bff; }
+        .b-yellow { --b: #ffc800; }
+        .b-green { --b: #58cc02; }
+
+        /* ---------- Herramientas ---------- */
+        .tools {
+            display: grid;
+            gap: 12px;
+            padding: 14px;
+            border: 4px solid #fff;
+            border-radius: 26px;
+            background: #fff;
+            box-shadow: 0 8px 0 rgba(44, 91, 145, .12);
+        }
+
+        .tools h3 { margin: 0; font-family: "Baloo 2", sans-serif; font-size: 20px; }
+
+        .palette { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+
+        .swatch {
+            aspect-ratio: 1;
+            border: 4px solid #fff;
+            border-radius: 14px;
+            background: var(--b);
+            box-shadow: inset 0 5px 0 rgba(255, 255, 255, .35), inset 0 -5px 0 rgba(0, 0, 0, .18), 0 0 0 2px #e2e8f0;
+        }
+
+        .swatch[aria-pressed="true"] { box-shadow: inset 0 5px 0 rgba(255, 255, 255, .35), inset 0 -5px 0 rgba(0, 0, 0, .18), 0 0 0 4px #17365d; transform: translateY(-2px); }
+
+        .tool-btn {
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border: 0;
+            border-radius: 16px;
+            font-weight: 900;
+            font-size: 17px;
+            color: #5d7089;
+            background: #eaf3fb;
+            box-shadow: 0 5px 0 #ccddec;
+        }
+
+        .tool-btn[hidden] { display: none; }
+        .tool-btn[aria-pressed="true"] { color: #fff; background: linear-gradient(180deg, #ff8a8a, #e5484d); box-shadow: 0 5px 0 #b42328; }
+        .tool-btn.ten-btn[aria-pressed="true"] { background: linear-gradient(180deg, #9c87ff, #6d56e6); box-shadow: 0 5px 0 #4e3cb0; }
+        .tool-btn:active { transform: translateY(3px); }
+
+        .count {
+            display: flex;
+            justify-content: space-around;
+            padding: 8px;
+            border-radius: 16px;
+            background: #f4f9ff;
+            font-weight: 900;
+            font-size: 17px;
+        }
+
+        .check-btn { width: 100%; }
+        .tip { margin: 0; color: var(--muted); font-size: 14px; font-weight: 800; text-align: center; }
+        .msg { min-height: 24px; margin: 0; text-align: center; font-weight: 900; font-size: 17px; }
+
+        @media (max-width: 760px) {
+            .stage { grid-template-columns: 1fr; padding-top: calc(74px + env(safe-area-inset-top)); }
+            .board { max-height: none; }
+            .tools { grid-template-columns: 1fr 1fr; align-items: start; }
+            .tools h3, .tools .count, .tools .check-btn, .tools .tip, .tools .msg { grid-column: 1 / -1; }
+            .palette { grid-column: 1 / -1; grid-template-columns: repeat(4, 1fr); }
+            .swatch { aspect-ratio: auto; height: 52px; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bar">
+        <a class="pill" href="../juegos1P.html" aria-label="Volver a los juegos">⬅<span class="txt"> Juegos</span></a>
+        <h1>🧱 MK Bloques: Constructor</h1>
+        <button class="pill" id="soundBtn" type="button" aria-label="Sonido">🔊</button>
+    </div>
+
+    <div class="stage">
+        <section class="mission" aria-live="polite">
+            <div class="icon" id="mIcon" aria-hidden="true">🧱</div>
+            <div class="text">
+                <small id="mStep">RETO 1 DE 8</small>
+                <h2 id="mText">Construye…</h2>
+                <div class="progress-dots" id="dots"></div>
+            </div>
+            <button class="listen" id="listenBtn" type="button">🔊</button>
+        </section>
+
+        <section class="board-wrap" aria-label="Tablero de construcción">
+            <div class="board" id="board"></div>
+        </section>
+
+        <aside class="tools">
+            <h3>🎨 Elige un bloque</h3>
+            <div class="palette" id="palette"></div>
+            <button class="tool-btn ten-btn" id="tenBtn" type="button" aria-pressed="false" hidden>🟪 Decena (10)</button>
+            <button class="tool-btn" id="eraseBtn" type="button" aria-pressed="false">🧽 Quitar</button>
+            <button class="tool-btn" id="clearBtn" type="button">🔄 Empezar de nuevo</button>
+            <div class="count" id="count"></div>
+            <button class="big-btn check-btn" id="checkBtn" type="button">✅ ¡Listo!</button>
+            <p class="msg" id="msg"></p>
+            <p class="tip">👆 Toca una columna para poner un bloque. Con 🧽 Quitar, toca un bloque para sacarlo.</p>
+        </aside>
+    </div>
+
+    <!-- Inicio -->
+    <div class="overlay show" id="startScreen">
+        <div class="panel">
+            <h2>🧱 MK Bloques: Constructor</h2>
+            <p>Construye con bloques y resuelve retos de matemáticas.</p>
+            <div class="levels" id="levels"></div>
+        </div>
+    </div>
+
+    <!-- Pregunta final de algunos retos -->
+    <div class="overlay" id="questionScreen" role="dialog" aria-modal="true" aria-labelledby="qText">
+        <div class="panel">
+            <p style="margin:0 0 4px">🤔 Ahora responde…</p>
+            <div class="q-text" id="qText"></div>
+            <div class="answers" id="answers"></div>
+            <div class="feedback" id="feedback"></div>
+        </div>
+    </div>
+
+    <!-- Fin -->
+    <div class="overlay" id="endScreen">
+        <div class="panel">
+            <h2 id="endTitle">¡Gran constructor!</h2>
+            <div class="stars-big" id="endStars">⭐⭐⭐</div>
+            <p id="endText"></p>
+            <div class="row">
+                <button class="big-btn alt" id="menuBtn" type="button">📋 Niveles</button>
+                <button class="big-btn" id="nextBtn" type="button">▶ Siguiente</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../assets/mk-juegos.js"></script>
+    <script>
+        /* =========================================================
+           MK BLOQUES: CONSTRUCTOR
+        ========================================================= */
+        const COLS = 10, ROWS = 10, ROUND = 8;
+        const COLORS = {
+            red: { cls: "b-red", name: "rojo", plural: "rojos", emoji: "🟥" },
+            blue: { cls: "b-blue", name: "azul", plural: "azules", emoji: "🟦" },
+            yellow: { cls: "b-yellow", name: "amarillo", plural: "amarillos", emoji: "🟨" },
+            green: { cls: "b-green", name: "verde", plural: "verdes", emoji: "🟩" }
+        };
+        const LEVELS = [
+            { n: 1, name: "Nivel 1", desc: "Torres, colores y patrones hasta 10", cls: "lv1", types: ["torre", "colores", "patron", "quitar", "torre", "colores", "comparar", "patron"] },
+            { n: 2, name: "Nivel 2", desc: "Sumas, restas y patrones hasta 20", cls: "lv2", types: ["colores20", "quitar20", "patron3", "comparar", "colores20", "quitar20", "decenas", "patron3"] },
+            { n: 3, name: "Nivel 3", desc: "Decenas, unidades y completar", cls: "lv3", types: ["decenas", "completar", "decenas", "quitar20", "completar", "decenas", "patron3", "completar"] }
+        ];
+
+        const R = MKJ.rnd, P = MKJ.pick;
+        let grid = [];                  // grid[col] = [{color, fixed, ten}]
+        let color = "red", mode = "add"; // add | erase | ten
+        let level = LEVELS[0], step = 0, mistakes = 0, challenge = null, busy = false;
+
+        const $ = id => document.getElementById(id);
+
+        /* ---------- Tablero ---------- */
+        function clearGrid() { grid = Array.from({ length: COLS }, () => []); }
+
+        function render() {
+            const board = $("board");
+            board.style.setProperty("--cols", COLS);
+            board.style.setProperty("--rows", ROWS);
+            board.innerHTML = "";
+            grid.forEach((stack, c) => {
+                const col = document.createElement("div");
+                col.className = "col";
+                col.dataset.col = c;
+                col.setAttribute("role", "button");
+                col.setAttribute("aria-label", `Columna ${c + 1}, ${stack.length} bloques`);
+                stack.forEach((b, i) => {
+                    const el = document.createElement("div");
+                    el.className = `block ${COLORS[b.color].cls}${b.fixed ? " fixed" : ""}${b.ten ? " ten" : ""}`;
+                    el.dataset.col = c; el.dataset.i = i;
+                    if (b.fresh) { delete b.fresh; } else el.style.animation = "none";
+                    col.appendChild(el);
+                });
+                if (challenge && challenge.showNumbers) {
+                    const n = document.createElement("span"); n.className = "num"; n.textContent = c + 1; col.appendChild(n);
+                }
+                board.appendChild(col);
+            });
+            renderCount();
+        }
+
+        function renderCount() {
+            const counts = countColors();
+            const total = Object.values(counts).reduce((a, b) => a + b, 0);
+            $("count").innerHTML = Object.keys(COLORS).filter(k => counts[k]).map(k => `<span>${COLORS[k].emoji} ${counts[k]}</span>`).join("")
+                + `<span>🧱 ${total}</span>`;
+        }
+
+        function countColors() {
+            const out = { red: 0, blue: 0, yellow: 0, green: 0 };
+            grid.forEach(s => s.forEach(b => out[b.color]++));
+            return out;
+        }
+
+        function total() { return grid.reduce((a, s) => a + s.length, 0); }
+
+        $("board").addEventListener("click", e => {
+            if (busy) return;
+            const blockEl = e.target.closest(".block");
+            const colEl = e.target.closest(".col");
+            if (!colEl) return;
+            const c = Number(colEl.dataset.col);
+            if (mode === "erase") {
+                const stack = grid[c];
+                if (!stack.length) return;
+                // se quita el bloque de arriba (los de abajo caen por gravedad)
+                const top = stack[stack.length - 1];
+                if (top.fixed) { flash("Ese bloque es del reto 🔒"); return; }
+                stack.pop();
+                MKJ.sound("salto");
+            } else if (mode === "ten") {
+                if (grid[c].length) { flash("La decena va en una columna vacía"); return; }
+                for (let i = 0; i < 10; i++) grid[c].push({ color: "green", ten: true, fresh: true });
+                MKJ.sound("puerta");
+            } else {
+                if (grid[c].length >= ROWS) { flash("¡Esta columna está llena!"); return; }
+                grid[c].push({ color, fresh: true });
+                MKJ.sound("moneda");
+            }
+            render();
+        });
+
+        function flash(t) { const m = $("msg"); m.style.color = "#c2410c"; m.textContent = t; setTimeout(() => { if (m.textContent === t) m.textContent = ""; }, 1800); }
+
+        /* ---------- Paleta y herramientas ---------- */
+        function buildPalette(allowed) {
+            const box = $("palette");
+            box.innerHTML = "";
+            allowed.forEach(k => {
+                const b = document.createElement("button");
+                b.type = "button";
+                b.className = "swatch " + COLORS[k].cls;
+                b.setAttribute("aria-label", "Bloque " + COLORS[k].name);
+                b.setAttribute("aria-pressed", String(k === color && mode === "add"));
+                b.addEventListener("click", () => { color = k; setMode("add"); MKJ.sound("ok"); });
+                box.appendChild(b);
+            });
+        }
+
+        function setMode(m) {
+            mode = m;
+            $("eraseBtn").setAttribute("aria-pressed", String(m === "erase"));
+            $("tenBtn").setAttribute("aria-pressed", String(m === "ten"));
+            document.querySelectorAll(".swatch").forEach(s => s.setAttribute("aria-pressed", String(m === "add" && s.classList.contains(COLORS[color].cls))));
+        }
+
+        $("eraseBtn").addEventListener("click", () => setMode(mode === "erase" ? "add" : "erase"));
+        $("tenBtn").addEventListener("click", () => setMode(mode === "ten" ? "add" : "ten"));
+        $("clearBtn").addEventListener("click", () => { setupBoard(); render(); MKJ.sound("salto"); });
+
+        /* ---------- Retos ---------- */
+        const CH = {
+            torre() {
+                const n = R(3, 9);
+                return {
+                    icon: "🗼", text: `Construye una torre de ${n} bloques`, speak: `Construye una torre de ${n} bloques`,
+                    check: () => total() === n && grid.some(s => s.length === n),
+                    hint: () => `Necesitas ${n} bloques en una sola columna. Tienes ${total()}.`
+                };
+            },
+            colores() {
+                const a = R(1, 5), b = R(1, 9 - a);
+                return {
+                    icon: "🎨", text: `Pon ${nombre(a, "red")} y ${nombre(b, "blue")}`, speak: `Pon ${a} ${a === 1 ? "bloque rojo" : "bloques rojos"} y ${b} ${b === 1 ? "azul" : "azules"}`,
+                    palette: ["red", "blue"],
+                    check: () => { const c = countColors(); return c.red === a && c.blue === b && total() === a + b; },
+                    hint: () => { const c = countColors(); return `Tienes ${c.red} rojos y ${c.blue} azules.`; },
+                    ask: { text: `${a} + ${b} = ?`, speak: `¿Cuántos bloques hay en total? ${a} más ${b}`, answer: a + b }
+                };
+            },
+            colores20() {
+                const a = R(4, 9), b = R(3, 9);
+                return {
+                    icon: "🎨", text: `Pon ${nombre(a, "yellow")} y ${nombre(b, "green")}`, speak: `Pon ${a} bloques amarillos y ${b} verdes`,
+                    palette: ["yellow", "green"],
+                    check: () => { const c = countColors(); return c.yellow === a && c.green === b && total() === a + b; },
+                    hint: () => { const c = countColors(); return `Tienes ${c.yellow} amarillos y ${c.green} verdes.`; },
+                    ask: { text: `${a} + ${b} = ?`, speak: `¿Cuántos bloques hay en total? ${a} más ${b}`, answer: a + b }
+                };
+            },
+            quitar() {
+                const n = R(5, 9), k = R(1, n - 2);
+                return {
+                    icon: "🧽", text: `Hay ${n} bloques. Quita ${k}`, speak: `Hay ${n} bloques. Quita ${k}`,
+                    setup: () => fillLoose(n, "blue"), startMode: "erase",
+                    check: () => total() === n - k,
+                    hint: () => `Quedan ${total()} bloques. Debes quitar ${k}.`,
+                    ask: { text: `${n} − ${k} = ?`, speak: `¿Cuántos quedan? ${n} menos ${k}`, answer: n - k }
+                };
+            },
+            quitar20() {
+                const n = R(11, 18), k = R(3, 9);
+                return {
+                    icon: "🧽", text: `Hay ${n} bloques. Quita ${k}`, speak: `Hay ${n} bloques. Quita ${k}`,
+                    setup: () => fillLoose(n, "red"), startMode: "erase",
+                    check: () => total() === n - k,
+                    hint: () => `Quedan ${total()} bloques. Debes quitar ${k}.`,
+                    ask: { text: `${n} − ${k} = ?`, speak: `¿Cuántos quedan? ${n} menos ${k}`, answer: n - k }
+                };
+            },
+            patron() { return patternChallenge(2); },
+            patron3() { return patternChallenge(3); },
+            comparar() {
+                let a = R(2, 9), b = R(2, 9);
+                while (a === b) b = R(2, 9);
+                const want = P(["más", "menos"]);
+                const target = want === "más" ? Math.max(a, b) + 1 : Math.min(a, b) - 1;
+                const safeTarget = Math.max(1, target);
+                return {
+                    icon: "⚖️",
+                    text: want === "más" ? `Construye en la columna 3 una torre más alta que las dos` : `Construye en la columna 3 una torre más baja que las dos`,
+                    speak: want === "más" ? "Construye en la columna 3 una torre más alta que las otras dos" : "Construye en la columna 3 una torre más baja que las otras dos",
+                    showNumbers: true,
+                    setup: () => { for (let i = 0; i < a; i++) grid[0].push({ color: "yellow", fixed: true }); for (let i = 0; i < b; i++) grid[1].push({ color: "green", fixed: true }); },
+                    check: () => {
+                        const h = grid[2].length, others = grid.slice(3).every(s => !s.length);
+                        return others && h > 0 && (want === "más" ? h > Math.max(a, b) : h < Math.min(a, b));
+                    },
+                    hint: () => `Las torres miden ${a} y ${b}. La tuya mide ${grid[2].length}.`,
+                    ask: { text: `¿Cuál es mayor: ${a} o ${b}?`, speak: `¿Cuál es mayor, ${a} o ${b}?`, answer: Math.max(a, b), options: MKJ.shuffle([a, b, safeTarget === a || safeTarget === b ? Math.max(a, b) + 2 : safeTarget]) }
+                };
+            },
+            decenas() {
+                const u = R(1, 9), n = 10 + u;
+                return {
+                    icon: "🟪", text: `Construye el número ${n}: 1 decena y ${unidades(u)}`, speak: `Construye el número ${n}. Una decena y ${unidades(u)}`,
+                    palette: ["red"], useTen: true, startMode: "ten",
+                    check: () => {
+                        const tens = grid.filter(s => s.length === 10 && s.every(b => b.ten)).length;
+                        const units = grid.reduce((a, s) => a + s.filter(b => !b.ten).length, 0);
+                        return tens === 1 && units === u;
+                    },
+                    hint: () => `Pon 1 decena 🟪 y ${u} bloques sueltos.`,
+                    ask: { text: `1 decena y ${unidades(u)} = ?`, speak: `Una decena y ${unidades(u)}, ¿qué número es?`, answer: n }
+                };
+            },
+            completar() {
+                const a = R(3, 9), t = R(a + 3, 15);
+                return {
+                    icon: "🧩", text: `Hay ${a} bloques. Completa hasta tener ${t}`, speak: `Hay ${a} bloques. Pon más hasta tener ${t}`,
+                    setup: () => fillLoose(a, "blue", true), palette: ["red"],
+                    check: () => total() === t,
+                    hint: () => `Ahora tienes ${total()}. Necesitas ${t}.`,
+                    ask: { text: `${a} + ▢ = ${t}`, speak: `${a} más cuánto es ${t}`, answer: t - a }
+                };
+            }
+        };
+
+        function patternChallenge(len) {
+            const keys = MKJ.shuffle(Object.keys(COLORS)).slice(0, len);
+            const shown = len === 2 ? 6 : 6;
+            const toPlace = len === 2 ? 2 : 3;
+            return {
+                icon: "🔁", text: `Continúa el patrón en la fila de abajo`, speak: "Continúa el patrón. Pon los bloques que siguen en la fila de abajo",
+                palette: keys.concat(Object.keys(COLORS).filter(k => !keys.includes(k)).slice(0, 4 - len)),
+                setup: () => { for (let i = 0; i < shown; i++) grid[i].push({ color: keys[i % len], fixed: true }); },
+                check: () => {
+                    for (let i = shown; i < shown + toPlace; i++) { const b = grid[i][0]; if (!b || b.color !== keys[i % len]) return false; }
+                    return grid.slice(shown + toPlace).every(s => !s.length) && grid.slice(0, shown + toPlace).every(s => s.length === 1);
+                },
+                hint: () => `Mira cómo se repiten los colores y pon ${toPlace} bloques más, uno en cada columna.`
+            };
+        }
+
+        // Palabras en singular o plural según la cantidad
+        const nombre = (n, k) => `${n} ${COLORS[k].emoji} ${n === 1 ? COLORS[k].name : COLORS[k].plural}`;
+        const unidades = u => `${u} ${u === 1 ? "unidad" : "unidades"}`;
+
+        function fillLoose(n, col, fixed) {
+            let c = 0;
+            for (let i = 0; i < n; i++) {
+                grid[c].push({ color: col, fixed: !!fixed });
+                if (grid[c].length >= 5) c++;
+            }
+        }
+
+        function setupBoard() {
+            clearGrid();
+            if (challenge.setup) challenge.setup();
+        }
+
+        function startChallenge() {
+            challenge = CH[level.types[step]]();
+            $("mStep").textContent = `RETO ${step + 1} DE ${ROUND}`;
+            $("mText").textContent = challenge.text;
+            $("mIcon").textContent = challenge.icon;
+            $("dots").innerHTML = Array.from({ length: ROUND }, (_, i) => `<i class="${i < step ? "done" : i === step ? "now" : ""}"></i>`).join("");
+            const pal = challenge.palette || ["red", "blue", "yellow", "green"];
+            color = pal[0];
+            buildPalette(pal);
+            $("tenBtn").hidden = !challenge.useTen;
+            setMode(challenge.startMode || "add");
+            $("msg").textContent = "";
+            setupBoard();
+            render();
+            busy = false;
+            MKJ.say(challenge.speak);
+        }
+
+        $("listenBtn").addEventListener("click", () => challenge && MKJ.say(challenge.speak));
+
+        $("checkBtn").addEventListener("click", () => {
+            if (busy || !challenge) return;
+            const m = $("msg");
+            if (challenge.check()) {
+                busy = true;
+                m.style.color = "#2f8f00";
+                m.textContent = P(["¡Muy bien construido! 🎉", "¡Perfecto! ⭐", "¡Excelente! 🙌"]);
+                MKJ.sound("ok");
+                setTimeout(() => challenge.ask ? askQuestion(challenge.ask) : nextStep(), 700);
+            } else {
+                mistakes++;
+                m.style.color = "#c2410c";
+                m.textContent = "¡Casi! " + challenge.hint();
+                MKJ.sound("error");
+                MKJ.say("Casi. " + challenge.hint());
+            }
+        });
+
+        function askQuestion(q) {
+            $("qText").textContent = q.text;
+            $("feedback").textContent = "";
+            const box = $("answers");
+            box.innerHTML = "";
+            const opts = q.options || MKJ.shuffle([q.answer, q.answer + 1, Math.max(0, q.answer - 1) === q.answer ? q.answer + 2 : q.answer - 1]);
+            opts.forEach(v => {
+                const b = document.createElement("button");
+                b.className = "answer"; b.type = "button"; b.textContent = v;
+                b.addEventListener("click", () => {
+                    if (v === q.answer) {
+                        b.classList.add("right");
+                        $("feedback").style.color = "#2f8f00";
+                        $("feedback").textContent = "¡Correcto! ⭐";
+                        MKJ.sound("ok");
+                        setTimeout(() => { hide("questionScreen"); nextStep(); }, 800);
+                    } else {
+                        mistakes++;
+                        b.classList.add("wrong"); b.disabled = true;
+                        $("feedback").style.color = "#c2410c";
+                        $("feedback").textContent = "¡Casi! Cuenta tus bloques 👀";
+                        MKJ.sound("error");
+                    }
+                });
+                box.appendChild(b);
+            });
+            show("questionScreen");
+            MKJ.say(q.speak);
+        }
+
+        function nextStep() {
+            step++;
+            if (step >= ROUND) return finish();
+            startChallenge();
+        }
+
+        function finish() {
+            const st = mistakes <= 1 ? 3 : mistakes <= 4 ? 2 : 1;
+            MKJ.stars("constructor-" + level.n, st);
+            $("endStars").textContent = "⭐".repeat(st) + "☆".repeat(3 - st);
+            $("endText").textContent = `Completaste ${ROUND} retos.` + (mistakes ? ` Te equivocaste ${mistakes} ${mistakes === 1 ? "vez" : "veces"}.` : " ¡Sin errores!");
+            $("nextBtn").textContent = LEVELS[level.n] ? "▶ Siguiente nivel" : "🔁 Jugar otra vez";
+            show("endScreen");
+            MKJ.sound("gana"); MKJ.confetti();
+            MKJ.say("¡Gran constructor! Ganaste " + st + (st === 1 ? " estrella" : " estrellas"));
+        }
+
+        function startLevel(lv) {
+            level = lv; step = 0; mistakes = 0;
+            hide("startScreen"); hide("endScreen");
+            startChallenge();
+        }
+
+        $("nextBtn").addEventListener("click", () => startLevel(LEVELS[level.n] || LEVELS[0]));
+        $("menuBtn").addEventListener("click", () => { hide("endScreen"); showMenu(); });
+
+        function showMenu() {
+            const box = $("levels");
+            box.innerHTML = "";
+            LEVELS.forEach(lv => {
+                const st = MKJ.stars("constructor-" + lv.n);
+                const b = document.createElement("button");
+                b.type = "button"; b.className = "level-btn " + lv.cls;
+                b.innerHTML = `<span class="num">${lv.n}</span><span><b>${lv.name}</b><small>${lv.desc}</small></span><span class="st">${"⭐".repeat(st)}${"☆".repeat(3 - st)}</span>`;
+                b.addEventListener("click", () => { MKJ.sound("ok"); startLevel(lv); });
+                box.appendChild(b);
+            });
+            show("startScreen");
+        }
+
+        function show(id) { $(id).classList.add("show"); }
+        function hide(id) { $(id).classList.remove("show"); }
+
+        const soundBtn = $("soundBtn");
+        const paintSound = () => soundBtn.textContent = MKJ.soundOn ? "🔊" : "🔇";
+        soundBtn.addEventListener("click", () => { MKJ.setSound(!MKJ.soundOn); paintSound(); });
+        paintSound();
+
+        // Para pruebas automáticas
+        window.__constructor = { get challenge() { return challenge; }, get grid() { return grid; }, get step() { return step; }, render, total, countColors };
+
+        clearGrid(); challenge = { showNumbers: false }; render(); challenge = null;
+        showMenu();
+    </script>
+</body>
+
+</html>
