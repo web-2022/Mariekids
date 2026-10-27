@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Mini Cursos • Inglés, Ajedrez, Matemáticas</title>
+        <title>MK • A0 · Semana 1: Saludos</title>
 
         <!-- PWA -->
         <meta name="apple-mobile-web-app-title" content="MK" />
@@ -536,8 +536,8 @@
 
             <!-- ================== INGLÉS ================== -->
             <section class="section active" id="courseEnglish">
-                <h1>Living Room • Sala de la casa</h1>
-                <p class="subtitle">Mira el emoji, escucha la palabra y elige el objeto correcto en inglés. 🛋️</p>
+                <h1>A0 · Semana 1: Hello! • Saludos, nombre y país</h1>
+                <p class="subtitle">Lee la situación, toca 🔊 para escuchar y elige qué se dice en inglés. 👋</p>
 
                 <div class="status-bar">
                     <div class="xp">✅ Correctas: <span id="xpValue">0</span></div>
@@ -578,27 +578,6 @@
                 </div>
             </section>
 
-            <!-- ================== AJEDREZ ================== -->
-            <section class="section" id="courseChess">
-                <h1>Ajedrez</h1>
-                <p class="subtitle">Aquí puedes poner tus ejercicios de ajedrez. ♟️</p>
-
-                <div class="card">
-                    <div class="placeholder-title">En construcción</div>
-                    <p class="placeholder-text">¿Quieres que sea “adivina la pieza”, “mate en 1”, o “movimientos legales”?</p>
-                </div>
-            </section>
-
-            <!-- ================== MATEMÁTICAS ================== -->
-            <section class="section" id="courseMath">
-                <h1>Matemáticas</h1>
-                <p class="subtitle">Aquí puedes poner tus ejercicios de matemáticas. ➗</p>
-
-                <div class="card">
-                    <div class="placeholder-title">En construcción</div>
-                    <p class="placeholder-text">¿Quieres sumas/restas, multiplicación, fracciones o problemas?</p>
-                </div>
-            </section>
         </div>
 
         <!-- Sonidos -->
@@ -609,85 +588,72 @@
         <script>
             // ✅ IR A HOME (index.html)
             function goHome() {
-                location.href = "index.html";
+                location.href = "ruta-ingles.html";
             }
         </script>
 
         <script>
-            // ====== NAVEGACIÓN DE CURSOS ======
-            function switchCourse(course) {
-                document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
-                document.getElementById("courseEnglish").classList.toggle("active", course === "english");
-                document.getElementById("courseChess").classList.toggle("active", course === "chess");
-                document.getElementById("courseMath").classList.toggle("active", course === "math");
-
-                document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
-                document.getElementById("tabEnglish").classList.toggle("active", course === "english");
-                document.getElementById("tabChess").classList.toggle("active", course === "chess");
-                document.getElementById("tabMath").classList.toggle("active", course === "math");
-            }
-
             // ====== INGLÉS ======
             const itemsData = [
                 {
-                    emoji: "🛋️", en: "sofa", es: "sofá",
-                    examplesEn: ["This is a sofa.", "I sit on the sofa.", "The sofa is in the living room."],
-                    examplesEs: ["Este es un sofá.", "Yo me siento en el sofá.", "El sofá está en la sala."],
-                    questions: ["What is this?", "What is it?", "What can you see in the living room?"]
+                    emoji: "👋", en: "Hello", es: "Hola",
+                    examplesEn: ["Hello! I am Ana.", "Hello, teacher!", "Hello, Leo! How are you?"],
+                    examplesEs: ["¡Hola! Soy Ana.", "¡Hola, profesora!", "¡Hola, Leo! ¿Cómo estás?"],
+                    questions: ["Saludas a tu amigo. ¿Qué dices?", "Llegas a clase. ¿Cómo saludas?", "¿Cómo se dice «Hola»?"]
                 },
                 {
-                    emoji: "🪑", en: "chair", es: "silla",
-                    examplesEn: ["This is a chair.", "I sit on the chair.", "The chair is next to the sofa."],
-                    examplesEs: ["Esta es una silla.", "Yo me siento en la silla.", "La silla está al lado del sofá."],
-                    questions: ["What is this?", "Is this a chair or a sofa?", "What can you see?"]
+                    emoji: "👋", en: "Goodbye", es: "Adiós",
+                    examplesEn: ["Goodbye, Mom!", "Goodbye! See you tomorrow.", "Bye, bye!"],
+                    examplesEs: ["¡Adiós, mamá!", "¡Adiós! Nos vemos mañana.", "¡Chau, chau!"],
+                    questions: ["Te vas a casa. ¿Qué dices?", "¿Cómo se dice «Adiós»?", "Te despides de tu amigo. ¿Qué dices?"]
                 },
                 {
-                    emoji: "📺", en: "TV", es: "televisión",
-                    examplesEn: ["This is a TV.", "I watch TV in the living room.", "The TV is on the wall."],
-                    examplesEs: ["Esta es una televisión.", "Veo televisión en la sala.", "La televisión está en la pared."],
-                    questions: ["What is this?", "What do you watch?", "Is this a TV?"]
+                    emoji: "🌅", en: "Good morning", es: "Buenos días",
+                    examplesEn: ["Good morning, class!", "Good morning, Grandma!", "Good morning! I am happy."],
+                    examplesEs: ["¡Buenos días, clase!", "¡Buenos días, abuelita!", "¡Buenos días! Estoy feliz."],
+                    questions: ["Es de mañana y llegas al colegio. ¿Qué dices?", "¿Cómo se dice «Buenos días»?", "Saludas a tu abuela en la mañana. ¿Qué dices?"]
                 },
                 {
-                    emoji: "🪟", en: "window", es: "ventana",
-                    examplesEn: ["This is a window.", "I open the window.", "The window is big."],
-                    examplesEs: ["Esta es una ventana.", "Yo abro la ventana.", "La ventana es grande."],
-                    questions: ["What is this?", "What can you open?", "What is in the living room?"]
+                    emoji: "🌙", en: "Good night", es: "Buenas noches",
+                    examplesEn: ["Good night, Dad!", "Good night! Sweet dreams.", "Good night, my friend."],
+                    examplesEs: ["¡Buenas noches, papá!", "¡Buenas noches! Dulces sueños.", "Buenas noches, amigo."],
+                    questions: ["Te vas a dormir. ¿Qué dices?", "¿Cómo se dice «Buenas noches»?", "Es de noche y te despides. ¿Qué dices?"]
                 },
                 {
-                    emoji: "🚪", en: "door", es: "puerta",
-                    examplesEn: ["This is a door.", "I close the door.", "The door is brown."],
-                    examplesEs: ["Esta es una puerta.", "Yo cierro la puerta.", "La puerta es marrón."],
-                    questions: ["What is this?", "What do you close?", "Is this a door?"]
+                    emoji: "❓", en: "What is your name?", es: "¿Cómo te llamas?",
+                    examplesEn: ["Hi! What is your name?", "What is your name? — My name is Leo.", "Hello! What is your name?"],
+                    examplesEs: ["¡Hola! ¿Cómo te llamas?", "¿Cómo te llamas? — Me llamo Leo.", "¡Hola! ¿Cómo te llamas?"],
+                    questions: ["Quieres saber el nombre de un niño. ¿Qué preguntas?", "¿Cómo se dice «¿Cómo te llamas?»?", "Conoces a una niña nueva. ¿Qué le preguntas?"]
                 },
                 {
-                    emoji: "💡", en: "lamp", es: "lámpara",
-                    examplesEn: ["This is a lamp.", "The lamp is on the table.", "The lamp is bright."],
-                    examplesEs: ["Esta es una lámpara.", "La lámpara está sobre la mesa.", "La lámpara es brillante."],
-                    questions: ["What is this?", "What gives light?", "Is this a lamp?"]
+                    emoji: "😊", en: "My name is Ana", es: "Me llamo Ana",
+                    examplesEn: ["Hello! My name is Ana.", "My name is Ana. What is your name?", "Hi, my name is Ana!"],
+                    examplesEs: ["¡Hola! Me llamo Ana.", "Me llamo Ana. ¿Cómo te llamas?", "¡Hola, me llamo Ana!"],
+                    questions: ["Ana dice su nombre. ¿Qué dice?", "¿Cómo se dice «Me llamo Ana»?", "Te preguntan tu nombre y eres Ana. ¿Qué respondes?"]
                 },
                 {
-                    emoji: "🧶", en: "rug", es: "alfombra",
-                    examplesEn: ["This is a rug.", "The rug is on the floor.", "The rug is soft."],
-                    examplesEs: ["Esta es una alfombra.", "La alfombra está en el piso.", "La alfombra es suave."],
-                    questions: ["What is this?", "What is on the floor?", "Is this a rug?"]
+                    emoji: "🙋", en: "I am Leo", es: "Yo soy Leo",
+                    examplesEn: ["Hello! I am Leo.", "I am Leo. I am six.", "Hi! I am Leo, your friend."],
+                    examplesEs: ["¡Hola! Yo soy Leo.", "Yo soy Leo. Tengo seis años.", "¡Hola! Soy Leo, tu amigo."],
+                    questions: ["Leo se presenta. ¿Qué dice?", "¿Cómo se dice «Yo soy Leo»?", "Eres Leo y saludas a la clase. ¿Qué dices?"]
                 },
                 {
-                    emoji: "🖼️", en: "picture", es: "cuadro",
-                    examplesEn: ["This is a picture.", "The picture is on the wall.", "I like this picture."],
-                    examplesEs: ["Este es un cuadro.", "El cuadro está en la pared.", "Me gusta este cuadro."],
-                    questions: ["What is this?", "What is on the wall?", "Is this a picture?"]
+                    emoji: "🌎", en: "Where are you from?", es: "¿De dónde eres?",
+                    examplesEn: ["Where are you from? — I am from Peru.", "Hello! Where are you from?", "Where are you from, Ana?"],
+                    examplesEs: ["¿De dónde eres? — Soy de Perú.", "¡Hola! ¿De dónde eres?", "¿De dónde eres, Ana?"],
+                    questions: ["Quieres saber el país de tu amigo. ¿Qué preguntas?", "¿Cómo se dice «¿De dónde eres?»?", "Conoces a un niño de otro país. ¿Qué le preguntas?"]
                 },
                 {
-                    emoji: "📚", en: "bookshelf", es: "librero",
-                    examplesEn: ["This is a bookshelf.", "The books are on the bookshelf.", "The bookshelf is in the living room."],
-                    examplesEs: ["Este es un librero.", "Los libros están en el librero.", "El librero está en la sala."],
-                    questions: ["What is this?", "Where are the books?", "Is this a bookshelf?"]
+                    emoji: "🇵🇪", en: "I am from Peru", es: "Soy de Perú",
+                    examplesEn: ["I am from Peru.", "Hello! I am Leo. I am from Peru.", "I am from Lima, Peru."],
+                    examplesEs: ["Soy de Perú.", "¡Hola! Soy Leo. Soy de Perú.", "Soy de Lima, Perú."],
+                    questions: ["Te preguntan de dónde eres. ¿Qué respondes?", "¿Cómo se dice «Soy de Perú»?", "Cuentas que vives en Perú. ¿Qué dices?"]
                 },
                 {
-                    emoji: "🎛️", en: "remote control", es: "control remoto",
-                    examplesEn: ["This is a remote control.", "I use the remote control for the TV.", "The remote control is on the sofa."],
-                    examplesEs: ["Este es un control remoto.", "Uso el control remoto para la televisión.", "El control remoto está en el sofá."],
-                    questions: ["What is this?", "What do you use for the TV?", "Is this a remote control?"]
+                    emoji: "🤝", en: "Nice to meet you", es: "Mucho gusto",
+                    examplesEn: ["Nice to meet you, Ana!", "Hello, Leo. Nice to meet you.", "Nice to meet you too!"],
+                    examplesEs: ["¡Mucho gusto, Ana!", "Hola, Leo. Mucho gusto.", "¡Mucho gusto también!"],
+                    questions: ["Conoces a alguien nuevo. ¿Qué dices?", "¿Cómo se dice «Mucho gusto»?", "Te presentan a una amiga. ¿Qué le dices?"]
                 }
             ];
 
@@ -741,7 +707,9 @@
                 currentItem = lesson.data;
 
                 document.getElementById("emoji").textContent = lesson.emoji;
-                document.getElementById("wordEn").textContent = lesson.word;
+                document.getElementById("wordEn").textContent = "❓ ❓ ❓";
+                document.getElementById("wordEn").dataset.answer = lesson.word;
+                document.getElementById("exampleEn").parentElement.style.visibility = "hidden";
                 document.getElementById("wordEs").textContent = lesson.translation;
                 document.getElementById("exampleEn").textContent = lesson.exampleEn;
                 document.getElementById("exampleEs").textContent = lesson.exampleEs;
@@ -799,6 +767,8 @@
 
                 if (answer === currentItem.en) {
                     answeredCorrectly = true;
+                    document.getElementById("wordEn").textContent = currentItem.en;
+                    document.getElementById("exampleEn").parentElement.style.visibility = "visible";
 
                     correctCount++;
                     correctSpan.textContent = correctCount;
@@ -823,6 +793,7 @@
                     if (correctCount > 0 && correctCount % 5 === 0) playSound(soundLevelup);
 
                     if (progress >= maxProgress) {
+                        try { localStorage.setItem("mk_topic_" + location.pathname.split("/").pop().replace(/\.html$/i, "") + "_complete", "true"); } catch (e) { }
                         feedbackEl.textContent = "🎉 Lesson complete! Keep practicing.";
                         feedbackEl.classList.add("good");
                         playSound(soundLevelup);
@@ -855,7 +826,7 @@
             function nextLesson() { renderLesson(); }
 
             function speakWord() {
-                const word = document.getElementById("wordEn").textContent;
+                const word = document.getElementById("wordEn").dataset.answer || document.getElementById("wordEn").textContent;
                 if (!("speechSynthesis" in window)) return;
                 const utter = new SpeechSynthesisUtterance(word);
                 utter.lang = "en-US";
@@ -886,8 +857,8 @@
         <script>
             function shareApp() {
                 const shareData = {
-                    title: "Mini Cursos",
-                    text: "📚 Aprende inglés, ajedrez y matemáticas con esta app educativa",
+                    title: "MK • Inglés",
+                    text: "📚 Aprende inglés jugando con MK",
                     url: window.location.href
                 };
 
