@@ -327,6 +327,23 @@
             readScene(btn.closest(".scene-card"));
         }, true);
 
+        // Al llegar a la última escena, el cuento queda marcado como leído
+        // (la página de Cuentos lo muestra con ✅)
+        function markRead() {
+            var cards = document.querySelectorAll(".scene-card");
+            if (!cards.length || !cards[cards.length - 1].classList.contains("active")) return;
+            var m = location.pathname.match(/cuento(\d+)\.html/i);
+            if (!m) return;
+            try {
+                var key = "mk_cuentos_leidos_v1";
+                var list = JSON.parse(localStorage.getItem(key) || "[]");
+                var n = Number(m[1]);
+                if (list.indexOf(n) < 0) { list.push(n); localStorage.setItem(key, JSON.stringify(list)); }
+            } catch (e) { }
+        }
+        var nb = document.getElementById("nextBtn");
+        if (nb) nb.addEventListener("click", function () { setTimeout(markRead, 0); });
+
         // Al cambiar de escena se detiene la voz
         ["nextBtn", "prevBtn"].forEach(function (id) {
             var b = document.getElementById(id);
