@@ -17,7 +17,7 @@
     // En archivos abiertos sin servidor (file://) no se puede comprobar.
     if (location.protocol === "file:") return;
 
-    var CACHE_KEY = "mvg-enlaces-revisados-v1";
+    var CACHE_KEY = "mvg-enlaces-revisados-v2";   // v2: solo se recuerdan las páginas que existen
     var CACHE_MINUTES = 30;
     var CARD_SELECTOR = "article, li, .tile, .card, .topic, .topic-card, .lesson, .lesson-card, .course-card, .item";
 
@@ -47,11 +47,13 @@
     function exists(target) {
         if (target in cache) return Promise.resolve(cache[target]);
         if (pending[target]) return pending[target];
-        pending[target] = fetch(target, { method: "HEAD", cache: "no-cache" })
+        pending[target] = fetch(target + "?v=" + Date.now(), { method: "HEAD", cache: "no-store" })
             .then(function (r) { return r.ok; })
             .catch(function () { return true; }) // sin conexión: no marcar
             .then(function (ok) {
-                cache[target] = ok;
+                // Solo se recuerdan las páginas que existen: así un cuento o tema
+                // recién subido aparece disponible de inmediato.
+                if (ok) cache[target] = true;
                 delete pending[target];
                 saveCache();
                 return ok;
