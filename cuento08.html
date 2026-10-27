@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Marie Kids • El Gorila y el Pez de Cristal</title>
+
+        <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+
+
+        <!-- PWA -->
+        <meta name="apple-mobile-web-app-title" content="MK" />
+        <link rel="manifest" href="manifest.json">
+        <meta name="theme-color" content="#1976d2">
+
+        <style>
+            :root {
+                --bg1: #dbeafe;
+                --bg2: #e0f2fe;
+                --card: #ffffff;
+                --accent: #1976d2;
+                --text: #0f172a;
+                --muted: #475569;
+                --radius: 22px;
+            }
+
+            * {
+                box-sizing: border-box;
+                font-family: "Comic Neue", "Segoe UI", system-ui, sans-serif;
+            }
+
+            body {
+                margin: 0;
+                min-height: 100vh;
+                background: linear-gradient(145deg, var(--bg1), var(--bg2));
+                padding: 18px;
+                display: flex;
+                justify-content: center;
+            }
+
+            .app {
+                width: 100%;
+                max-width: 560px;
+            }
+
+            header {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 14px 18px;
+                background: #fff;
+                border-radius: var(--radius);
+                box-shadow: 0 12px 30px rgba(0, 0, 0, .12);
+                margin-bottom: 18px;
+            }
+
+            .logo {
+                font-size: 28px;
+            }
+
+            .brand h1 {
+                margin: 0;
+                font-size: 18px;
+                color: var(--accent);
+            }
+
+            .brand span {
+                font-size: 13px;
+                color: var(--muted);
+            }
+
+            .backBtn {
+                margin-left: auto;
+                background: #f59e0b;
+                color: #fff;
+                text-decoration: none;
+                padding: 8px 16px;
+                font-size: 14px;
+                border-radius: 999px;
+                font-weight: 600;
+                box-shadow: 0 6px 14px rgba(245, 158, 11, .35);
+            }
+
+            .scene-card {
+                background: var(--card);
+                border-radius: var(--radius);
+                padding: 10px;
+                box-shadow: 0 16px 40px rgba(0, 0, 0, .14);
+                display: none;
+                animation: fade .4s ease;
+            }
+
+            .scene-card.active {
+                display: block;
+            }
+
+            @keyframes fade {
+                from {
+                    opacity: 0;
+                    transform: translateY(12px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .scene-card h2 {
+                text-align: center;
+                margin-bottom: 12px;
+                font-size: 28px;
+            }
+
+            .scene-card p {
+                font-size: 20px;
+                line-height: 1.9;
+                margin: 10px 0;
+                color: var(--text);
+            }
+
+            .dialogue {
+                margin-left: 12px;
+                padding-left: 12px;
+                border-left: 4px solid #bfdbfe;
+                font-style: italic;
+                color: #1e3a8a;
+                font-size: 20px;
+            }
+
+            .scene-img {
+                width: 100%;
+                max-height: 260px;
+                object-fit: contain;
+                border-radius: 16px;
+                margin-bottom: 14px;
+                background: #f8fafc;
+            }
+
+            .actions {
+                margin-top: 18px;
+                display: flex;
+                gap: 12px;
+                justify-content: center;
+            }
+
+            button {
+                background: var(--accent);
+                color: #fff;
+                border: none;
+                padding: 16px 26px;
+                font-size: 18px;
+                border-radius: 999px;
+                cursor: pointer;
+                box-shadow: 0 8px 20px rgba(25, 118, 210, .35);
+            }
+
+            button.secondary {
+                background: #94a3b8;
+                box-shadow: none;
+            }
+
+            button:disabled {
+                opacity: .4;
+                cursor: not-allowed;
+            }
+
+            .readBtn {
+                background: #22c55e;
+                padding: 10px 18px;
+                font-size: 16px;
+                border-radius: 999px;
+                margin-bottom: 8px;
+                box-shadow: 0 6px 14px rgba(34, 197, 94, .35);
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="app">
+
+            <header>
+                <div class="logo">🦍</div>
+                <div class="brand">
+                    <h1>Marie Kids</h1>
+                    <span>Cuentos con valores</span>
+                </div>
+                <a href="ruta-cuentos.html" class="backBtn">📚 Volver</a>
+            </header>
+
+            <!-- ESCENA 1 -->
+            <div class="scene-card active">
+                <h2>🦍 El Gorila y el Pez de Cristal</h2>
+                <img src="Cuentos/c08-1.svg" class="scene-img" alt="Un gorila conoce a un pez transparente que vive en un estanque con un castillo">
+                <button class="readBtn">🔊 Leer</button>
+                <p>
+                    Bruno era un gorila grande y juguetón. Un día conoció a Brillo, un pececito de cristal tan transparente que se veía a través de él. Brillo vivía en un estanque, junto a su castillo de coral.
+                </p>
+                <p class="dialogue">—¡Hola! Soy Brillo. ¿Quieres ser mi amigo? —dijo el pez.</p>
+            </div>
+
+            <!-- ESCENA 2 -->
+            <div class="scene-card">
+                <img src="Cuentos/c08-2.svg" class="scene-img" alt="La pelota del gorila cae al estanque y rompe el castillo de coral">
+                <button class="readBtn">🔊 Leer</button>
+                <p>
+                    Se hicieron amigos y jugaban todos los días. Pero una tarde, Bruno lanzó su pelota muy fuerte. ¡Plaf! Cayó en el estanque y rompió el castillo de Brillo.
+                </p>
+                <p class="dialogue">—¡Uy! —dijo Bruno, y se escondió detrás de un árbol.</p>
+            </div>
+
+            <!-- ESCENA 3 -->
+            <div class="scene-card">
+                <img src="Cuentos/c08-3.svg" class="scene-img" alt="El pez está triste por su castillo y el gorila dice que fue el viento">
+                <button class="readBtn">🔊 Leer</button>
+                <p>
+                    Brillo encontró su castillo roto y se puso muy triste. Le preguntó a Bruno si sabía qué había pasado.
+                </p>
+                <p class="dialogue">—¿Quién rompió mi castillo? —preguntó Brillo.</p>
+                <p class="dialogue">—Fue… el viento —dijo Bruno, sin mirarlo.</p>
+            </div>
+
+            <!-- ESCENA 4 -->
+            <div class="scene-card">
+                <img src="Cuentos/c08-4.svg" class="scene-img" alt="De noche, el gorila no puede dormir porque se siente mal">
+                <button class="readBtn">🔊 Leer</button>
+                <p>
+                    Esa noche, Bruno no podía dormir. Sentía el corazón pesado, como si llevara una piedra adentro. Sabía que no había dicho la verdad.
+                </p>
+                <p class="dialogue">—Tengo el corazón pesado… —murmuró Bruno.</p>
+            </div>
+
+            <!-- ESCENA 5 -->
+            <div class="scene-card">
+                <img src="Cuentos/c08-5.svg" class="scene-img" alt="Por la mañana, el gorila le dice la verdad al pez">
+                <button class="readBtn">🔊 Leer</button>
+                <p>
+                    Al amanecer, Bruno fue al estanque. Respiró hondo y le contó toda la verdad a Brillo.
+                </p>
+                <p class="dialogue">—Fui yo. Mi pelota rompió tu castillo. Perdóname por mentirte.</p>
+            </div>
+
+            <!-- ESCENA 6 -->
+            <div class="scene-card">
+                <img src="Cuentos/c08-6.svg" class="scene-img" alt="El gorila y el pez reconstruyen juntos el castillo">
+                <button class="readBtn">🔊 Leer</button>
+                <p>
+                    Brillo lo perdonó y juntos construyeron un castillo nuevo, todavía más bonito. Su amistad se volvió tan clara y fuerte como el cristal.
+                </p>
+                <p class="dialogue">—Gracias por decirme la verdad, Bruno. La verdad nos une más —dijo Brillo.</p>
+            </div>
+
+            <!-- FINAL -->
+            <div class="scene-card">
+                <h3>✨ Mensaje</h3>
+                <button class="readBtn">🔊 Leer</button>
+                <p class="dialogue">
+                    Decir la verdad, aunque nos equivoquemos, es el mejor camino. La honestidad hace que la amistad sea fuerte y que podamos confiar unos en otros.
+                </p>
+            </div>
+
+            <div class="actions">
+                <button id="prevBtn" class="secondary" disabled>⬅ Anterior</button>
+                <button id="nextBtn">Siguiente ➡</button>
+            </div>
+
+        </div>
+
+        <!-- NAV -->
+        <script>
+            const scenes = document.querySelectorAll(".scene-card");
+            const nextBtn = document.getElementById("nextBtn");
+            const prevBtn = document.getElementById("prevBtn");
+            let index = 0;
+
+            function updateView() {
+                scenes.forEach(s => s.classList.remove("active"));
+                scenes[index].classList.add("active");
+
+                prevBtn.disabled = index === 0;
+                nextBtn.textContent = index === scenes.length - 1 ? "Finalizar ✨" : "Siguiente ➡";
+            }
+
+            nextBtn.addEventListener("click", () => {
+                if (index < scenes.length - 1) {
+                    index++;
+                    updateView();
+                } else {
+                    nextBtn.style.display = "none";
+                }
+            });
+
+            prevBtn.addEventListener("click", () => {
+                if (index > 0) {
+                    index--;
+                    updateView();
+                }
+            });
+        </script>
+
+        <!-- LECTURA -->
+        <script>
+            const synth = window.speechSynthesis;
+            let voices = [];
+
+            function loadVoices() { voices = synth.getVoices(); }
+            loadVoices();
+            if (speechSynthesis.onvoiceschanged !== undefined) {
+                speechSynthesis.onvoiceschanged = loadVoices;
+            }
+
+            function getSpanish() {
+                return voices.find(v => v.lang.startsWith("es")) || voices[0];
+            }
+
+            document.querySelectorAll(".readBtn").forEach((btn) => {
+                btn.addEventListener("click", () => {
+                    synth.cancel();
+                    const card = btn.closest(".scene-card");
+                    const text = [...card.querySelectorAll("p, .dialogue")]
+                        .map(el => el.innerText).join(" ");
+
+                    const utter = new SpeechSynthesisUtterance(text);
+                    utter.voice = getSpanish();
+                    utter.lang = "es-PE";
+                    utter.rate = 0.9;
+                    utter.pitch = 1.1;
+
+                    synth.speak(utter);
+                });
+            });
+        </script>
+
+        <script>
+            // Registrar Service Worker (PWA)
+            if ("serviceWorker" in navigator) {
+                window.addEventListener("load", () => {
+                    navigator.serviceWorker.register("./service-worker.js").catch(() => { });
+                });
+            }
+        </script>
+
+        <script src="assets/lectura.js" defer></script>
+</body>
+
+</html>

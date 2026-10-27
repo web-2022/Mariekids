@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Marie Kids • El Peón perdido</title>
+
+        <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+
+
+        <!-- PWA -->
+        <meta name="apple-mobile-web-app-title" content="MK" />
+        <link rel="manifest" href="manifest.json">
+        <meta name="theme-color" content="#1976d2">
+
+        <style>
+            :root {
+                --bg1: #dbeafe;
+                --bg2: #e0f2fe;
+                --card: #ffffff;
+                --accent: #1976d2;
+                --text: #0f172a;
+                --muted: #475569;
+                --radius: 22px;
+            }
+
+            * {
+                box-sizing: border-box;
+                font-family: "Comic Neue", "Segoe UI", system-ui, sans-serif;
+            }
+
+            body {
+                margin: 0;
+                min-height: 100vh;
+                background: linear-gradient(145deg, var(--bg1), var(--bg2));
+                padding: 18px;
+                display: flex;
+                justify-content: center;
+            }
+
+            .app {
+                width: 100%;
+                max-width: 560px;
+            }
+
+            header {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 14px 18px;
+                background: #fff;
+                border-radius: var(--radius);
+                box-shadow: 0 12px 30px rgba(0, 0, 0, .12);
+                margin-bottom: 18px;
+            }
+
+            .logo {
+                font-size: 28px;
+            }
+
+            .brand h1 {
+                margin: 0;
+                font-size: 18px;
+                color: var(--accent);
+            }
+
+            .brand span {
+                font-size: 13px;
+                color: var(--muted);
+            }
+
+            .backBtn {
+                margin-left: auto;
+                background: #f59e0b;
+                color: #fff;
+                text-decoration: none;
+                padding: 8px 16px;
+                font-size: 14px;
+                border-radius: 999px;
+                font-weight: 600;
+                box-shadow: 0 6px 14px rgba(245, 158, 11, .35);
+            }
+
+            .scene-card {
+                background: var(--card);
+                border-radius: var(--radius);
+                padding: 10px;
+                box-shadow: 0 16px 40px rgba(0, 0, 0, .14);
+                display: none;
+                animation: fade .4s ease;
+            }
+
+            .scene-card.active {
+                display: block;
+            }
+
+            @keyframes fade {
+                from {
+                    opacity: 0;
+                    transform: translateY(12px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .scene-card h2 {
+                text-align: center;
+                margin-bottom: 12px;
+                font-size: 28px;
+            }
+
+            .scene-card p {
+                font-size: 20px;
+                line-height: 1.9;
+                margin: 10px 0;
+                color: var(--text);
+            }
+
+            .dialogue {
+                margin-left: 12px;
+                padding-left: 12px;
+                border-left: 4px solid #bfdbfe;
+                font-style: italic;
+                color: #1e3a8a;
+                font-size: 20px;
+            }
+
+            .scene-img {
+                width: 100%;
+                max-height: 260px;
+                object-fit: contain;
+                border-radius: 16px;
+                margin-bottom: 14px;
+                background: #f8fafc;
+            }
+
+            .actions {
+                margin-top: 18px;
+                display: flex;
+                gap: 12px;
+                justify-content: center;
+            }
+
+            button {
+                background: var(--accent);
+                color: #fff;
+                border: none;
+                padding: 16px 26px;
+                font-size: 18px;
+                border-radius: 999px;
+                cursor: pointer;
+                box-shadow: 0 8px 20px rgba(25, 118, 210, .35);
+            }
+
+            button.secondary {
+                background: #94a3b8;
+                box-shadow: none;
+            }
+
+            button:disabled {
+                opacity: .4;
+                cursor: not-allowed;
+            }
+
+            .readBtn {
+                background: #22c55e;
+                padding: 10px 18px;
+                font-size: 16px;
+                border-radius: 999px;
+                margin-bottom: 8px;
+                box-shadow: 0 6px 14px rgba(34, 197, 94, .35);
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="app">
+
+            <header>
+                <div class="logo">♟️</div>
+                <div class="brand">
+                    <h1>Marie Kids</h1>
+                    <span>Cuentos de ajedrez</span>
+                </div>
+                <a href="ruta-cuentos.html" class="backBtn">📚 Volver</a>
+            </header>
+
+            <!-- ESCENA 1 -->
+            <div class="scene-card active">
+                <h2>♟️ El Peón perdido</h2>
+                <img src="Cuentos/c26-1.svg" class="scene-img" alt="Los peones se burlan del peón más pequeño">
+                <button class="readBtn">🔊 Leer</button>
+                <p>
+                    En la caja de ajedrez vivía Pepito, el peón más pequeño de todos. Los otros peones a veces se burlaban de él por su tamaño.
+                </p>
+                <p class="dialogue">—¡Eres el más chiquito, Pepito! —le decían riendo.</p>
+            </div>
+
+            <!-- ESCENA 2 -->
+            <div class="scene-card">
+                <img src="Cuentos/c26-2.svg" class="scene-img" alt="El peón pequeño rueda fuera del tablero y se esconde debajo del sofá">
+                <button class="readBtn">🔊 Leer</button>
+                <p>
+                    Pepito se sintió tan triste que se fue rodando del tablero, cayó de la mesa y se escondió debajo del sofá.
+                </p>
+                <p class="dialogue">—Nadie me va a extrañar… —pensó Pepito.</p>
+            </div>
+
+            <!-- ESCENA 3 -->
+            <div class="scene-card">
+                <img src="Cuentos/c26-3.svg" class="scene-img" alt="El rey nota que falta un peón; los demás no le dan importancia">
+                <button class="readBtn">🔊 Leer</button>
+                <p>
+                    Al empezar la partida, el rey contó las piezas y notó que faltaba alguien. Los peones se encogieron de hombros, pero el rey se preocupó.
+                </p>
+                <p class="dialogue">—Falta Pepito. ¡Hay que buscarlo! —dijo el rey.</p>
+                <p class="dialogue">—Bah, es solo un peón chiquito —respondió un peón.</p>
+            </div>
+
+            <!-- ESCENA 4 -->
+            <div class="scene-card">
+                <img src="Cuentos/c26-4.svg" class="scene-img" alt="El rey sale primero a buscar al peón y los demás lo siguen">
+                <button class="readBtn">🔊 Leer</button>
+                <p>
+                    El rey no discutió: bajó del tablero y fue el primero en buscar. Al ver su ejemplo, la reina y los peones lo siguieron.
+                </p>
+                <p class="dialogue">—Aquí todos somos importantes, grandes o pequeños —dijo el rey.</p>
+            </div>
+
+            <!-- ESCENA 5 -->
+            <div class="scene-card">
+                <img src="Cuentos/c26-5.svg" class="scene-img" alt="Encuentran al peón debajo del sofá; el rey lo consuela y los peones piden perdón">
+                <button class="readBtn">🔊 Leer</button>
+                <p>
+                    ¡Lo encontraron debajo del sofá! El rey se agachó y le habló con cariño. Los otros peones, siguiendo su ejemplo, le pidieron perdón.
+                </p>
+                <p class="dialogue">—Te entendemos, Pepito. Sentirse pequeño duele —dijo el rey.</p>
+                <p class="dialogue">—Perdón por burlarnos —dijeron los peones.</p>
+            </div>
+
+            <!-- ESCENA 6 -->
+            <div class="scene-card">
+                <img src="Cuentos/c26-6.svg" class="scene-img" alt="Todas las piezas vuelven felices al tablero con el peón pequeño">
+                <button class="readBtn">🔊 Leer</button>
+                <p>
+                    Todos volvieron juntos al tablero. Desde ese día, nadie se burló de Pepito, y él jugó feliz, sabiendo que era parte del equipo.
+                </p>
+                <p class="dialogue">—¡Ya estamos todos! —celebró Pepito.</p>
+            </div>
+
+            <!-- FINAL -->
+            <div class="scene-card">
+                <h3>✨ Mensaje</h3>
+                <button class="readBtn">🔊 Leer</button>
+                <p class="dialogue">
+                    Comprender cómo se sienten los demás es un gran regalo. Cuando damos el ejemplo con amabilidad, los demás aprenden a hacer lo mismo.
+                </p>
+            </div>
+
+            <div class="actions">
+                <button id="prevBtn" class="secondary" disabled>⬅ Anterior</button>
+                <button id="nextBtn">Siguiente ➡</button>
+            </div>
+
+        </div>
+
+        <!-- NAV -->
+        <script>
+            const scenes = document.querySelectorAll(".scene-card");
+            const nextBtn = document.getElementById("nextBtn");
+            const prevBtn = document.getElementById("prevBtn");
+            let index = 0;
+
+            function updateView() {
+                scenes.forEach(s => s.classList.remove("active"));
+                scenes[index].classList.add("active");
+
+                prevBtn.disabled = index === 0;
+                nextBtn.textContent = index === scenes.length - 1 ? "Finalizar ✨" : "Siguiente ➡";
+            }
+
+            nextBtn.addEventListener("click", () => {
+                if (index < scenes.length - 1) {
+                    index++;
+                    updateView();
+                } else {
+                    nextBtn.style.display = "none";
+                }
+            });
+
+            prevBtn.addEventListener("click", () => {
+                if (index > 0) {
+                    index--;
+                    updateView();
+                }
+            });
+        </script>
+
+        <!-- LECTURA -->
+        <script>
+            const synth = window.speechSynthesis;
+            let voices = [];
+
+            function loadVoices() { voices = synth.getVoices(); }
+            loadVoices();
+            if (speechSynthesis.onvoiceschanged !== undefined) {
+                speechSynthesis.onvoiceschanged = loadVoices;
+            }
+
+            function getSpanish() {
+                return voices.find(v => v.lang.startsWith("es")) || voices[0];
+            }
+
+            document.querySelectorAll(".readBtn").forEach((btn) => {
+                btn.addEventListener("click", () => {
+                    synth.cancel();
+                    const card = btn.closest(".scene-card");
+                    const text = [...card.querySelectorAll("p, .dialogue")]
+                        .map(el => el.innerText).join(" ");
+
+                    const utter = new SpeechSynthesisUtterance(text);
+                    utter.voice = getSpanish();
+                    utter.lang = "es-PE";
+                    utter.rate = 0.9;
+                    utter.pitch = 1.1;
+
+                    synth.speak(utter);
+                });
+            });
+        </script>
+
+        <script>
+            // Registrar Service Worker (PWA)
+            if ("serviceWorker" in navigator) {
+                window.addEventListener("load", () => {
+                    navigator.serviceWorker.register("./service-worker.js").catch(() => { });
+                });
+            }
+        </script>
+
+        <script src="assets/lectura.js" defer></script>
+</body>
+
+</html>

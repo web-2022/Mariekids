@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Marie Kids • El Caballo que Quería Ser Reina</title>
+
+        <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+
+
+        <!-- PWA -->
+        <meta name="apple-mobile-web-app-title" content="MK" />
+        <link rel="manifest" href="manifest.json">
+        <meta name="theme-color" content="#1976d2">
+
+        <style>
+            :root {
+                --bg1: #dbeafe;
+                --bg2: #e0f2fe;
+                --card: #ffffff;
+                --accent: #1976d2;
+                --text: #0f172a;
+                --muted: #475569;
+                --radius: 22px;
+            }
+
+            * {
+                box-sizing: border-box;
+                font-family: "Comic Neue", "Segoe UI", system-ui, sans-serif;
+            }
+
+            body {
+                margin: 0;
+                min-height: 100vh;
+                background: linear-gradient(145deg, var(--bg1), var(--bg2));
+                padding: 18px;
+                display: flex;
+                justify-content: center;
+            }
+
+            .app {
+                width: 100%;
+                max-width: 560px;
+            }
+
+            header {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 14px 18px;
+                background: #fff;
+                border-radius: var(--radius);
+                box-shadow: 0 12px 30px rgba(0, 0, 0, .12);
+                margin-bottom: 18px;
+            }
+
+            .logo {
+                font-size: 28px;
+            }
+
+            .brand h1 {
+                margin: 0;
+                font-size: 18px;
+                color: var(--accent);
+            }
+
+            .brand span {
+                font-size: 13px;
+                color: var(--muted);
+            }
+
+            .backBtn {
+                margin-left: auto;
+                background: #f59e0b;
+                color: #fff;
+                text-decoration: none;
+                padding: 8px 16px;
+                font-size: 14px;
+                border-radius: 999px;
+                font-weight: 600;
+                box-shadow: 0 6px 14px rgba(245, 158, 11, .35);
+            }
+
+            .scene-card {
+                background: var(--card);
+                border-radius: var(--radius);
+                padding: 10px;
+                box-shadow: 0 16px 40px rgba(0, 0, 0, .14);
+                display: none;
+                animation: fade .4s ease;
+            }
+
+            .scene-card.active {
+                display: block;
+            }
+
+            @keyframes fade {
+                from {
+                    opacity: 0;
+                    transform: translateY(12px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .scene-card h2 {
+                text-align: center;
+                margin-bottom: 12px;
+                font-size: 28px;
+            }
+
+            .scene-card p {
+                font-size: 20px;
+                line-height: 1.9;
+                margin: 10px 0;
+                color: var(--text);
+            }
+
+            .dialogue {
+                margin-left: 12px;
+                padding-left: 12px;
+                border-left: 4px solid #bfdbfe;
+                font-style: italic;
+                color: #1e3a8a;
+                font-size: 20px;
+            }
+
+            .scene-img {
+                width: 100%;
+                max-height: 260px;
+                object-fit: contain;
+                border-radius: 16px;
+                margin-bottom: 14px;
+                background: #f8fafc;
+            }
+
+            .actions {
+                margin-top: 18px;
+                display: flex;
+                gap: 12px;
+                justify-content: center;
+            }
+
+            button {
+                background: var(--accent);
+                color: #fff;
+                border: none;
+                padding: 16px 26px;
+                font-size: 18px;
+                border-radius: 999px;
+                cursor: pointer;
+                box-shadow: 0 8px 20px rgba(25, 118, 210, .35);
+            }
+
+            button.secondary {
+                background: #94a3b8;
+                box-shadow: none;
+            }
+
+            button:disabled {
+                opacity: .4;
+                cursor: not-allowed;
+            }
+
+            .readBtn {
+                background: #22c55e;
+                padding: 10px 18px;
+                font-size: 16px;
+                border-radius: 999px;
+                margin-bottom: 8px;
+                box-shadow: 0 6px 14px rgba(34, 197, 94, .35);
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="app">
+
+            <header>
+                <div class="logo">♞</div>
+                <div class="brand">
+                    <h1>Marie Kids</h1>
+                    <span>Cuentos con valores</span>
+                </div>
+                <a href="ruta-cuentos.html" class="backBtn">📚 Volver</a>
+            </header>
+
+            <!-- ESCENA 1 -->
+            <div class="scene-card active">
+                <h2>♞ El Caballo que Quería Ser Reina</h2>
+                <img src="Cuentos/c12-1.svg" class="scene-img" alt="Un caballito de ajedrez mira con admiración a la reina">
+                <button class="readBtn">🔊 Leer</button>
+                <p>
+                    En un tablero de ajedrez vivía Saltarín, un caballito blanco. Admiraba mucho a la reina, porque podía moverse en línea recta por todo el tablero.
+                </p>
+                <p class="dialogue">—¡Quiero moverme como la reina! —suspiró Saltarín.</p>
+            </div>
+
+            <!-- ESCENA 2 -->
+            <div class="scene-card">
+                <img src="Cuentos/c12-2.svg" class="scene-img" alt="El caballito con una corona de papel intenta moverse en línea recta y se tropieza">
+                <button class="readBtn">🔊 Leer</button>
+                <p>
+                    Saltarín se hizo una corona de papel y trató de moverse en línea recta, como la reina. Pero sus patas no estaban hechas para eso, ¡y se tropezó!
+                </p>
+                <p class="dialogue">—¡Ay! No me sale —dijo, sobándose la cabeza.</p>
+            </div>
+
+            <!-- ESCENA 3 -->
+            <div class="scene-card">
+                <img src="Cuentos/c12-3.svg" class="scene-img" alt="El caballito está triste y los peones lo miran preocupados">
+                <button class="readBtn">🔊 Leer</button>
+                <p>
+                    Saltarín se sentó en una esquina del tablero, muy triste. Pensaba que su forma de moverse, saltando en forma de L, no servía para nada.
+                </p>
+                <p class="dialogue">—Nunca seré como ella… —dijo con la cabeza baja.</p>
+            </div>
+
+            <!-- ESCENA 4 -->
+            <div class="scene-card">
+                <img src="Cuentos/c12-4.svg" class="scene-img" alt="La reina queda atrapada detrás de una pared de peones negros">
+                <button class="readBtn">🔊 Leer</button>
+                <p>
+                    Un día, durante una partida, la reina quedó atrapada detrás de una pared de peones negros. Ninguna pieza podía pasar para ayudarla.
+                </p>
+                <p class="dialogue">—¡Ayuda! ¡Estoy atrapada! —gritó la reina.</p>
+            </div>
+
+            <!-- ESCENA 5 -->
+            <div class="scene-card">
+                <img src="Cuentos/c12-5.svg" class="scene-img" alt="El caballito salta por encima de los peones para ayudar a la reina">
+                <button class="readBtn">🔊 Leer</button>
+                <p>
+                    Entonces Saltarín recordó algo: ¡él era la única pieza que podía saltar por encima de las demás! Tomó impulso y dio su famoso salto en L.
+                </p>
+                <p class="dialogue">—¡Mi salto puede llegar donde nadie llega! —gritó feliz.</p>
+            </div>
+
+            <!-- ESCENA 6 -->
+            <div class="scene-card">
+                <img src="Cuentos/c12-6.svg" class="scene-img" alt="La reina le agradece al caballito, que está orgulloso de sí mismo">
+                <button class="readBtn">🔊 Leer</button>
+                <p>
+                    La reina quedó libre y le dio las gracias. Saltarín tiró su corona de papel: ya no quería ser otra pieza.
+                </p>
+                <p class="dialogue">—Tu salto es único, Saltarín —le dijo la reina.</p>
+                <p class="dialogue">—Ahora lo sé. ¡Me gusta ser como soy!</p>
+            </div>
+
+            <!-- FINAL -->
+            <div class="scene-card">
+                <h3>✨ Mensaje</h3>
+                <button class="readBtn">🔊 Leer</button>
+                <p class="dialogue">
+                    Cada uno tiene algo especial. No necesitamos ser como los demás: cuando creemos en nosotros mismos, descubrimos lo que solo nosotros podemos hacer.
+                </p>
+            </div>
+
+            <div class="actions">
+                <button id="prevBtn" class="secondary" disabled>⬅ Anterior</button>
+                <button id="nextBtn">Siguiente ➡</button>
+            </div>
+
+        </div>
+
+        <!-- NAV -->
+        <script>
+            const scenes = document.querySelectorAll(".scene-card");
+            const nextBtn = document.getElementById("nextBtn");
+            const prevBtn = document.getElementById("prevBtn");
+            let index = 0;
+
+            function updateView() {
+                scenes.forEach(s => s.classList.remove("active"));
+                scenes[index].classList.add("active");
+
+                prevBtn.disabled = index === 0;
+                nextBtn.textContent = index === scenes.length - 1 ? "Finalizar ✨" : "Siguiente ➡";
+            }
+
+            nextBtn.addEventListener("click", () => {
+                if (index < scenes.length - 1) {
+                    index++;
+                    updateView();
+                } else {
+                    nextBtn.style.display = "none";
+                }
+            });
+
+            prevBtn.addEventListener("click", () => {
+                if (index > 0) {
+                    index--;
+                    updateView();
+                }
+            });
+        </script>
+
+        <!-- LECTURA -->
+        <script>
+            const synth = window.speechSynthesis;
+            let voices = [];
+
+            function loadVoices() { voices = synth.getVoices(); }
+            loadVoices();
+            if (speechSynthesis.onvoiceschanged !== undefined) {
+                speechSynthesis.onvoiceschanged = loadVoices;
+            }
+
+            function getSpanish() {
+                return voices.find(v => v.lang.startsWith("es")) || voices[0];
+            }
+
+            document.querySelectorAll(".readBtn").forEach((btn) => {
+                btn.addEventListener("click", () => {
+                    synth.cancel();
+                    const card = btn.closest(".scene-card");
+                    const text = [...card.querySelectorAll("p, .dialogue")]
+                        .map(el => el.innerText).join(" ");
+
+                    const utter = new SpeechSynthesisUtterance(text);
+                    utter.voice = getSpanish();
+                    utter.lang = "es-PE";
+                    utter.rate = 0.9;
+                    utter.pitch = 1.1;
+
+                    synth.speak(utter);
+                });
+            });
+        </script>
+
+        <script>
+            // Registrar Service Worker (PWA)
+            if ("serviceWorker" in navigator) {
+                window.addEventListener("load", () => {
+                    navigator.serviceWorker.register("./service-worker.js").catch(() => { });
+                });
+            }
+        </script>
+
+        <script src="assets/lectura.js" defer></script>
+</body>
+
+</html>
