@@ -740,7 +740,6 @@
             box-shadow: 0 5px 0 #ccddec;
         }
 
-        .tab[data-level="todos"] { --c: var(--todos); --c-2: var(--todos-2); --c-shadow: var(--todos-shadow); }
         .tab[data-level="inicial"] { --c-2: var(--inicial-2); --c-shadow: var(--inicial-shadow); }
         .tab[data-level="primaria"] { --c-2: var(--primaria-2); --c-shadow: var(--primaria-shadow); }
         .tab[data-level="secundaria"] { --c-2: var(--secundaria-2); --c-shadow: var(--secundaria-shadow); }
@@ -1110,14 +1109,11 @@
                 font-size: 14px;
             }
 
-            /* Pestañas en una sola fila deslizable */
+            /* Las tres pestañas ocupan todo el ancho, en una sola fila */
             .intro .tabs {
-                width: calc(100% + 24px);
-                margin: 0 -12px;
-                padding: 2px 12px 8px;
-                justify-content: flex-start;
-                overflow-x: auto;
-                scrollbar-width: none;
+                width: 100%;
+                gap: 8px;
+                padding-bottom: 6px;
             }
 
             .intro .tabs::-webkit-scrollbar {
@@ -1125,10 +1121,13 @@
             }
 
             .tab {
-                flex: 0 0 auto;
-                min-height: 44px;
-                padding: 5px 13px;
-                font-size: 16px;
+                flex: 1 1 0;
+                justify-content: center;
+                min-width: 0;
+                min-height: 46px;
+                padding: 5px 6px;
+                gap: 4px;
+                font-size: 15px;
             }
 
             .level-title {
@@ -1147,6 +1146,16 @@
 
             .footer {
                 font-size: 13px;
+            }
+        }
+        /* Celulares muy angostos: pestañas sin emoji para que quepa "Secundaria" */
+        @media (max-width: 370px) {
+            .tab span[aria-hidden="true"] {
+                display: none;
+            }
+
+            .tab {
+                font-size: 14px;
             }
         }
     </style>
@@ -1232,7 +1241,6 @@
 
         // Niveles en el orden en que aparecen las pestañas
         const levels = [
-            { key: "todos", name: "Todos", emoji: "⭐" },
             { key: "inicial", name: "Inicial", title: "Educación Inicial", subtitle: "Aprendizaje temprano para niñas y niños de 3, 4 y 5 años.", emoji: "🧸" },
             { key: "primaria", name: "Primaria", title: "Educación Primaria", subtitle: "Rutas educativas desde 1.º hasta 6.º de Primaria.", emoji: "🎒" },
             { key: "secundaria", name: "Secundaria", title: "Educación Secundaria", subtitle: "Contenidos desde 1.º hasta 5.º de Secundaria.", emoji: "🚀" }
@@ -1257,8 +1265,8 @@
             try { localStorage.setItem(key, value); } catch (e) { /* sin almacenamiento: no pasa nada */ }
         }
 
-        let currentLevel = readPref("mvg-nivel", "todos");
-        if (!levels.some(l => l.key === currentLevel)) currentLevel = "todos";
+        let currentLevel = readPref("mvg-nivel", "inicial");
+        if (!levels.some(l => l.key === currentLevel)) currentLevel = "inicial";
         let soundOn = readPref("mvg-sonido", "on") !== "off";
 
         /* =========================================================
@@ -1357,8 +1365,8 @@
         function renderCards() {
             let html = "";
 
-            levels.filter(l => l.key !== "todos").forEach(level => {
-                if (currentLevel !== "todos" && currentLevel !== level.key) return;
+            levels.forEach(level => {
+                if (currentLevel !== level.key) return;
                 const grades = courses.filter(c => c.level === level.key);
                 if (grades.length === 0) return;
 
