@@ -410,9 +410,74 @@
     $("progressText").textContent = TOTAL + "/" + TOTAL; $("progressBar").style.width = "100%";
   }
 
+  /* ---------- ronda de vocabulario al inicio ---------- */
+  var IS_TEST = TOTAL < ITEMS.length;           // los kits de test no muestran el vocabulario
+  function vocab() {
+    card.innerHTML = ""; card.className = "card ex-card vocab";
+    var h = el("div", "ex-head");
+    h.appendChild(el("span", "ex-badge", "📚 Vocabulario de la clase"));
+    var turtle = el("button", "ex-slow" + (slow ? " on" : ""), "🐢"); turtle.type = "button"; turtle.title = "Audio lento";
+    turtle.onclick = function () { slow = !slow; turtle.classList.toggle("on", slow); try { localStorage.setItem("mk_eng_slow", slow ? "1" : "0"); } catch (e) { } };
+    h.appendChild(turtle); card.appendChild(h);
+    card.appendChild(el("p", "question", "Antes de jugar, escucha y repite cada frase. 👂🗣️"));
+    card.appendChild(el("p", "vocab-tip", "Toca 🔊 para escuchar la frase completa, o toca una palabra para escucharla sola."));
+
+    var all = el("button", "tool-btn listen vocab-all", "▶ Escuchar todo"); all.type = "button";
+    card.appendChild(all);
+    var list = el("div", "vocab-list"), rows = [];
+    ITEMS.forEach(function (it, i) {
+      var r = el("div", "vocab-row");
+      r.appendChild(el("span", "vocab-emoji", it.emoji));
+      var t = el("div", "vocab-txt");
+      var line = enLine(it.en, "vocab-en", { noSpeaker: true });
+      t.appendChild(line);
+      t.appendChild(el("div", "vocab-es", esc(it.es)));
+      r.appendChild(t);
+      var b = el("button", "vocab-say", "🔊"); b.type = "button"; b.setAttribute("aria-label", "Escuchar " + it.en);
+      b.onclick = function () { stopAll(); say(it.en); mark(i); };
+      r.appendChild(b);
+      list.appendChild(r); rows.push(r);
+    });
+    card.appendChild(list);
+    var count = el("p", "vocab-count", "");
+    card.appendChild(count);
+    var heard = {};
+    function mark(i) {
+      heard[i] = true; rows[i].classList.add("heard");
+      rows.forEach(function (r, j) { r.classList.toggle("playing", j === i); });
+      var n = Object.keys(heard).length;
+      count.textContent = n < ITEMS.length ? "Escuchaste " + n + " de " + ITEMS.length + " frases 👂" : "¡Escuchaste todas las frases! 🌟 Ya puedes empezar.";
+    }
+
+    var playing = false, idx = 0;
+    function stopAll() { playing = false; all.textContent = "▶ Escuchar todo"; rows.forEach(function (r) { r.classList.remove("playing"); }); if ("speechSynthesis" in window) speechSynthesis.cancel(); }
+    function playNext() {
+      if (!playing) return;
+      if (idx >= ITEMS.length) { stopAll(); return; }
+      var i = idx++; mark(i);
+      rows[i].scrollIntoView({ behavior: "smooth", block: "nearest" });
+      if (!("speechSynthesis" in window)) { setTimeout(playNext, 900); return; }
+      var u = new SpeechSynthesisUtterance(ITEMS[i].en);
+      u.lang = "en-US"; if (voice) u.voice = voice; u.rate = slow ? 0.6 : 0.85;
+      u.onend = function () { setTimeout(playNext, 1100); };       // pausa para repetir
+      u.onerror = function () { setTimeout(playNext, 600); };
+      speechSynthesis.speak(u);
+    }
+    all.onclick = function () {
+      if (playing) { stopAll(); return; }
+      if ("speechSynthesis" in window) speechSynthesis.cancel();
+      playing = true; idx = 0; all.textContent = "⏸ Pausar"; playNext();
+    };
+
+    var go = el("button", "main-btn next-btn", "¡Empezar ejercicios! ➜"); go.type = "button";
+    go.onclick = function () { stopAll(); render(); window.scrollTo({ top: card.offsetTop - 80, behavior: "smooth" }); };
+    card.appendChild(go);
+    updateBars();
+  }
+
   function start() {
     queue = buildPlan(); done = 0; firstOk = 0; scored = 0; wrongN = 0; okN = 0; missed = [];
-    render();
+    if (IS_TEST) render(); else vocab();
   }
 
   // pequeña API para pruebas
