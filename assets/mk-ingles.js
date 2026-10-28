@@ -214,20 +214,53 @@
   }
 
   function orderExercise(it, oi) {
-    var target = it.examplesEn[oi].split(/\s+/);
-    card.appendChild(el("p", "question", "Arma la oración en inglés tocando las palabras en orden:"));
+    var sentence = it.examplesEn[oi], target = sentence.split(/\s+/);
+    card.appendChild(el("p", "question", "Escucha 🔊 la oración y ármala tocando las palabras en orden:"));
     card.appendChild(el("div", "es-big small", esc(it.examplesEs[oi])));
+    var tools = el("div", "order-tools");
+    var bListen = el("button", "tool-btn listen", "🔊 Escuchar oración"); bListen.type = "button";
+    var bHint = el("button", "tool-btn hint", "💡 Pista"); bHint.type = "button";
+    var bShow = el("button", "tool-btn show", "👀 Ver respuesta"); bShow.type = "button"; bShow.style.display = "none";
+    tools.appendChild(bListen); tools.appendChild(bHint); tools.appendChild(bShow);
+    card.appendChild(tools);
     var ans = el("div", "order-answer"), bank = el("div", "order-bank");
-    card.appendChild(ans); card.appendChild(bank);
+    var help = el("p", "order-help", "Tip: la primera palabra empieza con mayúscula y la última lleva el punto o signo final.");
+    card.appendChild(ans); card.appendChild(bank); card.appendChild(help);
     var tiles = target.map(function (w, i) { return { w: w, i: i }; });
     do { shuffle(tiles); } while (tiles.length > 1 && tiles.every(function (t, i) { return t.w === target[i]; }));
-    var placed = [];
+    var placed = [], locked = 0, fails = 0;
+
+    function helped() { if (!triedWrong) { triedWrong = true; if (!cur.practice) missed.push(it); } }
+    function goodPrefix() { var k = 0; while (k < placed.length && placed[k].w === target[k]) k++; return k; }
+    function nextTile(k) { return tiles.filter(function (t) { return placed.indexOf(t) < 0 && t.w === target[k]; })[0]; }
+
+    bListen.onclick = function () { say(sentence, 0.8); };
+    bHint.onclick = function () {
+      if (busy) return;
+      var k = goodPrefix(); placed = placed.slice(0, k);
+      var t = nextTile(k); if (!t) return;
+      placed.push(t); locked = k + 1; helped();
+      feedback(""); card.classList.remove("wrong");
+      say(clean(t.w) || t.w, 0.8);
+      help.textContent = "💡 La palabra " + (k + 1) + " es «" + t.w + "». Las verdes ya están bien.";
+      draw(); if (placed.length === target.length) check();
+    };
+    bShow.onclick = function () {
+      if (busy) return;
+      helped();
+      placed = target.map(function (w, i) { return tiles.filter(function (t) { return t.w === w && placed.indexOf(t) < 0; })[0] || tiles[i]; });
+      locked = target.length; draw();
+      help.textContent = "👀 Así se ordena. Escúchala y repítela en voz alta.";
+      say(sentence, 0.8); success(true, true);
+    };
+
     function draw() {
       ans.innerHTML = ""; bank.innerHTML = "";
       if (!placed.length) ans.appendChild(el("span", "order-ph", "Toca las palabras 👇"));
       placed.forEach(function (t, pi) {
-        var b = el("button", "tile in", esc(t.w)); b.type = "button";
-        b.onclick = function () { if (busy) return; placed.splice(pi, 1); draw(); };
+        var fixed = pi < locked;
+        var b = el("button", "tile in" + (fixed ? " good" : ""), esc(t.w)); b.type = "button";
+        b.onclick = function () { if (busy) return; if (fixed) { say(clean(t.w) || t.w, 0.8); return; } placed.splice(pi, 1); draw(); };
         ans.appendChild(b);
       });
       tiles.forEach(function (t) {
@@ -242,11 +275,15 @@
     }
     function check() {
       var ok = placed.every(function (t, i) { return t.w === target[i]; });
-      if (ok) { ans.classList.add("ok"); success(); }
-      else {
-        ans.classList.add("bad"); fail();
-        setTimeout(function () { ans.classList.remove("bad"); placed = []; draw(); }, 900);
-      }
+      if (ok) { ans.classList.add("ok"); success(); return; }
+      fails++; ans.classList.add("bad"); fail();
+      var k = goodPrefix();
+      setTimeout(function () {
+        ans.classList.remove("bad"); placed = placed.slice(0, k); locked = k; draw();
+        help.textContent = k ? "✅ Las palabras en verde están bien. Escucha 🔊 y sigue desde ahí." : "Escucha la oración 🔊 y empieza por la palabra con mayúscula.";
+        if (fails >= 2) bShow.style.display = "";
+        say(sentence, 0.75);
+      }, 900);
     }
     draw();
   }
@@ -294,9 +331,10 @@
     feedback(pick(["❌ Todavía no. ¡Inténtalo otra vez!", "❌ Casi… vuelve a intentar.", "❌ Esa no es. ¡Tú puedes!"]), "bad");
     card.classList.remove("wrong"); void card.offsetWidth; card.classList.add("wrong");
     sound("sound-wrong");
+    $("heartsValue").textContent = wrongN;
   }
 
-  function success(skipped) {
+  function success(skipped, shown) {
     busy = true; feedback("");
     if (!skipped) { okN++; sound("sound-correct"); }
     if (!cur.practice) {
@@ -307,19 +345,19 @@
     }
     // la frase fallada vuelve al final como repaso (una sola vez)
     if (triedWrong && !cur.practice) {
-      var alt = shuffle(["choose", "translate", "listen"].filter(function (t) { return t !== cur.type; }))[0];
+      var alt = cur.type === "order" ? "order" : shuffle(["choose", "translate", "listen"].filter(function (t) { return t !== cur.type; }))[0];
       queue.push({ item: cur.item, type: alt, practice: true });
     }
     queue.shift();
     updateBars();
-    reveal(skipped);
+    reveal(skipped && !shown, shown);
   }
 
-  function reveal(skipped) {
+  function reveal(skipped, shown) {
     var it = cur.item;
     card.classList.remove("wrong"); card.classList.add("correct");
     var panel = el("div", "reveal");
-    panel.appendChild(el("div", "reveal-title", skipped ? "⏭ Omitido — escucha la frase:" : pick(["✅ ¡Muy bien!", "✅ ¡Excelente!", "✅ ¡Correcto!", "✅ ¡Genial!"])));
+    panel.appendChild(el("div", "reveal-title", shown ? "👀 Esta era la respuesta. ¡La próxima te sale!" : skipped ? "⏭ Omitido — escucha la frase:" : pick(["✅ ¡Muy bien!", "✅ ¡Excelente!", "✅ ¡Correcto!", "✅ ¡Genial!"])));
     var top = el("div", "reveal-top");
     top.appendChild(el("div", "emoji small", it.emoji));
     var txt = el("div", "reveal-txt");

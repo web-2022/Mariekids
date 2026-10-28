@@ -75,3 +75,10 @@
 .reveal .en-line, .sum-row .en-line { flex-wrap: nowrap; align-items: flex-start; justify-content: flex-start; }
 .reveal .en-words, .sum-row .en-words { flex: 1; min-width: 0; text-align: left; }
 .reveal .en-line.word { font-size: 1.35rem; }
+/* ordenar: ayudas */
+.order-tools { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin: 2px 0 10px; }
+.tool-btn { border: 2px solid #bfdbfe; background: #eff6ff; color: #1d4ed8; font-weight: 800; border-radius: 999px; padding: 8px 14px; cursor: pointer; font-size: .92rem; }
+.tool-btn.hint { border-color: #fde68a; background: #fffbeb; color: #92400e; }
+.tool-btn.show { border-color: #fecaca; background: #fef2f2; color: #991b1b; }
+.tile.good { background: #dcfce7; border-color: #22c55e; color: #166534; box-shadow: 0 3px 0 #86efac; }
+.order-help { font-size: .86rem; color: #475569; margin: 10px 0 0; min-height: 1.2em; }
