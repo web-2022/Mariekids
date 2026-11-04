@@ -48,7 +48,7 @@
       @keyframes twinkle { 0%, 100% { transform: scale(.9); opacity: .75; } 50% { transform: scale(1.15); opacity: 1; } }
 
       /* Barra superior */
-      #hud { position: relative; z-index: 2; display: grid; grid-template-columns: auto 1fr 1fr auto; gap: 8px; align-items: center; }
+      #hud { position: relative; z-index: 2; display: grid; grid-template-columns: auto 1fr 1fr auto auto; gap: 8px; align-items: center; }
       .panel {
         background: rgba(255, 255, 255, .82); backdrop-filter: blur(8px);
         border: 2px solid rgba(255, 255, 255, .95); border-radius: 16px;
@@ -57,6 +57,8 @@
       }
       .panel-btn { cursor: pointer; border: none; color: #fff; background: linear-gradient(135deg, #60a5fa, #2563eb); font-size: clamp(12px, 3.4vw, 15px); }
       .panel-btn.sound { background: linear-gradient(135deg, #f472b6, #a855f7); }
+      .panel-btn.music { background: linear-gradient(135deg, #34d399, #059669); }
+      .panel-btn.off { filter: grayscale(1); opacity: .6; }
 
       /* Tarjetas */
       .card {
@@ -147,7 +149,7 @@
       .hidden { display: none !important; }
 
       @media (max-width: 360px) {
-        #hud { grid-template-columns: auto 1fr auto; }
+        #hud { grid-template-columns: auto 1fr auto auto; }
         #hud .panel.hide-xs { display: none; }
       }
     </style>
@@ -166,6 +168,7 @@
         <button class="panel panel-btn" id="homeBtn" type="button" aria-label="Volver a la ruta">🏠</button>
         <div class="panel" id="levelBox">Nivel 1</div>
         <div class="panel hide-xs" id="scoreBox">⭐ 0</div>
+        <button class="panel panel-btn music" id="musicBtn" type="button" aria-label="Activar o desactivar música">🎵</button>
         <button class="panel panel-btn sound" id="soundBtn" type="button" aria-label="Activar o desactivar voz">🔊</button>
       </div>
 
@@ -207,6 +210,7 @@
       <audio id="sndOk" src="correct.mp3" preload="auto"></audio>
       <audio id="sndBad" src="wrong.mp3" preload="auto"></audio>
       <audio id="sndWin" src="levelup.mp3" preload="auto"></audio>
+      <audio id="bgMusic" src="music-ligera.mp3" loop preload="none"></audio>
     </div>
 
     <script>
@@ -291,9 +295,39 @@
         const v = speechSynthesis.getVoices();
         u.voice = v.find(x => x.lang === "es-PE") || v.find(x => x.lang === "es-419") || v.find(x => x.lang && x.lang.startsWith("es")) || null;
         u.lang = "es-PE"; u.rate = .92; u.pitch = 1.05;
+        u.onstart = () => duck(true);
+        u.onend = u.onerror = () => duck(false);
         speechSynthesis.cancel(); speechSynthesis.speak(u);
       }
       function updateSoundBtn() { $("soundBtn").textContent = voiceOn ? "🔊" : "🔇"; }
+
+      /* ---------- música de fondo ---------- */
+      const MUSIC_VOL = 0.22, MUSIC_DUCK = 0.07;
+      const music = $("bgMusic");
+      let musicOn = true;
+      try { musicOn = localStorage.getItem("mk_em_music") !== "0"; } catch (e) { }
+      music.volume = MUSIC_VOL;
+      let fadeTimer = null;
+      function fadeTo(v) {
+        clearInterval(fadeTimer);
+        fadeTimer = setInterval(() => {
+          const d = v - music.volume;
+          if (Math.abs(d) < 0.02) { music.volume = v; clearInterval(fadeTimer); return; }
+          music.volume = Math.max(0, Math.min(1, music.volume + Math.sign(d) * 0.02));
+        }, 30);
+      }
+      function duck(on) { if (musicOn) fadeTo(on ? MUSIC_DUCK : MUSIC_VOL); }
+      function startMusic() {
+        if (!musicOn || document.hidden) return;
+        if (music.paused) { music.volume = MUSIC_VOL; music.play().catch(() => { }); }
+      }
+      function updateMusicBtn() {
+        $("musicBtn").classList.toggle("off", !musicOn);
+        $("musicBtn").setAttribute("aria-pressed", String(musicOn));
+      }
+      // Los navegadores solo dejan sonar música después de que el niño toca la pantalla
+      document.addEventListener("pointerdown", startMusic, { passive: true });
+      document.addEventListener("visibilitychange", () => { if (document.hidden) music.pause(); else startMusic(); });
 
       /* ---------- pantallas ---------- */
       function show(id) { ["startScreen", "gameScreen", "endScreen"].forEach(s => $(s).classList.toggle("hidden", s !== id)); window.scrollTo({ top: 0 }); }
@@ -436,6 +470,11 @@
         try { localStorage.setItem("mk_em_voice", voiceOn ? "1" : "0"); } catch (e) { }
         if (!voiceOn && "speechSynthesis" in window) speechSynthesis.cancel();
       };
+      $("musicBtn").onclick = () => {
+        musicOn = !musicOn; updateMusicBtn();
+        try { localStorage.setItem("mk_em_music", musicOn ? "1" : "0"); } catch (e) { }
+        if (musicOn) startMusic(); else music.pause();
+      };
       $("sayBtn").onclick = () => {
         if (!current) return;
         const was = voiceOn; voiceOn = true;
@@ -448,6 +487,7 @@
       $("menuBtn").onclick = () => { renderLevels(); show("startScreen"); };
 
       updateSoundBtn();
+      updateMusicBtn();
       renderLevels();
     </script>
 
