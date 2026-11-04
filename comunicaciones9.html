@@ -541,7 +541,7 @@
       <button class="tab-btn active" id="tab-concepto" onclick="showModule('concepto')">1. Concepto</button>
       <button class="tab-btn" id="tab-fuerte" onclick="showModule('fuerte')">2. Sílaba tónica</button>
       <button class="tab-btn" id="tab-posicion" onclick="showModule('posicion')">3. Posición</button>
-      <button class="tab-btn" id="tab-acento-tilde" onclick="showModule('acentoTilde')">4. Sílabas átonas</button>
+      <button class="tab-btn" id="tab-acentoTilde" onclick="showModule('acentoTilde')">4. Sílabas átonas</button>
       <button class="tab-btn" id="tab-olimpiadas" onclick="showModule('olimpiadas')">🏅 5. Olimpiadas</button>
     </div>
 
@@ -749,24 +749,24 @@
     const modules = {
       "concepto": {
             "title": "Concepto",
-            "theoryAudio": "En una palabra, una sílaba suena con más fuerza. Esa se llama sílaba tónica. Las demás sílabas suenan más suave y se llaman sílabas átonas. Por ejemplo, en casa, la sílaba fuerte es sa.",
+            "theoryAudio": "En una palabra, una sílaba suena con más fuerza. Esa se llama sílaba tónica. Las demás sílabas suenan más suave y se llaman sílabas átonas. Por ejemplo, en casa, la sílaba fuerte es ca.",
             "examples": [
-                  "casa. Ca sa. La sílaba fuerte es sa. Ca es átona y sa es tónica.",
+                  "casa. Ca sa. La sílaba fuerte es ca. Ca es tónica y sa es átona.",
                   "pelota. Pe lo ta. La sílaba fuerte es lo. Pe y ta son átonas.",
                   "música. Mú si ca. La sílaba fuerte es mú. Si y ca son átonas.",
-                  "mariposa. Ma ri po sa. La sílaba fuerte es ri. Ma, po y sa son átonas."
+                  "mariposa. Ma ri po sa. La sílaba fuerte es po. Ma, ri y sa son átonas."
             ],
             "questions": [
                   {
                         "prompt": "En casa, ¿cuál es la sílaba tónica?",
                         "word": "ca - sa",
-                        "answer": "sa",
+                        "answer": "ca",
                         "options": [
                               "ca",
                               "sa",
                               "todas"
                         ],
-                        "explain": "En casa, la sílaba fuerte es sa."
+                        "explain": "En casa, la sílaba fuerte es ca."
                   },
                   {
                         "prompt": "En pelota, ¿cuál es la sílaba tónica?",
@@ -1118,7 +1118,7 @@
             "theoryAudio": "Las sílabas átonas son las que suenan más suave dentro de una palabra. En cada palabra hay una sílaba tónica y las demás suelen ser átonas.",
             "examples": [
                   "pelota. Pe lo ta. La tónica es lo. Las átonas son pe y ta.",
-                  "mariposa. Ma ri po sa. La tónica es ri. Las átonas son ma, po y sa.",
+                  "mariposa. Ma ri po sa. La tónica es po. Las átonas son ma, ri y sa.",
                   "teléfono. Te lé fo no. La tónica es lé. Las átonas son te, fo y no.",
                   "camino. Ca mi no. La tónica es mi. Las átonas son ca y no."
             ],
@@ -1137,13 +1137,13 @@
                   {
                         "prompt": "En mariposa, ¿cuáles son las sílabas átonas?",
                         "word": "ma - ri - po - sa",
-                        "answer": "ma, po y sa",
+                        "answer": "ma, ri y sa",
                         "options": [
-                              "ri",
-                              "ma, po y sa",
-                              "ma y ri"
+                              "po",
+                              "ma, ri y sa",
+                              "ma y po"
                         ],
-                        "explain": "En mariposa, ri es tónica; ma, po y sa son átonas."
+                        "explain": "En mariposa, po es tónica; ma, ri y sa son átonas."
                   },
                   {
                         "prompt": "En teléfono, ¿cuáles son las sílabas átonas?",
@@ -1245,14 +1245,14 @@
             {
                   "prompt": "Marca la sílaba tónica de la palabra mariposa.",
                   "word": "ma - ri - po - sa",
-                  "answer": "ri",
+                  "answer": "po",
                   "options": [
                         "ma",
                         "ri",
                         "po",
                         "sa"
                   ],
-                  "explain": "En mariposa, la sílaba fuerte es ri."
+                  "explain": "En mariposa, la sílaba fuerte es po."
             },
             {
                   "prompt": "¿Cuál palabra tiene la sílaba tónica en la última sílaba?",

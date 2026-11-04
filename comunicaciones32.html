@@ -212,7 +212,7 @@ function nextQuestion(moduleName){if(!state.answered[moduleName].has(state.index
 function goNextModule(moduleName){showModule(order[order.indexOf(moduleName)+1]||"olimpiadas");}
 function updateProgress(){document.getElementById("correctCount").textContent=state.correct;document.getElementById("wrongCount").textContent=state.wrong;const done=Object.values(state.answered).reduce((s,set)=>s+set.size,0);document.getElementById("progressText").textContent=`${done}/${state.totalQuestions}`;document.getElementById("progressBar").style.width=(done/state.totalQuestions*100)+"%";}
 function shuffleArray(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}}
-function shareApp(){const data={title:"Marie Kids - Término excluido",text:"🖼️ Practica lectura de imágenes y oraciones.",url:window.location.href};if(navigator.share){navigator.share(data).catch(()=>{});}else{navigator.clipboard.writeText(data.url);alert("🔗 Link copiado para compartir");}}
+function shareApp(){const data={title:"Marie Kids - Término excluido",text:"📚 Practica término excluido con Marie Kids.",url:window.location.href};if(navigator.share){navigator.share(data).catch(()=>{});}else{navigator.clipboard.writeText(data.url);alert("🔗 Link copiado para compartir");}}
 buildPage();renderExampleButtons();order.forEach(renderPractice);updateProgress();
 </script>
 <script>
