@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>MK • Encuentra el intruso</title>
+
+    <!-- PWA -->
+    <meta name="apple-mobile-web-app-title" content="MK" />
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1976d2">
+
+    <style>
+      * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+      html, body {
+        margin: 0; padding: 0; width: 100%; min-height: 100%;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        user-select: none; -webkit-user-select: none; touch-action: manipulation;
+      }
+
+      body {
+        min-height: 100dvh;
+        background:
+          radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.9) 0 40px, transparent 41px),
+          radial-gradient(circle at 80% 15%, rgba(255, 255, 255, 0.85) 0 35px, transparent 36px),
+          linear-gradient(180deg, #f9c5ff 0%, #d7c8ff 35%, #b9e6ff 70%, #fff0f7 100%);
+        color: #4c1d95;
+      }
+
+      #app {
+        position: relative;
+        width: min(100%, 560px);
+        min-height: 100dvh;
+        margin: 0 auto;
+        padding: max(10px, env(safe-area-inset-top)) 12px max(16px, env(safe-area-inset-bottom));
+        display: flex; flex-direction: column; gap: 10px;
+      }
+
+      /* Decoración */
+      .deco { position: fixed; pointer-events: none; z-index: 0; }
+      .cloud { width: 80px; height: 36px; background: rgba(255, 255, 255, .8); border-radius: 50px; }
+      .cloud::before, .cloud::after { content: ''; position: absolute; background: rgba(255, 255, 255, .9); border-radius: 50%; }
+      .cloud::before { width: 40%; height: 85%; left: 15%; top: -35%; }
+      .cloud::after { width: 50%; height: 105%; right: 15%; top: -42%; }
+      .star { color: rgba(255, 255, 255, .95); font-size: 22px; animation: twinkle 2s infinite ease-in-out; }
+      @keyframes twinkle { 0%, 100% { transform: scale(.9); opacity: .75; } 50% { transform: scale(1.15); opacity: 1; } }
+
+      /* Barra superior */
+      #hud { position: relative; z-index: 2; display: grid; grid-template-columns: auto 1fr 1fr auto; gap: 8px; align-items: center; }
+      .panel {
+        background: rgba(255, 255, 255, .82); backdrop-filter: blur(8px);
+        border: 2px solid rgba(255, 255, 255, .95); border-radius: 16px;
+        padding: 8px 10px; box-shadow: 0 8px 18px rgba(0, 0, 0, .08);
+        color: #6f2dbd; font-weight: 800; text-align: center; font-size: clamp(12px, 3.4vw, 15px); white-space: nowrap;
+      }
+      .panel-btn { cursor: pointer; border: none; color: #fff; background: linear-gradient(135deg, #60a5fa, #2563eb); font-size: clamp(12px, 3.4vw, 15px); }
+      .panel-btn.sound { background: linear-gradient(135deg, #f472b6, #a855f7); }
+
+      /* Tarjetas */
+      .card {
+        position: relative; z-index: 1;
+        background: rgba(255, 255, 255, .92); border: 3px solid rgba(255, 255, 255, .95);
+        border-radius: 26px; padding: 16px; text-align: center;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, .12);
+      }
+      h1, h2 { margin: 0 0 8px; color: #ff4fa1; line-height: 1.15; }
+      h1 { font-size: clamp(26px, 7vw, 34px); }
+      h2 { font-size: clamp(22px, 6vw, 28px); }
+      p { margin: 6px 0; font-size: clamp(14px, 4vw, 16px); line-height: 1.4; }
+
+      .btn {
+        border: 0; border-radius: 999px; padding: 12px 22px;
+        font-size: clamp(15px, 4vw, 17px); font-weight: 900; cursor: pointer; color: #fff;
+        background: linear-gradient(135deg, #ff76c9, #8b5cf6);
+        box-shadow: 0 10px 22px rgba(139, 92, 246, .28); min-height: 46px;
+      }
+      .btn:active { transform: translateY(1px) scale(.99); }
+      .btn.alt { background: linear-gradient(135deg, #60a5fa, #2563eb); box-shadow: 0 10px 22px rgba(37, 99, 235, .25); }
+      .btn.soft { background: #fff; color: #7c3aed; border: 2px solid #ddd6fe; box-shadow: none; }
+
+      /* Elegir nivel */
+      .levels { display: grid; gap: 10px; margin-top: 12px; }
+      .level-btn {
+        display: grid; grid-template-columns: 56px 1fr auto; align-items: center; gap: 10px;
+        text-align: left; padding: 12px; border-radius: 20px; border: 3px solid #ede9fe;
+        background: #fff; cursor: pointer; font: inherit; color: #4c1d95;
+      }
+      .level-btn .ico { font-size: 34px; text-align: center; }
+      .level-btn b { display: block; font-size: 18px; }
+      .level-btn small { color: #7c3aed; font-weight: 700; }
+      .level-btn .stars { font-size: 18px; letter-spacing: 1px; }
+      .level-btn.locked { opacity: .55; filter: grayscale(.6); cursor: not-allowed; }
+      .level-btn:not(.locked):active { transform: scale(.98); }
+
+      /* Juego */
+      #progressDots { display: flex; gap: 6px; justify-content: center; margin: 4px 0 2px; flex-wrap: wrap; }
+      .dot { width: 14px; height: 14px; border-radius: 50%; background: #ede9fe; border: 2px solid #fff; box-shadow: 0 1px 3px rgba(0, 0, 0, .1); }
+      .dot.now { background: #fbbf24; transform: scale(1.2); }
+      .dot.ok { background: #22c55e; }
+      .dot.help { background: #fb923c; }
+
+      #prompt { font-size: clamp(18px, 5vw, 22px); font-weight: 900; color: #6d28d9; margin: 4px 0 6px; }
+      #prompt button { border: none; background: #f3e8ff; border-radius: 50%; width: 36px; height: 36px; font-size: 18px; cursor: pointer; vertical-align: middle; margin-left: 4px; }
+
+      #grid { display: grid; gap: 10px; margin: 10px 0 4px; }
+      #grid.n4 { grid-template-columns: repeat(2, 1fr); }
+      #grid.n6 { grid-template-columns: repeat(3, 1fr); }
+      .tile {
+        aspect-ratio: 1; border-radius: 22px; border: 3px solid #fff;
+        background: radial-gradient(circle at 30% 25%, #fff, #f5f3ff 60%, #ede9fe);
+        box-shadow: 0 8px 16px rgba(109, 40, 217, .14);
+        display: grid; place-items: center; cursor: pointer;
+        font-size: clamp(44px, 14vw, 72px); line-height: 1; transition: transform .12s;
+        font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
+      }
+      #grid.n6 .tile { font-size: clamp(36px, 11vw, 58px); }
+      .tile.txt { font-family: 'Segoe UI', Tahoma, sans-serif; font-weight: 900; color: #7c3aed; }
+      .tile:active { transform: scale(.94); }
+      .tile.wrong { background: #fee2e2; border-color: #fca5a5; animation: shake .35s; opacity: .7; }
+      .tile.right { background: #dcfce7; border-color: #22c55e; transform: scale(1.06); }
+      .tile.dim { opacity: .45; }
+      @keyframes shake { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+
+      #feedback { min-height: 24px; font-weight: 900; font-size: clamp(15px, 4vw, 17px); }
+      #feedback.bad { color: #dc2626; }
+      #feedback.hint { color: #c2410c; }
+
+      #explain {
+        display: none; margin-top: 8px; padding: 12px; border-radius: 18px;
+        background: #f0fdf4; border: 2px solid #86efac; color: #166534; text-align: left;
+      }
+      #explain.show { display: block; animation: pop .25s ease-out; }
+      #explain .why { font-weight: 800; font-size: clamp(15px, 4vw, 17px); }
+      #explain .row { display: flex; gap: 8px; margin-top: 10px; }
+      #explain .row .btn { flex: 1; }
+      @keyframes pop { from { opacity: 0; transform: translateY(6px); } }
+
+      .actions { display: flex; gap: 8px; justify-content: center; margin-top: 8px; flex-wrap: wrap; }
+
+      /* Resultado */
+      .big-stars { font-size: 44px; letter-spacing: 4px; margin: 6px 0; }
+      .sparkle { position: fixed; pointer-events: none; font-size: 26px; z-index: 50; animation: fly .9s ease-out forwards; }
+      @keyframes fly { to { opacity: 0; transform: translate(var(--dx), -120px) scale(1.5); } }
+
+      .hidden { display: none !important; }
+
+      @media (max-width: 360px) {
+        #hud { grid-template-columns: auto 1fr auto; }
+        #hud .panel.hide-xs { display: none; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="deco cloud" style="left:4%;top:12%"></div>
+    <div class="deco cloud" style="right:5%;top:30%;transform:scale(.8)"></div>
+    <div class="deco cloud" style="left:12%;bottom:12%;transform:scale(.7)"></div>
+    <div class="deco star" style="left:10%;top:6%">★</div>
+    <div class="deco star" style="right:14%;top:8%;animation-delay:.8s">★</div>
+    <div class="deco star" style="right:30%;bottom:20%;animation-delay:.4s">★</div>
+
+    <div id="app">
+      <div id="hud">
+        <button class="panel panel-btn" id="homeBtn" type="button" aria-label="Volver a la ruta">🏠</button>
+        <div class="panel" id="levelBox">Nivel 1</div>
+        <div class="panel hide-xs" id="scoreBox">⭐ 0</div>
+        <button class="panel panel-btn sound" id="soundBtn" type="button" aria-label="Activar o desactivar voz">🔊</button>
+      </div>
+
+      <!-- Inicio: elegir nivel -->
+      <section class="card" id="startScreen">
+        <div style="font-size:52px">🕵️</div>
+        <h1>Encuentra el intruso</h1>
+        <p>En cada grupo hay <b>uno que no pertenece</b>. ¡Descubre cuál es y tócalo!</p>
+        <p>Piensa: <b>¿en qué se parecen los demás?</b></p>
+        <div class="levels" id="levels"></div>
+        <p style="color:#7c3aed;font-size:14px;margin-top:12px">Gana ⭐⭐ o más (7 aciertos de 10) para abrir el siguiente nivel.</p>
+      </section>
+
+      <!-- Juego -->
+      <section class="card hidden" id="gameScreen">
+        <div id="progressDots"></div>
+        <div id="prompt"><span id="promptText">¿Cuál es el intruso?</span><button type="button" id="sayBtn" aria-label="Escuchar">🔊</button></div>
+        <div id="grid"></div>
+        <div id="feedback"></div>
+        <div id="explain">
+          <div class="why" id="whyText"></div>
+          <div class="row"><button class="btn alt" id="nextBtn" type="button">Siguiente ➜</button></div>
+        </div>
+      </section>
+
+      <!-- Resultado -->
+      <section class="card hidden" id="endScreen">
+        <h2 id="endTitle">¡Muy bien!</h2>
+        <div class="big-stars" id="endStars">⭐⭐⭐</div>
+        <p id="endScore"></p>
+        <p id="endNote"></p>
+        <div class="actions">
+          <button class="btn" id="againBtn" type="button">🔁 Jugar otra vez</button>
+          <button class="btn alt" id="nextLevelBtn" type="button">Siguiente nivel ➜</button>
+          <button class="btn soft" id="menuBtn" type="button">Elegir nivel</button>
+        </div>
+      </section>
+
+      <audio id="sndOk" src="correct.mp3" preload="auto"></audio>
+      <audio id="sndBad" src="wrong.mp3" preload="auto"></audio>
+      <audio id="sndWin" src="levelup.mp3" preload="auto"></audio>
+    </div>
+
+    <script>
+      /* =========================================================
+         BANCO DE GRUPOS
+         Cada grupo: los que pertenecen (in), los intrusos posibles (out),
+         por qué se parecen (rule) y una pista (hint).
+         Para agregar grupos, copia uno y cambia sus datos.
+      ========================================================= */
+      const LEVELS = [
+        {
+          name: "Nivel 1", title: "Grupos fáciles", icon: "🌱", size: 4,
+          desc: "4 dibujos · categorías conocidas",
+          groups: [
+            { in: ["🍎", "🍌", "🍇", "🍓", "🍉", "🍐", "🍒"], out: [["🚗", "el auto"], ["⚽", "la pelota"], ["👟", "la zapatilla"]], rule: "son frutas", hint: "¿Cuáles se pueden comer?" },
+            { in: ["🐶", "🐱", "🐰", "🐻", "🐼", "🦁", "🐵"], out: [["🍎", "la manzana"], ["✏️", "el lápiz"], ["🚌", "el bus"]], rule: "son animales", hint: "¿Cuáles están vivos y son animales?" },
+            { in: ["🚗", "🚌", "🚲", "🚂", "🛵", "🚜", "🚕"], out: [["🐸", "la rana"], ["🍌", "el plátano"], ["🧸", "el oso de peluche"]], rule: "son vehículos que llevan personas o cosas", hint: "¿Cuáles sirven para viajar?" },
+            { in: ["👕", "👖", "👗", "🧦", "🧢", "🧥"], out: [["🍕", "la pizza"], ["🐔", "la gallina"], ["🚀", "el cohete"]], rule: "son ropa que nos ponemos", hint: "¿Qué cosas te pones en el cuerpo?" },
+            { in: ["✏️", "📏", "📚", "🖍️", "✂️", "🎒"], out: [["🍩", "la dona"], ["🐟", "el pez"], ["🚲", "la bicicleta"]], rule: "son útiles del colegio", hint: "¿Qué llevas al colegio para estudiar?" },
+            { in: ["🧸", "🪀", "🪁", "🧩", "🎲", "🪆"], out: [["🥕", "la zanahoria"], ["🐮", "la vaca"], ["🛏️", "la cama"]], rule: "son juguetes", hint: "¿Con cuáles se juega?" },
+            { in: ["🎸", "🥁", "🎺", "🎻", "🎹"], out: [["🍞", "el pan"], ["🐢", "la tortuga"], ["👒", "el sombrero"]], rule: "son instrumentos musicales", hint: "¿Cuáles hacen música?" },
+            { in: ["🍞", "🧀", "🍕", "🍔", "🥚", "🍝"], out: [["🧦", "la media"], ["🚁", "el helicóptero"], ["🔑", "la llave"]], rule: "son comidas", hint: "¿Qué cosas se comen?" }
+          ]
+        },
+        {
+          name: "Nivel 2", title: "Piensa un poco más", icon: "🌿", size: 6,
+          desc: "6 dibujos · grupos parecidos",
+          groups: [
+            { in: ["🍎", "🍌", "🍇", "🍓", "🍉", "🍐", "🍊"], out: [["🥕", "la zanahoria, que es una verdura"], ["🥦", "el brócoli, que es una verdura"], ["🌽", "el choclo, que es una verdura"]], rule: "son frutas", hint: "Todos se comen… pero ¿cuáles son frutas?" },
+            { in: ["🥕", "🥦", "🌽", "🥒", "🧅", "🥔"], out: [["🍌", "el plátano, que es una fruta"], ["🍓", "la fresa, que es una fruta"], ["🍇", "las uvas, que son una fruta"]], rule: "son verduras", hint: "Todos se comen… pero ¿cuáles son verduras?" },
+            { in: ["🐟", "🐠", "🐙", "🦀", "🐬", "🐳", "🦈"], out: [["🐄", "la vaca, que vive en el campo"], ["🐒", "el mono, que vive en los árboles"], ["🐫", "el camello, que vive en el desierto"]], rule: "viven en el mar", hint: "¿Dónde vive cada animal?" },
+            { in: ["🐦", "🦆", "🦉", "🦅", "🐧", "🦜"], out: [["🐶", "el perro, que no es un ave"], ["🐱", "el gato, que no es un ave"], ["🐰", "el conejo, que no es un ave"]], rule: "son aves: tienen plumas y pico", hint: "¿Cuáles tienen plumas y pico?" },
+            { in: ["✈️", "🚁", "🚀", "🛩️", "🛸"], out: [["🚂", "el tren, que va por la tierra"], ["🚲", "la bicicleta, que va por la tierra"], ["🚌", "el bus, que va por la pista"]], rule: "viajan por el aire", hint: "¿Por dónde viaja cada uno: por tierra, agua o aire?" },
+            { in: ["⛵", "🚤", "🛳️", "🚢", "🛶"], out: [["🚗", "el auto, que va por la pista"], ["🚁", "el helicóptero, que va por el aire"], ["🚲", "la bicicleta, que va por la tierra"]], rule: "viajan por el agua", hint: "¿Cuáles flotan en el agua?" },
+            { in: ["🧣", "🧤", "🧥", "🥾", "🎿"], out: [["🩳", "el short, que se usa cuando hace calor"], ["🩴", "las sandalias, que se usan cuando hace calor"], ["👙", "la ropa de baño, que se usa en la playa"]], rule: "se usan cuando hace frío", hint: "¿Qué te pones cuando hace mucho frío?" },
+            { in: ["⚽", "🏀", "🏈", "⚾", "🎾", "🏐"], out: [["🎲", "el dado, que no es una pelota"], ["🍩", "la dona, que no es una pelota"], ["🧸", "el peluche, que no es una pelota"]], rule: "son pelotas de deporte", hint: "¿Cuáles rebotan y se usan en deportes?" },
+            { in: ["☀️", "🌙", "⭐", "☁️", "🌈"], out: [["🌳", "el árbol, que está en la tierra"], ["🏠", "la casa, que está en la tierra"], ["🌵", "el cactus, que está en la tierra"]], rule: "se ven en el cielo", hint: "Mira hacia arriba: ¿qué ves en el cielo?" }
+          ]
+        },
+        {
+          name: "Nivel 3", title: "Detective experto", icon: "🌳", size: 6,
+          desc: "6 dibujos · color, forma, patas y más",
+          groups: [
+            { in: ["🍎", "🍓", "🚒", "🌹", "❤️", "🍅"], out: [["🍋", "el limón, que es amarillo"], ["🥦", "el brócoli, que es verde"], ["💙", "el corazón azul"]], rule: "son de color rojo", hint: "Fíjate en el color." },
+            { in: ["🍋", "🌻", "🐥", "🍌", "⭐", "🌽"], out: [["🍇", "las uvas, que son moradas"], ["🍎", "la manzana, que es roja"], ["🐸", "la rana, que es verde"]], rule: "son de color amarillo", hint: "Fíjate en el color." },
+            { in: ["🥦", "🥒", "🍀", "🐸", "🌲", "🍏"], out: [["🍊", "la naranja, que es anaranjada"], ["🍓", "la fresa, que es roja"], ["🐧", "el pingüino, que es blanco y negro"]], rule: "son de color verde", hint: "Fíjate en el color." },
+            { in: ["🔴", "🟠", "🟡", "🟢", "🔵", "🟣"], out: [["🟥", "el cuadrado rojo"], ["🔺", "el triángulo rojo"], ["🟦", "el cuadrado azul"]], rule: "son círculos", hint: "No mires el color: fíjate en la forma." },
+            { in: ["🟥", "🟧", "🟨", "🟩", "🟦", "🟪"], out: [["🔴", "el círculo rojo"], ["🔵", "el círculo azul"], ["🔺", "el triángulo"]], rule: "son cuadrados", hint: "No mires el color: fíjate en la forma." },
+            { in: ["🐔", "🦆", "🐧", "🐦", "🦉", "🦩"], out: [["🐶", "el perro, que tiene cuatro patas"], ["🐱", "el gato, que tiene cuatro patas"], ["🐴", "el caballo, que tiene cuatro patas"]], rule: "tienen dos patas", hint: "Cuenta las patas de cada animal." },
+            { in: ["A", "E", "I", "O", "U"], out: [["M", "la M, que es una consonante"], ["P", "la P, que es una consonante"], ["S", "la S, que es una consonante"]], rule: "son vocales", hint: "Recuerda: a, e, i, o, u.", text: true },
+            { in: ["2", "4", "6", "8", "10", "12"], out: [["7", "el 7, que es impar"], ["5", "el 5, que es impar"], ["9", "el 9, que es impar"]], rule: "son números pares: se pueden repartir en dos grupos iguales", hint: "Cuenta de 2 en 2: 2, 4, 6…", text: true },
+            { in: ["1", "2", "3", "4", "5", "6"], out: [["🍎", "la manzana, que no es un número"], ["B", "la B, que es una letra"], ["⭐", "la estrella, que no es un número"]], rule: "son números", hint: "¿Cuáles sirven para contar?", text: true },
+            { in: ["🐝", "🐞", "🦋", "🐜", "🦗"], out: [["🐦", "el pájaro, que es un ave"], ["🐟", "el pez"], ["🐸", "la rana"]], rule: "son insectos: tienen seis patas", hint: "¿Cuáles son bichitos pequeños con seis patas?" }
+          ]
+        }
+      ];
+      const ROUNDS = 10;
+      const PASS = 7;
+      const STORE = "mk_em_intruso_v1";
+      const SLUG = "EM-IntrusoLogico";
+
+      /* ---------- estado ---------- */
+      let progress = { unlocked: 1, best: [0, 0, 0] };
+      try { Object.assign(progress, JSON.parse(localStorage.getItem(STORE) || "{}")); } catch (e) { }
+      let voiceOn = true;
+      try { voiceOn = localStorage.getItem("mk_em_voice") !== "0"; } catch (e) { }
+
+      let level = 0, round = 0, firstTry = 0, plan = [], current = null, tried = false, locked = false;
+      const $ = id => document.getElementById(id);
+
+      function save() { try { localStorage.setItem(STORE, JSON.stringify(progress)); } catch (e) { } }
+      function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+      function pick(a) { return a[Math.floor(Math.random() * a.length)]; }
+      function play(id) { const a = $(id); if (a) { a.currentTime = 0; a.play().catch(() => { }); } }
+      function starsFor(n) { return n >= 9 ? 3 : n >= PASS ? 2 : n >= 4 ? 1 : 0; }
+      function starText(n) { return "⭐".repeat(n) + "☆".repeat(3 - n); }
+
+      /* ---------- voz ---------- */
+      function say(text) {
+        if (!voiceOn || !("speechSynthesis" in window)) return;
+        const u = new SpeechSynthesisUtterance(text);
+        const v = speechSynthesis.getVoices();
+        u.voice = v.find(x => x.lang === "es-PE") || v.find(x => x.lang === "es-419") || v.find(x => x.lang && x.lang.startsWith("es")) || null;
+        u.lang = "es-PE"; u.rate = .92; u.pitch = 1.05;
+        speechSynthesis.cancel(); speechSynthesis.speak(u);
+      }
+      function updateSoundBtn() { $("soundBtn").textContent = voiceOn ? "🔊" : "🔇"; }
+
+      /* ---------- pantallas ---------- */
+      function show(id) { ["startScreen", "gameScreen", "endScreen"].forEach(s => $(s).classList.toggle("hidden", s !== id)); window.scrollTo({ top: 0 }); }
+
+      function renderLevels() {
+        const box = $("levels"); box.innerHTML = "";
+        LEVELS.forEach((L, i) => {
+          const open = i < progress.unlocked;
+          const b = document.createElement("button");
+          b.type = "button";
+          b.className = "level-btn" + (open ? "" : " locked");
+          b.innerHTML = `<span class="ico">${open ? L.icon : "🔒"}</span><span><b>${L.name}: ${L.title}</b><small>${L.desc}</small></span><span class="stars">${starText(starsFor(progress.best[i] || 0))}</span>`;
+          b.onclick = () => {
+            if (!open) { say("Primero gana dos estrellas en el nivel " + i); return; }
+            startLevel(i);
+          };
+          box.appendChild(b);
+        });
+        $("levelBox").textContent = "Intruso";
+        $("scoreBox").textContent = "⭐ " + progress.best.reduce((a, b) => a + starsFor(b), 0) + "/9";
+      }
+
+      function startLevel(i) {
+        level = i; round = 0; firstTry = 0;
+        // 10 rondas sin repetir grupo hasta usarlos todos
+        const g = LEVELS[i].groups; plan = [];
+        while (plan.length < ROUNDS) plan.push(...shuffle(g.slice()));
+        plan = plan.slice(0, ROUNDS);
+        $("levelBox").textContent = LEVELS[i].name;
+        show("gameScreen");
+        nextRound();
+      }
+
+      function nextRound() {
+        if (round >= ROUNDS) return endLevel();
+        const L = LEVELS[level], G = plan[round];
+        const members = shuffle(G.in.slice()).slice(0, L.size - 1);
+        const [odd, oddName] = pick(G.out);
+        current = { G, odd, oddName, items: shuffle([...members, odd]) };
+        tried = false; locked = false;
+
+        const grid = $("grid");
+        grid.className = "n" + L.size; grid.innerHTML = "";
+        current.items.forEach(sym => {
+          const t = document.createElement("button");
+          t.type = "button";
+          t.className = "tile" + (G.text ? " txt" : "");
+          t.textContent = sym;
+          t.setAttribute("aria-label", sym);
+          t.onclick = () => choose(t, sym);
+          grid.appendChild(t);
+        });
+        $("feedback").textContent = ""; $("feedback").className = "";
+        $("explain").classList.remove("show");
+        $("promptText").textContent = "¿Cuál NO pertenece al grupo?";
+        $("scoreBox").textContent = "⭐ " + firstTry;
+        drawDots();
+        say(round === 0 ? "Toca el que no pertenece al grupo." : "¿Cuál es el intruso?");
+      }
+
+      function drawDots() {
+        const d = $("progressDots"); d.innerHTML = "";
+        for (let i = 0; i < ROUNDS; i++) {
+          const s = document.createElement("span");
+          s.className = "dot" + (i === round ? " now" : "") + (plan[i] && plan[i].result ? " " + plan[i].result : "");
+          d.appendChild(s);
+        }
+      }
+
+      function choose(tile, sym) {
+        if (locked) return;
+        if (sym === current.odd) {
+          locked = true;
+          tile.classList.add("right");
+          document.querySelectorAll(".tile").forEach(t => { if (t !== tile) t.classList.add("dim"); });
+          if (!tried) firstTry++;
+          plan[round].result = tried ? "help" : "ok";
+          $("scoreBox").textContent = "⭐ " + firstTry;
+          play("sndOk"); burst(tile);
+          const why = `¡Bien! Todos ${current.G.rule}, menos ${current.oddName}.`;
+          $("feedback").textContent = tried ? "✅ ¡Lo encontraste!" : "✅ ¡A la primera!";
+          $("feedback").className = "";
+          $("whyText").textContent = "🧠 " + why;
+          $("explain").classList.add("show");
+          $("nextBtn").textContent = round + 1 >= ROUNDS ? "Ver resultado 🏁" : "Siguiente ➜";
+          say(why);
+          setTimeout(() => $("explain").scrollIntoView({ behavior: "smooth", block: "nearest" }), 120);
+        } else {
+          tile.classList.add("wrong"); tile.disabled = true;
+          play("sndBad");
+          if (!tried) {
+            tried = true;
+            $("feedback").textContent = "💡 Pista: " + current.G.hint;
+            $("feedback").className = "hint";
+            say("Ese sí pertenece al grupo. Pista: " + current.G.hint);
+          } else {
+            $("feedback").textContent = "❌ Ese sí pertenece. ¡Intenta otra vez!";
+            $("feedback").className = "bad";
+            say("Intenta otra vez.");
+          }
+        }
+      }
+
+      function burst(el) {
+        const r = el.getBoundingClientRect();
+        ["✨", "🌟", "💖", "🎉"].forEach((e, i) => {
+          const s = document.createElement("div");
+          s.className = "sparkle"; s.textContent = e;
+          s.style.left = r.left + r.width / 2 + "px"; s.style.top = r.top + r.height / 3 + "px";
+          s.style.setProperty("--dx", (i - 1.5) * 40 + "px");
+          document.body.appendChild(s); setTimeout(() => s.remove(), 900);
+        });
+      }
+
+      function endLevel() {
+        const st = starsFor(firstTry);
+        if (firstTry > (progress.best[level] || 0)) progress.best[level] = firstTry;
+        const passed = firstTry >= PASS;
+        if (passed && progress.unlocked < level + 2) progress.unlocked = Math.min(LEVELS.length, level + 2);
+        if (passed) { try { localStorage.setItem("mk_topic_" + SLUG + "_complete", "true"); } catch (e) { } }
+        save();
+
+        $("endTitle").textContent = st === 3 ? "¡Eres un gran detective! 🕵️" : passed ? "¡Muy bien! 🎉" : "¡Buen intento! 💪";
+        $("endStars").textContent = starText(st);
+        $("endScore").innerHTML = `Encontraste <b>${firstTry} de ${ROUNDS}</b> intrusos a la primera.`;
+        const hasNext = level + 1 < LEVELS.length;
+        $("endNote").textContent = passed
+          ? (hasNext ? `¡Abriste el ${LEVELS[level + 1].name}!` : "¡Completaste todos los niveles!")
+          : `Necesitas ${PASS} aciertos a la primera para abrir el siguiente nivel. ¡Tú puedes!`;
+        $("nextLevelBtn").classList.toggle("hidden", !(passed && hasNext));
+        show("endScreen");
+        play(passed ? "sndWin" : "sndBad");
+        say($("endTitle").textContent.replace(/[^\p{L}\p{N}\s!¡,.]/gu, "") + ". " + $("endScore").textContent);
+      }
+
+      /* ---------- eventos ---------- */
+      $("homeBtn").onclick = () => { location.href = "ruta-EjerciosMentales.html"; };
+      $("soundBtn").onclick = () => {
+        voiceOn = !voiceOn; updateSoundBtn();
+        try { localStorage.setItem("mk_em_voice", voiceOn ? "1" : "0"); } catch (e) { }
+        if (!voiceOn && "speechSynthesis" in window) speechSynthesis.cancel();
+      };
+      $("sayBtn").onclick = () => {
+        if (!current) return;
+        const was = voiceOn; voiceOn = true;
+        say("¿Cuál no pertenece al grupo?" + (tried ? " Pista: " + current.G.hint : ""));
+        voiceOn = was;
+      };
+      $("nextBtn").onclick = () => { round++; nextRound(); };
+      $("againBtn").onclick = () => startLevel(level);
+      $("nextLevelBtn").onclick = () => startLevel(level + 1);
+      $("menuBtn").onclick = () => { renderLevels(); show("startScreen"); };
+
+      updateSoundBtn();
+      renderLevels();
+    </script>
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("./service-worker.js").catch(() => { });
+        });
+      }
+    </script>
+  </body>
+
+</html>
