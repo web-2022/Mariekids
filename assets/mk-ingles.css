@@ -97,3 +97,5 @@
 .vocab-es { color: #64748b; font-size: .9rem; }
 .vocab-say { flex: none; width: 44px; height: 44px; border-radius: 50%; border: none; font-size: 1.2rem; cursor: pointer; background: linear-gradient(135deg, #60a5fa, #2563eb); color: #fff; box-shadow: 0 4px 10px rgba(37, 99, 235, .3); }
 .vocab-count { font-weight: 800; color: #15803d; min-height: 1.2em; margin: 10px 0 4px; }
+.next-class { display: block; width: 100%; margin-top: 10px; }
+.next-class small { display: block; font-size: .8rem; font-weight: 600; opacity: .9; margin-top: 2px; }

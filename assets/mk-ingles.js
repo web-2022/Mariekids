@@ -403,6 +403,11 @@
     var again = el("button", "main-btn", "🔁 Repetir"); again.onclick = start;
     var back = el("button", "main-btn alt", "⬅ Volver a la ruta"); back.onclick = function () { location.href = "ruta-ingles.html"; };
     row.appendChild(again); row.appendChild(back); card.appendChild(row);
+    if (L.next && L.next.href) {
+      var nx = el("button", "main-btn next-class" + (passed ? "" : " alt"), "Siguiente clase ➜<small>" + esc(L.next.title) + "</small>");
+      nx.type = "button"; nx.onclick = function () { location.href = L.next.href; };
+      card.appendChild(nx);
+    }
     if (passed) {
       try { localStorage.setItem("mk_topic_" + SLUG + "_complete", "true"); } catch (e) { }
       sound("sound-levelup");
