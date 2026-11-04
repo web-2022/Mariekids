@@ -8,7 +8,7 @@
    v1 → v2 → v3...
 ========================================================= */
 
-const CACHE_VERSION = "v23";
+const CACHE_VERSION = "v24";
 const CACHE_PREFIX = "mvg-learning";
 const STATIC_CACHE = `${CACHE_PREFIX}-static-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `${CACHE_PREFIX}-runtime-${CACHE_VERSION}`;
@@ -65,28 +65,41 @@ self.addEventListener("activate", event => {
     event.waitUntil(
         caches
             .keys()
-            .then(cacheNames => {
-                return Promise.all(
-                    cacheNames
-                        .filter(cacheName => {
-                            const perteneceAMVG =
-                                cacheName.startsWith(CACHE_PREFIX);
-
-                            const esCacheActual =
-                                cacheName === STATIC_CACHE ||
-                                cacheName === RUNTIME_CACHE;
-
-                            return perteneceAMVG && !esCacheActual;
-                        })
-                        .map(cacheName => {
-                            console.info(
-                                "Eliminando caché anterior:",
-                                cacheName
-                            );
-
-                            return caches.delete(cacheName);
-                        })
+            .then(async cacheNames => {
+                const anteriores = cacheNames.filter(cacheName =>
+                    cacheName.startsWith(CACHE_PREFIX) &&
+                    cacheName !== STATIC_CACHE &&
+                    cacheName !== RUNTIME_CACHE
                 );
+
+                /*
+                   Los temas que el niño ya abrió se conservan:
+                   se copian a la caché nueva antes de borrar la anterior.
+                   Así siguen funcionando sin internet después de una
+                   actualización. Con internet, cada página se vuelve
+                   a descargar actualizada la próxima vez que se abra.
+                */
+                const runtime = await caches.open(RUNTIME_CACHE);
+
+                for (const cacheName of anteriores) {
+                    if (cacheName.includes("-runtime-")) {
+                        try {
+                            const vieja = await caches.open(cacheName);
+                            const solicitudes = await vieja.keys();
+
+                            for (const solicitud of solicitudes) {
+                                if (await runtime.match(solicitud)) continue;
+                                const respuesta = await vieja.match(solicitud);
+                                if (respuesta) await runtime.put(solicitud, respuesta);
+                            }
+                        } catch (error) {
+                            console.warn("No se pudo conservar:", cacheName, error);
+                        }
+                    }
+
+                    console.info("Eliminando caché anterior:", cacheName);
+                    await caches.delete(cacheName);
+                }
             })
             .then(() => {
                 /*
