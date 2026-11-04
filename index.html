@@ -177,6 +177,9 @@
         }
 
         .round-btn:hover { transform: translateY(-2px); }
+        .install-btn { animation: installPulse 1.6s ease-in-out infinite; }
+        .install-btn[hidden] { display: none; }
+        @keyframes installPulse { 50% { transform: scale(1.1); } }
         .round-btn:active { transform: translateY(3px); box-shadow: 0 2px 0 rgba(43, 34, 80, 0.12); }
 
         /* =====================================
@@ -1185,6 +1188,7 @@
             </div>
 
             <div class="top-actions">
+                <button class="round-btn install-btn" id="installBtn" type="button" aria-label="Instalar la app MK" title="Instalar la app MK" hidden>📲</button>
                 <button class="round-btn" id="soundBtn" type="button" aria-label="Activar o desactivar sonido">🔊</button>
                 <button class="round-btn" id="shareAppBtn" type="button" aria-label="Compartir app" title="¡Aprendamos juntos! Compartir app">📤</button>
             </div>
@@ -1472,6 +1476,44 @@
                     .catch(error => console.error("No se pudo registrar el Service Worker:", error));
             });
         }
+    </script>
+    <script>
+        /* 📲 Botón para instalar la app (Chrome no siempre muestra el aviso solo) */
+        (function () {
+            const btn = document.getElementById("installBtn");
+            if (!btn) return;
+            const standalone = window.matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+            if (standalone) return;                          // ya se abrió como app instalada
+            const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+            let deferred = null;
+            const say = msg => (typeof showToast === "function" ? showToast(msg) : alert(msg));
+
+            window.addEventListener("beforeinstallprompt", e => {
+                e.preventDefault();
+                deferred = e;
+                btn.hidden = false;
+            });
+            window.addEventListener("appinstalled", () => {
+                btn.hidden = true;
+                deferred = null;
+                say("¡Listo! MK quedó instalada en tu pantalla de inicio 🎉");
+            });
+            if (isIOS) btn.hidden = false;                   // en iPhone/iPad se instala desde Compartir
+
+            btn.addEventListener("click", async () => {
+                if (deferred) {
+                    deferred.prompt();
+                    const choice = await deferred.userChoice;
+                    deferred = null;
+                    if (choice.outcome !== "accepted") btn.hidden = false;
+                    else btn.hidden = true;
+                } else if (isIOS) {
+                    say("En iPhone: toca Compartir ⬆️ y luego «Agregar a inicio» ➕");
+                } else {
+                    say("Abre el menú ⋮ de Chrome y toca «Instalar app» o «Agregar a la pantalla principal»");
+                }
+            });
+        })();
     </script>
     <script src="assets/proximamente.js" defer></script>
 </body>
