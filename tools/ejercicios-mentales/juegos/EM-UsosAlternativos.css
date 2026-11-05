@@ -1,0 +1,5 @@
+.ua-obj { display: flex; align-items: center; justify-content: center; gap: 12px; font-size: clamp(18px, 5vw, 22px); color: #701a75; }
+.ua-obj .emoji { font-size: clamp(54px, 16vw, 72px); }
+.choice.ua-opt { display: flex; align-items: center; justify-content: flex-start; gap: 12px; min-height: 58px; text-align: left; font-family: 'Segoe UI', sans-serif; }
+.choice.ua-opt .ua-e { font-size: 30px; }
+.choice.ua-opt .ua-t { font-size: clamp(15px, 4.4vw, 18px); font-weight: 800; color: #701a75; }

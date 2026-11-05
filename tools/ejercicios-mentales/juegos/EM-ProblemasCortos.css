@@ -1,0 +1,6 @@
+.pc-card { text-align: left; }
+.pc-text { font-size: clamp(17px, 5vw, 21px); font-weight: 700; line-height: 1.45; color: #134e4a; }
+.pc-text b { color: #0d9488; font-size: 1.15em; }
+.pc-pics { margin-top: 8px; font-size: clamp(24px, 7vw, 32px); text-align: center; letter-spacing: 2px; word-break: break-all; }
+.pc-pics b { color: #0d9488; font-size: 26px; }
+.pc-off { opacity: .35; text-decoration: line-through; text-decoration-color: #ef4444; text-decoration-thickness: 3px; }
