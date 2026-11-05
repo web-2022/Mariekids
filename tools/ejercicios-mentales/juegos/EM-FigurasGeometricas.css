@@ -1,0 +1,6 @@
+.choice.fg-opt { display: flex; flex-direction: column; gap: 4px; min-height: 90px; }
+.choice.fg-opt svg { max-width: 74px; }
+.choice.fg-opt small { font: 800 14px 'Segoe UI', sans-serif; color: #1e3a8a; }
+.fg-obj { font-size: clamp(64px, 20vw, 96px); text-align: center; }
+.fg-big { display: grid; place-items: center; }
+.fg-big svg { width: min(48vw, 180px); }

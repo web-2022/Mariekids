@@ -1,0 +1,4 @@
+.cd-stage { display: grid; place-items: center; }
+.cd-stage svg { width: min(68vw, 260px); height: auto; }
+.choice.cd-opt { min-height: 96px; }
+.choice.cd-opt svg { max-width: 84px; }

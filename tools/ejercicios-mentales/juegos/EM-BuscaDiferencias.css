@@ -1,0 +1,8 @@
+.bd-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.bd-panel { display: grid; gap: 4px; padding: 8px; border-radius: 18px; background: linear-gradient(135deg, #fff, #fff7ed); border: 3px solid #fdba74; }
+.bd-cell { aspect-ratio: 1; border: none; border-radius: 12px; background: #fff; font-size: clamp(20px, 6.4vw, 32px); display: grid; place-items: center; cursor: pointer; padding: 0; position: relative; box-shadow: 0 2px 4px rgba(0,0,0,.06); }
+.bd-cell.big { font-size: clamp(30px, 9.6vw, 46px); }
+.bd-cell.found { box-shadow: 0 0 0 4px #22c55e inset; background: #dcfce7; }
+.bd-cell.found::after { content: ""; position: absolute; inset: -3px; border: 3px solid #22c55e; border-radius: 50%; animation: pop .3s; }
+.bd-cell.nope { background: #fee2e2; }
+.bd-count { margin-top: 8px; font-weight: 900; color: #c2410c; }
