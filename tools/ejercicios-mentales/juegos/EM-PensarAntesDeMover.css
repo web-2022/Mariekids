@@ -1,0 +1,13 @@
+.pm-board { position: relative; display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: 0; padding: 0; width: min(100%, 340px); margin: 0 auto; aspect-ratio: 1; overflow: hidden; border: 3px solid #86efac; background: #f0fdf4; }
+.pm-cell { display: grid; place-items: center; font-size: clamp(22px, 7vw, 34px); border: 1px solid #bbf7d0; background: repeating-linear-gradient(45deg, #ecfccb, #ecfccb 6px, #f7fee7 6px, #f7fee7 12px); }
+.pm-cell.goal { background: #fef9c3; animation: floaty 2s infinite; }
+.pm-cell.trail { background: #fde68a; }
+.pm-lula { position: absolute; width: calc(100% / var(--n)); height: calc(100% / var(--n)); transition: left .32s ease, top .32s ease; padding: 2px; pointer-events: none; }
+.pm-lula svg { width: 100%; height: 100%; }
+.pm-plan { margin-top: 8px; min-height: 44px; display: flex; flex-wrap: wrap; gap: 4px; align-items: center; justify-content: center; background: #fff; border: 2px dashed #86efac; border-radius: 14px; padding: 6px; font-size: 22px; }
+.pm-plan small { color: #15803d; font-size: 14px; }
+.pm-plan b { margin-left: auto; font-size: 14px; color: #15803d; }
+.pm-pad { display: grid; grid-template-columns: repeat(3, 64px); gap: 6px; justify-content: center; margin-top: 8px; }
+.pm-pad button { height: 54px; border: none; border-radius: 16px; background: linear-gradient(135deg, #4ade80, #16a34a); color: #fff; font-size: 26px; cursor: pointer; box-shadow: 0 5px 0 #15803d; }
+.pm-pad button:active { transform: translateY(3px); box-shadow: 0 2px 0 #15803d; }
+.pm-pad button.del { background: linear-gradient(135deg, #fb7185, #e11d48); box-shadow: 0 5px 0 #9f1239; font-size: 22px; }

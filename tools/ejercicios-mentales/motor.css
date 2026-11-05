@@ -92,3 +92,12 @@ p { margin: 6px 0; font-size: clamp(14px,4vw,16px); line-height: 1.4; }
   #hud .hide-xs { display: none; }
   .hero .who { width: 72px; }
 }
+
+/* ordenar */
+.ord-slots { display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: 6px; margin-bottom: 4px; }
+.ord-slot { min-height: 82px; border: 3px dashed var(--soft); border-radius: 16px; background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4px; font-size: clamp(24px, 7vw, 34px); position: relative; }
+.ord-slot > b { position: absolute; top: 2px; left: 6px; font: 900 13px 'Segoe UI', sans-serif; color: var(--a2); }
+.ord-slot.filled { border-style: solid; border-color: #86efac; background: #f0fdf4; animation: pop .25s; }
+.ord-slot .cap, .ord-card .cap { font: 800 clamp(10px, 2.9vw, 13px)/1.2 'Segoe UI', sans-serif; color: var(--ink); text-align: center; margin-top: 2px; }
+.choice.ord-card { display: flex; flex-direction: column; min-height: 96px; font-size: clamp(30px, 9vw, 40px); }
+.choice.ord-card.placed { opacity: .25; }

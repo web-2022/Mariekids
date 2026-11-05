@@ -198,6 +198,39 @@
       ui.setMiss(() => { const i = items.findIndex((it, k) => !o.correct(it, k)); if (i >= 0) btns[i].click(); });
       return btns;
     };
+    // ordenar: items ya en el orden correcto; el niño toca cuál va primero, luego el segundo…
+    ui.order = (items, o) => {
+      o = o || {};
+      const n = items.length; let next = 0;
+      const slots = document.createElement("div"); slots.className = "ord-slots"; slots.style.setProperty("--n", n);
+      const slotEls = items.map((_, i) => { const s = document.createElement("div"); s.className = "ord-slot"; s.innerHTML = `<b>${i + 1}</b>`; slots.appendChild(s); return s; });
+      const deck = document.createElement("div"); deck.className = "choices"; deck.style.setProperty("--cols", Math.min(n, o.cols || 3));
+      const order = shuffle(items.map((_, i) => i));
+      if (order.every((v, i) => v === i) && n > 1) [order[0], order[1]] = [order[1], order[0]];
+      const btns = {};
+      order.forEach(i => {
+        const b = document.createElement("button"); b.type = "button"; b.className = "choice ord-card";
+        b.innerHTML = o.render ? o.render(items[i]) : String(items[i]);
+        b.onclick = () => {
+          if (done || b.disabled) return;
+          if (i === next) {
+            b.disabled = true; b.classList.add("ok", "placed");
+            slotEls[next].innerHTML = `<b>${next + 1}</b>` + (o.render ? o.render(items[i]) : String(items[i]));
+            slotEls[next].classList.add("filled");
+            if (o.onPlace) o.onPlace(items[i], next);
+            next++;
+            if (next === n) { ui.win(o.why, o.sayWhy); deck.remove(); }
+          } else {
+            b.classList.add("wrong"); setTimeout(() => b.classList.remove("wrong"), 450);
+            ui.miss(typeof o.hint === "function" ? o.hint(next) : o.hint, o.sayHint);
+          }
+        };
+        btns[i] = b; deck.appendChild(b);
+      });
+      ui.area.appendChild(slots); ui.area.appendChild(deck);
+      ui.setSolve(() => { for (let k = next; k < n; k++) btns[k].click(); });
+      ui.setMiss(() => { const k = order.find(i => i !== next && !btns[i].disabled); if (k !== undefined) btns[k].click(); });
+    };
     ui.timer = (seconds, onEnd) => {
       const bar = document.createElement("div"); bar.className = "timer"; bar.innerHTML = "<i></i>";
       ui.area.prepend(bar);

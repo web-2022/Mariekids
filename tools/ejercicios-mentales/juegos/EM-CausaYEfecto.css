@@ -1,0 +1,5 @@
+.ce-show { display: flex; align-items: center; gap: 12px; justify-content: center; font-weight: 900; font-size: clamp(17px, 5vw, 21px); color: #78350f; }
+.ce-show .ce-e { font-size: clamp(42px, 12vw, 56px); }
+.choice.ce-opt { display: flex; align-items: center; justify-content: flex-start; gap: 12px; min-height: 62px; text-align: left; font-family: 'Segoe UI', sans-serif; }
+.choice.ce-opt .ce-e { font-size: 32px; }
+.choice.ce-opt .ce-t { font-size: clamp(15px, 4.4vw, 18px); font-weight: 800; color: #78350f; }

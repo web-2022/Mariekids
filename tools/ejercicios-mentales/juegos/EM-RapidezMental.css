@@ -1,0 +1,4 @@
+.choice.rm-group { min-height: 120px; font-size: clamp(20px, 6vw, 28px); line-height: 1.3; word-break: break-all; padding: 10px; }
+.choice.rm-cell { min-height: 0; aspect-ratio: 1; font-size: clamp(28px, 9vw, 42px); padding: 2px; }
+.rm-pair { display: grid; gap: 8px; font-size: clamp(30px, 9vw, 44px); letter-spacing: 4px; }
+.rm-pair div { background: #fff; border-radius: 14px; padding: 6px; }

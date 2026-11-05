@@ -105,6 +105,15 @@ p { margin: 6px 0; font-size: clamp(14px,4vw,16px); line-height: 1.4; }
   .hero .who { width: 72px; }
 }
 
+/* ordenar */
+.ord-slots { display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: 6px; margin-bottom: 4px; }
+.ord-slot { min-height: 82px; border: 3px dashed var(--soft); border-radius: 16px; background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4px; font-size: clamp(24px, 7vw, 34px); position: relative; }
+.ord-slot > b { position: absolute; top: 2px; left: 6px; font: 900 13px 'Segoe UI', sans-serif; color: var(--a2); }
+.ord-slot.filled { border-style: solid; border-color: #86efac; background: #f0fdf4; animation: pop .25s; }
+.ord-slot .cap, .ord-card .cap { font: 800 clamp(10px, 2.9vw, 13px)/1.2 'Segoe UI', sans-serif; color: var(--ink); text-align: center; margin-top: 2px; }
+.choice.ord-card { display: flex; flex-direction: column; min-height: 96px; font-size: clamp(30px, 9vw, 40px); }
+.choice.ord-card.placed { opacity: .25; }
+
 .mem-row { display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: 8px; margin-bottom: 6px; }
 .mem-card { aspect-ratio: 1; border-radius: 18px; background: #fff; display: grid; place-items: center; font-size: clamp(34px, 11vw, 56px); box-shadow: 0 6px 12px rgba(99, 102, 241, .18); transition: transform .35s, background .35s; }
 /* tapada: los emojis de color no se ocultan con "color", por eso tamaño 0 */
@@ -459,6 +468,39 @@ p { margin: 6px 0; font-size: clamp(14px,4vw,16px); line-height: 1.4; }
       ui.setSolve(() => { const i = items.findIndex((it, k) => o.correct(it, k)); btns[i].click(); });
       ui.setMiss(() => { const i = items.findIndex((it, k) => !o.correct(it, k)); if (i >= 0) btns[i].click(); });
       return btns;
+    };
+    // ordenar: items ya en el orden correcto; el niño toca cuál va primero, luego el segundo…
+    ui.order = (items, o) => {
+      o = o || {};
+      const n = items.length; let next = 0;
+      const slots = document.createElement("div"); slots.className = "ord-slots"; slots.style.setProperty("--n", n);
+      const slotEls = items.map((_, i) => { const s = document.createElement("div"); s.className = "ord-slot"; s.innerHTML = `<b>${i + 1}</b>`; slots.appendChild(s); return s; });
+      const deck = document.createElement("div"); deck.className = "choices"; deck.style.setProperty("--cols", Math.min(n, o.cols || 3));
+      const order = shuffle(items.map((_, i) => i));
+      if (order.every((v, i) => v === i) && n > 1) [order[0], order[1]] = [order[1], order[0]];
+      const btns = {};
+      order.forEach(i => {
+        const b = document.createElement("button"); b.type = "button"; b.className = "choice ord-card";
+        b.innerHTML = o.render ? o.render(items[i]) : String(items[i]);
+        b.onclick = () => {
+          if (done || b.disabled) return;
+          if (i === next) {
+            b.disabled = true; b.classList.add("ok", "placed");
+            slotEls[next].innerHTML = `<b>${next + 1}</b>` + (o.render ? o.render(items[i]) : String(items[i]));
+            slotEls[next].classList.add("filled");
+            if (o.onPlace) o.onPlace(items[i], next);
+            next++;
+            if (next === n) { ui.win(o.why, o.sayWhy); deck.remove(); }
+          } else {
+            b.classList.add("wrong"); setTimeout(() => b.classList.remove("wrong"), 450);
+            ui.miss(typeof o.hint === "function" ? o.hint(next) : o.hint, o.sayHint);
+          }
+        };
+        btns[i] = b; deck.appendChild(b);
+      });
+      ui.area.appendChild(slots); ui.area.appendChild(deck);
+      ui.setSolve(() => { for (let k = next; k < n; k++) btns[k].click(); });
+      ui.setMiss(() => { const k = order.find(i => i !== next && !btns[i].disabled); if (k !== undefined) btns[k].click(); });
     };
     ui.timer = (seconds, onEnd) => {
       const bar = document.createElement("div"); bar.className = "timer"; bar.innerHTML = "<i></i>";
