@@ -1,0 +1,18 @@
+.rf-seq { font-size: clamp(24px, 7.4vw, 34px); letter-spacing: 2px; font-weight: 900; color: #7c2d12; }
+.rf-riddle { font-size: clamp(17px, 5vw, 21px); font-weight: 800; color: #7c2d12; line-height: 1.4; }
+.rf-big { font-size: clamp(60px, 18vw, 84px); }
+.rf-who { color: #b45309; font-size: 13px; }
+.diploma { margin-top: 10px; padding: 18px 14px; border-radius: 20px; background: radial-gradient(circle at 50% 0%, #fffbeb, #fef3c7); border: 6px double #f59e0b; color: #7c2d12; }
+.dip-top { font: 900 clamp(24px, 7vw, 32px) Georgia, serif; color: #b45309; letter-spacing: 2px; }
+.dip-sub { font: italic 700 18px Georgia, serif; color: #92400e; margin-bottom: 6px; }
+.dip-name { width: 100%; text-align: center; font: 900 clamp(20px, 6vw, 26px) Georgia, serif; color: #7c2d12; border: none; border-bottom: 3px dashed #f59e0b; background: transparent; padding: 6px; outline: none; }
+.dip-chars { display: grid; grid-template-columns: repeat(8, 1fr); gap: 2px; margin: 10px 0 4px; }
+.dip-chars svg { width: 100%; height: auto; }
+.dip-date { font: italic 14px Georgia, serif; color: #92400e; }
+@media print {
+  body { background: #fff !important; }
+  body * { visibility: hidden; }
+  #diploma, #diploma * { visibility: visible; }
+  #diploma { position: fixed; left: 5%; top: 5%; width: 90%; }
+  .deco { display: none; }
+}

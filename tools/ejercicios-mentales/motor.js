@@ -120,9 +120,10 @@
     }
 
     /* ---------- personaje ---------- */
-    function setChar(where, mood, anim) {
+    let curWho = cfg.char;
+    function setChar(where, mood, anim, who) {
       const el = $(where); if (!el) return;
-      el.innerHTML = MKChar(cfg.char, mood);
+      el.innerHTML = MKChar(where === "gameWho" ? (who || curWho) : cfg.char, mood);
       if (anim) { el.classList.remove("jump", "wobble"); void el.offsetWidth; el.classList.add(anim); }
     }
 
@@ -135,7 +136,7 @@
     ui.say = say;
     ui.musicHold = musicHold;
     ui.prompt = (text, sayText) => { currentPrompt = text; currentSay = sayText || text; $("promptText").innerHTML = text; if (sayText !== false) say(currentSay); };
-    ui.char = (mood, anim) => setChar("gameWho", mood, anim);
+    ui.char = (mood, anim, who) => { if (who) curWho = who; setChar("gameWho", mood, anim); };
     ui.feedback = (text, cls) => { $("feedback").textContent = text || ""; $("feedback").className = cls || ""; };
     ui.helped = () => { if (tries === 0) tries = 1; };
     ui.setSolve = fn => { ui._solve = fn; };
@@ -296,6 +297,7 @@
       ui.feedback("");
       $("explain").classList.remove("show", "lost");
       $("scoreBox").textContent = "⭐ " + first;
+      curWho = cfg.char;
       setChar("gameWho", "anima");
       drawDots();
       cfg.round(level, index, ui);

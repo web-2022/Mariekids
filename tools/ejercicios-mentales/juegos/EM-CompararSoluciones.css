@@ -1,0 +1,5 @@
+.cs-sit { display: flex; align-items: center; gap: 12px; justify-content: center; font-weight: 900; font-size: clamp(17px, 5vw, 21px); color: #881337; text-align: left; }
+.cs-sit .cs-e { font-size: clamp(40px, 12vw, 54px); }
+.choice.cs-opt { display: flex; align-items: center; justify-content: flex-start; gap: 12px; min-height: 60px; text-align: left; font-family: 'Segoe UI', sans-serif; }
+.choice.cs-opt .cs-e { font-size: 30px; }
+.choice.cs-opt .cs-t { font-size: clamp(15px, 4.3vw, 17px); font-weight: 800; color: #14532d; }

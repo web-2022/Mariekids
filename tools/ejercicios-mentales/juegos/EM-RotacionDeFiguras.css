@@ -1,0 +1,9 @@
+.rf-stage { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 8px; }
+.rf-fig { aspect-ratio: 1; background: #fff; border-radius: 16px; display: grid; place-items: center; padding: 10px; box-shadow: 0 4px 10px rgba(79, 70, 229, .14); }
+.rf-fig svg { width: 100%; height: auto; }
+.rf-q { font: 900 40px 'Segoe UI', sans-serif; color: #a5b4fc; border: 3px dashed #a5b4fc; }
+.rf-arrow { text-align: center; color: #4f46e5; }
+.rf-arrow span { display: block; font-size: 30px; font-weight: 900; }
+.rf-arrow small { font: 800 12px 'Segoe UI', sans-serif; display: block; max-width: 74px; }
+.choice.rf-opt { aspect-ratio: 1; min-height: 0; padding: 12px; }
+.choice.rf-opt svg { max-width: 90px; }
