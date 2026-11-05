@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>MK • Patrones visuales</title>
+
+    <!-- PWA -->
+    <meta name="apple-mobile-web-app-title" content="MK" />
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1976d2">
+
+    <style>
+      * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+      html, body {
+        margin: 0; padding: 0; width: 100%; min-height: 100%;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        user-select: none; -webkit-user-select: none; touch-action: manipulation;
+      }
+
+      /* Escenario "pop": noche con luces de colores */
+      body {
+        min-height: 100dvh;
+        background:
+          radial-gradient(circle at 15% 10%, rgba(236, 72, 153, .55) 0 120px, transparent 260px),
+          radial-gradient(circle at 85% 18%, rgba(56, 189, 248, .50) 0 110px, transparent 250px),
+          radial-gradient(circle at 50% 100%, rgba(168, 85, 247, .55) 0 160px, transparent 360px),
+          linear-gradient(180deg, #2e1065 0%, #4c1d95 45%, #831843 100%);
+        color: #4c1d95;
+      }
+
+      #app {
+        position: relative;
+        width: min(100%, 560px);
+        min-height: 100dvh;
+        margin: 0 auto;
+        padding: max(10px, env(safe-area-inset-top)) 12px max(16px, env(safe-area-inset-bottom));
+        display: flex; flex-direction: column; gap: 10px;
+      }
+
+      /* Luces que suben y bajan */
+      .light { position: fixed; pointer-events: none; z-index: 0; top: -10vh; width: 30vw; height: 80vh;
+        background: linear-gradient(180deg, rgba(255,255,255,.18), transparent 70%);
+        clip-path: polygon(45% 0, 55% 0, 100% 100%, 0 100%); transform-origin: 50% 0; animation: sweep 6s ease-in-out infinite; }
+      .light.l1 { left: 5%; } .light.l2 { right: 5%; animation-delay: -3s; }
+      @keyframes sweep { 0%, 100% { transform: rotate(-14deg); } 50% { transform: rotate(14deg); } }
+      .spark { position: fixed; pointer-events: none; z-index: 0; color: #fff; font-size: 18px; animation: twinkle 2.2s infinite ease-in-out; }
+      @keyframes twinkle { 0%, 100% { opacity: .35; transform: scale(.8); } 50% { opacity: 1; transform: scale(1.2); } }
+
+      /* Barra superior */
+      #hud { position: relative; z-index: 2; display: grid; grid-template-columns: auto 1fr 1fr auto auto; gap: 8px; align-items: center; }
+      .panel {
+        background: rgba(255, 255, 255, .88); backdrop-filter: blur(8px);
+        border: 2px solid rgba(255, 255, 255, .95); border-radius: 16px;
+        padding: 8px 10px; box-shadow: 0 8px 18px rgba(0, 0, 0, .18);
+        color: #6f2dbd; font-weight: 800; text-align: center; font-size: clamp(12px, 3.4vw, 15px); white-space: nowrap;
+      }
+      .panel-btn { cursor: pointer; border: none; color: #fff; background: linear-gradient(135deg, #60a5fa, #2563eb); font-size: clamp(12px, 3.4vw, 15px); }
+      .panel-btn.sound { background: linear-gradient(135deg, #f472b6, #a855f7); }
+      .panel-btn.music { background: linear-gradient(135deg, #f43f5e, #db2777); }
+      .panel-btn.off { filter: grayscale(1); opacity: .6; }
+
+      /* Tarjetas */
+      .card {
+        position: relative; z-index: 1;
+        background: rgba(255, 255, 255, .95); border: 3px solid rgba(255, 255, 255, .95);
+        border-radius: 26px; padding: 16px; text-align: center;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, .28), 0 0 0 4px rgba(236, 72, 153, .25);
+      }
+      h1, h2 { margin: 0 0 8px; line-height: 1.15;
+        background: linear-gradient(90deg, #db2777, #7c3aed, #0ea5e9); -webkit-background-clip: text; background-clip: text; color: transparent; }
+      h1 { font-size: clamp(26px, 7vw, 34px); }
+      h2 { font-size: clamp(22px, 6vw, 28px); }
+      p { margin: 6px 0; font-size: clamp(14px, 4vw, 16px); line-height: 1.4; }
+
+      .btn {
+        border: 0; border-radius: 999px; padding: 12px 22px;
+        font-size: clamp(15px, 4vw, 17px); font-weight: 900; cursor: pointer; color: #fff;
+        background: linear-gradient(135deg, #ec4899, #8b5cf6);
+        box-shadow: 0 10px 22px rgba(139, 92, 246, .32); min-height: 46px;
+      }
+      .btn:active { transform: translateY(1px) scale(.99); }
+      .btn.alt { background: linear-gradient(135deg, #38bdf8, #6366f1); box-shadow: 0 10px 22px rgba(99, 102, 241, .28); }
+      .btn.soft { background: #fff; color: #7c3aed; border: 2px solid #ddd6fe; box-shadow: none; }
+
+      /* Elegir nivel */
+      .levels { display: grid; gap: 10px; margin-top: 12px; }
+      .level-btn {
+        display: grid; grid-template-columns: 56px 1fr auto; align-items: center; gap: 10px;
+        text-align: left; padding: 12px; border-radius: 20px; border: 3px solid #fce7f3;
+        background: #fff; cursor: pointer; font: inherit; color: #4c1d95;
+      }
+      .level-btn .ico { font-size: 34px; text-align: center; }
+      .level-btn b { display: block; font-size: 18px; }
+      .level-btn small { color: #be185d; font-weight: 700; }
+      .level-btn .stars { font-size: 18px; letter-spacing: 1px; }
+      .level-btn.locked { opacity: .55; filter: grayscale(.6); cursor: not-allowed; }
+      .level-btn:not(.locked):active { transform: scale(.98); }
+
+      /* Juego */
+      #progressDots { display: flex; gap: 6px; justify-content: center; margin: 4px 0 2px; flex-wrap: wrap; }
+      .dot { width: 14px; height: 14px; border-radius: 50%; background: #fce7f3; border: 2px solid #fff; box-shadow: 0 1px 3px rgba(0, 0, 0, .12); }
+      .dot.now { background: #fbbf24; transform: scale(1.2); }
+      .dot.ok { background: #22c55e; }
+      .dot.help { background: #fb923c; }
+
+      #prompt { font-size: clamp(18px, 5vw, 22px); font-weight: 900; color: #6d28d9; margin: 4px 0 6px; }
+      #prompt button { border: none; background: #fce7f3; border-radius: 50%; width: 36px; height: 36px; font-size: 18px; cursor: pointer; vertical-align: middle; margin-left: 4px; }
+
+      /* La fila del patrón */
+      #seq {
+        display: flex; flex-wrap: wrap; justify-content: center; gap: 6px;
+        padding: 12px 8px; margin: 6px 0 4px; border-radius: 20px;
+        background: linear-gradient(135deg, #fdf2f8, #f5f3ff, #ecfeff);
+        border: 2px dashed #f9a8d4;
+      }
+      #seq { --n: 6; --cw: min(60px, calc((min(100vw, 560px) - 92px - (var(--n) - 1) * 5px) / var(--n))); gap: 5px; flex-wrap: nowrap; }
+      .cell {
+        width: var(--cw); height: var(--cw); flex: none;
+        display: grid; place-items: center; border-radius: 14px; background: #fff;
+        box-shadow: 0 4px 10px rgba(124, 58, 237, .14); font-size: calc(var(--cw) * .62); line-height: 1;
+        font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
+        border: 3px solid transparent; transition: transform .2s;
+      }
+      .cell.wide { width: auto; min-width: var(--cw); flex: 0 1 auto; padding: 0 5px; font-size: clamp(13px, 4.2vw, 22px); letter-spacing: -2px; }
+      .cell.txt { font-size: calc(var(--cw) * .5); }
+      .cell.txt { font-family: 'Segoe UI', Tahoma, sans-serif; font-weight: 900; color: #7c3aed; }
+      .cell.miss { background: #fff7ed; border: 3px dashed #fb923c; color: #fb923c; font-family: 'Segoe UI', Tahoma, sans-serif; font-weight: 900; animation: bounce 1.2s infinite; }
+      .cell.filled { border-color: #22c55e; background: #dcfce7; animation: none; }
+      .cell.filled.g0, .cell.filled.g1 { border-color: #22c55e; }
+      .cell.g0 { box-shadow: 0 0 0 3px #f9a8d4 inset, 0 4px 10px rgba(124, 58, 237, .14); }
+      .cell.g1 { box-shadow: 0 0 0 3px #a5b4fc inset, 0 4px 10px rgba(124, 58, 237, .14); }
+      .cell.dance { animation: dance .5s ease-in-out; }
+      @keyframes bounce { 50% { transform: translateY(-5px); } }
+      @keyframes dance { 50% { transform: translateY(-8px) scale(1.08); } }
+
+      .s1 { font-size: .55em; } .s2 { font-size: .8em; } .s3 { font-size: 1.08em; }
+
+      #opts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 10px 0 4px; }
+      #opts.n4 { grid-template-columns: repeat(2, 1fr); }
+      .opt {
+        min-height: clamp(64px, 18vw, 90px); border-radius: 20px; border: 3px solid #fff;
+        background: radial-gradient(circle at 30% 25%, #fff, #fdf2f8 60%, #fce7f3);
+        box-shadow: 0 8px 16px rgba(219, 39, 119, .16);
+        display: grid; place-items: center; cursor: pointer; padding: 6px;
+        font-size: clamp(34px, 10vw, 50px); line-height: 1; transition: transform .12s;
+        font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
+      }
+      .opt.wide { font-size: clamp(16px, 5vw, 26px); letter-spacing: -2px; }
+      .opt.txt { font-family: 'Segoe UI', Tahoma, sans-serif; font-weight: 900; color: #7c3aed; }
+      .opt:active { transform: scale(.94); }
+      .opt.wrong { background: #fee2e2; border-color: #fca5a5; animation: shake .35s; opacity: .7; }
+      .opt.right { background: #dcfce7; border-color: #22c55e; transform: scale(1.06); }
+      .opt.dim { opacity: .45; }
+      @keyframes shake { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+
+      #feedback { min-height: 24px; font-weight: 900; font-size: clamp(15px, 4vw, 17px); }
+      #feedback.bad { color: #dc2626; }
+      #feedback.hint { color: #c2410c; }
+
+      #explain {
+        display: none; margin-top: 8px; padding: 12px; border-radius: 18px;
+        background: #f0fdf4; border: 2px solid #86efac; color: #166534; text-align: left;
+      }
+      #explain.show { display: block; animation: pop .25s ease-out; }
+      #explain .why { font-weight: 800; font-size: clamp(15px, 4vw, 17px); }
+      #explain .row { display: flex; gap: 8px; margin-top: 10px; }
+      #explain .row .btn { flex: 1; }
+      @keyframes pop { from { opacity: 0; transform: translateY(6px); } }
+
+      .actions { display: flex; gap: 8px; justify-content: center; margin-top: 8px; flex-wrap: wrap; }
+      .big-stars { font-size: 44px; letter-spacing: 4px; margin: 6px 0; }
+      .sparkle { position: fixed; pointer-events: none; font-size: 26px; z-index: 50; animation: fly .9s ease-out forwards; }
+      @keyframes fly { to { opacity: 0; transform: translate(var(--dx), -120px) scale(1.5); } }
+      .hidden { display: none !important; }
+
+      @media (max-width: 360px) {
+        #hud { grid-template-columns: auto 1fr auto auto; }
+        #hud .panel.hide-xs { display: none; }
+        #seq { padding: 10px 4px; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="light l1"></div>
+    <div class="light l2"></div>
+    <div class="spark" style="left:8%;top:30%">✦</div>
+    <div class="spark" style="right:10%;top:45%;animation-delay:.7s">✦</div>
+    <div class="spark" style="left:20%;bottom:12%;animation-delay:1.3s">✦</div>
+    <div class="spark" style="right:22%;bottom:22%;animation-delay:.4s">✦</div>
+
+    <div id="app">
+      <div id="hud">
+        <button class="panel panel-btn" id="homeBtn" type="button" aria-label="Volver a la ruta">🏠</button>
+        <div class="panel" id="levelBox">Patrones</div>
+        <div class="panel hide-xs" id="scoreBox">⭐ 0</div>
+        <button class="panel panel-btn music" id="musicBtn" type="button" aria-label="Activar o desactivar música">🎵</button>
+        <button class="panel panel-btn sound" id="soundBtn" type="button" aria-label="Activar o desactivar voz">🔊</button>
+      </div>
+
+      <!-- Inicio: elegir nivel -->
+      <section class="card" id="startScreen">
+        <div style="font-size:52px">🎤✨</div>
+        <h1>Patrones visuales</h1>
+        <p>Un <b>patrón</b> es algo que <b>se repite</b> o <b>cambia siempre igual</b>, como un paso de baile.</p>
+        <p>Mira la fila con atención y descubre <b>qué figura falta</b> en el lugar del ❓</p>
+        <div class="levels" id="levels"></div>
+        <p style="color:#be185d;font-size:14px;margin-top:12px">Gana ⭐⭐ o más (7 aciertos de 10) para abrir el siguiente nivel.</p>
+      </section>
+
+      <!-- Juego -->
+      <section class="card hidden" id="gameScreen">
+        <div id="progressDots"></div>
+        <div id="prompt"><span id="promptText">¿Qué va en el ❓?</span><button type="button" id="sayBtn" aria-label="Escuchar">🔊</button></div>
+        <div id="seq"></div>
+        <div id="opts"></div>
+        <div id="feedback"></div>
+        <div id="explain">
+          <div class="why" id="whyText"></div>
+          <div class="row"><button class="btn alt" id="nextBtn" type="button">Siguiente ➜</button></div>
+        </div>
+      </section>
+
+      <!-- Resultado -->
+      <section class="card hidden" id="endScreen">
+        <h2 id="endTitle">¡Muy bien!</h2>
+        <div class="big-stars" id="endStars">⭐⭐⭐</div>
+        <p id="endScore"></p>
+        <p id="endNote"></p>
+        <div class="actions">
+          <button class="btn" id="againBtn" type="button">🔁 Jugar otra vez</button>
+          <button class="btn alt" id="nextLevelBtn" type="button">Siguiente nivel ➜</button>
+          <button class="btn soft" id="menuBtn" type="button">Elegir nivel</button>
+        </div>
+      </section>
+
+      <audio id="sndOk" src="correct.mp3" preload="auto"></audio>
+      <audio id="sndBad" src="wrong.mp3" preload="auto"></audio>
+      <audio id="sndWin" src="levelup.mp3" preload="auto"></audio>
+      <audio id="bgMusic" src="music-kpop.mp3" loop preload="none"></audio>
+    </div>
+
+    <script>
+      /* =========================================================
+         GENERADORES DE PATRONES
+         Cada uno devuelve: la fila (seq), qué posición falta (miss),
+         las opciones, la explicación y una pista.
+         Un elemento puede ser texto (emoji/número) o { t, s } con tamaño 1-3.
+      ========================================================= */
+      const COLORS = [["🔴", "rojo"], ["🔵", "azul"], ["🟡", "amarillo"], ["🟢", "verde"], ["🟣", "morado"], ["🟠", "anaranjado"]];
+      const SHAPES = [["⭐", "estrella"], ["❤️", "corazón"], ["🔺", "triángulo"], ["🟦", "cuadrado"], ["🌙", "luna"], ["☀️", "sol"]];
+      const THINGS = ["🍎", "🍌", "🐶", "🐱", "🎈", "🌸", "🎵", "🍓", "🐟", "🦋", "🍦", "⚽", "🎀", "🧁", "🐥", "🚗"];
+      const POOLS = [COLORS.map(c => c[0]), SHAPES.map(s => s[0]), THINGS];
+
+      const rnd = n => Math.floor(Math.random() * n);
+      const pick = a => a[rnd(a.length)];
+      function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = rnd(i + 1); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+      function distinct(pool, n) { return shuffle(pool.slice()).slice(0, n); }
+      const key = x => typeof x === "object" ? x.t + "|" + x.s : String(x);
+      const show = x => typeof x === "object" ? x.t : x;
+
+      // Patrón que se repite (AB, ABC, AAB, ABB, AABB, ABCD)
+      function repeating(shape, length, missAnywhere, nOpts) {
+        const pool = pick(POOLS);
+        const letters = [...new Set(shape.split(""))];
+        const sym = distinct(pool, letters.length + 2);
+        const map = Object.fromEntries(letters.map((l, i) => [l, sym[i]]));
+        const unit = shape.split("").map(l => map[l]);
+        const seq = Array.from({ length }, (_, i) => unit[i % unit.length]);
+        // posición que falta: al final, o en medio dejando otra copia visible
+        let miss = length - 1;
+        if (missAnywhere) {
+          const cand = [];
+          for (let i = 0; i < length; i++) if (i - unit.length >= 0 || i + unit.length < length) cand.push(i);
+          miss = pick(cand);
+        }
+        const answer = seq[miss];
+        const others = [...new Set([...unit, ...sym.slice(letters.length)])].filter(x => x !== answer);
+        const opts = shuffle([answer, ...shuffle(others).slice(0, nOpts - 1)]);
+        const shown = unit.join(" ");
+        return {
+          seq, miss, answer, opts,
+          why: `El patrón se repite así: ${shown}. Por eso en el ❓ va ${answer}.`,
+          hint: `Busca el grupo que se repite. Empieza con ${unit[0]}.`,
+          sayWhy: `El grupo de ${unit.length} se repite una y otra vez. Por eso va ese.`,
+          sayHint: `Busca el grupo de ${unit.length} que se repite.`,
+          group: unit.length
+        };
+      }
+
+      // Crece de uno en uno: ⭐ · ⭐⭐ · ⭐⭐⭐ · ❓
+      function growing() {
+        const e = pick(["⭐", "🍎", "🎈", "❤️", "🌸", "🐥"]);
+        const start = 1 + rnd(2), len = 4;
+        const seq = Array.from({ length: len }, (_, i) => e.repeat(start + i));
+        const answer = seq[len - 1];
+        const n = start + len - 1;
+        const opts = shuffle([answer, e.repeat(n - 1), e.repeat(n + 1)]);
+        return { seq, miss: len - 1, answer, opts, wide: true,
+          why: `Cada vez hay uno más: ${start}, ${start + 1}, ${start + 2}… Por eso siguen ${n}.`,
+          hint: "Cuenta cuántos hay en cada casilla." };
+      }
+
+      // Gira como las agujas del reloj
+      function arrows() {
+        const A = ["⬆️", "➡️", "⬇️", "⬅️"], s = rnd(4), len = 6;
+        const seq = Array.from({ length: len }, (_, i) => A[(s + i) % 4]);
+        const answer = seq[len - 1];
+        const opts = shuffle([answer, ...A.filter(a => a !== answer)].slice(0, 3));
+        if (!opts.includes(answer)) opts[0] = answer;
+        return { seq, miss: len - 1, answer, opts: shuffle(opts),
+          why: "La flecha gira hacia la derecha, como las agujas del reloj: arriba, derecha, abajo, izquierda.",
+          hint: "Mira hacia dónde apunta cada flecha. ¿Cómo va girando?" };
+      }
+
+      // Números que suben o bajan siempre igual
+      function numbers() {
+        const t = pick([[2, 2, "de 2 en 2"], [5, 5, "de 5 en 5"], [10, 10, "de 10 en 10"], [1, 2, "de 2 en 2 (impares)"], [3, 3, "de 3 en 3"], [10, -1, "hacia atrás de 1 en 1"], [20, -2, "hacia atrás de 2 en 2"]]);
+        const [a, d, txt] = t, len = 5;
+        const seq = Array.from({ length: len }, (_, i) => String(a + d * i));
+        const miss = Math.random() < .5 ? len - 1 : 1 + rnd(len - 2);
+        const ans = a + d * miss;
+        const answer = String(ans);
+        const opts = shuffle([answer, String(ans + 1), String(ans - 1)]);
+        return { seq, miss, answer, opts, txt: true,
+          why: `Los números van ${txt}. Por eso en el ❓ va el ${answer}.`,
+          hint: "¿Cuánto cambia de un número al siguiente?" };
+      }
+
+      // Tamaños: pequeño, mediano, grande
+      function sizes() {
+        const e = pick(["🐟", "🍎", "⭐", "🐱", "🎈", "🌸"]);
+        const order = pick([[1, 2, 3], [3, 2, 1], [1, 3], [1, 1, 3]]);
+        const len = order.length === 3 ? 6 : order.length === 2 ? 6 : 6;
+        const seq = Array.from({ length: len }, (_, i) => ({ t: e, s: order[i % order.length] }));
+        const miss = len - 1;
+        const answer = seq[miss];
+        const all = [1, 2, 3].map(s => ({ t: e, s }));
+        const opts = shuffle(all);
+        const names = { 1: "pequeño", 2: "mediano", 3: "grande" };
+        return { seq, miss, answer, opts,
+          why: `El tamaño se repite: ${order.map(s => names[s]).join(", ")}. Por eso va el ${names[answer.s]}.`,
+          hint: "Esta vez no cambia el dibujo: fíjate en el tamaño." };
+      }
+
+      const LEVELS = [
+        { name: "Nivel 1", title: "Se repite", icon: "🎵", desc: "Patrones AB y ABC · falta el último",
+          make: () => repeating(pick(["AB", "AB", "ABC", "ABC", "AAB"]), pick([5, 6, 7]), false, 3) },
+        { name: "Nivel 2", title: "Paso a paso", icon: "💃", desc: "Patrones más largos · falta en cualquier lugar",
+          make: () => repeating(pick(["ABB", "AABB", "ABC", "ABCD", "AAB", "ABAC"]), pick([7, 8]), true, 4) },
+        { name: "Nivel 3", title: "Estrella del patrón", icon: "🌟", desc: "Crece, gira, números y tamaños",
+          make: () => pick([growing, arrows, numbers, sizes, numbers, () => repeating(pick(["ABCD", "AABB"]), 8, true, 4)])() }
+      ];
+      const ROUNDS = 10, PASS = 7;
+      const STORE = "mk_em_patrones_v1", SLUG = "EM-PatronesVisuales";
+
+      /* ---------- estado ---------- */
+      let progress = { unlocked: 1, best: [0, 0, 0] };
+      try { Object.assign(progress, JSON.parse(localStorage.getItem(STORE) || "{}")); } catch (e) { }
+      let voiceOn = true;
+      try { voiceOn = localStorage.getItem("mk_em_voice") !== "0"; } catch (e) { }
+      let level = 0, round = 0, firstTry = 0, results = [], current = null, tried = false, locked = false, lastKey = "";
+      const $ = id => document.getElementById(id);
+      function save() { try { localStorage.setItem(STORE, JSON.stringify(progress)); } catch (e) { } }
+      function play(id) { const a = $(id); if (a) { a.currentTime = 0; a.play().catch(() => { }); } }
+      function starsFor(n) { return n >= 9 ? 3 : n >= PASS ? 2 : n >= 4 ? 1 : 0; }
+      function starText(n) { return "⭐".repeat(n) + "☆".repeat(3 - n); }
+
+      /* ---------- voz ---------- */
+      function say(text) {
+        if (!voiceOn || !("speechSynthesis" in window)) return;
+        const u = new SpeechSynthesisUtterance(text);
+        const v = speechSynthesis.getVoices();
+        u.voice = v.find(x => x.lang === "es-PE") || v.find(x => x.lang === "es-419") || v.find(x => x.lang && x.lang.startsWith("es")) || null;
+        u.lang = "es-PE"; u.rate = .92; u.pitch = 1.05;
+        u.onstart = () => duck(true);
+        u.onend = u.onerror = () => duck(false);
+        speechSynthesis.cancel(); speechSynthesis.speak(u);
+      }
+      // La voz no lee emojis: quita símbolos para que suene natural
+      const speakable = t => t.replace(/[\p{Extended_Pictographic}⬆⬇⬅➡️❓·]/gu, " ").replace(/\s+/g, " ").trim();
+      function updateSoundBtn() { $("soundBtn").textContent = voiceOn ? "🔊" : "🔇"; }
+
+      /* ---------- música de fondo ---------- */
+      const MUSIC_VOL = 0.2, MUSIC_DUCK = 0.06;
+      const music = $("bgMusic");
+      let musicOn = true;
+      try { musicOn = localStorage.getItem("mk_em_music") !== "0"; } catch (e) { }
+      music.volume = MUSIC_VOL;
+      let fadeTimer = null;
+      function fadeTo(v) {
+        clearInterval(fadeTimer);
+        fadeTimer = setInterval(() => {
+          const d = v - music.volume;
+          if (Math.abs(d) < 0.02) { music.volume = v; clearInterval(fadeTimer); return; }
+          music.volume = Math.max(0, Math.min(1, music.volume + Math.sign(d) * 0.02));
+        }, 30);
+      }
+      function duck(on) { if (musicOn) fadeTo(on ? MUSIC_DUCK : MUSIC_VOL); }
+      function startMusic() { if (musicOn && !document.hidden && music.paused) { music.volume = MUSIC_VOL; music.play().catch(() => { }); } }
+      function updateMusicBtn() { $("musicBtn").classList.toggle("off", !musicOn); $("musicBtn").setAttribute("aria-pressed", String(musicOn)); }
+      document.addEventListener("pointerdown", startMusic, { passive: true });
+      document.addEventListener("visibilitychange", () => { if (document.hidden) music.pause(); else startMusic(); });
+
+      /* ---------- pantallas ---------- */
+      function screen(id) { ["startScreen", "gameScreen", "endScreen"].forEach(s => $(s).classList.toggle("hidden", s !== id)); window.scrollTo({ top: 0 }); }
+
+      function renderLevels() {
+        const box = $("levels"); box.innerHTML = "";
+        LEVELS.forEach((L, i) => {
+          const open = i < progress.unlocked;
+          const b = document.createElement("button");
+          b.type = "button"; b.className = "level-btn" + (open ? "" : " locked");
+          b.innerHTML = `<span class="ico">${open ? L.icon : "🔒"}</span><span><b>${L.name}: ${L.title}</b><small>${L.desc}</small></span><span class="stars">${starText(starsFor(progress.best[i] || 0))}</span>`;
+          b.onclick = () => { if (!open) { say("Primero gana dos estrellas en el nivel " + i); return; } startLevel(i); };
+          box.appendChild(b);
+        });
+        $("levelBox").textContent = "Patrones";
+        $("scoreBox").textContent = "⭐ " + progress.best.reduce((a, b) => a + starsFor(b), 0) + "/9";
+      }
+
+      function startLevel(i) {
+        level = i; round = 0; firstTry = 0; results = [];
+        $("levelBox").textContent = LEVELS[i].name;
+        screen("gameScreen"); nextRound();
+      }
+
+      function cellEl(x, cls) {
+        const d = document.createElement("div");
+        d.className = cls;
+        if (typeof x === "object") { d.innerHTML = `<span class="s${x.s}">${x.t}</span>`; d.setAttribute("aria-label", ["", "pequeño", "mediano", "grande"][x.s]); }
+        else d.textContent = x;
+        return d;
+      }
+
+      function nextRound() {
+        if (round >= ROUNDS) return endLevel();
+        let p, tries = 0;
+        do { p = LEVELS[level].make(); tries++; } while (p.seq.map(key).join() === lastKey && tries < 5);
+        lastKey = p.seq.map(key).join();
+        current = p; tried = false; locked = false;
+
+        const seq = $("seq"); seq.innerHTML = "";
+        seq.style.setProperty("--n", p.seq.length);
+        p.seq.forEach((x, i) => {
+          const cls = "cell" + (p.wide ? " wide" : "") + (p.txt ? " txt" : "");
+          const c = i === p.miss ? cellEl("❓", "cell miss") : cellEl(x, cls);
+          c.id = "c" + i; seq.appendChild(c);
+        });
+
+        const opts = $("opts"); opts.innerHTML = "";
+        opts.className = p.opts.length === 4 ? "n4" : "";
+        p.opts.forEach(o => {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.className = "opt" + (p.wide ? " wide" : "") + (p.txt ? " txt" : "");
+          if (typeof o === "object") b.innerHTML = `<span class="s${o.s}">${o.t}</span>`; else b.textContent = o;
+          b.onclick = () => choose(b, o);
+          opts.appendChild(b);
+        });
+
+        $("feedback").textContent = ""; $("feedback").className = "";
+        $("explain").classList.remove("show");
+        $("promptText").textContent = p.miss === p.seq.length - 1 ? "¿Qué sigue en el ❓?" : "¿Qué falta en el ❓?";
+        $("scoreBox").textContent = "⭐ " + firstTry;
+        drawDots();
+        say(round === 0 ? "Mira el patrón. ¿Qué va en el signo de pregunta?" : (p.miss === p.seq.length - 1 ? "¿Qué sigue?" : "¿Qué falta?"));
+      }
+
+      function drawDots() {
+        const d = $("progressDots"); d.innerHTML = "";
+        for (let i = 0; i < ROUNDS; i++) {
+          const s = document.createElement("span");
+          s.className = "dot" + (i === round ? " now" : "") + (results[i] ? " " + results[i] : "");
+          d.appendChild(s);
+        }
+      }
+
+      function choose(btn, o) {
+        if (locked) return;
+        if (key(o) === key(current.answer)) {
+          locked = true;
+          btn.classList.add("right");
+          document.querySelectorAll(".opt").forEach(b => { if (b !== btn) b.classList.add("dim"); });
+          if (!tried) firstTry++;
+          results[round] = tried ? "help" : "ok";
+          $("scoreBox").textContent = "⭐ " + firstTry;
+          // completa la casilla y hace "bailar" la fila
+          const m = $("c" + current.miss);
+          const filled = cellEl(current.answer, "cell filled" + (current.wide ? " wide" : "") + (current.txt ? " txt" : ""));
+          filled.id = m.id; m.replaceWith(filled);
+          document.querySelectorAll("#seq .cell").forEach((c, i) => {
+            if (current.group) c.classList.add("g" + (Math.floor(i / current.group) % 2));   // ahora sí: muestra los grupos
+            setTimeout(() => { c.classList.remove("dance"); void c.offsetWidth; c.classList.add("dance"); }, i * 90);
+          });
+          play("sndOk"); burst(btn);
+          $("feedback").textContent = tried ? "✅ ¡Lo lograste!" : "✅ ¡A la primera!";
+          $("feedback").className = "";
+          $("whyText").textContent = "🧠 " + current.why;
+          $("explain").classList.add("show");
+          $("nextBtn").textContent = round + 1 >= ROUNDS ? "Ver resultado 🏁" : "Siguiente ➜";
+          say("¡Muy bien! " + (current.sayWhy || speakable(current.why)));
+          setTimeout(() => $("explain").scrollIntoView({ behavior: "smooth", block: "nearest" }), 120);
+        } else {
+          btn.classList.add("wrong"); btn.disabled = true;
+          play("sndBad");
+          if (!tried) {
+            tried = true;
+            $("feedback").textContent = "💡 Pista: " + current.hint;
+            $("feedback").className = "hint";
+            say("Todavía no. Pista: " + (current.sayHint || speakable(current.hint)));
+          } else {
+            $("feedback").textContent = "❌ Esa no va. ¡Intenta otra vez!";
+            $("feedback").className = "bad";
+            say("Intenta otra vez.");
+          }
+        }
+      }
+
+      function burst(el) {
+        const r = el.getBoundingClientRect();
+        ["✨", "🌟", "💖", "🎤"].forEach((e, i) => {
+          const s = document.createElement("div");
+          s.className = "sparkle"; s.textContent = e;
+          s.style.left = r.left + r.width / 2 + "px"; s.style.top = r.top + r.height / 3 + "px";
+          s.style.setProperty("--dx", (i - 1.5) * 40 + "px");
+          document.body.appendChild(s); setTimeout(() => s.remove(), 900);
+        });
+      }
+
+      function endLevel() {
+        const st = starsFor(firstTry);
+        if (firstTry > (progress.best[level] || 0)) progress.best[level] = firstTry;
+        const passed = firstTry >= PASS;
+        if (passed && progress.unlocked < level + 2) progress.unlocked = Math.min(LEVELS.length, level + 2);
+        if (passed) { try { localStorage.setItem("mk_topic_" + SLUG + "_complete", "true"); } catch (e) { } }
+        save();
+        $("endTitle").textContent = st === 3 ? "¡Eres una estrella de los patrones! 🌟" : passed ? "¡Muy bien! 🎉" : "¡Buen intento! 💪";
+        $("endStars").textContent = starText(st);
+        $("endScore").innerHTML = `Resolviste <b>${firstTry} de ${ROUNDS}</b> patrones a la primera.`;
+        const hasNext = level + 1 < LEVELS.length;
+        $("endNote").textContent = passed
+          ? (hasNext ? `¡Abriste el ${LEVELS[level + 1].name}!` : "¡Completaste todos los niveles!")
+          : `Necesitas ${PASS} aciertos a la primera para abrir el siguiente nivel. ¡Tú puedes!`;
+        $("nextLevelBtn").classList.toggle("hidden", !(passed && hasNext));
+        screen("endScreen");
+        play(passed ? "sndWin" : "sndBad");
+        say(speakable($("endTitle").textContent) + ". " + $("endScore").textContent);
+      }
+
+      /* ---------- eventos ---------- */
+      $("homeBtn").onclick = () => { location.href = "ruta-EjerciosMentales.html"; };
+      $("soundBtn").onclick = () => {
+        voiceOn = !voiceOn; updateSoundBtn();
+        try { localStorage.setItem("mk_em_voice", voiceOn ? "1" : "0"); } catch (e) { }
+        if (!voiceOn && "speechSynthesis" in window) speechSynthesis.cancel();
+      };
+      $("musicBtn").onclick = () => {
+        musicOn = !musicOn; updateMusicBtn();
+        try { localStorage.setItem("mk_em_music", musicOn ? "1" : "0"); } catch (e) { }
+        if (musicOn) startMusic(); else music.pause();
+      };
+      $("sayBtn").onclick = () => {
+        if (!current) return;
+        const was = voiceOn; voiceOn = true;
+        say((current.miss === current.seq.length - 1 ? "¿Qué sigue?" : "¿Qué falta?") + (tried ? " Pista: " + (current.sayHint || speakable(current.hint)) : ""));
+        voiceOn = was;
+      };
+      $("nextBtn").onclick = () => { round++; nextRound(); };
+      $("againBtn").onclick = () => startLevel(level);
+      $("nextLevelBtn").onclick = () => startLevel(level + 1);
+      $("menuBtn").onclick = () => { renderLevels(); screen("startScreen"); };
+
+      updateSoundBtn(); updateMusicBtn(); renderLevels();
+    </script>
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("./service-worker.js").catch(() => { });
+        });
+      }
+    </script>
+  </body>
+
+</html>
