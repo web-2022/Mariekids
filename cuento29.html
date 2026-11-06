@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Marie Kids • La Doctora Marie y su Clínica de Juguetes</title>
+
+        <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+
+
+        <!-- PWA -->
+        <meta name="apple-mobile-web-app-title" content="MK" />
+        <link rel="manifest" href="manifest.json">
+        <meta name="theme-color" content="#1976d2">
+
+        <style>
+            :root {
+                --bg1: #dbeafe;
+                --bg2: #e0f2fe;
+                --card: #ffffff;
+                --accent: #1976d2;
+                --text: #0f172a;
+                --muted: #475569;
+                --radius: 22px;
+            }
+
+            * {
+                box-sizing: border-box;
+                font-family: "Comic Neue", "Segoe UI", system-ui, sans-serif;
+            }
+
+            body {
+                margin: 0;
+                min-height: 100vh;
+                background: linear-gradient(145deg, var(--bg1), var(--bg2));
+                padding: 18px;
+                display: flex;
+                justify-content: center;
+            }
+
+            .app {
+                width: 100%;
+                max-width: 560px;
+            }
+
+            header {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 14px 18px;
+                background: #fff;
+                border-radius: var(--radius);
+                box-shadow: 0 12px 30px rgba(0, 0, 0, .12);
+                margin-bottom: 18px;
+            }
+
+            .logo {
+                font-size: 28px;
+            }
+
+            .brand h1 {
+                margin: 0;
+                font-size: 18px;
+                color: var(--accent);
+            }
+
+            .brand span {
+                font-size: 13px;
+                color: var(--muted);
+            }
+
+            .backBtn {
+                margin-left: auto;
+                background: #f59e0b;
+                color: #fff;
+                text-decoration: none;
+                padding: 8px 16px;
+                font-size: 14px;
+                border-radius: 999px;
+                font-weight: 600;
+                box-shadow: 0 6px 14px rgba(245, 158, 11, .35);
+            }
+
+            .scene-card {
+                background: var(--card);
+                border-radius: var(--radius);
+                padding: 10px;
+                box-shadow: 0 16px 40px rgba(0, 0, 0, .14);
+                display: none;
+                animation: fade .4s ease;
+            }
+
+            .scene-card.active {
+                display: block;
+            }
+
+            @keyframes fade {
+                from {
+                    opacity: 0;
+                    transform: translateY(12px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .scene-card h2 {
+                text-align: center;
+                margin-bottom: 12px;
+                font-size: 28px;
+            }
+
+            .scene-card p {
+                font-size: 20px;
+                line-height: 1.9;
+                margin: 10px 0;
+                color: var(--text);
+            }
+
+            .dialogue {
+                margin-left: 12px;
+                padding-left: 12px;
+                border-left: 4px solid #bfdbfe;
+                font-style: italic;
+                color: #1e3a8a;
+                font-size: 20px;
+            }
+
+            .scene-img {
+                width: 100%;
+                max-height: min(58vh, 520px);
+                width: auto;
+                max-width: 100%;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                object-fit: contain;
+                border-radius: 16px;
+                margin-bottom: 14px;
+                background: #f8fafc;
+            }
+
+            .actions {
+                margin-top: 18px;
+                display: flex;
+                gap: 12px;
+                justify-content: center;
+            }
+
+            button {
+                background: var(--accent);
+                color: #fff;
+                border: none;
+                padding: 16px 26px;
+                font-size: 18px;
+                border-radius: 999px;
+                cursor: pointer;
+                box-shadow: 0 8px 20px rgba(25, 118, 210, .35);
+            }
+
+            button.secondary {
+                background: #94a3b8;
+                box-shadow: none;
+            }
+
+            button:disabled {
+                opacity: .4;
+                cursor: not-allowed;
+            }
+
+            .readBtn {
+                background: #22c55e;
+                padding: 10px 18px;
+                font-size: 16px;
+                border-radius: 999px;
+                margin-bottom: 8px;
+                box-shadow: 0 6px 14px rgba(34, 197, 94, .35);
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="app">
+
+            <header>
+                <div class="logo">👩‍⚕️</div>
+                <div class="brand">
+                    <h1>Marie Kids</h1>
+                    <span>Cuentos con valores</span>
+                </div>
+                <a href="ruta-cuentos.html" class="backBtn">📚 Volver</a>
+            </header>
+
+            <!-- ESCENA 1 -->
+            <div class="scene-card active">
+                <h2>👩‍⚕️ La Doctora Marie y su Clínica de Juguetes</h2>
+                <img src="Cuentos/c29-1.webp" class="scene-img" alt="Marie con bata de doctora junto a su papá, su asistente, en el Hospital de Juguetes">
+                <button class="readBtn">🔊 Leer</button>
+                <h3>🌸 ¡Se inaugura la clínica!</h3>
+                <p>Había una vez una niña llamada Marie que tenía un sueño muy especial: ¡quería ser doctora!</p>
+                <p>Una mañana, Marie se puso su bata blanca, tomó su estetoscopio de juguete y anunció:</p>
+                <p class="dialogue">—¡Papá, hoy voy a abrir mi propio hospital!</p>
+                <p class="dialogue">—¿Y quién será tu asistente, doctora? —preguntó su papá, sorprendido.</p>
+                <p class="dialogue">—¡Tú, papá! Pero tienes que obedecer mis indicaciones —respondió Marie, muy seria.</p>
+                <p class="dialogue">—¡Sí, doctora Marie! —dijo su papá, haciendo un saludo militar.</p>
+                <p>Y así nació el famoso Hospital de la Doctora Marie, donde todos los pacientes eran bienvenidos.</p>
+            </div>
+
+            <!-- ESCENA 2 -->
+            <div class="scene-card">
+                <img src="Cuentos/c29-2.webp" class="scene-img" alt="Los juguetes hacen cola para ver a la doctora: muñecas, un pato, un loro, ratoncitos, un suricato, un jabalí y un elefante">
+                <button class="readBtn">🔊 Leer</button>
+                <h3>🧸 Una cola de pacientes muy especial</h3>
+                <p>Papá acomodó unas sillitas y Marie colocó a sus pacientes en una larga fila: primero sus muñecas Barbie, muy elegantes; después el pato de peluche, el loro Pepe, Mickey, Minnie, Timón, Pumba y un enorme elefante.</p>
+                <p class="dialogue">—¡Atención, pacientes! ¡Por favor, hagan su cola y esperen su turno! —anunció papá.</p>
+                <p>Pero Pumba ocupaba tanto espacio que Timón protestó:</p>
+                <p class="dialogue">—¡Oye, Pumba! ¡Estás ocupando tres asientos!</p>
+                <p class="dialogue">—¡Es que tengo una barriga muy grande! —respondió Pumba.</p>
+                <p class="dialogue">—¡Silencio, por favor! ¡Esto es un hospital, no un circo! —dijo Marie, muerta de risa.</p>
+            </div>
+
+            <!-- ESCENA 3 -->
+            <div class="scene-card">
+                <img src="Cuentos/c29-3.webp" class="scene-img" alt="Marie le toma la temperatura al pato de peluche con un termómetro de juguete">
+                <button class="readBtn">🔊 Leer</button>
+                <h3>🌡️ El pato con fiebre</h3>
+                <p>El primer paciente fue el pato de peluche.</p>
+                <p class="dialogue">—Buenos días, señor Pato. ¿Qué le duele? —preguntó Marie.</p>
+                <p class="dialogue">—¡Cuac, cuac! ¡Creo que tengo fiebre! —respondió papá, haciendo la voz del pato.</p>
+                <p>Marie le colocó con cuidado su termómetro de juguete.</p>
+                <p class="dialogue">—Mmm… ¡Tiene treinta y nueve grados de fiebre imaginaria!</p>
+                <p class="dialogue">—¡Cuac! ¿Es grave, doctora?</p>
+                <p class="dialogue">—¡Necesita descansar y tomar mucha agüita! —dijo Marie, y le puso una curita en el ala—. ¡Listo! ¡Siguiente paciente!</p>
+                <p class="dialogue">—¡Muchas gracias, doctora! ¡Cuac, cuac!</p>
+            </div>
+
+            <!-- ESCENA 4 -->
+            <div class="scene-card">
+                <img src="Cuentos/c29-4.webp" class="scene-img" alt="Marie le pone una vacuna de juguete al loro Pepe, que se asusta">
+                <button class="readBtn">🔊 Leer</button>
+                <h3>💉 El loro Pepe y la vacuna</h3>
+                <p>El siguiente paciente fue el loro Pepe.</p>
+                <p class="dialogue">—¡Buenos días, Pepe! —saludó Marie.</p>
+                <p class="dialogue">—¡Buenos días, doctora! ¡Buenos días, doctora! —repitió papá, imitando al loro.</p>
+                <p class="dialogue">—Hoy te toca tu vacuna de juguete —anunció Marie.</p>
+                <p class="dialogue">—¡No, no, no! ¡Tengo miedo! ¡Tengo miedo! —gritó Pepe.</p>
+                <p class="dialogue">—Tranquilo, Pepe. Es solo un juego, no te va a doler —le dijo Marie, acariciándolo suavemente.</p>
+                <p>Le puso la jeringa de juguete en el ala y… ¡listo! Papá hizo saltar al loro:</p>
+                <p class="dialogue">—¡No me dolió! ¡No me dolió! ¡Soy un loro valiente!</p>
+                <p>Y Marie soltó una carcajada.</p>
+            </div>
+
+            <!-- ESCENA 5 -->
+            <div class="scene-card">
+                <img src="Cuentos/c29-5.webp" class="scene-img" alt="Marie le pone una curita en la rodilla al ratoncito mientras la ratoncita mira">
+                <button class="readBtn">🔊 Leer</button>
+                <h3>🎀 Mickey, Minnie y las Barbies</h3>
+                <p>Después llegaron Mickey y Minnie.</p>
+                <p class="dialogue">—Doctora, Mickey se cayó mientras bailaba —explicó Minnie.</p>
+                <p>Marie examinó su rodilla, le puso una curita de colores y le recomendó descansar.</p>
+                <p>Luego llegaron las Barbies. Una tenía dolor de cabeza, otra decía que le dolía el pie y la tercera tenía un problema muy extraño:</p>
+                <p class="dialogue">—Doctora, ¡se me despeinó el cabello!</p>
+                <p class="dialogue">—¡Eso no es una enfermedad! —dijo Marie, sorprendida.</p>
+                <p class="dialogue">—Doctora, ¿llamamos a una peluquera? —preguntó papá.</p>
+                <p class="dialogue">—¡No, papá! ¡Tráeme un peine!</p>
+                <p>Y todos se echaron a reír.</p>
+            </div>
+
+            <!-- ESCENA 6 -->
+            <div class="scene-card">
+                <img src="Cuentos/c29-6.webp" class="scene-img" alt="Marie escucha con su estetoscopio la barriga del jabalí, junto al suricato">
+                <button class="readBtn">🔊 Leer</button>
+                <h3>🦁 Timón y Pumba</h3>
+                <p>Llegó el turno de Timón.</p>
+                <p class="dialogue">—Doctora, ¡me duele la barriga de tanto reírme!</p>
+                <p>Marie lo examinó con su estetoscopio:</p>
+                <p class="dialogue">—¡Necesitas descansar de tantos chistes!</p>
+                <p>Después entró Pumba.</p>
+                <p class="dialogue">—¡Doctora, tengo mucha hambre!</p>
+                <p class="dialogue">—¿Y qué comiste hoy? —preguntó Marie.</p>
+                <p class="dialogue">—¡Desayuné, almorcé… y después volví a desayunar!</p>
+                <p class="dialogue">—¡Pumba! ¡Tienes que comer con tranquilidad! —exclamó Marie.</p>
+            </div>
+
+            <!-- ESCENA 7 -->
+            <div class="scene-card">
+                <img src="Cuentos/c29-7.webp" class="scene-img" alt="El elefante de peluche estornuda y Marie le ofrece un pañuelo">
+                <button class="readBtn">🔊 Leer</button>
+                <h3>🐘 El elefante resfriado</h3>
+                <p>Finalmente llegó el elefante.</p>
+                <p class="dialogue">—¡Aaaaachís! —estornudó papá tan fuerte que casi se cae de la silla.</p>
+                <p>Marie se rio muchísimo.</p>
+                <p class="dialogue">—¡Papá! ¡Ese elefante necesita un pañuelo gigante!</p>
+            </div>
+
+            <!-- ESCENA 8 -->
+            <div class="scene-card">
+                <img src="Cuentos/c29-8.webp" class="scene-img" alt="Marie y su papá se abrazan felices rodeados de todos los juguetes">
+                <button class="readBtn">🔊 Leer</button>
+                <h3>💖 La doctora que no cobraba</h3>
+                <p>Después de varias horas de consultas imaginarias, todos los pacientes estaban felices. Papá se acercó con una cajita y preguntó:</p>
+                <p class="dialogue">—Doctora Marie, ¿cuánto les vamos a cobrar a los pacientes?</p>
+                <p class="dialogue">—¡Nada, papá! —dijo Marie, abriendo mucho los ojos.</p>
+                <p class="dialogue">—¿Nada? ¿Ni una moneda?</p>
+                <p class="dialogue">—¡No! Mi hospital es gratis. Yo quiero que todos se curen y estén felices.</p>
+                <p class="dialogue">—¿Y qué recibes a cambio? —preguntó papá, sonriendo.</p>
+                <p>Marie miró a sus muñecas y peluches:</p>
+                <p class="dialogue">—¡Muchos abrazos!</p>
+                <p>Entonces su papá la abrazó muy fuerte.</p>
+                <p class="dialogue">—Doctora Marie, usted tiene un corazón enorme.</p>
+            </div>
+
+            <!-- ESCENA 9 -->
+            <div class="scene-card">
+                <div class="scene-img" style="display:grid;place-items:center;height:200px;width:100%;font-size:110px;background:linear-gradient(180deg,#312e81,#6d28d9);" role="img" aria-label="La luna y las estrellas de la noche">🌙</div>
+                <button class="readBtn">🔊 Leer</button>
+                <h3>🌙 La última paciente</h3>
+                <p>Cuando llegó la noche, Marie estaba muy cansada. De pronto, papá anunció:</p>
+                <p class="dialogue">—¡Doctora! ¡Tenemos una última paciente!</p>
+                <p class="dialogue">—¿Quién es, papá? —preguntó Marie, levantándose rápido.</p>
+                <p class="dialogue">—¡Una niña llamada Marie, que ha trabajado demasiado y necesita descansar!</p>
+                <p class="dialogue">—¡Pero papá, yo soy la doctora! —dijo Marie, riendo.</p>
+                <p class="dialogue">—¡Hoy te toca ser la paciente!</p>
+                <p>Papá tomó el estetoscopio de juguete y escuchó su corazón.</p>
+                <p class="dialogue">—Mmm… ¡Diagnóstico confirmado!</p>
+                <p class="dialogue">—¿Qué tengo, doctor?</p>
+                <p class="dialogue">—¡Un corazón lleno de cariño y unas enormes ganas de dormir!</p>
+                <p>Marie abrazó a su papá y se acostó junto a sus peluches. Antes de cerrar los ojos, susurró:</p>
+                <p class="dialogue">—Mañana abriré otra vez mi hospital.</p>
+                <p class="dialogue">—¡Aquí estará tu asistente, doctora Marie! —respondió papá.</p>
+                <p>Fin.</p>
+            </div>
+
+            <!-- FINAL -->
+            <div class="scene-card">
+                <h3>🌟 Moraleja</h3>
+                <button class="readBtn">🔊 Leer</button>
+                <p class="dialogue">
+                    Ayudar a los demás con cariño es una de las cosas más bonitas que podemos hacer. No siempre necesitamos recibir dinero o regalos, porque una sonrisa y un abrazo también son grandes recompensas.
+                </p>
+            </div>
+
+            <div class="actions">
+                <button id="prevBtn" class="secondary" disabled>⬅ Anterior</button>
+                <button id="nextBtn">Siguiente ➡</button>
+            </div>
+
+        </div>
+
+        <!-- NAV -->
+        <script>
+            const scenes = document.querySelectorAll(".scene-card");
+            const nextBtn = document.getElementById("nextBtn");
+            const prevBtn = document.getElementById("prevBtn");
+            let index = 0;
+
+            function updateView() {
+                scenes.forEach(s => s.classList.remove("active"));
+                scenes[index].classList.add("active");
+
+                prevBtn.disabled = index === 0;
+                nextBtn.textContent = index === scenes.length - 1 ? "Finalizar ✨" : "Siguiente ➡";
+            }
+
+            nextBtn.addEventListener("click", () => {
+                if (index < scenes.length - 1) {
+                    index++;
+                    updateView();
+                } else {
+                    nextBtn.style.display = "none";
+                }
+            });
+
+            prevBtn.addEventListener("click", () => {
+                if (index > 0) {
+                    index--;
+                    updateView();
+                }
+            });
+        </script>
+
+        <!-- LECTURA -->
+        <script>
+            const synth = window.speechSynthesis;
+            let voices = [];
+
+            function loadVoices() { voices = synth.getVoices(); }
+            loadVoices();
+            if (speechSynthesis.onvoiceschanged !== undefined) {
+                speechSynthesis.onvoiceschanged = loadVoices;
+            }
+
+            function getSpanish() {
+                return voices.find(v => v.lang.startsWith("es")) || voices[0];
+            }
+
+            document.querySelectorAll(".readBtn").forEach((btn) => {
+                btn.addEventListener("click", () => {
+                    synth.cancel();
+                    const card = btn.closest(".scene-card");
+                    const text = [...card.querySelectorAll("p, .dialogue")]
+                        .map(el => el.innerText).join(" ");
+
+                    const utter = new SpeechSynthesisUtterance(text);
+                    utter.voice = getSpanish();
+                    utter.lang = "es-PE";
+                    utter.rate = 0.9;
+                    utter.pitch = 1.1;
+
+                    synth.speak(utter);
+                });
+            });
+        </script>
+
+        <script>
+            // Registrar Service Worker (PWA)
+            if ("serviceWorker" in navigator) {
+                window.addEventListener("load", () => {
+                    navigator.serviceWorker.register("./service-worker.js").catch(() => { });
+                });
+            }
+        </script>
+
+        <script src="assets/lectura.js" defer></script>
+        <script src="assets/voces.js" defer></script>
+</body>
+
+</html>
