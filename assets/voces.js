@@ -42,7 +42,7 @@
     var state = load();
     function load() {
         try { var s = JSON.parse(localStorage.getItem(KEY)); if (s && s.preset) return s; } catch (e) { }
-        return { preset: "hada", voice: "" };
+        return { preset: "hada", voice: "", speed: "normal" };
     }
     function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { } }
     function preset(id) { return PRESETS.filter(function (p) { return p.id === (id || state.preset); })[0] || PRESETS[0]; }
@@ -81,7 +81,7 @@
         var v = pickVoice(p);
         if (v) { u.voice = v; u.lang = v.lang; }
         u.pitch = p.pitch;
-        u.rate = Math.max(0.5, Math.min(1.6, (u.rate || BASE_RATE) * p.rate / BASE_RATE));
+        u.rate = Math.max(0.45, Math.min(1.6, (u.rate || BASE_RATE) * p.rate / BASE_RATE * speed().k));
         return u;
     }
     synth.speak = function (u) { if (!u.__mkVoz) dress(u); return realSpeak(u); };
@@ -141,24 +141,156 @@
     }
     function scenes() { return Array.prototype.slice.call(document.querySelectorAll(".scene-card")); }
 
-    // 🔊 Leer: con "Mamá o Papá" suena la grabación de esa página
-    window.addEventListener("click", function (e) {
-        var b = e.target.closest && e.target.closest(".scene-card .readBtn");
-        if (!b || !preset().family) return;
-        var i = scenes().indexOf(b.closest(".scene-card"));
-        e.stopImmediatePropagation(); e.preventDefault();
-        getRec(i).then(function (blob) {
-            if (blob) playBlob(blob);
-            else { // sin grabación: lee el Hada y avisa en la barra
-                var card = scenes()[i], txt = Array.prototype.map.call(card.querySelectorAll("p"), function (p) { return p.innerText; }).join(" ");
-                stopAudio(); synth.cancel();
-                var u = new SpeechSynthesisUtterance(txt); u.rate = BASE_RATE; synth.speak(u);
+    /* ---------------- LECTOR: leer, pausar, velocidad y leer todo ----------------
+       Lee frase por frase. Así "Pausar" funciona en todos los celulares
+       (al seguir, retoma desde la frase donde se quedó). */
+    var SPEEDS = [{ id: "lento", icon: "🐢", name: "Lento", k: 0.72 }, { id: "normal", icon: "🙂", name: "Normal", k: 0.85 }, { id: "rapido", icon: "🐇", name: "Rápido", k: 1.0 }];
+    function speed() { return SPEEDS.filter(function (x) { return x.id === state.speed; })[0] || SPEEDS[1]; }
+
+    var R = { on: false, all: false, paused: false, scene: -1, items: [], pos: 0, token: 0, audio: false };
+    var bar;
+
+    function sentences(card) {
+        var out = [];
+        Array.prototype.forEach.call(card.querySelectorAll("p, h3"), function (el) {
+            if (el.closest(".mk-rec-bar") || el.closest(".mk-read-tools")) return;
+            var t = (el.innerText || "").replace(/\s+/g, " ").trim();
+            if (!t) return;
+            (t.match(/[^.!?…]+[.!?…»”"]*\s*/g) || [t]).forEach(function (x) {
+                x = x.trim(); if (x.replace(/[—\-\s.,!?¡¿…«»"”]/g, "")) out.push({ el: el, text: x });
+            });
+        });
+        return out;
+    }
+    function mark(el) {
+        Array.prototype.forEach.call(document.querySelectorAll(".mk-now"), function (x) { x.classList.remove("mk-now"); });
+        if (el) el.classList.add("mk-now");
+    }
+    function activeIndex() { return scenes().indexOf(document.querySelector(".scene-card.active")); }
+
+    function startScene(i) {
+        R.scene = i; R.pos = 0; R.audio = false;
+        R.items = sentences(scenes()[i]);
+        if (preset().family) {
+            getRec(i).then(function (blob) {
+                if (!R.on || R.scene !== i) return;
+                if (blob) { R.audio = true; playScene(blob); } else step();
+            });
+        } else step();
+        updateBar();
+    }
+    function playScene(blob) {
+        var tk = ++R.token;
+        mark(scenes()[R.scene]);
+        playBlob(blob);
+        player.onended = function () { if (tk === R.token && R.on && !R.paused) sceneDone(); };
+    }
+    function step() {
+        if (!R.on || R.paused) return;
+        if (R.pos >= R.items.length) return sceneDone();
+        var it = R.items[R.pos], tk = ++R.token;
+        mark(it.el);
+        var u = new SpeechSynthesisUtterance(it.text);
+        u.rate = BASE_RATE;
+        u.onend = function () { if (tk !== R.token || !R.on || R.paused) return; R.pos++; setTimeout(step, 250); };
+        u.onerror = function (ev) { if (tk !== R.token || !R.on || R.paused) return; if (ev && ev.error === "interrupted") return; R.pos++; setTimeout(step, 250); };
+        synth.speak(u);
+    }
+    function sceneDone() {
+        mark(null);
+        var list = scenes();
+        if (R.all && R.scene < list.length - 1) {
+            var nb = document.getElementById("nextBtn");
+            R.advancing = true; if (nb) nb.click(); R.advancing = false;
+            R.scene = activeIndex();
+            try { window.scrollTo({ top: 0, behavior: "smooth" }); } catch (e) { window.scrollTo(0, 0); }
+            var tk = ++R.token;
+            setTimeout(function () { if (tk === R.token && R.on && !R.paused) startScene(activeIndex()); }, 1200); // pausa para mirar el dibujo
+            updateBar();
+        } else stop();
+    }
+    function readFrom(all) {
+        stop(true);
+        R.on = true; R.all = all; R.paused = false;
+        startScene(activeIndex());
+    }
+    function pause() {
+        if (!R.on) return;
+        R.paused = true; R.token++;
+        if (R.audio) { try { player.pause(); } catch (e) { } } else synth.cancel();
+        updateBar();
+    }
+    function resume() {
+        if (!R.on) return;
+        R.paused = false;
+        if (activeIndex() !== R.scene) return startScene(activeIndex());
+        if (R.audio) { var tk = ++R.token; player.onended = function () { if (tk === R.token && R.on && !R.paused) sceneDone(); }; player.play().catch(function () { }); }
+        else step();
+        updateBar();
+    }
+    function stop(silent) {
+        R.on = false; R.paused = false; R.token++;
+        synth.cancel(); stopAudio(); mark(null);
+        if (!silent) updateBar();
+    }
+    function updateBar() {
+        if (!bar) return;
+        bar.hidden = !R.on;
+        if (!R.on) return;
+        var n = scenes().length;
+        bar.querySelector(".mk-pl-info").textContent = (R.all ? "📖 Cuento completo · " : "🔊 ") + "Página " + (R.scene + 1) + " de " + n;
+        var pb = bar.querySelector('[data-pl="pause"]');
+        pb.textContent = R.paused ? "▶ Seguir" : "⏸ Pausar";
+        pb.classList.toggle("go", R.paused);
+        var sp = speed();
+        bar.querySelector('[data-pl="speed"]').textContent = sp.icon + " " + sp.name;
+    }
+    function buildPlayer() {
+        bar = document.createElement("div");
+        bar.className = "mk-player"; bar.hidden = true;
+        bar.innerHTML = '<div class="mk-pl-info"></div><div class="mk-pl-btns">' +
+            '<button type="button" data-pl="pause">⏸ Pausar</button>' +
+            '<button type="button" data-pl="speed" class="sp">🙂 Normal</button>' +
+            '<button type="button" data-pl="stop" class="st">⏹ Parar</button></div>';
+        document.body.appendChild(bar);
+        bar.addEventListener("click", function (e) {
+            var b = e.target.closest("[data-pl]"); if (!b) return;
+            var a = b.dataset.pl;
+            if (a === "pause") R.paused ? resume() : pause();
+            else if (a === "stop") stop();
+            else if (a === "speed") {
+                var k = SPEEDS.indexOf(speed()); state.speed = SPEEDS[(k + 1) % SPEEDS.length].id; save();
+                if (R.on && !R.paused && !R.audio) { R.token++; synth.cancel(); setTimeout(step, 150); } // repite la frase con la nueva velocidad
+                updateBar();
             }
         });
+    }
+    function buildReadAll() {
+        var b = document.createElement("button");
+        b.type = "button"; b.className = "mk-all-btn"; b.textContent = "📖 Leer todo el cuento";
+        b.addEventListener("click", function () {
+            // empieza desde la primera página
+            var guard = 30;
+            while (activeIndex() > 0 && guard--) { var pb = document.getElementById("prevBtn"); R.advancing = true; pb.click(); R.advancing = false; }
+            readFrom(true);
+        });
+        var tools = document.querySelector(".mk-read-tools");
+        if (tools) tools.insertBefore(b, tools.querySelector(".mk-hint"));
+        else { var h = document.querySelector("header"); h.parentNode.insertBefore(b, h.nextSibling); }
+    }
+
+    // 🔊 Leer de cada página: ahora pasa por el lector (con pausa y velocidad)
+    window.addEventListener("click", function (e) {
+        var b = e.target.closest && e.target.closest(".scene-card .readBtn");
+        if (!b) return;
+        e.stopImmediatePropagation(); e.preventDefault();
+        var i = scenes().indexOf(b.closest(".scene-card"));
+        if (R.on && R.scene === i && !R.all) { R.paused ? resume() : pause(); return; }
+        stop(true); R.on = true; R.all = false; R.paused = false; startScene(i);
     }, true);
     ["nextBtn", "prevBtn"].forEach(function (id) {
         var b = document.getElementById(id);
-        if (b) b.addEventListener("click", function () { stopAudio(); refreshBars(); });
+        if (b) b.addEventListener("click", function () { if (!R.advancing) stop(); refreshBars(); });
     });
 
     var recOn = false, rec = null, recChunks = [], recIndex = -1, recTimer = null, recStream = null;
@@ -286,6 +418,19 @@
             ".mk-rec-dot{display:inline-block;width:12px;height:12px;border-radius:50%;background:#ef4444;margin-left:6px;animation:mkblink 1s infinite}",
             "@keyframes mkblink{50%{opacity:.2}}",
             ".mk-rec-msg{margin:8px 0 0!important;font-size:14px!important;line-height:1.4!important;color:#78350f!important;font-weight:700}",
+            ".mk-all-btn{display:inline-flex;align-items:center;gap:6px;min-height:46px;padding:8px 16px;border:3px solid #fff;border-radius:999px;",
+            "background:linear-gradient(180deg,#34d399,#059669);color:#fff;font-size:17px;font-weight:800;box-shadow:0 5px 0 #065f46,0 8px 18px rgba(0,0,0,.08);cursor:pointer}",
+            ".mk-player{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);z-index:40;width:calc(100% - 24px);max-width:520px;",
+            "background:#1e1b4b;color:#fff;border-radius:22px;padding:10px 12px;box-shadow:0 12px 30px rgba(0,0,0,.35);text-align:center}",
+            ".mk-player[hidden]{display:none}",
+            ".mk-pl-info{font-weight:800;font-size:15px;margin-bottom:8px}",
+            ".mk-pl-btns{display:flex;gap:8px;justify-content:center}",
+            ".mk-pl-btns button{flex:1;border:none;border-radius:999px;padding:12px 8px;font-size:17px;font-weight:800;color:#1e1b4b;background:#fde047;box-shadow:0 4px 0 #ca8a04;cursor:pointer}",
+            ".mk-pl-btns button.go{background:#4ade80;box-shadow:0 4px 0 #15803d}",
+            ".mk-pl-btns button.sp{background:#c4b5fd;box-shadow:0 4px 0 #7c3aed}",
+            ".mk-pl-btns button.st{flex:.7;background:#fca5a5;box-shadow:0 4px 0 #b91c1c}",
+            ".scene-card .mk-now{background:#fef9c3;border-radius:10px;box-shadow:0 0 0 6px #fef9c3;transition:background .2s}",
+            "body{padding-bottom:110px!important}",
             ".mk-voz-done{display:block;width:100%;margin-top:14px;border:none;border-radius:999px;padding:14px;font-size:18px;font-weight:800;color:#fff;",
             "background:linear-gradient(180deg,#3b82f6,#1d4ed8);box-shadow:0 5px 0 #1e3a8a;cursor:pointer}"
         ].join("");
@@ -323,8 +468,8 @@
         sheet._vs = vs;
     }
 
-    function open() { render(); sheet.hidden = false; }
-    function close() { synth.cancel(); stopAudio(); sheet.hidden = true; btn.textContent = label(); }
+    function open() { stop(); render(); sheet.hidden = false; }
+    function close() { stop(); synth.cancel(); stopAudio(); sheet.hidden = true; btn.textContent = label(); }
 
     function build() {
         addStyles();
@@ -336,6 +481,9 @@
         var bar = document.querySelector(".mk-read-tools");
         if (bar) bar.insertBefore(btn, bar.querySelector(".mk-hint"));
         else { var h = document.querySelector("header"); h.parentNode.insertBefore(btn, h.nextSibling); }
+
+        buildReadAll();
+        buildPlayer();
 
         sheet = document.createElement("div");
         sheet.className = "mk-voz-back";
@@ -370,7 +518,7 @@
         if (synth.addEventListener) synth.addEventListener("voiceschanged", function () { if (!sheet.hidden) render(); });
     }
 
-    window.mkVoces = { presets: PRESETS, state: function () { return state; }, pick: function (id) { return pickVoice(preset(id)); } };
+    window.mkVoces = { R: R, presets: PRESETS, state: function () { return state; }, pick: function (id) { return pickVoice(preset(id)); } };
 
     function start() { if (document.querySelector(".scene-card")) setTimeout(build, 0); }
     if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start);
