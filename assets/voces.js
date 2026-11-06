@@ -77,7 +77,7 @@
     var realSpeak = synth.speak.bind(synth);
     /* Pronunciación: nombres que la voz lee "en inglés" se escriben como suenan en español.
        Solo cambia lo que se escucha; el texto en pantalla queda igual. */
-    var SAY = [[/\bAaron\b/gi, "Aarón"]];
+    var SAY = [[/\bAaron\b/gi, "Aarón"], [/\bDanny\b/g, "Dani"]];
     function sayFix(t) { SAY.forEach(function (r) { t = t.replace(r[0], r[1]); }); return t; }
 
     function dress(u, p) {
