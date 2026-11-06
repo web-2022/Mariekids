@@ -608,7 +608,7 @@ p { margin: 6px 0; font-size: clamp(14px,4vw,16px); line-height: 1.4; }
     }
 
     /* ---------- botones ---------- */
-    $("homeBtn").onclick = () => { location.href = "ruta-EjerciosMentales.html"; };
+    $("homeBtn").onclick = () => { location.href = cfg.home || "ruta-EjerciosMentales.html"; };
     $("soundBtn").onclick = () => { voiceOn = !voiceOn; $("soundBtn").textContent = voiceOn ? "🔊" : "🔇"; try { localStorage.setItem("mk_em_voice", voiceOn ? "1" : "0"); } catch (e) { } if (!voiceOn && "speechSynthesis" in window) speechSynthesis.cancel(); };
     $("musicBtn").onclick = () => { musicOn = !musicOn; updateMusicBtn(); try { localStorage.setItem("mk_em_music", musicOn ? "1" : "0"); } catch (e) { } if (musicOn) startMusic(); else if (music) music.pause(); };
     $("sayBtn").onclick = () => say((currentSay || currentPrompt) + (tries && cfg.repeatHint ? "" : ""), true);

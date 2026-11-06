@@ -1,0 +1,30 @@
+/* Matemática 1.º primaria: escenas y alternativas estilo examen */
+.scene { padding: 10px 8px; }
+.scat { position: relative; width: 100%; aspect-ratio: calc(var(--c) / var(--r) * 1.05); max-height: 300px; margin: 0 auto; }
+.scat .it { position: absolute; transform: translate(-50%, -50%) rotate(var(--rot, 0deg)); font-size: clamp(26px, 8vw, 38px); line-height: 1; }
+.line { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px 6px; font-size: clamp(24px, 7.5vw, 34px); line-height: 1.15; }
+.line.small { font-size: clamp(20px, 6vw, 26px); }
+.rowsbox { display: inline-grid; gap: 4px; padding: 8px 10px; border-radius: 14px; background: #fff7ed; border: 2px dashed #fdba74; }
+.rowsbox .line { justify-content: flex-start; flex-wrap: nowrap; }
+.sides { display: flex; align-items: center; justify-content: center; gap: 6px; }
+.sides .side { flex: 1; display: flex; flex-wrap: wrap; justify-content: center; gap: 2px; font-size: clamp(20px, 6vw, 28px); }
+.sides .lab { display: block; width: 100%; text-align: center; font: 900 13px 'Segoe UI', sans-serif; color: #475569; }
+.kid { display: inline-block; width: clamp(64px, 20vw, 86px); flex: 0 0 auto; }
+.kid svg { width: 100%; height: auto; }
+.boxes { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.box { display: grid; grid-template-columns: repeat(var(--bc, 2), 1fr); gap: 2px; padding: 6px; border-radius: 12px; border: 3px solid #a16207; background: #fef3c7; font-size: clamp(18px, 5.4vw, 24px); }
+.fishes { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 10px; }
+.fish { display: block; }
+.dice { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; align-items: center; }
+.tfs { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.tf { display: grid; grid-template-columns: repeat(5, 34px); grid-template-rows: repeat(2, 34px); border: 3px solid #0f172a; border-radius: 6px; background: #fff; }
+.tf span { border: 1px solid #94a3b8; display: grid; place-items: center; font-size: 22px; }
+.big-num { font: 900 clamp(46px, 15vw, 64px) 'Segoe UI', sans-serif; color: #1d4ed8; }
+.word-num { font: 900 clamp(24px, 7vw, 32px) 'Segoe UI', sans-serif; color: #7c3aed; }
+.legend { margin-top: 6px; font: 800 15px 'Segoe UI', sans-serif; color: #475569; }
+.choice.exam { justify-content: flex-start; text-align: left; gap: 8px; min-height: 58px; }
+.choice.exam .lt { font: 900 18px 'Segoe UI', sans-serif; color: #64748b; flex: 0 0 auto; }
+.choice.exam .val { font: 900 clamp(20px, 6vw, 26px) 'Segoe UI', sans-serif; }
+.choice.exam.grp .val { font-size: clamp(16px, 4.8vw, 21px); line-height: 1.15; word-break: break-all; }
+.choice.exam.ok .lt, .choice.exam.wrong .lt { color: inherit; }
+.next-topic { display: inline-block; margin-top: 10px; text-decoration: none; }
