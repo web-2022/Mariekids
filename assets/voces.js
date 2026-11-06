@@ -30,8 +30,11 @@
         { id: "heroe", icon: "🦸", name: "Héroe Aventurero", desc: "Con energía y emoción", gender: "m", pitch: 1.05, rate: 1.0,
           hello: "¡Prepárate! ¡Esta historia está llena de aventuras!" },
         { id: "gigante", icon: "🦕", name: "Gigante Bonachón", desc: "Grave y divertida", gender: "m", pitch: 0.45, rate: 0.78,
-          hello: "Hooola, pequeñín. Soy un gigante muy bueno. ¡Vamos a leer!" }
+          hello: "Hooola, pequeñín. Soy un gigante muy bueno. ¡Vamos a leer!" },
+        { id: "familia", icon: "👨‍👩‍👧", name: "Mamá o Papá", desc: "¡Graba tu propia voz!", gender: "f", pitch: 1.1, rate: 0.9,
+          hello: "", family: true }
     ];
+    var FALLBACK = "hada"; // si una página no tiene grabación, lee el Hada
 
     var FEMALE = /(female|mujer|paulina|m[oó]nica|sabina|helena|laura|dalia|elvira|luc[ií]a|paloma|camila|francisca|isabela|marisol|soledad|esperanza|elena|ximena|salom[eé]|catalina|valentina|renata|larissa|abril|irene|elsa|hilda|linda|beatriz|teresa|marta|google espa[ñn]ol|es-us-x-esc|es-us-x-esf|es-es-x-eea|es-es-x-eec|es-es-x-eed|es-es-x-eef)/i;
     var MALE = /(male|hombre|jorge|juan|diego|pablo|ra[uú]l|[aá]lvaro|carlos|enrique|gerardo|tom[aá]s|jaime|federico|gonzalo|lorenzo|andr[eé]s|emilio|alonso|es-us-x-esd|es-es-x-eee)/i;
@@ -74,6 +77,7 @@
     var realSpeak = synth.speak.bind(synth);
     function dress(u, p) {
         p = p || preset();
+        if (p.family) p = preset(FALLBACK);
         var v = pickVoice(p);
         if (v) { u.voice = v; u.lang = v.lang; }
         u.pitch = p.pitch;
@@ -92,6 +96,150 @@
         state.voice = keep;
         u.__mkVoz = true;
         realSpeak(u);
+    }
+
+    /* ---------------- Voz de la familia (grabaciones) ----------------
+       Cada página del cuento se graba por separado y se guarda SOLO en
+       este celular (IndexedDB). No se sube a ningún lado. */
+    var STORY = (location.pathname.match(/([^\/]+)\.html/i) || [, "cuento"])[1];
+    var DB_NAME = "mk-voz-familia", STORE = "grabaciones", dbp = null;
+    var canRecord = !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder && window.indexedDB);
+    function db() {
+        if (dbp) return dbp;
+        dbp = new Promise(function (ok, fail) {
+            var r = indexedDB.open(DB_NAME, 1);
+            r.onupgradeneeded = function () { r.result.createObjectStore(STORE); };
+            r.onsuccess = function () { ok(r.result); };
+            r.onerror = function () { fail(r.error); };
+        });
+        return dbp;
+    }
+    function tx(mode, fn) {
+        return db().then(function (d) {
+            return new Promise(function (ok, fail) {
+                var t = d.transaction(STORE, mode), req = fn(t.objectStore(STORE));
+                t.oncomplete = function () { ok(req && req.result); };
+                t.onerror = function () { fail(t.error); };
+            });
+        });
+    }
+    function keyOf(i) { return STORY + "#" + i; }
+    function getRec(i) { return tx("readonly", function (st) { return st.get(keyOf(i)); }).catch(function () { return null; }); }
+    function putRec(i, blob) { return tx("readwrite", function (st) { return st.put(blob, keyOf(i)); }); }
+    function delRec(i) { return tx("readwrite", function (st) { return st.delete(keyOf(i)); }); }
+
+    var player = new Audio(), playingUrl = null;
+    function stopAudio() {
+        try { player.pause(); } catch (e) { }
+        if (playingUrl) { URL.revokeObjectURL(playingUrl); playingUrl = null; }
+    }
+    function playBlob(blob) {
+        stopAudio(); synth.cancel();
+        playingUrl = URL.createObjectURL(blob);
+        player.src = playingUrl;
+        return player.play().catch(function () { });
+    }
+    function scenes() { return Array.prototype.slice.call(document.querySelectorAll(".scene-card")); }
+
+    // 🔊 Leer: con "Mamá o Papá" suena la grabación de esa página
+    window.addEventListener("click", function (e) {
+        var b = e.target.closest && e.target.closest(".scene-card .readBtn");
+        if (!b || !preset().family) return;
+        var i = scenes().indexOf(b.closest(".scene-card"));
+        e.stopImmediatePropagation(); e.preventDefault();
+        getRec(i).then(function (blob) {
+            if (blob) playBlob(blob);
+            else { // sin grabación: lee el Hada y avisa en la barra
+                var card = scenes()[i], txt = Array.prototype.map.call(card.querySelectorAll("p"), function (p) { return p.innerText; }).join(" ");
+                stopAudio(); synth.cancel();
+                var u = new SpeechSynthesisUtterance(txt); u.rate = BASE_RATE; synth.speak(u);
+            }
+        });
+    }, true);
+    ["nextBtn", "prevBtn"].forEach(function (id) {
+        var b = document.getElementById(id);
+        if (b) b.addEventListener("click", function () { stopAudio(); refreshBars(); });
+    });
+
+    var recOn = false, rec = null, recChunks = [], recIndex = -1, recTimer = null, recStream = null;
+    function pickMime() {
+        var c = ["audio/webm;codecs=opus", "audio/webm", "audio/mp4", "audio/ogg;codecs=opus"];
+        for (var k = 0; k < c.length; k++) if (MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(c[k])) return c[k];
+        return "";
+    }
+    function startRec(i) {
+        stopAudio(); synth.cancel();
+        return navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true } }).then(function (stream) {
+            recStream = stream; recChunks = []; recIndex = i;
+            var mime = pickMime();
+            rec = mime ? new MediaRecorder(stream, { mimeType: mime }) : new MediaRecorder(stream);
+            rec.ondataavailable = function (ev) { if (ev.data && ev.data.size) recChunks.push(ev.data); };
+            rec.onstop = function () {
+                stream.getTracks().forEach(function (t) { t.stop(); });
+                var blob = new Blob(recChunks, { type: rec.mimeType || mime || "audio/webm" });
+                clearTimeout(recTimer); rec = null;
+                (blob.size > 1000 ? putRec(recIndex, blob) : Promise.resolve()).then(function () { recIndex = -1; refreshBars(); });
+            };
+            rec.start();
+            recTimer = setTimeout(function () { if (rec) rec.stop(); }, 3 * 60 * 1000); // máximo 3 minutos por página
+            refreshBars();
+        }).catch(function () {
+            alertBar("🎤 No se pudo usar el micrófono. Revisa que la app tenga permiso para usarlo.");
+        });
+    }
+    function alertBar(msg) {
+        var a = document.querySelector(".scene-card.active .mk-rec-bar .mk-rec-msg");
+        if (a) a.textContent = msg;
+    }
+    function ensureBars() {
+        scenes().forEach(function (card, i) {
+            if (card.querySelector(".mk-rec-bar")) return;
+            var bar = document.createElement("div");
+            bar.className = "mk-rec-bar"; bar.dataset.i = i; bar.hidden = true;
+            var rb = card.querySelector(".readBtn");
+            if (rb && rb.nextSibling) card.insertBefore(bar, rb.nextSibling); else card.appendChild(bar);
+        });
+    }
+    function refreshBars() {
+        ensureBars();
+        var list = scenes();
+        Promise.all(list.map(function (_, i) { return getRec(i); })).then(function (recs) {
+            var done = recs.filter(Boolean).length;
+            list.forEach(function (card, i) {
+                var bar = card.querySelector(".mk-rec-bar");
+                bar.hidden = !recOn;
+                if (!recOn) return;
+                var has = !!recs[i], live = recIndex === i && rec;
+                bar.innerHTML =
+                    '<div class="mk-rec-top">🎙️ Página ' + (i + 1) + ' de ' + list.length + ' · ' + (has ? "✅ grabada" : "sin grabar") +
+                    '<span class="mk-rec-count">Grabadas: ' + done + '/' + list.length + '</span></div>' +
+                    (live
+                        ? '<button type="button" class="mk-rec-b stop" data-a="stop">⏹ Detener <span class="mk-rec-dot"></span></button>'
+                        : '<button type="button" class="mk-rec-b go" data-a="rec">🔴 ' + (has ? "Grabar otra vez" : "Grabar esta página") + '</button>' +
+                          (has ? '<button type="button" class="mk-rec-b" data-a="play">▶ Escuchar</button><button type="button" class="mk-rec-b del" data-a="del">🗑️</button>' : "")) +
+                    '<button type="button" class="mk-rec-b done" data-a="close">✔ Terminar</button>' +
+                    '<p class="mk-rec-msg">' + (live ? "Grabando… lee el texto de esta página con mucho cariño 💛" : "Lee en voz alta el texto de abajo y luego pasa a la siguiente página.") + '</p>';
+            });
+        });
+    }
+    document.addEventListener("click", function (e) {
+        var b = e.target.closest && e.target.closest(".mk-rec-b");
+        if (!b) return;
+        var i = +b.closest(".mk-rec-bar").dataset.i, a = b.dataset.a;
+        if (a === "rec") startRec(i);
+        else if (a === "stop" && rec) rec.stop();
+        else if (a === "play") getRec(i).then(function (bl) { if (bl) playBlob(bl); });
+        else if (a === "del") delRec(i).then(refreshBars);
+        else if (a === "close") { if (rec) rec.stop(); recOn = false; refreshBars(); }
+    });
+    function startRecordingMode() {
+        recOn = true;
+        state.preset = "familia"; save();
+        if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(function () { });
+        if (btn) btn.textContent = label();
+        refreshBars();
+        var a = document.querySelector(".scene-card.active .mk-rec-bar");
+        if (a) a.scrollIntoView({ behavior: "smooth", block: "center" });
     }
 
     /* ---------------- Interfaz ---------------- */
@@ -122,6 +270,22 @@
             ".mk-voz-row{display:flex;align-items:center;gap:8px;padding:8px 6px;border-bottom:1px solid #f1f5f9;font-size:14px}",
             ".mk-voz-row label{flex:1;display:flex;gap:8px;align-items:center;cursor:pointer}",
             ".mk-voz-row .mk-voz-play{margin:0;padding:5px 10px}",
+            ".mk-voz-card.fam{grid-column:1/-1;background:#fffbeb;border-color:#fcd34d}",
+            ".mk-voz-card.fam.on{border-color:#f59e0b;background:#fef3c7;box-shadow:0 4px 0 #fcd34d}",
+            ".mk-voz-card .fam-info{font-size:13px;color:#92400e;font-weight:700;margin:4px 6px 0}",
+            ".mk-voz-rec{margin-top:6px;border:none;border-radius:999px;padding:8px 16px;background:linear-gradient(180deg,#f87171,#dc2626);color:#fff;font-weight:800;font-size:15px;box-shadow:0 4px 0 #991b1b;cursor:pointer}",
+            ".mk-rec-bar{margin:6px 0 10px;padding:10px;border:3px dashed #f59e0b;border-radius:16px;background:#fffbeb;text-align:center}",
+            ".mk-rec-bar[hidden]{display:none}",
+            ".mk-rec-top{font-size:14px;font-weight:800;color:#92400e;margin-bottom:8px;display:flex;justify-content:space-between;gap:6px;flex-wrap:wrap}",
+            ".mk-rec-count{color:#16a34a}",
+            ".mk-rec-b{margin:3px;border:none;border-radius:999px;padding:9px 14px;font-size:15px;font-weight:800;color:#fff;background:#3b82f6;box-shadow:0 4px 0 #1e40af;cursor:pointer}",
+            ".mk-rec-b.go{background:#dc2626;box-shadow:0 4px 0 #991b1b}",
+            ".mk-rec-b.stop{background:#0f172a;box-shadow:0 4px 0 #000}",
+            ".mk-rec-b.del{background:#94a3b8;box-shadow:0 4px 0 #64748b}",
+            ".mk-rec-b.done{background:#16a34a;box-shadow:0 4px 0 #166534}",
+            ".mk-rec-dot{display:inline-block;width:12px;height:12px;border-radius:50%;background:#ef4444;margin-left:6px;animation:mkblink 1s infinite}",
+            "@keyframes mkblink{50%{opacity:.2}}",
+            ".mk-rec-msg{margin:8px 0 0!important;font-size:14px!important;line-height:1.4!important;color:#78350f!important;font-weight:700}",
             ".mk-voz-done{display:block;width:100%;margin-top:14px;border:none;border-radius:999px;padding:14px;font-size:18px;font-weight:800;color:#fff;",
             "background:linear-gradient(180deg,#3b82f6,#1d4ed8);box-shadow:0 5px 0 #1e3a8a;cursor:pointer}"
         ].join("");
@@ -133,6 +297,11 @@
     function render() {
         var cur = preset();
         var cards = PRESETS.map(function (p) {
+            if (p.family) return '<div class="mk-voz-card fam' + (p.id === cur.id ? " on" : "") + '" data-p="' + p.id + '" role="button" tabindex="0">' +
+                '<span class="ok">✅</span><div class="ic">' + p.icon + '</div><b>' + p.name + '</b><small>' + p.desc + '</small>' +
+                (canRecord ? '<button type="button" class="mk-voz-rec" data-rec="1">🎙️ Grabar mi voz en este cuento</button>' +
+                    '<p class="fam-info">Las grabaciones se guardan solo en este celular. Las páginas sin grabar las lee el Hada.</p>'
+                    : '<p class="fam-info">Este navegador no permite grabar. Prueba con Chrome o Safari actualizados.</p>') + '</div>';
             return '<div class="mk-voz-card' + (p.id === cur.id ? " on" : "") + '" data-p="' + p.id + '" role="button" tabindex="0">' +
                 '<span class="ok">✅</span><div class="ic">' + p.icon + '</div><b>' + p.name + '</b><small>' + p.desc + '</small>' +
                 '<button type="button" class="mk-voz-play" data-try="' + p.id + '">▶ Probar</button></div>';
@@ -155,7 +324,7 @@
     }
 
     function open() { render(); sheet.hidden = false; }
-    function close() { synth.cancel(); sheet.hidden = true; btn.textContent = label(); }
+    function close() { synth.cancel(); stopAudio(); sheet.hidden = true; btn.textContent = label(); }
 
     function build() {
         addStyles();
@@ -177,10 +346,11 @@
         sheet.addEventListener("click", function (e) {
             if (e.target === sheet) return close();
             var t;
+            if (e.target.closest("[data-rec]")) { e.stopPropagation(); close(); startRecordingMode(); return; }
             if ((t = e.target.closest("[data-try]"))) {
                 e.stopPropagation();
                 var p = preset(t.dataset.try);
-                state.preset = p.id; save(); render();
+                state.preset = p.id; save(); render(); stopAudio();
                 sayWith(p.hello, p);
                 return;
             }
