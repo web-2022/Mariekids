@@ -28,3 +28,23 @@
 .choice.exam.grp .val { font-size: clamp(16px, 4.8vw, 21px); line-height: 1.15; word-break: break-all; }
 .choice.exam.ok .lt, .choice.exam.wrong .lt { color: inherit; }
 .next-topic { display: inline-block; margin-top: 10px; text-decoration: none; }
+.settxt { font: 900 clamp(20px, 6vw, 26px) 'Segoe UI', sans-serif; color: #1e3a8a; }
+.bal { display: flex; flex-direction: column; align-items: center; }
+.bal .beam { display: flex; justify-content: space-between; gap: 30px; width: min(320px, 100%); border-bottom: 6px solid #78350f; padding-bottom: 2px; }
+.bal .pan { min-width: 110px; min-height: 48px; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: center; gap: 2px; font-size: clamp(22px, 6.5vw, 30px); border-bottom: 4px solid #a16207; border-radius: 0 0 40px 40px; padding: 2px 6px 6px; background: #fef9c3; }
+.bal .foot { font-size: 34px; color: #78350f; line-height: .8; }
+.weight { display: inline-block; background: #334155; color: #fff; font: 900 14px 'Segoe UI', sans-serif; padding: 4px 6px; border-radius: 6px 6px 3px 3px; }
+.coin { display: inline-grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; font: 900 13px 'Segoe UI', sans-serif; color: #713f12; background: radial-gradient(circle at 35% 30%, #fef9c3, #eab308); border: 3px solid #a16207; margin: 2px; }
+.coin.c01, .coin.c02, .coin.c05 { background: radial-gradient(circle at 35% 30%, #fff7ed, #d97706); width: 42px; height: 42px; font-size: 11px; }
+.coin.c1 { background: radial-gradient(circle at 35% 30%, #f8fafc, #94a3b8); border-color: #475569; color: #1e293b; }
+.bill { display: inline-grid; place-items: center; width: 84px; height: 44px; border-radius: 6px; font: 900 15px 'Segoe UI', sans-serif; color: #fff; margin: 2px; border: 2px solid rgba(0,0,0,.25); }
+.bill.b10 { background: #16a34a; } .bill.b20 { background: #ea580c; } .bill.b50 { background: #db2777; } .bill.b100 { background: #2563eb; } .bill.b200 { background: #7c3aed; }
+.price { display: inline-flex; flex-direction: column; align-items: center; margin: 4px 8px; font-size: clamp(30px, 9vw, 40px); }
+.price small { font: 900 15px 'Segoe UI', sans-serif; background: #fef08a; border: 2px solid #ca8a04; border-radius: 6px; padding: 1px 6px; color: #713f12; }
+.seq { font: 900 clamp(22px, 7vw, 30px) 'Segoe UI', sans-serif; color: #1e3a8a; letter-spacing: 1px; }
+.eqs { display: flex; flex-direction: column; gap: 6px; align-items: center; font: 900 clamp(20px, 6vw, 26px) 'Segoe UI', sans-serif; color: #1e293b; }
+.card-op { display: inline-block; background: #fff; border: 3px solid #6366f1; border-radius: 12px; padding: 6px 12px; font: 900 22px 'Segoe UI', sans-serif; color: #312e81; }
+.tbl { border-collapse: collapse; margin: 0 auto; font: 800 16px 'Segoe UI', sans-serif; }
+.tbl td, .tbl th { border: 2px solid #334155; padding: 6px 10px; text-align: center; background: #fff; }
+.tbl th { background: #e0e7ff; }
+.story { font: 700 17px/1.45 'Segoe UI', sans-serif; color: #1e293b; text-align: left; }
