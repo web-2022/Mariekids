@@ -53,6 +53,9 @@ document.addEventListener("DOMContentLoaded", function () {{
 
 def construir(nombre):
     js = leer(AQUI / "juegos" / f"{nombre}.js")
+    # «// @incluir archivo.js» agrega generadores compartidos (por ejemplo, los de olimpiada)
+    for inc in re.findall(r"//\s*@incluir\s+(\S+)", js):
+        js = leer(AQUI / inc) + "\n" + js
     extra = AQUI / "juegos" / f"{nombre}.css"
     titulo = re.search(r'title:\s*"([^"]+)"', js).group(1)
     html = PLANTILLA.format(

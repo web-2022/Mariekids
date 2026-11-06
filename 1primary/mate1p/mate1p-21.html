@@ -831,14 +831,17 @@ function pyramid(rows, shade = new Set()) {
 const balance = (L, R, tilt = 0) => `<div class="bal"><div class="beam" style="transform:rotate(${tilt}deg)"><div class="pan">${L}</div><div class="pan">${R}</div></div><div class="foot">▲</div></div>`;
 // cubos en perspectiva: heights[fila][col] (fila 0 = atrás)
 function isoCubes(H) {
-  const s = 26, rows = H.length, cols = H[0].length;
-  const P = (x, y, z) => [150 + (x - y) * s * 0.87, 200 + (x + y) * s * 0.5 - z * s];
-  const cube = (x, y, z) => { const [a, b] = P(x, y, z); const t = s * 0.87, h = s * 0.5;
-    return `<path d="M${a} ${b - s} l${t} ${h} l-${t} ${h} l-${t} -${h}z" fill="#bae6fd" stroke="#0f172a" stroke-width="1.6"/><path d="M${a - t} ${b - s + h} l${t} ${h} v${s} l-${t} -${h}z" fill="#7dd3fc" stroke="#0f172a" stroke-width="1.6"/><path d="M${a} ${b - s + 2 * h} l${t} -${h} v${s} l-${t} ${h}z" fill="#38bdf8" stroke="#0f172a" stroke-width="1.6"/>`; };
-  let g = "", list = [];
+  const s = 34, rows = H.length, cols = H[0].length, t = s * 0.87, h = s * 0.5;
+  const P = (x, y, z) => [(x - y) * t, (x + y) * h - z * s];
+  const cube = (x, y, z) => { const [a, b] = P(x, y, z);
+    return `<path d="M${a} ${b - s} l${t} ${h} l-${t} ${h} l-${t} -${h}z" fill="#bae6fd" stroke="#0f172a" stroke-width="1.8"/><path d="M${a - t} ${b - s + h} l${t} ${h} v${s} l-${t} -${h}z" fill="#7dd3fc" stroke="#0f172a" stroke-width="1.8"/><path d="M${a} ${b - s + 2 * h} l${t} -${h} v${s} l-${t} ${h}z" fill="#38bdf8" stroke="#0f172a" stroke-width="1.8"/>`; };
+  const list = [];
   for (let y = 0; y < rows; y++) for (let x = 0; x < cols; x++) for (let z = 0; z < H[y][x]; z++) list.push([x, y, z]);
-  list.sort((p, q) => (p[0] + p[1]) - (q[0] + q[1]) || p[2] - q[2]).forEach(([x, y, z]) => g += cube(x, y, z));
-  return svgWrap(300, 260, `<g transform="translate(0,${-20 + (6 - Math.max(...H.flat())) * 6})">${g}</g>`, 260);
+  let x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9;
+  list.forEach(([x, y, z]) => { const [a, b] = P(x, y, z); x0 = Math.min(x0, a - t); x1 = Math.max(x1, a + t); y0 = Math.min(y0, b - s); y1 = Math.max(y1, b + s); });
+  const g = list.sort((p, q) => (p[0] + p[1]) - (q[0] + q[1]) || p[2] - q[2]).map(c => cube(...c)).join("");
+  const W = x1 - x0 + 8, Hh = y1 - y0 + 8;
+  return `<svg viewBox="${x0 - 4} ${y0 - 4} ${W} ${Hh}" width="${Math.min(240, W * 1.25)}" style="max-width:100%;height:auto">${g}</svg>`;
 }
 // plano cartesiano pequeño: marks [{x,y,e}]
 function coordGrid(w, h, marks = []) {
@@ -887,6 +890,12 @@ function rectGrid(r, c) {
   for (let i = 1; i < c; i++) g += `<line x1="${10 + W * i / c}" y1="10" x2="${10 + W * i / c}" y2="${10 + H}" stroke="#0f172a" stroke-width="3"/>`;
   for (let j = 1; j < r; j++) g += `<line x1="10" y1="${10 + H * j / r}" x2="${10 + W}" y2="${10 + H * j / r}" stroke="#0f172a" stroke-width="3"/>`;
   return svgWrap(W + 20, H + 20, g, 280);
+}
+// cuadrado dividido en n × n cuadraditos (celdas cuadradas)
+function squareGrid(n) {
+  const S = 180, c = S / n; let g = `<rect x="10" y="10" width="${S}" height="${S}" fill="#fff" stroke="#0f172a" stroke-width="3"/>`;
+  for (let i = 1; i < n; i++) g += `<line x1="${10 + c * i}" y1="10" x2="${10 + c * i}" y2="${10 + S}" stroke="#0f172a" stroke-width="3"/><line x1="10" y1="${10 + c * i}" x2="${10 + S}" y2="${10 + c * i}" stroke="#0f172a" stroke-width="3"/>`;
+  return svgWrap(S + 20, S + 20, g, 200);
 }
 // segmento con p puntos
 function segPoints(p) {

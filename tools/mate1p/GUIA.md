@@ -22,9 +22,14 @@ Las lecciones replican el estilo de los concursos de 1.º grado que envió el au
 
 Se aprueba con 7 de 10 a la primera; el tema queda ✅ en el menú (`mk_topic_mate1p-NN_complete`).
 
+## Temas
+20 stages y 61 temas (ver `ruta-mate.html`). El Stage 20 es de Olimpiadas:
+59 Retos olímpicos (números), 60 Retos olímpicos (figuras y lógica) y 61 Simulacro (12 preguntas, aprueba con 9).
+Los temas 59-61 usan `olimpiada.js` (se incluye con la línea `// @incluir olimpiada.js`).
+
 ## Archivos
 - `juegos/mate1p-NN.js` (+ `.css` opcional): generadores de preguntas por nivel.
-- `comun.js` / `comun.css`: alternativas A-D, `numOpts`, `scatter`, `gridSvg`, `dieSvg`, `fishSvg`, `tenFrame`…
+- `comun.js` / `comun.css`: `lesson()` (lección de 3 niveles), alternativas A-D, `numOpts`, `scatter`, `gridSvg`, `dieSvg`, `fishSvg`, `tenFrame`, `venn`, `abacus`, `numberLine`, `pyramid`, `balance`, `isoCubes`, `coordGrid`, `barChart`, `calendar`, monedas/billetes, `triFan`, `rectGrid`, `squareGrid`, `segPoints`…
 - Motor y personajes: `tools/ejercicios-mentales/`.
 - Construir: `python3 tools/mate1p/construir.py` → `1primary/mate1p/mate1p-NN.html`.
 - Probar: `node tools/ejercicios-mentales/probar.js 1primary/mate1p/mate1p-NN` (servidor en :8765).
