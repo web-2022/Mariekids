@@ -75,7 +75,13 @@
 
     // Todo lo que habla el cuento (botón Leer, palabras, sílabas) pasa por aquí
     var realSpeak = synth.speak.bind(synth);
+    /* Pronunciación: nombres que la voz lee "en inglés" se escriben como suenan en español.
+       Solo cambia lo que se escucha; el texto en pantalla queda igual. */
+    var SAY = [[/\bAaron\b/gi, "Aarón"]];
+    function sayFix(t) { SAY.forEach(function (r) { t = t.replace(r[0], r[1]); }); return t; }
+
     function dress(u, p) {
+        if (u.text) u.text = sayFix(u.text);
         p = p || preset();
         if (p.family) p = preset(FALLBACK);
         var v = pickVoice(p);
