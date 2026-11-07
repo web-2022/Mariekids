@@ -23,7 +23,7 @@ Las lecciones replican el estilo de los concursos de 1.º grado que envió el au
 Se aprueba con 7 de 10 a la primera; el tema queda ✅ en el menú (`mk_topic_mate1p-NN_complete`).
 
 ## Temas
-20 stages y 61 temas (ver `ruta-mate.html`). El Stage 20 es de Olimpiadas:
+20 stages y 63 temas (ver `ruta-mate.html`). Los temas 62 (Sumas con letras, Stage 14) y 63 (Medida de segmentos, Stage 15) se añadieron después: su archivo tiene número alto, pero en el menú van en su stage y `next:` encadena el «Siguiente tema». El Stage 20 es de Olimpiadas:
 59 Retos olímpicos (números), 60 Retos olímpicos (figuras y lógica) y 61 Simulacro (12 preguntas, aprueba con 9).
 Los temas 59-61 usan `olimpiada.js` (se incluye con la línea `// @incluir olimpiada.js`).
 

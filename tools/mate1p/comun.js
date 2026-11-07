@@ -87,7 +87,7 @@ const NAME = n => MKChar.names[n];
 /* ---------- Final de la lección: enlace al siguiente tema ---------- */
 function nextTopic(n) {
   return (level, passed, stars, box) => {
-    if (!passed || n > 61) return;
+    if (!passed || n > 63) return;
     const href = `mate1p-${String(n).padStart(2, "0")}.html`;
     box.innerHTML = `<a class="btn alt next-topic" href="${href}">➡️ Siguiente tema</a>`;
   };
@@ -113,7 +113,7 @@ function lesson(o, GEN) {
     levels: o.levels,
     check(k) { const bad = []; GEN.forEach((L, i) => L.forEach((g, j) => { for (let t = 0; t < k / 10; t++) { try { checkQ(g(), bad, `N${i + 1}.${j + 1}`); } catch (e) { bad.push(`N${i + 1}.${j + 1}: ${e.message}`); } } })); return [...new Set(bad)]; },
     round(level, idx, ui) { ask(ui, pick(GEN[level])()); },
-    onEnd: nextTopic(o.n + 1)
+    onEnd: nextTopic(o.next || o.n + 1)
   });
 }
 
