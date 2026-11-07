@@ -77,7 +77,7 @@
     var realSpeak = synth.speak.bind(synth);
     /* Pronunciación: nombres que la voz lee "en inglés" se escriben como suenan en español.
        Solo cambia lo que se escucha; el texto en pantalla queda igual. */
-    var SAY = [[/\bAaron\b/gi, "Aarón"], [/\bDanny\b/g, "Dani"]];
+    var SAY = [[/\bAaron\b/gi, "Aarón"], [/\bDanny\b/g, "Dani"], [/\bJank['’]a\b/g, "Janka"]];
     // los emojis y símbolos no se leen («🌟 Moraleja» → «Moraleja»)
     var EMOJI = /[\u{1F000}-\u{1FAFF}\u{2190}-\u{21FF}\u{2300}-\u{23FF}\u{2600}-\u{27BF}\u{2B00}-\u{2BFF}\uFE0F\u200D\u20E3✓✔★☆•]/gu;
     function sayFix(t) { t = String(t).replace(EMOJI, " ").replace(/\s+/g, " ").trim(); SAY.forEach(function (r) { t = t.replace(r[0], r[1]); }); return t; }
