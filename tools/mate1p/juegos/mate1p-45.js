@@ -17,10 +17,15 @@ const GEN = [
     () => { const s = between(3, 7), m = between(3, 7), f = between(2, 9), ans = f + 1;
       return { prompt: "Halla el <b>sucesor</b> del valor de la 🍓:", say: "Descubre el valor de cada figura y halla el sucesor de la fresita.", scene: `<div class="eqs"><div>⭐ + ⭐ + ⭐ + ⭐ = ${4 * s}</div><div>🍎 + 🍎 + 🍎 = ${3 * m}</div><div>🍎 + ⭐ + 🍓 = ${m + s + f}</div></div>`, ans, opts: numOpts(ans, [f, ans + 1, f - 1], 0),
         why: `⭐ = ${s}, 🍎 = ${m}, 🍓 = ${m + s + f} − ${m} − ${s} = ${f}. Sucesor: ${ans}.`, hint: "Resuelve de arriba hacia abajo." }; },
+    () => { const k = between(2, 3), cs = Array.from({ length: k }, () => 2 * between(1, 8)), tot = cs.reduce((a, b) => a + b, 0), v = pick(["x", "y", "a"]), ans = tot + v;
+      const opts = shuffle([...new Set([ans, String(tot), (tot - 2) + v, (tot + 4) + v])]).slice(0, 4);
+      if (!opts.includes(ans)) opts[0] = ans;
+      return { prompt: `Halla la suma: <b>${cs.map(c => c + v).join(" + ")}</b>`, say: `Halla la suma de ${cs.map(c => c + " " + v).join(" más ")}.`, scene: `<div class="legend">Piensa que «${v}» es una cajita: ${cs[0]}${v} son ${cs[0]} cajitas.</div>`,
+        ans, opts, cols: 2, why: `Se suman los números y la letra se queda igual: ${cs.join(" + ")} = ${tot}, entonces ${ans}.`, hint: `Suma solo los números (${cs.join(", ")}) y al final escribe la «${v}».` }; },
     () => { const a = between(2, 6), c = between(1, 5), b = a + c, ans = 2 * b - a;
       return { prompt: `Si 🐝 + 🐝 = ${2 * a} y 🧸 = 🐝 + ${c}, ¿cuál es el <b>doble</b> del valor de 🧸, menos 🐝?`, say: "Halla el valor de la abeja y del osito. Luego el doble del osito menos la abeja.", scene: "", ans, opts: numOpts(ans, [2 * b, b, 2 * a], 0), why: `🐝 = ${a}, 🧸 = ${b}. 2 × ${b} − ${a} = ${ans}.`, hint: "Paso a paso: abeja, osito y al final la operación." }; },
   ]
 ];
 lesson({ n: 45, title: "Valores ocultos, igualdades y balanzas", short: "Balanzas", char: "rayo", music: "aventura", deco: ["⚖️", "⭐", "🍎", "🍓"],
   hello: "¡Hola! Soy <b>Rayo</b> 🐉. Cada figura esconde un <b>valor</b>. ¡Usa las igualdades y las balanzas para descubrirlo!",
-  levels: LEVELS3(["Balanzas y estrellas", "Lados iguales"], ["Dos pistas", "Figura por figura"], ["", "Tres igualdades"]) }, GEN);
+  levels: LEVELS3(["Balanzas y estrellas", "Lados iguales"], ["Dos pistas", "Figura por figura"], ["", "Tres igualdades y sumas con letras"]) }, GEN);

@@ -1,5 +1,10 @@
 /* Generadores de problemas tipo olimpiada (temas 59, 60 y 61). d = dificultad 0, 1 o 2 */
 const OLI_NUM = [
+  d => (() => { const k = between(2, 3), cs = Array.from({ length: k }, () => 2 * between(1, 8)), tot = cs.reduce((a, b) => a + b, 0), v = pick(["x", "y", "a"]), ans = tot + v;
+      const opts = shuffle([...new Set([ans, String(tot), (tot - 2) + v, (tot + 4) + v])]).slice(0, 4);
+      if (!opts.includes(ans)) opts[0] = ans;
+      return { prompt: `Halla la suma: <b>${cs.map(c => c + v).join(" + ")}</b>`, say: `Halla la suma de ${cs.map(c => c + " " + v).join(" más ")}.`, scene: `<div class="legend">Piensa que «${v}» es una cajita: ${cs[0]}${v} son ${cs[0]} cajitas.</div>`,
+        ans, opts, cols: 2, why: `Se suman los números y la letra se queda igual: ${cs.join(" + ")} = ${tot}, entonces ${ans}.`, hint: `Suma solo los números (${cs.join(", ")}) y al final escribe la «${v}».` }; })(),
   d => { const s = between(2, 5 + d), m = between(2, 5 + d), f = between(2, 8), ans = f + 1;
     return { prompt: "Halla el <b>sucesor</b> del valor de la 🍓:", say: "Descubre el valor de cada figura y halla el sucesor de la fresa.", scene: `<div class="eqs"><div>⭐ + ⭐ + ⭐ + ⭐ = ${4 * s}</div><div>🍎 + 🍎 + 🍎 = ${3 * m}</div><div>🍎 + ⭐ + 🍓 = ${m + s + f}</div></div>`, ans, opts: numOpts(ans, [f, ans + 1, f - 1], 0), why: `⭐ = ${s}, 🍎 = ${m}, 🍓 = ${f}. Sucesor: ${ans}.`, hint: "Resuelve de arriba hacia abajo." }; },
   d => { const k = 4 + d, s = Array.from({ length: k }, (_, i) => (i + 1) * (i + 1)), ans = (k + 1) * (k + 1);
