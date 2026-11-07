@@ -1309,7 +1309,10 @@
             .card .ribbon { font-size: 11px; padding: 2px 7px; }
             .card .card-num { min-width: 28px; height: 28px; font-size: 14px; }
         }
-    </style>
+            /* Miniatura del cuento (en vez del emoji) */
+        .card-icon.has-thumb { padding: 0; overflow: hidden; }
+        .card-icon.has-thumb img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block; }
+</style>
 </head>
 
 <body>
@@ -1618,6 +1621,7 @@
                 "title": "El Carachi y el Pescador del Lago Titicaca",
                 "desc": "Una fábula sobre la bondad, la gratitud y el respeto por la naturaleza.",
                 "href": "cuento30.html",
+                "thumb": "Cuentos/mini/c30.webp",
                 "category": "Cuentos con valores"
             }
         ];
@@ -1718,7 +1722,7 @@
                     <a class="card-link" href="${esc(s.href)}" data-pop="${s.id}" aria-label="Leer ${esc(s.title)}"></a>
                     <span class="card-num">${s.id}</span>
                     ${ribbon ? `<span class="ribbon">${ribbon}</span>` : ""}
-                    <span class="card-icon" aria-hidden="true">${s.emoji}</span>
+                    <span class="card-icon${s.thumb ? " has-thumb" : ""}" aria-hidden="true">${s.thumb ? `<img src="${esc(s.thumb)}" alt="" loading="lazy">` : s.emoji}</span>
                     <h2 class="card-title">${esc(s.title)}</h2>
                     <p class="card-desc">${esc(s.desc)}</p>
                     <span class="card-cat">${catName(s.category)}</span>
