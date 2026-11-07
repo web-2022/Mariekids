@@ -78,7 +78,9 @@
     /* Pronunciación: nombres que la voz lee "en inglés" se escriben como suenan en español.
        Solo cambia lo que se escucha; el texto en pantalla queda igual. */
     var SAY = [[/\bAaron\b/gi, "Aarón"], [/\bDanny\b/g, "Dani"]];
-    function sayFix(t) { SAY.forEach(function (r) { t = t.replace(r[0], r[1]); }); return t; }
+    // los emojis y símbolos no se leen («🌟 Moraleja» → «Moraleja»)
+    var EMOJI = /[\u{1F000}-\u{1FAFF}\u{2190}-\u{21FF}\u{2300}-\u{23FF}\u{2600}-\u{27BF}\u{2B00}-\u{2BFF}\uFE0F\u200D\u20E3✓✔★☆•]/gu;
+    function sayFix(t) { t = String(t).replace(EMOJI, " ").replace(/\s+/g, " ").trim(); SAY.forEach(function (r) { t = t.replace(r[0], r[1]); }); return t; }
 
     function dress(u, p) {
         if (u.text) u.text = sayFix(u.text);
@@ -162,8 +164,13 @@
             if (el.closest(".mk-rec-bar") || el.closest(".mk-read-tools")) return;
             var t = (el.innerText || "").replace(/\s+/g, " ").trim();
             if (!t) return;
+            if (/^H[1-6]$/.test(el.tagName)) {            // título («Moraleja», «Mensaje»): sin símbolos y con una pausa después
+                var h = t.replace(EMOJI, " ").replace(/\s+/g, " ").trim();
+                if (h) out.push({ el: el, text: h, pausa: 900 });
+                return;
+            }
             (t.match(/[^.!?…]+[.!?…»”"]*\s*/g) || [t]).forEach(function (x) {
-                x = x.trim(); if (x.replace(/[—\-\s.,!?¡¿…«»"”]/g, "")) out.push({ el: el, text: x });
+                x = x.trim(); if (x.replace(EMOJI, "").replace(/[—\-\s.,!?¡¿…«»"”]/g, "")) out.push({ el: el, text: x });
             });
         });
         return out;
@@ -198,8 +205,8 @@
         mark(it.el);
         var u = new SpeechSynthesisUtterance(it.text);
         u.rate = BASE_RATE;
-        u.onend = function () { if (tk !== R.token || !R.on || R.paused) return; R.pos++; setTimeout(step, 250); };
-        u.onerror = function (ev) { if (tk !== R.token || !R.on || R.paused) return; if (ev && ev.error === "interrupted") return; R.pos++; setTimeout(step, 250); };
+        u.onend = function () { if (tk !== R.token || !R.on || R.paused) return; R.pos++; setTimeout(step, it.pausa || 250); };
+        u.onerror = function (ev) { if (tk !== R.token || !R.on || R.paused) return; if (ev && ev.error === "interrupted") return; R.pos++; setTimeout(step, it.pausa || 250); };
         synth.speak(u);
     }
     function sceneDone() {
