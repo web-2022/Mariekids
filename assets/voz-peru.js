@@ -119,33 +119,85 @@
         return out;
     }
 
+    /* ---------- Inglés ---------- */
+    // frases en inglés: más lentas para niños, con pausa antes y después
+    RATE.enFrase = 0.80; RATE.enPalabra = 0.70;
+    PAUSA.antesEn = 200; PAUSA.despuesEn = 400;
+    function limpiarEn(t) {
+        return String(t == null ? "" : t).replace(/<[^>]+>/g, " ").replace(/_+/g, " ")
+            .replace(/[\u{1F000}-\u{1FAFF}\u{2190}-\u{21FF}\u{2300}-\u{23FF}\u{2600}-\u{27BF}️‍]/gu, " ").replace(/\s+/g, " ").trim();
+    }
+    function trozosEn(texto, rate) {
+        var t = limpiarEn(texto); if (!t) return [];
+        var palabra = !/\s/.test(t.replace(/[.,!?]+$/, ""));
+        var frases = palabra ? [t] : (t.match(/[^.?!]+[.?!]*\s*/g) || [t]);
+        return frases.map(function (f, i) {
+            return { t: f.trim(), lang: "en", m: palabra ? "enPalabra" : "enFrase", rate: rate, antes: i === 0 ? PAUSA.antesEn : 0, pausa: i === frases.length - 1 ? PAUSA.despuesEn : PAUSA.punto };
+        }).filter(function (x) { return x.t; });
+    }
+    // español con partes en inglés: «Hello» significa hola → «Hello» en inglés, lo demás en español
+    var ES_COMUNES = /^(a|al|de|del|el|la|las|los|lo|le|les|un|una|y|o|en|es|no|si|sí|me|mi|te|tu|se|su|que|con|por|para|como|más|muy|ya|son|ser|hay|pero|yo|él|ella|e|u)$/i;
+    function partesMixtas(texto, esIngles) {
+        var t = paraOido(texto).replace(/[«“"]([^»”"]+)[»”"]/g, "\u0002$1\u0003"), out = [], cur = null;
+        var add = function (lang, w) { if (!cur || cur.lang !== lang) { cur = { lang: lang, t: "" }; out.push(cur); } cur.t += w; };
+        t.split(/(\u0002[^\u0003]*\u0003)/).forEach(function (seg) {
+            if (seg.charAt(0) === "\u0002") {        // entre comillas: inglés solo si casi todas sus palabras son de inglés
+                var ws = seg.slice(1, -1).split(/\s+/).filter(Boolean), n = ws.filter(function (w) { var k = w.replace(/[^A-Za-z']/g, ""); return k && esIngles && esIngles(k); }).length;
+                add(ws.length && n / ws.length >= 0.6 ? "en" : "es", " " + seg.slice(1, -1) + " "); return;
+            }
+            seg.split(/(\s+)/).forEach(function (w) {
+                var k = w.replace(/[^A-Za-z']/g, "");
+                if (/^\s*$/.test(w)) { add(cur ? cur.lang : "es", w); return; }
+                add(k && esIngles && esIngles(k) && !ES_COMUNES.test(k) ? "en" : "es", w);
+            });
+        });
+        return out.filter(function (p) { return /[A-Za-z0-9áéíóúñ]/i.test(p.t); });
+    }
+
     /* ---------- Hablar ---------- */
     var token = 0, realSpeak = synth.speak.bind(synth), realCancel = synth.cancel.bind(synth);
     function stop() { token++; realCancel(); }
-    function speak(texto, o) {
-        o = o || {};
-        var modo = o.modo || "leer", en = /^en/i.test(o.lang || "");
-        var lista = en ? [{ t: String(texto), m: modo, pausa: 0 }] : trozos(paraOido(texto), modo);
+    function reproducir(lista, o) {
         stop();
         var mio = token, i = 0;
-        var voz = en ? vozEn() : (cacheVoz || vozEs());
         (function siguiente() {
             if (mio !== token || i >= lista.length) { if (mio === token && o.onend) o.onend(); return; }
-            var tr = lista[i++], u = new SpeechSynthesisUtterance(tr.t);
-            if (voz) { u.voice = voz; u.lang = voz.lang; } else u.lang = en ? "en-US" : "es-PE";
-            u.rate = (o.rate || RATE[tr.m] || RATE.leer) * (window.MKVozVelocidad || 1);
-            u.pitch = o.pitch || PITCH;
-            u.__mkVozPeru = true;
-            var listo = false;
-            var seguir = function () { if (listo) return; listo = true; if (mio === token) setTimeout(siguiente, tr.pausa); };
-            u.onend = seguir;
-            u.onerror = function (e) { if (e && (e.error === "interrupted" || e.error === "canceled")) return; seguir(); };
-            realSpeak(u);
+            var tr = lista[i++];
+            var hablar = function () {
+                if (mio !== token) return;
+                var en = tr.lang === "en", voz = en ? vozEn() : (cacheVoz || vozEs()), u = new SpeechSynthesisUtterance(tr.t);
+                if (voz) { u.voice = voz; u.lang = voz.lang; } else u.lang = en ? "en-US" : "es-PE";
+                u.rate = (tr.rate || o.rate || RATE[tr.m] || RATE.leer) * (en ? 1 : (window.MKVozVelocidad || 1));
+                u.pitch = en ? 1 : (o.pitch || PITCH);
+                u.__mkVozPeru = true;
+                var listo = false;
+                var seguir = function () { if (listo) return; listo = true; if (mio === token) setTimeout(siguiente, tr.pausa || 0); };
+                u.onend = seguir;
+                u.onerror = function (e) { if (e && (e.error === "interrupted" || e.error === "canceled")) return; seguir(); };
+                realSpeak(u);
+            };
+            if (tr.antes && i > 1) setTimeout(hablar, tr.antes); else hablar();
         })();
+    }
+    function speak(texto, o) {
+        o = o || {};
+        var en = /^en/i.test(o.lang || "");
+        reproducir(en ? trozosEn(texto, o.rate) : trozos(paraOido(texto), o.modo || "leer"), o);
+    }
+    // texto en español que puede traer palabras en inglés (esIngles(palabra) → true si es inglés)
+    function speakMixto(texto, esIngles, o) {
+        o = o || {};
+        var lista = [];
+        partesMixtas(texto, esIngles).forEach(function (p) {
+            if (p.lang === "en") lista = lista.concat(trozosEn(p.t));
+            else lista = lista.concat(trozos(p.t, o.modo || "explicar"));
+        });
+        reproducir(lista, o);
     }
     document.addEventListener("visibilitychange", function () { if (document.hidden) stop(); });
 
-    window.MKVoz = { speak: speak, stop: stop, paraOido: paraOido, trozos: trozos, voz: function () { return cacheVoz || vozEs(); }, RATE: RATE, PAUSA: PAUSA };
+    window.MKVoz = { speak: speak, speakMixto: speakMixto, stop: stop, paraOido: paraOido, trozos: trozos, trozosEn: trozosEn, partesMixtas: partesMixtas,
+        voz: function () { return cacheVoz || vozEs(); }, vozEn: vozEn, RATE: RATE, PAUSA: PAUSA };
 
     /* ---------- Conectar con las páginas que ya tienen sus funciones de voz ---------- */
     var modoActual = null;
@@ -157,7 +209,8 @@
     }
     function conectar() {
         if (typeof window.speakText === "function" && !window.speakText.__mkVoz) {
-            var nuevo = function (text) { speak(text, { modo: modoActual || "leer" }); };
+            var enIngles = /en-US|en-GB/.test(String(window.speakText));
+            var nuevo = function (text) { speak(text, enIngles ? { lang: "en" } : { modo: modoActual || "leer" }); };
             nuevo.__mkVoz = true; window.speakText = nuevo;
         }
         ["speakTheory", "speakCurrentTheory", "speakExamples", "speakExplanation", "speakHint"].forEach(function (n) { envolver(n, "explicar"); });

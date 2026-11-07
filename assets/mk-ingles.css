@@ -99,3 +99,8 @@
 .vocab-count { font-weight: 800; color: #15803d; min-height: 1.2em; margin: 10px 0 4px; }
 .next-class { display: block; width: 100%; margin-top: 10px; }
 .next-class small { display: block; font-size: .8rem; font-weight: 600; opacity: .9; margin-top: 2px; }
+
+/* 🔊 para escuchar en español (voz peruana) */
+.es-say { display: inline-grid; place-items: center; width: 30px; height: 30px; margin-left: 6px; padding: 0; vertical-align: middle;
+  border: 2px solid #c7d2fe; border-radius: 50%; background: #eef2ff; font-size: 15px; line-height: 1; cursor: pointer; }
+.es-say:active { transform: scale(.92); }

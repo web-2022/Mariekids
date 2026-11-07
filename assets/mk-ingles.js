@@ -27,14 +27,40 @@
     if (!voice && vs.length) voice = vs[0];
   }
   if ("speechSynthesis" in window) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
-  function say(text, rate) {
+  // Inglés: con el módulo común (assets/voz-peru.js) → palabra sola 0.70, frase 0.80,
+  // con pausa antes y después; con la 🐢 todo va a 0.6.
+  function say(text, rate, onend) {
     if (!("speechSynthesis" in window) || !text) return;
+    if (window.MKVoz) { window.MKVoz.speak(text, { lang: "en", rate: slow ? 0.6 : undefined, onend: onend }); return; }
     var u = new SpeechSynthesisUtterance(String(text).replace(/_+/g, " "));
     u.lang = "en-US"; if (voice) u.voice = voice;
-    u.rate = slow ? 0.6 : (rate || 0.9);
+    u.rate = slow ? 0.6 : (rate || 0.8);
+    if (onend) { u.onend = onend; u.onerror = onend; }
     speechSynthesis.cancel(); speechSynthesis.speak(u);
   }
+  function stopVoz() { if (window.MKVoz) window.MKVoz.stop(); else if ("speechSynthesis" in window) speechSynthesis.cancel(); }
   window.mkSay = say;
+
+  /* Español (instrucciones, traducciones, pistas): voz peruana pausada; si trae palabras
+     en inglés de la lección, esas partes se leen con voz en inglés */
+  var EN_WORDS = {};
+  (L.items || []).forEach(function (it) { String(it.en || "").split(/\s+/).forEach(function (w) { w = w.replace(/^[^A-Za-z']+|[^A-Za-z']+$/g, "").toLowerCase(); if (w.length > 1) EN_WORDS[w] = 1; }); });
+  function sayEs(text) {
+    if (!window.MKVoz || !text) return;
+    window.MKVoz.speakMixto(text, function (w) { return !!EN_WORDS[w.toLowerCase()]; }, { modo: "explicar" });
+  }
+  window.mkSayEs = sayEs;
+  var ES_SEL = ".question, .es-big, .hint-es, .translation, .ex-es, .vocab-es, .order-help";
+  function addEsButtons(root) {
+    if (!window.MKVoz || !root) return;
+    Array.prototype.forEach.call(root.querySelectorAll(ES_SEL), function (e) {
+      if (e.querySelector(".es-say") || !e.textContent.trim()) return;
+      var b = document.createElement("button"); b.type = "button"; b.className = "es-say"; b.textContent = "🔊"; b.title = "Escuchar en español";
+      b.setAttribute("aria-label", "Escuchar en español");
+      b.onclick = function (ev) { ev.stopPropagation(); sayEs(e.textContent.replace(/🔊/g, " ")); };
+      e.appendChild(b);
+    });
+  }
 
   /* ---------- utilidades ---------- */
   function shuffle(a) { for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
@@ -306,7 +332,7 @@
       var rec; try { rec = new SR(); } catch (e) { feedback("Tu navegador no permite el micrófono. Puedes omitir este ejercicio.", "bad"); return; }
       rec.lang = "en-US"; rec.maxAlternatives = 3; rec.interimResults = false;
       mic.classList.add("rec"); mic.textContent = "🎙️ Escuchando…";
-      if ("speechSynthesis" in window) speechSynthesis.cancel();
+      stopVoz();
       rec.onresult = function (e) {
         var best = 0, txt = "";
         for (var i = 0; i < e.results[0].length; i++) {
@@ -455,22 +481,18 @@
     }
 
     var playing = false, idx = 0;
-    function stopAll() { playing = false; all.textContent = "▶ Escuchar todo"; rows.forEach(function (r) { r.classList.remove("playing"); }); if ("speechSynthesis" in window) speechSynthesis.cancel(); }
+    function stopAll() { playing = false; all.textContent = "▶ Escuchar todo"; rows.forEach(function (r) { r.classList.remove("playing"); }); stopVoz(); }
     function playNext() {
       if (!playing) return;
       if (idx >= ITEMS.length) { stopAll(); return; }
       var i = idx++; mark(i);
       rows[i].scrollIntoView({ behavior: "smooth", block: "nearest" });
       if (!("speechSynthesis" in window)) { setTimeout(playNext, 900); return; }
-      var u = new SpeechSynthesisUtterance(ITEMS[i].en);
-      u.lang = "en-US"; if (voice) u.voice = voice; u.rate = slow ? 0.6 : 0.85;
-      u.onend = function () { setTimeout(playNext, 1100); };       // pausa para repetir
-      u.onerror = function () { setTimeout(playNext, 600); };
-      speechSynthesis.speak(u);
+      say(ITEMS[i].en, null, function () { if (playing) setTimeout(playNext, 1100); });   // pausa para repetir
     }
     all.onclick = function () {
       if (playing) { stopAll(); return; }
-      if ("speechSynthesis" in window) speechSynthesis.cancel();
+      stopVoz();
       playing = true; idx = 0; all.textContent = "⏸ Pausar"; playNext();
     };
 
@@ -484,6 +506,9 @@
     queue = buildPlan(); done = 0; firstOk = 0; scored = 0; wrongN = 0; okN = 0; missed = [];
     if (IS_TEST) render(); else vocab();
   }
+
+  // botones 🔊 en español junto a instrucciones, traducciones y pistas
+  if (card && window.MutationObserver) new MutationObserver(function () { addEsButtons(card); }).observe(card, { childList: true, subtree: true });
 
   // pequeña API para pruebas
   window.MKIngles = {
