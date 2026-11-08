@@ -34,7 +34,7 @@ const GEN = [
             { t: `Los de A que se quedaron <b>sin pareja</b> son los que tiene de más. Contémoslos:`, go: T.count(S[0].slice(b), { cls: "t-big" }) },
             { t: `A tiene ${a} y B tiene ${b}: ${a} − ${b} = <b>${ans}</b>.`, b: BOARD.lines([`${a} − ${b} = ${ans}`]) }
           ]; },
-        err: o => o === a + b ? "Sumaste los dos, pero piden cuántos <b>más</b> tiene A." : o === a ? "Ese es el total de A; piden cuántos más que B." : "" }; },
+        err: w => w === a + b ? "Sumaste los dos, pero piden cuántos <b>más</b> tiene A." : w === a ? "Ese es el total de A; piden cuántos más que B." : "" }; },
   ],
   [
     () => { const all = shuffle([...Array(12).keys()].map(x => x + 1)), oa = between(1, 3), bo = between(1, 3), ob = between(1, 3);
@@ -63,7 +63,7 @@ const GEN = [
             z.both.length > 1 ? { t: `Los sumamos: ${z.both.join(" + ")} = <b>${ans}</b>.`, b: BOARD.lines([`${z.both.join(" + ")} = ${ans}`]) }
                               : { t: `En el medio hay un solo número, así que la suma es ese mismo número: <b>${ans}</b>.` }
           ]; },
-        err: o => t === "soloA" && o === oa + bo ? "Contaste también el medio, pero piden <b>solo</b> A." : t === "union" && o === oa + bo + ob + bo ? "Contaste el medio dos veces." : t === "union" && o === oa + ob ? "Te faltó contar el medio." : "" }; },
+        err: w => t === "soloA" && w === oa + bo ? "Contaste también el medio, pero piden <b>solo</b> A." : t === "union" && w === oa + bo + ob + bo ? "Contaste el medio dos veces." : t === "union" && w === oa + ob ? "Te faltó contar el medio." : "" }; },
   ]
 ];
 lesson({ n: 5, title: "Pertenencia, comparación y operaciones con conjuntos", short: "Operaciones con conjuntos", char: "coco", music: "funk", deco: ["∈", "∉", "⭕", "🍌"],

@@ -36,7 +36,7 @@ const GEN = [
             { t: `Seguimos desde ${a} en el segundo dado:`, go: T.count([...d[1].querySelectorAll("circle")], { from: a + 1 }) },
             { t: `${a} + ${b} = <b>${ans}</b> puntos.`, b: BOARD.lines([`${a} + ${b} = ${ans}`]) }
           ]; },
-        err: o => o === a * b ? "Multiplicaste, pero aquí hay que <b>juntar</b> los puntos." : "" }; },
+        err: w => w === a * b ? "Multiplicaste, pero aquí hay que <b>juntar</b> los puntos." : "" }; },
     () => { const n = between(4, 19);
       return { prompt: "¿Qué número muestra el <b>cuadro de diez</b>?", say: "¿Qué número muestran las fichas rojas?", scene: `<div class="tfs">${tenFrame(n)}</div>`, ans: n, opts: numOpts(n, [n + 1, n - 1, n > 10 ? n - 10 : 10 - n], 1),
         why: n > 10 ? `Un cuadro lleno es 10, y ${n - 10} más: ${n}.` : `Hay ${n} fichas${n < 10 ? `; faltan ${10 - n} para 10` : ""}.`, hint: "Un cuadro lleno tiene 10.",
@@ -50,7 +50,7 @@ const GEN = [
             { t: `Contamos las fichas rojas:`, go: T.count(red(0)) },
             { t: `Hay <b>${n}</b> fichas.${n < 10 ? ` Las casillas vacías son ${10 - n}: ${n} + ${10 - n} = 10.` : ""}` }
           ]; },
-        err: o => o === (n > 10 ? n - 10 : 10 - n) ? (n > 10 ? "Contaste solo el segundo cuadro. ¡El primero también vale 10!" : "Contaste las casillas vacías; piden las fichas rojas.") : "" }; },
+        err: w => w === (n > 10 ? n - 10 : 10 - n) ? (n > 10 ? "Contaste solo el segundo cuadro. ¡El primero también vale 10!" : "Contaste las casillas vacías; piden las fichas rojas.") : "" }; },
     () => { const n = between(5, 20), asWord = rnd(2) === 0;
       const q = asWord
         ? { prompt: `¿Cómo se escribe con números?`, say: `¿Cómo se escribe ${PAL[n]} con números?`, scene: `<div class="word-num">${PAL[n]}</div>`, ans: n, opts: numOpts(n, [n + 1, n - 1, n + 10 <= 29 ? n + 10 : n - 2], 1),
@@ -82,7 +82,7 @@ const GEN = [
             d > 0 ? { t: `Y seguimos de 1 en 1 con los deditos:`, go: T.count(Dd, { from: 5 * m + 1 }) } : null,
             { t: `${m} mano${m > 1 ? "s" : ""} = ${5 * m}${d ? ` y ${d} dedo${d > 1 ? "s" : ""} = ${d}` : ""}. Total: <b>${ans}</b>.`, b: BOARD.lines([`${Array(m).fill(5).join(" + ")}${d ? " + " + Array(d).fill(1).join(" + ") : ""} = ${ans}`]) }
           ]; },
-        err: o => o === m + d ? "Contaste cada mano como 1, pero ¡cada mano vale 5!" : "" }; },
+        err: w => w === m + d ? "Contaste cada mano como 1, pero ¡cada mano vale 5!" : "" }; },
     () => { const k = between(4, 8), g = between(2, k - 1), e = pick(["🎈", "🍦", "🎁", "🍭"]), who = sample(["👧", "👦", "🧒", "👧🏽", "👦🏻", "🧒🏾", "👧🏻", "👦🏽"], k), ans = k - g;
       return { prompt: `Cada niño debe recibir <b>un</b> ${e}. ¿Cuántos ${e} <b>faltan</b>?`, say: "Cada niño debe recibir uno. ¿Cuántos faltan?", scene: line(who) + line(em(e, g)), ans, opts: numOpts(ans, [k, g, ans + 1], 0),
         why: `Hay ${k} niños y ${g} ${e}. Faltan ${k} − ${g} = ${ans}.`, hint: "Une cada niño con un objeto. ¿Cuántos niños se quedan sin nada?",
@@ -93,7 +93,7 @@ const GEN = [
             { t: `Los niños que se quedaron <b>sin</b> ${e} nos dicen cuántos faltan. Contémoslos:`, go: T.count(kids.slice(g), { cls: "t-big" }) },
             { t: `Hay ${k} niños y ${g} ${e}: ${k} − ${g} = <b>${ans}</b>. Faltan ${ans}.`, b: BOARD.lines([`${k} − ${g} = ${ans}`]) }
           ]; },
-        err: o => o === k ? "Esos son todos los niños; piden los que se quedan sin nada." : o === g ? `Esos son los ${e} que ya hay; piden los que faltan.` : "" }; },
+        err: w => w === k ? "Esos son todos los niños; piden los que se quedan sin nada." : w === g ? `Esos son los ${e} que ya hay; piden los que faltan.` : "" }; },
     () => { const n = between(6, 15), e = pick(OBJ), opts = numOpts(n, [n + 1, n - 1, n + 2], 1).slice(0, 4);
       return { prompt: "¿Qué grupo tiene la <b>misma cantidad</b> que el número de ⭐ del recuadro?", say: "Cuenta las estrellas. ¿Qué grupo tiene la misma cantidad?", scene: `<div class="rowsbox" style="display:block">${scatter(em("⭐", n))}</div>`,
         ans: grp(e, n), opts: opts.map(k => grp(e, k)), cls: "grp", cols: 1, why: `Hay ${n} estrellas, y ese grupo también tiene ${n}.`, hint: "Primero cuenta las estrellas. Después busca el grupo con la misma cantidad.",

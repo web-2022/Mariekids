@@ -9,7 +9,7 @@ const GEN = [
           u ? { t: `Seguimos con las unidades, de 1 en 1:`, go: T.count(T.of("U", "ellipse"), { from: 10 * d + 1 }) } : { t: `La varilla U no tiene bolitas: 0 unidades.` },
           { t: `${d} decenas y ${u} unidades: <b>${ans}</b>.`, b: BOARD.table([["D", "U"], [d, u]]) }
         ],
-        err: o => o === 10 * u + d ? "¡Leíste al revés! La varilla D va a la izquierda." : o === d + u ? "Contaste todas las bolitas como 1, pero las de D valen 10." : "" }; },
+        err: w => w === 10 * u + d ? "¡Leíste al revés! La varilla D va a la izquierda." : w === d + u ? "Contaste todas las bolitas como 1, pero las de D valen 10." : "" }; },
   ],
   [
     () => { const c = between(1, 3), d = between(0, 9), u = between(0, 9), ans = 100 * c + 10 * d + u;
@@ -19,7 +19,7 @@ const GEN = [
           { t: `Contamos: centenas de 100 en 100, decenas de 10 en 10, unidades de 1 en 1.`, go: d2 => T.count(T.of("C", "ellipse"), { label: k => String(100 * k), say: k => String(100 * k), ms: 900 })(() => T.count(T.of("D", "ellipse"), { label: k => String(100 * c + 10 * k), say: k => String(100 * c + 10 * k), ms: 700 })(() => T.count(T.of("U", "ellipse"), { from: 100 * c + 10 * d + 1, ms: 600 })(d2))) },
           { t: `${c} centena${c > 1 ? "s" : ""}, ${d} decena${d === 1 ? "" : "s"} y ${u} unidad${u === 1 ? "" : "es"}: <b>${ans}</b>.`, b: BOARD.table([["C", "D", "U"], [c, d, u]]) }
         ],
-        err: o => o === c + d + u ? "Contaste todas las bolitas como 1, pero cada varilla vale distinto." : "" }; },
+        err: w => w === c + d + u ? "Contaste todas las bolitas como 1, pero cada varilla vale distinto." : "" }; },
     () => { const n = between(21, 99), d = Math.floor(n / 10), u = n % 10, t = rnd(2);
       const __q = t ? { prompt: `${n} = ${d * 10} + ⬜`, say: `${n} es igual a ${d * 10} más ¿cuánto?`, scene: "", ans: u, opts: numOpts(u, [d, n - u, u + 10], 0), why: `${n} = ${d * 10} + ${u}.`, hint: "Separa las decenas y las unidades." }
         : { prompt: `En el número <b>${n}</b>, ¿cuánto <b>vale</b> la cifra ${d}?`, say: `En el número ${n}, ¿cuánto vale la cifra ${d}?`, scene: `<div class="big-num">${n}</div>`, ans: 10 * d, opts: numOpts(10 * d, [d, n, 100 * d], 0), why: `El ${d} está en las decenas: vale ${10 * d}.`, hint: "Depende del lugar donde está." };
@@ -51,7 +51,7 @@ const GEN = [
           { t: `${a} + ${b} = <b>${s}</b>.`, b: s >= 10 ? BOARD.table([["D", "U"], [Math.floor(s / 10), s % 10]]) : BOARD.lines([`${s} tiene 0 decenas y ${s} unidades`]) },
           { t: `La cifra de las <b>${t === "D" ? "decenas" : "unidades"}</b> (${t === "D" ? "izquierda" : "derecha"}) es <b>${ans}</b>.` }
         ],
-        err: o => o === s ? "Ese es el resultado completo; piden solo una cifra." : "" }; },
+        err: w => w === s ? "Ese es el resultado completo; piden solo una cifra." : "" }; },
   ]
 ];
 lesson({ n: 13, title: "Valor posicional, ábaco y descomposición numérica", short: "Ábaco", char: "tito", music: "electro", deco: ["🧮", "C", "D", "U"],

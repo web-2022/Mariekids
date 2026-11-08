@@ -19,7 +19,7 @@ const GEN = [
             { t: `¡Todas las filas tienen ${c}! Entonces contamos de ${c} en ${c}, fila por fila:`, go: T.count(last, { label: k => String(k * c), say: k => String(k * c), cls: "t-big", ms: 1100 }) },
             { t: `Son ${r} filas de ${c}: ${Array(r).fill(c).join(" + ")} = <b>${ans}</b>.`, b: BOARD.lines([Array(r).fill(c).join(" + ") + " = " + ans]) }
           ]; },
-        err: o => o === r + c ? `Sumaste ${r} filas más ${c}, pero hay que contar <b>todas</b> las ${NOM[e]}.` : o === ans + c ? "Contaste una fila de más." : o === ans - c ? "Te faltó contar una fila." : "" }; },
+        err: w => w === r + c ? `Sumaste ${r} filas más ${c}, pero hay que contar <b>todas</b> las ${NOM[e]}.` : w === ans + c ? "Contaste una fila de más." : w === ans - c ? "Te faltó contar una fila." : "" }; },
     () => { const e = pick(OBJ), r = between(2, 5), c = between(3, 6), askRows = rnd(2) === 0, ans = askRows ? r : c;
       return { prompt: askRows ? `¿Cuántas <b>filas</b> hay? (filas = acostadas ↔)` : `¿${cu(e)} ${e} hay en <b>cada fila</b>?`, say: askRows ? "¿Cuántas filas hay? Las filas van acostadas." : "¿Cuántos hay en cada fila?",
         scene: rowsBox(e, r, c), ans, opts: numOpts(ans, [askRows ? c : r, r * c], 1), why: askRows ? `Hay ${r} filas, una debajo de otra.` : `En cada fila hay ${c}.`, hint: "Una fila va de izquierda a derecha ↔.",
@@ -33,7 +33,7 @@ const GEN = [
             { t: `Miramos solo la primera fila y contamos:`, go: T.count([...rows[0].querySelectorAll(".it")]) },
             { t: `En cada fila hay <b>${c}</b> ${NOM[e]}. Ojo: ${r} es el número de filas, no lo que hay en cada una.` }
           ]; },
-        err: o => o === r * c ? "Contaste todas, pero solo piden " + (askRows ? "las filas." : "una fila.") : "" }; },
+        err: w => w === r * c ? "Contaste todas, pero solo piden " + (askRows ? "las filas." : "una fila.") : "" }; },
   ],
   // ---------- Nivel 2: cuadrículas y cajas
   [
@@ -48,7 +48,7 @@ const GEN = [
             noPaint ? { t: `Comprobamos de otra forma: hay ${tot} cuadritos en total y ${k} pintados: ${tot} − ${k} = <b>${ans}</b>.`, b: BOARD.lines([`${tot} − ${k} = ${ans}`]) }
                     : { t: `Hay <b>${ans}</b> cuadritos pintados.` }
           ]; },
-        err: o => o === tot ? "Contaste todos los cuadritos, pero solo piden " + (noPaint ? "los blancos." : "los pintados.") : o === (noPaint ? k : tot - k) ? "Contaste los del otro color." : "" }; },
+        err: w => w === tot ? "Contaste todos los cuadritos, pero solo piden " + (noPaint ? "los blancos." : "los pintados.") : w === (noPaint ? k : tot - k) ? "Contaste los del otro color." : "" }; },
     () => { const e = pick(["🥚", "🧁", "🍪", "🖍️"]), k = pick([2, 3, 4, 5, 6]), b = between(2, 4), ans = k * b;
       return { prompt: `Cada caja tiene la misma cantidad. ¿${cu(e)} ${e} hay en total?`, say: `¿${cu(e)} ${NOM[e]} hay en total en las cajas?`, scene: boxes(e, k, b, k > 4 ? 3 : 2), ans, opts: numOpts(ans, [k + b, ans - k, ans + k], 1),
         why: `${b} cajas de ${k}: ${Array(b).fill(k).join(" + ")} = ${ans}.`, hint: "Cuenta cuántos hay en una caja y suma para cada caja.",
@@ -58,7 +58,7 @@ const GEN = [
             { t: `En cada caja hay ${k}. Ahora contamos de ${k} en ${k}, caja por caja:`, go: T.count(bx, { label: i => String(i * k), say: i => String(i * k), cls: "t-big", ms: 1100 }) },
             { t: `Son ${b} cajas de ${k}: ${Array(b).fill(k).join(" + ")} = <b>${ans}</b>.`, b: BOARD.lines([Array(b).fill(k).join(" + ") + " = " + ans]) }
           ]; },
-        err: o => o === k + b ? `Sumaste ${k} + ${b}, pero hay ${b} cajas y <b>cada una</b> tiene ${k}.` : "" }; },
+        err: w => w === k + b ? `Sumaste ${k} + ${b}, pero hay ${b} cajas y <b>cada una</b> tiene ${k}.` : "" }; },
   ],
   // ---------- Nivel 3: tipo concurso
   [
@@ -71,7 +71,7 @@ const GEN = [
             { t: `En total hay <b>${n * n}</b> cuadritos. Los pintados forman una línea en diagonal: uno en cada fila. Son ${n}.`, go: d => { T.paint(T.of("P", "rect"), "#f59e0b"); setTimeout(d, 700); } },
             { t: `A todos les quitamos los pintados: ${n * n} − ${n} = <b>${ans}</b>.`, b: BOARD.lines([`${n} + ${n} + … = ${n * n} cuadritos`, `${n * n} − ${n} = ${ans}`]) }
           ]; },
-        err: o => o === n * n ? "Ese es el total, pero hay que quitar los pintados." : o === n ? "Esos son los pintados; piden los que NO están pintados." : "" }; },
+        err: w => w === n * n ? "Ese es el total, pero hay que quitar los pintados." : w === n ? "Esos son los pintados; piden los que NO están pintados." : "" }; },
     () => { const k = pick([4, 6]), b = between(2, 3), suel = 2 * between(0, 2), tot = k * b + suel, ans = tot / 2;
       return { prompt: "¿Cuántos <b>pares</b> de huevos 🥚 hay?", say: "¿Cuántos pares de huevos hay? Un par son dos.", scene: boxes("🥚", k, b, k / 2) + (suel ? line(em("🥚", suel)) : ""), ans, opts: numOpts(ans, [tot, ans + 1, ans - 1], 1),
         why: `En total hay ${tot} huevos. Un par son 2: ${tot} huevos = ${ans} pares.`, hint: "Primero cuenta todos los huevos y luego agrúpalos de 2 en 2.",
@@ -80,7 +80,7 @@ const GEN = [
           { t: `Formamos los pares:`, go: T.pairs(T.its(), { near: true, both: true, say: i => "par " + i }) },
           { t: `Hay ${tot} huevos y formamos <b>${ans}</b> pares (la mitad de ${tot}).` }
         ],
-        err: o => o === tot ? "Esos son los huevos sueltos, pero piden <b>pares</b> (de 2 en 2)." : "" }; },
+        err: w => w === tot ? "Esos son los huevos sueltos, pero piden <b>pares</b> (de 2 en 2)." : "" }; },
     () => { const e = pick(OBJ), r = between(3, 4), c = between(4, 5), falt = Array.from({ length: r }, () => rnd(3));
       if (!falt.some(Boolean)) falt[0] = 1;
       const ans = falt.reduce((a, b) => a + b, 0);
@@ -93,7 +93,7 @@ const GEN = [
             { t: `Apagamos lo que sí está y contamos solo los espacios vacíos, fila por fila:`, go: d => { T.dim(T.of(e)); T.count(T.of("⬜"))(d); } },
             { t: `Lo que falta en cada fila: ${falt.join(" + ")} = <b>${ans}</b>.`, b: BOARD.lines(falt.map((f, i) => `Fila ${i + 1}: faltan ${f}`).concat([`Total: ${falt.join(" + ")} = ${ans}`]), { step: .7 }) }
           ]; },
-        err: o => o === r * c - ans ? "Esos son los que sí están. Piden los que <b>faltan</b>." : "" }; },
+        err: w => w === r * c - ans ? "Esos son los que sí están. Piden los que <b>faltan</b>." : "" }; },
   ]
 ];
 

@@ -13,7 +13,7 @@ const GEN = [
             { t: `Con ${ds[0]} y ${ds[1]} podemos formar dos números:`, b: BOARD.lines([`${10 * x + y} (${x} decenas)`, `${10 * y + x} (${y} decena${y > 1 ? "s" : ""})`]) },
             { t: big ? `Para el más grande, ponemos la cifra <b>mayor</b> (${x}) en las decenas: <b>${ans}</b>.` : `Para el más pequeño, ponemos la cifra <b>menor</b> (${y}) en las decenas: <b>${ans}</b>.` }
           ]; },
-        err: o => o === ds[0] + ds[1] ? "Sumaste las tarjetas, pero hay que ponerlas una al lado de la otra." : "" }; },
+        err: w => w === ds[0] + ds[1] ? "Sumaste las tarjetas, pero hay que ponerlas una al lado de la otra." : "" }; },
   ],
   [
     () => { const ds = sample([1, 2, 3, 4, 5, 6, 7, 8, 9], 3), big = rnd(2) === 0, all = perm2(ds), ans = big ? Math.max(...all) : Math.min(...all);
@@ -34,7 +34,7 @@ const GEN = [
             { t: `Así salen todos, sin olvidar ninguno:`, b: BOARD.lines(ds.map((a, i) => `${a} adelante → ${L[i].join(" y ")}`), { step: .9 }) },
             { t: `3 tarjetas adelante × 2 compañeras = <b>${ans}</b> números.`, bAdd: BOARD.lines([`${L.map(x => x.length).join(" + ")} = ${ans}`]) }
           ]; },
-        err: o => o === 3 ? "Hay más: cada tarjeta puede ir adelante con dos compañeras distintas." : o === 9 ? "No se puede repetir la misma tarjeta (como 11 o 22)." : "" }; },
+        err: w => w === 3 ? "Hay más: cada tarjeta puede ir adelante con dos compañeras distintas." : w === 9 ? "No se puede repetir la misma tarjeta (como 11 o 22)." : "" }; },
   ],
   [
     () => { const ds = [0, ...sample([1, 2, 3, 4, 5, 6, 7, 8, 9], 3)], big = rnd(2) === 0, all = perm3(ds), ans = big ? Math.max(...all) : Math.min(...all);
@@ -49,7 +49,7 @@ const GEN = [
             { t: `Adelante va ${nz[0]}, la más pequeña que no es 0. Después va el 0, y al final ${nz[1]}.`, b: BOARD.table([["C", "D", "U"], [nz[0], 0, nz[1]]]) },
             { t: `El menor número es <b>${ans}</b>.` }
           ]; },
-        err: o => !big && o < 100 ? "¡El 0 no puede ir adelante!" : "" }; },
+        err: w => !big && w < 100 ? "¡El 0 no puede ir adelante!" : "" }; },
     () => { const a = pick([1, 3, 5, 7]), b = a + 2, ans = 10 * a + b;
       return { prompt: `Adivina: «Soy un número de dos cifras <b>impares consecutivas</b> (de menor a mayor) y mis cifras suman <b>${a + b}</b>. ¿Quién soy?»`, say: `Soy un número de dos cifras impares consecutivas, de menor a mayor, y mis cifras suman ${a + b}. ¿Quién soy?`, scene: "",
         ans, opts: numOpts(ans, [10 * b + a, ans + 1, 10 * (a + 1) + (b - 1)], 10), why: `${a} y ${b} son impares seguidos y ${a} + ${b} = ${a + b}: el número es ${ans}.`, hint: "Impares seguidos: 1 y 3, 3 y 5, 5 y 7, 7 y 9.",
@@ -58,7 +58,7 @@ const GEN = [
           { t: `Sumamos cada pareja y buscamos la que da <b>${a + b}</b>:`, b: BOARD.lines([[1, 3], [3, 5], [5, 7], [7, 9]].map(([p, q]) => `${p} + ${q} = ${p + q}${p === a ? " ✅" : ""}`), { step: .7 }) },
           { t: `Son ${a} y ${b}. De menor a mayor, el número es <b>${ans}</b>.` }
         ],
-        err: o => o === 10 * b + a ? "Las cifras van de menor a mayor: primero la menor." : "" }; },
+        err: w => w === 10 * b + a ? "Las cifras van de menor a mayor: primero la menor." : "" }; },
   ]
 ];
 lesson({ n: 11, title: "Formación de números con cifras", short: "Formar números", char: "bimba", music: "pop", deco: ["🃏", "1️⃣", "2️⃣", "3️⃣"],

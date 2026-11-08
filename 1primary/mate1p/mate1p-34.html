@@ -267,6 +267,9 @@ text.it.t-hl { fill: #b45309; }
 .tboard { overflow-x: auto; }
 .tb-tbl { font-size: 14px; }
 .tb-tbl td, .tb-tbl th { padding: 4px 7px; }
+.tb-op2 .tb-carry span { font-size: 15px; color: #16a34a; line-height: 1; height: 16px; }
+.tb-op2 > div > span:first-child { grid-column-start: 1; }
+.tb-col.tb-op2 .tb-hd span:first-child, .tb-col.tb-op2 .tb-res span:first-child, .tb-col.tb-op2 .tb-carry span:first-child { grid-column-start: 1; }
 
     </style>
     <script>
@@ -888,6 +891,21 @@ function tutKit(sc, tok) {
       };
       step();
     },
+    // encierra de g en g (grupos de igual cantidad), con color y número de grupo
+    chunks: (els, g, o = {}) => done => {
+      const C = ["#f59e0b", "#22c55e", "#3b82f6", "#ec4899", "#8b5cf6", "#14b8a6", "#ef4444", "#84cc16"];
+      let k = 0;
+      const step = () => {
+        if (!alive()) return;
+        if (k * g >= els.length) { setTimeout(() => alive() && done(), 350); return; }
+        const grp = els.slice(k * g, k * g + g), c = C[k % C.length]; k++;
+        grp.forEach(x => { x.classList.add("t-pair"); x.style.setProperty("--pc", c); });
+        const lab = o.label ? o.label(k) : String(k);
+        T.badge(grp[grp.length - 1], lab, "t-pc").style.background = c;
+        tutSay(o.say ? o.say(k) : lab); setTimeout(step, o.ms || 1000);
+      };
+      step();
+    },
     // reparte en 2 grupos iguales: uno al azul, uno al naranja…
     split: (els, o = {}) => done => {
       let k = 0;
@@ -972,6 +990,44 @@ function tutorBtn(ui, q, sc) {
   };
 }
 
+// explica una operación en columna: devuelve { lines: [...], carry: [...] }
+function colTxt(nums, sign = "+") {
+  const N = ["unidades", "decenas", "centenas"], w = String(Math.max(...nums)).length + 1, lines = [], carry = [];
+  if (sign === "+") {
+    let c = 0;
+    for (let k = 0; k < w; k++) {
+      const ds = nums.map(n => Math.floor(n / 10 ** k) % 10), any = nums.some(n => n >= 10 ** k);
+      if (!any && !c) break;
+      const sum = ds.reduce((p, q) => p + q, 0) + c, parts = (c ? [c] : []).concat(ds.filter((d, i) => nums[i] >= 10 ** k || d));
+      const nm = N[k] || "millares";
+      lines.push(sum >= 10 && nums.some(n => n >= 10 ** (k + 1)) || (sum >= 10 && k < w - 1)
+        ? `${nm[0].toUpperCase() + nm.slice(1)}: ${parts.join(" + ")} = ${sum} → escribimos ${sum % 10} y llevamos ${Math.floor(sum / 10)} a las ${N[k + 1] || "siguientes"}.`
+        : `${nm[0].toUpperCase() + nm.slice(1)}: ${parts.join(" + ")} = ${sum} → escribimos ${sum}.`);
+      if (sum >= 10 && !(nums.every(n => n < 10 ** (k + 1)) && k === w - 1)) { carry.push(String(Math.floor(sum / 10))); c = Math.floor(sum / 10); } else { carry.push(""); c = 0; }
+      if (sum >= 10 && nums.every(n => n < 10 ** (k + 1))) { lines[lines.length - 1] = `${nm[0].toUpperCase() + nm.slice(1)}: ${parts.join(" + ")} = ${sum} → escribimos ${sum}.`; carry[carry.length - 1] = ""; break; }
+    }
+  } else {
+    let [a, b] = nums, p = 0;
+    for (let k = 0; k < w; k++) {
+      if (a < 10 ** k && b < 10 ** k) break;
+      let x = Math.floor(a / 10 ** k) % 10 - p, y = Math.floor(b / 10 ** k) % 10, nm = N[k] || "millares", Nm = nm[0].toUpperCase() + nm.slice(1);
+      if (x < y) { lines.push(`${Nm}: ${x} − ${y} no se puede. Pedimos 1 prestado a las ${N[k + 1]}: ${x + 10} − ${y} = ${x + 10 - y}.`); p = 1; carry.push(""); }
+      else { lines.push(`${Nm}: ${x} − ${y} = ${x - y}${p ? " (ya le quitamos el 1 prestado)" : ""}.`); p = 0; carry.push(""); }
+    }
+  }
+  return { lines, carry };
+}
+
+// saltos para ir de a hasta b «completando»: de 1 en 1 hasta la decena, luego de 10 en 10, luego de 1 en 1
+function saltosHasta(a, b) {
+  const out = []; let v = a, sg = b >= a ? 1 : -1;
+  if (sg < 0) { while (v > b) { const j = v - b >= 10 && v % 10 === 0 ? 10 : 1; out.push(-j); v -= j; } return out; }
+  while (v < b && v % 10 && v + 1 <= b) { out.push(1); v++; }
+  while (v + 10 <= b) { out.push(10); v += 10; }
+  while (v < b) { out.push(1); v++; }
+  return out;
+}
+
 /* ---------- Pizarra del tutor: dibujos que aparecen poco a poco ----------
    Cada pieza con style="--d:Xs" aparece con retraso X (animación .tb-in). */
 const BOARD = {
@@ -984,7 +1040,7 @@ const BOARD = {
     const every = span <= 22 ? 1 : span <= 60 ? 5 : 10;
     let g = `<line x1="${L - 6}" y1="70" x2="${R + 6}" y2="70" stroke="#334155" stroke-width="2.5"/>`;
     for (let v = Math.ceil(lo / every) * every; v <= hi; v += every) g += `<line x1="${X(v)}" y1="64" x2="${X(v)}" y2="76" stroke="#334155" stroke-width="2"/><text x="${X(v)}" y="93" font-size="${span > 22 ? 10 : 12}" text-anchor="middle" font-weight="800" fill="#334155">${v}</text>`;
-    if (every > 1) vals.forEach(v => { if (v % every) g += `<line x1="${X(v)}" y1="64" x2="${X(v)}" y2="76" stroke="#334155" stroke-width="2"/><text x="${X(v)}" y="93" font-size="10" text-anchor="middle" font-weight="800" fill="#7c3aed">${v}</text>`; });
+    if (every > 1) vals.forEach((v, i) => { if (v % every && (i === 0 || i === vals.length - 1 || Math.abs(saltos[i - 1]) >= every)) g += `<line x1="${X(v)}" y1="64" x2="${X(v)}" y2="76" stroke="#334155" stroke-width="2"/><text x="${X(v)}" y="93" font-size="10" text-anchor="middle" font-weight="800" fill="#7c3aed">${v}</text>`; });
     g += `<circle cx="${X(a)}" cy="70" r="6" fill="#22c55e"/>`;
     saltos.forEach((j, i) => {
       const x1 = X(vals[i]), x2 = X(vals[i + 1]), m = (x1 + x2) / 2, hgt = Math.min(40, 14 + Math.abs(x2 - x1) * .45), c = j > 0 ? "#2563eb" : "#e11d48";
@@ -1032,6 +1088,20 @@ const BOARD = {
     const cells = (n, cls = "") => String(n).padStart(w, " ").split("").map(c => `<span class="${cls}">${c === " " ? "" : c}</span>`).join("");
     const rd = String(r).padStart(w, " ").split("");
     return `<div class="tb-col" style="--w:${w}"><div class="tb-hd">${w === 3 ? "<span>C</span>" : ""}${w >= 2 ? "<span>D</span>" : ""}<span>U</span></div><div>${cells(a)}</div><div><span class="tb-op">${op === "+" ? "+" : "−"}</span>${cells(b)}</div><div class="tb-res">${rd.map((c, i) => `<span class="tb-in" style="--d:${(.6 + (w - 1 - i) * .9).toFixed(2)}s">${c === " " ? "" : c}</span>`).join("")}</div></div>`;
+  },
+  // operación en columna con «llevo» (suma de varios) o «presto» (resta de dos); aparece columna por columna
+  op(nums, sign = "+") {
+    const r = sign === "+" ? nums.reduce((p, q) => p + q, 0) : nums[0] - nums[1], w = String(Math.max(...nums, r)).length;
+    const dig = (n, i) => { const t = String(n).padStart(w, " "); return t[i] === " " ? "" : t[i]; };
+    const steps = colTxt(nums, sign), carry = Array(w).fill(""), D = i => (.5 + (w - 1 - i) * 1.4).toFixed(2);
+    steps.carry.forEach((c, k) => { if (c) carry[w - 2 - k] = c; });   // lo que se lleva va encima de la columna siguiente
+    const row = (cells, cls = "", first = "") => `<div class="${cls}"><span class="tb-op">${first}</span>${cells.join("")}</div>`;
+    const hd = ["C", "D", "U"].slice(3 - Math.min(3, w)); while (hd.length < w) hd.unshift("");
+    let h = row(hd.map(x => `<span>${x}</span>`), "tb-hd");
+    h += row(carry.map((c, i) => `<span class="tb-car${c ? " tb-in" : ""}" style="--d:${c ? (+D(i + 1) + .5).toFixed(2) : 0}s">${c}</span>`), "tb-carry");
+    nums.forEach((n, j) => { h += row(Array.from({ length: w }, (_, i) => `<span>${dig(n, i)}</span>`), "", j === nums.length - 1 ? (sign === "+" ? "+" : "−") : ""); });
+    h += row(Array.from({ length: w }, (_, i) => `<span class="tb-in" style="--d:${D(i)}s">${dig(r, i)}</span>`), "tb-res");
+    return `<div class="tb-col tb-op2" style="--w:${w}">${h}</div>`;
   },
   // líneas de pizarra que aparecen una tras otra
   lines(ls, o = {}) { return `<div class="tb-lines">` + ls.map((l, i) => `<div class="tb-in" style="--d:${(.2 + i * (o.step || 1)).toFixed(2)}s">${l}</div>`).join("") + `</div>`; },
@@ -1266,22 +1336,57 @@ const GEN = [
   [
     () => { const t = TOPS[0], h = between(1, t - 1), ans = t - h;
       return { prompt: `Tengo <b>${h}</b>. ¿Cuánto me falta para llegar a <b>${t}</b>?`, say: `Tengo ${h}. ¿Cuánto me falta para llegar a ${t}?`, scene: t <= 20 ? `<div class="tfs">${tenFrame(h)}</div>` : "", ans, opts: numOpts(ans, [t + h, h, ans + 1], 0),
-        why: `${h} + ${ans} = ${t}.`, hint: `Cuenta desde ${h} hasta ${t}.` }; },
+        why: `${h} + ${ans} = ${t}.`, hint: `Cuenta desde ${h} hasta ${t}.`,
+        steps: T => [
+          { t: `Tengo ${h} y quiero llegar a ${t}. Lo que falta se halla <b>completando</b>: contamos desde ${h} hasta ${t}.` },
+          t === 10 ? { t: `En el cuadro de diez, contamos las casillas <b>vacías</b>:`, go: T.count(T.its(".tf span").filter(x => !x.textContent.includes("🔴")).slice(0, ans)) } : { t: `Saltamos en la recta:`, b: BOARD.jumps(h, saltosHasta(h, t), { step: .35 }) },
+          { t: `Faltan <b>${ans}</b>. Comprobamos: ${h} + ${ans} = ${t}. ✅`, b: BOARD.jumps(h, saltosHasta(h, t), { step: .3 }) }
+        ],
+        err: w => w === h ? `${h} es lo que tengo; piden lo que falta.` : w === t + h ? "Sumaste; hay que ver cuánto falta." : "" }; },
     () => { const t = TOPS[0], h = between(1, t - 1), ans = t - h;
-      return { prompt: `${h} + ⬜ = ${t}`, say: `${h} más cuánto es ${t}?`, scene: "", ans, opts: numOpts(ans, [t, h, ans + 1], 0), why: `${h} + ${ans} = ${t}.`, hint: `¿Qué número completa ${t}?` }; },
+      return { prompt: `${h} + ⬜ = ${t}`, say: `${h} más cuánto es ${t}?`, scene: "", ans, opts: numOpts(ans, [t, h, ans + 1], 0), why: `${h} + ${ans} = ${t}.`, hint: `¿Qué número completa ${t}?`,
+        steps: T => [
+          { t: `¿Qué número sumado a ${h} da ${t}? Contamos desde ${h} hasta ${t}.` },
+          { t: `Damos saltos hasta llegar:`, b: BOARD.jumps(h, saltosHasta(h, t), { step: .35 }) },
+          { t: `${h} + <b>${ans}</b> = ${t}. ${t === 10 ? "¡Las parejas que suman 10 son amigas del 10!" : ""}` }
+        ],
+        err: w => w === t ? `${t} es el resultado; buscamos lo que falta.` : w === h ? `${h} ya está escrito.` : "" }; },
   ],
   [
     () => { const t = TOPS[1], h = between(1, t - 1), ans = t - h;
-      return { prompt: `${h} + ⬜ = <b>${t}</b>`, say: `${h} más cuánto es ${t}?`, scene: "", ans, opts: numOpts(ans, [t, h, ans + 1], 0), why: `${h} + ${ans} = ${t}.`, hint: `Cuenta desde ${h} hasta ${t}.` }; },
+      return { prompt: `${h} + ⬜ = <b>${t}</b>`, say: `${h} más cuánto es ${t}?`, scene: "", ans, opts: numOpts(ans, [t, h, ans + 1], 0), why: `${h} + ${ans} = ${t}.`, hint: `Cuenta desde ${h} hasta ${t}.`,
+        steps: T => [
+          { t: `¿Cuánto le falta a ${h} para llegar a ${t}? Completamos con saltos.` },
+          { t: `${saltosHasta(h, t).some(x => x === 10) ? "Primero llegamos a la decena y luego saltamos de 10 en 10:" : "Saltamos de 1 en 1:"}`, b: BOARD.jumps(h, saltosHasta(h, t), { step: .35 }) },
+          { t: `Sumamos los saltos: ${saltosHasta(h, t).join(" + ")} = <b>${ans}</b>. Entonces ${h} + ${ans} = ${t}.` }
+        ],
+        err: w => w === t ? `${t} es el resultado; buscamos lo que falta.` : "" }; },
     () => { const t = pick(TOPS), a = between(1, t - 1), b = t - a, pairs = [[a, b]]; while (pairs.length < 4) { const x = between(1, t - 1), y = between(1, t - 1); if (x + y !== t && !pairs.some(p => p[0] === x && p[1] === y)) pairs.push([x, y]); }
       const f = p => `${p[0]} y ${p[1]}`, ans = f([a, b]);
-      return { prompt: `¿Qué pareja suma exactamente <b>${t}</b>?`, say: `¿Qué pareja suma ${t}?`, scene: "", ans, opts: shuffle(pairs.map(f)), cols: 2, cls: "grp", why: `${a} + ${b} = ${t}.`, hint: "Suma cada pareja." }; },
+      return { prompt: `¿Qué pareja suma exactamente <b>${t}</b>?`, say: `¿Qué pareja suma ${t}?`, scene: "", ans, opts: shuffle(pairs.map(f)), cols: 2, cls: "grp", why: `${a} + ${b} = ${t}.`, hint: "Suma cada pareja.",
+        steps: T => [
+          { t: `Sumamos cada pareja y buscamos la que da <b>exactamente ${t}</b>:`, b: BOARD.lines(pairs.map(p => `${p[0]} + ${p[1]} = ${p[0] + p[1]} ${p[0] + p[1] === t ? "✅" : "❌"}`), { step: .8 }) },
+          { t: `Solo ${a} + ${b} da ${t}.` },
+          { t: `La pareja es <b>${ans}</b>.` }
+        ] }; },
   ],
   [
     () => { const t = pick(TOPS), a = between(1, Math.floor(t / 2)), b = between(1, t - a - 1), ans = t - a - b;
-      return { prompt: `Ana tiene <b>${a}</b> figuritas y le regalan <b>${b}</b>. ¿Cuántas le faltan para tener <b>${t}</b>?`, say: `Tiene ${a} y le regalan ${b}. ¿Cuántas le faltan para tener ${t}?`, scene: "", ans, opts: numOpts(ans, [t - a, t - b, a + b], 0), why: `${a} + ${b} = ${a + b}; faltan ${t} − ${a + b} = ${ans}.`, hint: "Primero junta lo que tiene, después mira cuánto falta." }; },
+      return { prompt: `Ana tiene <b>${a}</b> figuritas y le regalan <b>${b}</b>. ¿Cuántas le faltan para tener <b>${t}</b>?`, say: `Tiene ${a} y le regalan ${b}. ¿Cuántas le faltan para tener ${t}?`, scene: "", ans, opts: numOpts(ans, [t - a, t - b, a + b], 0), why: `${a} + ${b} = ${a + b}; faltan ${t} − ${a + b} = ${ans}.`, hint: "Primero junta lo que tiene, después mira cuánto falta.",
+        steps: T => [
+          { t: `Dos pasos. Paso 1: juntamos lo que tiene: ${a} + ${b} = <b>${a + b}</b>.`, b: BOARD.lines([`${a} + ${b} = ${a + b}`]) },
+          { t: `Paso 2: ¿cuánto le falta a ${a + b} para llegar a ${t}?`, b: BOARD.jumps(a + b, saltosHasta(a + b, t), { step: .35 }) },
+          { t: `${t} − ${a + b} = <b>${ans}</b>. Le faltan ${ans}.` }
+        ],
+        err: w => w === t - a ? `Olvidaste las ${b} que le regalaron.` : w === a + b ? "Eso es lo que tiene; piden lo que falta." : "" }; },
     () => { const t = pick(TOPS), x = between(1, t - 2), y = between(1, t - x - 1), ans = t - x - y;
-      return { prompt: `${x} + ${y} + ⬜ = ${t}`, say: `${x} más ${y} más cuánto es ${t}?`, scene: "", ans, opts: numOpts(ans, [t - x, t - y, ans + 1], 0), why: `${x} + ${y} + ${ans} = ${t}.`, hint: "Suma los dos primeros y completa." }; },
+      return { prompt: `${x} + ${y} + ⬜ = ${t}`, say: `${x} más ${y} más cuánto es ${t}?`, scene: "", ans, opts: numOpts(ans, [t - x, t - y, ans + 1], 0), why: `${x} + ${y} + ${ans} = ${t}.`, hint: "Suma los dos primeros y completa.",
+        steps: T => [
+          { t: `Primero sumamos los dos números que ya están: ${x} + ${y} = <b>${x + y}</b>.`, b: BOARD.lines([`${x} + ${y} = ${x + y}`]) },
+          { t: `Ahora completamos desde ${x + y} hasta ${t}:`, b: BOARD.jumps(x + y, saltosHasta(x + y, t), { step: .35 }) },
+          { t: `Falta <b>${ans}</b>: ${x} + ${y} + ${ans} = ${t}.` }
+        ],
+        err: w => w === t - x || w === t - y ? "Te olvidaste de uno de los números." : "" }; },
   ]
 ];
 lesson({ n: 34, title: "Complemento hasta 12 y 15", short: "Hasta 12 y 15", char: "kiki", music: "huayno", deco: ["🧩", "🔟", "➕", "🎯"],

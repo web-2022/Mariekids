@@ -10,7 +10,7 @@ const GEN = [
             { t: `En la recta numérica: el <b>mayor</b> queda más a la derecha y el <b>menor</b> más a la izquierda.`, b: BOARD.marks(ns, { min: 0, max: 60 }) },
             { t: `El ${big ? "mayor" : "menor"} es <b>${ans}</b>.` }
           ]; },
-        err: o => `${o} no es el ${big ? "mayor" : "menor"}. Compara primero las decenas.` }; },
+        err: w => `${w} no es el ${big ? "mayor" : "menor"}. Compara primero las decenas.` }; },
   ],
   [
     () => { const ns = sample([...Array(90).keys()].map(x => x + 5), 4), asc = rnd(2) === 0, ok = [...ns].sort((a, b) => asc ? a - b : b - a);

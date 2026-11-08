@@ -30,7 +30,7 @@ const GEN = [
             { t: `${d} decenas se leen «<b>${D[d]}</b>»${u ? `, y las ${u} unidades «<b>${U[u]}</b>». La palabra «y» une las dos partes` : ""}.`, bAdd: BOARD.lines([`${d * 10} → ${D[d]}`].concat(u ? [`${u} → ${U[u]}`] : [])) },
             w ? { t: `«${word(n)}» se escribe <b>${n}</b>: primero la cifra de las decenas (${d}) y después la de las unidades (${u}).` } : { t: `${n} se lee «<b>${word(n)}</b>».` }
           ]; },
-        err: o => typeof o === "number" && o === flip(n) ? "¡Cifras al revés! Las decenas van a la izquierda." : "" }; },
+        err: w => typeof w === "number" && w === flip(n) ? "¡Cifras al revés! Las decenas van a la izquierda." : "" }; },
   ],
   [
     () => { const n = between(21, 99), ans = Math.floor(n / 10);
@@ -41,7 +41,7 @@ const GEN = [
           { t: `La cifra de la izquierda son las decenas, la de la derecha las unidades.`, b: BOARD.du(n) },
           { t: `${n} tiene <b>${ans}</b> decenas (y ${n % 10} unidades).` }
         ],
-        err: o => o === n % 10 ? "Esas son las unidades; las decenas son la cifra de la izquierda." : o === n ? "Ese es el número completo; piden solo las decenas." : "" }; },
+        err: w => w === n % 10 ? "Esas son las unidades; las decenas son la cifra de la izquierda." : w === n ? "Ese es el número completo; piden solo las decenas." : "" }; },
     () => { const n = between(101, 999), w = rnd(2) === 0, sw = n % 100 >= 10 ? Math.floor(n / 100) * 100 + (n % 10) * 10 + Math.floor((n % 100) / 10) : n + 10;
       const alt = [sw !== n ? sw : n + 20, n + 100 <= 999 ? n + 100 : n - 100, n + 1];
       const __q = w ? { prompt: "¿Cómo se escribe con cifras?", say: `¿Cómo se escribe ${word(n)} con cifras?`, scene: `<div class="word-num" style="font-size:clamp(18px,5.5vw,24px)">${word(n)}</div>`, ans: n, opts: numOpts(n, alt, 100), why: `${word(n)} = ${n}.`, hint: "Primero las centenas (doscientos, trescientos…), luego decenas y unidades." }
@@ -60,7 +60,7 @@ const GEN = [
           { t: `El número antes del espacio es ${seq[h - 1]}. Le sumamos 1: ${seq[h - 1]} + 1 = <b>${ans}</b>.` },
           { t: `Comprobamos: después de ${ans} viene ${seq[h + 1]}. ¡Sí cumple!`, b: BOARD.seq(seq, { hl: h }) }
         ],
-        err: o => Math.abs(o - ans) === 10 ? "Ojo: los números van de 1 en 1, no de 10 en 10." : "" }; },
+        err: w => Math.abs(w - ans) === 10 ? "Ojo: los números van de 1 en 1, no de 10 en 10." : "" }; },
     () => { const d = between(2, 9), u = between(0, 9), ans = 10 * d + u;
       return { prompt: `Soy un número: mi cifra de las <b>decenas</b> es ${d} y la de las <b>unidades</b> es ${u}. ¿Quién soy?`, say: `Mi cifra de las decenas es ${d} y la de las unidades es ${u}. ¿Quién soy?`, scene: "", ans, opts: numOpts(ans, [10 * u + d !== ans ? 10 * u + d : ans + 10, d + u, ans + 1], 0),
         why: `${d} decenas y ${u} unidades = ${ans}.`, hint: "Las decenas van a la izquierda y las unidades a la derecha.",
@@ -69,7 +69,7 @@ const GEN = [
           { t: `${d} decenas = ${10 * d}, y ${u} unidad${u === 1 ? "" : "es"} = ${u}.`, bAdd: BOARD.du(ans) },
           { t: `${10 * d} + ${u} = <b>${ans}</b>.` }
         ],
-        err: o => o === 10 * u + d ? "¡Pusiste las cifras al revés!" : o === d + u ? "Sumaste las cifras; hay que ponerlas una al lado de la otra." : "" }; },
+        err: w => w === 10 * u + d ? "¡Pusiste las cifras al revés!" : w === d + u ? "Sumaste las cifras; hay que ponerlas una al lado de la otra." : "" }; },
   ]
 ];
 lesson({ n: 10, title: "Lectura y escritura de números", short: "Leer números", char: "kiki", music: "cuento", deco: ["📖", "✏️", "🔢", "🔤"],

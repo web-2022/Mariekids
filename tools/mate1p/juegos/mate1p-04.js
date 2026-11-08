@@ -34,7 +34,7 @@ const GEN = [
             { t: `Contamos las letras distintas:`, go: T.count(firsts) },
             { t: `Letras distintas: ${[...seen].join(", ")}. Son <b>${ans}</b>.`, b: BOARD.lines([`{ ${[...seen].join(" ; ")} }`]) }
           ]; },
-        err: o => o === letras.length ? "Contaste las letras repetidas más de una vez. En un conjunto ¡cada una va una sola vez!" : "" }; },
+        err: w => w === letras.length ? "Contaste las letras repetidas más de una vez. En un conjunto ¡cada una va una sola vez!" : "" }; },
     () => { const a = between(1, 6), b = between(a + 3, a + 9), ans = b - a + 1;
       return { prompt: `A = { números del <b>${a}</b> al <b>${b}</b> }. ¿Cuántos elementos tiene A?`, say: `A tiene los números del ${a} al ${b}. ¿Cuántos elementos tiene?`, scene: `<div class="seq">${a}, ${a + 1}, ${a + 2}, … , ${b}</div>`,
         ans, opts: numOpts(ans, [b - a, b, ans + 1], 1), why: `Del ${a} al ${b} hay ${ans} números (incluyendo a los dos).`, hint: "Escribe todos los números y cuéntalos, sin olvidar el primero ni el último.",
@@ -44,7 +44,7 @@ const GEN = [
             { t: `Los escribimos todos y los contamos:`, b: BOARD.lines([list.map((x, i) => `${x}<sup style="color:#e11d48">${i + 1}</sup>`).join("  ")], { step: 0 }) },
             { t: `Un truco: ${b} − ${a} = ${b - a}, y le sumamos <b>1</b> porque el ${a} también cuenta: ${b - a} + 1 = <b>${ans}</b>.`, b: BOARD.lines([`${b} − ${a} = ${b - a}`, `${b - a} + 1 = ${ans}`]) }
           ]; },
-        err: o => o === b - a ? `Restaste ${b} − ${a}, pero olvidaste contar el ${a}.` : o === b ? `${b} es el último número, no la cantidad.` : "" }; },
+        err: w => w === b - a ? `Restaste ${b} − ${a}, pero olvidaste contar el ${a}.` : w === b ? `${b} es el último número, no la cantidad.` : "" }; },
   ],
   [
     () => { const all = sample([...Array(15).keys()].map(x => x + 1), 10), oa = between(1, 3), bo = between(1, 3), ob = between(1, 3), out = between(0, 2);
@@ -62,7 +62,7 @@ const GEN = [
             { t: `Contamos lo que quedó encendido:`, go: T.count(si) },
             { t: `Son <b>${ans}</b> elemento${ans === 1 ? "" : "s"}.${t !== "AB" ? ` (${t === "A" ? oa : ob} solo de ${t} + ${bo} del medio)` : ""}` }
           ]; },
-        err: o => (t !== "AB" && o === (t === "A" ? oa : ob)) ? "Te faltó contar la parte del medio: ¡también es de ese conjunto!" : o === oa + bo + ob ? "Contaste los dos óvalos completos." : "" }; },
+        err: w => (t !== "AB" && w === (t === "A" ? oa : ob)) ? "Te faltó contar la parte del medio: ¡también es de ese conjunto!" : w === oa + bo + ob ? "Contaste los dos óvalos completos." : "" }; },
   ]
 ];
 lesson({ n: 4, title: "Elementos y cantidad de un conjunto", short: "Conjuntos", char: "lula", music: "ukelele", deco: ["⭕", "{ }", "🍎", "⭐"],

@@ -152,3 +152,6 @@ text.it.t-hl { fill: #b45309; }
 .tboard { overflow-x: auto; }
 .tb-tbl { font-size: 14px; }
 .tb-tbl td, .tb-tbl th { padding: 4px 7px; }
+.tb-op2 .tb-carry span { font-size: 15px; color: #16a34a; line-height: 1; height: 16px; }
+.tb-op2 > div > span:first-child { grid-column-start: 1; }
+.tb-col.tb-op2 .tb-hd span:first-child, .tb-col.tb-op2 .tb-res span:first-child, .tb-col.tb-op2 .tb-carry span:first-child { grid-column-start: 1; }

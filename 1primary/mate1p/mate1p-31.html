@@ -267,6 +267,9 @@ text.it.t-hl { fill: #b45309; }
 .tboard { overflow-x: auto; }
 .tb-tbl { font-size: 14px; }
 .tb-tbl td, .tb-tbl th { padding: 4px 7px; }
+.tb-op2 .tb-carry span { font-size: 15px; color: #16a34a; line-height: 1; height: 16px; }
+.tb-op2 > div > span:first-child { grid-column-start: 1; }
+.tb-col.tb-op2 .tb-hd span:first-child, .tb-col.tb-op2 .tb-res span:first-child, .tb-col.tb-op2 .tb-carry span:first-child { grid-column-start: 1; }
 
     </style>
     <script>
@@ -888,6 +891,21 @@ function tutKit(sc, tok) {
       };
       step();
     },
+    // encierra de g en g (grupos de igual cantidad), con color y número de grupo
+    chunks: (els, g, o = {}) => done => {
+      const C = ["#f59e0b", "#22c55e", "#3b82f6", "#ec4899", "#8b5cf6", "#14b8a6", "#ef4444", "#84cc16"];
+      let k = 0;
+      const step = () => {
+        if (!alive()) return;
+        if (k * g >= els.length) { setTimeout(() => alive() && done(), 350); return; }
+        const grp = els.slice(k * g, k * g + g), c = C[k % C.length]; k++;
+        grp.forEach(x => { x.classList.add("t-pair"); x.style.setProperty("--pc", c); });
+        const lab = o.label ? o.label(k) : String(k);
+        T.badge(grp[grp.length - 1], lab, "t-pc").style.background = c;
+        tutSay(o.say ? o.say(k) : lab); setTimeout(step, o.ms || 1000);
+      };
+      step();
+    },
     // reparte en 2 grupos iguales: uno al azul, uno al naranja…
     split: (els, o = {}) => done => {
       let k = 0;
@@ -972,6 +990,44 @@ function tutorBtn(ui, q, sc) {
   };
 }
 
+// explica una operación en columna: devuelve { lines: [...], carry: [...] }
+function colTxt(nums, sign = "+") {
+  const N = ["unidades", "decenas", "centenas"], w = String(Math.max(...nums)).length + 1, lines = [], carry = [];
+  if (sign === "+") {
+    let c = 0;
+    for (let k = 0; k < w; k++) {
+      const ds = nums.map(n => Math.floor(n / 10 ** k) % 10), any = nums.some(n => n >= 10 ** k);
+      if (!any && !c) break;
+      const sum = ds.reduce((p, q) => p + q, 0) + c, parts = (c ? [c] : []).concat(ds.filter((d, i) => nums[i] >= 10 ** k || d));
+      const nm = N[k] || "millares";
+      lines.push(sum >= 10 && nums.some(n => n >= 10 ** (k + 1)) || (sum >= 10 && k < w - 1)
+        ? `${nm[0].toUpperCase() + nm.slice(1)}: ${parts.join(" + ")} = ${sum} → escribimos ${sum % 10} y llevamos ${Math.floor(sum / 10)} a las ${N[k + 1] || "siguientes"}.`
+        : `${nm[0].toUpperCase() + nm.slice(1)}: ${parts.join(" + ")} = ${sum} → escribimos ${sum}.`);
+      if (sum >= 10 && !(nums.every(n => n < 10 ** (k + 1)) && k === w - 1)) { carry.push(String(Math.floor(sum / 10))); c = Math.floor(sum / 10); } else { carry.push(""); c = 0; }
+      if (sum >= 10 && nums.every(n => n < 10 ** (k + 1))) { lines[lines.length - 1] = `${nm[0].toUpperCase() + nm.slice(1)}: ${parts.join(" + ")} = ${sum} → escribimos ${sum}.`; carry[carry.length - 1] = ""; break; }
+    }
+  } else {
+    let [a, b] = nums, p = 0;
+    for (let k = 0; k < w; k++) {
+      if (a < 10 ** k && b < 10 ** k) break;
+      let x = Math.floor(a / 10 ** k) % 10 - p, y = Math.floor(b / 10 ** k) % 10, nm = N[k] || "millares", Nm = nm[0].toUpperCase() + nm.slice(1);
+      if (x < y) { lines.push(`${Nm}: ${x} − ${y} no se puede. Pedimos 1 prestado a las ${N[k + 1]}: ${x + 10} − ${y} = ${x + 10 - y}.`); p = 1; carry.push(""); }
+      else { lines.push(`${Nm}: ${x} − ${y} = ${x - y}${p ? " (ya le quitamos el 1 prestado)" : ""}.`); p = 0; carry.push(""); }
+    }
+  }
+  return { lines, carry };
+}
+
+// saltos para ir de a hasta b «completando»: de 1 en 1 hasta la decena, luego de 10 en 10, luego de 1 en 1
+function saltosHasta(a, b) {
+  const out = []; let v = a, sg = b >= a ? 1 : -1;
+  if (sg < 0) { while (v > b) { const j = v - b >= 10 && v % 10 === 0 ? 10 : 1; out.push(-j); v -= j; } return out; }
+  while (v < b && v % 10 && v + 1 <= b) { out.push(1); v++; }
+  while (v + 10 <= b) { out.push(10); v += 10; }
+  while (v < b) { out.push(1); v++; }
+  return out;
+}
+
 /* ---------- Pizarra del tutor: dibujos que aparecen poco a poco ----------
    Cada pieza con style="--d:Xs" aparece con retraso X (animación .tb-in). */
 const BOARD = {
@@ -984,7 +1040,7 @@ const BOARD = {
     const every = span <= 22 ? 1 : span <= 60 ? 5 : 10;
     let g = `<line x1="${L - 6}" y1="70" x2="${R + 6}" y2="70" stroke="#334155" stroke-width="2.5"/>`;
     for (let v = Math.ceil(lo / every) * every; v <= hi; v += every) g += `<line x1="${X(v)}" y1="64" x2="${X(v)}" y2="76" stroke="#334155" stroke-width="2"/><text x="${X(v)}" y="93" font-size="${span > 22 ? 10 : 12}" text-anchor="middle" font-weight="800" fill="#334155">${v}</text>`;
-    if (every > 1) vals.forEach(v => { if (v % every) g += `<line x1="${X(v)}" y1="64" x2="${X(v)}" y2="76" stroke="#334155" stroke-width="2"/><text x="${X(v)}" y="93" font-size="10" text-anchor="middle" font-weight="800" fill="#7c3aed">${v}</text>`; });
+    if (every > 1) vals.forEach((v, i) => { if (v % every && (i === 0 || i === vals.length - 1 || Math.abs(saltos[i - 1]) >= every)) g += `<line x1="${X(v)}" y1="64" x2="${X(v)}" y2="76" stroke="#334155" stroke-width="2"/><text x="${X(v)}" y="93" font-size="10" text-anchor="middle" font-weight="800" fill="#7c3aed">${v}</text>`; });
     g += `<circle cx="${X(a)}" cy="70" r="6" fill="#22c55e"/>`;
     saltos.forEach((j, i) => {
       const x1 = X(vals[i]), x2 = X(vals[i + 1]), m = (x1 + x2) / 2, hgt = Math.min(40, 14 + Math.abs(x2 - x1) * .45), c = j > 0 ? "#2563eb" : "#e11d48";
@@ -1032,6 +1088,20 @@ const BOARD = {
     const cells = (n, cls = "") => String(n).padStart(w, " ").split("").map(c => `<span class="${cls}">${c === " " ? "" : c}</span>`).join("");
     const rd = String(r).padStart(w, " ").split("");
     return `<div class="tb-col" style="--w:${w}"><div class="tb-hd">${w === 3 ? "<span>C</span>" : ""}${w >= 2 ? "<span>D</span>" : ""}<span>U</span></div><div>${cells(a)}</div><div><span class="tb-op">${op === "+" ? "+" : "−"}</span>${cells(b)}</div><div class="tb-res">${rd.map((c, i) => `<span class="tb-in" style="--d:${(.6 + (w - 1 - i) * .9).toFixed(2)}s">${c === " " ? "" : c}</span>`).join("")}</div></div>`;
+  },
+  // operación en columna con «llevo» (suma de varios) o «presto» (resta de dos); aparece columna por columna
+  op(nums, sign = "+") {
+    const r = sign === "+" ? nums.reduce((p, q) => p + q, 0) : nums[0] - nums[1], w = String(Math.max(...nums, r)).length;
+    const dig = (n, i) => { const t = String(n).padStart(w, " "); return t[i] === " " ? "" : t[i]; };
+    const steps = colTxt(nums, sign), carry = Array(w).fill(""), D = i => (.5 + (w - 1 - i) * 1.4).toFixed(2);
+    steps.carry.forEach((c, k) => { if (c) carry[w - 2 - k] = c; });   // lo que se lleva va encima de la columna siguiente
+    const row = (cells, cls = "", first = "") => `<div class="${cls}"><span class="tb-op">${first}</span>${cells.join("")}</div>`;
+    const hd = ["C", "D", "U"].slice(3 - Math.min(3, w)); while (hd.length < w) hd.unshift("");
+    let h = row(hd.map(x => `<span>${x}</span>`), "tb-hd");
+    h += row(carry.map((c, i) => `<span class="tb-car${c ? " tb-in" : ""}" style="--d:${c ? (+D(i + 1) + .5).toFixed(2) : 0}s">${c}</span>`), "tb-carry");
+    nums.forEach((n, j) => { h += row(Array.from({ length: w }, (_, i) => `<span>${dig(n, i)}</span>`), "", j === nums.length - 1 ? (sign === "+" ? "+" : "−") : ""); });
+    h += row(Array.from({ length: w }, (_, i) => `<span class="tb-in" style="--d:${D(i)}s">${dig(r, i)}</span>`), "tb-res");
+    return `<div class="tb-col tb-op2" style="--w:${w}">${h}</div>`;
   },
   // líneas de pizarra que aparecen una tras otra
   lines(ls, o = {}) { return `<div class="tb-lines">` + ls.map((l, i) => `<div class="tb-in" style="--d:${(.2 + i * (o.step || 1)).toFixed(2)}s">${l}</div>`).join("") + `</div>`; },
@@ -1264,19 +1334,45 @@ const C2 = n => n * (n - 1) / 2;
 const GEN = [
   [
     () => { const k = between(2, 4), g = between(2, 5), e = pick(["🍎", "⭐", "🌸", "🍪"]), ans = k * g;
-      return { prompt: `${Array(k).fill(g).join(" + ")} = ?`, say: `¿Cuánto es ${Array(k).fill(g).join(" más ")}?`, scene: `<div class="boxes">${Array.from({ length: k }, () => `<div class="box" style="--bc:${Math.min(g, 3)}">${em(e, g).join("")}</div>`).join("")}</div>`, ans, opts: numOpts(ans, [k + g, ans + g, ans - g], 1),
-        why: `${k} grupos de ${g} = ${ans}.`, hint: "Suma de a poco: ve sumando cada grupo." }; },
+      return { prompt: `${Array(k).fill(g).join(" + ")} = ?`, say: `¿Cuánto es ${Array(k).fill(g).join(" más ")}?`, scene: `<div class="boxes">${Array.from({ length: k }, () => `<div class="box" style="--bc:${Math.min(g, 3)}">${em(`<span class="it">${e}</span>`, g).join("")}</div>`).join("")}</div>`, ans, opts: numOpts(ans, [k + g, ans + g, ans - g], 1),
+        why: `${k} grupos de ${g} = ${ans}.`, hint: "Suma de a poco: ve sumando cada grupo.",
+        steps: T => { const bx = T.its(".box");
+          return [
+            { t: `Hay ${k} grupos iguales y cada uno tiene ${g}. Sumamos grupo por grupo:`, go: T.count(bx, { label: i => String(i * g), say: i => String(i * g), cls: "t-big", ms: 1100 }) },
+            { t: `${Array(k).fill(g).join(" + ")} = <b>${ans}</b>.`, b: BOARD.lines([`${Array(k).fill(g).join(" + ")} = ${ans}`, `${k} grupos de ${g} = ${ans}`]) },
+            { t: `El resultado es <b>${ans}</b>.` }
+          ]; },
+        err: w => w === k + g ? `Sumaste ${k} + ${g}, pero son ${k} grupos de ${g}.` : "" }; },
   ],
   [
     () => { const r = between(2, 4), c = between(2, 5), e = pick(["🟣", "🔵", "🟢"]), ans = r * c;
       return { prompt: `${r} × ${c} = ?`, say: `¿Cuánto es ${r} por ${c}?`, scene: `<div class="rowsbox">${Array.from({ length: r }, () => line(em(e, c), "small")).join("")}</div><div class="legend">${r} filas de ${c}</div>`, ans, opts: numOpts(ans, [r + c, ans + 1, ans + c], 1),
-        why: `${r} × ${c} = ${Array(r).fill(c).join(" + ")} = ${ans}.`, hint: "Multiplicar es sumar el mismo número varias veces." }; },
+        why: `${r} × ${c} = ${Array(r).fill(c).join(" + ")} = ${ans}.`, hint: "Multiplicar es sumar el mismo número varias veces.",
+        steps: T => { const rows = T.its(".line"), last = rows.map(l => [...l.querySelectorAll(".it")].pop());
+          return [
+            { t: `<b>${r} × ${c}</b> se lee «${r} por ${c}»: son <b>${r} filas de ${c}</b>. Multiplicar es sumar el mismo número varias veces.` },
+            { t: `Sumamos fila por fila:`, go: T.count(last, { label: i => String(i * c), say: i => String(i * c), cls: "t-big", ms: 1100 }) },
+            { t: `${r} × ${c} = ${Array(r).fill(c).join(" + ")} = <b>${ans}</b>.`, b: BOARD.lines([`${r} × ${c} = ${Array(r).fill(c).join(" + ")} = ${ans}`]) }
+          ]; },
+        err: w => w === r + c ? "Sumaste los dos números; × es «grupos de»." : "" }; },
     () => { const k = between(2, 5), g = between(2, 5), ans = `${k} × ${g}`;
-      return { prompt: `¿Qué multiplicación es igual a ${Array(k).fill(g).join(" + ")}?`, say: "¿Qué multiplicación es igual a esta suma?", scene: "", ans, opts: shuffle([...new Set([ans, `${k} + ${g}`, `${k + 1} × ${g}`, `${k} × ${g + 1}`])]), cols: 2, why: `${g} sumado ${k} veces = ${k} × ${g}.`, hint: "Cuenta cuántas veces se repite el número." }; },
+      return { prompt: `¿Qué multiplicación es igual a ${Array(k).fill(g).join(" + ")}?`, say: "¿Qué multiplicación es igual a esta suma?", scene: "", ans, opts: shuffle([...new Set([ans, `${k} + ${g}`, `${k + 1} × ${g}`, `${k} × ${g + 1}`])]), cols: 2, why: `${g} sumado ${k} veces = ${k} × ${g}.`, hint: "Cuenta cuántas veces se repite el número.",
+        steps: T => [
+          { t: `Contamos cuántas veces se repite el ${g}: <b>${k} veces</b>.`, b: BOARD.lines([Array(k).fill(g).map((x, i) => `${x}<sup style="color:#e11d48">${i + 1}</sup>`).join(" + ")]) },
+          { t: `«${g} repetido ${k} veces» se escribe <b>${k} × ${g}</b> (${k} grupos de ${g}).` },
+          { t: `La multiplicación es <b>${ans}</b> = ${k * g}.` }
+        ],
+        err: w => w === `${k} + ${g}` ? "Eso es una suma de dos números; la multiplicación es «grupos de»." : "" }; },
   ],
   [
     () => { const b = between(2, 5), a = between(1, 3), ans = 2 * b + 4 * a;
-      return { prompt: `¿Cuántas <b>ruedas</b> hay en total en <b>${b}</b> bicicletas y <b>${a}</b> auto${a > 1 ? "s" : ""}?`, say: `¿Cuántas ruedas hay en ${b} bicicletas y ${a} autos?`, scene: line([...em("🚲", b), ...em("🚗", a)]), ans, opts: numOpts(ans, [b + a, 2 * (b + a), 4 * (b + a)], 1), why: `Bicis: ${b} × 2 = ${2 * b}. Autos: ${a} × 4 = ${4 * a}. Total: ${ans}.`, hint: "La bici tiene 2 ruedas y el auto 4." }; },
+      return { prompt: `¿Cuántas <b>ruedas</b> hay en total en <b>${b}</b> bicicletas y <b>${a}</b> auto${a > 1 ? "s" : ""}?`, say: `¿Cuántas ruedas hay en ${b} bicicletas y ${a} autos?`, scene: line([...em("🚲", b), ...em("🚗", a)]), ans, opts: numOpts(ans, [b + a, 2 * (b + a), 4 * (b + a)], 1), why: `Bicis: ${b} × 2 = ${2 * b}. Autos: ${a} × 4 = ${4 * a}. Total: ${ans}.`, hint: "La bici tiene 2 ruedas y el auto 4.",
+        steps: T => [
+          { t: `Una 🚲 tiene <b>2</b> ruedas y un 🚗 tiene <b>4</b>.` },
+          { t: `Contamos las ruedas vehículo por vehículo:`, go: T.count(T.its(), { label: (i, el) => String(T.its().slice(0, i).reduce((p, x) => p + (x.textContent.includes("🚲") ? 2 : 4), 0)), say: (i, el) => String(T.its().slice(0, i).reduce((p, x) => p + (x.textContent.includes("🚲") ? 2 : 4), 0)), cls: "t-big", ms: 1100 }) },
+          { t: `Bicis: ${b} × 2 = ${2 * b}. Autos: ${a} × 4 = ${4 * a}. Total: ${2 * b} + ${4 * a} = <b>${ans}</b>.`, b: BOARD.lines([`${b} × 2 = ${2 * b}`, `${a} × 4 = ${4 * a}`, `${2 * b} + ${4 * a} = ${ans}`]) }
+        ],
+        err: w => w === b + a ? "Contaste vehículos, no ruedas." : w === 2 * (b + a) ? "Los autos tienen 4 ruedas, no 2." : w === 4 * (b + a) ? "Las bicis tienen 2 ruedas, no 4." : "" }; },
   ]
 ];
 lesson({ n: 31, title: "Suma repetida y multiplicación gráfica", short: "Multiplicar", char: "tito", music: "chiptune", deco: ["✖️", "🔁", "🚲", "🍎"],

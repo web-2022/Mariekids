@@ -2,19 +2,44 @@
 const GEN = [
   [
     () => { const k = between(2, 5), g = between(2, 6), e = pick(["🍬", "🍪", "🍓"]), ans = k * g;
-      return { prompt: `Hay <b>${k}</b> bolsas con <b>${g}</b> ${e} cada una. ¿Cuántos hay en total?`, say: `${k} bolsas con ${g} cada una. ¿Cuántos hay en total?`, scene: line(em("🛍️", k)), ans, opts: numOpts(ans, [k + g, ans + g, ans - 1], 1), why: `${k} × ${g} = ${ans}.`, hint: `Suma ${g} tantas veces como bolsas hay.` }; },
+      return { prompt: `Hay <b>${k}</b> bolsas con <b>${g}</b> ${e} cada una. ¿Cuántos hay en total?`, say: `${k} bolsas con ${g} cada una. ¿Cuántos hay en total?`, scene: line(em("🛍️", k)), ans, opts: numOpts(ans, [k + g, ans + g, ans - 1], 1), why: `${k} × ${g} = ${ans}.`, hint: `Suma ${g} tantas veces como bolsas hay.`,
+        steps: T => [
+          { t: `Cada bolsa tiene ${g} ${e}. Dibujamos lo que hay dentro de las ${k} bolsas:`, b: BOARD.groups(Array.from({ length: k }, (_, i) => ({ n: g, e, c: "#8b5cf6", lab: "🛍️ " + (i + 1) })), { step: .1 }) },
+          { t: `Sumamos ${g} por cada bolsa: ${Array(k).fill(g).join(" + ")} = ${ans}.`, bAdd: BOARD.lines([`${k} × ${g} = ${ans}`]) },
+          { t: `En total hay <b>${ans}</b>.` }
+        ],
+        err: w => w === k + g ? `Son ${k} bolsas con ${g} cada una, no ${k} + ${g}.` : "" }; },
   ],
   [
     () => { const p = between(2, 5), q = between(2, 5), ans = p * q;
-      return { prompt: `Cada chupete cuesta <b>S/ ${p}</b>. ¿Cuánto pago por <b>${q}</b> chupetes?`, say: `Cada chupete cuesta ${p} soles. ¿Cuánto pago por ${q}?`, scene: line(em("🍭", q)), ans, opts: numOpts(ans, [p + q, ans + p, ans - p], 1), why: `${q} × ${p} = ${ans} soles.`, hint: "Suma el precio una vez por cada chupete." }; },
+      return { prompt: `Cada chupete cuesta <b>S/ ${p}</b>. ¿Cuánto pago por <b>${q}</b> chupetes?`, say: `Cada chupete cuesta ${p} soles. ¿Cuánto pago por ${q}?`, scene: line(em("🍭", q)), ans, opts: numOpts(ans, [p + q, ans + p, ans - p], 1), why: `${q} × ${p} = ${ans} soles.`, hint: "Suma el precio una vez por cada chupete.",
+        steps: T => [
+          { t: `Cada chupete cuesta S/ ${p}. Pagamos ${p} soles <b>por cada</b> chupete:`, go: T.count(T.its(), { label: i => "S/" + i * p, say: i => (i * p) + " soles", cls: "t-big", ms: 1100 }) },
+          { t: `${Array(q).fill(p).join(" + ")} = ${ans}.`, b: BOARD.lines([`${q} × ${p} = ${ans}`]) },
+          { t: `Pago <b>S/ ${ans}</b>.` }
+        ],
+        err: w => w === p + q ? "Sumaste precio y cantidad; hay que pagar por cada chupete." : "" }; },
   ],
   [
     () => { const n = between(3, 6), c = between(2, 3), ans = n * c;
       return { prompt: `Si cada niño y niña compra <b>${c}</b> chupetes, ¿cuántos chupetes vendió en total la señora Tita?`, say: `Cada niño compra ${c} chupetes. ¿Cuántos vendió en total la señora Tita?`, scene: line([...sample(["👧", "👦", "🧒", "👧🏽", "👦🏻", "🧒🏾"], n), "🛒"]), ans, opts: numOpts(ans, [n + c, n, ans + c], 1),
-        why: `Hay ${n} niños: ${n} × ${c} = ${ans}.`, hint: "Primero cuenta a los niños (¡no a la vendedora!)." }; },
+        why: `Hay ${n} niños: ${n} × ${c} = ${ans}.`, hint: "Primero cuenta a los niños (¡no a la vendedora!).",
+        steps: T => { const kids = T.its().filter(x => !x.textContent.includes("🛒"));
+          return [
+            { t: `Primero contamos a los niños (¡la vendedora 🛒 no cuenta!):`, go: T.count(kids) },
+            { t: `Cada uno compra ${c}. Contamos de ${c} en ${c}:`, go: d => { T.clear(); T.count(kids, { label: i => String(i * c), say: i => String(i * c), cls: "t-big", ms: 1000 })(d); } },
+            { t: `${n} × ${c} = <b>${ans}</b> chupetes.`, b: BOARD.lines([`${Array(n).fill(c).join(" + ")} = ${ans}`]) }
+          ]; },
+        err: w => w === n + c ? `Sumaste; son ${n} niños y <b>cada uno</b> compra ${c}.` : w === n ? "Esos son los niños; piden los chupetes." : "" }; },
     () => { const s = between(2, 4), m = between(3, 5), ans = s * m;
       return { prompt: `María tiene <b>${s}</b> blusas y <b>${m}</b> faldas. ¿De cuántas maneras diferentes se puede vestir con una blusa y una falda?`, say: `Tiene ${s} blusas y ${m} faldas. ¿De cuántas maneras se puede vestir?`, scene: line([...em("👚", s), "·", ...em("👗", m)]), ans, opts: numOpts(ans, [s + m, ans + 1, ans - 1], 1),
-        why: `Cada blusa con cada falda: ${s} × ${m} = ${ans}.`, hint: "Para cada blusa hay varias faldas posibles." }; },
+        why: `Cada blusa con cada falda: ${s} × ${m} = ${ans}.`, hint: "Para cada blusa hay varias faldas posibles.",
+        steps: T => [
+          { t: `Cada blusa se puede combinar con <b>cada</b> falda. Hacemos una tabla:`, b: BOARD.table([["", ...Array.from({ length: m }, (_, i) => "👗" + (i + 1))], ...Array.from({ length: s }, (_, i) => ["👚" + (i + 1), ...Array(m).fill("✔")])]) },
+          { t: `Cada blusa da ${m} maneras. Con ${s} blusas: ${Array(s).fill(m).join(" + ")} = ${ans}.`, bAdd: BOARD.lines([`${s} × ${m} = ${ans}`]) },
+          { t: `Se puede vestir de <b>${ans}</b> maneras.` }
+        ],
+        err: w => w === s + m ? "Sumaste las prendas; pero cada blusa va con cada falda." : "" }; },
   ]
 ];
 lesson({ n: 32, title: "Problemas sencillos de multiplicación", short: "Problemas de ×", char: "rayo", music: "aventura", deco: ["✖️", "🛍️", "🍭", "👗"],

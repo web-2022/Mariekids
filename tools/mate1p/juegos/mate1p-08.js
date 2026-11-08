@@ -21,7 +21,7 @@ const GEN = [
           { t: `Ahora comparamos ${a + b} con ${c}.`, b: a + b === c ? BOARD.marks([a + b]) : BOARD.marks([a + b, c]) },
           { t: a + b === c ? `${a + b} y ${c} son iguales: va <b>=</b>.` : `${a + b} es ${a + b > c ? "mayor" : "menor"} que ${c}. El cocodrilo 🐊 se come al mayor: <b>${ans}</b>.`, bAdd: BOARD.lines([`${a} + ${b} ${ans} ${c}`]) }
         ],
-        err: o => "Ojo: primero se resuelve la suma y después se compara." }; },
+        err: w => "Ojo: primero se resuelve la suma y después se compara." }; },
     () => { const a = between(5, 40), ans = a + 1;
       return { prompt: `¿Qué número es <b>mayor que ${a}</b> y <b>menor que ${a + 2}</b>?`, say: `¿Qué número es mayor que ${a} y menor que ${a + 2}?`, scene: "", ans, opts: numOpts(ans, [a, a + 2, a + 3]), why: `Entre ${a} y ${a + 2} está ${ans}.`, hint: "Busca el número que está en medio.",
         steps: T => [
@@ -29,7 +29,7 @@ const GEN = [
           { t: `En la recta, entre ${a} y ${a + 2} hay un solo número:`, b: BOARD.marks([{ v: a, c: "#94a3b8" }, { v: a + 1, c: "#16a34a" }, { v: a + 2, c: "#94a3b8" }], { min: a - 2, max: a + 4 }) },
           { t: `Ese número es <b>${ans}</b>: ${a} &lt; ${ans} &lt; ${a + 2}.` }
         ],
-        err: o => o === a || o === a + 2 ? `${o} no puede ser: tiene que estar <b>entre</b> los dos, sin tocarlos.` : "" }; },
+        err: w => w === a || w === a + 2 ? `${w} no puede ser: tiene que estar <b>entre</b> los dos, sin tocarlos.` : "" }; },
   ],
   [
     () => { for (;;) { const a = between(3, 9), b = between(1, 3), c = between(2, 12), d = between(3, 9), e = between(1, 3), f = between(2, 12);
@@ -52,7 +52,7 @@ const GEN = [
             { t: `En la recta los marcamos:`, b: BOARD.marks([{ v: a, c: "#94a3b8" }, ...list.map(v => ({ v, c: "#16a34a" })), { v: b, c: "#94a3b8" }], { min: a - 1, max: b + 1 }) },
             { t: `Son ${list.join(", ")}: <b>${ans}</b> números.`, b: BOARD.lines([list.map((v, i) => `${v}<sup style="color:#e11d48">${i + 1}</sup>`).join("  "), `Truco: ${b} − ${a} − 1 = ${ans}`]) }
           ]; },
-        err: o => o === b - a ? `Restaste ${b} − ${a}, pero así cuentas también el ${b}. Hay que quitar 1.` : o === b - a + 1 ? `Contaste también el ${a} y el ${b}.` : "" }; },
+        err: w => w === b - a ? `Restaste ${b} − ${a}, pero así cuentas también el ${b}. Hay que quitar 1.` : w === b - a + 1 ? `Contaste también el ${a} y el ${b}.` : "" }; },
   ]
 ];
 lesson({ n: 8, title: "Mayor que, menor que e igual que", short: "> < =", char: "tito", music: "chiptune", deco: [">", "<", "=", "🐊"],

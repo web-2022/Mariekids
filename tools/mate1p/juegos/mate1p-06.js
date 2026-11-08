@@ -24,7 +24,7 @@ const GEN = [
             { t: `Contamos los que vuelan:`, go: T.count(si) },
             { t: `Pueden volar <b>${ans}</b> animales.` }
           ]; },
-        err: o => o === items.length ? "Contaste todos; solo piden los que vuelan." : o === items.length - ans ? "Contaste los que NO vuelan." : "" }; },
+        err: w => w === items.length ? "Contaste todos; solo piden los que vuelan." : w === items.length - ans ? "Contaste los que NO vuelan." : "" }; },
     () => { const g = sample(CATS, 2), a = between(2, 5), b = between(2, 5), items = shuffle([...sample(g[0][1], a), ...sample(g[1][1], b)]);
       return { prompt: `Si separamos en dos grupos, ¿cuántos hay en el grupo de <b>${g[0][0]}</b>?`, say: `¿Cuántos ${g[0][0]} hay?`, scene: line(items), ans: a, opts: numOpts(a, [b, a + b], 0),
         why: `${g[0][0]}: ${items.filter(x => g[0][1].includes(x)).join(" ")} → ${a}.`, hint: `Cuenta solo los ${g[0][0]}.`,
@@ -35,7 +35,7 @@ const GEN = [
             { t: `Contamos los ${g[0][0]}:`, go: T.count(si) },
             { t: `En el grupo de ${g[0][0]} hay <b>${a}</b>.`, b: BOARD.groups([{ items: g[0][1].filter(x => items.includes(x)), lab: g[0][0], c: "#22c55e" }, { items: g[1][1].filter(x => items.includes(x)), lab: g[1][0], c: "#94a3b8" }]) }
           ]; },
-        err: o => o === b ? `Esos son los ${g[1][0]}.` : o === a + b ? "Contaste los dos grupos juntos." : "" }; },
+        err: w => w === b ? `Esos son los ${g[1][0]}.` : w === a + b ? "Contaste los dos grupos juntos." : "" }; },
   ],
   [
     () => { const t = pick(["par", "impar", "dos", "una"]); let mem, odd, why;

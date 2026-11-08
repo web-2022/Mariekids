@@ -31,7 +31,7 @@ const GEN = [
             { t: `Y es la <b>${ORD[b - 1]}</b> desde atrás: tiene ${b - 1} niño${b - 1 === 1 ? "" : "s"} detrás.`, b: BOARD.lines([`adelante ➜ ${fila.join("")} ⬅ atrás`]) },
             { t: `Contamos: ${a - 1} delante + Ana + ${b - 1} detrás = <b>${ans}</b>. Truco: ${a} + ${b} − 1, porque si sumas ${a} + ${b} cuentas a Ana dos veces.`, bAdd: BOARD.lines([`${a - 1} + 1 + ${b - 1} = ${ans}`]) }
           ]; },
-        err: o => o === a + b ? "¡Contaste a Ana dos veces!" : "" }; },
+        err: w => w === a + b ? "¡Contaste a Ana dos veces!" : "" }; },
     () => { const p = between(3, 9), t = rnd(2), tot = p + between(2, 5), ans = t ? p - 1 : tot - p;
       return { prompt: t ? `Pipo es el <b>${ORD[p - 1]}</b> de la fila. ¿Cuántos niños hay <b>delante</b> de él?` : `En una fila de <b>${tot}</b> niños, Pipo es el <b>${ORD[p - 1]}</b>. ¿Cuántos hay <b>detrás</b> de él?`, say: t ? `Pipo es el ${ORD[p - 1]} de la fila. ¿Cuántos niños hay delante de él?` : `En una fila de ${tot} niños, Pipo es el ${ORD[p - 1]}. ¿Cuántos hay detrás?`, scene: "",
         ans, opts: numOpts(ans, t ? [p, p + 1] : [tot - p + 1, p, tot], 0), why: t ? `Delante de él hay ${p - 1}.` : `${tot} − ${p} = ${ans}.`, hint: "Haz un dibujo de la fila.",
@@ -44,7 +44,7 @@ const GEN = [
           { t: `La fila tiene ${tot} niños y Pipo es el <b>${ORD[p - 1]}</b>: hasta él hay ${p} niños (contándolo a él).`, b: BOARD.lines([`${Array(p - 1).fill("🧒").join("")}🐧${Array(tot - p).fill("🧒").join("")}`]) },
           { t: `Detrás quedan los demás: ${tot} − ${p} = <b>${ans}</b>.`, bAdd: BOARD.lines([`${tot} − ${p} = ${ans}`]) }
         ],
-        err: o => o === p ? "Contaste también a Pipo." : o === tot - p + 1 ? "Contaste también a Pipo." : "" }; },
+        err: w => w === p ? "Contaste también a Pipo." : w === tot - p + 1 ? "Contaste también a Pipo." : "" }; },
   ]
 ];
 lesson({ n: 15, title: "Números ordinales", short: "Ordinales", char: "kiki", music: "huayno", deco: ["🥇", "🥈", "🥉", "🏁"],

@@ -9,7 +9,7 @@ const GEN = [
           { t: `En la recta damos un salto ${s ? "hacia adelante" : "hacia atrás"} desde ${n}:`, b: BOARD.jumps(n, [s ? 1 : -1], { pad: 2 }) },
           { t: `${n} ${s ? "+" : "−"} 1 = <b>${ans}</b>.` }
         ],
-        err: o => o === (s ? n - 1 : n + 1) ? (s ? "Ese es el antecesor (el de antes). El sucesor va después." : "Ese es el sucesor (el de después). El antecesor va antes.") : "" }; },
+        err: w => w === (s ? n - 1 : n + 1) ? (s ? "Ese es el antecesor (el de antes). El sucesor va después." : "Ese es el sucesor (el de después). El antecesor va antes.") : "" }; },
   ],
   [
     () => { const step = pick([1, 2, 5]), a = between(1, 20) * (step === 5 ? 1 : 1), vals = Array.from({ length: 6 }, (_, i) => a + i * step), h = between(2, 4), ans = vals[h];
@@ -20,7 +20,7 @@ const GEN = [
           { t: `La 🐝 está justo después de ${vals[h - 1]}. Damos un salto de ${step}:`, b: BOARD.jumps(vals[h - 1], [step], { pad: step }) },
           { t: `${vals[h - 1]} + ${step} = <b>${ans}</b>. Comprobamos: después viene ${vals[h + 1]}. ✅` }
         ],
-        err: o => Math.abs(o - ans) === step ? "Te corriste un lugar en la recta. Cuenta los saltos con cuidado." : "" }; },
+        err: w => Math.abs(w - ans) === step ? "Te corriste un lugar en la recta. Cuenta los saltos con cuidado." : "" }; },
     () => { const step = pick([1, 2]), a = between(5, 30), vals = Array.from({ length: 6 }, (_, i) => a + i * step), h = between(2, 4), b = vals[h], ans = b - 1;
       return { prompt: "¿Cuál es el <b>antecesor</b> del número que representa la 🐝?", say: "¿Cuál es el antecesor del número de la abejita?", scene: numberLine(vals, { [h]: "🐝" }), ans, opts: numOpts(ans, [b, b + 1, b - step === ans ? b - 2 : b - step], 0),
         why: `La 🐝 está en ${b}; su antecesor es ${ans}.`, hint: "Primero descubre el número de la abejita y luego réstale 1.",
@@ -29,7 +29,7 @@ const GEN = [
           { t: `El <b>antecesor</b> es el que va justo antes: ${b} − 1.`, b: BOARD.jumps(b, [-1], { pad: 2 }) },
           { t: `${b} − 1 = <b>${ans}</b>.` }
         ],
-        err: o => o === b ? "Ese es el número de la abejita; piden su antecesor." : o === b + 1 ? "Ese es el sucesor; el antecesor va antes." : "" }; },
+        err: w => w === b ? "Ese es el número de la abejita; piden su antecesor." : w === b + 1 ? "Ese es el sucesor; el antecesor va antes." : "" }; },
   ],
   [
     () => { const n = between(101, 189), s = n + 1, ans = String(s).split("").reduce((a, b) => a + +b, 0);
@@ -40,7 +40,7 @@ const GEN = [
           { t: `Ahora sumamos las cifras de ${s}: ${String(s).split("").join(", ")}.`, b: BOARD.lines([`${String(s).split("").join(" + ")} = ${ans}`]) },
           { t: `Las cifras suman <b>${ans}</b>.` }
         ],
-        err: o => o === s ? "Ese es tu número de asiento; piden la suma de sus cifras." : o === String(n).split("").reduce((p, q) => p + +q, 0) ? "Sumaste las cifras del asiento de tu hermano." : "" }; },
+        err: w => w === s ? "Ese es tu número de asiento; piden la suma de sus cifras." : w === String(n).split("").reduce((p, q) => p + +q, 0) ? "Sumaste las cifras del asiento de tu hermano." : "" }; },
     () => { const n = between(10, 80), t = pick(["as", "sa", "ss", "aa"]), ans = { as: n, sa: n, ss: n + 2, aa: n - 2 }[t], txt = { as: "antecesor del sucesor", sa: "sucesor del antecesor", ss: "sucesor del sucesor", aa: "antecesor del antecesor" }[t];
       return { prompt: `¿Cuál es el <b>${txt}</b> de ${n}?`, say: `¿Cuál es el ${txt} de ${n}?`, scene: "", ans, opts: numOpts(ans, [n + 1, n - 1, n + 2, n - 2].filter(x => x !== ans), 0), why: `Hazlo paso a paso desde el final: queda ${ans}.`, hint: "Empieza por la última palabra.",
         steps: T => { const [w1, w2] = { as: ["sucesor", "antecesor"], sa: ["antecesor", "sucesor"], ss: ["sucesor", "sucesor"], aa: ["antecesor", "antecesor"] }[t], j = w => w === "sucesor" ? 1 : -1, m = n + j(w1);

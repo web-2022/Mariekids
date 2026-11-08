@@ -24,7 +24,7 @@ const GEN = [
             { t: `Y seguimos de 1 en 1 con las unidades:`, go: T.count(one, { from: 10 * d + 1 }) },
             { t: `${d} decena${d > 1 ? "s" : ""} y ${u} unidad${u > 1 ? "es" : ""} = ${10 * d} + ${u} = <b>${ans}</b>.`, b: BOARD.du(ans) }
           ]; },
-        err: o => o === d + u ? "Contaste cada 🔟 como 1, ¡pero vale 10!" : o === 10 * u + d ? "Pusiste las cifras al revés." : "" }; },
+        err: w => w === d + u ? "Contaste cada 🔟 como 1, ¡pero vale 10!" : w === 10 * u + d ? "Pusiste las cifras al revés." : "" }; },
   ],
   [
     () => { const d = between(1, 9), u = between(0, 9), ans = 10 * d + u;
@@ -35,7 +35,7 @@ const GEN = [
           { t: `${d} decenas = ${10 * d}, y ${u} unidades = ${u}.`, b: BOARD.du(ans) },
           { t: `${10 * d} + ${u} = <b>${ans}</b>. En el número, las decenas van a la izquierda.` }
         ],
-        err: o => o === 10 * u + d ? "Pusiste las cifras al revés." : o === d + u ? "Sumaste las cifras; hay que ponerlas juntas." : "" }; },
+        err: w => w === 10 * u + d ? "Pusiste las cifras al revés." : w === d + u ? "Sumaste las cifras; hay que ponerlas juntas." : "" }; },
     () => { const c = between(1, 9), t = rnd(2), ans = t ? 100 * c : 10 * c;
       return { prompt: t ? `<b>${c} centena${c > 1 ? "s" : ""}</b> = ¿cuántas unidades?` : `<b>${c} centena${c > 1 ? "s" : ""}</b> = ¿cuántas decenas?`, say: t ? `${c} centenas, ¿cuántas unidades son?` : `${c} centenas, ¿cuántas decenas son?`, scene: `<div class="legend">1 C = 10 D = 100 U</div>`,
         ans, opts: numOpts(ans, t ? [10 * c, c, 1000 * c] : [100 * c, c, c + 10], 1), why: t ? `${c} × 100 = ${ans}.` : `Cada centena tiene 10 decenas: ${c} × 10 = ${ans}.`, hint: "1 centena = 10 decenas = 100 unidades.",
@@ -54,7 +54,7 @@ const GEN = [
           { t: `Quitamos 6 a cada grupo:`, b: BOARD.lines([`Manzanas: ${m} − 6 = ${m - 6}`, `Naranjas: ${nar} − 6 = ${nar - 6}`]) },
           { t: `Juntamos lo que queda: ${m - 6} + ${nar - 6} = <b>${ans}</b>.`, bAdd: BOARD.lines([`${m - 6} + ${nar - 6} = ${ans}`]) }
         ],
-        err: o => o === m + nar - 6 ? "Quitaste media docena solo una vez; ¡vende de cada grupo!" : o === m + nar ? "Olvidaste quitar lo que vendió." : "" }; },
+        err: w => w === m + nar - 6 ? "Quitaste media docena solo una vez; ¡vende de cada grupo!" : w === m + nar ? "Olvidaste quitar lo que vendió." : "" }; },
     () => { const n = between(11, 19), ans = n - 10;
       return { prompt: `Panchito tiene <b>${n}</b> cubitos. ¿Cuántos debe quitar para que le quede <b>una decena</b>?`, say: `Tiene ${n} cubitos. ¿Cuántos debe quitar para que le quede una decena?`, scene: line(em("🧊", n)), ans, opts: numOpts(ans, [n, 10, ans + 1], 0),
         why: `Una decena = 10. ${n} − 10 = ${ans}.`, hint: "Una decena son 10.",
@@ -64,7 +64,7 @@ const GEN = [
             { t: `Los que sobran son los que hay que quitar:`, go: d => T.count(all.slice(10), { cls: "t-big" })(() => { T.dim(all.slice(10)); setTimeout(d, 400); }) },
             { t: `${n} − 10 = <b>${ans}</b>.`, b: BOARD.lines([`${n} − 10 = ${ans}`]) }
           ]; },
-        err: o => o === 10 ? "10 es lo que debe quedar; piden cuántos quitar." : o === n ? "Ese es el total de cubitos." : "" }; },
+        err: w => w === 10 ? "10 es lo que debe quedar; piden cuántos quitar." : w === n ? "Ese es el total de cubitos." : "" }; },
   ]
 ];
 lesson({ n: 12, title: "Unidades, decenas y centenas", short: "U, D y C", char: "pipo", music: "lofi", deco: ["🔟", "💯", "🟢", "🧱"],

@@ -28,7 +28,7 @@ const GEN = [
             { t: `Marcamos los ${wantPar ? "pares" : "impares"}:`, b: BOARD.seq(ns.map(x => PAR(x) === wantPar ? `<span style="color:#16a34a">${x}✔</span>` : `<span style="opacity:.4">${x}</span>`), { diffs: Array(5).fill(null) }) },
             { t: `Son ${si.join(", ") || "ninguno"}: <b>${ans}</b>.` }
           ]; },
-        err: o => o === 6 - ans ? `Contaste los ${wantPar ? "impares" : "pares"}.` : "" }; },
+        err: w => w === 6 - ans ? `Contaste los ${wantPar ? "impares" : "pares"}.` : "" }; },
     () => { const ns = sample([...Array(20).keys()].map(x => x + 1), 5), ans = ns.filter(PAR).reduce((a, b) => a + b, 0);
       if (!ns.some(PAR)) ns[0] = 2 * between(1, 9);
       const A = ns.filter(PAR).reduce((a, b) => a + b, 0);
@@ -39,7 +39,7 @@ const GEN = [
             { t: `Ahora sumamos solo esos: ${P.join(" + ")}.`, bAdd: BOARD.lines([`${P.join(" + ")} = ${A}`]) },
             { t: `La suma de los pares es <b>${A}</b>.` }
           ]; },
-        err: o => o === ns.reduce((p, q) => p + q, 0) ? "Sumaste todos; solo van los pares." : "" }; },
+        err: w => w === ns.reduce((p, q) => p + q, 0) ? "Sumaste todos; solo van los pares." : "" }; },
   ],
   [
     () => { const g = sample([...Array(15).keys()].map(x => x + 2), 5), odd = g.filter(x => !PAR(x)); if (!odd.length) g[0] = 7;
@@ -53,7 +53,7 @@ const GEN = [
             { t: `Sumamos los globos que quedaron:`, go: T.count(I, { label: (k, el) => String(imp.slice(0, k).reduce((p, q) => p + q, 0)), say: k => String(imp.slice(0, k).reduce((p, q) => p + q, 0)), cls: "t-big", ms: 1100 }) },
             { t: `${imp.join(" + ")} = <b>${ans}</b>.`, b: BOARD.lines([`${imp.join(" + ")} = ${ans}`]) }
           ]; },
-        err: o => o === g.filter(PAR).reduce((p, q) => p + q, 0) ? "Sumaste los que estallaron (pares)." : "" }; },
+        err: w => w === g.filter(PAR).reduce((p, q) => p + q, 0) ? "Sumaste los que estallaron (pares)." : "" }; },
     () => { const n = 2 * between(5, 15), t = rnd(2), ans = t ? n / 2 : n / 2 - 1;
       return { prompt: t ? `¿Cuántos números <b>impares</b> hay menores que <b>${n}</b>?` : `¿Cuántos números <b>pares</b> hay mayores que 0 y menores que <b>${n}</b>?`, say: t ? `¿Cuántos números impares hay menores que ${n}?` : `¿Cuántos números pares hay entre 0 y ${n}?`, scene: "",
         ans, opts: numOpts(ans, [n, ans + 1, ans - 1], 0), why: t ? `Los impares 1, 3, 5, …, ${n - 1}: son ${ans}.` : `Los pares 2, 4, …, ${n - 2}: son ${ans}.`, hint: "Cuenta de 2 en 2.",

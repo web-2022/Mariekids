@@ -15,7 +15,7 @@ const GEN = [
                     : { t: `Se quedaron <b>sin pareja</b> los de ${x > y ? "arriba" : "abajo"}. ¡Ahí hay más!`, go: T.count(sobran, { cls: "t-big" }) },
             { t: `Arriba hay ${x} y abajo hay ${y}. ${x === y ? "Hay igual." : `Hay más ${x > y ? "arriba" : "abajo"}.`} La respuesta es <b>${ans}</b>.` }
           ]; },
-        err: o => o !== "Hay igual" && x !== y ? "Ojo: no gana el grupo más largo, sino el que tiene más cosas." : "" }; },
+        err: w => w !== "Hay igual" && x !== y ? "Ojo: no gana el grupo más largo, sino el que tiene más cosas." : "" }; },
   ],
   [
     () => { const [a, b] = sample(EMO, 2), x = between(6, 10), y = between(2, x - 1), t = rnd(2), ans = x - y;
@@ -28,7 +28,7 @@ const GEN = [
             { t: t ? `Los de arriba que se quedaron <b>sin pareja</b> son los que hay de más:` : `Los de arriba sin pareja necesitan un compañero abajo. ¡Esos son los que hay que <b>agregar</b>!`, go: T.count(top.slice(y), { cls: "t-big" }) },
             { t: `Comprobamos con una resta: ${x} − ${y} = <b>${ans}</b>.`, b: BOARD.lines([`${x} − ${y} = ${ans}`]) }
           ]; },
-        err: o => o === x + y ? "Sumaste todo; piden la <b>diferencia</b>." : o === x ? "Ese es el total de arriba." : o === y ? "Ese es el total de abajo." : "" }; },
+        err: w => w === x + y ? "Sumaste todo; piden la <b>diferencia</b>." : w === x ? "Ese es el total de arriba." : w === y ? "Ese es el total de abajo." : "" }; },
   ],
   [
     () => { const ks = sample(NIN, 3), n = sample([2, 3, 4, 5, 6, 7], 3), e = pick(["🍭", "🎈", "⚽"]), ord = [0, 1, 2].sort((i, j) => n[j] - n[i]), asc = rnd(2) === 0;

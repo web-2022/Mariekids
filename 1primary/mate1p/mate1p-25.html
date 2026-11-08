@@ -267,6 +267,9 @@ text.it.t-hl { fill: #b45309; }
 .tboard { overflow-x: auto; }
 .tb-tbl { font-size: 14px; }
 .tb-tbl td, .tb-tbl th { padding: 4px 7px; }
+.tb-op2 .tb-carry span { font-size: 15px; color: #16a34a; line-height: 1; height: 16px; }
+.tb-op2 > div > span:first-child { grid-column-start: 1; }
+.tb-col.tb-op2 .tb-hd span:first-child, .tb-col.tb-op2 .tb-res span:first-child, .tb-col.tb-op2 .tb-carry span:first-child { grid-column-start: 1; }
 
     </style>
     <script>
@@ -888,6 +891,21 @@ function tutKit(sc, tok) {
       };
       step();
     },
+    // encierra de g en g (grupos de igual cantidad), con color y número de grupo
+    chunks: (els, g, o = {}) => done => {
+      const C = ["#f59e0b", "#22c55e", "#3b82f6", "#ec4899", "#8b5cf6", "#14b8a6", "#ef4444", "#84cc16"];
+      let k = 0;
+      const step = () => {
+        if (!alive()) return;
+        if (k * g >= els.length) { setTimeout(() => alive() && done(), 350); return; }
+        const grp = els.slice(k * g, k * g + g), c = C[k % C.length]; k++;
+        grp.forEach(x => { x.classList.add("t-pair"); x.style.setProperty("--pc", c); });
+        const lab = o.label ? o.label(k) : String(k);
+        T.badge(grp[grp.length - 1], lab, "t-pc").style.background = c;
+        tutSay(o.say ? o.say(k) : lab); setTimeout(step, o.ms || 1000);
+      };
+      step();
+    },
     // reparte en 2 grupos iguales: uno al azul, uno al naranja…
     split: (els, o = {}) => done => {
       let k = 0;
@@ -972,6 +990,44 @@ function tutorBtn(ui, q, sc) {
   };
 }
 
+// explica una operación en columna: devuelve { lines: [...], carry: [...] }
+function colTxt(nums, sign = "+") {
+  const N = ["unidades", "decenas", "centenas"], w = String(Math.max(...nums)).length + 1, lines = [], carry = [];
+  if (sign === "+") {
+    let c = 0;
+    for (let k = 0; k < w; k++) {
+      const ds = nums.map(n => Math.floor(n / 10 ** k) % 10), any = nums.some(n => n >= 10 ** k);
+      if (!any && !c) break;
+      const sum = ds.reduce((p, q) => p + q, 0) + c, parts = (c ? [c] : []).concat(ds.filter((d, i) => nums[i] >= 10 ** k || d));
+      const nm = N[k] || "millares";
+      lines.push(sum >= 10 && nums.some(n => n >= 10 ** (k + 1)) || (sum >= 10 && k < w - 1)
+        ? `${nm[0].toUpperCase() + nm.slice(1)}: ${parts.join(" + ")} = ${sum} → escribimos ${sum % 10} y llevamos ${Math.floor(sum / 10)} a las ${N[k + 1] || "siguientes"}.`
+        : `${nm[0].toUpperCase() + nm.slice(1)}: ${parts.join(" + ")} = ${sum} → escribimos ${sum}.`);
+      if (sum >= 10 && !(nums.every(n => n < 10 ** (k + 1)) && k === w - 1)) { carry.push(String(Math.floor(sum / 10))); c = Math.floor(sum / 10); } else { carry.push(""); c = 0; }
+      if (sum >= 10 && nums.every(n => n < 10 ** (k + 1))) { lines[lines.length - 1] = `${nm[0].toUpperCase() + nm.slice(1)}: ${parts.join(" + ")} = ${sum} → escribimos ${sum}.`; carry[carry.length - 1] = ""; break; }
+    }
+  } else {
+    let [a, b] = nums, p = 0;
+    for (let k = 0; k < w; k++) {
+      if (a < 10 ** k && b < 10 ** k) break;
+      let x = Math.floor(a / 10 ** k) % 10 - p, y = Math.floor(b / 10 ** k) % 10, nm = N[k] || "millares", Nm = nm[0].toUpperCase() + nm.slice(1);
+      if (x < y) { lines.push(`${Nm}: ${x} − ${y} no se puede. Pedimos 1 prestado a las ${N[k + 1]}: ${x + 10} − ${y} = ${x + 10 - y}.`); p = 1; carry.push(""); }
+      else { lines.push(`${Nm}: ${x} − ${y} = ${x - y}${p ? " (ya le quitamos el 1 prestado)" : ""}.`); p = 0; carry.push(""); }
+    }
+  }
+  return { lines, carry };
+}
+
+// saltos para ir de a hasta b «completando»: de 1 en 1 hasta la decena, luego de 10 en 10, luego de 1 en 1
+function saltosHasta(a, b) {
+  const out = []; let v = a, sg = b >= a ? 1 : -1;
+  if (sg < 0) { while (v > b) { const j = v - b >= 10 && v % 10 === 0 ? 10 : 1; out.push(-j); v -= j; } return out; }
+  while (v < b && v % 10 && v + 1 <= b) { out.push(1); v++; }
+  while (v + 10 <= b) { out.push(10); v += 10; }
+  while (v < b) { out.push(1); v++; }
+  return out;
+}
+
 /* ---------- Pizarra del tutor: dibujos que aparecen poco a poco ----------
    Cada pieza con style="--d:Xs" aparece con retraso X (animación .tb-in). */
 const BOARD = {
@@ -984,7 +1040,7 @@ const BOARD = {
     const every = span <= 22 ? 1 : span <= 60 ? 5 : 10;
     let g = `<line x1="${L - 6}" y1="70" x2="${R + 6}" y2="70" stroke="#334155" stroke-width="2.5"/>`;
     for (let v = Math.ceil(lo / every) * every; v <= hi; v += every) g += `<line x1="${X(v)}" y1="64" x2="${X(v)}" y2="76" stroke="#334155" stroke-width="2"/><text x="${X(v)}" y="93" font-size="${span > 22 ? 10 : 12}" text-anchor="middle" font-weight="800" fill="#334155">${v}</text>`;
-    if (every > 1) vals.forEach(v => { if (v % every) g += `<line x1="${X(v)}" y1="64" x2="${X(v)}" y2="76" stroke="#334155" stroke-width="2"/><text x="${X(v)}" y="93" font-size="10" text-anchor="middle" font-weight="800" fill="#7c3aed">${v}</text>`; });
+    if (every > 1) vals.forEach((v, i) => { if (v % every && (i === 0 || i === vals.length - 1 || Math.abs(saltos[i - 1]) >= every)) g += `<line x1="${X(v)}" y1="64" x2="${X(v)}" y2="76" stroke="#334155" stroke-width="2"/><text x="${X(v)}" y="93" font-size="10" text-anchor="middle" font-weight="800" fill="#7c3aed">${v}</text>`; });
     g += `<circle cx="${X(a)}" cy="70" r="6" fill="#22c55e"/>`;
     saltos.forEach((j, i) => {
       const x1 = X(vals[i]), x2 = X(vals[i + 1]), m = (x1 + x2) / 2, hgt = Math.min(40, 14 + Math.abs(x2 - x1) * .45), c = j > 0 ? "#2563eb" : "#e11d48";
@@ -1032,6 +1088,20 @@ const BOARD = {
     const cells = (n, cls = "") => String(n).padStart(w, " ").split("").map(c => `<span class="${cls}">${c === " " ? "" : c}</span>`).join("");
     const rd = String(r).padStart(w, " ").split("");
     return `<div class="tb-col" style="--w:${w}"><div class="tb-hd">${w === 3 ? "<span>C</span>" : ""}${w >= 2 ? "<span>D</span>" : ""}<span>U</span></div><div>${cells(a)}</div><div><span class="tb-op">${op === "+" ? "+" : "−"}</span>${cells(b)}</div><div class="tb-res">${rd.map((c, i) => `<span class="tb-in" style="--d:${(.6 + (w - 1 - i) * .9).toFixed(2)}s">${c === " " ? "" : c}</span>`).join("")}</div></div>`;
+  },
+  // operación en columna con «llevo» (suma de varios) o «presto» (resta de dos); aparece columna por columna
+  op(nums, sign = "+") {
+    const r = sign === "+" ? nums.reduce((p, q) => p + q, 0) : nums[0] - nums[1], w = String(Math.max(...nums, r)).length;
+    const dig = (n, i) => { const t = String(n).padStart(w, " "); return t[i] === " " ? "" : t[i]; };
+    const steps = colTxt(nums, sign), carry = Array(w).fill(""), D = i => (.5 + (w - 1 - i) * 1.4).toFixed(2);
+    steps.carry.forEach((c, k) => { if (c) carry[w - 2 - k] = c; });   // lo que se lleva va encima de la columna siguiente
+    const row = (cells, cls = "", first = "") => `<div class="${cls}"><span class="tb-op">${first}</span>${cells.join("")}</div>`;
+    const hd = ["C", "D", "U"].slice(3 - Math.min(3, w)); while (hd.length < w) hd.unshift("");
+    let h = row(hd.map(x => `<span>${x}</span>`), "tb-hd");
+    h += row(carry.map((c, i) => `<span class="tb-car${c ? " tb-in" : ""}" style="--d:${c ? (+D(i + 1) + .5).toFixed(2) : 0}s">${c}</span>`), "tb-carry");
+    nums.forEach((n, j) => { h += row(Array.from({ length: w }, (_, i) => `<span>${dig(n, i)}</span>`), "", j === nums.length - 1 ? (sign === "+" ? "+" : "−") : ""); });
+    h += row(Array.from({ length: w }, (_, i) => `<span class="tb-in" style="--d:${D(i)}s">${dig(r, i)}</span>`), "tb-res");
+    return `<div class="tb-col tb-op2" style="--w:${w}">${h}</div>`;
   },
   // líneas de pizarra que aparecen una tras otra
   lines(ls, o = {}) { return `<div class="tb-lines">` + ls.map((l, i) => `<div class="tb-in" style="--d:${(.2 + i * (o.step || 1)).toFixed(2)}s">${l}</div>`).join("") + `</div>`; },
@@ -1265,19 +1335,51 @@ const N = ["Luchito", "Sophia", "Mateo", "Valeria", "Gabriel", "Camila"];
 const GEN = [
   [
     () => { const a = pick(N), x = between(8, 20), y = between(2, x - 2), ans = x - y;
-      return { prompt: `${a} tenía <b>${x}</b> caramelos y se comió <b>${y}</b>. ¿Cuántos le quedan?`, say: `Tenía ${x} caramelos y se comió ${y}. ¿Cuántos le quedan?`, scene: "", ans, opts: numOpts(ans, [x + y, y, ans + 1], 0), why: `${x} − ${y} = ${ans}.`, hint: "«Le quedan» → restamos." }; },
+      return { prompt: `${a} tenía <b>${x}</b> caramelos y se comió <b>${y}</b>. ¿Cuántos le quedan?`, say: `Tenía ${x} caramelos y se comió ${y}. ¿Cuántos le quedan?`, scene: "", ans, opts: numOpts(ans, [x + y, y, ans + 1], 0), why: `${x} − ${y} = ${ans}.`, hint: "«Le quedan» → restamos.",
+        steps: T => [
+          { t: `Datos: tenía <b>${x}</b> caramelos y se comió <b>${y}</b>. «¿Cuántos le <b>quedan</b>?» → quitamos: restamos.` },
+          { t: `Empezamos en ${x} y saltamos ${y} hacia atrás:`, b: BOARD.jumps(x, Array(y).fill(-1), { step: .3 }) },
+          { t: `${x} − ${y} = <b>${ans}</b>. Comprobamos: ${ans} + ${y} = ${x}. ✅` }
+        ],
+        err: w => w === x + y ? "Sumaste; si se los come, le quedan menos." : w === y ? "Esos son los que se comió." : "" }; },
   ],
   [
     () => { const [a, b] = sample(N, 2), x = between(10, 20), y = between(2, 7), ans = x - y;
-      return { prompt: `${a} tiene <b>${x}</b> figuritas. ${b} tiene <b>${y} menos</b> que ${a}. ¿Cuántas tiene ${b}?`, say: `${a} tiene ${x}. ${b} tiene ${y} menos. ¿Cuántas tiene ${b}?`, scene: "", ans, opts: numOpts(ans, [x + y, y, x], 0), why: `${x} − ${y} = ${ans}.`, hint: "«Menos que» → restamos." }; },
+      return { prompt: `${a} tiene <b>${x}</b> figuritas. ${b} tiene <b>${y} menos</b> que ${a}. ¿Cuántas tiene ${b}?`, say: `${a} tiene ${x}. ${b} tiene ${y} menos. ¿Cuántas tiene ${b}?`, scene: "", ans, opts: numOpts(ans, [x + y, y, x], 0), why: `${x} − ${y} = ${ans}.`, hint: "«Menos que» → restamos.",
+        steps: T => [
+          { t: `Datos: ${a} tiene <b>${x}</b>. ${b} tiene <b>${y} menos que</b> ${a}.` },
+          { t: `«${y} menos» quiere decir: lo de ${a}, quitándole ${y}.`, b: BOARD.jumps(x, Array(y).fill(-1), { step: .35 }) },
+          { t: `${x} − ${y} = <b>${ans}</b>. ${b} tiene ${ans}.` }
+        ],
+        err: w => w === x + y ? "«Menos que» significa restar." : w === x ? `Esas son las de ${a}.` : "" }; },
     () => { const [a, b] = sample(N, 2), x = between(10, 25), y = between(3, x - 2), ans = x - y;
-      return { prompt: `${a} tiene <b>${x}</b> soles y ${b} tiene <b>${y}</b>. ¿Cuántos soles <b>menos</b> tiene ${b}?`, say: `${a} tiene ${x} soles y ${b} tiene ${y}. ¿Cuántos menos tiene ${b}?`, scene: "", ans, opts: numOpts(ans, [x + y, x, y], 0), why: `${x} − ${y} = ${ans}.`, hint: "Busca la diferencia." }; },
+      return { prompt: `${a} tiene <b>${x}</b> soles y ${b} tiene <b>${y}</b>. ¿Cuántos soles <b>menos</b> tiene ${b}?`, say: `${a} tiene ${x} soles y ${b} tiene ${y}. ¿Cuántos menos tiene ${b}?`, scene: "", ans, opts: numOpts(ans, [x + y, x, y], 0), why: `${x} − ${y} = ${ans}.`, hint: "Busca la diferencia.",
+        steps: T => [
+          { t: `«¿Cuántos <b>menos</b> tiene ${b}?» es la <b>diferencia</b> entre los dos: el mayor menos el menor.` },
+          { t: `Desde ${y} contamos hasta ${x}:`, b: BOARD.jumps(y, [...Array(Math.floor((x - y) / 10)).fill(10), ...Array((x - y) % 10).fill(1)], { step: .35 }) },
+          { t: `${x} − ${y} = <b>${ans}</b> soles.` }
+        ],
+        err: w => w === x + y ? "Sumaste; hay que buscar la diferencia." : "" }; },
   ],
   [
     () => { const t = between(15, 25), h = between(6, t - 4), ans = t - h;
-      return { prompt: `Al comenzar el año, Luchito tenía <b>${t}</b> lápices y ha perdido algunos. Ahora tiene <b>${h}</b>. ¿Cuántos lápices ha perdido?`, say: `Tenía ${t} lápices y ahora tiene ${h}. ¿Cuántos perdió?`, scene: line(em("✏️", h)), ans, opts: numOpts(ans, [t + h, h, ans + 1], 0), why: `${t} − ${h} = ${ans}.`, hint: "Lo que tenía menos lo que tiene ahora." }; },
+      return { prompt: `Al comenzar el año, Luchito tenía <b>${t}</b> lápices y ha perdido algunos. Ahora tiene <b>${h}</b>. ¿Cuántos lápices ha perdido?`, say: `Tenía ${t} lápices y ahora tiene ${h}. ¿Cuántos perdió?`, scene: line(em("✏️", h)), ans, opts: numOpts(ans, [t + h, h, ans + 1], 0), why: `${t} − ${h} = ${ans}.`, hint: "Lo que tenía menos lo que tiene ahora.",
+        steps: T => [
+          { t: `Datos: tenía <b>${t}</b>, ahora tiene <b>${h}</b> (los del dibujo). Lo perdido es la diferencia.` },
+          { t: `Contamos desde ${h} hasta ${t}:`, b: BOARD.jumps(h, [...Array(Math.floor(ans / 10)).fill(10), ...Array(ans % 10).fill(1)], { step: .35 }) },
+          { t: `${t} − ${h} = <b>${ans}</b>. Perdió ${ans} lápices.` }
+        ],
+        err: w => w === h ? "Esos son los que tiene ahora." : w === t + h ? "Sumaste; lo perdido es la diferencia." : "" }; },
     () => { const b = between(150, 190), j = between(60, 99), ans = b - j;
-      return { prompt: `Brenda lleva <b>${b}</b> giros con su hula hula y José lleva <b>${j}</b>. ¿Cuántos giros más lleva Brenda?`, say: `Brenda lleva ${b} giros y José ${j}. ¿Cuántos más lleva Brenda?`, scene: line(["👧", "⭕", "👦"]), ans, opts: numOpts(ans, [b + j, ans + 10, ans - 10], 0), why: `${b} − ${j} = ${ans}.`, hint: "Resta en columna: unidades, decenas y centenas." }; },
+      return { prompt: `Brenda lleva <b>${b}</b> giros con su hula hula y José lleva <b>${j}</b>. ¿Cuántos giros más lleva Brenda?`, say: `Brenda lleva ${b} giros y José ${j}. ¿Cuántos más lleva Brenda?`, scene: line(["👧", "⭕", "👦"]), ans, opts: numOpts(ans, [b + j, ans + 10, ans - 10], 0), why: `${b} − ${j} = ${ans}.`, hint: "Resta en columna: unidades, decenas y centenas.",
+        steps: T => { const L = colTxt([b, j], "-").lines;
+          return [
+            { t: `«¿Cuántos más?» → restamos: ${b} − ${j}. Lo ponemos en columna.`, b: BOARD.op([b, j], "-") },
+            { t: L[0] },
+            { t: L.slice(1).join(" ") },
+            { t: `Brenda lleva <b>${ans}</b> giros más.` }
+          ]; },
+        err: w => w === b + j ? "Sumaste; «cuántos más» es restar." : "" }; },
   ]
 ];
 lesson({ n: 25, title: "Problemas de resta y comparación", short: "Problemas de resta", char: "coco", music: "funk", deco: ["➖", "📖", "✏️", "⚖️"],
