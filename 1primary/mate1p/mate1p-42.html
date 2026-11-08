@@ -891,6 +891,73 @@ function tutKit(sc, tok) {
       };
       step();
     },
+    // recorre los lados (o vértices) de una figura SVG (path M…L…Z, rect o polygon): pinta cada lado y lo numera
+    edges: (shp, o = {}) => done => {
+      const NS = "http://www.w3.org/2000/svg", svg = shp.ownerSVGElement;
+      let P = [];
+      if (shp.tagName === "rect") { const x = +shp.getAttribute("x"), y = +shp.getAttribute("y"), w = +shp.getAttribute("width"), h = +shp.getAttribute("height"); P = [[x, y], [x + w, y], [x + w, y + h], [x, y + h]]; }
+      else { const nums = (shp.getAttribute("d") || shp.getAttribute("points") || "").match(/-?[\d.]+/g).map(Number); for (let i = 0; i + 1 < nums.length; i += 2) P.push([nums[i], nums[i + 1]]); }
+      let k = 0;
+      const dot = (x, y, txt, c) => { const g = document.createElementNS(NS, "g"), ci = document.createElementNS(NS, "circle"), t = document.createElementNS(NS, "text");
+        g.setAttribute("class", "t-num t-svgb"); ci.setAttribute("cx", x); ci.setAttribute("cy", y); ci.setAttribute("r", o.r || 9); ci.setAttribute("fill", c); ci.setAttribute("stroke", "#fff"); ci.setAttribute("stroke-width", 2);
+        t.setAttribute("x", x); t.setAttribute("y", y + 4.5); t.setAttribute("text-anchor", "middle"); t.setAttribute("font-size", o.fs || 13); t.setAttribute("font-weight", 900); t.setAttribute("fill", "#fff"); t.textContent = txt; g.append(ci, t); svg.appendChild(g); };
+      const step = () => {
+        if (!alive()) return;
+        if (k >= P.length) { setTimeout(() => alive() && done(), 350); return; }
+        const a = P[k], b = P[(k + 1) % P.length]; k++;
+        const lab = o.label ? o.label(k) : String(k);
+        if (o.vertices) dot(a[0], a[1], lab, "#16a34a");
+        else { const ln = document.createElementNS(NS, "line"); ln.setAttribute("x1", a[0]); ln.setAttribute("y1", a[1]); ln.setAttribute("x2", b[0]); ln.setAttribute("y2", b[1]); ln.setAttribute("stroke", "#e11d48"); ln.setAttribute("stroke-width", o.sw || 6); ln.setAttribute("stroke-linecap", "round"); ln.setAttribute("class", "t-num"); svg.appendChild(ln);
+          dot((a[0] + b[0]) / 2, (a[1] + b[1]) / 2, lab, "#e11d48"); }
+        tutSay(o.say ? o.say(k) : lab); setTimeout(step, o.ms || 800);
+      };
+      step();
+    },
+    // trazos numerados sobre un dibujo SVG: segs = [[x1, y1, x2, y2], …]
+    strokes: (svg, segs, o = {}) => done => {
+      const NS = "http://www.w3.org/2000/svg"; let k = 0;
+      const step = () => {
+        if (!alive()) return;
+        if (k >= segs.length) { setTimeout(() => alive() && done(), 300); return; }
+        const [x1, y1, x2, y2] = segs[k++], g = document.createElementNS(NS, "g"), mx = (x1 + x2) / 2, my = (y1 + y2) / 2, lab = o.label ? o.label(k) : k;
+        g.setAttribute("class", "t-num t-svgb");
+        g.innerHTML = `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#e11d48" stroke-width="${o.sw || 6}" stroke-linecap="round"/><circle cx="${mx}" cy="${my}" r="${o.r || 9}" fill="#e11d48" stroke="#fff" stroke-width="2"/><text x="${mx}" y="${my + 4}" text-anchor="middle" font-size="${o.fs || 11}" font-weight="900" fill="#fff" stroke="none">${lab}</text>`;
+        svg.appendChild(g); tutSay(o.say ? o.say(k) : String(lab)); setTimeout(step, o.ms || 650);
+      };
+      step();
+    },
+    // puntos numerados sobre un dibujo SVG, en coordenadas del dibujo: pts = [[x, y], …]
+    dots: (svg, pts, o = {}) => done => {
+      const NS = "http://www.w3.org/2000/svg"; let k = 0;
+      const step = () => {
+        if (!alive()) return;
+        if (k >= pts.length) { setTimeout(() => alive() && done(), 300); return; }
+        const [x, y] = pts[k++], g = document.createElementNS(NS, "g");
+        g.setAttribute("class", "t-num t-svgb");
+        g.innerHTML = `<circle cx="${x}" cy="${y}" r="${o.r || 10}" fill="${o.c || "#e11d48"}" stroke="#fff" stroke-width="2"/><text x="${x}" y="${y + 4.5}" text-anchor="middle" font-size="${o.fs || 13}" font-weight="900" fill="#fff" stroke="none">${o.label ? o.label(k) : k}</text>`;
+        svg.appendChild(g); tutSay(o.say ? o.say(k) : String(k)); setTimeout(step, o.ms || 750);
+      };
+      step();
+    },
+    // muestra figuras escondidas una por una (formas SVG sobre el dibujo) y las va contando
+    flash: (shapes, o = {}) => done => {
+      const svg = sc.querySelector("svg"), NS = "http://www.w3.org/2000/svg", C = ["#f59e0b", "#22c55e", "#3b82f6", "#ec4899", "#8b5cf6", "#14b8a6", "#ef4444"];
+      const vb = svg.viewBox.baseVal, cnt = document.createElementNS(NS, "text");
+      cnt.setAttribute("x", vb.x + vb.width - 4); cnt.setAttribute("y", vb.y + Math.max(30, vb.height * .2)); cnt.setAttribute("text-anchor", "end"); cnt.setAttribute("font-size", Math.max(30, vb.height * .2)); cnt.setAttribute("font-weight", 900);
+      cnt.setAttribute("fill", "#e11d48"); cnt.setAttribute("class", "t-num t-svgnum"); svg.appendChild(cnt);
+      let k = 0, cur = null;
+      const step = () => {
+        if (!alive()) return;
+        if (cur) cur.remove();
+        if (k >= shapes.length) { setTimeout(() => alive() && done(), 300); return; }
+        const sh = shapes[k], c = sh.c || C[(sh.g ?? k) % C.length]; k++;
+        cur = document.createElementNS(NS, "g"); cur.setAttribute("class", "t-num"); cur.innerHTML = sh.svg;
+        [...cur.children].forEach(x => { x.setAttribute("fill", c); x.setAttribute("fill-opacity", sh.line ? 1 : .5); x.setAttribute("stroke", c); x.setAttribute("stroke-width", sh.line ? 8 : 5); x.setAttribute("stroke-linecap", "round"); });
+        svg.insertBefore(cur, cnt); cnt.textContent = String(k);
+        tutSay(o.say ? o.say(k, sh) : String(k)); setTimeout(step, o.ms || 950);
+      };
+      step();
+    },
     // encierra de g en g (grupos de igual cantidad), con color y número de grupo
     chunks: (els, g, o = {}) => done => {
       const C = ["#f59e0b", "#22c55e", "#3b82f6", "#ec4899", "#8b5cf6", "#14b8a6", "#ef4444", "#84cc16"];
@@ -1027,6 +1094,32 @@ function saltosHasta(a, b) {
   while (v < b) { out.push(1); v++; }
   return out;
 }
+
+// figuras escondidas en los dibujos de conteo (para el tutor): listas de { svg, g (grupo/tamaño) }
+const FIG = {
+  triFan(m, h) {
+    const A = [150, 14], L = [20, 200], R = [280, 200], lp = (p, q, t) => [p[0] + (q[0] - p[0]) * t, p[1] + (q[1] - p[1]) * t], out = [];
+    for (let lev = h + 1; lev >= 1; lev--) { const t = lev / (h + 1), p = lp(A, L, t), q = lp(A, R, t);
+      for (let sz = 1; sz <= m; sz++) for (let i = 0; i + sz <= m; i++) { const a = lp(p, q, i / m), b = lp(p, q, (i + sz) / m); out.push({ svg: `<path d="M${A} L${a} L${b}Z"/>`, g: sz - 1, sz, lev }); } }
+    return out;
+  },
+  rects(r, c) {
+    const W = 260, H = 60 * r, out = [];
+    for (let hh = 1; hh <= r; hh++) for (let ww = 1; ww <= c; ww++) for (let y = 0; y + hh <= r; y++) for (let x = 0; x + ww <= c; x++)
+      out.push({ svg: `<rect x="${10 + W * x / c}" y="${10 + H * y / r}" width="${W * ww / c}" height="${H * hh / r}"/>`, g: ww - 1 + (hh - 1) * c, ww, hh });
+    return out;
+  },
+  squares(n) {
+    const S = 180, c = S / n, out = [];
+    for (let z = 1; z <= n; z++) for (let y = 0; y + z <= n; y++) for (let x = 0; x + z <= n; x++) out.push({ svg: `<rect x="${10 + c * x}" y="${10 + c * y}" width="${c * z}" height="${c * z}"/>`, g: z - 1, z });
+    return out;
+  },
+  segs(p) {
+    const X = i => 20 + 260 * i / (p - 1), N = "ABCDEFGH", out = [];
+    for (let i = 0; i < p; i++) for (let j = i + 1; j < p; j++) out.push({ svg: `<line x1="${X(i)}" y1="30" x2="${X(j)}" y2="30"/>`, g: i, line: true, name: N[i] + N[j] });
+    return out;
+  }
+};
 
 /* ---------- Pizarra del tutor: dibujos que aparecen poco a poco ----------
    Cada pieza con style="--d:Xs" aparece con retraso X (animación .tb-in). */
@@ -1336,16 +1429,31 @@ const fila = (a, c, b) => `<div class="seq">${a} &nbsp;<span class="card-op">${c
 const GEN = [
   [
     () => { const [p, q] = sample(PARES, 2), ans = q[1];
-      return { prompt: `${p[0]} es a ${p[1]} como ${q[0]} es a…`, say: "Descubre la relación y completa la analogía.", scene: `<div class="seq">${p[0]} → ${p[1]}<br>${q[0]} → ❓</div>`, ans, opts: shuffle([ans, ...sample(PARES.filter(x => x !== q && x !== p).map(x => x[1]), 3)]), cols: 4, why: `${p[0]} va con ${p[1]}, y ${q[0]} va con ${ans}.`, hint: "¿Qué relación hay entre los dos primeros?" }; },
+      return { prompt: `${p[0]} es a ${p[1]} como ${q[0]} es a…`, say: "Descubre la relación y completa la analogía.", scene: `<div class="seq">${p[0]} → ${p[1]}<br>${q[0]} → ❓</div>`, ans, opts: shuffle([ans, ...sample(PARES.filter(x => x !== q && x !== p).map(x => x[1]), 3)]), cols: 4, why: `${p[0]} va con ${p[1]}, y ${q[0]} va con ${ans}.`, hint: "¿Qué relación hay entre los dos primeros?",
+        steps: T => [
+          { t: `Una <b>analogía</b> es una relación que se repite. Primero descubrimos la relación de los dos primeros: ¿por qué ${p[0]} va con ${p[1]}?` },
+          { t: `${p[0]} va con ${p[1]} porque los dos «van juntos» (uno usa, come o necesita al otro). Buscamos lo que va con ${q[0]} de la misma forma.`, b: BOARD.lines([`${p[0]} → ${p[1]}`, `${q[0]} → ?`]) },
+          { t: `${q[0]} va con <b>${ans}</b>.`, b: BOARD.lines([`${p[0]} → ${p[1]}`, `${q[0]} → ${ans}`]) }
+        ] }; },
   ],
   [
     () => { const r = pick([["el doble", x => 2 * x], ["+3", x => x + 3], ["+10", x => x + 10], ["−2", x => x - 2]]), xs = sample([3, 4, 5, 6, 7, 8, 9], 3), ans = r[1](xs[2]);
-      return { prompt: "Completa la analogía numérica:", say: "Mira la regla de los dos primeros y completa.", scene: `<div class="seq">${xs[0]} → ${r[1](xs[0])}<br>${xs[1]} → ${r[1](xs[1])}<br>${xs[2]} → ❓</div>`, ans, opts: numOpts(ans, [ans + 1, ans - 1, xs[2] + 2], 0), why: `La regla es «${r[0]}»: ${xs[2]} → ${ans}.`, hint: "¿Qué le pasa al primer número para obtener el segundo?" }; },
+      return { prompt: "Completa la analogía numérica:", say: "Mira la regla de los dos primeros y completa.", scene: `<div class="seq">${xs[0]} → ${r[1](xs[0])}<br>${xs[1]} → ${r[1](xs[1])}<br>${xs[2]} → ❓</div>`, ans, opts: numOpts(ans, [ans + 1, ans - 1, xs[2] + 2], 0), why: `La regla es «${r[0]}»: ${xs[2]} → ${ans}.`, hint: "¿Qué le pasa al primer número para obtener el segundo?",
+        steps: T => [
+          { t: `Miramos qué le pasa al primer número para obtener el segundo, en las dos primeras filas:`, b: BOARD.lines([`${xs[0]} → ${r[1](xs[0])}`, `${xs[1]} → ${r[1](xs[1])}`]) },
+          { t: `La regla es «<b>${r[0]}</b>»: funciona en las dos filas.` },
+          { t: `Aplicamos la regla a ${xs[2]}: <b>${ans}</b>.`, b: BOARD.lines([`${xs[0]} → ${r[1](xs[0])} ✅`, `${xs[1]} → ${r[1](xs[1])} ✅`, `${xs[2]} → ${ans}`]) }
+        ] }; },
   ],
   [
     () => { const op = pick(["+", "−"]), mk = () => { const a = between(2, 9), b = between(1, a - 1); return [a, op === "+" ? a + b : a - b, b]; }, rows = [mk(), mk(), mk()], ans = rows[2][1];
       return { prompt: "¿Qué número va en el centro de la tercera fila?", say: "Descubre la regla de las dos primeras filas y halla el número del centro.", scene: rows.map((r, i) => fila(r[0], i < 2 ? r[1] : "?", r[2])).join(""), ans, opts: numOpts(ans, [op === "+" ? rows[2][0] - rows[2][2] : rows[2][0] + rows[2][2], ans + 1, ans - 1].filter(x => x !== ans), 0),
-        why: `En el centro va la ${op === "+" ? "suma" : "resta"} de los de los lados: ${rows[2][0]} ${op} ${rows[2][2]} = ${ans}.`, hint: "Prueba sumar o restar los números de los lados." }; },
+        why: `En el centro va la ${op === "+" ? "suma" : "resta"} de los de los lados: ${rows[2][0]} ${op} ${rows[2][2]} = ${ans}.`, hint: "Prueba sumar o restar los números de los lados.",
+        steps: T => [
+          { t: `Buscamos la regla en las dos primeras filas: ¿cómo se obtiene el número del centro con los de los lados?` },
+          { t: `Probamos:`, b: BOARD.lines(rows.slice(0, 2).map(r2 => `${r2[0]} + ${r2[2]} = ${r2[0] + r2[2]} ${op === "+" ? "✅" : "❌"} · ${r2[0]} − ${r2[2]} = ${r2[0] - r2[2]} ${op === "−" ? "✅" : "❌"}`), { step: .9 }) },
+          { t: `La regla es <b>${op === "+" ? "sumar" : "restar"}</b>: ${rows[2][0]} ${op} ${rows[2][2]} = <b>${ans}</b>.` }
+        ] }; },
   ]
 ];
 lesson({ n: 42, title: "Analogías numéricas y gráficas", short: "Analogías", char: "mika", music: "misterio", deco: ["🪞", "🐶", "🦴", "❓"],

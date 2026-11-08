@@ -891,6 +891,73 @@ function tutKit(sc, tok) {
       };
       step();
     },
+    // recorre los lados (o vértices) de una figura SVG (path M…L…Z, rect o polygon): pinta cada lado y lo numera
+    edges: (shp, o = {}) => done => {
+      const NS = "http://www.w3.org/2000/svg", svg = shp.ownerSVGElement;
+      let P = [];
+      if (shp.tagName === "rect") { const x = +shp.getAttribute("x"), y = +shp.getAttribute("y"), w = +shp.getAttribute("width"), h = +shp.getAttribute("height"); P = [[x, y], [x + w, y], [x + w, y + h], [x, y + h]]; }
+      else { const nums = (shp.getAttribute("d") || shp.getAttribute("points") || "").match(/-?[\d.]+/g).map(Number); for (let i = 0; i + 1 < nums.length; i += 2) P.push([nums[i], nums[i + 1]]); }
+      let k = 0;
+      const dot = (x, y, txt, c) => { const g = document.createElementNS(NS, "g"), ci = document.createElementNS(NS, "circle"), t = document.createElementNS(NS, "text");
+        g.setAttribute("class", "t-num t-svgb"); ci.setAttribute("cx", x); ci.setAttribute("cy", y); ci.setAttribute("r", o.r || 9); ci.setAttribute("fill", c); ci.setAttribute("stroke", "#fff"); ci.setAttribute("stroke-width", 2);
+        t.setAttribute("x", x); t.setAttribute("y", y + 4.5); t.setAttribute("text-anchor", "middle"); t.setAttribute("font-size", o.fs || 13); t.setAttribute("font-weight", 900); t.setAttribute("fill", "#fff"); t.textContent = txt; g.append(ci, t); svg.appendChild(g); };
+      const step = () => {
+        if (!alive()) return;
+        if (k >= P.length) { setTimeout(() => alive() && done(), 350); return; }
+        const a = P[k], b = P[(k + 1) % P.length]; k++;
+        const lab = o.label ? o.label(k) : String(k);
+        if (o.vertices) dot(a[0], a[1], lab, "#16a34a");
+        else { const ln = document.createElementNS(NS, "line"); ln.setAttribute("x1", a[0]); ln.setAttribute("y1", a[1]); ln.setAttribute("x2", b[0]); ln.setAttribute("y2", b[1]); ln.setAttribute("stroke", "#e11d48"); ln.setAttribute("stroke-width", o.sw || 6); ln.setAttribute("stroke-linecap", "round"); ln.setAttribute("class", "t-num"); svg.appendChild(ln);
+          dot((a[0] + b[0]) / 2, (a[1] + b[1]) / 2, lab, "#e11d48"); }
+        tutSay(o.say ? o.say(k) : lab); setTimeout(step, o.ms || 800);
+      };
+      step();
+    },
+    // trazos numerados sobre un dibujo SVG: segs = [[x1, y1, x2, y2], …]
+    strokes: (svg, segs, o = {}) => done => {
+      const NS = "http://www.w3.org/2000/svg"; let k = 0;
+      const step = () => {
+        if (!alive()) return;
+        if (k >= segs.length) { setTimeout(() => alive() && done(), 300); return; }
+        const [x1, y1, x2, y2] = segs[k++], g = document.createElementNS(NS, "g"), mx = (x1 + x2) / 2, my = (y1 + y2) / 2, lab = o.label ? o.label(k) : k;
+        g.setAttribute("class", "t-num t-svgb");
+        g.innerHTML = `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#e11d48" stroke-width="${o.sw || 6}" stroke-linecap="round"/><circle cx="${mx}" cy="${my}" r="${o.r || 9}" fill="#e11d48" stroke="#fff" stroke-width="2"/><text x="${mx}" y="${my + 4}" text-anchor="middle" font-size="${o.fs || 11}" font-weight="900" fill="#fff" stroke="none">${lab}</text>`;
+        svg.appendChild(g); tutSay(o.say ? o.say(k) : String(lab)); setTimeout(step, o.ms || 650);
+      };
+      step();
+    },
+    // puntos numerados sobre un dibujo SVG, en coordenadas del dibujo: pts = [[x, y], …]
+    dots: (svg, pts, o = {}) => done => {
+      const NS = "http://www.w3.org/2000/svg"; let k = 0;
+      const step = () => {
+        if (!alive()) return;
+        if (k >= pts.length) { setTimeout(() => alive() && done(), 300); return; }
+        const [x, y] = pts[k++], g = document.createElementNS(NS, "g");
+        g.setAttribute("class", "t-num t-svgb");
+        g.innerHTML = `<circle cx="${x}" cy="${y}" r="${o.r || 10}" fill="${o.c || "#e11d48"}" stroke="#fff" stroke-width="2"/><text x="${x}" y="${y + 4.5}" text-anchor="middle" font-size="${o.fs || 13}" font-weight="900" fill="#fff" stroke="none">${o.label ? o.label(k) : k}</text>`;
+        svg.appendChild(g); tutSay(o.say ? o.say(k) : String(k)); setTimeout(step, o.ms || 750);
+      };
+      step();
+    },
+    // muestra figuras escondidas una por una (formas SVG sobre el dibujo) y las va contando
+    flash: (shapes, o = {}) => done => {
+      const svg = sc.querySelector("svg"), NS = "http://www.w3.org/2000/svg", C = ["#f59e0b", "#22c55e", "#3b82f6", "#ec4899", "#8b5cf6", "#14b8a6", "#ef4444"];
+      const vb = svg.viewBox.baseVal, cnt = document.createElementNS(NS, "text");
+      cnt.setAttribute("x", vb.x + vb.width - 4); cnt.setAttribute("y", vb.y + Math.max(30, vb.height * .2)); cnt.setAttribute("text-anchor", "end"); cnt.setAttribute("font-size", Math.max(30, vb.height * .2)); cnt.setAttribute("font-weight", 900);
+      cnt.setAttribute("fill", "#e11d48"); cnt.setAttribute("class", "t-num t-svgnum"); svg.appendChild(cnt);
+      let k = 0, cur = null;
+      const step = () => {
+        if (!alive()) return;
+        if (cur) cur.remove();
+        if (k >= shapes.length) { setTimeout(() => alive() && done(), 300); return; }
+        const sh = shapes[k], c = sh.c || C[(sh.g ?? k) % C.length]; k++;
+        cur = document.createElementNS(NS, "g"); cur.setAttribute("class", "t-num"); cur.innerHTML = sh.svg;
+        [...cur.children].forEach(x => { x.setAttribute("fill", c); x.setAttribute("fill-opacity", sh.line ? 1 : .5); x.setAttribute("stroke", c); x.setAttribute("stroke-width", sh.line ? 8 : 5); x.setAttribute("stroke-linecap", "round"); });
+        svg.insertBefore(cur, cnt); cnt.textContent = String(k);
+        tutSay(o.say ? o.say(k, sh) : String(k)); setTimeout(step, o.ms || 950);
+      };
+      step();
+    },
     // encierra de g en g (grupos de igual cantidad), con color y número de grupo
     chunks: (els, g, o = {}) => done => {
       const C = ["#f59e0b", "#22c55e", "#3b82f6", "#ec4899", "#8b5cf6", "#14b8a6", "#ef4444", "#84cc16"];
@@ -1027,6 +1094,32 @@ function saltosHasta(a, b) {
   while (v < b) { out.push(1); v++; }
   return out;
 }
+
+// figuras escondidas en los dibujos de conteo (para el tutor): listas de { svg, g (grupo/tamaño) }
+const FIG = {
+  triFan(m, h) {
+    const A = [150, 14], L = [20, 200], R = [280, 200], lp = (p, q, t) => [p[0] + (q[0] - p[0]) * t, p[1] + (q[1] - p[1]) * t], out = [];
+    for (let lev = h + 1; lev >= 1; lev--) { const t = lev / (h + 1), p = lp(A, L, t), q = lp(A, R, t);
+      for (let sz = 1; sz <= m; sz++) for (let i = 0; i + sz <= m; i++) { const a = lp(p, q, i / m), b = lp(p, q, (i + sz) / m); out.push({ svg: `<path d="M${A} L${a} L${b}Z"/>`, g: sz - 1, sz, lev }); } }
+    return out;
+  },
+  rects(r, c) {
+    const W = 260, H = 60 * r, out = [];
+    for (let hh = 1; hh <= r; hh++) for (let ww = 1; ww <= c; ww++) for (let y = 0; y + hh <= r; y++) for (let x = 0; x + ww <= c; x++)
+      out.push({ svg: `<rect x="${10 + W * x / c}" y="${10 + H * y / r}" width="${W * ww / c}" height="${H * hh / r}"/>`, g: ww - 1 + (hh - 1) * c, ww, hh });
+    return out;
+  },
+  squares(n) {
+    const S = 180, c = S / n, out = [];
+    for (let z = 1; z <= n; z++) for (let y = 0; y + z <= n; y++) for (let x = 0; x + z <= n; x++) out.push({ svg: `<rect x="${10 + c * x}" y="${10 + c * y}" width="${c * z}" height="${c * z}"/>`, g: z - 1, z });
+    return out;
+  },
+  segs(p) {
+    const X = i => 20 + 260 * i / (p - 1), N = "ABCDEFGH", out = [];
+    for (let i = 0; i < p; i++) for (let j = i + 1; j < p; j++) out.push({ svg: `<line x1="${X(i)}" y1="30" x2="${X(j)}" y2="30"/>`, g: i, line: true, name: N[i] + N[j] });
+    return out;
+  }
+};
 
 /* ---------- Pizarra del tutor: dibujos que aparecen poco a poco ----------
    Cada pieza con style="--d:Xs" aparece con retraso X (animación .tb-in). */
@@ -1337,21 +1430,54 @@ const NOM = ["César", "Dany", "Carmen", "Patrick", "Lucía", "Mateo"];
 const GEN = [
   [
     () => { const [q, a, w] = pick(PAR);
-      return { prompt: q, say: q.replace("…", ". ¿Quién es?"), scene: line(["👨‍👩‍👧‍👦"]), ans: a, opts: shuffle([a, ...w]), cols: 2, cls: "grp", why: `${q.replace("…", "")} ${a}.`, hint: "Dibuja el árbol familiar." }; },
+      return { prompt: q, say: q.replace("…", ". ¿Quién es?"), scene: line(["👨‍👩‍👧‍👦"]), ans: a, opts: shuffle([a, ...w]), cols: 2, cls: "grp", why: `${q.replace("…", "")} ${a}.`, hint: "Dibuja el árbol familiar.",
+        steps: T => { const P = { tío: ["El hermano de mi papá", "es hermano de mi papá → es mi <b>tío</b>"], abuela: ["La mamá de mi mamá", "es la mamá de mi mamá → es mi <b>abuela</b>"], primo: ["El hijo de mi tío", "es hijo de mi tío → es mi <b>primo</b>"], tía: ["La hermana de mi mamá", "es hermana de mi mamá → es mi <b>tía</b>"], abuelo: ["El papá de mi papá", "es el papá de mi papá → es mi <b>abuelo</b>"], sobrino: ["El hijo de mi hermana", "es hijo de mi hermana → es mi <b>sobrino</b>"], nieta: ["La hija de mi hijo", "es hija de mi hijo → es mi <b>nieta</b>"] }[a];
+          return [
+            { t: `Dibujamos el árbol familiar empezando por <b>mí</b> 🙂 y subimos o bajamos un paso a la vez.` },
+            { t: `${P[0]} ${P[1]}.`, b: BOARD.lines([q.replace("…", "") + " → " + a]) },
+            { t: `La respuesta es <b>${a}</b>.` }
+          ]; } }; },
   ],
   [
     () => { const [a, b, c] = sample(NOM, 3), big = rnd(2) === 0;
-      return { prompt: `${a} es <b>mayor</b> que ${b}. ${b} es <b>mayor</b> que ${c}. ¿Quién es el <b>${big ? "mayor" : "menor"}</b> de todos?`, say: `${a} es mayor que ${b} y ${b} es mayor que ${c}. ¿Quién es el ${big ? "mayor" : "menor"}?`, scene: "", ans: big ? a : c, opts: [a, b, c], cols: 3, cls: "grp", why: `Orden de mayor a menor: ${a}, ${b}, ${c}.`, hint: "Ordénalos en una fila." }; },
+      return { prompt: `${a} es <b>mayor</b> que ${b}. ${b} es <b>mayor</b> que ${c}. ¿Quién es el <b>${big ? "mayor" : "menor"}</b> de todos?`, say: `${a} es mayor que ${b} y ${b} es mayor que ${c}. ¿Quién es el ${big ? "mayor" : "menor"}?`, scene: "", ans: big ? a : c, opts: [a, b, c], cols: 3, cls: "grp", why: `Orden de mayor a menor: ${a}, ${b}, ${c}.`, hint: "Ordénalos en una fila.",
+        steps: T => [
+          { t: `Ordenamos en una fila, del mayor al menor, usando cada pista.` },
+          { t: `${a} es mayor que ${b}: ${a} va antes. ${b} es mayor que ${c}: ${b} va antes que ${c}.`, b: BOARD.lines([`${a} > ${b} > ${c}`]) },
+          { t: `El ${big ? "mayor" : "menor"} es <b>${big ? a : c}</b>.` }
+        ] }; },
     () => { const [a, b, c, d] = sample(NOM, 4);
-      return { prompt: `${a} es mayor que ${b}. ${c} es menor que ${b}. ${a} es menor que ${d}. ¿Quién es el <b>mayor</b>?`, say: `${a} es mayor que ${b}. ${c} es menor que ${b}. ${a} es menor que ${d}. ¿Quién es el mayor?`, scene: "", ans: d, opts: [a, b, c, d], cols: 2, cls: "grp", why: `De mayor a menor: ${d}, ${a}, ${b}, ${c}.`, hint: "Ve ordenando con cada pista." }; },
+      return { prompt: `${a} es mayor que ${b}. ${c} es menor que ${b}. ${a} es menor que ${d}. ¿Quién es el <b>mayor</b>?`, say: `${a} es mayor que ${b}. ${c} es menor que ${b}. ${a} es menor que ${d}. ¿Quién es el mayor?`, scene: "", ans: d, opts: [a, b, c, d], cols: 2, cls: "grp", why: `De mayor a menor: ${d}, ${a}, ${b}, ${c}.`, hint: "Ve ordenando con cada pista.",
+        steps: T => [
+          { t: `Vamos poniendo a cada uno en una fila de mayor a menor con cada pista:`, b: BOARD.lines([`${a} > ${b}`, `${a} > ${b} > ${c}`, `${d} > ${a} > ${b} > ${c}`], { step: 1.1 }) },
+          { t: `${d} es mayor que ${a}, y ${a} es mayor que todos los demás.` },
+          { t: `El mayor es <b>${d}</b>.` }
+        ],
+        err: w => w === a ? `${a} es mayor que ${b} y ${c}, pero ¡${d} es mayor que ${a}!` : "" }; },
   ],
   [
-    () => ({ prompt: "¿Qué parentesco tiene conmigo Margot, si su madre fue la <b>única hija</b> de mi madre? (yo soy mujer)", say: "¿Qué parentesco tiene conmigo Margot, si su madre fue la única hija de mi madre? Yo soy mujer.", scene: "", ans: "hija", opts: ["sobrina", "hija", "hermana", "prima"], cols: 2, cls: "grp",
-      why: "La única hija de mi madre soy YO. Entonces la madre de Margot soy yo: Margot es mi hija.", hint: "¿Quién es la única hija de mi madre?" }),
+    () => { return { prompt: "¿Qué parentesco tiene conmigo Margot, si su madre fue la <b>única hija</b> de mi madre? (yo soy mujer)", say: "¿Qué parentesco tiene conmigo Margot, si su madre fue la única hija de mi madre? Yo soy mujer.", scene: "", ans: "hija", opts: ["sobrina", "hija", "hermana", "prima"], cols: 2, cls: "grp",
+      why: "La única hija de mi madre soy YO. Entonces la madre de Margot soy yo: Margot es mi hija.", hint: "¿Quién es la única hija de mi madre?",
+        steps: T => [
+          { t: `La clave: ¿quién es «la <b>única hija</b> de mi madre»? Yo soy mujer y soy hija de mi madre… ¡y es la única!` },
+          { t: `Entonces la única hija de mi madre soy <b>yo</b>. La madre de Margot soy yo.`, b: BOARD.lines(["mi madre", "↓", "yo (su única hija)", "↓", "Margot"]) },
+          { t: `Si yo soy la madre de Margot, Margot es mi <b>hija</b>.` }
+        ] }; },
     () => { const h = between(2, 5), ans = h + 1;
-      return { prompt: `En una familia hay <b>${h}</b> hermanos varones y cada uno tiene <b>una sola hermana</b>. ¿Cuántos hijos hay en total?`, say: `Hay ${h} hermanos y cada uno tiene una sola hermana. ¿Cuántos hijos hay?`, scene: "", ans, opts: numOpts(ans, [2 * h, h, h + 2], 1), why: `La hermana es la misma para todos: ${h} + 1 = ${ans}.`, hint: "¡Todos tienen la MISMA hermana!" }; },
+      return { prompt: `En una familia hay <b>${h}</b> hermanos varones y cada uno tiene <b>una sola hermana</b>. ¿Cuántos hijos hay en total?`, say: `Hay ${h} hermanos y cada uno tiene una sola hermana. ¿Cuántos hijos hay?`, scene: "", ans, opts: numOpts(ans, [2 * h, h, h + 2], 1), why: `La hermana es la misma para todos: ${h} + 1 = ${ans}.`, hint: "¡Todos tienen la MISMA hermana!",
+        steps: T => [
+          { t: `Dibujamos la familia: ${h} hermanos varones 👦 y la hermana 👧.`, b: BOARD.lines([`${"👦".repeat(h)} + 👧`]) },
+          { t: `¡Todos tienen <b>la misma</b> hermana! No hay una hermana para cada uno.` },
+          { t: `${h} + 1 = <b>${ans}</b> hijos.` }
+        ],
+        err: w => w === 2 * h ? "Contaste una hermana para cada uno, pero es la misma para todos." : "" }; },
     () => { const [a, b, c] = sample(["Ana", "Beto", "Ciro"], 3), mascotas = ["🐶", "🐱", "🐰"];
-      return { prompt: `${a}, ${b} y ${c} tienen un perro, un gato y un conejo (uno cada uno). ${a} no tiene perro ni gato. ${b} no tiene perro. ¿Qué mascota tiene ${c}?`, say: `${a} no tiene perro ni gato. ${b} no tiene perro. ¿Qué mascota tiene ${c}?`, scene: line(mascotas), ans: "🐶", opts: ["🐶", "🐱", "🐰"], cols: 3, why: `${a} tiene 🐰, ${b} tiene 🐱 y ${c} tiene 🐶.`, hint: "Empieza por quien tiene más pistas." }; },
+      return { prompt: `${a}, ${b} y ${c} tienen un perro, un gato y un conejo (uno cada uno). ${a} no tiene perro ni gato. ${b} no tiene perro. ¿Qué mascota tiene ${c}?`, say: `${a} no tiene perro ni gato. ${b} no tiene perro. ¿Qué mascota tiene ${c}?`, scene: line(mascotas), ans: "🐶", opts: ["🐶", "🐱", "🐰"], cols: 3, why: `${a} tiene 🐰, ${b} tiene 🐱 y ${c} tiene 🐶.`, hint: "Empieza por quien tiene más pistas.",
+        steps: T => [
+          { t: `Empezamos por quien tiene <b>más pistas</b>: ${a} no tiene 🐶 ni 🐱, así que ${a} tiene el <b>🐰</b>.`, b: BOARD.table([["", "🐶", "🐱", "🐰"], [a, "❌", "❌", "✅"], [b, "", "", ""], [c, "", "", ""]]) },
+          { t: `${b} no tiene 🐶, y el 🐰 ya es de ${a}: ${b} tiene el <b>🐱</b>.`, b: BOARD.table([["", "🐶", "🐱", "🐰"], [a, "❌", "❌", "✅"], [b, "❌", "✅", "❌"], [c, "", "", ""]]) },
+          { t: `A ${c} le queda el <b>🐶</b>.`, b: BOARD.table([["", "🐶", "🐱", "🐰"], [a, "❌", "❌", "✅"], [b, "❌", "✅", "❌"], [c, "✅", "❌", "❌"]]) }
+        ] }; },
   ]
 ];
 lesson({ n: 46, title: "Problemas de lógica y parentescos", short: "Lógica", char: "mika", music: "misterio", deco: ["👨‍👩‍👧", "🧠", "🔎", "❓"],

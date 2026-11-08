@@ -891,6 +891,73 @@ function tutKit(sc, tok) {
       };
       step();
     },
+    // recorre los lados (o vértices) de una figura SVG (path M…L…Z, rect o polygon): pinta cada lado y lo numera
+    edges: (shp, o = {}) => done => {
+      const NS = "http://www.w3.org/2000/svg", svg = shp.ownerSVGElement;
+      let P = [];
+      if (shp.tagName === "rect") { const x = +shp.getAttribute("x"), y = +shp.getAttribute("y"), w = +shp.getAttribute("width"), h = +shp.getAttribute("height"); P = [[x, y], [x + w, y], [x + w, y + h], [x, y + h]]; }
+      else { const nums = (shp.getAttribute("d") || shp.getAttribute("points") || "").match(/-?[\d.]+/g).map(Number); for (let i = 0; i + 1 < nums.length; i += 2) P.push([nums[i], nums[i + 1]]); }
+      let k = 0;
+      const dot = (x, y, txt, c) => { const g = document.createElementNS(NS, "g"), ci = document.createElementNS(NS, "circle"), t = document.createElementNS(NS, "text");
+        g.setAttribute("class", "t-num t-svgb"); ci.setAttribute("cx", x); ci.setAttribute("cy", y); ci.setAttribute("r", o.r || 9); ci.setAttribute("fill", c); ci.setAttribute("stroke", "#fff"); ci.setAttribute("stroke-width", 2);
+        t.setAttribute("x", x); t.setAttribute("y", y + 4.5); t.setAttribute("text-anchor", "middle"); t.setAttribute("font-size", o.fs || 13); t.setAttribute("font-weight", 900); t.setAttribute("fill", "#fff"); t.textContent = txt; g.append(ci, t); svg.appendChild(g); };
+      const step = () => {
+        if (!alive()) return;
+        if (k >= P.length) { setTimeout(() => alive() && done(), 350); return; }
+        const a = P[k], b = P[(k + 1) % P.length]; k++;
+        const lab = o.label ? o.label(k) : String(k);
+        if (o.vertices) dot(a[0], a[1], lab, "#16a34a");
+        else { const ln = document.createElementNS(NS, "line"); ln.setAttribute("x1", a[0]); ln.setAttribute("y1", a[1]); ln.setAttribute("x2", b[0]); ln.setAttribute("y2", b[1]); ln.setAttribute("stroke", "#e11d48"); ln.setAttribute("stroke-width", o.sw || 6); ln.setAttribute("stroke-linecap", "round"); ln.setAttribute("class", "t-num"); svg.appendChild(ln);
+          dot((a[0] + b[0]) / 2, (a[1] + b[1]) / 2, lab, "#e11d48"); }
+        tutSay(o.say ? o.say(k) : lab); setTimeout(step, o.ms || 800);
+      };
+      step();
+    },
+    // trazos numerados sobre un dibujo SVG: segs = [[x1, y1, x2, y2], …]
+    strokes: (svg, segs, o = {}) => done => {
+      const NS = "http://www.w3.org/2000/svg"; let k = 0;
+      const step = () => {
+        if (!alive()) return;
+        if (k >= segs.length) { setTimeout(() => alive() && done(), 300); return; }
+        const [x1, y1, x2, y2] = segs[k++], g = document.createElementNS(NS, "g"), mx = (x1 + x2) / 2, my = (y1 + y2) / 2, lab = o.label ? o.label(k) : k;
+        g.setAttribute("class", "t-num t-svgb");
+        g.innerHTML = `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#e11d48" stroke-width="${o.sw || 6}" stroke-linecap="round"/><circle cx="${mx}" cy="${my}" r="${o.r || 9}" fill="#e11d48" stroke="#fff" stroke-width="2"/><text x="${mx}" y="${my + 4}" text-anchor="middle" font-size="${o.fs || 11}" font-weight="900" fill="#fff" stroke="none">${lab}</text>`;
+        svg.appendChild(g); tutSay(o.say ? o.say(k) : String(lab)); setTimeout(step, o.ms || 650);
+      };
+      step();
+    },
+    // puntos numerados sobre un dibujo SVG, en coordenadas del dibujo: pts = [[x, y], …]
+    dots: (svg, pts, o = {}) => done => {
+      const NS = "http://www.w3.org/2000/svg"; let k = 0;
+      const step = () => {
+        if (!alive()) return;
+        if (k >= pts.length) { setTimeout(() => alive() && done(), 300); return; }
+        const [x, y] = pts[k++], g = document.createElementNS(NS, "g");
+        g.setAttribute("class", "t-num t-svgb");
+        g.innerHTML = `<circle cx="${x}" cy="${y}" r="${o.r || 10}" fill="${o.c || "#e11d48"}" stroke="#fff" stroke-width="2"/><text x="${x}" y="${y + 4.5}" text-anchor="middle" font-size="${o.fs || 13}" font-weight="900" fill="#fff" stroke="none">${o.label ? o.label(k) : k}</text>`;
+        svg.appendChild(g); tutSay(o.say ? o.say(k) : String(k)); setTimeout(step, o.ms || 750);
+      };
+      step();
+    },
+    // muestra figuras escondidas una por una (formas SVG sobre el dibujo) y las va contando
+    flash: (shapes, o = {}) => done => {
+      const svg = sc.querySelector("svg"), NS = "http://www.w3.org/2000/svg", C = ["#f59e0b", "#22c55e", "#3b82f6", "#ec4899", "#8b5cf6", "#14b8a6", "#ef4444"];
+      const vb = svg.viewBox.baseVal, cnt = document.createElementNS(NS, "text");
+      cnt.setAttribute("x", vb.x + vb.width - 4); cnt.setAttribute("y", vb.y + Math.max(30, vb.height * .2)); cnt.setAttribute("text-anchor", "end"); cnt.setAttribute("font-size", Math.max(30, vb.height * .2)); cnt.setAttribute("font-weight", 900);
+      cnt.setAttribute("fill", "#e11d48"); cnt.setAttribute("class", "t-num t-svgnum"); svg.appendChild(cnt);
+      let k = 0, cur = null;
+      const step = () => {
+        if (!alive()) return;
+        if (cur) cur.remove();
+        if (k >= shapes.length) { setTimeout(() => alive() && done(), 300); return; }
+        const sh = shapes[k], c = sh.c || C[(sh.g ?? k) % C.length]; k++;
+        cur = document.createElementNS(NS, "g"); cur.setAttribute("class", "t-num"); cur.innerHTML = sh.svg;
+        [...cur.children].forEach(x => { x.setAttribute("fill", c); x.setAttribute("fill-opacity", sh.line ? 1 : .5); x.setAttribute("stroke", c); x.setAttribute("stroke-width", sh.line ? 8 : 5); x.setAttribute("stroke-linecap", "round"); });
+        svg.insertBefore(cur, cnt); cnt.textContent = String(k);
+        tutSay(o.say ? o.say(k, sh) : String(k)); setTimeout(step, o.ms || 950);
+      };
+      step();
+    },
     // encierra de g en g (grupos de igual cantidad), con color y número de grupo
     chunks: (els, g, o = {}) => done => {
       const C = ["#f59e0b", "#22c55e", "#3b82f6", "#ec4899", "#8b5cf6", "#14b8a6", "#ef4444", "#84cc16"];
@@ -1027,6 +1094,32 @@ function saltosHasta(a, b) {
   while (v < b) { out.push(1); v++; }
   return out;
 }
+
+// figuras escondidas en los dibujos de conteo (para el tutor): listas de { svg, g (grupo/tamaño) }
+const FIG = {
+  triFan(m, h) {
+    const A = [150, 14], L = [20, 200], R = [280, 200], lp = (p, q, t) => [p[0] + (q[0] - p[0]) * t, p[1] + (q[1] - p[1]) * t], out = [];
+    for (let lev = h + 1; lev >= 1; lev--) { const t = lev / (h + 1), p = lp(A, L, t), q = lp(A, R, t);
+      for (let sz = 1; sz <= m; sz++) for (let i = 0; i + sz <= m; i++) { const a = lp(p, q, i / m), b = lp(p, q, (i + sz) / m); out.push({ svg: `<path d="M${A} L${a} L${b}Z"/>`, g: sz - 1, sz, lev }); } }
+    return out;
+  },
+  rects(r, c) {
+    const W = 260, H = 60 * r, out = [];
+    for (let hh = 1; hh <= r; hh++) for (let ww = 1; ww <= c; ww++) for (let y = 0; y + hh <= r; y++) for (let x = 0; x + ww <= c; x++)
+      out.push({ svg: `<rect x="${10 + W * x / c}" y="${10 + H * y / r}" width="${W * ww / c}" height="${H * hh / r}"/>`, g: ww - 1 + (hh - 1) * c, ww, hh });
+    return out;
+  },
+  squares(n) {
+    const S = 180, c = S / n, out = [];
+    for (let z = 1; z <= n; z++) for (let y = 0; y + z <= n; y++) for (let x = 0; x + z <= n; x++) out.push({ svg: `<rect x="${10 + c * x}" y="${10 + c * y}" width="${c * z}" height="${c * z}"/>`, g: z - 1, z });
+    return out;
+  },
+  segs(p) {
+    const X = i => 20 + 260 * i / (p - 1), N = "ABCDEFGH", out = [];
+    for (let i = 0; i < p; i++) for (let j = i + 1; j < p; j++) out.push({ svg: `<line x1="${X(i)}" y1="30" x2="${X(j)}" y2="30"/>`, g: i, line: true, name: N[i] + N[j] });
+    return out;
+  }
+};
 
 /* ---------- Pizarra del tutor: dibujos que aparecen poco a poco ----------
    Cada pieza con style="--d:Xs" aparece con retraso X (animación .tb-in). */
@@ -1335,18 +1428,43 @@ const GEN = [
   [
     () => { const d = pick([2, 3, 4, 5, -1, -2]), a = d < 0 ? between(15, 25) : between(1, 10), s = [0, 1, 2, 3].map(i => a + d * i), ans = (d > 0 ? "+" : "−") + Math.abs(d);
       const opts = [...new Set([ans, (d > 0 ? "−" : "+") + Math.abs(d), (d > 0 ? "+" : "−") + (Math.abs(d) + 1), (d > 0 ? "+" : "−") + Math.max(1, Math.abs(d) - 1 || 2)])];
-      return { prompt: "¿Cuál es la <b>regla</b> del patrón?", say: s.join(", ") + ". ¿Cuál es la regla?", scene: `<div class="seq">${s.join(" → ")}</div>`, ans, opts: shuffle(opts.length >= 3 ? opts : [...opts, "+10"]), cols: 4, why: `Cada número ${d > 0 ? "suma" : "resta"} ${Math.abs(d)}.`, hint: "Resta dos números seguidos." }; },
+      return { prompt: "¿Cuál es la <b>regla</b> del patrón?", say: s.join(", ") + ". ¿Cuál es la regla?", scene: `<div class="seq">${s.join(" → ")}</div>`, ans, opts: shuffle(opts.length >= 3 ? opts : [...opts, "+10"]), cols: 4, why: `Cada número ${d > 0 ? "suma" : "resta"} ${Math.abs(d)}.`, hint: "Resta dos números seguidos.",
+        steps: T => [
+          { t: `La <b>regla</b> es lo que se hace para pasar de un número al siguiente. Restamos dos números seguidos: ${s[1]} − ${s[0]} = ${s[1] - s[0]}.` },
+          { t: `Revisamos todos los saltos:`, b: BOARD.seq(s, { diffs: [d, d, d] }) },
+          { t: `Siempre ${d > 0 ? "<b>suma</b>" : "<b>resta</b>"} ${Math.abs(d)}. La regla es <b>${ans}</b>.` }
+        ],
+        err: w => w === (d > 0 ? "−" : "+") + Math.abs(d) ? (d > 0 ? "Los números <b>crecen</b>: la regla suma." : "Los números <b>bajan</b>: la regla resta.") : "" }; },
   ],
   [
     () => { const u = pick([3, 4, 5]), dn = pick([1, 2]), a = between(2, 10), s = [a]; for (let i = 1; i < 6; i++) s.push(s[i - 1] + (i % 2 ? u : -dn)); const ans = s.pop();
-      return { prompt: "El patrón sube y baja. ¿Qué número sigue?", say: s.join(", ") + ". ¿Qué número sigue?", scene: `<div class="seq">${s.join(" ; ")} ; ?</div>`, ans, opts: numOpts(ans, [s[4] + u, s[4] - dn, ans + 1].filter(x => x !== ans), 0), why: `La regla es +${u}, −${dn}, +${u}, −${dn}…: sigue ${ans}.`, hint: "Mira los saltos: uno sube y el otro baja." }; },
+      return { prompt: "El patrón sube y baja. ¿Qué número sigue?", say: s.join(", ") + ". ¿Qué número sigue?", scene: `<div class="seq">${s.join(" ; ")} ; ?</div>`, ans, opts: numOpts(ans, [s[4] + u, s[4] - dn, ans + 1].filter(x => x !== ans), 0), why: `La regla es +${u}, −${dn}, +${u}, −${dn}…: sigue ${ans}.`, hint: "Mira los saltos: uno sube y el otro baja.",
+        steps: T => [
+          { t: `Miramos cada salto: unos <b>suben</b> y otros <b>bajan</b>.`, b: BOARD.seq([...s, "?"], { diffs: [...s.slice(1).map((x, i) => x - s[i]), null] }) },
+          { t: `La regla se repite: +${u}, −${dn}, +${u}, −${dn}… Ahora toca <b>+${u}</b>.` },
+          { t: `${s[4]} + ${u} = <b>${ans}</b>.`, b: BOARD.seq([...s, ans], { diffs: s.slice(1).map((x, i) => x - s[i]).concat([u]), hl: 5 }) }
+        ],
+        err: w => w === s[4] - dn ? `Después de un −${dn} viene un +${u}.` : "" }; },
   ],
   [
     () => { const st = between(2, 6), d = between(3, 6), m = [st, st + d, st + 2 * d], ans = d;
-      return { prompt: "Observa los saltos de la rana. ¿Cuántos metros avanza en <b>cada salto</b>?", say: "¿Cuántos metros avanza la rana en cada salto?", scene: `<div class="line small">${m.map(x => `🐸<sub style="font:900 14px sans-serif">${x} m</sub>`).join(" ⤼ ")}</div>`, ans, opts: numOpts(ans, [m[2], m[1], ans + 1], 1), why: `${m[1]} − ${m[0]} = ${d} y ${m[2]} − ${m[1]} = ${d}.`, hint: "Resta las distancias de dos saltos seguidos." }; },
+      return { prompt: "Observa los saltos de la rana. ¿Cuántos metros avanza en <b>cada salto</b>?", say: "¿Cuántos metros avanza la rana en cada salto?", scene: `<div class="line small">${m.map(x => `🐸<sub style="font:900 14px sans-serif">${x} m</sub>`).join(" ⤼ ")}</div>`, ans, opts: numOpts(ans, [m[2], m[1], ans + 1], 1), why: `${m[1]} − ${m[0]} = ${d} y ${m[2]} − ${m[1]} = ${d}.`, hint: "Resta las distancias de dos saltos seguidos.",
+        steps: T => [
+          { t: `La rana está en ${m[0]} m, después en ${m[1]} m y después en ${m[2]} m.`, b: BOARD.marks(m, { min: 0, max: m[2] + 2 }) },
+          { t: `Cada salto es la distancia entre dos posiciones: ${m[1]} − ${m[0]} = ${d} y ${m[2]} − ${m[1]} = ${d}.`, b: BOARD.jumps(m[0], [d, d], { min: 0, max: m[2] + 2 }) },
+          { t: `Avanza <b>${ans}</b> m en cada salto.` }
+        ],
+        err: w => w === m[2] || w === m[1] ? "Esa es la posición de la rana, no lo que avanza en un salto." : "" }; },
     () => { const x = between(20, 30), ops = [pick([5, 8, 11]), -pick([4, 6, 9]), pick([3, 6]), -pick([2, 5]), pick([4, 7])], r = ops.reduce((a, b) => a + b, x);
       return { prompt: "Completa y descubre el valor de la ⚽:", say: "Haz las operaciones en orden y descubre el valor de la pelota.", scene: `<div class="seq" style="font-size:20px">${x} ${ops.map(o => (o > 0 ? "+" : "−") + Math.abs(o)).map(o => `<span class="card-op">${o}</span>`).join(" ")} → ⚽</div>`, ans: r, opts: numOpts(r, [r + 2, r - 2, x], 0),
-        why: `${x}${ops.map(o => (o > 0 ? " + " : " − ") + Math.abs(o)).join("")} = ${r}.`, hint: "Ve de casilla en casilla, una operación a la vez." }; },
+        why: `${x}${ops.map(o => (o > 0 ? " + " : " − ") + Math.abs(o)).join("")} = ${r}.`, hint: "Ve de casilla en casilla, una operación a la vez.",
+        steps: T => { const acc = []; ops.reduce((a, b) => { acc.push(a + b); return a + b; }, x);
+          return [
+            { t: `Vamos <b>de casilla en casilla</b>, haciendo una operación a la vez, empezando en ${x}.` },
+            { t: `Así cambia el número:`, b: BOARD.lines(ops.map((o2, i) => `${i ? acc[i - 1] : x} ${o2 > 0 ? "+" : "−"} ${Math.abs(o2)} = ${acc[i]}`), { step: .8 }) },
+            { t: `La pelota vale <b>${r}</b>.` }
+          ]; },
+        err: w => w === x ? "Ese es el número de inicio; hay que hacer todas las operaciones." : "" }; },
   ]
 ];
 lesson({ n: 39, title: "Patrones de suma y resta", short: "Patrones + −", char: "coco", music: "funk", deco: ["➕", "➖", "🐸", "⚽"],

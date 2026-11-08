@@ -26,35 +26,90 @@ const GEN = [
   [ // Básico: dos tramos
     () => { const a = between(2, 9), b = between(2, 9), ans = a + b;
       return { prompt: "¿Cuánto mide <b>AC</b>?", say: `A B mide ${a} y B C mide ${b}. ¿Cuánto mide A C?`, scene: segLab(P3, [a, b], "?"),
-        ans, opts: numOpts(ans, [Math.abs(a - b), ans + 1, ans - 1], 1), why: `AC = AB + BC = ${a} + ${b} = ${ans}.`, hint: "Suma las dos partes." }; },
+        ans, opts: numOpts(ans, [Math.abs(a - b), ans + 1, ans - 1], 1), why: `AC = AB + BC = ${a} + ${b} = ${ans}.`, hint: "Suma las dos partes.",
+        steps: T => [
+          { t: `AC va desde A hasta C. Está formado por dos partes: AB y BC.` },
+          { t: `Juntamos las dos partes:`, b: BOARD.jumps(0, [a, b], { min: 0, max: a + b + 1 }) },
+          { t: `AC = AB + BC = ${a} + ${b} = <b>${ans}</b>.` }
+        ],
+        err: w => w === Math.abs(a - b) ? "Restaste; el segmento grande es la suma de las partes." : "" }; },
     () => { const a = between(5, 20), b = between(5, 20), ans = a + b;
       return { prompt: `AB = ${a} cm y BC = ${b} cm. ¿Cuánto mide <b>AC</b>?`, say: `A B mide ${a} centímetros y B C mide ${b} centímetros. ¿Cuánto mide A C?`, scene: segLab(P3, [a, b], "?"),
-        ans, opts: numOpts(ans, [Math.abs(a - b), ans + 10, ans - 1], 1), why: `${a} + ${b} = ${ans} cm.`, hint: "El segmento grande es la suma de los pequeños." }; },
+        ans, opts: numOpts(ans, [Math.abs(a - b), ans + 10, ans - 1], 1), why: `${a} + ${b} = ${ans} cm.`, hint: "El segmento grande es la suma de los pequeños.",
+        steps: T => [
+          { t: `El segmento grande AC está formado por AB (${a} cm) y BC (${b} cm).` },
+          { t: `Sumamos las dos partes:`, b: BOARD.op([a, b]) },
+          { t: `AC = ${a} + ${b} = <b>${ans}</b> cm.` }
+        ],
+        err: w => w === Math.abs(a - b) ? "Restaste; hay que sumar las partes." : "" }; },
   ],
   [ // Intermedio: tres tramos
     () => { const cs = [between(3, 15), between(3, 15), between(3, 15)], ans = cs[0] + cs[1] + cs[2];
       return { prompt: "¿Cuánto mide <b>AD</b>?", say: `A B mide ${cs[0]}, B C mide ${cs[1]} y C D mide ${cs[2]}. ¿Cuánto mide A D?`, scene: segLab(P4, cs, "?"),
-        ans, opts: numOpts(ans, [cs[0] + cs[1], ans + 1, ans - 2], 1), why: `AD = ${cs.join(" + ")} = ${ans}.`, hint: "Suma las tres partes." }; },
+        ans, opts: numOpts(ans, [cs[0] + cs[1], ans + 1, ans - 2], 1), why: `AD = ${cs.join(" + ")} = ${ans}.`, hint: "Suma las tres partes.",
+        steps: T => [
+          { t: `AD va de A hasta D y pasa por B y C: está formado por <b>3 partes</b>: AB, BC y CD.` },
+          { t: `Sumamos las tres partes:`, b: BOARD.lines([`${cs[0]} + ${cs[1]} = ${cs[0] + cs[1]}`, `${cs[0] + cs[1]} + ${cs[2]} = ${ans}`]) },
+          { t: `AD = ${cs.join(" + ")} = <b>${ans}</b>.` }
+        ],
+        err: w => w === cs[0] + cs[1] ? "Ese es AC; falta sumar CD." : "" }; },
     () => { const cs = [between(10, 35), between(10, 35), between(10, 35)], ans = cs[0] + cs[1] + cs[2];
       return { prompt: `AB = ${cs[0]}, BC = ${cs[1]} y CD = ${cs[2]}. Halla <b>AD</b>.`, say: `A B mide ${cs[0]}, B C mide ${cs[1]} y C D mide ${cs[2]}. Halla A D.`, scene: segLab(P4, cs, "?"),
-        ans, opts: numOpts(ans, [cs[0] + cs[1], ans + 10, ans - 10], 1), why: `${cs.join(" + ")} = ${ans}.`, hint: "Suma primero dos números y luego el tercero." }; },
+        ans, opts: numOpts(ans, [cs[0] + cs[1], ans + 10, ans - 10], 1), why: `${cs.join(" + ")} = ${ans}.`, hint: "Suma primero dos números y luego el tercero.",
+        steps: T => { const L = colTxt(cs).lines;
+          return [
+            { t: `AD = AB + BC + CD. Ponemos los tres números en columna.`, b: BOARD.op(cs) },
+            { t: L[0] },
+            { t: `${L.slice(1).join(" ")} AD = <b>${ans}</b>.` }
+          ]; },
+        err: w => w === cs[0] + cs[1] ? "Ese es AC; falta sumar CD." : "" }; },
     () => { const a = between(3, 12), b = between(3, 12), c = between(3, 12), ans = a + b;
       return { prompt: "¿Cuánto mide <b>AC</b>?", say: `A B mide ${a}, B C mide ${b} y C D mide ${c}. ¿Cuánto mide A C?`, scene: segLab(P4, [a, b, c], null),
-        ans, opts: numOpts(ans, [a + b + c, b + c, ans + 1], 1), why: `AC = AB + BC = ${a} + ${b} = ${ans}. CD no se usa.`, hint: "AC va de la A hasta la C." }; },
+        ans, opts: numOpts(ans, [a + b + c, b + c, ans + 1], 1), why: `AC = AB + BC = ${a} + ${b} = ${ans}. CD no se usa.`, hint: "AC va de la A hasta la C.",
+        steps: T => [
+          { t: `AC va desde A hasta C: solo usa AB y BC. ¡CD no es parte de AC!` },
+          { t: `Sumamos solo esas dos partes:`, b: BOARD.lines([`AC = AB + BC`, `AC = ${a} + ${b} = ${ans}`]) },
+          { t: `AC = <b>${ans}</b>.` }
+        ],
+        err: w => w === a + b + c ? "Sumaste también CD; AC termina en C." : w === b + c ? "Ese es BD; AC empieza en A." : "" }; },
   ],
   [ // Reto concurso: casos inversos
     () => { const a = between(5, 25), b = between(5, 25), t = a + b, ans = b;
       return { prompt: `AC = ${t} y AB = ${a}. ¿Cuánto mide <b>BC</b>?`, say: `A C mide ${t} y A B mide ${a}. ¿Cuánto mide B C?`, scene: segLab(P3, [a, "?"], t),
-        ans, opts: numOpts(ans, [t + a, ans + 1, ans - 1], 1), why: `BC = AC − AB = ${t} − ${a} = ${ans}.`, hint: "Al total le quitas la parte conocida." }; },
+        ans, opts: numOpts(ans, [t + a, ans + 1, ans - 1], 1), why: `BC = AC − AB = ${t} − ${a} = ${ans}.`, hint: "Al total le quitas la parte conocida.",
+        steps: T => [
+          { t: `El segmento entero AC mide ${t}. Una parte (AB) mide ${a}. La otra parte (BC) es lo que <b>falta</b>.` },
+          { t: `Al total le quitamos la parte conocida:`, b: BOARD.lines([`AB + BC = AC`, `${a} + ? = ${t}`, `? = ${t} − ${a} = ${ans}`], { step: .9 }) },
+          { t: `BC = <b>${ans}</b>. Comprobamos: ${a} + ${ans} = ${t}. ✅` }
+        ],
+        err: w => w === t + a ? "Sumaste; la parte que falta se halla restando." : "" }; },
     () => { const a = between(5, 20), b = between(5, 20), c = between(5, 20), t = a + b + c, ans = b;
       return { prompt: `AD = ${t}, AB = ${a} y CD = ${c}. ¿Cuánto mide <b>BC</b>?`, say: `A D mide ${t}, A B mide ${a} y C D mide ${c}. ¿Cuánto mide B C?`, scene: segLab(P4, [a, "?", c], t),
-        ans, opts: numOpts(ans, [t - a, t - c, ans + 1], 1), why: `BC = ${t} − ${a} − ${c} = ${ans}.`, hint: "Quita al total las dos partes que conoces." }; },
+        ans, opts: numOpts(ans, [t - a, t - c, ans + 1], 1), why: `BC = ${t} − ${a} − ${c} = ${ans}.`, hint: "Quita al total las dos partes que conoces.",
+        steps: T => [
+          { t: `AD = ${t} es el total. Conocemos AB = ${a} y CD = ${c}. Falta el pedazo del medio, BC.` },
+          { t: `Quitamos al total las dos partes que conocemos:`, b: BOARD.lines([`${t} − ${a} = ${t - a}`, `${t - a} − ${c} = ${ans}`]) },
+          { t: `BC = <b>${ans}</b>. Comprobamos: ${a} + ${ans} + ${c} = ${t}. ✅` }
+        ],
+        err: w => w === t - a ? "Quitaste solo AB; falta quitar CD." : w === t - c ? "Quitaste solo CD; falta quitar AB." : "" }; },
     () => { const a = between(5, 20), b = between(5, 20), c = between(5, 20), t = a + b + c, ans = b + c;
       return { prompt: `AD = ${t} y AB = ${a}. ¿Cuánto mide <b>BD</b>?`, say: `A D mide ${t} y A B mide ${a}. ¿Cuánto mide B D?`, scene: segLab(P4, [a, b, c], t, [1, 3, "?"]),
-        ans, opts: numOpts(ans, [t + a, b, ans + 1], 1), why: `BD = AD − AB = ${t} − ${a} = ${ans}.`, hint: "BD va de la B hasta la D." }; },
+        ans, opts: numOpts(ans, [t + a, b, ans + 1], 1), why: `BD = AD − AB = ${t} − ${a} = ${ans}.`, hint: "BD va de la B hasta la D.",
+        steps: T => [
+          { t: `BD va desde B hasta D. Si al segmento entero AD le quitamos AB, queda BD.` },
+          { t: `Restamos:`, b: BOARD.lines([`AD − AB = BD`, `${t} − ${a} = ${ans}`]) },
+          { t: `BD = <b>${ans}</b>.` }
+        ],
+        err: w => w === t + a ? "Sumaste; hay que quitar AB." : "" }; },
     () => { const a = between(4, 15), ans = 2 * a;
       return { prompt: `B es el <b>punto medio</b> de AC y AB = ${a}. ¿Cuánto mide <b>AC</b>?`, say: `B es el punto medio de A C y A B mide ${a}. ¿Cuánto mide A C?`, scene: segLab(P3, [a, a], "?"),
-        ans, opts: numOpts(ans, [a, ans + 1, a + 1], 1), why: `Punto medio: AB = BC = ${a}. AC = ${a} + ${a} = ${ans}.`, hint: "El punto medio parte el segmento en dos partes iguales." }; },
+        ans, opts: numOpts(ans, [a, ans + 1, a + 1], 1), why: `Punto medio: AB = BC = ${a}. AC = ${a} + ${a} = ${ans}.`, hint: "El punto medio parte el segmento en dos partes iguales.",
+        steps: T => [
+          { t: `El <b>punto medio</b> parte el segmento en <b>dos partes iguales</b>: AB = BC = ${a}.` },
+          { t: `Juntamos las dos partes iguales:`, b: BOARD.jumps(0, [a, a], { min: 0, max: 2 * a + 1 }) },
+          { t: `AC = ${a} + ${a} = <b>${ans}</b>.` }
+        ],
+        err: w => w === a ? "Esa es solo la mitad (AB); AC es el doble." : "" }; },
   ]
 ];
 lesson({ n: 63, next: 49, title: "Medida de segmentos", short: "Medir segmentos", char: "pipo", music: "ukelele", deco: ["📏", "📐", "✏️", "🔢"],

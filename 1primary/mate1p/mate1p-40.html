@@ -891,6 +891,73 @@ function tutKit(sc, tok) {
       };
       step();
     },
+    // recorre los lados (o vértices) de una figura SVG (path M…L…Z, rect o polygon): pinta cada lado y lo numera
+    edges: (shp, o = {}) => done => {
+      const NS = "http://www.w3.org/2000/svg", svg = shp.ownerSVGElement;
+      let P = [];
+      if (shp.tagName === "rect") { const x = +shp.getAttribute("x"), y = +shp.getAttribute("y"), w = +shp.getAttribute("width"), h = +shp.getAttribute("height"); P = [[x, y], [x + w, y], [x + w, y + h], [x, y + h]]; }
+      else { const nums = (shp.getAttribute("d") || shp.getAttribute("points") || "").match(/-?[\d.]+/g).map(Number); for (let i = 0; i + 1 < nums.length; i += 2) P.push([nums[i], nums[i + 1]]); }
+      let k = 0;
+      const dot = (x, y, txt, c) => { const g = document.createElementNS(NS, "g"), ci = document.createElementNS(NS, "circle"), t = document.createElementNS(NS, "text");
+        g.setAttribute("class", "t-num t-svgb"); ci.setAttribute("cx", x); ci.setAttribute("cy", y); ci.setAttribute("r", o.r || 9); ci.setAttribute("fill", c); ci.setAttribute("stroke", "#fff"); ci.setAttribute("stroke-width", 2);
+        t.setAttribute("x", x); t.setAttribute("y", y + 4.5); t.setAttribute("text-anchor", "middle"); t.setAttribute("font-size", o.fs || 13); t.setAttribute("font-weight", 900); t.setAttribute("fill", "#fff"); t.textContent = txt; g.append(ci, t); svg.appendChild(g); };
+      const step = () => {
+        if (!alive()) return;
+        if (k >= P.length) { setTimeout(() => alive() && done(), 350); return; }
+        const a = P[k], b = P[(k + 1) % P.length]; k++;
+        const lab = o.label ? o.label(k) : String(k);
+        if (o.vertices) dot(a[0], a[1], lab, "#16a34a");
+        else { const ln = document.createElementNS(NS, "line"); ln.setAttribute("x1", a[0]); ln.setAttribute("y1", a[1]); ln.setAttribute("x2", b[0]); ln.setAttribute("y2", b[1]); ln.setAttribute("stroke", "#e11d48"); ln.setAttribute("stroke-width", o.sw || 6); ln.setAttribute("stroke-linecap", "round"); ln.setAttribute("class", "t-num"); svg.appendChild(ln);
+          dot((a[0] + b[0]) / 2, (a[1] + b[1]) / 2, lab, "#e11d48"); }
+        tutSay(o.say ? o.say(k) : lab); setTimeout(step, o.ms || 800);
+      };
+      step();
+    },
+    // trazos numerados sobre un dibujo SVG: segs = [[x1, y1, x2, y2], …]
+    strokes: (svg, segs, o = {}) => done => {
+      const NS = "http://www.w3.org/2000/svg"; let k = 0;
+      const step = () => {
+        if (!alive()) return;
+        if (k >= segs.length) { setTimeout(() => alive() && done(), 300); return; }
+        const [x1, y1, x2, y2] = segs[k++], g = document.createElementNS(NS, "g"), mx = (x1 + x2) / 2, my = (y1 + y2) / 2, lab = o.label ? o.label(k) : k;
+        g.setAttribute("class", "t-num t-svgb");
+        g.innerHTML = `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#e11d48" stroke-width="${o.sw || 6}" stroke-linecap="round"/><circle cx="${mx}" cy="${my}" r="${o.r || 9}" fill="#e11d48" stroke="#fff" stroke-width="2"/><text x="${mx}" y="${my + 4}" text-anchor="middle" font-size="${o.fs || 11}" font-weight="900" fill="#fff" stroke="none">${lab}</text>`;
+        svg.appendChild(g); tutSay(o.say ? o.say(k) : String(lab)); setTimeout(step, o.ms || 650);
+      };
+      step();
+    },
+    // puntos numerados sobre un dibujo SVG, en coordenadas del dibujo: pts = [[x, y], …]
+    dots: (svg, pts, o = {}) => done => {
+      const NS = "http://www.w3.org/2000/svg"; let k = 0;
+      const step = () => {
+        if (!alive()) return;
+        if (k >= pts.length) { setTimeout(() => alive() && done(), 300); return; }
+        const [x, y] = pts[k++], g = document.createElementNS(NS, "g");
+        g.setAttribute("class", "t-num t-svgb");
+        g.innerHTML = `<circle cx="${x}" cy="${y}" r="${o.r || 10}" fill="${o.c || "#e11d48"}" stroke="#fff" stroke-width="2"/><text x="${x}" y="${y + 4.5}" text-anchor="middle" font-size="${o.fs || 13}" font-weight="900" fill="#fff" stroke="none">${o.label ? o.label(k) : k}</text>`;
+        svg.appendChild(g); tutSay(o.say ? o.say(k) : String(k)); setTimeout(step, o.ms || 750);
+      };
+      step();
+    },
+    // muestra figuras escondidas una por una (formas SVG sobre el dibujo) y las va contando
+    flash: (shapes, o = {}) => done => {
+      const svg = sc.querySelector("svg"), NS = "http://www.w3.org/2000/svg", C = ["#f59e0b", "#22c55e", "#3b82f6", "#ec4899", "#8b5cf6", "#14b8a6", "#ef4444"];
+      const vb = svg.viewBox.baseVal, cnt = document.createElementNS(NS, "text");
+      cnt.setAttribute("x", vb.x + vb.width - 4); cnt.setAttribute("y", vb.y + Math.max(30, vb.height * .2)); cnt.setAttribute("text-anchor", "end"); cnt.setAttribute("font-size", Math.max(30, vb.height * .2)); cnt.setAttribute("font-weight", 900);
+      cnt.setAttribute("fill", "#e11d48"); cnt.setAttribute("class", "t-num t-svgnum"); svg.appendChild(cnt);
+      let k = 0, cur = null;
+      const step = () => {
+        if (!alive()) return;
+        if (cur) cur.remove();
+        if (k >= shapes.length) { setTimeout(() => alive() && done(), 300); return; }
+        const sh = shapes[k], c = sh.c || C[(sh.g ?? k) % C.length]; k++;
+        cur = document.createElementNS(NS, "g"); cur.setAttribute("class", "t-num"); cur.innerHTML = sh.svg;
+        [...cur.children].forEach(x => { x.setAttribute("fill", c); x.setAttribute("fill-opacity", sh.line ? 1 : .5); x.setAttribute("stroke", c); x.setAttribute("stroke-width", sh.line ? 8 : 5); x.setAttribute("stroke-linecap", "round"); });
+        svg.insertBefore(cur, cnt); cnt.textContent = String(k);
+        tutSay(o.say ? o.say(k, sh) : String(k)); setTimeout(step, o.ms || 950);
+      };
+      step();
+    },
     // encierra de g en g (grupos de igual cantidad), con color y número de grupo
     chunks: (els, g, o = {}) => done => {
       const C = ["#f59e0b", "#22c55e", "#3b82f6", "#ec4899", "#8b5cf6", "#14b8a6", "#ef4444", "#84cc16"];
@@ -1027,6 +1094,32 @@ function saltosHasta(a, b) {
   while (v < b) { out.push(1); v++; }
   return out;
 }
+
+// figuras escondidas en los dibujos de conteo (para el tutor): listas de { svg, g (grupo/tamaño) }
+const FIG = {
+  triFan(m, h) {
+    const A = [150, 14], L = [20, 200], R = [280, 200], lp = (p, q, t) => [p[0] + (q[0] - p[0]) * t, p[1] + (q[1] - p[1]) * t], out = [];
+    for (let lev = h + 1; lev >= 1; lev--) { const t = lev / (h + 1), p = lp(A, L, t), q = lp(A, R, t);
+      for (let sz = 1; sz <= m; sz++) for (let i = 0; i + sz <= m; i++) { const a = lp(p, q, i / m), b = lp(p, q, (i + sz) / m); out.push({ svg: `<path d="M${A} L${a} L${b}Z"/>`, g: sz - 1, sz, lev }); } }
+    return out;
+  },
+  rects(r, c) {
+    const W = 260, H = 60 * r, out = [];
+    for (let hh = 1; hh <= r; hh++) for (let ww = 1; ww <= c; ww++) for (let y = 0; y + hh <= r; y++) for (let x = 0; x + ww <= c; x++)
+      out.push({ svg: `<rect x="${10 + W * x / c}" y="${10 + H * y / r}" width="${W * ww / c}" height="${H * hh / r}"/>`, g: ww - 1 + (hh - 1) * c, ww, hh });
+    return out;
+  },
+  squares(n) {
+    const S = 180, c = S / n, out = [];
+    for (let z = 1; z <= n; z++) for (let y = 0; y + z <= n; y++) for (let x = 0; x + z <= n; x++) out.push({ svg: `<rect x="${10 + c * x}" y="${10 + c * y}" width="${c * z}" height="${c * z}"/>`, g: z - 1, z });
+    return out;
+  },
+  segs(p) {
+    const X = i => 20 + 260 * i / (p - 1), N = "ABCDEFGH", out = [];
+    for (let i = 0; i < p; i++) for (let j = i + 1; j < p; j++) out.push({ svg: `<line x1="${X(i)}" y1="30" x2="${X(j)}" y2="30"/>`, g: i, line: true, name: N[i] + N[j] });
+    return out;
+  }
+};
 
 /* ---------- Pizarra del tutor: dibujos que aparecen poco a poco ----------
    Cada pieza con style="--d:Xs" aparece con retraso X (animación .tb-in). */
@@ -1334,19 +1427,48 @@ const C2 = n => n * (n - 1) / 2;
 const GEN = [
   [
     () => { const odd = rnd(2), a = 2 * between(0, 10) + odd, s = [a, a + 2, a + 4, a + 6], ans = a + 8;
-      return { prompt: `Números <b>${odd ? "impares" : "pares"}</b>: ¿qué número sigue?`, say: s.join(", ") + ". ¿Qué número sigue?", scene: `<div class="seq">${s.join(" , ")} , ?</div>`, ans, opts: numOpts(ans, [ans + 1, ans - 1, ans + 2], 0), why: `De 2 en 2: sigue ${ans}.`, hint: "Suma 2." }; },
+      return { prompt: `Números <b>${odd ? "impares" : "pares"}</b>: ¿qué número sigue?`, say: s.join(", ") + ". ¿Qué número sigue?", scene: `<div class="seq">${s.join(" , ")} , ?</div>`, ans, opts: numOpts(ans, [ans + 1, ans - 1, ans + 2], 0), why: `De 2 en 2: sigue ${ans}.`, hint: "Suma 2.",
+        steps: T => [
+          { t: `Los números ${odd ? "impares" : "pares"} van de <b>2 en 2</b>.`, b: BOARD.seq([...s, "?"], { diffs: [2, 2, 2, null] }) },
+          { t: `Al último le sumamos 2: ${s[3]} + 2 = ${ans}.`, b: BOARD.jumps(s[3], [1, 1], { labels: false, pad: 1 }) },
+          { t: `Sigue <b>${ans}</b>. (El ${ans - 1} no, porque es ${odd ? "par" : "impar"}.)` }
+        ],
+        err: w => w === ans - 1 || w === ans + 1 ? `Ese número es ${odd ? "par" : "impar"}; aquí van solo los ${odd ? "impares" : "pares"}.` : "" }; },
   ],
   [
     () => { const odd = rnd(2), a = 2 * between(2, 15) + odd, s = [a, a + 2, a + 4, a + 6, a + 8], h = between(1, 3), ans = s[h];
-      return { prompt: `¿Qué número ${odd ? "impar" : "par"} <b>falta</b>?`, say: "¿Qué número falta?", scene: `<div class="seq">${s.map((x, i) => i === h ? "⬜" : x).join(" , ")}</div>`, ans, opts: numOpts(ans, [ans + 1, ans - 1, ans + 2], 0), why: `De 2 en 2: falta ${ans}.`, hint: "Los números van de 2 en 2." }; },
+      return { prompt: `¿Qué número ${odd ? "impar" : "par"} <b>falta</b>?`, say: "¿Qué número falta?", scene: `<div class="seq">${s.map((x, i) => i === h ? "⬜" : x).join(" , ")}</div>`, ans, opts: numOpts(ans, [ans + 1, ans - 1, ans + 2], 0), why: `De 2 en 2: falta ${ans}.`, hint: "Los números van de 2 en 2.",
+        steps: T => [
+          { t: `Van de <b>2 en 2</b>. Miramos el número antes del espacio: ${s[h - 1]}.`, b: BOARD.seq(s.map((x, i) => i === h ? "⬜" : x), { diffs: s.slice(1).map((x, i) => (i === h || i + 1 === h) ? null : 2) }) },
+          { t: `${s[h - 1]} + 2 = ${ans}. Comprobamos: ${ans} + 2 = ${s[h + 1]}. ✅`, b: BOARD.seq(s, { diffs: [2, 2, 2, 2], hl: h }) },
+          { t: `Falta el <b>${ans}</b>.` }
+        ] }; },
     () => { const n = 2 * between(5, 20) + rnd(2), par = n % 2 === 0, ans = par ? n + 2 : n + 2;
-      return { prompt: `¿Cuál es el siguiente número <b>${par ? "par" : "impar"}</b> después de ${n}?`, say: `¿Cuál es el siguiente número ${par ? "par" : "impar"} después de ${n}?`, scene: "", ans, opts: numOpts(ans, [n + 1, n + 3, n - 2], 0), why: `${n} + 2 = ${ans}.`, hint: "Los pares (o impares) van saltando de 2 en 2." }; },
+      return { prompt: `¿Cuál es el siguiente número <b>${par ? "par" : "impar"}</b> después de ${n}?`, say: `¿Cuál es el siguiente número ${par ? "par" : "impar"} después de ${n}?`, scene: "", ans, opts: numOpts(ans, [n + 1, n + 3, n - 2], 0), why: `${n} + 2 = ${ans}.`, hint: "Los pares (o impares) van saltando de 2 en 2.",
+        steps: T => [
+          { t: `${n} es <b>${par ? "par" : "impar"}</b> (termina en ${n % 10}). Los ${par ? "pares" : "impares"} van de 2 en 2.` },
+          { t: `Saltamos de 1 en 1: ${n + 1} es ${par ? "impar" : "par"} (no sirve), ${n + 2} es ${par ? "par" : "impar"} ✅.`, b: BOARD.jumps(n, [1, 1], { pad: 1 }) },
+          { t: `El siguiente ${par ? "par" : "impar"} es <b>${ans}</b>.` }
+        ],
+        err: w => w === n + 1 ? `${n + 1} es ${par ? "impar" : "par"}.` : "" }; },
   ],
   [
     () => { const k = between(3, 6), ans = k * k;
-      return { prompt: `¿Cuánto suman los <b>${k}</b> primeros números impares?`, say: `¿Cuánto suman los ${k} primeros números impares?`, scene: `<div class="seq">${Array.from({ length: k }, (_, i) => 2 * i + 1).join(" + ")}</div>`, ans, opts: numOpts(ans, [ans + 1, ans - 1, k * (k + 1)], 0), why: `${Array.from({ length: k }, (_, i) => 2 * i + 1).join(" + ")} = ${ans}.`, hint: "Súmalos de dos en dos." }; },
+      return { prompt: `¿Cuánto suman los <b>${k}</b> primeros números impares?`, say: `¿Cuánto suman los ${k} primeros números impares?`, scene: `<div class="seq">${Array.from({ length: k }, (_, i) => 2 * i + 1).join(" + ")}</div>`, ans, opts: numOpts(ans, [ans + 1, ans - 1, k * (k + 1)], 0), why: `${Array.from({ length: k }, (_, i) => 2 * i + 1).join(" + ")} = ${ans}.`, hint: "Súmalos de dos en dos.",
+        steps: T => { const L = Array.from({ length: k }, (_, i) => 2 * i + 1), acc = L.map((_, i) => (i + 1) * (i + 1));
+          return [
+            { t: `Sumamos poco a poco y miramos qué pasa:`, b: BOARD.lines(L.map((x, i) => `${L.slice(0, i + 1).join(" + ")} = ${acc[i]}`), { step: .8 }) },
+            { t: `¡Salen 1, 4, 9, 16…! La suma de los primeros impares da un número «cuadrado»: ${k} × ${k}.` },
+            { t: `Los ${k} primeros impares suman <b>${ans}</b>.` }
+          ]; } }; },
     () => { const a = between(10, 30), b = a + between(6, 10), ev = rnd(2), list = []; for (let x = a + 1; x < b; x++) if ((x % 2 === 0) === !!ev) list.push(x); const ans = list.length;
-      return { prompt: `¿Cuántos números <b>${ev ? "pares" : "impares"}</b> hay entre ${a} y ${b}?`, say: `¿Cuántos números ${ev ? "pares" : "impares"} hay entre ${a} y ${b}?`, scene: "", ans, opts: numOpts(ans, [ans + 1, ans - 1, b - a - 1], 0), why: `Son ${list.join(", ")}: ${ans}.`, hint: `Escribe los números entre ${a} y ${b}, sin contar ${a} ni ${b}.` }; },
+      return { prompt: `¿Cuántos números <b>${ev ? "pares" : "impares"}</b> hay entre ${a} y ${b}?`, say: `¿Cuántos números ${ev ? "pares" : "impares"} hay entre ${a} y ${b}?`, scene: "", ans, opts: numOpts(ans, [ans + 1, ans - 1, b - a - 1], 0), why: `Son ${list.join(", ")}: ${ans}.`, hint: `Escribe los números entre ${a} y ${b}, sin contar ${a} ni ${b}.`,
+        steps: T => [
+          { t: `«Entre ${a} y ${b}» quiere decir sin contar ni el ${a} ni el ${b}. Buscamos los ${ev ? "pares" : "impares"}.` },
+          { t: `Los escribimos y marcamos:`, b: BOARD.seq(Array.from({ length: b - a - 1 }, (_, i) => a + 1 + i).map(x => list.includes(x) ? `<b style="color:#16a34a">${x}</b>` : `<span style="opacity:.35">${x}</span>`), { diffs: Array(b - a - 2).fill(null) }) },
+          { t: `Son ${list.join(", ")}: <b>${ans}</b>.` }
+        ],
+        err: w => w === b - a - 1 ? "Contaste todos los números; solo piden los " + (ev ? "pares." : "impares.") : "" }; },
   ]
 ];
 lesson({ n: 40, title: "Patrones con números pares e impares", short: "Patrones pares", char: "bimba", music: "pop", deco: ["2️⃣", "4️⃣", "1️⃣", "3️⃣"],

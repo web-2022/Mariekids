@@ -11,24 +11,62 @@ function poly(k, c) {
 const GEN = [
   [
     () => { const n = pick(Object.keys(SH));
-      return { prompt: "¿Cómo se llama esta figura?", say: "¿Cómo se llama esta figura?", scene: shape(n), ans: n, opts: shuffle([n, ...sample(Object.keys(SH).filter(x => x !== n), 3)]), cols: 2, cls: "grp", why: `Es un ${n}.`, hint: "Cuenta sus lados y mira si son iguales." }; },
+      return { prompt: "¿Cómo se llama esta figura?", say: "¿Cómo se llama esta figura?", scene: shape(n), ans: n, opts: shuffle([n, ...sample(Object.keys(SH).filter(x => x !== n), 3)]), cols: 2, cls: "grp", why: `Es un ${n}.`, hint: "Cuenta sus lados y mira si son iguales.",
+        steps: T => { const shp = T.sc.querySelector("svg > *"), L = LADOS[n], que = { círculo: "No tiene lados rectos ni puntas: es <b>redondo</b>. Es un <b>círculo</b>.", triángulo: "Tiene <b>3 lados</b>: es un <b>triángulo</b> («tri» = tres).", cuadrado: "Tiene <b>4 lados iguales</b> y esquinas rectas: es un <b>cuadrado</b>.", rectángulo: "Tiene <b>4 lados</b>: 2 largos y 2 cortos, con esquinas rectas: es un <b>rectángulo</b>.", rombo: "Tiene <b>4 lados iguales</b> pero está inclinado, como una cometa: es un <b>rombo</b>.", pentágono: "Tiene <b>5 lados</b>: es un <b>pentágono</b> («penta» = cinco).", hexágono: "Tiene <b>6 lados</b>: es un <b>hexágono</b> («hexa» = seis), como las celdas de las abejas." }[n];
+          return [
+            { t: `Para reconocer una figura, contamos sus <b>lados</b> (las rayitas rectas) y miramos si son iguales.` },
+            L ? { t: `Recorremos el borde y contamos los lados:`, go: T.edges(shp) } : { t: `Recorremos el borde: ¡no encontramos ninguna rayita recta ni ninguna punta!` },
+            { t: que }
+          ]; } }; },
   ],
   [
     () => { const [e, n] = pick(CU);
-      return { prompt: `¿A qué cuerpo geométrico se parece ${e}?`, say: "¿A qué cuerpo geométrico se parece?", scene: `<div class="big-num">${e}</div>`, ans: n, opts: shuffle([n, ...sample(CU.filter(x => x[1] !== n).map(x => x[1]), 3)]), cols: 2, cls: "grp", why: `${e} tiene forma de ${n}.`, hint: "¿Rueda? ¿Tiene puntas? ¿Tiene caras planas?" }; },
+      return { prompt: `¿A qué cuerpo geométrico se parece ${e}?`, say: "¿A qué cuerpo geométrico se parece?", scene: `<div class="big-num">${e}</div>`, ans: n, opts: shuffle([n, ...sample(CU.filter(x => x[1] !== n).map(x => x[1]), 3)]), cols: 2, cls: "grp", why: `${e} tiene forma de ${n}.`, hint: "¿Rueda? ¿Tiene puntas? ¿Tiene caras planas?",
+        steps: T => { const D = { cubo: "tiene caras planas cuadradas y puntas, como un dado: es un <b>cubo</b>.", esfera: "es redonda por todos lados y rueda en todas las direcciones, como una pelota: es una <b>esfera</b>.", cilindro: "tiene dos caras redondas planas (arriba y abajo) y rueda de costado, como una lata: es un <b>cilindro</b>.", cono: "tiene una base redonda y termina en punta, como un barquillo: es un <b>cono</b>.", prisma: "tiene caras planas rectangulares, como una caja: es un <b>prisma</b>." };
+          return [
+            { t: `Imaginamos ${e} en nuestras manos: ¿rueda? ¿tiene puntas? ¿tiene caras planas?` },
+            { t: `${e} ${D[n]}` },
+            { t: `Se parece a un <b>${n}</b>.` }
+          ]; } }; },
     () => { const n = pick(["triángulo", "cuadrado", "rectángulo", "pentágono", "hexágono"]), ans = LADOS[n], t = pick(["lados", "vértices"]);
-      return { prompt: `¿Cuántos <b>${t}</b> tiene un ${n}?`, say: `¿Cuántos ${t} tiene un ${n}?`, scene: shape(n, "#fde68a"), ans, opts: [3, 4, 5, 6], cols: 4, why: `El ${n} tiene ${ans} ${t}.`, hint: t === "lados" ? "Los lados son las rayitas." : "Los vértices son las puntas." }; },
+      return { prompt: `¿Cuántos <b>${t}</b> tiene un ${n}?`, say: `¿Cuántos ${t} tiene un ${n}?`, scene: shape(n, "#fde68a"), ans, opts: [3, 4, 5, 6], cols: 4, why: `El ${n} tiene ${ans} ${t}.`, hint: t === "lados" ? "Los lados son las rayitas." : "Los vértices son las puntas.",
+        steps: T => { const shp = T.sc.querySelector("svg > *");
+          return [
+            { t: t === "lados" ? `Los <b>lados</b> son las rayitas rectas del borde. Los contamos uno por uno:` : `Los <b>vértices</b> son las <b>puntas</b>, donde se juntan dos lados. Los contamos:`, go: T.edges(shp, { vertices: t === "vértices" }) },
+            { t: `El ${n} tiene ${ans} ${t}.` },
+            { t: `Ojo: en una figura plana hay tantos vértices como lados. La respuesta es <b>${ans}</b>.` }
+          ]; } }; },
   ],
   [
     () => { const q = pick([["¿Qué cuerpo tiene una sola cara curva y una punta?", "cono"], ["¿Qué cuerpo no tiene caras planas y rueda en todas las direcciones?", "esfera"], ["¿Qué cuerpo tiene 6 caras cuadradas iguales?", "cubo"], ["¿Qué cuerpo tiene 2 caras planas redondas?", "cilindro"]]);
-      return { prompt: q[0], say: q[0], scene: line(CU.map(x => x[0])), ans: q[1], opts: CU.map(x => x[1]).slice(0, 4).includes(q[1]) ? CU.map(x => x[1]).slice(0, 4) : [q[1], ...CU.map(x => x[1]).slice(0, 3)], cols: 2, cls: "grp", why: `Es el ${q[1]}.`, hint: "Imagina cada cuerpo en tus manos." }; },
+      return { prompt: q[0], say: q[0], scene: line(CU.map(x => x[0])), ans: q[1], opts: CU.map(x => x[1]).slice(0, 4).includes(q[1]) ? CU.map(x => x[1]).slice(0, 4) : [q[1], ...CU.map(x => x[1]).slice(0, 3)], cols: 2, cls: "grp", why: `Es el ${q[1]}.`, hint: "Imagina cada cuerpo en tus manos.",
+        steps: T => { const D = { cono: "una cara curva y una punta (como 🍦)", esfera: "nada plano; rueda en todas las direcciones (como ⚽)", cubo: "6 caras cuadradas iguales (como 🎲)", cilindro: "2 caras planas redondas y rueda de costado (como 🥫)" };
+          return [
+            { t: `Leemos la pista con calma y pensamos en cada cuerpo:`, b: BOARD.table([["Cuerpo", "Cómo es"], ["🍦 cono", "1 punta"], ["⚽ esfera", "redonda, sin caras planas"], ["🎲 cubo", "6 caras cuadradas"], ["🥫 cilindro", "2 caras redondas"]]) },
+            { t: `El que tiene ${D[q[1]]} es el ${q[1]}.` },
+            { t: `La respuesta es <b>${q[1]}</b>.` }
+          ]; } }; },
     () => { const want = pick([5, 6]), nm = want === 5 ? "pentágonos" : "hexágonos", k = between(1, 3), otros = Array.from({ length: between(3, 4) }, () => pick([3, 4, 11 - want])), ans = k;
       const figs = shuffle([...Array(k).fill(want), ...otros]);
-      return { prompt: `¿Cuántos <b>${nm}</b> hay? (${nm} = figuras de <b>${want}</b> lados)`, say: `¿Cuántos ${nm} hay? Un ${want === 5 ? "pentágono" : "hexágono"} tiene ${want} lados.`, scene: `<div class="line">${figs.map(n => poly(n, pick(["#fde68a", "#bae6fd", "#bbf7d0", "#fbcfe8"]))).join("")}</div>`,
-        ans, opts: numOpts(ans, [figs.length, ans + 1, figs.filter(x => x === 11 - want).length].filter(x => x !== ans), 0), why: `Contando los lados de cada figura, hay ${ans} con ${want} lados.`, hint: "Cuenta los lados de cada figura con tu dedo." }; },
+      return { prompt: `¿Cuántos <b>${nm}</b> hay? (${nm} = figuras de <b>${want}</b> lados)`, say: `¿Cuántos ${nm} hay? Un ${want === 5 ? "pentágono" : "hexágono"} tiene ${want} lados.`, scene: `<div class="line">${figs.map(n => `<span class="it" data-k="${n}">${poly(n, pick(["#fde68a", "#bae6fd", "#bbf7d0", "#fbcfe8"]))}</span>`).join("")}</div>`,
+        ans, opts: numOpts(ans, [figs.length, ans + 1, figs.filter(x => x === 11 - want).length].filter(x => x !== ans), 0), why: `Contando los lados de cada figura, hay ${ans} con ${want} lados.`, hint: "Cuenta los lados de cada figura con tu dedo.",
+        steps: T => { const its = T.its();
+          return [
+            { t: `Un ${want === 5 ? "pentágono" : "hexágono"} tiene <b>${want}</b> lados. Contamos los lados de cada figura y le ponemos su número:`, go: T.count(its, { label: (i, el) => el.dataset.k, say: (i, el) => el.dataset.k + " lados", ms: 1100 }) },
+            { t: `Apagamos las que no tienen ${want} lados:`, go: d => { T.dim(its.filter(x => +x.dataset.k !== want)); setTimeout(d, 700); } },
+            { t: `Quedan <b>${ans}</b> ${nm}.` }
+          ]; },
+        err: w => w === figs.length ? "Contaste todas las figuras; solo piden las de " + want + " lados." : "" }; },
     () => { const t = between(1, 3), c = between(1, 3), r = between(0, 2), ans = 3 * t + 4 * c + 4 * r;
-      return { prompt: "¿Cuántos <b>lados</b> tienen en total estas figuras?", say: "Suma los lados de todas las figuras.", scene: `<div class="line">${[...Array(t).fill("triángulo"), ...Array(c).fill("cuadrado"), ...Array(r).fill("rectángulo")].map(n => shape(n).replace('width="90"', 'width="56"')).join("")}</div>`, ans, opts: numOpts(ans, [t + c + r, ans + 1, ans - 3], 1),
-        why: `Triángulos ${t} × 3 = ${3 * t}; cuadriláteros ${c + r} × 4 = ${4 * (c + r)}. Total ${ans}.`, hint: "El triángulo tiene 3 lados; el cuadrado y el rectángulo, 4." }; },
+      return { prompt: "¿Cuántos <b>lados</b> tienen en total estas figuras?", say: "Suma los lados de todas las figuras.", scene: `<div class="line">${[...Array(t).fill("triángulo"), ...Array(c).fill("cuadrado"), ...Array(r).fill("rectángulo")].map(n => `<span class="it" data-k="${LADOS[n]}">${shape(n).replace('width="90"', 'width="56"')}</span>`).join("")}</div>`, ans, opts: numOpts(ans, [t + c + r, ans + 1, ans - 3], 1),
+        why: `Triángulos ${t} × 3 = ${3 * t}; cuadriláteros ${c + r} × 4 = ${4 * (c + r)}. Total ${ans}.`, hint: "El triángulo tiene 3 lados; el cuadrado y el rectángulo, 4.",
+        steps: T => { const its = T.its(), L = its.map(x => +x.dataset.k), acc = L.map((_, i) => L.slice(0, i + 1).reduce((p, q) => p + q, 0));
+          return [
+            { t: `El triángulo tiene <b>3</b> lados; el cuadrado y el rectángulo tienen <b>4</b>.` },
+            { t: `Vamos sumando los lados figura por figura:`, go: T.count(its, { label: i => String(acc[i - 1]), say: i => String(acc[i - 1]), cls: "t-big", ms: 1100 }) },
+            { t: `${L.join(" + ")} = <b>${ans}</b> lados.`, b: BOARD.lines([`${t} × 3 = ${3 * t}`, `${c + r} × 4 = ${4 * (c + r)}`, `${3 * t} + ${4 * (c + r)} = ${ans}`]) }
+          ]; },
+        err: w => w === t + c + r ? "Contaste figuras; piden lados." : "" }; },
   ]
 ];
 lesson({ n: 47, title: "Figuras planas y cuerpos geométricos", short: "Figuras y cuerpos", char: "lula", music: "espacial", deco: ["🔵", "🔺", "🟦", "🎲"],

@@ -891,6 +891,73 @@ function tutKit(sc, tok) {
       };
       step();
     },
+    // recorre los lados (o vértices) de una figura SVG (path M…L…Z, rect o polygon): pinta cada lado y lo numera
+    edges: (shp, o = {}) => done => {
+      const NS = "http://www.w3.org/2000/svg", svg = shp.ownerSVGElement;
+      let P = [];
+      if (shp.tagName === "rect") { const x = +shp.getAttribute("x"), y = +shp.getAttribute("y"), w = +shp.getAttribute("width"), h = +shp.getAttribute("height"); P = [[x, y], [x + w, y], [x + w, y + h], [x, y + h]]; }
+      else { const nums = (shp.getAttribute("d") || shp.getAttribute("points") || "").match(/-?[\d.]+/g).map(Number); for (let i = 0; i + 1 < nums.length; i += 2) P.push([nums[i], nums[i + 1]]); }
+      let k = 0;
+      const dot = (x, y, txt, c) => { const g = document.createElementNS(NS, "g"), ci = document.createElementNS(NS, "circle"), t = document.createElementNS(NS, "text");
+        g.setAttribute("class", "t-num t-svgb"); ci.setAttribute("cx", x); ci.setAttribute("cy", y); ci.setAttribute("r", o.r || 9); ci.setAttribute("fill", c); ci.setAttribute("stroke", "#fff"); ci.setAttribute("stroke-width", 2);
+        t.setAttribute("x", x); t.setAttribute("y", y + 4.5); t.setAttribute("text-anchor", "middle"); t.setAttribute("font-size", o.fs || 13); t.setAttribute("font-weight", 900); t.setAttribute("fill", "#fff"); t.textContent = txt; g.append(ci, t); svg.appendChild(g); };
+      const step = () => {
+        if (!alive()) return;
+        if (k >= P.length) { setTimeout(() => alive() && done(), 350); return; }
+        const a = P[k], b = P[(k + 1) % P.length]; k++;
+        const lab = o.label ? o.label(k) : String(k);
+        if (o.vertices) dot(a[0], a[1], lab, "#16a34a");
+        else { const ln = document.createElementNS(NS, "line"); ln.setAttribute("x1", a[0]); ln.setAttribute("y1", a[1]); ln.setAttribute("x2", b[0]); ln.setAttribute("y2", b[1]); ln.setAttribute("stroke", "#e11d48"); ln.setAttribute("stroke-width", o.sw || 6); ln.setAttribute("stroke-linecap", "round"); ln.setAttribute("class", "t-num"); svg.appendChild(ln);
+          dot((a[0] + b[0]) / 2, (a[1] + b[1]) / 2, lab, "#e11d48"); }
+        tutSay(o.say ? o.say(k) : lab); setTimeout(step, o.ms || 800);
+      };
+      step();
+    },
+    // trazos numerados sobre un dibujo SVG: segs = [[x1, y1, x2, y2], …]
+    strokes: (svg, segs, o = {}) => done => {
+      const NS = "http://www.w3.org/2000/svg"; let k = 0;
+      const step = () => {
+        if (!alive()) return;
+        if (k >= segs.length) { setTimeout(() => alive() && done(), 300); return; }
+        const [x1, y1, x2, y2] = segs[k++], g = document.createElementNS(NS, "g"), mx = (x1 + x2) / 2, my = (y1 + y2) / 2, lab = o.label ? o.label(k) : k;
+        g.setAttribute("class", "t-num t-svgb");
+        g.innerHTML = `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#e11d48" stroke-width="${o.sw || 6}" stroke-linecap="round"/><circle cx="${mx}" cy="${my}" r="${o.r || 9}" fill="#e11d48" stroke="#fff" stroke-width="2"/><text x="${mx}" y="${my + 4}" text-anchor="middle" font-size="${o.fs || 11}" font-weight="900" fill="#fff" stroke="none">${lab}</text>`;
+        svg.appendChild(g); tutSay(o.say ? o.say(k) : String(lab)); setTimeout(step, o.ms || 650);
+      };
+      step();
+    },
+    // puntos numerados sobre un dibujo SVG, en coordenadas del dibujo: pts = [[x, y], …]
+    dots: (svg, pts, o = {}) => done => {
+      const NS = "http://www.w3.org/2000/svg"; let k = 0;
+      const step = () => {
+        if (!alive()) return;
+        if (k >= pts.length) { setTimeout(() => alive() && done(), 300); return; }
+        const [x, y] = pts[k++], g = document.createElementNS(NS, "g");
+        g.setAttribute("class", "t-num t-svgb");
+        g.innerHTML = `<circle cx="${x}" cy="${y}" r="${o.r || 10}" fill="${o.c || "#e11d48"}" stroke="#fff" stroke-width="2"/><text x="${x}" y="${y + 4.5}" text-anchor="middle" font-size="${o.fs || 13}" font-weight="900" fill="#fff" stroke="none">${o.label ? o.label(k) : k}</text>`;
+        svg.appendChild(g); tutSay(o.say ? o.say(k) : String(k)); setTimeout(step, o.ms || 750);
+      };
+      step();
+    },
+    // muestra figuras escondidas una por una (formas SVG sobre el dibujo) y las va contando
+    flash: (shapes, o = {}) => done => {
+      const svg = sc.querySelector("svg"), NS = "http://www.w3.org/2000/svg", C = ["#f59e0b", "#22c55e", "#3b82f6", "#ec4899", "#8b5cf6", "#14b8a6", "#ef4444"];
+      const vb = svg.viewBox.baseVal, cnt = document.createElementNS(NS, "text");
+      cnt.setAttribute("x", vb.x + vb.width - 4); cnt.setAttribute("y", vb.y + Math.max(30, vb.height * .2)); cnt.setAttribute("text-anchor", "end"); cnt.setAttribute("font-size", Math.max(30, vb.height * .2)); cnt.setAttribute("font-weight", 900);
+      cnt.setAttribute("fill", "#e11d48"); cnt.setAttribute("class", "t-num t-svgnum"); svg.appendChild(cnt);
+      let k = 0, cur = null;
+      const step = () => {
+        if (!alive()) return;
+        if (cur) cur.remove();
+        if (k >= shapes.length) { setTimeout(() => alive() && done(), 300); return; }
+        const sh = shapes[k], c = sh.c || C[(sh.g ?? k) % C.length]; k++;
+        cur = document.createElementNS(NS, "g"); cur.setAttribute("class", "t-num"); cur.innerHTML = sh.svg;
+        [...cur.children].forEach(x => { x.setAttribute("fill", c); x.setAttribute("fill-opacity", sh.line ? 1 : .5); x.setAttribute("stroke", c); x.setAttribute("stroke-width", sh.line ? 8 : 5); x.setAttribute("stroke-linecap", "round"); });
+        svg.insertBefore(cur, cnt); cnt.textContent = String(k);
+        tutSay(o.say ? o.say(k, sh) : String(k)); setTimeout(step, o.ms || 950);
+      };
+      step();
+    },
     // encierra de g en g (grupos de igual cantidad), con color y número de grupo
     chunks: (els, g, o = {}) => done => {
       const C = ["#f59e0b", "#22c55e", "#3b82f6", "#ec4899", "#8b5cf6", "#14b8a6", "#ef4444", "#84cc16"];
@@ -1027,6 +1094,32 @@ function saltosHasta(a, b) {
   while (v < b) { out.push(1); v++; }
   return out;
 }
+
+// figuras escondidas en los dibujos de conteo (para el tutor): listas de { svg, g (grupo/tamaño) }
+const FIG = {
+  triFan(m, h) {
+    const A = [150, 14], L = [20, 200], R = [280, 200], lp = (p, q, t) => [p[0] + (q[0] - p[0]) * t, p[1] + (q[1] - p[1]) * t], out = [];
+    for (let lev = h + 1; lev >= 1; lev--) { const t = lev / (h + 1), p = lp(A, L, t), q = lp(A, R, t);
+      for (let sz = 1; sz <= m; sz++) for (let i = 0; i + sz <= m; i++) { const a = lp(p, q, i / m), b = lp(p, q, (i + sz) / m); out.push({ svg: `<path d="M${A} L${a} L${b}Z"/>`, g: sz - 1, sz, lev }); } }
+    return out;
+  },
+  rects(r, c) {
+    const W = 260, H = 60 * r, out = [];
+    for (let hh = 1; hh <= r; hh++) for (let ww = 1; ww <= c; ww++) for (let y = 0; y + hh <= r; y++) for (let x = 0; x + ww <= c; x++)
+      out.push({ svg: `<rect x="${10 + W * x / c}" y="${10 + H * y / r}" width="${W * ww / c}" height="${H * hh / r}"/>`, g: ww - 1 + (hh - 1) * c, ww, hh });
+    return out;
+  },
+  squares(n) {
+    const S = 180, c = S / n, out = [];
+    for (let z = 1; z <= n; z++) for (let y = 0; y + z <= n; y++) for (let x = 0; x + z <= n; x++) out.push({ svg: `<rect x="${10 + c * x}" y="${10 + c * y}" width="${c * z}" height="${c * z}"/>`, g: z - 1, z });
+    return out;
+  },
+  segs(p) {
+    const X = i => 20 + 260 * i / (p - 1), N = "ABCDEFGH", out = [];
+    for (let i = 0; i < p; i++) for (let j = i + 1; j < p; j++) out.push({ svg: `<line x1="${X(i)}" y1="30" x2="${X(j)}" y2="30"/>`, g: i, line: true, name: N[i] + N[j] });
+    return out;
+  }
+};
 
 /* ---------- Pizarra del tutor: dibujos que aparecen poco a poco ----------
    Cada pieza con style="--d:Xs" aparece con retraso X (animación .tb-in). */
@@ -1349,47 +1442,107 @@ const GEN = [
     () => { const e = pick(CAJ), a = between(2, 5), b = between(1, 4), ans = a + b;
       return { prompt: `${a} ${e} + ${b} ${e} = ¿cuántas ${e}?`, say: `${a} cajitas más ${b} cajitas. ¿Cuántas cajitas hay en total?`,
         scene: line([...em(e, a), "➕", ...em(e, b)]), ans, opts: numOpts(ans, [ans + 1, ans - 1, a * b], 1),
-        why: `${a} + ${b} = ${ans} cajitas.`, hint: "Cuenta todas las cajitas juntas." }; },
+        why: `${a} + ${b} = ${ans} cajitas.`, hint: "Cuenta todas las cajitas juntas.",
+        steps: T => [
+          { t: `Contamos las cajitas del primer grupo y seguimos contando con el segundo:`, go: T.count(T.its().filter(x => x.textContent.includes(e))) },
+          { t: `${a} + ${b} = <b>${ans}</b> cajitas.` },
+          { t: `Esto mismo, con letras, se escribe: ${a}x + ${b}x = ${ans}x.`, b: BOARD.lines([`${a} ${e} + ${b} ${e} = ${ans} ${e}`, `${a}x + ${b}x = ${ans}x`]) }
+        ],
+        err: w => w === a * b ? "Multiplicaste; hay que juntar (sumar)." : "" }; },
     () => { const e = pick(CAJ), v = pick(LTRS), a = between(2, 5), b = between(2, 4), c = a + b, ans = c + v;
       return { prompt: `Si cada ${e} es una «${v}», ¿cuánto es <b>${a}${v} + ${b}${v}</b>?`, say: `Si cada cajita es una ${v}, ¿cuánto es ${a} ${v} más ${b} ${v}?`,
         scene: line([...em(e, a), "➕", ...em(e, b)]), ans, opts: lOpts(c, v, [String(c), (a * b) + v, (c + 1) + v]), cols: 2,
-        why: `${a} cajitas más ${b} cajitas son ${c} cajitas: ${a}${v} + ${b}${v} = ${ans}.`, hint: "Suma los números; la letra se queda igual." }; },
+        why: `${a} cajitas más ${b} cajitas son ${c} cajitas: ${a}${v} + ${b}${v} = ${ans}.`, hint: "Suma los números; la letra se queda igual.",
+        steps: T => [
+          { t: `La letra «${v}» es como una cajita ${e}. ${a}${v} son ${a} cajitas y ${b}${v} son ${b} cajitas.`, go: T.count(T.its().filter(x => x.textContent.includes(e))) },
+          { t: `Juntamos: ${a} cajitas + ${b} cajitas = ${c} cajitas. La letra no cambia: siguen siendo cajitas.`, b: BOARD.lines([`${a}${v} + ${b}${v}`, `= (${a} + ${b})${v}`, `= ${c}${v}`], { step: .9 }) },
+          { t: `${a}${v} + ${b}${v} = <b>${ans}</b>.` }
+        ],
+        err: w => w === String(c) ? "¡Olvidaste la letra! Son cajitas: hay que escribirla." : w === (a * b) + v ? "Multiplicaste; hay que sumar los números." : "" }; },
     () => { const v = pick(LTRS), a = between(2, 7), b = between(2, 7), c = a + b, ans = c + v;
       return { prompt: `Halla la suma: <b>${a}${v} + ${b}${v}</b>`, say: `Halla la suma de ${a} ${v} más ${b} ${v}.`, scene: "",
         ans, opts: lOpts(c, v, [String(c), (c + 2) + v, (c - 1) + v]), cols: 2,
-        why: `${a} + ${b} = ${c}, entonces ${ans}.`, hint: "Suma solo los números y escribe la letra al final." }; },
+        why: `${a} + ${b} = ${c}, entonces ${ans}.`, hint: "Suma solo los números y escribe la letra al final.",
+        steps: T => [
+          { t: `Se suman <b>solo los números</b>; la letra «${v}» se queda igual, como un apellido.` },
+          { t: `${a} + ${b} = ${c}.`, b: BOARD.lines([`${a}${v} + ${b}${v} = (${a} + ${b})${v} = ${c}${v}`]) },
+          { t: `La suma es <b>${ans}</b>.` }
+        ],
+        err: w => w === String(c) ? "Falta escribir la letra." : "" }; },
   ],
   [ // Intermedio: tres sumandos y restas
     () => { const v = pick(LTRS), cs = [between(2, 6), between(2, 6), between(2, 5)], c = cs[0] + cs[1] + cs[2], ans = c + v;
       return { prompt: `Halla la suma: <b>${termsTxt(cs, v)}</b>`, say: `Halla la suma de ${termsSay(cs, v)}.`, scene: "",
         ans, opts: lOpts(c, v, [String(c), (c - cs[2]) + v, (c + 2) + v]), cols: 2,
-        why: `${cs.join(" + ")} = ${c}, entonces ${ans}.`, hint: "Suma los tres números." }; },
+        why: `${cs.join(" + ")} = ${c}, entonces ${ans}.`, hint: "Suma los tres números.",
+        steps: T => [
+          { t: `Hay tres términos con la misma letra «${v}». Sumamos solo los números.` },
+          { t: `${cs.join(" + ")}: de dos en dos.`, b: BOARD.lines([`${cs[0]} + ${cs[1]} = ${cs[0] + cs[1]}`, `${cs[0] + cs[1]} + ${cs[2]} = ${c}`]) },
+          { t: `${termsTxt(cs, v)} = <b>${ans}</b>.` }
+        ],
+        err: w => w === String(c) ? "Falta escribir la letra." : "" }; },
     () => { const v = pick(LTRS), b = between(2, 6), c = between(2, 7), a = b + c, ans = c + v;
       return { prompt: `Resta: <b>${a}${v} − ${b}${v}</b>`, say: `Resta ${a} ${v} menos ${b} ${v}.`, scene: "",
         ans, opts: lOpts(c, v, [(a + b) + v, String(c), (c + 1) + v]), cols: 2,
-        why: `${a} − ${b} = ${c}, entonces ${ans}.`, hint: "Resta los números; la letra se queda igual." }; },
+        why: `${a} − ${b} = ${c}, entonces ${ans}.`, hint: "Resta los números; la letra se queda igual.",
+        steps: T => [
+          { t: `En la resta pasa lo mismo: restamos <b>solo los números</b> y la letra «${v}» se queda.` },
+          { t: `${a} − ${b} = ${c}.`, b: BOARD.lines([`${a}${v} − ${b}${v} = (${a} − ${b})${v} = ${c}${v}`]) },
+          { t: `El resultado es <b>${ans}</b>.` }
+        ],
+        err: w => w === (a + b) + v ? "Sumaste; el signo es −." : "" }; },
     () => { const e = pick(CAJ), a = between(4, 8), b = between(2, a - 2), ans = a - b;
       return { prompt: `Había ${a} ${e} y se llevaron ${b} ${e}. ¿Cuántas ${e} quedan?`, say: `Había ${a} cajitas y se llevaron ${b}. ¿Cuántas quedan?`,
         scene: line([...em(e, a)]), ans, opts: numOpts(ans, [a + b, ans + 1, ans - 1], 0),
-        why: `${a} − ${b} = ${ans}. Es como ${a}x − ${b}x = ${ans}x.`, hint: "Quita las que se llevaron." }; },
+        why: `${a} − ${b} = ${ans}. Es como ${a}x − ${b}x = ${ans}x.`, hint: "Quita las que se llevaron.",
+        steps: T => [
+          { t: `Había ${a} cajitas ${e}. Se llevaron ${b}: quitamos ${b}.`, go: d => { T.dim(T.its().slice(a - b)); setTimeout(d, 700); } },
+          { t: `Contamos las que quedan:`, go: T.count(T.its().slice(0, a - b)) },
+          { t: `${a} − ${b} = <b>${ans}</b>. Con letras: ${a}x − ${b}x = ${ans}x.` }
+        ],
+        err: w => w === a + b ? "Sumaste; si se llevan, quedan menos." : "" }; },
   ],
   [ // Reto concurso
     () => { const v = pick(LTRS), k = between(2, 3) + 1, cs = Array.from({ length: k }, () => 2 * between(2, 8)), c = cs.reduce((a, b) => a + b, 0), ans = c + v;
       return { prompt: `Halla la suma: <b>${termsTxt(cs, v)}</b>`, say: `Halla la suma de ${termsSay(cs, v)}.`, scene: "",
         ans, opts: lOpts(c, v, [String(c), (c - 2) + v, (c + 4) + v]), cols: 2,
-        why: `${cs.join(" + ")} = ${c}, entonces ${ans}.`, hint: "Suma todos los números y deja la letra al final." }; },
+        why: `${cs.join(" + ")} = ${c}, entonces ${ans}.`, hint: "Suma todos los números y deja la letra al final.",
+        steps: T => [
+          { t: `Todos los términos tienen la letra «${v}». Sumamos los números: ${cs.join(" + ")}.` },
+          { t: `Sumamos de dos en dos:`, b: BOARD.lines(cs.slice(1).map((x2, i) => `${cs.slice(0, i + 1).reduce((p, q) => p + q, 0)} + ${x2} = ${cs.slice(0, i + 2).reduce((p, q) => p + q, 0)}`), { step: .8 }) },
+          { t: `${termsTxt(cs, v)} = <b>${ans}</b>.` }
+        ],
+        err: w => w === String(c) ? "¡Falta la letra!" : "" }; },
     () => { const v = pick(LTRS), a = between(2, 6), b = between(2, 6), c = a + b, s = between(2, c - 2), r = c - s, ans = r + v;
       return { prompt: `Reduce: <b>${a}${v} + ${b}${v} − ${s}${v}</b>`, say: `Reduce ${a} ${v} más ${b} ${v} menos ${s} ${v}.`, scene: "",
         ans, opts: lOpts(r, v, [(c + s) + v, c + v, String(r)]), cols: 2,
-        why: `${a} + ${b} = ${c}; ${c} − ${s} = ${r}. Entonces ${ans}.`, hint: "Primero suma, después resta." }; },
+        why: `${a} + ${b} = ${c}; ${c} − ${s} = ${r}. Entonces ${ans}.`, hint: "Primero suma, después resta.",
+        steps: T => [
+          { t: `Reducir es juntar en un solo término. Vamos en orden, de izquierda a derecha.` },
+          { t: `Primero sumamos: ${a}${v} + ${b}${v} = ${c}${v}. Después restamos: ${c}${v} − ${s}${v} = ${r}${v}.`, b: BOARD.lines([`${a} + ${b} = ${c}`, `${c} − ${s} = ${r}`]) },
+          { t: `El resultado es <b>${ans}</b>.` }
+        ],
+        err: w => w === (c + s) + v ? "El último término se <b>resta</b>." : w === c + v ? "Te faltó restar." : "" }; },
     () => { const v = pick(["x", "a"]), k = between(2, 5), x = between(2, 5), ans = k * x;
       return { prompt: `Si <b>${v} = ${x}</b>, ¿cuánto vale <b>${k}${v}</b>?`, say: `Si ${v} vale ${x}, ¿cuánto vale ${k} ${v}?`,
         scene: `<div class="legend">${k}${v} = ${Array(k).fill(v).join(" + ")}</div>`, ans, opts: numOpts(ans, [k + x, ans + x, ans - x], 1),
-        why: `${k}${v} es ${Array(k).fill(x).join(" + ")} = ${ans}.`, hint: `${k}${v} es sumar ${k} veces el ${x}.` }; },
+        why: `${k}${v} es ${Array(k).fill(x).join(" + ")} = ${ans}.`, hint: `${k}${v} es sumar ${k} veces el ${x}.`,
+        steps: T => [
+          { t: `${k}${v} quiere decir ${v} repetida ${k} veces: ${Array(k).fill(v).join(" + ")}.` },
+          { t: `Cambiamos cada ${v} por ${x}:`, b: BOARD.lines([`${k}${v} = ${Array(k).fill(v).join(" + ")}`, `= ${Array(k).fill(x).join(" + ")}`]) },
+          { t: `${Array(k).fill(x).join(" + ")} = <b>${ans}</b>.` }
+        ],
+        err: w => w === k + x ? `${k}${v} no es ${k} + ${x}: es ${x} repetido ${k} veces.` : "" }; },
     () => { const v = pick(LTRS), a = between(2, 7), b = between(2, 7), c = a + b, ans = b + v;
       return { prompt: `¿Qué falta? <b>${a}${v} + ___ = ${c}${v}</b>`, say: `¿Qué falta? ${a} ${v} más cuánto es igual a ${c} ${v}?`, scene: "",
         ans, opts: lOpts(b, v, [(c + a) + v, String(b), (b + 1) + v]), cols: 2,
-        why: `${c} − ${a} = ${b}, entonces falta ${ans}.`, hint: "Resta para hallar lo que falta." }; },
+        why: `${c} − ${a} = ${b}, entonces falta ${ans}.`, hint: "Resta para hallar lo que falta.",
+        steps: T => [
+          { t: `¿Qué le falta a ${a}${v} para llegar a ${c}${v}? Miramos solo los números: ¿cuánto le falta a ${a} para llegar a ${c}?` },
+          { t: `Contamos desde ${a} hasta ${c}:`, b: BOARD.jumps(a, Array(b).fill(1), { step: .3 }) },
+          { t: `Faltan ${b}: falta <b>${ans}</b>.` }
+        ],
+        err: w => w === String(b) ? "¡Falta la letra!" : w === (c + a) + v ? "Sumaste; hay que buscar lo que falta." : "" }; },
   ]
 ];
 lesson({ n: 62, next: 64, title: "Sumas con letras (inicio del álgebra)", short: "Sumas con letras", char: "mika", music: "kpop", deco: ["🎁", "➕", "🔤", "⭐"],

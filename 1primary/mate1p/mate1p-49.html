@@ -891,6 +891,73 @@ function tutKit(sc, tok) {
       };
       step();
     },
+    // recorre los lados (o vértices) de una figura SVG (path M…L…Z, rect o polygon): pinta cada lado y lo numera
+    edges: (shp, o = {}) => done => {
+      const NS = "http://www.w3.org/2000/svg", svg = shp.ownerSVGElement;
+      let P = [];
+      if (shp.tagName === "rect") { const x = +shp.getAttribute("x"), y = +shp.getAttribute("y"), w = +shp.getAttribute("width"), h = +shp.getAttribute("height"); P = [[x, y], [x + w, y], [x + w, y + h], [x, y + h]]; }
+      else { const nums = (shp.getAttribute("d") || shp.getAttribute("points") || "").match(/-?[\d.]+/g).map(Number); for (let i = 0; i + 1 < nums.length; i += 2) P.push([nums[i], nums[i + 1]]); }
+      let k = 0;
+      const dot = (x, y, txt, c) => { const g = document.createElementNS(NS, "g"), ci = document.createElementNS(NS, "circle"), t = document.createElementNS(NS, "text");
+        g.setAttribute("class", "t-num t-svgb"); ci.setAttribute("cx", x); ci.setAttribute("cy", y); ci.setAttribute("r", o.r || 9); ci.setAttribute("fill", c); ci.setAttribute("stroke", "#fff"); ci.setAttribute("stroke-width", 2);
+        t.setAttribute("x", x); t.setAttribute("y", y + 4.5); t.setAttribute("text-anchor", "middle"); t.setAttribute("font-size", o.fs || 13); t.setAttribute("font-weight", 900); t.setAttribute("fill", "#fff"); t.textContent = txt; g.append(ci, t); svg.appendChild(g); };
+      const step = () => {
+        if (!alive()) return;
+        if (k >= P.length) { setTimeout(() => alive() && done(), 350); return; }
+        const a = P[k], b = P[(k + 1) % P.length]; k++;
+        const lab = o.label ? o.label(k) : String(k);
+        if (o.vertices) dot(a[0], a[1], lab, "#16a34a");
+        else { const ln = document.createElementNS(NS, "line"); ln.setAttribute("x1", a[0]); ln.setAttribute("y1", a[1]); ln.setAttribute("x2", b[0]); ln.setAttribute("y2", b[1]); ln.setAttribute("stroke", "#e11d48"); ln.setAttribute("stroke-width", o.sw || 6); ln.setAttribute("stroke-linecap", "round"); ln.setAttribute("class", "t-num"); svg.appendChild(ln);
+          dot((a[0] + b[0]) / 2, (a[1] + b[1]) / 2, lab, "#e11d48"); }
+        tutSay(o.say ? o.say(k) : lab); setTimeout(step, o.ms || 800);
+      };
+      step();
+    },
+    // trazos numerados sobre un dibujo SVG: segs = [[x1, y1, x2, y2], …]
+    strokes: (svg, segs, o = {}) => done => {
+      const NS = "http://www.w3.org/2000/svg"; let k = 0;
+      const step = () => {
+        if (!alive()) return;
+        if (k >= segs.length) { setTimeout(() => alive() && done(), 300); return; }
+        const [x1, y1, x2, y2] = segs[k++], g = document.createElementNS(NS, "g"), mx = (x1 + x2) / 2, my = (y1 + y2) / 2, lab = o.label ? o.label(k) : k;
+        g.setAttribute("class", "t-num t-svgb");
+        g.innerHTML = `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#e11d48" stroke-width="${o.sw || 6}" stroke-linecap="round"/><circle cx="${mx}" cy="${my}" r="${o.r || 9}" fill="#e11d48" stroke="#fff" stroke-width="2"/><text x="${mx}" y="${my + 4}" text-anchor="middle" font-size="${o.fs || 11}" font-weight="900" fill="#fff" stroke="none">${lab}</text>`;
+        svg.appendChild(g); tutSay(o.say ? o.say(k) : String(lab)); setTimeout(step, o.ms || 650);
+      };
+      step();
+    },
+    // puntos numerados sobre un dibujo SVG, en coordenadas del dibujo: pts = [[x, y], …]
+    dots: (svg, pts, o = {}) => done => {
+      const NS = "http://www.w3.org/2000/svg"; let k = 0;
+      const step = () => {
+        if (!alive()) return;
+        if (k >= pts.length) { setTimeout(() => alive() && done(), 300); return; }
+        const [x, y] = pts[k++], g = document.createElementNS(NS, "g");
+        g.setAttribute("class", "t-num t-svgb");
+        g.innerHTML = `<circle cx="${x}" cy="${y}" r="${o.r || 10}" fill="${o.c || "#e11d48"}" stroke="#fff" stroke-width="2"/><text x="${x}" y="${y + 4.5}" text-anchor="middle" font-size="${o.fs || 13}" font-weight="900" fill="#fff" stroke="none">${o.label ? o.label(k) : k}</text>`;
+        svg.appendChild(g); tutSay(o.say ? o.say(k) : String(k)); setTimeout(step, o.ms || 750);
+      };
+      step();
+    },
+    // muestra figuras escondidas una por una (formas SVG sobre el dibujo) y las va contando
+    flash: (shapes, o = {}) => done => {
+      const svg = sc.querySelector("svg"), NS = "http://www.w3.org/2000/svg", C = ["#f59e0b", "#22c55e", "#3b82f6", "#ec4899", "#8b5cf6", "#14b8a6", "#ef4444"];
+      const vb = svg.viewBox.baseVal, cnt = document.createElementNS(NS, "text");
+      cnt.setAttribute("x", vb.x + vb.width - 4); cnt.setAttribute("y", vb.y + Math.max(30, vb.height * .2)); cnt.setAttribute("text-anchor", "end"); cnt.setAttribute("font-size", Math.max(30, vb.height * .2)); cnt.setAttribute("font-weight", 900);
+      cnt.setAttribute("fill", "#e11d48"); cnt.setAttribute("class", "t-num t-svgnum"); svg.appendChild(cnt);
+      let k = 0, cur = null;
+      const step = () => {
+        if (!alive()) return;
+        if (cur) cur.remove();
+        if (k >= shapes.length) { setTimeout(() => alive() && done(), 300); return; }
+        const sh = shapes[k], c = sh.c || C[(sh.g ?? k) % C.length]; k++;
+        cur = document.createElementNS(NS, "g"); cur.setAttribute("class", "t-num"); cur.innerHTML = sh.svg;
+        [...cur.children].forEach(x => { x.setAttribute("fill", c); x.setAttribute("fill-opacity", sh.line ? 1 : .5); x.setAttribute("stroke", c); x.setAttribute("stroke-width", sh.line ? 8 : 5); x.setAttribute("stroke-linecap", "round"); });
+        svg.insertBefore(cur, cnt); cnt.textContent = String(k);
+        tutSay(o.say ? o.say(k, sh) : String(k)); setTimeout(step, o.ms || 950);
+      };
+      step();
+    },
     // encierra de g en g (grupos de igual cantidad), con color y número de grupo
     chunks: (els, g, o = {}) => done => {
       const C = ["#f59e0b", "#22c55e", "#3b82f6", "#ec4899", "#8b5cf6", "#14b8a6", "#ef4444", "#84cc16"];
@@ -1027,6 +1094,32 @@ function saltosHasta(a, b) {
   while (v < b) { out.push(1); v++; }
   return out;
 }
+
+// figuras escondidas en los dibujos de conteo (para el tutor): listas de { svg, g (grupo/tamaño) }
+const FIG = {
+  triFan(m, h) {
+    const A = [150, 14], L = [20, 200], R = [280, 200], lp = (p, q, t) => [p[0] + (q[0] - p[0]) * t, p[1] + (q[1] - p[1]) * t], out = [];
+    for (let lev = h + 1; lev >= 1; lev--) { const t = lev / (h + 1), p = lp(A, L, t), q = lp(A, R, t);
+      for (let sz = 1; sz <= m; sz++) for (let i = 0; i + sz <= m; i++) { const a = lp(p, q, i / m), b = lp(p, q, (i + sz) / m); out.push({ svg: `<path d="M${A} L${a} L${b}Z"/>`, g: sz - 1, sz, lev }); } }
+    return out;
+  },
+  rects(r, c) {
+    const W = 260, H = 60 * r, out = [];
+    for (let hh = 1; hh <= r; hh++) for (let ww = 1; ww <= c; ww++) for (let y = 0; y + hh <= r; y++) for (let x = 0; x + ww <= c; x++)
+      out.push({ svg: `<rect x="${10 + W * x / c}" y="${10 + H * y / r}" width="${W * ww / c}" height="${H * hh / r}"/>`, g: ww - 1 + (hh - 1) * c, ww, hh });
+    return out;
+  },
+  squares(n) {
+    const S = 180, c = S / n, out = [];
+    for (let z = 1; z <= n; z++) for (let y = 0; y + z <= n; y++) for (let x = 0; x + z <= n; x++) out.push({ svg: `<rect x="${10 + c * x}" y="${10 + c * y}" width="${c * z}" height="${c * z}"/>`, g: z - 1, z });
+    return out;
+  },
+  segs(p) {
+    const X = i => 20 + 260 * i / (p - 1), N = "ABCDEFGH", out = [];
+    for (let i = 0; i < p; i++) for (let j = i + 1; j < p; j++) out.push({ svg: `<line x1="${X(i)}" y1="30" x2="${X(j)}" y2="30"/>`, g: i, line: true, name: N[i] + N[j] });
+    return out;
+  }
+};
 
 /* ---------- Pizarra del tutor: dibujos que aparecen poco a poco ----------
    Cada pieza con style="--d:Xs" aparece con retraso X (animación .tb-in). */
@@ -1337,22 +1430,61 @@ function polyo(k) { const cells = new Set(["1,1"]); while (cells.size < k) { con
 const GEN = [
   [
     () => { const w = between(3, 9), h = between(2, w), ans = 2 * (w + h);
-      return { prompt: "El <b>perímetro</b> es la medida de todo el borde. ¿Cuál es el perímetro del rectángulo?", say: "¿Cuál es el perímetro del rectángulo? Suma todos sus lados.", scene: rectLab(w, h), ans, opts: numOpts(ans, [w + h, w * h, ans + 2], 1), why: `${w} + ${h} + ${w} + ${h} = ${ans} cm.`, hint: "El rectángulo tiene 4 lados: dos largos y dos cortos." }; },
+      return { prompt: "El <b>perímetro</b> es la medida de todo el borde. ¿Cuál es el perímetro del rectángulo?", say: "¿Cuál es el perímetro del rectángulo? Suma todos sus lados.", scene: rectLab(w, h), ans, opts: numOpts(ans, [w + h, w * h, ans + 2], 1), why: `${w} + ${h} + ${w} + ${h} = ${ans} cm.`, hint: "El rectángulo tiene 4 lados: dos largos y dos cortos.",
+        steps: T => { const L = [w, h, w, h];
+          return [
+            { t: `El <b>perímetro</b> es lo que mide <b>todo el borde</b>, como si caminaras alrededor de la figura. El rectángulo tiene 2 lados largos (${w} cm) y 2 cortos (${h} cm).` },
+            { t: `Recorremos el borde y vamos sumando cada lado:`, go: T.edges(T.sc.querySelector("rect"), { label: k => String(L[k - 1]), say: k => String(L.slice(0, k).reduce((p, q) => p + q, 0)), ms: 1000 }) },
+            { t: `${w} + ${h} + ${w} + ${h} = <b>${ans}</b> cm.`, b: BOARD.lines([`${w} + ${h} + ${w} + ${h} = ${ans}`]) }
+          ]; },
+        err: w2 => w2 === w + h ? "Sumaste solo dos lados; el rectángulo tiene cuatro." : w2 === w * h ? "Multiplicaste; el perímetro es sumar todos los lados." : "" }; },
     () => { const a = between(3, 8), b = between(3, 8), c = between(Math.abs(a - b) + 1, a + b - 1), ans = a + b + c;
-      return { prompt: "¿Cuál es el perímetro del triángulo?", say: "¿Cuál es el perímetro del triángulo?", scene: triLab(a, b, c), ans, opts: numOpts(ans, [a + b, ans + 1, ans - 2], 1), why: `${a} + ${b} + ${c} = ${ans} cm.`, hint: "Suma sus tres lados." }; },
+      return { prompt: "¿Cuál es el perímetro del triángulo?", say: "¿Cuál es el perímetro del triángulo?", scene: triLab(a, b, c), ans, opts: numOpts(ans, [a + b, ans + 1, ans - 2], 1), why: `${a} + ${b} + ${c} = ${ans} cm.`, hint: "Suma sus tres lados.",
+        steps: T => { const L = [a, c, b], acc = [a, a + c, a + b + c];
+          return [
+            { t: `El perímetro del triángulo es la suma de sus <b>3 lados</b>.` },
+            { t: `Recorremos el borde sumando:`, go: T.edges(T.sc.querySelector("path"), { label: k => String([b, c, a][k - 1]), say: k => String([b, b + c, a + b + c][k - 1]), ms: 1000 }) },
+            { t: `${a} + ${b} + ${c} = <b>${ans}</b> cm.`, b: BOARD.lines([`${a} + ${b} + ${c} = ${ans}`]) }
+          ]; },
+        err: w => w === a + b ? "Te faltó sumar un lado." : "" }; },
   ],
   [
     () => { const s = between(2, 9), ans = 4 * s;
-      return { prompt: `Un cuadrado tiene lados de <b>${s} cm</b>. ¿Cuál es su perímetro?`, say: `Un cuadrado tiene lados de ${s} centímetros. ¿Cuál es su perímetro?`, scene: svgWrap(140, 140, `<rect x="20" y="20" width="100" height="100" fill="#e0e7ff" stroke="#4338ca" stroke-width="4"/><text x="70" y="14" text-anchor="middle" font-size="16" font-weight="900">${s} cm</text>`, 140), ans, opts: numOpts(ans, [2 * s, s + 4, s * s !== ans ? s * s : ans + 4], 1), why: `4 lados iguales: ${s} × 4 = ${ans} cm.`, hint: "El cuadrado tiene sus 4 lados iguales." }; },
+      return { prompt: `Un cuadrado tiene lados de <b>${s} cm</b>. ¿Cuál es su perímetro?`, say: `Un cuadrado tiene lados de ${s} centímetros. ¿Cuál es su perímetro?`, scene: svgWrap(140, 140, `<rect x="20" y="20" width="100" height="100" fill="#e0e7ff" stroke="#4338ca" stroke-width="4"/><text x="70" y="14" text-anchor="middle" font-size="16" font-weight="900">${s} cm</text>`, 140), ans, opts: numOpts(ans, [2 * s, s + 4, s * s !== ans ? s * s : ans + 4], 1), why: `4 lados iguales: ${s} × 4 = ${ans} cm.`, hint: "El cuadrado tiene sus 4 lados iguales.",
+        steps: T => [
+          { t: `El cuadrado tiene sus <b>4 lados iguales</b>: cada uno mide ${s} cm.` },
+          { t: `Recorremos el borde:`, go: T.edges(T.sc.querySelector("rect"), { label: () => String(s), say: k => String(k * s), ms: 1000 }) },
+          { t: `${s} + ${s} + ${s} + ${s} = <b>${ans}</b> cm.`, b: BOARD.lines([`${s} + ${s} + ${s} + ${s} = ${ans}`, `4 × ${s} = ${ans}`]) }
+        ],
+        err: w => w === 2 * s ? "Sumaste solo dos lados." : w === s * s ? "Multiplicaste lado por lado; el perímetro es sumar los 4 lados." : "" }; },
     () => { const r = between(1, 3), c = between(2, 4), ans = 2 * (r + c);
-      return { prompt: "Cada cuadradito mide <b>1 cm</b> de lado. ¿Cuál es el perímetro de la figura pintada?", say: "Cada cuadradito mide 1 centímetro. ¿Cuál es el perímetro?", scene: gridSvg(c, r, new Set([...Array(r * c).keys()]), { color: "#86efac" }), ans, opts: numOpts(ans, [r * c, ans + 2, ans - 2], 1), why: `Cuenta los bordes de afuera: ${c} + ${r} + ${c} + ${r} = ${ans} cm.`, hint: "Recorre el borde con tu dedo contando los lados de los cuadraditos." }; },
+      return { prompt: "Cada cuadradito mide <b>1 cm</b> de lado. ¿Cuál es el perímetro de la figura pintada?", say: "Cada cuadradito mide 1 centímetro. ¿Cuál es el perímetro?", scene: gridSvg(c, r, new Set([...Array(r * c).keys()]), { color: "#86efac" }), ans, opts: numOpts(ans, [r * c, ans + 2, ans - 2], 1), why: `Cuenta los bordes de afuera: ${c} + ${r} + ${c} + ${r} = ${ans} cm.`, hint: "Recorre el borde con tu dedo contando los lados de los cuadraditos.",
+        steps: T => { const S = 34, segs = [];
+          for (let x = 0; x < c; x++) segs.push([x * S, 0, (x + 1) * S, 0]);
+          for (let y = 0; y < r; y++) segs.push([c * S, y * S, c * S, (y + 1) * S]);
+          for (let x = c - 1; x >= 0; x--) segs.push([(x + 1) * S, r * S, x * S, r * S]);
+          for (let y = r - 1; y >= 0; y--) segs.push([0, (y + 1) * S, 0, y * S]);
+          return [
+            { t: `Cada lado de un cuadradito mide 1 cm. Contamos solo los lados del <b>borde de afuera</b>, no los de adentro.` },
+            { t: `Recorremos el borde con el dedo:`, go: T.strokes(T.sc.querySelector("svg"), segs) },
+            { t: `Hay ${ans} lados de 1 cm: ${c} + ${r} + ${c} + ${r} = <b>${ans}</b> cm.` }
+          ]; },
+        err: w => w === r * c ? "Contaste los cuadraditos; el perímetro es el borde de afuera." : "" }; },
   ],
   [
     () => { const k = between(4, 6), cells = polyo(k), key = new Set(cells.map(p => p.join(","))), s = pick([1, 2]);
       let e = 0; cells.forEach(([x, y]) => [[1, 0], [-1, 0], [0, 1], [0, -1]].forEach(([dx, dy]) => { if (!key.has((x + dx) + "," + (y + dy))) e++; }));
       const ans = e * s, painted = new Set(cells.map(([x, y]) => y * 4 + x));
       return { prompt: `Si cada lado de los cuadraditos mide <b>${s} cm</b>, calcula el perímetro de la figura sombreada.`, say: `Cada cuadradito mide ${s} centímetros de lado. ¿Cuál es el perímetro de la figura de color?`, scene: gridSvg(4, 3, painted, { color: "#86efac" }), ans, opts: numOpts(ans, [k * s, (e - 2) * s, (e + 2) * s], 1),
-        why: `El borde tiene ${e} lados de ${s} cm: ${e} × ${s} = ${ans} cm.`, hint: "Cuenta solo los lados de afuera de la figura verde." }; },
+        why: `El borde tiene ${e} lados de ${s} cm: ${e} × ${s} = ${ans} cm.`, hint: "Cuenta solo los lados de afuera de la figura verde.",
+        steps: T => { const S = 34, segs = [];
+          cells.forEach(([x, y]) => { if (!key.has(x + "," + (y - 1))) segs.push([x * S, y * S, (x + 1) * S, y * S]); if (!key.has((x + 1) + "," + y)) segs.push([(x + 1) * S, y * S, (x + 1) * S, (y + 1) * S]); if (!key.has(x + "," + (y + 1))) segs.push([x * S, (y + 1) * S, (x + 1) * S, (y + 1) * S]); if (!key.has((x - 1) + "," + y)) segs.push([x * S, y * S, x * S, (y + 1) * S]); });
+          return [
+            { t: `Contamos los lados de cuadradito que están en el <b>borde de afuera</b> de la figura verde (los de adentro no cuentan).` },
+            { t: `Los marcamos uno por uno:`, go: T.strokes(T.sc.querySelector("svg"), segs, { ms: 550 }) },
+            { t: `Hay ${e} lados y cada uno mide ${s} cm: ${s === 1 ? `${e} cm` : `${e} × ${s} = ${ans} cm`}. El perímetro es <b>${ans}</b> cm.` }
+          ]; },
+        err: w => w === k * s ? "Contaste cuadraditos; el perímetro es el borde." : "" }; },
   ]
 ];
 lesson({ n: 49, title: "Perímetro de figuras sencillas", short: "Perímetro", char: "coco", music: "funk", deco: ["📏", "🟩", "🔺", "▭"],
