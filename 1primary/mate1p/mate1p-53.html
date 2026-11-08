@@ -270,6 +270,7 @@ text.it.t-hl { fill: #b45309; }
 .tb-op2 .tb-carry span { font-size: 15px; color: #16a34a; line-height: 1; height: 16px; }
 .tb-op2 > div > span:first-child { grid-column-start: 1; }
 .tb-col.tb-op2 .tb-hd span:first-child, .tb-col.tb-op2 .tb-res span:first-child, .tb-col.tb-op2 .tb-carry span:first-child { grid-column-start: 1; }
+.tbl td.t-cell, .tbl th.t-cell { background: #fde68a !important; box-shadow: inset 0 0 0 3px #f59e0b; }
 
     </style>
     <script>
@@ -814,7 +815,8 @@ function tutSay(text, cb) {
   const t = String(text || "").replace(/&lt;/g, " < ").replace(/&gt;/g, " > ")
     .replace(/(^|[\s\d)>])<(?=[\s\d(<]|$)/g, "$1 es menor que ").replace(/(^|[\s\d)>])>(?=[\s\d(<]|$)/g, "$1 es mayor que ")
     .replace(/<[^>]+>/g, " ").replace(/&nbsp;/g, " ").replace(/[\u{1F000}-\u{1FAFF}\u2190-\u21FF\u2300-\u23FF\u2600-\u27BF\u2B00-\u2BFF\uFE0F]/gu, "")
-    .replace(/×/g, " por ").replace(/−/g, " menos ").replace(/\+/g, " más ").replace(/=/g, " es igual a ").replace(/\s+/g, " ").trim();
+    .replace(/S\/\s?(\d+)/g, "$1 soles").replace(/\((\d+)\s?;\s?(\d+)\)/g, "$1 coma $2").replace(/(\d)\s?kg\b/g, "$1 kilos").replace(/(\d)\s?cm\b/g, "$1 centímetros").replace(/(\d)\s?m\b/g, "$1 metros")
+    .replace(/÷/g, " entre ").replace(/(\d+)\.?º/g, "$1").replace(/×/g, " por ").replace(/−/g, " menos ").replace(/\+/g, " más ").replace(/=/g, " es igual a ").replace(/\s+/g, " ").trim();
   let fin = false; const end = () => { if (!fin) { fin = true; if (cb) cb(); } };
   if (!t || !tutVoz() || !("speechSynthesis" in window)) { setTimeout(end, Math.min(2600, 400 + t.length * 40)); return; }
   const u = new SpeechSynthesisUtterance(t), vs = speechSynthesis.getVoices();
@@ -987,11 +989,12 @@ function tutKit(sc, tok) {
       };
       step();
     },
+    cell: (r, c) => { const tr = sc.querySelectorAll("tr")[r]; const td = tr && tr.children[c]; if (td) td.classList.add("t-cell"); return td; },
     paint: (els, c = "#fde68a") => els.forEach(x => { x.classList.add("t-paint"); x.style.fill = c; }),
     clear: () => {
       sc.querySelectorAll(".t-num").forEach(x => x.remove());
       sc.querySelectorAll(".t-paint").forEach(x => { x.classList.remove("t-paint"); x.style.removeProperty("fill"); });
-      sc.querySelectorAll(".t-dim,.t-hl,.t-pair,.t-host").forEach(x => { x.classList.remove("t-dim", "t-hl", "t-pair", "t-host"); x.style.removeProperty("--pc"); });
+      sc.querySelectorAll(".t-dim,.t-hl,.t-pair,.t-host,.t-cell").forEach(x => { x.classList.remove("t-dim", "t-hl", "t-pair", "t-host", "t-cell"); x.style.removeProperty("--pc"); });
     }
   };
   return T;
@@ -1120,6 +1123,22 @@ const FIG = {
     return out;
   }
 };
+
+// centro de la cara de arriba de cada torre de isoCubes(H): [{x, y, n}] (n = altura)
+function isoTops(H) {
+  const s = 34, t = s * 0.87, h = s * 0.5, out = [];
+  H.forEach((row, y) => row.forEach((n, x) => { if (n) { const a = (x - y) * t, b = (x + y) * h - (n - 1) * s; out.push({ x: a, y: b - s + h, n }); } }));
+  return out;
+}
+
+// posición (en el dibujo) de la casilla (x; y) de coordGrid(w, h)
+const coordXY = (w, h, x, y) => [30 + x * 40, (h + 1) * 40 + 20 - 30 - y * 40];
+
+// línea guía desde la punta de la barra i hasta el eje (para barChart)
+function barGuide(vals, i) {
+  const max = Math.max(...vals), top = Math.ceil(max / 2) * 2 || 2, sc = 150 / top, x = 48 + i * 58 + 22, y = 190 - vals[i] * sc;
+  return [x, y, 38, y];
+}
 
 /* ---------- Pizarra del tutor: dibujos que aparecen poco a poco ----------
    Cada pieza con style="--d:Xs" aparece con retraso X (animación .tb-in). */
@@ -1429,20 +1448,39 @@ const MV = { "↑": [0, 1], "↓": [0, -1], "→": [1, 0], "←": [-1, 0] };
 const GEN = [
   [
     () => { const x = between(1, 5), y = between(1, 4), e = pick(OB), ans = `(${x};${y})`;
-      return { prompt: `¿En qué coordenada está ${e}? (columna ; fila)`, say: "¿En qué coordenada está? Primero la columna, luego la fila.", scene: coordGrid(6, 5, [{ x, y, e }]), ans, opts: shuffle([...new Set([ans, `(${y};${x})`, `(${x + 1};${y})`, `(${x};${y + 1 > 5 ? y - 1 : y + 1})`])]), cols: 2, why: `Columna ${x}, fila ${y}: ${ans}.`, hint: "Primero baja la mirada a la columna (abajo) y luego a la fila (lado)." }; },
+      return { prompt: `¿En qué coordenada está ${e}? (columna ; fila)`, say: "¿En qué coordenada está? Primero la columna, luego la fila.", scene: coordGrid(6, 5, [{ x, y, e }]), ans, opts: shuffle([...new Set([ans, `(${y};${x})`, `(${x + 1};${y})`, `(${x};${y + 1 > 5 ? y - 1 : y + 1})`])]), cols: 2, why: `Columna ${x}, fila ${y}: ${ans}.`, hint: "Primero baja la mirada a la columna (abajo) y luego a la fila (lado).",
+        steps: T => { const [px, py] = coordXY(6, 5, x, y), [ax] = coordXY(6, 5, x, 0), [, ay] = coordXY(6, 5, 0, y), [x0, y0] = coordXY(6, 5, 0, 0);
+          return [
+            { t: `Una coordenada se escribe <b>(columna ; fila)</b>. Primero miramos hacia <b>abajo</b> (columna) y después hacia el <b>lado</b> (fila).` },
+            { t: `Bajamos desde ${e} hasta los números de abajo: columna <b>${x}</b>. Vamos hacia el lado: fila <b>${y}</b>.`, go: T.strokes(T.sc.querySelector("svg"), [[px, py, ax, y0], [px, py, x0, ay]], { label: k => k === 1 ? x : y, ms: 1100 }) },
+            { t: `La coordenada es <b>${ans}</b>.` }
+          ]; },
+        err: w => w === `(${y};${x})` ? "¡Al revés! Primero va la columna (abajo) y después la fila (lado)." : "" }; },
   ],
   [
     () => { let x = between(1, 3), y = between(1, 2); const sx = x, sy = y, steps = []; for (let i = 0; i < 3; i++) { for (;;) { const d = pick(Object.keys(MV)), n = between(1, 3), nx = x + MV[d][0] * n, ny = y + MV[d][1] * n; if (nx >= 0 && nx <= 6 && ny >= 0 && ny <= 5) { steps.push([n, d]); x = nx; y = ny; break; } } }
       const ans = `(${x};${y})`;
       return { prompt: "Partiendo del 🎲, sigue el recorrido de las flechas. ¿En qué coordenada termina?", say: "Parte del dado y sigue las flechas. ¿Dónde termina?", scene: `<div class="seq" style="font-size:20px">${steps.map(([n, d]) => `<span class="card-op">${n}${d}</span>`).join(" ")}</div>` + coordGrid(6, 5, [{ x: sx, y: sy, e: "🎲" }]),
-        ans, opts: shuffle([...new Set([ans, `(${y};${x})`, `(${x + 1};${y})`, `(${x};${Math.max(0, y - 1) === y ? y + 1 : Math.max(0, y - 1)})`])]), cols: 2, why: `Termina en ${ans}.`, hint: "Mueve tu dedo paso a paso: el número dice cuántas casillas." }; },
+        ans, opts: shuffle([...new Set([ans, `(${y};${x})`, `(${x + 1};${y})`, `(${x};${Math.max(0, y - 1) === y ? y + 1 : Math.max(0, y - 1)})`])]), cols: 2, why: `Termina en ${ans}.`, hint: "Mueve tu dedo paso a paso: el número dice cuántas casillas.",
+        steps: T => { let cx = sx, cy = sy; const segs = steps.map(([n, d]) => { const [a, b] = coordXY(6, 5, cx, cy); cx += MV[d][0] * n; cy += MV[d][1] * n; const [c2, d2] = coordXY(6, 5, cx, cy); return [a, b, c2, d2]; });
+          return [
+            { t: `Empezamos en el 🎲, que está en (${sx};${sy}). Cada flecha dice hacia dónde ir, y el número, cuántas casillas.` },
+            { t: `Movemos el dedo paso a paso:`, go: T.strokes(T.sc.querySelector("svg"), segs, { label: k => steps[k - 1][0] + steps[k - 1][1], say: k => steps[k - 1][0] + " hacia " + { "↑": "arriba", "↓": "abajo", "→": "la derecha", "←": "la izquierda" }[steps[k - 1][1]], ms: 1400, r: 12 }) },
+            { t: `Terminamos en la columna ${x} y la fila ${y}: <b>${ans}</b>.` }
+          ]; } }; },
   ],
   [
     () => { const objs = sample(OB.filter(o => o !== "🎲"), 3), pos = []; while (pos.length < 3) { const p = [between(0, 6), between(0, 5)]; if (!pos.some(q => q[0] === p[0] && q[1] === p[1])) pos.push(p); }
       let x = between(0, 6), y = between(0, 5); while (pos.some(q => q[0] === x && q[1] === y)) { x = between(0, 6); y = between(0, 5); }
       const tgt = pos[0], dx = tgt[0] - x, dy = tgt[1] - y, steps = []; if (dy) steps.push([Math.abs(dy), dy > 0 ? "↑" : "↓"]); if (dx) steps.push([Math.abs(dx), dx > 0 ? "→" : "←"]); if (!steps.length) steps.push([0, "→"]);
       return { prompt: "Parte del 🎲 y sigue las flechas. ¿Qué encuentras al final?", say: "Parte del dado, sigue las flechas. ¿Qué encuentras?", scene: `<div class="seq" style="font-size:20px">${steps.map(([n, d]) => `<span class="card-op">${n}${d}</span>`).join(" ")}</div>` + coordGrid(6, 5, [{ x, y, e: "🎲" }, ...pos.map((p, i) => ({ x: p[0], y: p[1], e: objs[i] }))]),
-        ans: objs[0], opts: [...objs, "Nada"], cols: 4, why: `Llegas a (${tgt[0]};${tgt[1]}), donde está ${objs[0]}.`, hint: "Primero arriba o abajo, después a los lados." }; },
+        ans: objs[0], opts: [...objs, "Nada"], cols: 4, why: `Llegas a (${tgt[0]};${tgt[1]}), donde está ${objs[0]}.`, hint: "Primero arriba o abajo, después a los lados.",
+        steps: T => { let cx = x, cy = y; const segs = steps.map(([n, d]) => { const [a, b] = coordXY(6, 5, cx, cy); cx += MV[d][0] * n; cy += MV[d][1] * n; const [c2, d2] = coordXY(6, 5, cx, cy); return [a, b, c2, d2]; });
+          return [
+            { t: `Partimos del 🎲 y seguimos cada flecha contando casillas.` },
+            { t: `Recorremos:`, go: T.strokes(T.sc.querySelector("svg"), segs, { label: k => steps[k - 1][0] + steps[k - 1][1], say: k => steps[k - 1][0] + " hacia " + { "↑": "arriba", "↓": "abajo", "→": "la derecha", "←": "la izquierda" }[steps[k - 1][1]], ms: 1400, r: 12 }) },
+            { t: `Llegamos a (${tgt[0]};${tgt[1]}), donde está <b>${objs[0]}</b>.` }
+          ]; } }; },
   ]
 ];
 lesson({ n: 53, title: "Cuadrículas, coordenadas, recorridos y posiciones", short: "Coordenadas", char: "rayo", music: "aventura", deco: ["🗺️", "⬆️", "➡️", "🎲"],

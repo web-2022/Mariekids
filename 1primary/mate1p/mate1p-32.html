@@ -270,6 +270,7 @@ text.it.t-hl { fill: #b45309; }
 .tb-op2 .tb-carry span { font-size: 15px; color: #16a34a; line-height: 1; height: 16px; }
 .tb-op2 > div > span:first-child { grid-column-start: 1; }
 .tb-col.tb-op2 .tb-hd span:first-child, .tb-col.tb-op2 .tb-res span:first-child, .tb-col.tb-op2 .tb-carry span:first-child { grid-column-start: 1; }
+.tbl td.t-cell, .tbl th.t-cell { background: #fde68a !important; box-shadow: inset 0 0 0 3px #f59e0b; }
 
     </style>
     <script>
@@ -814,7 +815,8 @@ function tutSay(text, cb) {
   const t = String(text || "").replace(/&lt;/g, " < ").replace(/&gt;/g, " > ")
     .replace(/(^|[\s\d)>])<(?=[\s\d(<]|$)/g, "$1 es menor que ").replace(/(^|[\s\d)>])>(?=[\s\d(<]|$)/g, "$1 es mayor que ")
     .replace(/<[^>]+>/g, " ").replace(/&nbsp;/g, " ").replace(/[\u{1F000}-\u{1FAFF}\u2190-\u21FF\u2300-\u23FF\u2600-\u27BF\u2B00-\u2BFF\uFE0F]/gu, "")
-    .replace(/×/g, " por ").replace(/−/g, " menos ").replace(/\+/g, " más ").replace(/=/g, " es igual a ").replace(/\s+/g, " ").trim();
+    .replace(/S\/\s?(\d+)/g, "$1 soles").replace(/\((\d+)\s?;\s?(\d+)\)/g, "$1 coma $2").replace(/(\d)\s?kg\b/g, "$1 kilos").replace(/(\d)\s?cm\b/g, "$1 centímetros").replace(/(\d)\s?m\b/g, "$1 metros")
+    .replace(/÷/g, " entre ").replace(/(\d+)\.?º/g, "$1").replace(/×/g, " por ").replace(/−/g, " menos ").replace(/\+/g, " más ").replace(/=/g, " es igual a ").replace(/\s+/g, " ").trim();
   let fin = false; const end = () => { if (!fin) { fin = true; if (cb) cb(); } };
   if (!t || !tutVoz() || !("speechSynthesis" in window)) { setTimeout(end, Math.min(2600, 400 + t.length * 40)); return; }
   const u = new SpeechSynthesisUtterance(t), vs = speechSynthesis.getVoices();
@@ -987,11 +989,12 @@ function tutKit(sc, tok) {
       };
       step();
     },
+    cell: (r, c) => { const tr = sc.querySelectorAll("tr")[r]; const td = tr && tr.children[c]; if (td) td.classList.add("t-cell"); return td; },
     paint: (els, c = "#fde68a") => els.forEach(x => { x.classList.add("t-paint"); x.style.fill = c; }),
     clear: () => {
       sc.querySelectorAll(".t-num").forEach(x => x.remove());
       sc.querySelectorAll(".t-paint").forEach(x => { x.classList.remove("t-paint"); x.style.removeProperty("fill"); });
-      sc.querySelectorAll(".t-dim,.t-hl,.t-pair,.t-host").forEach(x => { x.classList.remove("t-dim", "t-hl", "t-pair", "t-host"); x.style.removeProperty("--pc"); });
+      sc.querySelectorAll(".t-dim,.t-hl,.t-pair,.t-host,.t-cell").forEach(x => { x.classList.remove("t-dim", "t-hl", "t-pair", "t-host", "t-cell"); x.style.removeProperty("--pc"); });
     }
   };
   return T;
@@ -1120,6 +1123,22 @@ const FIG = {
     return out;
   }
 };
+
+// centro de la cara de arriba de cada torre de isoCubes(H): [{x, y, n}] (n = altura)
+function isoTops(H) {
+  const s = 34, t = s * 0.87, h = s * 0.5, out = [];
+  H.forEach((row, y) => row.forEach((n, x) => { if (n) { const a = (x - y) * t, b = (x + y) * h - (n - 1) * s; out.push({ x: a, y: b - s + h, n }); } }));
+  return out;
+}
+
+// posición (en el dibujo) de la casilla (x; y) de coordGrid(w, h)
+const coordXY = (w, h, x, y) => [30 + x * 40, (h + 1) * 40 + 20 - 30 - y * 40];
+
+// línea guía desde la punta de la barra i hasta el eje (para barChart)
+function barGuide(vals, i) {
+  const max = Math.max(...vals), top = Math.ceil(max / 2) * 2 || 2, sc = 150 / top, x = 48 + i * 58 + 22, y = 190 - vals[i] * sc;
+  return [x, y, 38, y];
+}
 
 /* ---------- Pizarra del tutor: dibujos que aparecen poco a poco ----------
    Cada pieza con style="--d:Xs" aparece con retraso X (animación .tb-in). */

@@ -35,17 +35,32 @@ Los temas 59-61 usan `olimpiada.js` (se incluye con la línea `// @incluir olimp
 - Probar: `node tools/ejercicios-mentales/probar.js 1primary/mate1p/mate1p-NN` (servidor en :8765).
 - Cada generador se valida: una sola respuesta correcta y opciones distintas (`check`).
 
-## Tutor «🙋 No entiendo, ¡ayúdame a resolver!»
-Si una pregunta trae `steps`, aparece el botón debajo del dibujo. Explica paso a paso como un profesor:
-lee cada paso en voz alta y anima el dibujo (apaga lo que no se cuenta, numera mientras cuenta, forma pares o grupos).
-Usarlo hace que esa pregunta ya no cuente como «a la primera».
+## Tutor «🙋 No entiendo, ¡ayúdame a resolver!» (todas las preguntas de los 64 temas)
+Cada generador devuelve `steps` (y opcionalmente `err`). Aparece el botón debajo del dibujo y explica como un profesor:
+**comprender → plan → hacer (en el dibujo o en la pizarra) → comprobar → «La respuesta es N, búscala»**.
+El tutor nunca toca la respuesta. Usarlo marca la pregunta como «con ayuda» (no cuenta «a la primera»).
 
     steps: T => [
       { t: "Texto del paso (se lee en voz alta)", s: "texto distinto para la voz (opcional)" },
-      { t: "Contamos:", go: T.count(T.its()) },             // anima y luego habilita «Siguiente paso»
-      { t: "Apagamos lo que no sirve", go: d => { T.dim(T.of("🍓")); setTimeout(d, 600); } }
-    ]
+      { t: "Contamos:", go: T.count(T.its()) },                 // animación en el dibujo; al terminar se habilita «Siguiente paso»
+      { t: "En la recta:", b: BOARD.jumps(7, [1, 1, 1]) },       // b = pizarra (reemplaza) · bAdd = agrega a la pizarra
+    ],
+    err: w => w === 16 ? "Esos son los zapatos sueltos; piden pares." : ""   // primer paso si ya marcó una alternativa equivocada
+    ansTxt: "el grupo que tiene 6"                              // solo si la respuesta no es un número o texto simple
 
-Ayudas de `T`: `its(sel)` elementos `.it` de la escena · `of(emoji o data-k)` · `dim(els)` · `count(els, {label, say, cls, ms})` ·
-`pairs(els, {near, both, say})` · `split(els)` (2 grupos iguales azul/naranja) · `badge(el, txt)` · `clear()`.
-Para que un dibujo se pueda animar, cada objeto debe ir en `<span class="it" data-k="...">`. Hecho: tema 1.
+- **Cierre automático**: si el último paso no dice la respuesta, se agrega «La respuesta es N. 👇 Búscala…».
+- **Ayuda según el error**: si el niño ya marcó una alternativa, el primer paso es «Elegiste X…» + `err(X)`.
+- **Animaciones en el dibujo (`T`)**: `its(sel)`, `of(emoji o data-k, sel)`, `dim`, `badge`, `count(els, {label, say, from, cls, ms})`,
+  `pairs(els, {near, both})`, `chunks(els, g)`, `split(els)` (2 grupos iguales), `paint(els, color)`, `cell(fila, col)` (tablas),
+  `edges(forma, {vertices, label, say})` (recorre lados), `strokes(svg, [[x1,y1,x2,y2]…])`, `dots(svg, [[x,y]…])`, `flash(FIG.x(...))`, `clear()`.
+- **Figuras escondidas (`FIG`)**: `triFan(m,h)`, `rects(r,c)`, `squares(n)`, `segs(p)`. Ayudas: `isoTops(H)`, `coordXY(w,h,x,y)`, `barGuide(vals,i)`.
+- **Pizarra (`BOARD`)**: `jumps(a, saltos)`, `marks(vals)`, `groups([{n|items, e, c, lab}])`, `share(n, k, e)`, `du(n)`, `op([a,b,…], "+"|"-")`
+  (en columna con «llevo»), `lines([...])`, `seq(terms, {diffs, hl})`, `table(rows, {hl})`, `big(html)`. `colTxt(nums, sign)` explica cada columna.
+  `saltosHasta(a, b)` da los saltos «completando» (1 en 1 hasta la decena, luego de 10 en 10).
+- Para animar un dibujo, cada objeto debe ir en `<span class="it" data-k="…">` (o tener `class="it"` en el SVG).
+- Herramientas: `scratchpad/ins.py NN pasos.txt` inserta bloques `### nivel.generador`; `tutall.js` recorre el tutor de todos los
+  generadores y comprueba que termine con la respuesta correcta.
+
+## Pantallas
+`comun.css` adapta la lección: celular pequeño (≤340 px), celular horizontal (dibujo a la izquierda, ayuda y alternativas a la derecha),
+tablet y computadora (ancho 680–760 px y dibujos más grandes con `zoom`). Revisado sin scroll horizontal en 8 tamaños.

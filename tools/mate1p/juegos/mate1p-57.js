@@ -4,20 +4,47 @@ const tbl = (head, rows) => `<table class="tbl"><tr>${head.map(h => `<th>${h}</t
 const GEN = [
   [
     () => { const f = sample(FR, 4), v = f.map(() => between(2, 12)), i = rnd(4);
-      return { prompt: `Fruta favorita del salón: ¿cuántos niños prefieren <b>${f[i][1].toLowerCase()}</b>?`, say: `¿Cuántos niños prefieren ${f[i][1]}?`, scene: tbl(["Fruta", "Niños"], f.map((x, k) => [x[0] + " " + x[1], v[k]])), ans: v[i], opts: numOpts(v[i], v.filter((_, k) => k !== i), 0), why: `En la fila de ${f[i][1]} dice ${v[i]}.`, hint: "Busca la fila de esa fruta." }; },
+      return { prompt: `Fruta favorita del salón: ¿cuántos niños prefieren <b>${f[i][1].toLowerCase()}</b>?`, say: `¿Cuántos niños prefieren ${f[i][1]}?`, scene: tbl(["Fruta", "Niños"], f.map((x, k) => [x[0] + " " + x[1], v[k]])), ans: v[i], opts: numOpts(v[i], v.filter((_, k) => k !== i), 0), why: `En la fila de ${f[i][1]} dice ${v[i]}.`, hint: "Busca la fila de esa fruta.",
+        steps: T => [
+          { t: `En la tabla, cada <b>fila</b> es una fruta y al lado dice cuántos niños la prefieren.` },
+          { t: `Buscamos la fila de ${f[i][1].toLowerCase()} y miramos el número de al lado:`, go: d => { T.cell(i + 1, 0); setTimeout(() => { T.cell(i + 1, 1); tutSay(String(v[i])); setTimeout(d, 900); }, 700); } },
+          { t: `<b>${v[i]}</b> niños prefieren ${f[i][1].toLowerCase()}.` }
+        ] }; },
   ],
   [
     () => { const f = sample(FR, 4), v = sample([3, 4, 5, 6, 7, 8, 9, 10, 11], 4), t = pick(["tot", "dif"]); const [a, b] = sample([0, 1, 2, 3], 2);
       const ans = t === "tot" ? v.reduce((x, y) => x + y, 0) : Math.abs(v[a] - v[b]);
       return { prompt: t === "tot" ? "¿Cuántos niños votaron en total?" : `¿Cuántos votos de diferencia hay entre <b>${f[a][1].toLowerCase()}</b> y <b>${f[b][1].toLowerCase()}</b>?`, say: t === "tot" ? "¿Cuántos niños votaron en total?" : `¿Cuántos votos de diferencia hay entre ${f[a][1]} y ${f[b][1]}?`, scene: tbl(["Fruta", "Votos"], f.map((x, k) => [x[0] + " " + x[1], v[k]])),
-        ans, opts: numOpts(ans, t === "tot" ? [ans - v[0], ans + 1, ans - 1] : [v[a] + v[b], v[a], v[b]], 0), why: t === "tot" ? `${v.join(" + ")} = ${ans}.` : `${Math.max(v[a], v[b])} − ${Math.min(v[a], v[b])} = ${ans}.`, hint: t === "tot" ? "Suma toda la columna." : "Resta el mayor menos el menor." }; },
+        ans, opts: numOpts(ans, t === "tot" ? [ans - v[0], ans + 1, ans - 1] : [v[a] + v[b], v[a], v[b]], 0), why: t === "tot" ? `${v.join(" + ")} = ${ans}.` : `${Math.max(v[a], v[b])} − ${Math.min(v[a], v[b])} = ${ans}.`, hint: t === "tot" ? "Suma toda la columna." : "Resta el mayor menos el menor.",
+        steps: T => t === "tot" ? [
+          { t: `«En total» → sumamos <b>toda la columna</b> de votos.`, go: d => { [1, 2, 3, 4].forEach(r => T.cell(r, 1)); setTimeout(d, 700); } },
+          { t: `Sumamos de dos en dos:`, b: BOARD.lines([`${v[0]} + ${v[1]} = ${v[0] + v[1]}`, `${v[0] + v[1]} + ${v[2]} = ${v[0] + v[1] + v[2]}`, `${v[0] + v[1] + v[2]} + ${v[3]} = ${ans}`], { step: .8 }) },
+          { t: `Votaron <b>${ans}</b> niños.` }
+        ] : [
+          { t: `Buscamos los votos de ${f[a][1].toLowerCase()} (${v[a]}) y de ${f[b][1].toLowerCase()} (${v[b]}).`, go: d => { T.cell(a + 1, 1); T.cell(b + 1, 1); setTimeout(d, 700); } },
+          { t: `La <b>diferencia</b> es el mayor menos el menor:`, b: BOARD.lines([`${Math.max(v[a], v[b])} − ${Math.min(v[a], v[b])} = ${ans}`]) },
+          { t: `Hay <b>${ans}</b> votos de diferencia.` }
+        ] }; },
   ],
   [
     () => { const dep = ["⚽ Fútbol", "🏐 Vóley", "🏀 Básquet"], n = dep.map(() => [between(2, 9), between(2, 9)]), i = rnd(3), g = rnd(2), t = pick(["celda", "fila", "col"]);
       const ans = t === "celda" ? n[i][g] : t === "fila" ? n[i][0] + n[i][1] : n.reduce((s, r) => s + r[g], 0);
       const q = t === "celda" ? `¿Cuántas ${g ? "niñas" : "niños"} prefieren <b>${dep[i].slice(3)}</b>?`.replace("Cuántas niños", "Cuántos niños") : t === "fila" ? `¿Cuántos estudiantes en total prefieren <b>${dep[i].slice(3)}</b>?` : `¿Cuántos${g ? " niñas" : " niños"} hay en total?`.replace("Cuántos niñas", "Cuántas niñas");
       return { prompt: q, say: q.replace(/<[^>]+>/g, ""), scene: tbl(["Deporte", "👦 Niños", "👧 Niñas"], dep.map((d, k) => [d, n[k][0], n[k][1]])), ans, opts: numOpts(ans, [n[i][1 - g], ans + 1, ans - 1].filter(x => x !== ans), 0),
-        why: t === "celda" ? `Cruza la fila ${dep[i]} con la columna ${g ? "Niñas" : "Niños"}: ${ans}.` : t === "fila" ? `${n[i][0]} + ${n[i][1]} = ${ans}.` : `${n.map(r => r[g]).join(" + ")} = ${ans}.`, hint: "En una tabla de doble entrada, cruza la fila con la columna." }; },
+        why: t === "celda" ? `Cruza la fila ${dep[i]} con la columna ${g ? "Niñas" : "Niños"}: ${ans}.` : t === "fila" ? `${n[i][0]} + ${n[i][1]} = ${ans}.` : `${n.map(r => r[g]).join(" + ")} = ${ans}.`, hint: "En una tabla de doble entrada, cruza la fila con la columna.",
+        steps: T => t === "celda" ? [
+          { t: `En una tabla de <b>doble entrada</b> se cruza una fila con una columna.` },
+          { t: `Fila: ${dep[i]}. Columna: ${g ? "👧 Niñas" : "👦 Niños"}. Donde se cruzan está la respuesta:`, go: d => { T.cell(i + 1, 0); T.cell(0, g + 1); setTimeout(() => { T.cell(i + 1, g + 1); tutSay(String(ans)); setTimeout(d, 900); }, 800); } },
+          { t: `Son <b>${ans}</b>.` }
+        ] : t === "fila" ? [
+          { t: `«Estudiantes» son niños y niñas juntos. Miramos toda la fila de ${dep[i]}.`, go: d => { T.cell(i + 1, 1); T.cell(i + 1, 2); setTimeout(d, 800); } },
+          { t: `Sumamos niños y niñas:`, b: BOARD.lines([`${n[i][0]} + ${n[i][1]} = ${ans}`]) },
+          { t: `En total, <b>${ans}</b> prefieren ${dep[i].slice(3)}.` }
+        ] : [
+          { t: `Miramos toda la columna de ${g ? "👧 Niñas" : "👦 Niños"}.`, go: d => { [1, 2, 3].forEach(r => T.cell(r, g + 1)); setTimeout(d, 800); } },
+          { t: `Sumamos la columna:`, b: BOARD.lines([`${n.map(r => r[g]).join(" + ")} = ${ans}`]) },
+          { t: `Hay <b>${ans}</b> ${g ? "niñas" : "niños"} en total.` }
+        ] }; },
   ]
 ];
 lesson({ n: 57, title: "Tablas y tablas de doble entrada", short: "Tablas", char: "lula", music: "ukelele", deco: ["📋", "🍎", "⚽", "✅"],

@@ -270,6 +270,7 @@ text.it.t-hl { fill: #b45309; }
 .tb-op2 .tb-carry span { font-size: 15px; color: #16a34a; line-height: 1; height: 16px; }
 .tb-op2 > div > span:first-child { grid-column-start: 1; }
 .tb-col.tb-op2 .tb-hd span:first-child, .tb-col.tb-op2 .tb-res span:first-child, .tb-col.tb-op2 .tb-carry span:first-child { grid-column-start: 1; }
+.tbl td.t-cell, .tbl th.t-cell { background: #fde68a !important; box-shadow: inset 0 0 0 3px #f59e0b; }
 
     </style>
     <script>
@@ -814,7 +815,8 @@ function tutSay(text, cb) {
   const t = String(text || "").replace(/&lt;/g, " < ").replace(/&gt;/g, " > ")
     .replace(/(^|[\s\d)>])<(?=[\s\d(<]|$)/g, "$1 es menor que ").replace(/(^|[\s\d)>])>(?=[\s\d(<]|$)/g, "$1 es mayor que ")
     .replace(/<[^>]+>/g, " ").replace(/&nbsp;/g, " ").replace(/[\u{1F000}-\u{1FAFF}\u2190-\u21FF\u2300-\u23FF\u2600-\u27BF\u2B00-\u2BFF\uFE0F]/gu, "")
-    .replace(/×/g, " por ").replace(/−/g, " menos ").replace(/\+/g, " más ").replace(/=/g, " es igual a ").replace(/\s+/g, " ").trim();
+    .replace(/S\/\s?(\d+)/g, "$1 soles").replace(/\((\d+)\s?;\s?(\d+)\)/g, "$1 coma $2").replace(/(\d)\s?kg\b/g, "$1 kilos").replace(/(\d)\s?cm\b/g, "$1 centímetros").replace(/(\d)\s?m\b/g, "$1 metros")
+    .replace(/÷/g, " entre ").replace(/(\d+)\.?º/g, "$1").replace(/×/g, " por ").replace(/−/g, " menos ").replace(/\+/g, " más ").replace(/=/g, " es igual a ").replace(/\s+/g, " ").trim();
   let fin = false; const end = () => { if (!fin) { fin = true; if (cb) cb(); } };
   if (!t || !tutVoz() || !("speechSynthesis" in window)) { setTimeout(end, Math.min(2600, 400 + t.length * 40)); return; }
   const u = new SpeechSynthesisUtterance(t), vs = speechSynthesis.getVoices();
@@ -987,11 +989,12 @@ function tutKit(sc, tok) {
       };
       step();
     },
+    cell: (r, c) => { const tr = sc.querySelectorAll("tr")[r]; const td = tr && tr.children[c]; if (td) td.classList.add("t-cell"); return td; },
     paint: (els, c = "#fde68a") => els.forEach(x => { x.classList.add("t-paint"); x.style.fill = c; }),
     clear: () => {
       sc.querySelectorAll(".t-num").forEach(x => x.remove());
       sc.querySelectorAll(".t-paint").forEach(x => { x.classList.remove("t-paint"); x.style.removeProperty("fill"); });
-      sc.querySelectorAll(".t-dim,.t-hl,.t-pair,.t-host").forEach(x => { x.classList.remove("t-dim", "t-hl", "t-pair", "t-host"); x.style.removeProperty("--pc"); });
+      sc.querySelectorAll(".t-dim,.t-hl,.t-pair,.t-host,.t-cell").forEach(x => { x.classList.remove("t-dim", "t-hl", "t-pair", "t-host", "t-cell"); x.style.removeProperty("--pc"); });
     }
   };
   return T;
@@ -1120,6 +1123,22 @@ const FIG = {
     return out;
   }
 };
+
+// centro de la cara de arriba de cada torre de isoCubes(H): [{x, y, n}] (n = altura)
+function isoTops(H) {
+  const s = 34, t = s * 0.87, h = s * 0.5, out = [];
+  H.forEach((row, y) => row.forEach((n, x) => { if (n) { const a = (x - y) * t, b = (x + y) * h - (n - 1) * s; out.push({ x: a, y: b - s + h, n }); } }));
+  return out;
+}
+
+// posición (en el dibujo) de la casilla (x; y) de coordGrid(w, h)
+const coordXY = (w, h, x, y) => [30 + x * 40, (h + 1) * 40 + 20 - 30 - y * 40];
+
+// línea guía desde la punta de la barra i hasta el eje (para barChart)
+function barGuide(vals, i) {
+  const max = Math.max(...vals), top = Math.ceil(max / 2) * 2 || 2, sc = 150 / top, x = 48 + i * 58 + 22, y = 190 - vals[i] * sc;
+  return [x, y, 38, y];
+}
 
 /* ---------- Pizarra del tutor: dibujos que aparecen poco a poco ----------
    Cada pieza con style="--d:Xs" aparece con retraso X (animación .tb-in). */
@@ -1428,19 +1447,47 @@ const FR = [["🍓", "fresa"], ["🍍", "piña"], ["🍊", "naranja"], ["🍌", 
 const GEN = [
   [
     () => { const f = sample(FR, 3), v = sample([2, 3, 4, 5, 6, 7, 8], 3), i = rnd(3);
-      return { prompt: `¿Cuántos estudiantes prefieren el jugo de <b>${f[i][1]}</b>?`, say: `¿Cuántos estudiantes prefieren jugo de ${f[i][1]}?`, scene: barChart(f.map(x => x[0]), v, "Jugo favorito"), ans: v[i], opts: numOpts(v[i], v.filter((_, k) => k !== i), 0), why: `La barra de ${f[i][0]} llega hasta ${v[i]}.`, hint: "Mira hasta qué número llega la barra." }; },
+      return { prompt: `¿Cuántos estudiantes prefieren el jugo de <b>${f[i][1]}</b>?`, say: `¿Cuántos estudiantes prefieren jugo de ${f[i][1]}?`, scene: barChart(f.map(x => x[0]), v, "Jugo favorito"), ans: v[i], opts: numOpts(v[i], v.filter((_, k) => k !== i), 0), why: `La barra de ${f[i][0]} llega hasta ${v[i]}.`, hint: "Mira hasta qué número llega la barra.",
+        steps: T => [
+          { t: `En un gráfico de barras, la <b>altura</b> de cada barra dice cuántos son. Los números están a la izquierda.` },
+          { t: `Desde la punta de la barra de ${f[i][0]} vamos derechito hacia los números:`, go: T.strokes(T.sc.querySelector("svg"), [barGuide(v, i)], { label: () => v[i], ms: 1200 }) },
+          { t: `La barra llega hasta el <b>${v[i]}</b>.` }
+        ] }; },
   ],
   [
     () => { const f = sample(FR, 4), v = sample([2, 3, 4, 5, 6, 7, 8, 9], 4), most = rnd(2) === 0, i = v.indexOf(most ? Math.max(...v) : Math.min(...v));
-      return { prompt: `¿Qué fruta prefieren <b>${most ? "más" : "menos"}</b> estudiantes?`, say: `¿Qué fruta prefieren ${most ? "más" : "menos"} estudiantes?`, scene: barChart(f.map(x => x[0]), v), ans: f[i][0], opts: f.map(x => x[0]), cols: 4, why: `${f[i][0]} tiene la barra más ${most ? "alta" : "baja"}.`, hint: most ? "Busca la barra más alta." : "Busca la barra más baja." }; },
+      return { prompt: `¿Qué fruta prefieren <b>${most ? "más" : "menos"}</b> estudiantes?`, say: `¿Qué fruta prefieren ${most ? "más" : "menos"} estudiantes?`, scene: barChart(f.map(x => x[0]), v), ans: f[i][0], opts: f.map(x => x[0]), cols: 4, why: `${f[i][0]} tiene la barra más ${most ? "alta" : "baja"}.`, hint: most ? "Busca la barra más alta." : "Busca la barra más baja.",
+        steps: T => [
+          { t: `La fruta que prefieren ${most ? "más" : "menos"} estudiantes tiene la barra más <b>${most ? "alta" : "baja"}</b>.` },
+          { t: `Leemos todas las barras:`, go: T.strokes(T.sc.querySelector("svg"), v.map((_, k) => barGuide(v, k)), { label: k => v[k - 1], ms: 900 }) },
+          { t: `La más ${most ? "alta" : "baja"} es la de ${f[i][0]} (${v[i]}): <b>${f[i][0]}</b>.` }
+        ] }; },
     () => { const f = sample(FR, 3), v = sample([2, 3, 4, 5, 6, 7, 8], 3), [a, b] = sample([0, 1, 2], 2), ans = Math.abs(v[a] - v[b]);
-      return { prompt: `¿Cuántos estudiantes <b>más</b> prefieren ${v[a] > v[b] ? f[a][0] : f[b][0]} que ${v[a] > v[b] ? f[b][0] : f[a][0]}?`, say: "¿Cuántos estudiantes más prefieren una fruta que la otra?", scene: barChart(f.map(x => x[0]), v), ans, opts: numOpts(ans, [v[a] + v[b], Math.max(v[a], v[b]), ans + 1], 0), why: `${Math.max(v[a], v[b])} − ${Math.min(v[a], v[b])} = ${ans}.`, hint: "Lee las dos barras y réstalas." }; },
+      return { prompt: `¿Cuántos estudiantes <b>más</b> prefieren ${v[a] > v[b] ? f[a][0] : f[b][0]} que ${v[a] > v[b] ? f[b][0] : f[a][0]}?`, say: "¿Cuántos estudiantes más prefieren una fruta que la otra?", scene: barChart(f.map(x => x[0]), v), ans, opts: numOpts(ans, [v[a] + v[b], Math.max(v[a], v[b]), ans + 1], 0), why: `${Math.max(v[a], v[b])} − ${Math.min(v[a], v[b])} = ${ans}.`, hint: "Lee las dos barras y réstalas.",
+        steps: T => [
+          { t: `Leemos las dos barras:`, go: T.strokes(T.sc.querySelector("svg"), [barGuide(v, a), barGuide(v, b)], { label: k => v[[a, b][k - 1]], ms: 1100 }) },
+          { t: `«¿Cuántos más?» → restamos el mayor menos el menor.`, b: BOARD.lines([`${Math.max(v[a], v[b])} − ${Math.min(v[a], v[b])} = ${ans}`]) },
+          { t: `Hay <b>${ans}</b> estudiantes más.` }
+        ],
+        err: w => w === v[a] + v[b] ? "Sumaste; «cuántos más» es la diferencia." : "" }; },
   ],
   [
     () => { const f = sample(FR, 4), v = sample([2, 4, 6, 8, 10, 12, 14], 4), ans = v.reduce((a, b) => a + b, 0);
-      return { prompt: "¿Cuántos estudiantes votaron <b>en total</b>?", say: "¿Cuántos estudiantes votaron en total?", scene: barChart(f.map(x => x[0]), v, "Fruta del recreo"), ans, opts: numOpts(ans, [Math.max(...v), ans - 2, ans + 2], 0), why: `${v.join(" + ")} = ${ans}.`, hint: "Lee cada barra y súmalas todas." }; },
+      return { prompt: "¿Cuántos estudiantes votaron <b>en total</b>?", say: "¿Cuántos estudiantes votaron en total?", scene: barChart(f.map(x => x[0]), v, "Fruta del recreo"), ans, opts: numOpts(ans, [Math.max(...v), ans - 2, ans + 2], 0), why: `${v.join(" + ")} = ${ans}.`, hint: "Lee cada barra y súmalas todas.",
+        steps: T => [
+          { t: `Leemos cada barra:`, go: T.strokes(T.sc.querySelector("svg"), v.map((_, k) => barGuide(v, k)), { label: k => v[k - 1], ms: 900 }) },
+          { t: `«En total» → sumamos todas:`, b: BOARD.lines([`${v.join(" + ")} = ${ans}`]) },
+          { t: `Votaron <b>${ans}</b> estudiantes.` }
+        ],
+        err: w => w === Math.max(...v) ? "Esa es solo la barra más alta; hay que sumar todas." : "" }; },
     () => { const f = sample(FR, 4), v = sample([3, 4, 5, 6, 7, 8, 9], 4), s = [...v].sort((a, b) => a - b), ans = s[3] + s[0];
-      return { prompt: "Suma los votos de la fruta <b>más</b> votada y de la <b>menos</b> votada.", say: "Suma los votos de la fruta más votada y de la menos votada.", scene: barChart(f.map(x => x[0]), v), ans, opts: numOpts(ans, [s[3] - s[0], s[3] + s[1], s[2] + s[0]], 0), why: `${s[3]} + ${s[0]} = ${ans}.`, hint: "Busca la barra más alta y la más baja." }; },
+      return { prompt: "Suma los votos de la fruta <b>más</b> votada y de la <b>menos</b> votada.", say: "Suma los votos de la fruta más votada y de la menos votada.", scene: barChart(f.map(x => x[0]), v), ans, opts: numOpts(ans, [s[3] - s[0], s[3] + s[1], s[2] + s[0]], 0), why: `${s[3]} + ${s[0]} = ${ans}.`, hint: "Busca la barra más alta y la más baja.",
+        steps: T => [
+          { t: `Leemos todas las barras:`, go: T.strokes(T.sc.querySelector("svg"), v.map((_, k) => barGuide(v, k)), { label: k => v[k - 1], ms: 900 }) },
+          { t: `La más votada tiene <b>${s[3]}</b> y la menos votada <b>${s[0]}</b>.` },
+          { t: `${s[3]} + ${s[0]} = <b>${ans}</b>.`, b: BOARD.lines([`${s[3]} + ${s[0]} = ${ans}`]) }
+        ],
+        err: w => w === s[3] - s[0] ? "Restaste; piden sumar." : "" }; },
   ]
 ];
 lesson({ n: 58, title: "Gráficos de barras y comparación de datos", short: "Gráficos de barras", char: "tito", music: "electro", deco: ["📊", "🍓", "🍊", "📈"],

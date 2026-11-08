@@ -155,3 +155,4 @@ text.it.t-hl { fill: #b45309; }
 .tb-op2 .tb-carry span { font-size: 15px; color: #16a34a; line-height: 1; height: 16px; }
 .tb-op2 > div > span:first-child { grid-column-start: 1; }
 .tb-col.tb-op2 .tb-hd span:first-child, .tb-col.tb-op2 .tb-res span:first-child, .tb-col.tb-op2 .tb-carry span:first-child { grid-column-start: 1; }
+.tbl td.t-cell, .tbl th.t-cell { background: #fde68a !important; box-shadow: inset 0 0 0 3px #f59e0b; }

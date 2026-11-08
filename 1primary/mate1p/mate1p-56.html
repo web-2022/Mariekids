@@ -270,6 +270,7 @@ text.it.t-hl { fill: #b45309; }
 .tb-op2 .tb-carry span { font-size: 15px; color: #16a34a; line-height: 1; height: 16px; }
 .tb-op2 > div > span:first-child { grid-column-start: 1; }
 .tb-col.tb-op2 .tb-hd span:first-child, .tb-col.tb-op2 .tb-res span:first-child, .tb-col.tb-op2 .tb-carry span:first-child { grid-column-start: 1; }
+.tbl td.t-cell, .tbl th.t-cell { background: #fde68a !important; box-shadow: inset 0 0 0 3px #f59e0b; }
 
     </style>
     <script>
@@ -814,7 +815,8 @@ function tutSay(text, cb) {
   const t = String(text || "").replace(/&lt;/g, " < ").replace(/&gt;/g, " > ")
     .replace(/(^|[\s\d)>])<(?=[\s\d(<]|$)/g, "$1 es menor que ").replace(/(^|[\s\d)>])>(?=[\s\d(<]|$)/g, "$1 es mayor que ")
     .replace(/<[^>]+>/g, " ").replace(/&nbsp;/g, " ").replace(/[\u{1F000}-\u{1FAFF}\u2190-\u21FF\u2300-\u23FF\u2600-\u27BF\u2B00-\u2BFF\uFE0F]/gu, "")
-    .replace(/×/g, " por ").replace(/−/g, " menos ").replace(/\+/g, " más ").replace(/=/g, " es igual a ").replace(/\s+/g, " ").trim();
+    .replace(/S\/\s?(\d+)/g, "$1 soles").replace(/\((\d+)\s?;\s?(\d+)\)/g, "$1 coma $2").replace(/(\d)\s?kg\b/g, "$1 kilos").replace(/(\d)\s?cm\b/g, "$1 centímetros").replace(/(\d)\s?m\b/g, "$1 metros")
+    .replace(/÷/g, " entre ").replace(/(\d+)\.?º/g, "$1").replace(/×/g, " por ").replace(/−/g, " menos ").replace(/\+/g, " más ").replace(/=/g, " es igual a ").replace(/\s+/g, " ").trim();
   let fin = false; const end = () => { if (!fin) { fin = true; if (cb) cb(); } };
   if (!t || !tutVoz() || !("speechSynthesis" in window)) { setTimeout(end, Math.min(2600, 400 + t.length * 40)); return; }
   const u = new SpeechSynthesisUtterance(t), vs = speechSynthesis.getVoices();
@@ -987,11 +989,12 @@ function tutKit(sc, tok) {
       };
       step();
     },
+    cell: (r, c) => { const tr = sc.querySelectorAll("tr")[r]; const td = tr && tr.children[c]; if (td) td.classList.add("t-cell"); return td; },
     paint: (els, c = "#fde68a") => els.forEach(x => { x.classList.add("t-paint"); x.style.fill = c; }),
     clear: () => {
       sc.querySelectorAll(".t-num").forEach(x => x.remove());
       sc.querySelectorAll(".t-paint").forEach(x => { x.classList.remove("t-paint"); x.style.removeProperty("fill"); });
-      sc.querySelectorAll(".t-dim,.t-hl,.t-pair,.t-host").forEach(x => { x.classList.remove("t-dim", "t-hl", "t-pair", "t-host"); x.style.removeProperty("--pc"); });
+      sc.querySelectorAll(".t-dim,.t-hl,.t-pair,.t-host,.t-cell").forEach(x => { x.classList.remove("t-dim", "t-hl", "t-pair", "t-host", "t-cell"); x.style.removeProperty("--pc"); });
     }
   };
   return T;
@@ -1120,6 +1123,22 @@ const FIG = {
     return out;
   }
 };
+
+// centro de la cara de arriba de cada torre de isoCubes(H): [{x, y, n}] (n = altura)
+function isoTops(H) {
+  const s = 34, t = s * 0.87, h = s * 0.5, out = [];
+  H.forEach((row, y) => row.forEach((n, x) => { if (n) { const a = (x - y) * t, b = (x + y) * h - (n - 1) * s; out.push({ x: a, y: b - s + h, n }); } }));
+  return out;
+}
+
+// posición (en el dibujo) de la casilla (x; y) de coordGrid(w, h)
+const coordXY = (w, h, x, y) => [30 + x * 40, (h + 1) * 40 + 20 - 30 - y * 40];
+
+// línea guía desde la punta de la barra i hasta el eje (para barChart)
+function barGuide(vals, i) {
+  const max = Math.max(...vals), top = Math.ceil(max / 2) * 2 || 2, sc = 150 / top, x = 48 + i * 58 + 22, y = 190 - vals[i] * sc;
+  return [x, y, 38, y];
+}
 
 /* ---------- Pizarra del tutor: dibujos que aparecen poco a poco ----------
    Cada pieza con style="--d:Xs" aparece con retraso X (animación .tb-in). */
@@ -1429,23 +1448,60 @@ const tag = (e, p) => `<span class="price">${e}<small>S/ ${p}</small></span>`;
 const GEN = [
   [
     () => { const cs = Array.from({ length: between(2, 4) }, () => pick([1, 2, 5])), ans = cs.reduce((a, b) => a + b, 0);
-      return { prompt: "¿Cuánto dinero hay?", say: "¿Cuánto dinero hay en total?", scene: `<div class="line">${cs.map(coin).join("")}</div>`, ans, opts: numOpts(ans, [cs.length, ans + 1, ans - 1], 1), why: `${cs.join(" + ")} = S/ ${ans}.`, hint: "Suma el valor de cada moneda." }; },
+      return { prompt: "¿Cuánto dinero hay?", say: "¿Cuánto dinero hay en total?", scene: `<div class="line">${cs.map(coin).join("")}</div>`, ans, opts: numOpts(ans, [cs.length, ans + 1, ans - 1], 1), why: `${cs.join(" + ")} = S/ ${ans}.`, hint: "Suma el valor de cada moneda.",
+        steps: T => { const cn = T.its(".coin"), acc = cs.map((_, i) => cs.slice(0, i + 1).reduce((p, q) => p + q, 0));
+          return [
+            { t: `Cada moneda tiene su valor escrito: S/ 1, S/ 2 o S/ 5. No contamos monedas: sumamos su <b>valor</b>.` },
+            { t: `Vamos sumando moneda por moneda:`, go: T.count(cn, { label: k => "S/" + acc[k - 1], say: k => acc[k - 1] + " soles", cls: "t-big", ms: 1100 }) },
+            { t: `${cs.join(" + ")} = <b>S/ ${ans}</b>.` }
+          ]; },
+        err: w => w === cs.length ? "Contaste las monedas; hay que sumar lo que vale cada una." : "" }; },
   ],
   [
     () => { const [a, b] = sample(ITEMS, 2), pa = between(3, 15), pb = between(3, 15), ans = pa + pb;
-      return { prompt: `Compro ${a[0]} y ${b[0]}. ¿Cuánto pago en total?`, say: `Compro ${a[1]} y ${b[1]}. ¿Cuánto pago?`, scene: tag(a[0], pa) + tag(b[0], pb), ans, opts: numOpts(ans, [Math.abs(pa - pb), ans + 1, ans + 10], 0), why: `S/ ${pa} + S/ ${pb} = S/ ${ans}.`, hint: "Suma los dos precios." }; },
+      return { prompt: `Compro ${a[0]} y ${b[0]}. ¿Cuánto pago en total?`, say: `Compro ${a[1]} y ${b[1]}. ¿Cuánto pago?`, scene: tag(a[0], pa) + tag(b[0], pb), ans, opts: numOpts(ans, [Math.abs(pa - pb), ans + 1, ans + 10], 0), why: `S/ ${pa} + S/ ${pb} = S/ ${ans}.`, hint: "Suma los dos precios.",
+        steps: T => [
+          { t: `«En total» → sumamos los dos precios: S/ ${pa} y S/ ${pb}.` },
+          { t: `Sumamos:`, b: BOARD.op([pa, pb]) },
+          { t: `Pago <b>S/ ${ans}</b>.` }
+        ],
+        err: w => w === Math.abs(pa - pb) ? "Restaste; para pagar todo se suma." : "" }; },
     () => { const bs = [pick([10, 20]), pick([10, 20, 50])], c = between(0, 3), ans = bs[0] + bs[1] + 2 * c;
-      return { prompt: "¿Cuánto dinero hay en total?", say: "¿Cuánto dinero hay en billetes y monedas?", scene: `<div class="line">${bs.map(bill).join("")}${Array(c).fill(coin(2)).join("")}</div>`, ans, opts: numOpts(ans, [bs[0] + bs[1], ans + 10, ans - 2], 0), why: `S/ ${ans}.`, hint: "Primero los billetes, luego las monedas." }; },
+      return { prompt: "¿Cuánto dinero hay en total?", say: "¿Cuánto dinero hay en billetes y monedas?", scene: `<div class="line">${bs.map(bill).join("")}${Array(c).fill(coin(2)).join("")}</div>`, ans, opts: numOpts(ans, [bs[0] + bs[1], ans + 10, ans - 2], 0), why: `S/ ${ans}.`, hint: "Primero los billetes, luego las monedas.",
+        steps: T => [
+          { t: `Primero sumamos los <b>billetes</b>: S/ ${bs[0]} + S/ ${bs[1]} = S/ ${bs[0] + bs[1]}.`, go: T.count(T.its(".bill"), { label: k => "S/" + bs.slice(0, k).reduce((p, q) => p + q, 0), say: k => bs.slice(0, k).reduce((p, q) => p + q, 0) + " soles", cls: "t-big", ms: 1100 }) },
+          c ? { t: `Después las <b>monedas</b> de S/ 2: ${Array(c).fill(2).join(" + ")} = S/ ${2 * c}.`, go: T.count(T.its(".coin"), { label: k => "S/" + (bs[0] + bs[1] + 2 * k), say: k => (bs[0] + bs[1] + 2 * k) + " soles", cls: "t-big", ms: 1000 }) } : { t: `No hay monedas.` },
+          { t: `En total hay <b>S/ ${ans}</b>.` }
+        ],
+        err: w => w === bs[0] + bs[1] ? "Te faltaron las monedas." : "" }; },
   ],
   [
     () => { const its = sample(ITEMS, 4), ps = sample([40, 55, 68, 80, 89, 90, 75, 62], 4), mn = Math.min(...ps), mx = Math.max(...ps), pay = 200, ans = pay - mn - mx;
       return { prompt: "Patrick compra el juguete <b>más barato</b> y el <b>más caro</b>. Si paga con un billete de <b>S/ 200</b>, ¿cuánto recibe de vuelto?", say: "Compra el más barato y el más caro y paga con 200 soles. ¿Cuánto recibe de vuelto?", scene: its.map((x, i) => tag(x[0], ps[i])).join(""), ans, opts: numOpts(ans, [mn + mx, ans + 10, ans - 10], 0),
-        why: `${mn} + ${mx} = ${mn + mx}. Vuelto: 200 − ${mn + mx} = ${ans}.`, hint: "Primero suma lo que gastó; después resta de 200." }; },
+        why: `${mn} + ${mx} = ${mn + mx}. Vuelto: 200 − ${mn + mx} = ${ans}.`, hint: "Primero suma lo que gastó; después resta de 200.",
+        steps: T => [
+          { t: `Buscamos el juguete más barato (S/ <b>${mn}</b>) y el más caro (S/ <b>${mx}</b>).`, b: BOARD.lines([`más barato: S/ ${mn}`, `más caro: S/ ${mx}`]) },
+          { t: `Gasta ${mn} + ${mx} = S/ ${mn + mx}.`, b: BOARD.op([mn, mx]) },
+          { t: `Vuelto: lo que dio menos lo que gastó: 200 − ${mn + mx} = <b>S/ ${ans}</b>.`, b: BOARD.op([200, mn + mx], "-") }
+        ],
+        err: w => w === mn + mx ? "Eso es lo que gastó; el vuelto es lo que le devuelven de los S/ 200." : "" }; },
     () => { const e = between(5, 9), r = between(2, 5), t = between(6, 12), ne = 2, nr = 1, nt = 3, ans = ne * e + nr * r + nt * t;
       return { prompt: `Una escoba cuesta S/ ${e}, un recogedor S/ ${r} y un tacho S/ ${t}. Si compramos <b>dos escobas, un recogedor y 3 tachos</b>, ¿cuánto pagamos?`, say: "¿Cuánto pagamos por dos escobas, un recogedor y tres tachos?", scene: tag("🧹", e) + tag("🧺", r) + tag("🗑️", t), ans, opts: numOpts(ans, [e + r + t, ans - t, ans + e], 0),
-        why: `2 × ${e} + ${r} + 3 × ${t} = ${2 * e} + ${r} + ${3 * t} = ${ans}.`, hint: "Calcula cada producto y suma todo." }; },
+        why: `2 × ${e} + ${r} + 3 × ${t} = ${2 * e} + ${r} + ${3 * t} = ${ans}.`, hint: "Calcula cada producto y suma todo.",
+        steps: T => [
+          { t: `Calculamos cada producto: 2 escobas = ${e} + ${e} = ${2 * e}; 1 recogedor = ${r}; 3 tachos = ${t} + ${t} + ${t} = ${3 * t}.`, b: BOARD.lines([`🧹 2 × ${e} = ${2 * e}`, `🧺 1 × ${r} = ${r}`, `🗑️ 3 × ${t} = ${3 * t}`], { step: .8 }) },
+          { t: `Ahora sumamos todo:`, bAdd: BOARD.lines([`${2 * e} + ${r} + ${3 * t} = ${ans}`]) },
+          { t: `Pagamos <b>S/ ${ans}</b>.` }
+        ],
+        err: w => w === e + r + t ? "Sumaste un solo producto de cada uno; hay que contar 2 escobas y 3 tachos." : "" }; },
     () => { const g = between(21, 49), ans = 100 - g;
-      return { prompt: `Miguel va a los juegos con <b>dos billetes de S/ 50</b>. Si en total gastó <b>S/ ${g}</b>, ¿con cuánto dinero regresa a su casa?`, say: `Tiene dos billetes de 50 soles y gastó ${g}. ¿Con cuánto regresa?`, scene: bill(50) + bill(50), ans, opts: numOpts(ans, [50 - g > 0 ? 50 - g : ans + 10, g, ans - 10], 0), why: `50 + 50 = 100. 100 − ${g} = ${ans}.`, hint: "Primero junta lo que tenía." }; },
+      return { prompt: `Miguel va a los juegos con <b>dos billetes de S/ 50</b>. Si en total gastó <b>S/ ${g}</b>, ¿con cuánto dinero regresa a su casa?`, say: `Tiene dos billetes de 50 soles y gastó ${g}. ¿Con cuánto regresa?`, scene: bill(50) + bill(50), ans, opts: numOpts(ans, [50 - g > 0 ? 50 - g : ans + 10, g, ans - 10], 0), why: `50 + 50 = 100. 100 − ${g} = ${ans}.`, hint: "Primero junta lo que tenía.",
+        steps: T => [
+          { t: `Primero juntamos lo que tenía: 50 + 50 = <b>S/ 100</b>.` },
+          { t: `Le quitamos lo que gastó: 100 − ${g}. Completamos desde ${g} hasta 100:`, b: BOARD.jumps(g, saltosHasta(g, 100), { step: .4 }) },
+          { t: `100 − ${g} = <b>S/ ${ans}</b>. Regresa con S/ ${ans}.` }
+        ],
+        err: w => w === g ? "Eso es lo que gastó; piden lo que le queda." : "" }; },
   ]
 ];
 lesson({ n: 56, title: "Monedas, precios, compras y vuelto", short: "Dinero", char: "coco", music: "funk", deco: ["🪙", "💵", "🛒", "🏷️"],

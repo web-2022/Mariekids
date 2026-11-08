@@ -270,6 +270,7 @@ text.it.t-hl { fill: #b45309; }
 .tb-op2 .tb-carry span { font-size: 15px; color: #16a34a; line-height: 1; height: 16px; }
 .tb-op2 > div > span:first-child { grid-column-start: 1; }
 .tb-col.tb-op2 .tb-hd span:first-child, .tb-col.tb-op2 .tb-res span:first-child, .tb-col.tb-op2 .tb-carry span:first-child { grid-column-start: 1; }
+.tbl td.t-cell, .tbl th.t-cell { background: #fde68a !important; box-shadow: inset 0 0 0 3px #f59e0b; }
 
     </style>
     <script>
@@ -814,7 +815,8 @@ function tutSay(text, cb) {
   const t = String(text || "").replace(/&lt;/g, " < ").replace(/&gt;/g, " > ")
     .replace(/(^|[\s\d)>])<(?=[\s\d(<]|$)/g, "$1 es menor que ").replace(/(^|[\s\d)>])>(?=[\s\d(<]|$)/g, "$1 es mayor que ")
     .replace(/<[^>]+>/g, " ").replace(/&nbsp;/g, " ").replace(/[\u{1F000}-\u{1FAFF}\u2190-\u21FF\u2300-\u23FF\u2600-\u27BF\u2B00-\u2BFF\uFE0F]/gu, "")
-    .replace(/×/g, " por ").replace(/−/g, " menos ").replace(/\+/g, " más ").replace(/=/g, " es igual a ").replace(/\s+/g, " ").trim();
+    .replace(/S\/\s?(\d+)/g, "$1 soles").replace(/\((\d+)\s?;\s?(\d+)\)/g, "$1 coma $2").replace(/(\d)\s?kg\b/g, "$1 kilos").replace(/(\d)\s?cm\b/g, "$1 centímetros").replace(/(\d)\s?m\b/g, "$1 metros")
+    .replace(/÷/g, " entre ").replace(/(\d+)\.?º/g, "$1").replace(/×/g, " por ").replace(/−/g, " menos ").replace(/\+/g, " más ").replace(/=/g, " es igual a ").replace(/\s+/g, " ").trim();
   let fin = false; const end = () => { if (!fin) { fin = true; if (cb) cb(); } };
   if (!t || !tutVoz() || !("speechSynthesis" in window)) { setTimeout(end, Math.min(2600, 400 + t.length * 40)); return; }
   const u = new SpeechSynthesisUtterance(t), vs = speechSynthesis.getVoices();
@@ -987,11 +989,12 @@ function tutKit(sc, tok) {
       };
       step();
     },
+    cell: (r, c) => { const tr = sc.querySelectorAll("tr")[r]; const td = tr && tr.children[c]; if (td) td.classList.add("t-cell"); return td; },
     paint: (els, c = "#fde68a") => els.forEach(x => { x.classList.add("t-paint"); x.style.fill = c; }),
     clear: () => {
       sc.querySelectorAll(".t-num").forEach(x => x.remove());
       sc.querySelectorAll(".t-paint").forEach(x => { x.classList.remove("t-paint"); x.style.removeProperty("fill"); });
-      sc.querySelectorAll(".t-dim,.t-hl,.t-pair,.t-host").forEach(x => { x.classList.remove("t-dim", "t-hl", "t-pair", "t-host"); x.style.removeProperty("--pc"); });
+      sc.querySelectorAll(".t-dim,.t-hl,.t-pair,.t-host,.t-cell").forEach(x => { x.classList.remove("t-dim", "t-hl", "t-pair", "t-host", "t-cell"); x.style.removeProperty("--pc"); });
     }
   };
   return T;
@@ -1120,6 +1123,22 @@ const FIG = {
     return out;
   }
 };
+
+// centro de la cara de arriba de cada torre de isoCubes(H): [{x, y, n}] (n = altura)
+function isoTops(H) {
+  const s = 34, t = s * 0.87, h = s * 0.5, out = [];
+  H.forEach((row, y) => row.forEach((n, x) => { if (n) { const a = (x - y) * t, b = (x + y) * h - (n - 1) * s; out.push({ x: a, y: b - s + h, n }); } }));
+  return out;
+}
+
+// posición (en el dibujo) de la casilla (x; y) de coordGrid(w, h)
+const coordXY = (w, h, x, y) => [30 + x * 40, (h + 1) * 40 + 20 - 30 - y * 40];
+
+// línea guía desde la punta de la barra i hasta el eje (para barChart)
+function barGuide(vals, i) {
+  const max = Math.max(...vals), top = Math.ceil(max / 2) * 2 || 2, sc = 150 / top, x = 48 + i * 58 + 22, y = 190 - vals[i] * sc;
+  return [x, y, 38, y];
+}
 
 /* ---------- Pizarra del tutor: dibujos que aparecen poco a poco ----------
    Cada pieza con style="--d:Xs" aparece con retraso X (animación .tb-in). */
@@ -1429,19 +1448,47 @@ const PES = [["🍉", 5], ["🍎", 1], ["🐘", 9], ["🐭", 1], ["🎈", 0], ["
 const GEN = [
   [
     () => { const [a, b] = sample(PES, 2).map(x => [...x]); if (a[1] === b[1]) b[1] = a[1] + 2; const heavy = a[1] > b[1] ? a[0] : b[0], tilt = a[1] > b[1] ? -8 : 8, ask = rnd(2) === 0;
-      return { prompt: `¿Qué pesa <b>${ask ? "más" : "menos"}</b>?`, say: `¿Qué pesa ${ask ? "más" : "menos"}?`, scene: balance(a[0], b[0], tilt), ans: ask ? heavy : (heavy === a[0] ? b[0] : a[0]), opts: [a[0], b[0]], cols: 2, min: 2, why: "El lado que baja es el más pesado.", hint: "En la balanza, lo más pesado baja." }; },
+      return { prompt: `¿Qué pesa <b>${ask ? "más" : "menos"}</b>?`, say: `¿Qué pesa ${ask ? "más" : "menos"}?`, scene: balance(a[0], b[0], tilt), ans: ask ? heavy : (heavy === a[0] ? b[0] : a[0]), opts: [a[0], b[0]], cols: 2, min: 2, why: "El lado que baja es el más pesado.", hint: "En la balanza, lo más pesado baja.",
+        steps: T => [
+          { t: `En una balanza, el lado más <b>pesado baja</b> y el más liviano sube.` },
+          { t: `Aquí baja el lado de ${heavy}: ${heavy} pesa más.`, b: BOARD.lines([`${heavy} ⬇ más pesado`, `${heavy === a[0] ? b[0] : a[0]} ⬆ más liviano`]) },
+          { t: `Pesa ${ask ? "más" : "menos"}: <b>${ask ? heavy : (heavy === a[0] ? b[0] : a[0])}</b>.` }
+        ] }; },
   ],
   [
     () => { const v = between(2, 9), x = between(1, v - 1), ans = v;
-      return { prompt: "La balanza está en equilibrio. ¿Cuánto pesa la 🍉?", say: "La balanza está en equilibrio. ¿Cuánto pesa la sandía?", scene: balance("🍉", W(x) + W(v - x)), ans, opts: numOpts(ans, [x, v - x, ans + 1].filter(y => y !== ans), 1), why: `${x} + ${v - x} = ${ans} kg.`, hint: "Suma las pesas del otro lado." }; },
+      return { prompt: "La balanza está en equilibrio. ¿Cuánto pesa la 🍉?", say: "La balanza está en equilibrio. ¿Cuánto pesa la sandía?", scene: balance("🍉", W(x) + W(v - x)), ans, opts: numOpts(ans, [x, v - x, ans + 1].filter(y => y !== ans), 1), why: `${x} + ${v - x} = ${ans} kg.`, hint: "Suma las pesas del otro lado.",
+        steps: T => [
+          { t: `La balanza está derechita: la 🍉 pesa lo mismo que todas las pesas del otro lado.` },
+          { t: `Sumamos las pesas: ${x} + ${v - x}.`, b: BOARD.lines([`${x} kg + ${v - x} kg = ${v} kg`]) },
+          { t: `La 🍉 pesa <b>${ans}</b> kg.` }
+        ],
+        err: w => w === x || w === v - x ? "Solo miraste una pesa; hay que sumarlas." : "" }; },
     () => { const L = sample([3, 4, 5, 6, 7, 8], 3), names = ["A", "B", "C"], long = rnd(2) === 0, i = L.indexOf(long ? Math.max(...L) : Math.min(...L));
-      return { prompt: `¿Qué lápiz es el más <b>${long ? "largo" : "corto"}</b>?`, say: `¿Qué lápiz es el más ${long ? "largo" : "corto"}?`, scene: names.map((n, k) => `<div style="display:flex;align-items:center;gap:6px;margin:4px 0"><b>${n}</b><span style="display:inline-block;height:16px;width:${L[k] * 30}px;background:linear-gradient(90deg,#fde047 90%,#334155 90%);border-radius:4px"></span></div>`).join(""), ans: names[i], opts: names, cols: 3, why: `El lápiz ${names[i]} es el más ${long ? "largo" : "corto"}.`, hint: "Compara dónde termina cada lápiz." }; },
+      return { prompt: `¿Qué lápiz es el más <b>${long ? "largo" : "corto"}</b>?`, say: `¿Qué lápiz es el más ${long ? "largo" : "corto"}?`, scene: names.map((n, k) => `<div style="display:flex;align-items:center;gap:6px;margin:4px 0"><b>${n}</b><span style="display:inline-block;height:16px;width:${L[k] * 30}px;background:linear-gradient(90deg,#fde047 90%,#334155 90%);border-radius:4px"></span></div>`).join(""), ans: names[i], opts: names, cols: 3, why: `El lápiz ${names[i]} es el más ${long ? "largo" : "corto"}.`, hint: "Compara dónde termina cada lápiz.",
+        steps: T => [
+          { t: `Todos los lápices empiezan en el mismo lugar (a la izquierda). Comparamos <b>dónde termina</b> cada uno.` },
+          { t: `Medimos cada lápiz:`, b: BOARD.table([["Lápiz", ...names], ["Largo", ...L.map(x => "▬".repeat(x))]]) },
+          { t: `El más ${long ? "largo" : "corto"} es el <b>${names[i]}</b>.` }
+        ] }; },
   ],
   [
     () => { const a = 10 * between(5, 9), b = 10 * between(10, 13), ans = a + b;
-      return { prompt: `Los pesos de dos personas son <b>${a} kg</b> y <b>${b} kg</b>. ¿Cuántos kg pesan juntas?`, say: `Pesan ${a} kilos y ${b} kilos. ¿Cuánto pesan juntas?`, scene: line(["🧍", "🧍‍♂️"]), ans, opts: numOpts(ans, [b - a, ans + 10, ans - 10], 0), why: `${a} + ${b} = ${ans} kg.`, hint: "Suma los dos pesos." }; },
+      return { prompt: `Los pesos de dos personas son <b>${a} kg</b> y <b>${b} kg</b>. ¿Cuántos kg pesan juntas?`, say: `Pesan ${a} kilos y ${b} kilos. ¿Cuánto pesan juntas?`, scene: line(["🧍", "🧍‍♂️"]), ans, opts: numOpts(ans, [b - a, ans + 10, ans - 10], 0), why: `${a} + ${b} = ${ans} kg.`, hint: "Suma los dos pesos.",
+        steps: T => [
+          { t: `«Juntas» → sumamos los dos pesos. Son decenas exactas.` },
+          { t: `Sumamos en columna:`, b: BOARD.op([a, b]) },
+          { t: `${a} + ${b} = <b>${ans}</b> kg.` }
+        ],
+        err: w => w === b - a ? "Restaste; «juntas» es sumar." : "" }; },
     () => { const b = between(2, 4), k = 3, x = between(1, 3 * b - 1), ans = 2 * b;
-      return { prompt: "La balanza está en equilibrio. ¿Cuánto pesa un <b>par</b> de botellas?", say: "Si la balanza está en equilibrio, ¿cuánto pesan dos botellas?", scene: balance(em("🍼", k).join(""), W(x) + W(k * b - x)), ans, opts: numOpts(ans, [b, k * b, ans + 2], 1), why: `3 botellas = ${k * b} kg → 1 botella = ${b} kg → 2 botellas = ${ans} kg.`, hint: "Primero averigua cuánto pesa una sola botella." }; },
+      return { prompt: "La balanza está en equilibrio. ¿Cuánto pesa un <b>par</b> de botellas?", say: "Si la balanza está en equilibrio, ¿cuánto pesan dos botellas?", scene: balance(em("🍼", k).join(""), W(x) + W(k * b - x)), ans, opts: numOpts(ans, [b, k * b, ans + 2], 1), why: `3 botellas = ${k * b} kg → 1 botella = ${b} kg → 2 botellas = ${ans} kg.`, hint: "Primero averigua cuánto pesa una sola botella.",
+        steps: T => [
+          { t: `Las 3 botellas pesan lo mismo que las pesas: ${x} + ${k * b - x} = <b>${k * b}</b> kg.` },
+          { t: `Una botella: repartimos ${k * b} en 3 partes iguales = <b>${b}</b> kg.`, b: BOARD.share(k * b, 3, "●", { names: ["🍼", "🍼", "🍼"] }) },
+          { t: `Un <b>par</b> son 2 botellas: ${b} + ${b} = <b>${ans}</b> kg.` }
+        ],
+        err: w => w === b ? "Ese es el peso de una sola botella; piden un par." : w === k * b ? "Ese es el peso de las 3 botellas." : "" }; },
   ]
 ];
 lesson({ n: 55, title: "Peso y comparación de medidas", short: "Peso y medidas", char: "bimba", music: "lofi", deco: ["⚖️", "🍉", "📏", "🪶"],
