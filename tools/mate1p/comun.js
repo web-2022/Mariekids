@@ -87,7 +87,7 @@ const NAME = n => MKChar.names[n];
 /* ---------- Final de la lección: enlace al siguiente tema ---------- */
 function nextTopic(n) {
   return (level, passed, stars, box) => {
-    if (!passed || n > 63) return;
+    if (!passed || n > 64) return;
     const href = `mate1p-${String(n).padStart(2, "0")}.html`;
     box.innerHTML = `<a class="btn alt next-topic" href="${href}">➡️ Siguiente tema</a>`;
   };

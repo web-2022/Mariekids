@@ -60,6 +60,6 @@ const GEN = [
         why: `${c} − ${a} = ${b}, entonces falta ${ans}.`, hint: "Resta para hallar lo que falta." }; },
   ]
 ];
-lesson({ n: 62, next: 46, title: "Sumas con letras (inicio del álgebra)", short: "Sumas con letras", char: "mika", music: "kpop", deco: ["🎁", "➕", "🔤", "⭐"],
+lesson({ n: 62, next: 64, title: "Sumas con letras (inicio del álgebra)", short: "Sumas con letras", char: "mika", music: "kpop", deco: ["🎁", "➕", "🔤", "⭐"],
   hello: "¡Hola! Soy <b>Mika</b>. En matemática una <b>letra</b> puede ser como una <b>cajita</b>: 3x + 2x son 3 cajitas más 2 cajitas = <b>5x</b>. ¡Suma los números y la letra se queda igual!",
   levels: LEVELS3(["Letras como cajitas", "Sumar dos términos"], ["Tres sumandos y restas", "Sumar y quitar"], ["", "Retos de concurso"]) }, GEN);
