@@ -42,6 +42,7 @@ const GEN = [
         ans, opts: numOpts(ans, sample(all.filter(x => x !== ans), 3), 0), why: `${ans}.${big ? "" : " ¡El 0 no puede ir adelante!"}`, hint: big ? "Pon las cifras de mayor a menor." : "El 0 no puede ir primero: ponlo en el medio.",
         steps: T => { const nz = ds.filter(x => x).sort((p, q) => p - q), desc = [...ds].sort((p, q) => q - p);
           return big ? [
+            { t: `Un número de tres cifras tiene <b>centenas</b>, decenas y unidades. La cifra de las centenas (la de adelante) es la que más vale.` },
             { t: `Para el número <b>mayor</b>, ponemos las cifras de la más grande a la más pequeña: centenas, decenas y unidades.`, b: BOARD.table([["C", "D", "U"], desc.slice(0, 3)]) },
             { t: `Usamos ${desc.slice(0, 3).join(", ")}: el número es <b>${ans}</b>.` }
           ] : [
