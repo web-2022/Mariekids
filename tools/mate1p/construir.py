@@ -39,6 +39,7 @@ PLANTILLA = """<!DOCTYPE html>
 document.addEventListener("DOMContentLoaded", function () {{
 {comun}
 {juego}
+window.MKT = {{ ask, ansTxt, BOARD, get GEN() {{ try {{ return GEN; }} catch (e) {{ return null; }} }} }};   // para las pruebas automáticas
 }});
     </script>
     <script>

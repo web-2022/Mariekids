@@ -4,7 +4,7 @@ const GEN = [
     () => { const t = pick(["d", "m", "dd"]);
       if (t === "d") return { prompt: "Una <b>docena</b> son…", say: "¿Cuántos son una docena?", scene: line(em("🥚", 12)), ans: 12, opts: [6, 10, 12, 20], cols: 4, why: "1 docena = 12.", hint: "Cuenta los huevos." };
       if (t === "m") return { prompt: "<b>Media docena</b> son…", say: "¿Cuántos son media docena?", scene: line(em("🥚", 6)), ans: 6, opts: [5, 6, 10, 12], cols: 4, why: "Media docena es la mitad de 12 = 6.", hint: "La mitad de 12." };
-      const k = between(2, 3); return { prompt: `¿Cuántas <b>docenas</b> de 🍩 hay?`, say: "¿Cuántas docenas hay?", scene: `<div class="rowsbox">${Array.from({ length: k }, () => line(em("🍩", 12), "small")).join("")}</div>`, ans: k, opts: numOpts(k, [12 * k, k + 1], 1), why: `${12 * k} = ${k} docenas.`, hint: "Cada fila tiene 12." }; },
+      const k = between(2, 3); return { prompt: `¿Cuántas <b>docenas</b> de 🍩 hay?`, say: "¿Cuántas docenas hay?", scene: `<div class="dzs">${Array.from({ length: k }, () => `<div class="dz">${em("<span class='it'>🍩</span>", 12).join("")}</div>`).join("")}</div>`, ans: k, opts: numOpts(k, [12 * k, k + 1], 1), why: `${12 * k} = ${k} docenas.`, hint: "Cada fila tiene 12." }; },
   ],
   [
     () => { const n = between(3, 10), e = pick(["✏️", "🧁", "🌹"]), ans = 12 - n;

@@ -1,7 +1,7 @@
 /* Tema 15 · Números ordinales · Kiki */
 const ORD = ["primero", "segundo", "tercero", "cuarto", "quinto", "sexto", "séptimo", "octavo", "noveno", "décimo"];
 const AN = ["🐢", "🐇", "🐶", "🐱", "🐷", "🐻", "🦊", "🐸", "🐼", "🐵"];
-const race = list => `<div class="line" style="flex-wrap:nowrap;justify-content:flex-start;overflow:hidden"><span>🏁</span>${list.map(x => `<span style="display:inline-block;transform:scaleX(-1)">${x}</span>`).join("")}</div><div class="legend">🏁 llegada · el más cerca de la bandera va primero</div>`;
+const race = list => `<div style="container-type:inline-size;width:100%"><div class="line race" style="flex-wrap:nowrap;justify-content:flex-start;gap:0 2px;font-size:min(34px, calc(100cqw / ${list.length + 1} * .78))"><span>🏁</span>${list.map((x, i) => `<span class="it" data-k="p${i}" style="display:inline-block;transform:scaleX(-1)">${x}</span>`).join("")}</div></div><div class="legend">🏁 llegada · el más cerca de la bandera va primero</div>`;
 const GEN = [
   [
     () => { const k = between(4, 6), list = sample(AN, k), p = rnd(k), ans = ORD[p];

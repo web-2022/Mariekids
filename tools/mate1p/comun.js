@@ -27,14 +27,13 @@ function numOpts(ans, near = [], min = 0) {
 function ask(ui, q) {
   ui.prompt(q.prompt, q.say);
   if (q.scene) { const st = document.createElement("div"); st.className = "stage scene " + (q.sceneCls || ""); st.innerHTML = q.scene; ui.area.appendChild(st); }
-  const opts = q.opts;
+  const opts = q.opts, ok = o => (q.eq ? q.eq(o, q.ans) : o === q.ans);
   ui.choices(opts, {
     cols: q.cols || 2, cls: "exam " + (q.cls || ""), render: q.render || abcd,
-    correct: o => (q.eq ? q.eq(o, q.ans) : o === q.ans),
+    correct: ok, onTap: o => { if (!ok(o)) q._wrong = o; },
     why: q.why, hint: q.hint
   });
-  if (q.steps) tutorBtn(ui, q, st0());
-  function st0() { const all = ui.area.querySelectorAll(".scene"); return all[all.length - 1] || ui.area; }
+  if (q.steps) { const all = ui.area.querySelectorAll(".scene"); tutorBtn(ui, q, all[all.length - 1] || null); }
 }
 
 /* ---------- Tutor «Ayúdame a resolver»: explica paso a paso como un profesor ----------
@@ -126,26 +125,44 @@ function tutKit(sc, tok) {
   };
   return T;
 }
+// texto de la respuesta para el cierre (null si no se puede escribir)
+const ansTxt = q => q.ansTxt !== undefined ? q.ansTxt : (typeof q.ans === "number" || typeof q.ans === "string") ? String(q.ans) : null;
 function tutorBtn(ui, q, sc) {
   TUT_TOK++;
   if (TUT_HOLD) { TUT_HOLD(false); TUT_HOLD = null; }
   const btn = document.createElement("button");
   btn.type = "button"; btn.className = "tut-btn"; btn.innerHTML = "🙋 No entiendo, ¡ayúdame a resolver!";
-  sc.after(btn);
+  const place = el => { if (sc) sc.after(el); else { const ch = ui.area.querySelector(".choices"); ch ? ch.before(el) : ui.area.appendChild(el); } };
+  place(btn);
   btn.onclick = () => {
     if (ui.helped) ui.helped();
     btn.remove();
     const box = document.createElement("div"); box.className = "tutor";
-    box.innerHTML = `<div class="th"><span>👩‍🏫 Resolvamos juntos</span><span class="tp"></span></div><div class="tt"></div><div class="tb"><button type="button" class="t-rep">🔊 Repetir</button><button type="button" class="t-next">Siguiente paso ➜</button></div>`;
-    sc.after(box);
+    box.innerHTML = `<div class="th"><span>👩‍🏫 Resolvamos juntos</span><span class="tp"></span></div><div class="tt"></div><div class="tboard"></div><div class="tb"><button type="button" class="t-rep">🔊 Repetir</button><button type="button" class="t-next">Siguiente paso ➜</button></div>`;
+    place(box);
     if (ui.musicHold) { ui.musicHold(true); TUT_HOLD = ui.musicHold; }
-    const tok = ++TUT_TOK, T = tutKit(sc, tok), steps = q.steps(T);
+    const tok = ++TUT_TOK, T = tutKit(sc || box.querySelector(".tboard"), tok), board = box.querySelector(".tboard");
+    T.board = board;
+    const steps = q.steps(T).filter(Boolean);
+    // ayuda según el error: si ya marcó una alternativa equivocada, empezamos por ahí
+    if (q._wrong !== undefined) {
+      const w = q._wrong, wt = (typeof w === "number" || typeof w === "string") ? String(w) : "esa";
+      const extra = q.err ? q.err(w) : "";
+      steps.unshift({ t: `Elegiste <b>${wt}</b>. ¡Buen intento! ${extra || "Pero esa no es."} Vamos a resolverlo juntos, paso a paso.` });
+    }
+    // cierre: siempre termina diciendo la respuesta correcta (sin tocarla por el niño)
+    const at = ansTxt(q), lastT = String(steps[steps.length - 1].t).replace(/<[^>]+>/g, "");
+    if (at === null) steps.push({ t: "Ahora ya sabes cuál es. 👇 Búscala en las respuestas y tócala." });
+    else if (!lastT.includes(at.replace(/<[^>]+>/g, ""))) steps.push({ t: `La respuesta es <b>${at}</b>. 👇 Búscala en las respuestas y tócala.` });
+    else steps[steps.length - 1] = { ...steps[steps.length - 1], t: steps[steps.length - 1].t + (/Búscala|búscala/.test(lastT) ? "" : " 👇 Búscala en las respuestas.") };
     let i = -1;
     const nx = box.querySelector(".t-next"), rp = box.querySelector(".t-rep");
     const show = () => {
       const s = steps[i], last = i === steps.length - 1;
       box.querySelector(".tp").textContent = `Paso ${i + 1} de ${steps.length}`;
       box.querySelector(".tt").innerHTML = s.t;
+      if (s.b !== undefined) { const h = typeof s.b === "function" ? s.b() : s.b; board.innerHTML = h || ""; board.classList.toggle("on", !!h); }
+      if (s.bAdd) { board.insertAdjacentHTML("beforeend", typeof s.bAdd === "function" ? s.bAdd() : s.bAdd); board.classList.add("on"); }
       nx.disabled = true; nx.textContent = "…";
       const ready = () => {
         if (tok !== TUT_TOK) return;
@@ -153,22 +170,91 @@ function tutorBtn(ui, q, sc) {
         nx.textContent = last ? "🔁 Ver otra vez" : "Siguiente paso ➜";
         if (last && TUT_HOLD) { TUT_HOLD(false); TUT_HOLD = null; }
       };
-      tutSay(s.s || s.t, () => { if (tok !== TUT_TOK) return; if (s.go) s.go(ready); else ready(); });
+      const wait = board.querySelectorAll("[style*='--d']").length && (s.b !== undefined || s.bAdd) ? BOARD.dur(board) : 0;
+      tutSay(s.s || s.t, () => { if (tok !== TUT_TOK) return; if (s.go) s.go(ready); else setTimeout(ready, Math.max(0, wait - 1500)); });
       box.scrollIntoView({ behavior: "smooth", block: "nearest" });
     };
     nx.onclick = () => {
-      if (i === steps.length - 1) { T.clear(); i = -1; }
+      if (i === steps.length - 1) { T.clear(); board.innerHTML = ""; board.classList.remove("on"); i = -1; }
       i++; show();
     };
     rp.onclick = () => tutSay(steps[i].s || steps[i].t);
     i = 0; show();
   };
 }
+
+/* ---------- Pizarra del tutor: dibujos que aparecen poco a poco ----------
+   Cada pieza con style="--d:Xs" aparece con retraso X (animación .tb-in). */
+const BOARD = {
+  dur: el => { let m = 0; el.querySelectorAll("[style*='--d']").forEach(x => { const v = parseFloat((x.getAttribute("style").match(/--d:\s*([\d.]+)s/) || [])[1] || 0); if (v > m) m = v; }); return (m + .6) * 1000; },
+  // recta numérica con saltos: desde a, saltos = [+1,+1,...] o [-10, -1...]
+  jumps(a, saltos, o = {}) {
+    const vals = [a]; saltos.forEach(j => vals.push(vals[vals.length - 1] + j));
+    const lo = o.min !== undefined ? o.min : Math.min(...vals) - (o.pad ?? 1), hi = o.max !== undefined ? o.max : Math.max(...vals) + (o.pad ?? 1);
+    const W = 320, L = 14, R = W - 14, X = v => L + (R - L) * (v - lo) / Math.max(1, hi - lo), span = hi - lo;
+    const every = span <= 22 ? 1 : span <= 60 ? 5 : 10;
+    let g = `<line x1="${L - 6}" y1="70" x2="${R + 6}" y2="70" stroke="#334155" stroke-width="2.5"/>`;
+    for (let v = Math.ceil(lo / every) * every; v <= hi; v += every) g += `<line x1="${X(v)}" y1="64" x2="${X(v)}" y2="76" stroke="#334155" stroke-width="2"/><text x="${X(v)}" y="93" font-size="${span > 22 ? 10 : 12}" text-anchor="middle" font-weight="800" fill="#334155">${v}</text>`;
+    if (every > 1) vals.forEach(v => { if (v % every) g += `<line x1="${X(v)}" y1="64" x2="${X(v)}" y2="76" stroke="#334155" stroke-width="2"/><text x="${X(v)}" y="93" font-size="10" text-anchor="middle" font-weight="800" fill="#7c3aed">${v}</text>`; });
+    g += `<circle cx="${X(a)}" cy="70" r="6" fill="#22c55e"/>`;
+    saltos.forEach((j, i) => {
+      const x1 = X(vals[i]), x2 = X(vals[i + 1]), m = (x1 + x2) / 2, hgt = Math.min(40, 14 + Math.abs(x2 - x1) * .45), c = j > 0 ? "#2563eb" : "#e11d48";
+      g += `<g class="tb-in" style="--d:${(i * (o.step || .7) + .3).toFixed(2)}s"><path d="M${x1} 64 Q${m} ${64 - hgt * 1.4} ${x2} 64" fill="none" stroke="${c}" stroke-width="2.5" marker-end="url(#ah${c.slice(1)})"/>` +
+        (o.labels === false ? "" : `<text x="${m}" y="${60 - hgt * .72}" font-size="12" text-anchor="middle" font-weight="900" fill="${c}">${j > 0 ? "+" : "−"}${Math.abs(j)}</text>`) + `</g>`;
+    });
+    const end = vals[vals.length - 1];
+    g += `<g class="tb-in" style="--d:${(saltos.length * (o.step || .7) + .3).toFixed(2)}s"><circle cx="${X(end)}" cy="70" r="7" fill="#f59e0b" stroke="#fff" stroke-width="2"/></g>`;
+    const defs = `<defs>${["2563eb", "e11d48"].map(c => `<marker id="ah${c}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#${c}"/></marker>`).join("")}</defs>`;
+    return `<svg viewBox="0 0 ${W} 100" class="tb-svg">${defs}${g}</svg>`;
+  },
+  // grupos de puntos/objetos: [{n, e, c, lab}]
+  groups(gs, o = {}) {
+    let d = 0;
+    return `<div class="tb-groups">` + gs.map(gr => `<div class="tb-grp" style="--gc:${gr.c || "#f59e0b"}">${gr.lab ? `<b class="tb-in" style="--d:${(d).toFixed(2)}s">${gr.lab}</b>` : ""}<div class="tb-gi">` +
+      Array.from({ length: gr.n }, () => `<span class="tb-in" style="--d:${(d += (o.step || .18)).toFixed(2)}s">${gr.e || "●"}</span>`).join("") + `</div></div>`).join("") + `</div>`;
+  },
+  // reparto de n cosas en k platos, de uno en uno
+  share(n, k, e = "●", o = {}) {
+    const C = ["#3b82f6", "#f97316", "#22c55e", "#ec4899", "#8b5cf6", "#14b8a6"], plates = Array.from({ length: k }, () => []);
+    for (let i = 0; i < n; i++) plates[i % k].push(`<span class="tb-in" style="--d:${(.3 + i * (o.step || .3)).toFixed(2)}s">${e}</span>`);
+    return `<div class="tb-groups">` + plates.map((p, i) => `<div class="tb-grp tb-plate" style="--gc:${C[i % C.length]}"><b>${o.names ? o.names[i] : "Grupo " + (i + 1)}</b><div class="tb-gi">${p.join("")}</div></div>`).join("") + `</div>`;
+  },
+  // decenas (barras de 10) y unidades
+  du(n, o = {}) {
+    const D = Math.floor(n / 10), U = n % 10; let d = 0;
+    const bar = () => `<span class="tb-ten tb-in" style="--d:${(d += .35).toFixed(2)}s">${"<i></i>".repeat(10)}</span>`;
+    return `<div class="tb-du"><div class="tb-dcol"><b>${D} decena${D === 1 ? "" : "s"}</b><div>${Array.from({ length: D }, bar).join("")}</div></div><div class="tb-ucol"><b>${U} unidad${U === 1 ? "" : "es"}</b><div>${Array.from({ length: U }, () => `<span class="tb-one tb-in" style="--d:${(d += .25).toFixed(2)}s"></span>`).join("")}</div></div></div>` + (o.total === false ? "" : `<div class="tb-line tb-in" style="--d:${(d + .4).toFixed(2)}s">${D} D + ${U} U = <b>${n}</b></div>`);
+  },
+  // operación en columna (suma o resta) con D y U
+  col(a, b, op = "+") {
+    const r = op === "+" ? a + b : a - b, w = String(Math.max(a, b, Math.abs(r))).length;
+    const cells = (n, cls = "") => String(n).padStart(w, " ").split("").map(c => `<span class="${cls}">${c === " " ? "" : c}</span>`).join("");
+    const rd = String(r).padStart(w, " ").split("");
+    return `<div class="tb-col" style="--w:${w}"><div class="tb-hd">${w === 3 ? "<span>C</span>" : ""}${w >= 2 ? "<span>D</span>" : ""}<span>U</span></div><div>${cells(a)}</div><div><span class="tb-op">${op === "+" ? "+" : "−"}</span>${cells(b)}</div><div class="tb-res">${rd.map((c, i) => `<span class="tb-in" style="--d:${(.6 + (w - 1 - i) * .9).toFixed(2)}s">${c === " " ? "" : c}</span>`).join("")}</div></div>`;
+  },
+  // líneas de pizarra que aparecen una tras otra
+  lines(ls, o = {}) { return `<div class="tb-lines">` + ls.map((l, i) => `<div class="tb-in" style="--d:${(.2 + i * (o.step || 1)).toFixed(2)}s">${l}</div>`).join("") + `</div>`; },
+  // sucesión con el salto entre términos
+  seq(terms, o = {}) {
+    let h = "", d = .1;
+    terms.forEach((t, i) => {
+      if (i) { const df = o.diffs ? o.diffs[i - 1] : (typeof t === "number" && typeof terms[i - 1] === "number" ? t - terms[i - 1] : null);
+        h += `<span class="tb-arr tb-in" style="--d:${(d += .5).toFixed(2)}s">${df === null ? "→" : (df >= 0 ? "+" : "−") + Math.abs(df)}<i>➜</i></span>`; }
+      h += `<span class="tb-term tb-in${o.hl === i ? " hl" : ""}" style="--d:${(d += .35).toFixed(2)}s">${t}</span>`;
+    });
+    return `<div class="tb-seq">${h}</div>`;
+  },
+  // tabla sencilla: filas de celdas (la primera es encabezado)
+  table(rows, o = {}) { return `<table class="tbl tb-tbl">` + rows.map((r, i) => `<tr>${r.map((c, j) => i === 0 ? `<th>${c}</th>` : `<td class="${o.hl && o.hl[0] === i && o.hl[1] === j ? "hl" : ""}">${c}</td>`).join("")}</tr>`).join("") + `</table>`; },
+  // copia del dibujo de la pregunta (para animarlo en la pizarra)
+  big: (html, o = {}) => `<div class="tb-big tb-in" style="--d:${o.d || 0}s">${html}</div>`
+};
 function checkQ(q, bad, name) {
   const eq = q.eq || ((a, b) => a === b);
   if (q.opts.filter(o => eq(o, q.ans)).length !== 1) bad.push(name + ": respuesta no única o ausente");
   if (new Set(q.opts.map(String)).size !== q.opts.length) bad.push(name + ": opciones repetidas");
   if (q.opts.length < (q.min || 3)) bad.push(name + ": pocas opciones");
+  if (!q.steps) bad.push(name + ": sin ayuda");
 }
 
 /* ---------- Dibujos ---------- */
