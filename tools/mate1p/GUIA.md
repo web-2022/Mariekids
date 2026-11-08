@@ -34,3 +34,18 @@ Los temas 59-61 usan `olimpiada.js` (se incluye con la línea `// @incluir olimp
 - Construir: `python3 tools/mate1p/construir.py` → `1primary/mate1p/mate1p-NN.html`.
 - Probar: `node tools/ejercicios-mentales/probar.js 1primary/mate1p/mate1p-NN` (servidor en :8765).
 - Cada generador se valida: una sola respuesta correcta y opciones distintas (`check`).
+
+## Tutor «🙋 No entiendo, ¡ayúdame a resolver!»
+Si una pregunta trae `steps`, aparece el botón debajo del dibujo. Explica paso a paso como un profesor:
+lee cada paso en voz alta y anima el dibujo (apaga lo que no se cuenta, numera mientras cuenta, forma pares o grupos).
+Usarlo hace que esa pregunta ya no cuente como «a la primera».
+
+    steps: T => [
+      { t: "Texto del paso (se lee en voz alta)", s: "texto distinto para la voz (opcional)" },
+      { t: "Contamos:", go: T.count(T.its()) },             // anima y luego habilita «Siguiente paso»
+      { t: "Apagamos lo que no sirve", go: d => { T.dim(T.of("🍓")); setTimeout(d, 600); } }
+    ]
+
+Ayudas de `T`: `its(sel)` elementos `.it` de la escena · `of(emoji o data-k)` · `dim(els)` · `count(els, {label, say, cls, ms})` ·
+`pairs(els, {near, both, say})` · `split(els)` (2 grupos iguales azul/naranja) · `badge(el, txt)` · `clear()`.
+Para que un dibujo se pueda animar, cada objeto debe ir en `<span class="it" data-k="...">`. Hecho: tema 1.

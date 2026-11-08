@@ -164,6 +164,25 @@ p { margin: 6px 0; font-size: clamp(14px,4vw,16px); line-height: 1.4; }
 .tbl th { background: #e0e7ff; }
 .story { font: 700 17px/1.45 'Segoe UI', sans-serif; color: #1e293b; text-align: left; }
 
+/* Tutor «Ayúdame a resolver» */
+.tut-btn { display: block; margin: 8px auto 2px; background: #fff7ed; border: 2px solid #fb923c; color: #9a3412; font: 900 15px 'Segoe UI', sans-serif; border-radius: 999px; padding: 8px 16px; cursor: pointer; }
+.tut-btn:active { transform: scale(.97); }
+.tutor { margin: 8px 0 10px; padding: 10px 12px; border-radius: 16px; background: #fffbeb; border: 3px solid #f59e0b; text-align: left; box-shadow: 0 4px 14px rgba(245, 158, 11, .25); }
+.tutor .th { display: flex; justify-content: space-between; gap: 8px; font: 900 14px 'Segoe UI', sans-serif; color: #92400e; }
+.tutor .tt { font: 800 17px/1.45 'Segoe UI', sans-serif; color: #1e293b; margin: 6px 0 10px; }
+.tutor .tb { display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap; }
+.tutor .tb button { border: 0; border-radius: 12px; padding: 9px 14px; font: 900 15px 'Segoe UI', sans-serif; cursor: pointer; background: #f59e0b; color: #fff; }
+.tutor .tb .t-rep { background: #fff; color: #92400e; border: 2px solid #fcd34d; }
+.tutor .tb button:disabled { opacity: .55; cursor: default; }
+.t-host { position: relative; }
+.fishes .it, .dice .it, .side .it { display: inline-block; }
+.t-dim { opacity: .15; filter: grayscale(1); transition: opacity .4s; }
+.t-hl { filter: drop-shadow(0 0 5px #facc15) drop-shadow(0 0 2px #f59e0b); }
+.t-pair { border-radius: 12px; box-shadow: 0 0 0 3px var(--pc, #f59e0b); background: color-mix(in srgb, var(--pc, #f59e0b) 18%, transparent); }
+.t-num { position: absolute; top: -8px; right: -10px; min-width: 22px; height: 22px; padding: 0 5px; border-radius: 11px; background: #e11d48; color: #fff; font: 900 13px/22px 'Segoe UI', sans-serif; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,.3); animation: tpop .35s ease-out; z-index: 2; font-style: normal; }
+.t-num.t-big { background: #2563eb; }
+@keyframes tpop { from { transform: scale(0); } 60% { transform: scale(1.3); } to { transform: scale(1); } }
+
     </style>
     <script>
 /* =========================================================
@@ -695,6 +714,136 @@ function ask(ui, q) {
     correct: o => (q.eq ? q.eq(o, q.ans) : o === q.ans),
     why: q.why, hint: q.hint
   });
+  if (q.steps) tutorBtn(ui, q, st0());
+  function st0() { const all = ui.area.querySelectorAll(".scene"); return all[all.length - 1] || ui.area; }
+}
+
+/* ---------- Tutor «Ayúdame a resolver»: explica paso a paso como un profesor ----------
+   q.steps = T => [{ t: "texto del paso", go: done => {...animación...; done()} }, ...]
+   T trae ayudas para marcar la escena: its, of, dim, count, pairs, match, badge, clear. */
+let TUT_TOK = 0, TUT_HOLD = null;
+const tutVoz = () => { const b = document.getElementById("soundBtn"); return !b || b.textContent.trim() !== "🔇"; };
+function tutSay(text, cb) {
+  const t = String(text || "").replace(/<[^>]+>/g, " ").replace(/[\u{1F000}-\u{1FAFF}\u2190-\u21FF\u2300-\u23FF\u2600-\u27BF\u2B00-\u2BFF\uFE0F]/gu, "")
+    .replace(/×/g, " por ").replace(/−/g, " menos ").replace(/\+/g, " más ").replace(/=/g, " es igual a ").replace(/\s+/g, " ").trim();
+  let fin = false; const end = () => { if (!fin) { fin = true; if (cb) cb(); } };
+  if (!t || !tutVoz() || !("speechSynthesis" in window)) { setTimeout(end, Math.min(2600, 400 + t.length * 40)); return; }
+  const u = new SpeechSynthesisUtterance(t), vs = speechSynthesis.getVoices();
+  u.voice = vs.find(x => x.lang === "es-PE") || vs.find(x => /^es[-_](419|US|MX|CO)/.test(x.lang)) || vs.find(x => /^es/.test(x.lang)) || null;
+  u.lang = "es-PE"; u.rate = .85; u.pitch = 1.05;
+  u.onend = end; u.onerror = e => { if (e.error !== "interrupted" && e.error !== "canceled") end(); };
+  speechSynthesis.cancel(); speechSynthesis.speak(u);
+  setTimeout(end, 1800 + t.length * 95);   // por si el navegador no avisa el final
+}
+function tutKit(sc, tok) {
+  const alive = () => tok === TUT_TOK;
+  const host = el => { if (getComputedStyle(el).position === "static") el.classList.add("t-host"); };
+  const T = {
+    sc,
+    its: (sel = ".it") => [...sc.querySelectorAll(sel)],
+    of: (txt, sel = ".it") => T.its(sel).filter(x => x.dataset.k ? x.dataset.k === txt : x.textContent.includes(txt)),
+    not: (els, sel = ".it") => T.its(sel).filter(x => !els.includes(x)),
+    dim: els => els.forEach(x => x.classList.add("t-dim")),
+    badge: (el, txt, cls = "") => { host(el); const b = document.createElement("b"); b.className = "t-num " + cls; b.textContent = txt; el.appendChild(b); return b; },
+    // cuenta uno por uno: pone el número y lo dice en voz alta
+    count: (els, o = {}) => done => {
+      let k = 0;
+      const step = () => {
+        if (!alive()) return;
+        if (k >= els.length) { setTimeout(() => alive() && done(), 350); return; }
+        const el = els[k++], lab = o.label ? o.label(k, el) : String(o.from ? o.from + k - 1 : k);
+        el.classList.add("t-hl"); if (o.color) el.style.setProperty("--pc", o.color);
+        T.badge(el, lab, o.cls); tutSay(o.say ? o.say(k, el) : lab);
+        setTimeout(step, o.ms || 900);
+      };
+      step();
+    },
+    // agrupa de dos en dos (pares) con colores
+    // ordena para que cada pareja quede con su vecino más cercano
+    near: els => {
+      const P = els.map(e => { const r = e.getBoundingClientRect(); return { e, x: r.left + r.width / 2, y: r.top + r.height / 2 }; });
+      const left = [...P].sort((a, b) => a.y - b.y || a.x - b.x), out = [];
+      while (left.length) {
+        const a = left.shift(); out.push(a.e); if (!left.length) break;
+        let bi = 0, bd = Infinity; left.forEach((b, i) => { const d = (a.x - b.x) ** 2 + (a.y - b.y) ** 2; if (d < bd) { bd = d; bi = i; } });
+        out.push(left.splice(bi, 1)[0].e);
+      }
+      return out;
+    },
+    pairs: (els, o = {}) => done => {
+      if (o.near) els = T.near(els);
+      const C = ["#f59e0b", "#22c55e", "#3b82f6", "#ec4899", "#8b5cf6", "#14b8a6", "#ef4444", "#84cc16"];
+      let k = 0;
+      const step = () => {
+        if (!alive()) return;
+        if (2 * k >= els.length) { setTimeout(() => alive() && done(), 350); return; }
+        const a = els[2 * k], b = els[2 * k + 1], c = C[k % C.length]; k++;
+        [a, b].forEach(x => { if (x) { x.classList.add("t-pair"); x.style.setProperty("--pc", c); } });
+        const lab = o.label ? o.label(k) : String(k);
+        T.badge(a, lab, "t-pc").style.background = c;
+        if (b && o.both) T.badge(b, lab, "t-pc").style.background = c;
+        tutSay(o.say ? o.say(k) : lab); setTimeout(step, o.ms || 1000);
+      };
+      step();
+    },
+    // reparte en 2 grupos iguales: uno al azul, uno al naranja…
+    split: (els, o = {}) => done => {
+      let k = 0;
+      const step = () => {
+        if (!alive()) return;
+        if (k >= els.length) { setTimeout(() => alive() && done(), 350); return; }
+        const el = els[k], blue = k % 2 === 0, n = Math.floor(k / 2) + 1, c = blue ? "#3b82f6" : "#f97316"; k++;
+        el.classList.add("t-pair"); el.style.setProperty("--pc", c);
+        T.badge(el, String(n), "t-pc").style.background = c;
+        if (blue) tutSay(String(n));
+        setTimeout(step, blue ? 550 : 800);
+      };
+      step();
+    },
+    clear: () => {
+      sc.querySelectorAll(".t-num").forEach(x => x.remove());
+      sc.querySelectorAll(".t-dim,.t-hl,.t-pair,.t-host").forEach(x => { x.classList.remove("t-dim", "t-hl", "t-pair", "t-host"); x.style.removeProperty("--pc"); });
+    }
+  };
+  return T;
+}
+function tutorBtn(ui, q, sc) {
+  TUT_TOK++;
+  if (TUT_HOLD) { TUT_HOLD(false); TUT_HOLD = null; }
+  const btn = document.createElement("button");
+  btn.type = "button"; btn.className = "tut-btn"; btn.innerHTML = "🙋 No entiendo, ¡ayúdame a resolver!";
+  sc.after(btn);
+  btn.onclick = () => {
+    if (ui.helped) ui.helped();
+    btn.remove();
+    const box = document.createElement("div"); box.className = "tutor";
+    box.innerHTML = `<div class="th"><span>👩‍🏫 Resolvamos juntos</span><span class="tp"></span></div><div class="tt"></div><div class="tb"><button type="button" class="t-rep">🔊 Repetir</button><button type="button" class="t-next">Siguiente paso ➜</button></div>`;
+    sc.after(box);
+    if (ui.musicHold) { ui.musicHold(true); TUT_HOLD = ui.musicHold; }
+    const tok = ++TUT_TOK, T = tutKit(sc, tok), steps = q.steps(T);
+    let i = -1;
+    const nx = box.querySelector(".t-next"), rp = box.querySelector(".t-rep");
+    const show = () => {
+      const s = steps[i], last = i === steps.length - 1;
+      box.querySelector(".tp").textContent = `Paso ${i + 1} de ${steps.length}`;
+      box.querySelector(".tt").innerHTML = s.t;
+      nx.disabled = true; nx.textContent = "…";
+      const ready = () => {
+        if (tok !== TUT_TOK) return;
+        nx.disabled = false;
+        nx.textContent = last ? "🔁 Ver otra vez" : "Siguiente paso ➜";
+        if (last && TUT_HOLD) { TUT_HOLD(false); TUT_HOLD = null; }
+      };
+      tutSay(s.s || s.t, () => { if (tok !== TUT_TOK) return; if (s.go) s.go(ready); else ready(); });
+      box.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    };
+    nx.onclick = () => {
+      if (i === steps.length - 1) { T.clear(); i = -1; }
+      i++; show();
+    };
+    rp.onclick = () => tutSay(steps[i].s || steps[i].t);
+    i = 0; show();
+  };
 }
 function checkQ(q, bad, name) {
   const eq = q.eq || ((a, b) => a === b);
