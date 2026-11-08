@@ -258,6 +258,16 @@ p { margin: 6px 0; font-size: clamp(14px,4vw,16px); line-height: 1.4; }
 .tb-big { display: flex; justify-content: center; }
 .tutor .hl-t { background: #fde68a; border-radius: 4px; padding: 0 3px; }
 
+text.t-svgnum { fill: #e11d48; animation: none; paint-order: stroke; stroke: #fff; stroke-width: 3px; }
+.t-svgb { animation: none; }
+text.it.t-hl { fill: #b45309; }
+.settxt .it { display: inline-block; }
+.settxt .t-num { transform: scale(.78); top: -12px; right: -9px; }
+.tb-sep { width: 6px; }
+.tboard { overflow-x: auto; }
+.tb-tbl { font-size: 14px; }
+.tb-tbl td, .tb-tbl th { padding: 4px 7px; }
+
     </style>
     <script>
 /* =========================================================
@@ -798,7 +808,9 @@ function ask(ui, q) {
 let TUT_TOK = 0, TUT_HOLD = null;
 const tutVoz = () => { const b = document.getElementById("soundBtn"); return !b || b.textContent.trim() !== "🔇"; };
 function tutSay(text, cb) {
-  const t = String(text || "").replace(/<[^>]+>/g, " ").replace(/[\u{1F000}-\u{1FAFF}\u2190-\u21FF\u2300-\u23FF\u2600-\u27BF\u2B00-\u2BFF\uFE0F]/gu, "")
+  const t = String(text || "").replace(/&lt;/g, " < ").replace(/&gt;/g, " > ")
+    .replace(/(^|[\s\d)>])<(?=[\s\d(<]|$)/g, "$1 es menor que ").replace(/(^|[\s\d)>])>(?=[\s\d(<]|$)/g, "$1 es mayor que ")
+    .replace(/<[^>]+>/g, " ").replace(/&nbsp;/g, " ").replace(/[\u{1F000}-\u{1FAFF}\u2190-\u21FF\u2300-\u23FF\u2600-\u27BF\u2B00-\u2BFF\uFE0F]/gu, "")
     .replace(/×/g, " por ").replace(/−/g, " menos ").replace(/\+/g, " más ").replace(/=/g, " es igual a ").replace(/\s+/g, " ").trim();
   let fin = false; const end = () => { if (!fin) { fin = true; if (cb) cb(); } };
   if (!t || !tutVoz() || !("speechSynthesis" in window)) { setTimeout(end, Math.min(2600, 400 + t.length * 40)); return; }
@@ -818,7 +830,23 @@ function tutKit(sc, tok) {
     of: (txt, sel = ".it") => T.its(sel).filter(x => x.dataset.k ? x.dataset.k === txt : x.textContent.includes(txt)),
     not: (els, sel = ".it") => T.its(sel).filter(x => !els.includes(x)),
     dim: els => els.forEach(x => x.classList.add("t-dim")),
-    badge: (el, txt, cls = "") => { host(el); const b = document.createElement("b"); b.className = "t-num " + cls; b.textContent = txt; el.appendChild(b); return b; },
+    badge: (el, txt, cls = "") => {
+      if (el instanceof SVGElement && el.tagName !== "svg") {   // dentro de un dibujo SVG: número en el centro
+        const bb = el.getBBox(), NS = "http://www.w3.org/2000/svg";
+        if (bb.width < 34 && bb.height < 34) {   // objeto chico (número, punto): globito arriba a la derecha
+          const g = document.createElementNS(NS, "g"), c = document.createElementNS(NS, "circle"), t = document.createElementNS(NS, "text"), cx = bb.x + bb.width + 3, cy = bb.y + 2;
+          g.setAttribute("class", "t-num t-svgb");
+          c.setAttribute("cx", cx); c.setAttribute("cy", cy); c.setAttribute("r", 8.5); c.setAttribute("fill", "#e11d48"); c.setAttribute("stroke", "#fff"); c.setAttribute("stroke-width", 1.5);
+          t.setAttribute("x", cx); t.setAttribute("y", cy + 3.8); t.setAttribute("text-anchor", "middle"); t.setAttribute("font-size", txt.length > 2 ? 8 : 11); t.setAttribute("font-weight", "900"); t.setAttribute("fill", "#fff"); t.textContent = txt;
+          g.append(c, t); (el.ownerSVGElement || el.parentNode).appendChild(g);
+          return { style: { set background(v) { c.setAttribute("fill", v); } } };
+        }
+        const t = document.createElementNS(NS, "text"), sz = Math.max(10, Math.min(18, bb.height * .55));
+        t.setAttribute("x", bb.x + bb.width / 2); t.setAttribute("y", bb.y + bb.height / 2 + sz * .36); t.setAttribute("text-anchor", "middle");
+        t.setAttribute("font-size", sz); t.setAttribute("font-weight", "900"); t.setAttribute("class", "t-num t-svgnum"); t.textContent = txt;
+        el.parentNode.insertBefore(t, el.nextSibling); return { style: t.style };
+      }
+      host(el); const b = document.createElement("b"); b.className = "t-num " + cls; b.textContent = txt; el.appendChild(b); return b; },
     // cuenta uno por uno: pone el número y lo dice en voz alta
     count: (els, o = {}) => done => {
       let k = 0;
@@ -874,13 +902,17 @@ function tutKit(sc, tok) {
       };
       step();
     },
+    paint: (els, c = "#fde68a") => els.forEach(x => { x.classList.add("t-paint"); x.style.fill = c; }),
     clear: () => {
       sc.querySelectorAll(".t-num").forEach(x => x.remove());
+      sc.querySelectorAll(".t-paint").forEach(x => { x.classList.remove("t-paint"); x.style.removeProperty("fill"); });
       sc.querySelectorAll(".t-dim,.t-hl,.t-pair,.t-host").forEach(x => { x.classList.remove("t-dim", "t-hl", "t-pair", "t-host"); x.style.removeProperty("--pc"); });
     }
   };
   return T;
 }
+// «<» suelto (signo menor que) → &lt; para que no rompa el HTML
+const tutEsc = h => String(h).replace(/<(?=[\s\d=(<]|$)/g, "&lt;");
 // texto de la respuesta para el cierre (null si no se puede escribir)
 const ansTxt = q => q.ansTxt !== undefined ? q.ansTxt : (typeof q.ans === "number" || typeof q.ans === "string") ? String(q.ans) : null;
 function tutorBtn(ui, q, sc) {
@@ -916,7 +948,7 @@ function tutorBtn(ui, q, sc) {
     const show = () => {
       const s = steps[i], last = i === steps.length - 1;
       box.querySelector(".tp").textContent = `Paso ${i + 1} de ${steps.length}`;
-      box.querySelector(".tt").innerHTML = s.t;
+      box.querySelector(".tt").innerHTML = tutEsc(s.t);
       if (s.b !== undefined) { const h = typeof s.b === "function" ? s.b() : s.b; board.innerHTML = h || ""; board.classList.toggle("on", !!h); }
       if (s.bAdd) { board.insertAdjacentHTML("beforeend", typeof s.bAdd === "function" ? s.bAdd() : s.bAdd); board.classList.add("on"); }
       nx.disabled = true; nx.textContent = "…";
@@ -927,7 +959,8 @@ function tutorBtn(ui, q, sc) {
         if (last && TUT_HOLD) { TUT_HOLD(false); TUT_HOLD = null; }
       };
       const wait = board.querySelectorAll("[style*='--d']").length && (s.b !== undefined || s.bAdd) ? BOARD.dur(board) : 0;
-      tutSay(s.s || s.t, () => { if (tok !== TUT_TOK) return; if (s.go) s.go(ready); else setTimeout(ready, Math.max(0, wait - 1500)); });
+      const t0 = Date.now();
+      tutSay(s.s || s.t, () => { if (tok !== TUT_TOK) return; if (s.go) s.go(ready); else setTimeout(ready, Math.max(0, wait - (Date.now() - t0))); });
       box.scrollIntoView({ behavior: "smooth", block: "nearest" });
     };
     nx.onclick = () => {
@@ -963,11 +996,23 @@ const BOARD = {
     const defs = `<defs>${["2563eb", "e11d48"].map(c => `<marker id="ah${c}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#${c}"/></marker>`).join("")}</defs>`;
     return `<svg viewBox="0 0 ${W} 100" class="tb-svg">${defs}${g}</svg>`;
   },
+  // recta numérica con algunos números marcados: vals = [{v, c, lab}] o números
+  marks(vals, o = {}) {
+    vals = vals.map(x => typeof x === "number" ? { v: x } : x);
+    const vs = vals.map(x => x.v), lo = o.min ?? Math.max(0, Math.min(...vs) - 2), hi = o.max ?? Math.max(...vs) + 2;
+    const W = 320, L = 14, R = W - 14, X = v => L + (R - L) * (v - lo) / Math.max(1, hi - lo), span = hi - lo, every = span <= 22 ? 1 : span <= 60 ? 5 : 10;
+    const C = ["#2563eb", "#e11d48", "#16a34a", "#f59e0b"];
+    let g = `<line x1="${L - 6}" y1="56" x2="${R + 6}" y2="56" stroke="#334155" stroke-width="2.5"/><path d="M${R + 6} 50 L${R + 14} 56 L${R + 6} 62z" fill="#334155"/>`;
+    for (let v = Math.ceil(lo / every) * every; v <= hi; v += every) g += `<line x1="${X(v)}" y1="50" x2="${X(v)}" y2="62" stroke="#334155" stroke-width="2"/><text x="${X(v)}" y="80" font-size="${span > 22 ? 10 : 12}" text-anchor="middle" font-weight="800" fill="#334155">${v}</text>`;
+    vals.forEach((x, i) => { const c = x.c || C[i % C.length];
+      g += `<g class="tb-in" style="--d:${(.3 + i * .8).toFixed(2)}s"><circle cx="${X(x.v)}" cy="56" r="8" fill="${c}" stroke="#fff" stroke-width="2"/><text x="${X(x.v)}" y="36" font-size="15" text-anchor="middle" font-weight="900" fill="${c}">${x.lab ?? x.v}</text></g>`; });
+    return `<svg viewBox="0 0 ${W + 16} 90" class="tb-svg">${g}</svg>` + (o.note ? `<div class="tb-line tb-in" style="--d:${(.4 + vals.length * .8).toFixed(2)}s">${o.note}</div>` : "");
+  },
   // grupos de puntos/objetos: [{n, e, c, lab}]
   groups(gs, o = {}) {
     let d = 0;
     return `<div class="tb-groups">` + gs.map(gr => `<div class="tb-grp" style="--gc:${gr.c || "#f59e0b"}">${gr.lab ? `<b class="tb-in" style="--d:${(d).toFixed(2)}s">${gr.lab}</b>` : ""}<div class="tb-gi">` +
-      Array.from({ length: gr.n }, () => `<span class="tb-in" style="--d:${(d += (o.step || .18)).toFixed(2)}s">${gr.e || "●"}</span>`).join("") + `</div></div>`).join("") + `</div>`;
+      (gr.items || Array.from({ length: gr.n }, () => gr.e || "●")).map(x => `<span class="tb-in" style="--d:${(d += (o.step || .18)).toFixed(2)}s">${x}</span>`).join("") + `</div></div>`).join("") + `</div>`;
   },
   // reparto de n cosas en k platos, de uno en uno
   share(n, k, e = "●", o = {}) {
@@ -995,7 +1040,7 @@ const BOARD = {
     let h = "", d = .1;
     terms.forEach((t, i) => {
       if (i) { const df = o.diffs ? o.diffs[i - 1] : (typeof t === "number" && typeof terms[i - 1] === "number" ? t - terms[i - 1] : null);
-        h += `<span class="tb-arr tb-in" style="--d:${(d += .5).toFixed(2)}s">${df === null ? "→" : (df >= 0 ? "+" : "−") + Math.abs(df)}<i>➜</i></span>`; }
+        h += df === null ? `<span class="tb-sep tb-in" style="--d:${(d += .2).toFixed(2)}s"></span>` : `<span class="tb-arr tb-in" style="--d:${(d += .5).toFixed(2)}s">${(df >= 0 ? "+" : "−") + Math.abs(df)}<i>➜</i></span>`; }
       h += `<span class="tb-term tb-in${o.hl === i ? " hl" : ""}" style="--d:${(d += .35).toFixed(2)}s">${t}</span>`;
     });
     return `<div class="tb-seq">${h}</div>`;
@@ -1043,7 +1088,7 @@ function gridSvg(cols, rows, painted = new Set(), o = {}) {
   let out = `<svg class="grid" viewBox="-2 -2 ${w + 4} ${h + 4}" width="${Math.min(300, w + 4)}" style="max-width:100%">`;
   for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
     const k = r * cols + c;
-    out += `<rect x="${c * s}" y="${r * s}" width="${s}" height="${s}" fill="${painted.has(k) ? (o.color || "#38bdf8") : "#fff"}" stroke="#0f172a" stroke-width="2"/>`;
+    out += `<rect class="it" data-k="${painted.has(k) ? "P" : "W"}" data-r="${r}" data-c="${c}" x="${c * s}" y="${r * s}" width="${s}" height="${s}" fill="${painted.has(k) ? (o.color || "#38bdf8") : "#fff"}" stroke="#0f172a" stroke-width="2"/>`;
   }
   return out + `</svg>`;
 }
@@ -1092,21 +1137,21 @@ function lesson(o, GEN) {
 /* ---------- Más dibujos para los temas ---------- */
 const svgWrap = (w, h, inner, maxw = 320) => `<svg viewBox="0 0 ${w} ${h}" width="${Math.min(maxw, w)}" style="max-width:100%;height:auto" font-family="Segoe UI, Arial, sans-serif">${inner}</svg>`;
 // conjunto con llaves: A = {a; b; c}
-const setTxt = (name, items) => `<div class="settxt"><b>${name}</b> = { ${items.join(" ; ")} }</div>`;
+const setTxt = (name, items) => `<div class="settxt"><b>${name}</b> = { ${items.map(x => `<span class="it">${x}</span>`).join(" ; ")} }</div>`;
 // diagrama de Venn: zonas onlyA, both, onlyB, out (listas de texto/emoji)
 function venn(o) {
-  const place = (list, x0, x1, y0, y1) => { const n = list.length, cols = Math.max(1, Math.ceil(Math.sqrt(n))), rows = Math.ceil(n / cols) || 1;
-    return list.map((t, i) => { const c = i % cols, r = Math.floor(i / cols); return `<text x="${(x0 + (x1 - x0) * (c + 0.5) / cols).toFixed(0)}" y="${(y0 + (y1 - y0) * (r + 0.5) / rows + 7).toFixed(0)}" text-anchor="middle" font-size="22" font-weight="800" fill="#0f172a">${t}</text>`; }).join(""); };
+  const place = (list, x0, x1, y0, y1, z) => { const n = list.length, cols = Math.max(1, Math.ceil(Math.sqrt(n))), rows = Math.ceil(n / cols) || 1;
+    return list.map((t, i) => { const c = i % cols, r = Math.floor(i / cols); return `<text class="it" data-k="${z}" x="${(x0 + (x1 - x0) * (c + 0.5) / cols).toFixed(0)}" y="${(y0 + (y1 - y0) * (r + 0.5) / rows + 7).toFixed(0)}" text-anchor="middle" font-size="22" font-weight="800" fill="#0f172a">${t}</text>`; }).join(""); };
   const two = o.onlyB !== undefined;
   let g = `<rect x="2" y="2" width="${two ? 336 : 256}" height="196" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2"/><text x="14" y="24" font-size="18" font-weight="900" fill="#334155">U</text>`;
   if (two) {
-    g += `<ellipse cx="125" cy="105" rx="92" ry="72" fill="rgba(59,130,246,.15)" stroke="#2563eb" stroke-width="3"/><ellipse cx="215" cy="105" rx="92" ry="72" fill="rgba(236,72,153,.15)" stroke="#db2777" stroke-width="3"/>`;
+    g += `<ellipse class="zA" cx="125" cy="105" rx="92" ry="72" fill="rgba(59,130,246,.15)" stroke="#2563eb" stroke-width="3"/><ellipse class="zB" cx="215" cy="105" rx="92" ry="72" fill="rgba(236,72,153,.15)" stroke="#db2777" stroke-width="3"/>`;
     g += `<text x="58" y="40" font-size="20" font-weight="900" fill="#2563eb">${o.a || "A"}</text><text x="270" y="40" font-size="20" font-weight="900" fill="#db2777">${o.b || "B"}</text>`;
-    g += place(o.onlyA, 45, 150, 60, 150) + place(o.both, 150, 190, 60, 150) + place(o.onlyB, 190, 295, 60, 150) + place(o.out || [], 260, 330, 165, 195);
+    g += place(o.onlyA, 45, 150, 60, 150, "A") + place(o.both, 150, 190, 60, 150, "AB") + place(o.onlyB, 190, 295, 60, 150, "B") + place(o.out || [], 260, 330, 165, 195, "O");
     return svgWrap(340, 200, g);
   }
   g += `<ellipse cx="120" cy="105" rx="95" ry="70" fill="rgba(59,130,246,.15)" stroke="#2563eb" stroke-width="3"/><text x="40" y="45" font-size="20" font-weight="900" fill="#2563eb">${o.a || "A"}</text>`;
-  g += place(o.onlyA, 45, 195, 60, 150) + place(o.out || [], 180, 255, 165, 195);
+  g += place(o.onlyA, 45, 195, 60, 150, "A") + place(o.out || [], 180, 255, 165, 195, "O");
   return svgWrap(260, 200, g);
 }
 // ábaco: digits de izquierda a derecha, labels por defecto C D U
@@ -1117,7 +1162,7 @@ function abacus(digits, labels) {
   const col = ["#ef4444", "#3b82f6", "#22c55e"].slice(3 - digits.length);
   digits.forEach((d, i) => { const x = 45 + 70 * i;
     g += `<rect x="${x - 3}" y="14" width="6" height="138" fill="#78350f"/>`;
-    for (let k = 0; k < d; k++) g += `<ellipse cx="${x}" cy="${140 - k * 13}" rx="20" ry="7" fill="${col[i]}" stroke="#0f172a" stroke-width="1.5"/>`;
+    for (let k = 0; k < d; k++) g += `<ellipse class="it" data-k="${labels[i]}" cx="${x}" cy="${140 - k * 13}" rx="20" ry="7" fill="${col[i]}" stroke="#0f172a" stroke-width="1.5"/>`;
     g += `<text x="${x}" y="190" text-anchor="middle" font-size="20" font-weight="900" fill="#334155">${labels[i]}</text>`; });
   return svgWrap(W, 200, g, 260);
 }
@@ -1126,7 +1171,7 @@ function numberLine(vals, hidden = {}) {
   const n = vals.length, W = 40 + 56 * (n - 1) + 40;
   let g = `<line x1="10" y1="60" x2="${W - 10}" y2="60" stroke="#0f172a" stroke-width="3"/><path d="M${W - 10} 60 l-10 -6 v12z" fill="#0f172a"/>`;
   vals.forEach((v, i) => { const x = 40 + 56 * i; g += `<line x1="${x}" y1="50" x2="${x}" y2="70" stroke="#0f172a" stroke-width="3"/>`;
-    g += hidden[i] ? `<text x="${x}" y="40" text-anchor="middle" font-size="26">${hidden[i]}</text>` : `<text x="${x}" y="98" text-anchor="middle" font-size="20" font-weight="800" fill="#1e3a8a">${v}</text>`; });
+    g += hidden[i] ? `<text class="it" data-k="H" x="${x}" y="40" text-anchor="middle" font-size="26">${hidden[i]}</text>` : `<text class="it" data-k="v${i}" x="${x}" y="98" text-anchor="middle" font-size="20" font-weight="800" fill="#1e3a8a">${v}</text>`; });
   return svgWrap(W, 110, g, 340);
 }
 // pirámide de bloques: rows de arriba hacia abajo; celdas con texto ("" = vacío)
@@ -1225,38 +1270,101 @@ const GEN = [
   [
     () => { const e = pick(OBJ), n = between(3, 10);
       return { prompt: "¿Qué <b>número</b> dice cuántos hay?", say: "¿Qué número dice cuántos hay?", scene: scatter(em(e, n)), ans: n, opts: numOpts(n, [n + 1, n - 1]),
-        why: `Hay ${n}. El número ${n} dice cuántos hay.`, hint: "Cuenta uno por uno: el último número que dices es la respuesta." }; },
+        why: `Hay ${n}. El número ${n} dice cuántos hay.`, hint: "Cuenta uno por uno: el último número que dices es la respuesta.",
+        steps: T => [
+          { t: `Para saber qué número va, contamos ${e} una por una y le ponemos su número a cada una.` },
+          { t: `¡Contemos juntos!`, go: T.count(T.its()) },
+          { t: `El <b>último número</b> que dijimos es <b>${n}</b>. Ese número dice cuántas hay.` }
+        ] }; },
     () => { const e = pick(OBJ), n = between(3, 9), ns = numOpts(n, [n + 1, n - 1, n + 2], 1).slice(0, 4);
       return { prompt: `¿Qué grupo tiene <b>${n}</b>?`, say: `¿Qué grupo tiene ${n}?`, scene: `<div class="big-num">${n}</div>`, ans: grp(e, n), opts: ns.map(k => grp(e, k)), cls: "grp", cols: 1,
-        why: `Ese grupo tiene ${n}.`, hint: "Cuenta los objetos de cada alternativa." }; },
+        why: `Ese grupo tiene ${n}.`, hint: "Cuenta los objetos de cada alternativa.",
+        steps: T => [
+          { t: `El número <b>${n}</b> nos dice cuántas cosas debe tener el grupo: ni una más, ni una menos.` },
+          { t: `Así se ven <b>${n}</b> ${e} contados uno por uno:`, b: BOARD.groups([{ n, e, c: "#f59e0b", lab: String(n) }], { step: .35 }) },
+          { t: `Ahora cuenta cada grupo de las respuestas con tu dedito. El correcto es <b>el grupo que tiene ${n}</b>.` }
+        ],
+        ansTxt: `el grupo que tiene ${n}` }; },
   ],
   // ---------- Nivel 2: dados, cuadros de diez y palabras
   [
     () => { const a = between(1, 6), b = between(1, 6), ans = a + b;
       return { prompt: "¿Cuántos <b>puntos</b> hay en los dos dados?", say: "¿Cuántos puntos hay en total en los dos dados?", scene: `<div class="dice">${dieSvg(a, 70)}${dieSvg(b, 70)}</div>`, ans, opts: numOpts(ans, [ans + 1, ans - 1, a * b !== ans ? a * b : ans + 2], 2),
-        why: `${a} + ${b} = ${ans} puntos.`, hint: "Cuenta los puntos del primer dado y sigue contando en el segundo." }; },
+        why: `${a} + ${b} = ${ans} puntos.`, hint: "Cuenta los puntos del primer dado y sigue contando en el segundo.",
+        steps: T => { const d = T.its(".dice svg");
+          return [
+            { t: `Cada puntito vale 1. Contamos los puntos del primer dado y <b>seguimos contando</b> en el segundo, sin volver a empezar.` },
+            { t: `Primer dado:`, go: T.count([...d[0].querySelectorAll("circle")]) },
+            { t: `Seguimos desde ${a} en el segundo dado:`, go: T.count([...d[1].querySelectorAll("circle")], { from: a + 1 }) },
+            { t: `${a} + ${b} = <b>${ans}</b> puntos.`, b: BOARD.lines([`${a} + ${b} = ${ans}`]) }
+          ]; },
+        err: o => o === a * b ? "Multiplicaste, pero aquí hay que <b>juntar</b> los puntos." : "" }; },
     () => { const n = between(4, 19);
       return { prompt: "¿Qué número muestra el <b>cuadro de diez</b>?", say: "¿Qué número muestran las fichas rojas?", scene: `<div class="tfs">${tenFrame(n)}</div>`, ans: n, opts: numOpts(n, [n + 1, n - 1, n > 10 ? n - 10 : 10 - n], 1),
-        why: n > 10 ? `Un cuadro lleno es 10, y ${n - 10} más: ${n}.` : `Hay ${n} fichas${n < 10 ? `; faltan ${10 - n} para 10` : ""}.`, hint: "Un cuadro lleno tiene 10." }; },
+        why: n > 10 ? `Un cuadro lleno es 10, y ${n - 10} más: ${n}.` : `Hay ${n} fichas${n < 10 ? `; faltan ${10 - n} para 10` : ""}.`, hint: "Un cuadro lleno tiene 10.",
+        steps: T => { const f = T.its(".tf"), red = i => [...f[i].querySelectorAll("span")].filter(x => x.textContent.includes("🔴"));
+          return n > 10 ? [
+            { t: `Un cuadro de diez tiene 10 casillas. El primer cuadro está <b>lleno</b>: ¡son 10! No hace falta contarlas.`, go: d => { T.badge(f[0], "10", "t-big"); tutSay("diez"); setTimeout(d, 900); } },
+            { t: `Seguimos contando desde 10 en el segundo cuadro:`, go: T.count(red(1), { from: 11 }) },
+            { t: `10 y ${n - 10} más son <b>${n}</b>.`, b: BOARD.du(n) }
+          ] : [
+            { t: `Un cuadro de diez tiene 10 casillas: 2 filas de 5. Cada ficha roja 🔴 vale 1.` },
+            { t: `Contamos las fichas rojas:`, go: T.count(red(0)) },
+            { t: `Hay <b>${n}</b> fichas.${n < 10 ? ` Las casillas vacías son ${10 - n}: ${n} + ${10 - n} = 10.` : ""}` }
+          ]; },
+        err: o => o === (n > 10 ? n - 10 : 10 - n) ? (n > 10 ? "Contaste solo el segundo cuadro. ¡El primero también vale 10!" : "Contaste las casillas vacías; piden las fichas rojas.") : "" }; },
     () => { const n = between(5, 20), asWord = rnd(2) === 0;
-      return asWord
+      const q = asWord
         ? { prompt: `¿Cómo se escribe con números?`, say: `¿Cómo se escribe ${PAL[n]} con números?`, scene: `<div class="word-num">${PAL[n]}</div>`, ans: n, opts: numOpts(n, [n + 1, n - 1, n + 10 <= 29 ? n + 10 : n - 2], 1),
             why: `${PAL[n]} = ${n}.`, hint: "Lee la palabra despacio." }
         : { prompt: `¿Cómo se lee el número <b>${n}</b>?`, say: `¿Cómo se lee este número?`, scene: `<div class="big-num">${n}</div>`, ans: PAL[n], opts: shuffle([...new Set([PAL[n], PAL[n - 1], PAL[Math.min(20, n + 1)], PAL[n > 10 ? n - 10 : n + 10] || PAL[n - 2]])]).slice(0, 4), cls: "grp", cols: 2,
             why: `${n} se lee «${PAL[n]}».`, hint: "Fíjate en las dos cifras del número." };
-    },
+      return { ...q,
+        steps: T => { const D = Math.floor(n / 10), U = n % 10;
+          const como = n === 20 ? "«veinte» son 2 decenas: 10 + 10." : n === 10 ? "«diez» es una decena." : n < 10 ? `«${PAL[n]}» es un número de una sola cifra.` : n <= 15 ? `«${PAL[n]}» es diez y ${PAL[U]}: 10 + ${U}. Este nombre hay que aprenderlo de memoria.` : `«${PAL[n]}» se escucha «dieci» + «${PAL[U]}»: diez y ${PAL[U]}, 10 + ${U}.`;
+          return asWord ? [
+            { t: `Leemos la palabra despacio: «<b>${PAL[n]}</b>».` },
+            { t: como, b: n >= 10 ? BOARD.du(n) : BOARD.groups([{ n, e: "●", c: "#3b82f6", lab: String(n) }]) },
+            { t: `Entonces «${PAL[n]}» se escribe <b>${n}</b>.` }
+          ] : [
+            { t: `El número <b>${n}</b>${n >= 10 ? ` tiene ${D} decena${D > 1 ? "s" : ""} y ${U} unidad${U === 1 ? "" : "es"}` : " tiene una sola cifra"}.`, b: n >= 10 ? BOARD.du(n) : "" },
+            { t: como },
+            { t: `${n} se lee «<b>${PAL[n]}</b>».` }
+          ]; } }; },
   ],
   // ---------- Nivel 3: tipo concurso
   [
     () => { const m = between(1, 3), d = between(0, 4), ans = 5 * m + d;
       return { prompt: "Si 🖐️ vale <b>5</b> y ☝️ vale <b>1</b>, ¿qué número se muestra?", say: "Si una mano abierta vale 5 y un dedito vale 1, ¿qué número se muestra?", scene: line([...em("🖐️", m), ...em("☝️", d)]), ans, opts: numOpts(ans, [m + d, ans + 5, ans - 1], 1),
-        why: `${m} manos = ${5 * m}${d ? ` y ${d} dedos = ${d}` : ""}. Total: ${ans}.`, hint: "Cuenta de 5 en 5 las manos y luego suma los dedos." }; },
+        why: `${m} manos = ${5 * m}${d ? ` y ${d} dedos = ${d}` : ""}. Total: ${ans}.`, hint: "Cuenta de 5 en 5 las manos y luego suma los dedos.",
+        steps: T => { const its = T.its(), M = its.filter(x => x.textContent.includes("🖐")), Dd = its.filter(x => x.textContent.includes("☝"));
+          return [
+            { t: `Una mano abierta 🖐️ tiene 5 dedos, por eso vale <b>5</b>. Un dedito ☝️ vale <b>1</b>.` },
+            { t: `Contamos las manos de 5 en 5:`, go: T.count(M, { label: k => String(5 * k), say: k => String(5 * k), cls: "t-big", ms: 1100 }) },
+            d > 0 ? { t: `Y seguimos de 1 en 1 con los deditos:`, go: T.count(Dd, { from: 5 * m + 1 }) } : null,
+            { t: `${m} mano${m > 1 ? "s" : ""} = ${5 * m}${d ? ` y ${d} dedo${d > 1 ? "s" : ""} = ${d}` : ""}. Total: <b>${ans}</b>.`, b: BOARD.lines([`${Array(m).fill(5).join(" + ")}${d ? " + " + Array(d).fill(1).join(" + ") : ""} = ${ans}`]) }
+          ]; },
+        err: o => o === m + d ? "Contaste cada mano como 1, pero ¡cada mano vale 5!" : "" }; },
     () => { const k = between(4, 8), g = between(2, k - 1), e = pick(["🎈", "🍦", "🎁", "🍭"]), who = sample(["👧", "👦", "🧒", "👧🏽", "👦🏻", "🧒🏾", "👧🏻", "👦🏽"], k), ans = k - g;
       return { prompt: `Cada niño debe recibir <b>un</b> ${e}. ¿Cuántos ${e} <b>faltan</b>?`, say: "Cada niño debe recibir uno. ¿Cuántos faltan?", scene: line(who) + line(em(e, g)), ans, opts: numOpts(ans, [k, g, ans + 1], 0),
-        why: `Hay ${k} niños y ${g} ${e}. Faltan ${k} − ${g} = ${ans}.`, hint: "Une cada niño con un objeto. ¿Cuántos niños se quedan sin nada?" }; },
+        why: `Hay ${k} niños y ${g} ${e}. Faltan ${k} − ${g} = ${ans}.`, hint: "Une cada niño con un objeto. ¿Cuántos niños se quedan sin nada?",
+        steps: T => { const ls = T.its(".line"), kids = [...ls[0].querySelectorAll(".it")], obj = [...ls[1].querySelectorAll(".it")], par = [];
+          obj.forEach((x, i) => par.push(kids[i], x));
+          return [
+            { t: `Cada niño debe recibir <b>un</b> ${e}. Le damos uno a cada niño, en orden:`, go: T.pairs(par, { both: true }) },
+            { t: `Los niños que se quedaron <b>sin</b> ${e} nos dicen cuántos faltan. Contémoslos:`, go: T.count(kids.slice(g), { cls: "t-big" }) },
+            { t: `Hay ${k} niños y ${g} ${e}: ${k} − ${g} = <b>${ans}</b>. Faltan ${ans}.`, b: BOARD.lines([`${k} − ${g} = ${ans}`]) }
+          ]; },
+        err: o => o === k ? "Esos son todos los niños; piden los que se quedan sin nada." : o === g ? `Esos son los ${e} que ya hay; piden los que faltan.` : "" }; },
     () => { const n = between(6, 15), e = pick(OBJ), opts = numOpts(n, [n + 1, n - 1, n + 2], 1).slice(0, 4);
-      return { prompt: "¿Qué grupo tiene la <b>misma cantidad</b> que el número de ⭐ del recuadro?", say: "Cuenta las estrellas. ¿Qué grupo tiene la misma cantidad?", scene: `<div class="rowsbox">${scatter(em("⭐", n))}</div>`,
-        ans: grp(e, n), opts: opts.map(k => grp(e, k)), cls: "grp", cols: 1, why: `Hay ${n} estrellas, y ese grupo también tiene ${n}.`, hint: "Primero cuenta las estrellas. Después busca el grupo con la misma cantidad." }; },
+      return { prompt: "¿Qué grupo tiene la <b>misma cantidad</b> que el número de ⭐ del recuadro?", say: "Cuenta las estrellas. ¿Qué grupo tiene la misma cantidad?", scene: `<div class="rowsbox" style="display:block">${scatter(em("⭐", n))}</div>`,
+        ans: grp(e, n), opts: opts.map(k => grp(e, k)), cls: "grp", cols: 1, why: `Hay ${n} estrellas, y ese grupo también tiene ${n}.`, hint: "Primero cuenta las estrellas. Después busca el grupo con la misma cantidad.",
+        steps: T => [
+          { t: `Primero contamos las estrellas del recuadro:`, go: T.count(T.its()) },
+          { t: `Hay <b>${n}</b> estrellas. Ahora buscamos el grupo que tenga <b>${n}</b>: ni uno más, ni uno menos.`, b: BOARD.groups([{ n, e, c: "#22c55e", lab: String(n) }], { step: .25 }) },
+          { t: `Cuenta cada grupo de las respuestas. El correcto es <b>el grupo que tiene ${n}</b>.` }
+        ],
+        ansTxt: `el grupo que tiene ${n}` }; },
   ]
 ];
 

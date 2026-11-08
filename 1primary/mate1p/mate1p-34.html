@@ -258,6 +258,16 @@ p { margin: 6px 0; font-size: clamp(14px,4vw,16px); line-height: 1.4; }
 .tb-big { display: flex; justify-content: center; }
 .tutor .hl-t { background: #fde68a; border-radius: 4px; padding: 0 3px; }
 
+text.t-svgnum { fill: #e11d48; animation: none; paint-order: stroke; stroke: #fff; stroke-width: 3px; }
+.t-svgb { animation: none; }
+text.it.t-hl { fill: #b45309; }
+.settxt .it { display: inline-block; }
+.settxt .t-num { transform: scale(.78); top: -12px; right: -9px; }
+.tb-sep { width: 6px; }
+.tboard { overflow-x: auto; }
+.tb-tbl { font-size: 14px; }
+.tb-tbl td, .tb-tbl th { padding: 4px 7px; }
+
     </style>
     <script>
 /* =========================================================
@@ -798,7 +808,9 @@ function ask(ui, q) {
 let TUT_TOK = 0, TUT_HOLD = null;
 const tutVoz = () => { const b = document.getElementById("soundBtn"); return !b || b.textContent.trim() !== "🔇"; };
 function tutSay(text, cb) {
-  const t = String(text || "").replace(/<[^>]+>/g, " ").replace(/[\u{1F000}-\u{1FAFF}\u2190-\u21FF\u2300-\u23FF\u2600-\u27BF\u2B00-\u2BFF\uFE0F]/gu, "")
+  const t = String(text || "").replace(/&lt;/g, " < ").replace(/&gt;/g, " > ")
+    .replace(/(^|[\s\d)>])<(?=[\s\d(<]|$)/g, "$1 es menor que ").replace(/(^|[\s\d)>])>(?=[\s\d(<]|$)/g, "$1 es mayor que ")
+    .replace(/<[^>]+>/g, " ").replace(/&nbsp;/g, " ").replace(/[\u{1F000}-\u{1FAFF}\u2190-\u21FF\u2300-\u23FF\u2600-\u27BF\u2B00-\u2BFF\uFE0F]/gu, "")
     .replace(/×/g, " por ").replace(/−/g, " menos ").replace(/\+/g, " más ").replace(/=/g, " es igual a ").replace(/\s+/g, " ").trim();
   let fin = false; const end = () => { if (!fin) { fin = true; if (cb) cb(); } };
   if (!t || !tutVoz() || !("speechSynthesis" in window)) { setTimeout(end, Math.min(2600, 400 + t.length * 40)); return; }
@@ -818,7 +830,23 @@ function tutKit(sc, tok) {
     of: (txt, sel = ".it") => T.its(sel).filter(x => x.dataset.k ? x.dataset.k === txt : x.textContent.includes(txt)),
     not: (els, sel = ".it") => T.its(sel).filter(x => !els.includes(x)),
     dim: els => els.forEach(x => x.classList.add("t-dim")),
-    badge: (el, txt, cls = "") => { host(el); const b = document.createElement("b"); b.className = "t-num " + cls; b.textContent = txt; el.appendChild(b); return b; },
+    badge: (el, txt, cls = "") => {
+      if (el instanceof SVGElement && el.tagName !== "svg") {   // dentro de un dibujo SVG: número en el centro
+        const bb = el.getBBox(), NS = "http://www.w3.org/2000/svg";
+        if (bb.width < 34 && bb.height < 34) {   // objeto chico (número, punto): globito arriba a la derecha
+          const g = document.createElementNS(NS, "g"), c = document.createElementNS(NS, "circle"), t = document.createElementNS(NS, "text"), cx = bb.x + bb.width + 3, cy = bb.y + 2;
+          g.setAttribute("class", "t-num t-svgb");
+          c.setAttribute("cx", cx); c.setAttribute("cy", cy); c.setAttribute("r", 8.5); c.setAttribute("fill", "#e11d48"); c.setAttribute("stroke", "#fff"); c.setAttribute("stroke-width", 1.5);
+          t.setAttribute("x", cx); t.setAttribute("y", cy + 3.8); t.setAttribute("text-anchor", "middle"); t.setAttribute("font-size", txt.length > 2 ? 8 : 11); t.setAttribute("font-weight", "900"); t.setAttribute("fill", "#fff"); t.textContent = txt;
+          g.append(c, t); (el.ownerSVGElement || el.parentNode).appendChild(g);
+          return { style: { set background(v) { c.setAttribute("fill", v); } } };
+        }
+        const t = document.createElementNS(NS, "text"), sz = Math.max(10, Math.min(18, bb.height * .55));
+        t.setAttribute("x", bb.x + bb.width / 2); t.setAttribute("y", bb.y + bb.height / 2 + sz * .36); t.setAttribute("text-anchor", "middle");
+        t.setAttribute("font-size", sz); t.setAttribute("font-weight", "900"); t.setAttribute("class", "t-num t-svgnum"); t.textContent = txt;
+        el.parentNode.insertBefore(t, el.nextSibling); return { style: t.style };
+      }
+      host(el); const b = document.createElement("b"); b.className = "t-num " + cls; b.textContent = txt; el.appendChild(b); return b; },
     // cuenta uno por uno: pone el número y lo dice en voz alta
     count: (els, o = {}) => done => {
       let k = 0;
@@ -874,13 +902,17 @@ function tutKit(sc, tok) {
       };
       step();
     },
+    paint: (els, c = "#fde68a") => els.forEach(x => { x.classList.add("t-paint"); x.style.fill = c; }),
     clear: () => {
       sc.querySelectorAll(".t-num").forEach(x => x.remove());
+      sc.querySelectorAll(".t-paint").forEach(x => { x.classList.remove("t-paint"); x.style.removeProperty("fill"); });
       sc.querySelectorAll(".t-dim,.t-hl,.t-pair,.t-host").forEach(x => { x.classList.remove("t-dim", "t-hl", "t-pair", "t-host"); x.style.removeProperty("--pc"); });
     }
   };
   return T;
 }
+// «<» suelto (signo menor que) → &lt; para que no rompa el HTML
+const tutEsc = h => String(h).replace(/<(?=[\s\d=(<]|$)/g, "&lt;");
 // texto de la respuesta para el cierre (null si no se puede escribir)
 const ansTxt = q => q.ansTxt !== undefined ? q.ansTxt : (typeof q.ans === "number" || typeof q.ans === "string") ? String(q.ans) : null;
 function tutorBtn(ui, q, sc) {
@@ -916,7 +948,7 @@ function tutorBtn(ui, q, sc) {
     const show = () => {
       const s = steps[i], last = i === steps.length - 1;
       box.querySelector(".tp").textContent = `Paso ${i + 1} de ${steps.length}`;
-      box.querySelector(".tt").innerHTML = s.t;
+      box.querySelector(".tt").innerHTML = tutEsc(s.t);
       if (s.b !== undefined) { const h = typeof s.b === "function" ? s.b() : s.b; board.innerHTML = h || ""; board.classList.toggle("on", !!h); }
       if (s.bAdd) { board.insertAdjacentHTML("beforeend", typeof s.bAdd === "function" ? s.bAdd() : s.bAdd); board.classList.add("on"); }
       nx.disabled = true; nx.textContent = "…";
@@ -927,7 +959,8 @@ function tutorBtn(ui, q, sc) {
         if (last && TUT_HOLD) { TUT_HOLD(false); TUT_HOLD = null; }
       };
       const wait = board.querySelectorAll("[style*='--d']").length && (s.b !== undefined || s.bAdd) ? BOARD.dur(board) : 0;
-      tutSay(s.s || s.t, () => { if (tok !== TUT_TOK) return; if (s.go) s.go(ready); else setTimeout(ready, Math.max(0, wait - 1500)); });
+      const t0 = Date.now();
+      tutSay(s.s || s.t, () => { if (tok !== TUT_TOK) return; if (s.go) s.go(ready); else setTimeout(ready, Math.max(0, wait - (Date.now() - t0))); });
       box.scrollIntoView({ behavior: "smooth", block: "nearest" });
     };
     nx.onclick = () => {
@@ -963,11 +996,23 @@ const BOARD = {
     const defs = `<defs>${["2563eb", "e11d48"].map(c => `<marker id="ah${c}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#${c}"/></marker>`).join("")}</defs>`;
     return `<svg viewBox="0 0 ${W} 100" class="tb-svg">${defs}${g}</svg>`;
   },
+  // recta numérica con algunos números marcados: vals = [{v, c, lab}] o números
+  marks(vals, o = {}) {
+    vals = vals.map(x => typeof x === "number" ? { v: x } : x);
+    const vs = vals.map(x => x.v), lo = o.min ?? Math.max(0, Math.min(...vs) - 2), hi = o.max ?? Math.max(...vs) + 2;
+    const W = 320, L = 14, R = W - 14, X = v => L + (R - L) * (v - lo) / Math.max(1, hi - lo), span = hi - lo, every = span <= 22 ? 1 : span <= 60 ? 5 : 10;
+    const C = ["#2563eb", "#e11d48", "#16a34a", "#f59e0b"];
+    let g = `<line x1="${L - 6}" y1="56" x2="${R + 6}" y2="56" stroke="#334155" stroke-width="2.5"/><path d="M${R + 6} 50 L${R + 14} 56 L${R + 6} 62z" fill="#334155"/>`;
+    for (let v = Math.ceil(lo / every) * every; v <= hi; v += every) g += `<line x1="${X(v)}" y1="50" x2="${X(v)}" y2="62" stroke="#334155" stroke-width="2"/><text x="${X(v)}" y="80" font-size="${span > 22 ? 10 : 12}" text-anchor="middle" font-weight="800" fill="#334155">${v}</text>`;
+    vals.forEach((x, i) => { const c = x.c || C[i % C.length];
+      g += `<g class="tb-in" style="--d:${(.3 + i * .8).toFixed(2)}s"><circle cx="${X(x.v)}" cy="56" r="8" fill="${c}" stroke="#fff" stroke-width="2"/><text x="${X(x.v)}" y="36" font-size="15" text-anchor="middle" font-weight="900" fill="${c}">${x.lab ?? x.v}</text></g>`; });
+    return `<svg viewBox="0 0 ${W + 16} 90" class="tb-svg">${g}</svg>` + (o.note ? `<div class="tb-line tb-in" style="--d:${(.4 + vals.length * .8).toFixed(2)}s">${o.note}</div>` : "");
+  },
   // grupos de puntos/objetos: [{n, e, c, lab}]
   groups(gs, o = {}) {
     let d = 0;
     return `<div class="tb-groups">` + gs.map(gr => `<div class="tb-grp" style="--gc:${gr.c || "#f59e0b"}">${gr.lab ? `<b class="tb-in" style="--d:${(d).toFixed(2)}s">${gr.lab}</b>` : ""}<div class="tb-gi">` +
-      Array.from({ length: gr.n }, () => `<span class="tb-in" style="--d:${(d += (o.step || .18)).toFixed(2)}s">${gr.e || "●"}</span>`).join("") + `</div></div>`).join("") + `</div>`;
+      (gr.items || Array.from({ length: gr.n }, () => gr.e || "●")).map(x => `<span class="tb-in" style="--d:${(d += (o.step || .18)).toFixed(2)}s">${x}</span>`).join("") + `</div></div>`).join("") + `</div>`;
   },
   // reparto de n cosas en k platos, de uno en uno
   share(n, k, e = "●", o = {}) {
@@ -995,7 +1040,7 @@ const BOARD = {
     let h = "", d = .1;
     terms.forEach((t, i) => {
       if (i) { const df = o.diffs ? o.diffs[i - 1] : (typeof t === "number" && typeof terms[i - 1] === "number" ? t - terms[i - 1] : null);
-        h += `<span class="tb-arr tb-in" style="--d:${(d += .5).toFixed(2)}s">${df === null ? "→" : (df >= 0 ? "+" : "−") + Math.abs(df)}<i>➜</i></span>`; }
+        h += df === null ? `<span class="tb-sep tb-in" style="--d:${(d += .2).toFixed(2)}s"></span>` : `<span class="tb-arr tb-in" style="--d:${(d += .5).toFixed(2)}s">${(df >= 0 ? "+" : "−") + Math.abs(df)}<i>➜</i></span>`; }
       h += `<span class="tb-term tb-in${o.hl === i ? " hl" : ""}" style="--d:${(d += .35).toFixed(2)}s">${t}</span>`;
     });
     return `<div class="tb-seq">${h}</div>`;
@@ -1043,7 +1088,7 @@ function gridSvg(cols, rows, painted = new Set(), o = {}) {
   let out = `<svg class="grid" viewBox="-2 -2 ${w + 4} ${h + 4}" width="${Math.min(300, w + 4)}" style="max-width:100%">`;
   for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
     const k = r * cols + c;
-    out += `<rect x="${c * s}" y="${r * s}" width="${s}" height="${s}" fill="${painted.has(k) ? (o.color || "#38bdf8") : "#fff"}" stroke="#0f172a" stroke-width="2"/>`;
+    out += `<rect class="it" data-k="${painted.has(k) ? "P" : "W"}" data-r="${r}" data-c="${c}" x="${c * s}" y="${r * s}" width="${s}" height="${s}" fill="${painted.has(k) ? (o.color || "#38bdf8") : "#fff"}" stroke="#0f172a" stroke-width="2"/>`;
   }
   return out + `</svg>`;
 }
@@ -1092,21 +1137,21 @@ function lesson(o, GEN) {
 /* ---------- Más dibujos para los temas ---------- */
 const svgWrap = (w, h, inner, maxw = 320) => `<svg viewBox="0 0 ${w} ${h}" width="${Math.min(maxw, w)}" style="max-width:100%;height:auto" font-family="Segoe UI, Arial, sans-serif">${inner}</svg>`;
 // conjunto con llaves: A = {a; b; c}
-const setTxt = (name, items) => `<div class="settxt"><b>${name}</b> = { ${items.join(" ; ")} }</div>`;
+const setTxt = (name, items) => `<div class="settxt"><b>${name}</b> = { ${items.map(x => `<span class="it">${x}</span>`).join(" ; ")} }</div>`;
 // diagrama de Venn: zonas onlyA, both, onlyB, out (listas de texto/emoji)
 function venn(o) {
-  const place = (list, x0, x1, y0, y1) => { const n = list.length, cols = Math.max(1, Math.ceil(Math.sqrt(n))), rows = Math.ceil(n / cols) || 1;
-    return list.map((t, i) => { const c = i % cols, r = Math.floor(i / cols); return `<text x="${(x0 + (x1 - x0) * (c + 0.5) / cols).toFixed(0)}" y="${(y0 + (y1 - y0) * (r + 0.5) / rows + 7).toFixed(0)}" text-anchor="middle" font-size="22" font-weight="800" fill="#0f172a">${t}</text>`; }).join(""); };
+  const place = (list, x0, x1, y0, y1, z) => { const n = list.length, cols = Math.max(1, Math.ceil(Math.sqrt(n))), rows = Math.ceil(n / cols) || 1;
+    return list.map((t, i) => { const c = i % cols, r = Math.floor(i / cols); return `<text class="it" data-k="${z}" x="${(x0 + (x1 - x0) * (c + 0.5) / cols).toFixed(0)}" y="${(y0 + (y1 - y0) * (r + 0.5) / rows + 7).toFixed(0)}" text-anchor="middle" font-size="22" font-weight="800" fill="#0f172a">${t}</text>`; }).join(""); };
   const two = o.onlyB !== undefined;
   let g = `<rect x="2" y="2" width="${two ? 336 : 256}" height="196" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2"/><text x="14" y="24" font-size="18" font-weight="900" fill="#334155">U</text>`;
   if (two) {
-    g += `<ellipse cx="125" cy="105" rx="92" ry="72" fill="rgba(59,130,246,.15)" stroke="#2563eb" stroke-width="3"/><ellipse cx="215" cy="105" rx="92" ry="72" fill="rgba(236,72,153,.15)" stroke="#db2777" stroke-width="3"/>`;
+    g += `<ellipse class="zA" cx="125" cy="105" rx="92" ry="72" fill="rgba(59,130,246,.15)" stroke="#2563eb" stroke-width="3"/><ellipse class="zB" cx="215" cy="105" rx="92" ry="72" fill="rgba(236,72,153,.15)" stroke="#db2777" stroke-width="3"/>`;
     g += `<text x="58" y="40" font-size="20" font-weight="900" fill="#2563eb">${o.a || "A"}</text><text x="270" y="40" font-size="20" font-weight="900" fill="#db2777">${o.b || "B"}</text>`;
-    g += place(o.onlyA, 45, 150, 60, 150) + place(o.both, 150, 190, 60, 150) + place(o.onlyB, 190, 295, 60, 150) + place(o.out || [], 260, 330, 165, 195);
+    g += place(o.onlyA, 45, 150, 60, 150, "A") + place(o.both, 150, 190, 60, 150, "AB") + place(o.onlyB, 190, 295, 60, 150, "B") + place(o.out || [], 260, 330, 165, 195, "O");
     return svgWrap(340, 200, g);
   }
   g += `<ellipse cx="120" cy="105" rx="95" ry="70" fill="rgba(59,130,246,.15)" stroke="#2563eb" stroke-width="3"/><text x="40" y="45" font-size="20" font-weight="900" fill="#2563eb">${o.a || "A"}</text>`;
-  g += place(o.onlyA, 45, 195, 60, 150) + place(o.out || [], 180, 255, 165, 195);
+  g += place(o.onlyA, 45, 195, 60, 150, "A") + place(o.out || [], 180, 255, 165, 195, "O");
   return svgWrap(260, 200, g);
 }
 // ábaco: digits de izquierda a derecha, labels por defecto C D U
@@ -1117,7 +1162,7 @@ function abacus(digits, labels) {
   const col = ["#ef4444", "#3b82f6", "#22c55e"].slice(3 - digits.length);
   digits.forEach((d, i) => { const x = 45 + 70 * i;
     g += `<rect x="${x - 3}" y="14" width="6" height="138" fill="#78350f"/>`;
-    for (let k = 0; k < d; k++) g += `<ellipse cx="${x}" cy="${140 - k * 13}" rx="20" ry="7" fill="${col[i]}" stroke="#0f172a" stroke-width="1.5"/>`;
+    for (let k = 0; k < d; k++) g += `<ellipse class="it" data-k="${labels[i]}" cx="${x}" cy="${140 - k * 13}" rx="20" ry="7" fill="${col[i]}" stroke="#0f172a" stroke-width="1.5"/>`;
     g += `<text x="${x}" y="190" text-anchor="middle" font-size="20" font-weight="900" fill="#334155">${labels[i]}</text>`; });
   return svgWrap(W, 200, g, 260);
 }
@@ -1126,7 +1171,7 @@ function numberLine(vals, hidden = {}) {
   const n = vals.length, W = 40 + 56 * (n - 1) + 40;
   let g = `<line x1="10" y1="60" x2="${W - 10}" y2="60" stroke="#0f172a" stroke-width="3"/><path d="M${W - 10} 60 l-10 -6 v12z" fill="#0f172a"/>`;
   vals.forEach((v, i) => { const x = 40 + 56 * i; g += `<line x1="${x}" y1="50" x2="${x}" y2="70" stroke="#0f172a" stroke-width="3"/>`;
-    g += hidden[i] ? `<text x="${x}" y="40" text-anchor="middle" font-size="26">${hidden[i]}</text>` : `<text x="${x}" y="98" text-anchor="middle" font-size="20" font-weight="800" fill="#1e3a8a">${v}</text>`; });
+    g += hidden[i] ? `<text class="it" data-k="H" x="${x}" y="40" text-anchor="middle" font-size="26">${hidden[i]}</text>` : `<text class="it" data-k="v${i}" x="${x}" y="98" text-anchor="middle" font-size="20" font-weight="800" fill="#1e3a8a">${v}</text>`; });
   return svgWrap(W, 110, g, 340);
 }
 // pirámide de bloques: rows de arriba hacia abajo; celdas con texto ("" = vacío)

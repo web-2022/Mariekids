@@ -142,3 +142,13 @@
 .tb-tbl td.hl { background: #fde68a; }
 .tb-big { display: flex; justify-content: center; }
 .tutor .hl-t { background: #fde68a; border-radius: 4px; padding: 0 3px; }
+
+text.t-svgnum { fill: #e11d48; animation: none; paint-order: stroke; stroke: #fff; stroke-width: 3px; }
+.t-svgb { animation: none; }
+text.it.t-hl { fill: #b45309; }
+.settxt .it { display: inline-block; }
+.settxt .t-num { transform: scale(.78); top: -12px; right: -9px; }
+.tb-sep { width: 6px; }
+.tboard { overflow-x: auto; }
+.tb-tbl { font-size: 14px; }
+.tb-tbl td, .tb-tbl th { padding: 4px 7px; }
