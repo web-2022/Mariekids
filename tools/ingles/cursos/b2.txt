@@ -1,0 +1,708 @@
+# ===================== B2 · SEMANA 1: CONDICIONALES =====================
+
+=== eng-b2-w1 | 💭 | B2 · Semana 1 · Clase 1: Second Conditional (situaciones imaginarias)
+desc: If I had more time, I would learn Japanese. If I were you, I'd… What would you do if…? Comparación con el First Conditional.
+- ⏳ | If I had more time, I would learn Japanese | Si tuviera más tiempo, aprendería japonés | If I had more time, I would learn Japanese. | Si tuviera más tiempo, aprendería japonés.
+- 💰 | If I won the lottery, I'd travel the world | Si ganara la lotería, viajaría por el mundo | If I won the lottery, I'd travel the world. | Si ganara la lotería, viajaría por el mundo.
+- 🧑‍🏫 | If I were you, I'd talk to her | Yo que tú, hablaría con ella | If I were you, I'd talk to her. | Yo que tú, hablaría con ella.
+- ❓ | What would you do if you saw a ghost? | ¿Qué harías si vieras un fantasma? | What would you do if you saw a ghost? | ¿Qué harías si vieras un fantasma?
+- 🦸 | If I could fly, I'd go to school by air | Si pudiera volar, iría al colegio por aire | If I could fly, I'd go to school by air. | Si pudiera volar, iría al colegio por aire.
+- 🏠 | If we lived near the beach, we'd swim every day | Si viviéramos cerca de la playa, nadaríamos a diario | If we lived near the beach, we'd swim every day. | Si viviéramos cerca de la playa, nadaríamos todos los días.
+- 🚫 | I wouldn't do that if I were you | Yo no haría eso si fuera tú | I wouldn't do that if I were you. | Yo no haría eso si fuera tú.
+- 🗣️ | If she spoke English, she could get the job | Si hablara inglés, podría conseguir el trabajo | If she spoke English, she could get the job. | Si hablara inglés, podría conseguir el trabajo.
+- 🐶 | If I didn't have a dog, I'd feel lonely | Si no tuviera perro, me sentiría solo | If I didn't have a dog, I'd feel lonely. | Si no tuviera perro, me sentiría solo.
+- 🌍 | If you could live anywhere, where would you live? | Si pudieras vivir en cualquier lugar, ¿dónde vivirías? | If you could live anywhere, where would you live? | Si pudieras vivir en cualquier lugar, ¿dónde vivirías?
+- 🔀 | If it rains, I'll stay home (real) | Si llueve, me quedaré en casa (real) | If it rains tomorrow, I'll stay home. | Si llueve mañana, me quedaré en casa.
+- 🌈 | If it snowed in Lima, I'd be amazed (imaginario) | Si nevara en Lima, me asombraría (imaginario) | If it snowed in Lima, I'd be amazed. | Si nevara en Lima, me asombraría.
+teoria:
+intro: El Second Conditional habla de situaciones imaginarias, poco probables o contrarias a la realidad en el presente o futuro. Es como el «si + subjuntivo, condicional» del español: si tuviera, haría.
+tabla: La fórmula ; Parte | Estructura | Ejemplo*
+| Condición | If + pasado simple | If I had a car,
+| Resultado | would / could / might + verbo | I would drive to Cusco.
+| Negativa | If + didn't…, wouldn't… | If I didn't study, I wouldn't pass.
+| Pregunta | What would you do if…? | What would you do if you were rich?
+tabla: Todas las personas ; Persona | Ejemplo*
+| I | If I were rich, I'd buy a house.
+| You | If you were rich, you'd buy a house.
+| He / She | If she were rich, she'd buy a house.
+| We | If we were rich, we'd buy a house.
+| They | If they were rich, they'd buy a house.
+tabla: First vs Second ; First* (real, posible) | Second* (imaginario, improbable)
+| If I have time, I'll help you. | If I had time, I'd help you.
+| If it's sunny, we'll go out. | If it were sunny, we'd go out.
+| If she calls, I'll answer. | If she called, I'd answer.
+ej: If I were the president, I would build more schools. | Si yo fuera presidente, construiría más colegios.
+ej: Would you help me if I asked you? — Of course I would. | ¿Me ayudarías si te lo pidiera? — Claro que sí.
+ojo: Nunca pongas «would» después de if: If I would have ✗ → If I had ✓.
+ojo: Con «be» se prefiere «were» para todas las personas: If I were you ✓ (If I was you es informal).
+ojo: El pasado aquí NO es pasado de tiempo: «If I had» habla del presente imaginario.
+pron: I'd suena «áid», you'd «iúd», wouldn't «úudent» (la l no suena).
+
+=== eng-b2-w1-c2 | 📊 | B2 · Semana 1 · Clase 2: Todos los condicionales (0, 1, 2, 3 y mixtos)
+desc: Tabla completa: zero, first, second, third y mixed conditionals con ejemplos, comas y variaciones (unless, provided that, as long as).
+- 🧊 | If you heat ice, it melts | Si calientas hielo, se derrite | If you heat ice, it melts. | Si calientas hielo, se derrite.
+- 🌧️ | If it rains, we'll cancel the trip | Si llueve, cancelaremos el viaje | If it rains, we'll cancel the trip. | Si llueve, cancelaremos el viaje.
+- 💸 | If I had money, I'd buy a bike | Si tuviera dinero, compraría una bici | If I had money, I'd buy a bike. | Si tuviera dinero, compraría una bici.
+- 📚 | If I had studied, I would have passed | Si hubiera estudiado, habría aprobado | If I had studied, I would have passed the exam. | Si hubiera estudiado, habría aprobado el examen.
+- 🚌 | If I hadn't missed the bus, I wouldn't have been late | Si no hubiera perdido el bus, no habría llegado tarde | If I hadn't missed the bus, I wouldn't have been late. | Si no hubiera perdido el bus, no habría llegado tarde.
+- 🔀 | If I had slept more, I wouldn't be tired now | Si hubiera dormido más, no estaría cansado ahora | If I had slept more last night, I wouldn't be tired now. | Si hubiera dormido más anoche, no estaría cansado ahora.
+- 🎓 | If I were braver, I would have said something | Si fuera más valiente, habría dicho algo | If I were braver, I would have said something. | Si fuera más valiente, habría dicho algo.
+- ✅ | As long as you're careful, you can go | Siempre que tengas cuidado, puedes ir | As long as you're careful, you can go. | Siempre que tengas cuidado, puedes ir.
+- 📝 | Provided that you finish, you can leave | Con tal de que termines, puedes irte | Provided that you finish your work, you can leave early. | Con tal de que termines tu trabajo, puedes irte temprano.
+- ⛔ | Unless you apologize, she won't forgive you | Si no pides perdón, no te perdonará | Unless you apologize, she won't forgive you. | Si no pides perdón, no te perdonará.
+- ☂️ | Take an umbrella in case it rains | Lleva paraguas por si llueve | Take an umbrella in case it rains. | Lleva paraguas por si llueve.
+- 🤔 | Suppose you lost your phone, what would you do? | Supón que perdieras tu celular, ¿qué harías? | Suppose you lost your phone, what would you do? | Supón que perdieras tu celular, ¿qué harías?
+teoria:
+intro: Aquí está el mapa completo de los condicionales en inglés. Cada uno combina tiempos verbales distintos según si hablamos de algo real, posible, imaginario o del pasado que ya no se puede cambiar.
+tabla: Los condicionales ; Tipo | Condición (if…) | Resultado | Ejemplo*
+| Zero | presente | presente | If you mix red and blue, you get purple.
+| First | presente | will + verbo | If you study, you'll pass.
+| Second | pasado simple | would + verbo | If I had wings, I'd fly.
+| Third | past perfect (had + participio) | would have + participio | If I had known, I would have helped.
+| Mixto 3→2 | past perfect | would + verbo (ahora) | If I had taken the job, I'd be rich now.
+| Mixto 2→3 | pasado simple | would have + participio | If I spoke French, I'd have understood him.
+tabla: Otras palabras condicionales ; Inglés* | Español | Ejemplo*
+| unless | a menos que / si no | Unless you hurry, you'll be late.
+| as long as | siempre que | You can stay as long as you're quiet.
+| provided (that) | con tal de que | I'll lend it provided you return it.
+| in case | por si | Take a jacket in case it gets cold.
+| suppose / supposing | supón que | Suppose you won, what would you buy?
+| otherwise | si no, de lo contrario | Hurry, otherwise we'll miss it.
+ej: If I hadn't gone to that party, I wouldn't have met my best friend. | Si no hubiera ido a esa fiesta, no habría conocido a mi mejor amigo.
+ej: If you need help, call me. | Si necesitas ayuda, llámame.
+ojo: Nunca «would» en la parte del if: If I would have known ✗ → If I had known ✓.
+ojo: «In case» no es «if»: Take an umbrella in case it rains = llévalo por si acaso (antes de saber si llueve).
+ojo: Coma solo cuando el if va primero: If it rains, I'll stay. / I'll stay if it rains.
+pron: Would have suena «údav» o «úda». Hadn't suena «jádent».
+
+=== eng-b2-w1-c3 | 😔 | B2 · Semana 1 · Clase 3: Third Conditional, I wish, If only
+desc: If I had known, I would have come. I wish I had more time. I wish I hadn't said that. If only I could fly. I wish you would stop.
+- 📞 | If I had known, I would have called you | Si lo hubiera sabido, te habría llamado | If I had known you were sick, I would have called you. | Si hubiera sabido que estabas enfermo, te habría llamado.
+- 🏆 | We would have won if we had trained more | Habríamos ganado si hubiéramos entrenado más | We would have won if we had trained more. | Habríamos ganado si hubiéramos entrenado más.
+- ⏳ | I wish I had more time | Ojalá tuviera más tiempo | I wish I had more time to read. | Ojalá tuviera más tiempo para leer.
+- 🗣️ | I wish I hadn't said that | Ojalá no hubiera dicho eso | I wish I hadn't said that to my friend. | Ojalá no le hubiera dicho eso a mi amigo.
+- 🦅 | If only I could fly! | ¡Si tan solo pudiera volar! | If only I could fly over the Andes! | ¡Si tan solo pudiera volar sobre los Andes!
+- 🔇 | I wish you would stop talking | Ojalá dejaras de hablar | I wish you would stop talking during the movie. | Ojalá dejaras de hablar durante la película.
+- 🏖️ | I wish I were on the beach now | Ojalá estuviera en la playa ahora | I wish I were on the beach right now. | Ojalá estuviera en la playa ahora mismo.
+- 🎒 | If only I had brought my jacket | Si tan solo hubiera traído mi casaca | If only I had brought my jacket! It's freezing. | ¡Si tan solo hubiera traído mi casaca! Hace un frío terrible.
+- 🧠 | She wishes she spoke Quechua | Ella quisiera hablar quechua | She wishes she spoke Quechua like her grandma. | Ella quisiera hablar quechua como su abuela.
+- 🚗 | It's time we left | Ya es hora de que nos vayamos | It's late. It's time we left. | Es tarde. Ya es hora de que nos vayamos.
+- 💡 | I'd rather you didn't tell anyone | Preferiría que no le dijeras a nadie | I'd rather you didn't tell anyone about this. | Preferiría que no le dijeras a nadie sobre esto.
+- ⚠️ | You should have told me | Debiste decírmelo | You should have told me earlier! | ¡Debiste decírmelo antes!
+teoria:
+intro: El Third Conditional imagina un pasado diferente que ya no se puede cambiar. Para deseos y arrepentimientos usamos I wish / If only, con tiempos que «retroceden» como en los condicionales.
+tabla: Third Conditional ; Parte | Estructura | Ejemplo*
+| Condición | If + had + participio | If I had left earlier,
+| Resultado | would have + participio | I would have caught the train.
+| Negativa | If I hadn't…, I wouldn't have… | If she hadn't helped me, I wouldn't have finished.
+| Pregunta | What would you have done if…? | What would you have done if you had lost?
+tabla: Deseos y arrepentimientos ; Deseo sobre | Estructura | Ejemplo*
+| el presente | wish + pasado simple | I wish I lived in Cusco.
+| el presente (be) | wish + were | I wish I were taller.
+| el pasado | wish + past perfect | I wish I had studied more.
+| una habilidad | wish + could | I wish I could sing.
+| algo molesto (de otro) | wish + would | I wish you would listen to me.
+| énfasis | If only + igual que wish | If only I had known!
+tabla: Más estructuras irreales ; Inglés* | Español
+| It's time we went. | Ya es hora de que nos vayamos.
+| I'd rather you stayed. | Preferiría que te quedaras.
+| You should have called. | Debiste llamar.
+| You shouldn't have shouted. | No debiste gritar.
+ej: I wish I hadn't eaten so much. Now I feel sick. | Ojalá no hubiera comido tanto. Ahora me siento mal.
+ej: If you had asked me, I would have helped you. | Si me hubieras pedido, te habría ayudado.
+ojo: «Ojalá» sobre el futuro se dice con hope: I hope it doesn't rain tomorrow ✓ (no I wish it doesn't rain).
+ojo: No uses «would» para desearte algo a ti mismo: I wish I would be rich ✗ → I wish I were rich ✓.
+pron: «I would have» se reduce a «ái wúdəv» o «aid'ev». «Should have» suena «shúdəv» (nunca «should of» al escribir).
+
+# ===================== B2 · SEMANA 2: PRESENT PERFECT CONTINUOUS =====================
+
+=== eng-b2-w2 | ⌛ | B2 · Semana 2 · Clase 1: Present Perfect Continuous
+desc: I've been studying for three hours. She's been working here since 2019. How long have you been waiting? You look tired. Have you been running?
+- 📚 | I've been studying for three hours | Llevo tres horas estudiando | I've been studying for three hours. I need a break. | Llevo tres horas estudiando. Necesito un descanso.
+- 🏢 | She's been working here since 2019 | Trabaja aquí desde 2019 | She's been working here since 2019. | Ella trabaja aquí desde 2019.
+- ⏱️ | How long have you been waiting? | ¿Cuánto tiempo llevas esperando? | How long have you been waiting? — For twenty minutes. | ¿Cuánto llevas esperando? — Veinte minutos.
+- 🥵 | Have you been running? | ¿Has estado corriendo? | You're out of breath. Have you been running? | Estás sin aliento. ¿Has estado corriendo?
+- 🌧️ | It's been raining all day | Ha estado lloviendo todo el día | It's been raining all day. | Ha estado lloviendo todo el día.
+- 😢 | Why have you been crying? | ¿Por qué has estado llorando? | Your eyes are red. Why have you been crying? | Tienes los ojos rojos. ¿Por qué has estado llorando?
+- 🎸 | I've been learning the guitar lately | Últimamente estoy aprendiendo guitarra | I've been learning the guitar lately. | Últimamente he estado aprendiendo guitarra.
+- 😴 | I haven't been sleeping well | No he estado durmiendo bien | I haven't been sleeping well recently. | Últimamente no he estado durmiendo bien.
+- 🎨 | They've been painting the house | Han estado pintando la casa | They've been painting the house all week. | Han estado pintando la casa toda la semana.
+- 🤔 | What have you been doing? | ¿Qué has estado haciendo? | What have you been doing? Your hands are dirty! | ¿Qué has estado haciendo? ¡Tienes las manos sucias!
+- 🧘 | I've been feeling much better | Me he estado sintiendo mucho mejor | Since I started yoga, I've been feeling much better. | Desde que empecé yoga, me he sentido mucho mejor.
+teoria:
+intro: El Present Perfect Continuous habla de una acción que empezó en el pasado y sigue (o acaba de terminar), poniendo énfasis en la DURACIÓN o en el resultado visible. En español: «llevo… -ando», «he estado… -ando».
+tabla: La fórmula ; Persona | Afirmativa* | Negativa* | Pregunta*
+| I / You / We / They | I've been working. | I haven't been working. | Have you been working?
+| He / She / It | She's been working. | She hasn't been working. | Has she been working?
+tabla: Usos ; Uso | Ejemplo*
+| Duración hasta ahora (for / since) | I've been living here for ten years.
+| Pregunta por la duración | How long have you been learning English?
+| Resultado visible de una acción reciente | You're wet. Have you been swimming?
+| Situación temporal reciente (lately, recently) | I've been working a lot lately.
+tabla: Palabras clave ; Inglés* | Español
+| for two hours / since Monday | durante dos horas / desde el lunes
+| all day / all week | todo el día / toda la semana
+| lately / recently | últimamente / recientemente
+| How long…? | ¿Cuánto tiempo…?
+ej: I've been waiting for you since five o'clock! | ¡Te he estado esperando desde las cinco!
+ej: She looks tired because she's been working all night. | Se ve cansada porque ha estado trabajando toda la noche.
+ojo: «Llevo dos años estudiando inglés» = I've been studying English for two years (no «I carry two years…» ni «I study English for two years»).
+ojo: Los verbos de estado no van en continuo: I've been knowing her ✗ → I've known her ✓.
+pron: «I've been» suena «aivbin», muy rápido. «She's been» suena «shísbin».
+
+=== eng-b2-w2-c2 | ⚖️ | B2 · Semana 2 · Clase 2: Perfect simple vs Perfect continuous
+desc: I've read three books (cantidad, resultado) vs I've been reading all morning (actividad, duración). Verbos de estado. Already, still, yet.
+- 📗 | I've read three books this month | He leído tres libros este mes | I've read three books this month. | He leído tres libros este mes.
+- 📖 | I've been reading all morning | He estado leyendo toda la mañana | I've been reading all morning. | He estado leyendo toda la mañana.
+- 🎨 | I've painted the kitchen | He pintado la cocina (terminado) | I've painted the kitchen. Do you like it? | He pintado la cocina. ¿Te gusta?
+- 🖌️ | I've been painting the kitchen | He estado pintando la cocina | I've been painting the kitchen. That's why I'm dirty. | He estado pintando la cocina. Por eso estoy sucio.
+- ✉️ | She has written ten emails today | Ha escrito diez correos hoy | She has written ten emails today. | Ella ha escrito diez correos hoy.
+- ⌨️ | She has been writing emails for hours | Lleva horas escribiendo correos | She has been writing emails for hours. | Lleva horas escribiendo correos.
+- 🤝 | I've known him for years | Lo conozco desde hace años | I've known him for years. | Lo conozco desde hace años.
+- 🏡 | We've had this car since 2015 | Tenemos este carro desde 2015 | We've had this car since 2015. | Tenemos este carro desde 2015.
+- ⏳ | I still haven't finished | Todavía no he terminado | I still haven't finished my essay. | Todavía no he terminado mi ensayo.
+- 🏃 | How many kilometers have you run? | ¿Cuántos kilómetros has corrido? | How many kilometers have you run today? | ¿Cuántos kilómetros has corrido hoy?
+- ⏱️ | How long have you been running? | ¿Cuánto tiempo llevas corriendo? | How long have you been running? | ¿Cuánto tiempo llevas corriendo?
+teoria:
+intro: Los dos tiempos se parecen, pero el simple se fija en el RESULTADO o la cantidad (cuánto/cuántos) y el continuo en la ACTIVIDAD y su duración (cuánto tiempo).
+tabla: Comparación ; Perfect Simple* (resultado) | Perfect Continuous* (actividad)
+| I've written two chapters. | I've been writing all day.
+| How many cakes have you made? | How long have you been baking?
+| She has cleaned her room. (está limpio) | She has been cleaning. (está cansada)
+| I've lived here for ten years. (permanente) | I've been living with my aunt this month. (temporal)
+tabla: Verbos de estado (solo simple) ; Verbo* | Ejemplo*
+| know | I've known her since school.
+| have (= tener) | I've had this phone for a year.
+| be | I've been here for an hour.
+| like / love | I've always loved music.
+| believe / understand | I've never understood it.
+ej: I've been cooking all afternoon and I've made three dishes. | He estado cocinando toda la tarde y he hecho tres platos.
+ej: How long have you known each other? | ¿Desde cuándo se conocen?
+ojo: Con números o cantidades usa el simple: I've been reading three books ✗ → I've read three books ✓.
+ojo: «Still» va antes del verbo en negativa: I still haven't finished ✓.
+pron: Compara el ritmo: «aiv rítn» (I've written) vs «aiv bin ráiting» (I've been writing).
+
+# ===================== B2 · SEMANA 3: CONECTORES AVANZADOS =====================
+
+=== eng-b2-w3 | 🧷 | B2 · Semana 3 · Clase 1: Contraste (although, despite, however, whereas)
+desc: Although it rained, we went. Despite the rain… In spite of being tired… However, nevertheless, whereas, while, even though.
+- 🌧️ | Although it was raining, we went out | Aunque llovía, salimos | Although it was raining, we went out. | Aunque llovía, salimos.
+- ☔ | Despite the rain, we went out | A pesar de la lluvia, salimos | Despite the rain, we went out. | A pesar de la lluvia, salimos.
+- 😩 | In spite of being tired, she kept working | A pesar de estar cansada, siguió trabajando | In spite of being tired, she kept working. | A pesar de estar cansada, siguió trabajando.
+- 🔄 | However, the results were disappointing | Sin embargo, los resultados fueron decepcionantes | We worked hard. However, the results were disappointing. | Trabajamos duro. Sin embargo, los resultados fueron decepcionantes.
+- 🧱 | Nevertheless, we didn't give up | No obstante, no nos rendimos | It was difficult. Nevertheless, we didn't give up. | Fue difícil. No obstante, no nos rendimos.
+- ↔️ | My brother is tall, whereas I'm short | Mi hermano es alto, mientras que yo soy bajo | My brother is tall, whereas I'm short. | Mi hermano es alto, mientras que yo soy bajo.
+- 💪 | Even though he was sick, he came | Aunque estaba enfermo, vino | Even though he was sick, he came to the match. | Aunque estaba enfermo, vino al partido.
+- 🧾 | Despite the fact that it was expensive, I bought it | A pesar de que era caro, lo compré | Despite the fact that it was expensive, I bought it. | A pesar de que era caro, lo compré.
+- 🌓 | On the other hand, | Por otro lado, | City life is exciting. On the other hand, it's stressful. | La vida en la ciudad es emocionante. Por otro lado, es estresante.
+- 🔁 | Instead of complaining, do something | En vez de quejarte, haz algo | Instead of complaining, do something about it. | En vez de quejarte, haz algo al respecto.
+- 🎯 | Even so, | Aun así, | The hotel was old. Even so, we loved it. | El hotel era viejo. Aun así, nos encantó.
+- 🆚 | Unlike my sister, I love spicy food | A diferencia de mi hermana, me encanta lo picante | Unlike my sister, I love spicy food. | A diferencia de mi hermana, me encanta la comida picante.
+teoria:
+intro: En B2 necesitamos variar los conectores de contraste. Lo importante es saber qué va DESPUÉS de cada uno: una oración completa, un sustantivo o un verbo en -ing.
+tabla: ¿Qué va después? ; Conector* | Después va | Ejemplo*
+| although / even though / though | oración (sujeto + verbo) | Although it was cold, we swam.
+| despite / in spite of | sustantivo o -ing | Despite the cold, we swam. / Despite being cold…
+| despite the fact that | oración | Despite the fact that it was cold, we swam.
+| however / nevertheless / even so | nueva oración, con coma | It was cold. However, we swam.
+| whereas / while | oración (compara dos cosas) | I like tea, whereas she prefers coffee.
+| unlike | sustantivo | Unlike me, she's very calm.
+| instead of | sustantivo o -ing | Instead of watching TV, read a book.
+tabla: Grado de formalidad ; Informal | Neutro | Formal*
+| but | however | nevertheless / nonetheless
+| though (al final) | although | even though
+| still | even so | notwithstanding
+ej: Even though I studied a lot, I didn't pass. | Aunque estudié mucho, no aprobé.
+ej: Some people love the city, whereas others prefer the countryside. | Algunos aman la ciudad, mientras que otros prefieren el campo.
+ojo: Despite of ✗ → Despite ✓ / In spite of ✓.
+ojo: Despite + oración ✗: Despite it was raining ✗ → Despite the rain / Although it was raining ✓.
+ojo: However no une dos oraciones con coma: I was tired, however I went ✗ → I was tired. However, I went ✓ (o ; however,).
+pron: Although suena «oldóu». Nevertheless suena «néverdeles». Whereas suena «uéras».
+
+=== eng-b2-w3-c2 | ➡️ | B2 · Semana 3 · Clase 2: Causa, consecuencia, adición y finalidad
+desc: Therefore, as a result, consequently, due to, because of, since, furthermore, moreover, in addition, so that, in order to, so as not to.
+- ➡️ | Therefore, | Por lo tanto, | The roads were closed. Therefore, we stayed at home. | Las pistas estaban cerradas. Por lo tanto, nos quedamos en casa.
+- 📉 | As a result, | Como resultado, | He didn't study. As a result, he failed. | No estudió. Como resultado, desaprobó.
+- 🔗 | Consequently, | En consecuencia, | Prices rose. Consequently, sales fell. | Los precios subieron. En consecuencia, las ventas bajaron.
+- 🌪️ | due to the storm | debido a la tormenta | The flight was canceled due to the storm. | El vuelo se canceló debido a la tormenta.
+- 🚦 | because of the traffic | por el tráfico | We were late because of the traffic. | Llegamos tarde por el tráfico.
+- 💡 | Since you're here, help me | Ya que estás aquí, ayúdame | Since you're here, can you help me? | Ya que estás aquí, ¿me ayudas?
+- ➕ | Furthermore, | Además, | It's cheap. Furthermore, it's very good quality. | Es barato. Además, es de muy buena calidad.
+- ➕ | In addition to this, | Además de esto, | In addition to this, the hotel has a pool. | Además de esto, el hotel tiene piscina.
+- 🎯 | in order to save money | para ahorrar dinero | I walk to work in order to save money. | Camino al trabajo para ahorrar dinero.
+- 🔊 | so that everyone can hear | para que todos puedan oír | Speak louder so that everyone can hear you. | Habla más fuerte para que todos te oigan.
+- 🤫 | so as not to wake the baby | para no despertar al bebé | We whispered so as not to wake the baby. | Susurramos para no despertar al bebé.
+- 🌱 | Not only… but also… | No solo… sino también… | She's not only smart but also very kind. | No solo es inteligente, sino también muy amable.
+teoria:
+intro: Estos conectores dan cohesión a un texto: explican por qué pasa algo, qué resulta, añaden ideas y dicen para qué. Son clave para el ensayo de B2.
+tabla: Causa ; Conector* | Después va | Ejemplo*
+| because / since / as | oración | We stayed in since it was raining.
+| because of / due to / owing to | sustantivo | The match was canceled due to the rain.
+tabla: Consecuencia ; Conector* | Ejemplo*
+| so | It rained, so we stayed in.
+| therefore / as a result / consequently | It rained. Therefore, we stayed in.
+| that's why | It rained. That's why we stayed in.
+tabla: Adición ; Conector* | Ejemplo*
+| also / too / as well | It's also cheap.
+| moreover / furthermore / in addition | Moreover, it's cheap.
+| not only … but also … | It's not only cheap but also good.
+| as well as + sustantivo / -ing | As well as being cheap, it's good.
+tabla: Finalidad ; Conector* | Ejemplo*
+| to / in order to + verbo | I study to learn. / in order to learn.
+| so as not to + verbo | I left early so as not to be late.
+| so that + oración | I left early so that I wouldn't be late.
+ej: Due to heavy rain, the road to Huaraz was closed. | Debido a fuertes lluvias, la carretera a Huaraz estaba cerrada.
+ej: I saved money so that I could buy a laptop. | Ahorré dinero para poder comprar una laptop.
+ojo: «Para + verbo» = to / in order to: I came for learn ✗ → I came to learn ✓.
+ojo: Due to + oración ✗: due to it was raining ✗ → due to the rain / because it was raining ✓.
+ojo: «Since» puede ser «desde» (tiempo) o «ya que» (causa).
+pron: Therefore suena «dérfor». Consequently suena «kónsekuentli». Due suena «diú».
+
+# ===================== B2 · SEMANA 4: VOZ PASIVA Y ESTILO INDIRECTO =====================
+
+=== eng-b2-w4 | 🏗️ | B2 · Semana 4 · Clase 1: Passive voice (todos los tiempos)
+desc: English is spoken here. The bridge was built in 1900. The house is being painted. It has been sold. It will be finished. It must be done.
+- 🌎 | English is spoken all over the world | El inglés se habla en todo el mundo | English is spoken all over the world. | El inglés se habla en todo el mundo.
+- 🏛️ | Machu Picchu was built in the 15th century | Machu Picchu fue construido en el siglo XV | Machu Picchu was built in the 15th century. | Machu Picchu fue construido en el siglo XV.
+- 🎨 | The house is being painted | Están pintando la casa | The house is being painted this week. | Esta semana están pintando la casa.
+- 🏷️ | The car has been sold | El carro ha sido vendido | The car has been sold. | El carro ya se vendió.
+- 🏗️ | The bridge will be finished next year | El puente será terminado el próximo año | The bridge will be finished next year. | El puente estará terminado el próximo año.
+- 📋 | This must be done today | Esto debe hacerse hoy | This report must be done today. | Este informe debe hacerse hoy.
+- 🔍 | The thief was caught by the police | El ladrón fue atrapado por la policía | The thief was caught by the police. | El ladrón fue atrapado por la policía.
+- 🍫 | Chocolate is made from cocoa | El chocolate se hace de cacao | Chocolate is made from cocoa beans. | El chocolate se hace de granos de cacao.
+- 📱 | My phone was stolen | Me robaron el celular | My phone was stolen on the bus. | Me robaron el celular en el bus.
+- 🎟️ | The tickets had been sold out | Las entradas se habían agotado | When we arrived, the tickets had been sold out. | Cuando llegamos, las entradas ya se habían agotado.
+- ✂️ | I had my hair cut | Me corté el pelo (en la peluquería) | I had my hair cut yesterday. | Ayer me corté el pelo en la peluquería.
+- 🗣️ | It is said that… | Se dice que… | It is said that the lake is magical. | Se dice que el lago es mágico.
+- 👶 | I was born in 2012 | Nací en 2012 | I was born in 2012 in Iquitos. | Nací en 2012 en Iquitos.
+teoria:
+intro: La voz pasiva pone el foco en la acción o en quien la recibe, no en quien la hace. Se forma con el verbo be (en el tiempo que corresponda) + participio. Se usa mucho en noticias, ciencia e historia.
+tabla: La pasiva en todos los tiempos ; Tiempo | Activa* | Pasiva*
+| Present Simple | They make cars here. | Cars are made here.
+| Present Continuous | They are painting the house. | The house is being painted.
+| Past Simple | They built the bridge in 1900. | The bridge was built in 1900.
+| Past Continuous | They were repairing the road. | The road was being repaired.
+| Present Perfect | They have sold the car. | The car has been sold.
+| Past Perfect | They had sold the tickets. | The tickets had been sold.
+| Future (will) | They will finish it. | It will be finished.
+| Going to | They are going to open a shop. | A shop is going to be opened.
+| Modales | You must do it. | It must be done.
+tabla: Estructuras especiales ; Estructura | Ejemplo* | Español
+| by + agente (solo si importa) | It was written by Vallejo. | Fue escrito por Vallejo.
+| It is said / believed that… | It is believed that… | Se cree que…
+| He is said to be… | He is said to be rich. | Dicen que es rico.
+| have something done | I had my car repaired. | Me arreglaron el carro.
+ej: The Nazca Lines were discovered from the air. | Las Líneas de Nazca fueron descubiertas desde el aire.
+ej: The results will be announced tomorrow. | Los resultados se anunciarán mañana.
+ojo: El «se» del español muchas veces es pasiva en inglés: Se habla inglés = English is spoken.
+ojo: «Nací» = I was born (pasiva), nunca «I born» ni «I am born».
+ojo: «Me cortaron el pelo» (en la peluquería) = I had my hair cut, no «I cut my hair» (que es cortármelo yo mismo).
+pron: Built suena «bilt». Caught suena «kót». Born suena «born».
+
+=== eng-b2-w4-c2 | 📣 | B2 · Semana 4 · Clase 2: Reported speech (afirmaciones)
+desc: «I'm tired» → She said (that) she was tired. Cambios de tiempos, pronombres y expresiones de tiempo. Say vs tell.
+- 😴 | She said she was tired | Dijo que estaba cansada | «I'm tired.» → She said she was tired. | «Estoy cansada.» → Dijo que estaba cansada.
+- 🏠 | He told me he lived in Lima | Me dijo que vivía en Lima | «I live in Lima.» → He told me he lived in Lima. | «Vivo en Lima.» → Me dijo que vivía en Lima.
+- 📺 | They said they were watching TV | Dijeron que estaban viendo tele | «We're watching TV.» → They said they were watching TV. | «Estamos viendo tele.» → Dijeron que estaban viendo tele.
+- 🍕 | She said she had eaten pizza | Dijo que había comido pizza | «I ate pizza.» → She said she had eaten pizza. | «Comí pizza.» → Dijo que había comido pizza.
+- 🎬 | He said he had already seen the film | Dijo que ya había visto la película | «I've already seen the film.» → He said he had already seen it. | «Ya vi la película.» → Dijo que ya la había visto.
+- 📞 | She said she would call me | Dijo que me llamaría | «I'll call you.» → She said she would call me. | «Te llamaré.» → Dijo que me llamaría.
+- 🏊 | He said he could swim | Dijo que sabía nadar | «I can swim.» → He said he could swim. | «Sé nadar.» → Dijo que sabía nadar.
+- 📚 | She said she had to study | Dijo que tenía que estudiar | «I must study.» → She said she had to study. | «Debo estudiar.» → Dijo que tenía que estudiar.
+- 📅 | He said he would come the next day | Dijo que vendría al día siguiente | «I'll come tomorrow.» → He said he would come the next day. | «Vendré mañana.» → Dijo que vendría al día siguiente.
+- 📍 | She said she was meeting him there | Dijo que se reuniría con él allí | «I'm meeting him here.» → She said she was meeting him there. | «Me reúno con él aquí.» → Dijo que se reunía con él allí.
+- 🌍 | The teacher said the Earth goes around the Sun | La profesora dijo que la Tierra gira alrededor del Sol | The teacher said the Earth goes around the Sun. | La profesora dijo que la Tierra gira alrededor del Sol.
+- 🗣️ | He told us a story | Nos contó una historia | Grandpa told us a funny story. | El abuelo nos contó una historia graciosa.
+teoria:
+intro: El estilo indirecto (reported speech) cuenta lo que otra persona dijo. Normalmente el tiempo verbal «retrocede» un paso al pasado, y cambian pronombres y expresiones de tiempo y lugar.
+tabla: Cambios de tiempo ; Estilo directo* | Estilo indirecto*
+| «I work.» (Present Simple) | She said she worked.
+| «I'm working.» (Present Continuous) | She said she was working.
+| «I worked.» (Past Simple) | She said she had worked.
+| «I've worked.» (Present Perfect) | She said she had worked.
+| «I'll work.» (will) | She said she would work.
+| «I can work.» (can) | She said she could work.
+| «I must work.» (must) | She said she had to work.
+| «I'm going to work.» | She said she was going to work.
+tabla: Cambios de tiempo y lugar ; Directo* | Indirecto*
+| now | then
+| today | that day
+| tomorrow | the next day / the following day
+| yesterday | the day before / the previous day
+| last week | the week before
+| next week | the following week
+| here | there
+| this | that
+tabla: Say vs tell ; Verbo* | Estructura | Ejemplo*
+| say | say (that) + oración | She said that she was busy.
+| say | say something to someone | He said hello to me.
+| tell | tell + persona + (that) | She told me that she was busy.
+| tell | tell a story / a lie / the truth | Tell the truth.
+ej: «I don't like this song.» → He said he didn't like that song. | «No me gusta esta canción.» → Dijo que no le gustaba esa canción.
+ej: She told me she had lost her keys. | Me dijo que había perdido sus llaves.
+ojo: Tell necesita persona: She told that… ✗ → She told me that… ✓. She said me ✗ → She said to me / She told me ✓.
+ojo: Si algo sigue siendo verdad, no es obligatorio cambiar el tiempo: He said the Earth is round ✓.
+pron: Said suena «séd». Told suena «tóuld».
+
+=== eng-b2-w4-c3 | ❔ | B2 · Semana 4 · Clase 3: Reported questions, órdenes y verbos de reporte
+desc: She asked me where I lived. He asked if I was OK. She told me to sit down. He asked me not to shout. Suggested, promised, refused, admitted.
+- 🏠 | She asked me where I lived | Me preguntó dónde vivía | «Where do you live?» → She asked me where I lived. | «¿Dónde vives?» → Me preguntó dónde vivía.
+- 🙂 | He asked if I was OK | Me preguntó si estaba bien | «Are you OK?» → He asked if I was OK. | «¿Estás bien?» → Me preguntó si estaba bien.
+- 🕐 | They asked what time the show started | Preguntaron a qué hora empezaba el show | «What time does the show start?» → They asked what time it started. | «¿A qué hora empieza?» → Preguntaron a qué hora empezaba.
+- 🤔 | She wanted to know whether I had finished | Quería saber si había terminado | «Have you finished?» → She wanted to know whether I had finished. | «¿Terminaste?» → Quería saber si había terminado.
+- 🪑 | She told me to sit down | Me dijo que me sentara | «Sit down.» → She told me to sit down. | «Siéntate.» → Me dijo que me sentara.
+- 🔇 | He asked me not to shout | Me pidió que no gritara | «Please don't shout.» → He asked me not to shout. | «Por favor, no grites.» → Me pidió que no gritara.
+- 💡 | She suggested going to the beach | Sugirió ir a la playa | «Let's go to the beach.» → She suggested going to the beach. | «Vamos a la playa.» → Sugirió ir a la playa.
+- 🤞 | He promised to help me | Prometió ayudarme | «I'll help you.» → He promised to help me. | «Te ayudaré.» → Prometió ayudarme.
+- 🙅 | She refused to answer | Se negó a responder | «I won't answer.» → She refused to answer. | «No responderé.» → Se negó a responder.
+- 😳 | He admitted breaking the window | Admitió haber roto la ventana | «I broke the window.» → He admitted breaking the window. | «Rompí la ventana.» → Admitió haber roto la ventana.
+- ⚠️ | They warned us not to swim there | Nos advirtieron que no nadáramos ahí | «Don't swim there!» → They warned us not to swim there. | «¡No naden ahí!» → Nos advirtieron que no nadáramos ahí.
+- 🙏 | She apologized for being late | Se disculpó por llegar tarde | «Sorry I'm late.» → She apologized for being late. | «Perdón por llegar tarde.» → Se disculpó por llegar tarde.
+teoria:
+intro: Para reportar preguntas usamos el orden normal de la oración (sujeto + verbo), sin «do/did» ni signo de pregunta. Las órdenes y pedidos van con to + verbo. Muchos verbos de reporte resumen lo que se dijo.
+tabla: Preguntas reportadas ; Directo* | Indirecto*
+| «Where do you live?» | She asked me where I lived.
+| «What are you doing?» | He asked what I was doing.
+| «Did you see it?» | She asked if / whether I had seen it.
+| «Can you swim?» | He asked if I could swim.
+tabla: Órdenes y pedidos ; Directo* | Indirecto*
+| «Close the door.» | She told me to close the door.
+| «Please help me.» | He asked me to help him.
+| «Don't touch it.» | She told me not to touch it.
+tabla: Verbos de reporte ; Verbo* | Estructura | Ejemplo*
+| suggest | + -ing / that | She suggested leaving early.
+| promise / refuse / agree / offer | + to + verbo | He offered to drive.
+| advise / warn / remind / invite | + persona + to | They invited me to come.
+| admit / deny | + -ing | He denied taking it.
+| apologize for / insist on | + -ing | She insisted on paying.
+| explain / complain | + that | He complained that it was cold.
+ej: The doctor advised me to rest for a week. | El médico me aconsejó descansar una semana.
+ej: My mom reminded me to take my keys. | Mi mamá me recordó llevar mis llaves.
+ojo: En pregunta reportada no se invierte: She asked where did I live ✗ → She asked where I lived ✓.
+ojo: Para preguntas de sí/no usa if o whether: She asked me do I like it ✗ → She asked me if I liked it ✓.
+ojo: Suggest no lleva «to»: She suggested to go ✗ → She suggested going ✓.
+pron: Whether suena «uéder» (igual que weather). Suggested suena «sayéstid».
+
+# ===================== B2 · SEMANA 5: DEDUCCIÓN =====================
+
+=== eng-b2-w5 | 🕵️ | B2 · Semana 5 · Clase 1: Deducción en presente (must, can't, might)
+desc: She must be at home. It can't be true. He might be sick. They could be lost. Resolver misterios con pistas.
+- 🏠 | She must be at home | Debe de estar en casa | The lights are on. She must be at home. | Las luces están prendidas. Debe de estar en casa.
+- 🙅 | It can't be true | No puede ser verdad | You won the lottery? It can't be true! | ¿Ganaste la lotería? ¡No puede ser verdad!
+- 🤒 | He might be sick | Puede que esté enfermo | He isn't at school. He might be sick. | No está en el colegio. Puede que esté enfermo.
+- 🗺️ | They could be lost | Podrían estar perdidos | They're very late. They could be lost. | Llegan muy tarde. Podrían estar perdidos.
+- 😋 | You must be hungry | Debes tener hambre | You haven't eaten all day. You must be hungry. | No has comido en todo el día. Debes tener hambre.
+- 👶 | She can't be his mother. She's too young | No puede ser su mamá. Es muy joven | She can't be his mother. She's too young. | No puede ser su mamá. Es muy joven.
+- 📞 | That must be Pedro | Ese debe ser Pedro | The phone's ringing. That must be Pedro. | Suena el teléfono. Ese debe ser Pedro.
+- 💤 | They may be sleeping | Puede que estén durmiendo | Don't knock. They may be sleeping. | No toques. Puede que estén durmiendo.
+- 🧩 | It must be somewhere in the house | Debe estar en algún lugar de la casa | My key must be somewhere in the house. | Mi llave debe estar en algún lugar de la casa.
+- 🕵️ | The thief must know the owner | El ladrón debe conocer al dueño | The door wasn't forced. The thief must know the owner. | La puerta no fue forzada. El ladrón debe conocer al dueño.
+- 🤔 | Who could it be? | ¿Quién podrá ser? | Someone's at the door. Who could it be? | Alguien está en la puerta. ¿Quién podrá ser?
+teoria:
+intro: Usamos must, can't, might, may y could para hacer deducciones: conclusiones lógicas a partir de pistas. Expresan qué tan seguros estamos.
+tabla: Grado de certeza (presente) ; Modal* | Certeza | Ejemplo*
+| must | casi seguro que SÍ (90 %) | He must be tired.
+| may / might / could | posible (50 %) | He might be tired.
+| can't / couldn't | casi seguro que NO (90 %) | He can't be tired. He slept 10 hours.
+tabla: Con acción en progreso ; Estructura | Ejemplo*
+| must be + -ing | She must be working.
+| might be + -ing | They might be having dinner.
+| can't be + -ing | He can't be sleeping. The light is on.
+ej: Look at his car! He must be very rich. | ¡Mira su carro! Debe ser muy rico.
+ej: It's only 6 p.m. She can't be in bed already. | Son solo las 6 p. m. No puede estar ya en la cama.
+ojo: Lo contrario de «must» en deducción es «can't», no «mustn't»: He mustn't be at home ✗ → He can't be at home ✓.
+ojo: «Must» de deducción no es obligación: You must be tired = seguro estás cansado.
+pron: Must be suena «mósbi». Can't be suena «kánbi» (la t casi no suena).
+
+=== eng-b2-w5-c2 | 🔍 | B2 · Semana 5 · Clase 2: Deducción en pasado (must have, can't have, might have)
+desc: She must have forgotten. He can't have seen us. They might have missed the bus. You should have told me. Could have, would have.
+- 🤦 | She must have forgotten | Se le debe haber olvidado | She didn't come. She must have forgotten. | No vino. Se le debe haber olvidado.
+- 🙈 | He can't have seen us | No puede habernos visto | He didn't wave. He can't have seen us. | No saludó. No puede habernos visto.
+- 🚌 | They might have missed the bus | Puede que hayan perdido el bus | They're late. They might have missed the bus. | Llegan tarde. Puede que hayan perdido el bus.
+- 📣 | You should have told me | Debiste decírmelo | You should have told me you were sick. | Debiste decirme que estabas enfermo.
+- 🏃 | I could have won | Pude haber ganado | I could have won if I had trained more. | Pude haber ganado si hubiera entrenado más.
+- 🚗 | She may have taken a taxi | Puede que haya tomado un taxi | She's already here. She may have taken a taxi. | Ya está aquí. Puede que haya tomado un taxi.
+- 🌧️ | It must have rained last night | Debe haber llovido anoche | The street is wet. It must have rained last night. | La calle está mojada. Debe haber llovido anoche.
+- 🎂 | You shouldn't have bought me a present | No debiste comprarme un regalo | Oh, you shouldn't have bought me a present! | ¡Ay, no debiste comprarme un regalo!
+- 💔 | That couldn't have been easy | Eso no pudo haber sido fácil | Moving to another country couldn't have been easy. | Mudarse a otro país no pudo haber sido fácil.
+- 🧑‍⚖️ | The thief must have climbed through the window | El ladrón debe haber entrado por la ventana | The window is broken. The thief must have climbed through it. | La ventana está rota. El ladrón debe haber entrado por ahí.
+- 🙄 | I would have helped, but nobody asked | Habría ayudado, pero nadie me pidió | I would have helped, but nobody asked me. | Habría ayudado, pero nadie me pidió.
+teoria:
+intro: Para deducir sobre el pasado usamos modal + have + participio. También sirve para críticas o arrepentimientos (should have) y posibilidades que no ocurrieron (could have).
+tabla: Modales en pasado ; Estructura* | Significado | Ejemplo*
+| must have + participio | casi seguro que pasó | He must have left.
+| can't / couldn't have + participio | casi seguro que NO pasó | She can't have said that.
+| might / may / could have + participio | quizás pasó | They might have gotten lost.
+| should have + participio | debió (crítica, arrepentimiento) | I should have studied.
+| shouldn't have + participio | no debió | You shouldn't have shouted.
+| could have + participio | pudo (pero no pasó) | We could have won.
+| would have + participio | habría (si…) | I would have come.
+ej: The grass is wet. It must have rained. | El pasto está mojado. Debe haber llovido.
+ej: I should have listened to my mom. | Debí haber escuchado a mi mamá.
+ojo: Nunca «should of / must of» al escribir: se escribe should have, must have.
+ojo: Must have = deducción, no obligación pasada (para eso: had to).
+pron: Must have suena «mástav». Should have suena «shúdav». Could have suena «kúdav».
+
+# ===================== B2 · SEMANA 6: LISTENING Y NOTAS =====================
+
+=== eng-b2-w6 | 🗂️ | B2 · Semana 6 · Clase 1: Phrasal verbs de estudio y trabajo
+desc: Carry out, point out, come up with, deal with, figure out, put off, bring up, look into, set up, turn down, take over, keep up with, catch up on.
+- 🔬 | carry out | llevar a cabo | Scientists carried out an experiment. | Los científicos llevaron a cabo un experimento.
+- 👉 | point out | señalar, hacer notar | She pointed out a mistake in my essay. | Ella señaló un error en mi ensayo.
+- 💡 | come up with | ocurrírsele, proponer | He came up with a brilliant idea. | Se le ocurrió una idea brillante.
+- 🧯 | deal with | lidiar con, ocuparse de | I'll deal with the problem tomorrow. | Me ocuparé del problema mañana.
+- 🧩 | figure out | descifrar, entender | I can't figure out this exercise. | No logro entender este ejercicio.
+- ⏸️ | put off | posponer | Don't put off your homework until Sunday. | No pospongas tu tarea hasta el domingo.
+- 🗣️ | bring up | sacar un tema | She brought up an interesting point. | Ella sacó un punto interesante.
+- 🔎 | look into | investigar | The police are looking into the case. | La policía está investigando el caso.
+- 🏗️ | set up | establecer, montar | They set up a small business. | Montaron un pequeño negocio.
+- 👎 | turn down | rechazar | He turned down the job offer. | Rechazó la oferta de trabajo.
+- 🎓 | keep up with | mantenerse al día con | It's hard to keep up with the class. | Es difícil seguirle el ritmo a la clase.
+- 📚 | catch up on | ponerse al día con | I need to catch up on my reading. | Necesito ponerme al día con mis lecturas.
+- 🧭 | take over | tomar el control | A new manager took over the company. | Un nuevo gerente tomó el control de la empresa.
+- 📉 | run out of | quedarse sin | We ran out of time. | Nos quedamos sin tiempo.
+teoria:
+intro: Los phrasal verbs de estudio y trabajo aparecen en noticias, clases y reuniones. Son esenciales para entender listening auténtico de nivel B2.
+tabla: Phrasal verbs de estudio y trabajo ; Phrasal verb* | Sinónimo formal* | Español
+| carry out | conduct | llevar a cabo
+| point out | indicate | señalar
+| come up with | propose / think of | idear
+| deal with | handle | ocuparse de
+| figure out | understand / solve | descifrar
+| put off | postpone | posponer
+| bring up | mention / raise | mencionar
+| look into | investigate | investigar
+| set up | establish | establecer
+| turn down | reject | rechazar
+| keep up with | stay at the same level | seguir el ritmo
+| catch up on | get up to date with | ponerse al día
+tabla: Técnica de notas (keywords) ; Paso | Qué hacer
+| 1 | Antes de escuchar, lee el tema y predice palabras.
+| 2 | Escribe solo sustantivos y verbos clave, no frases completas.
+| 3 | Usa símbolos: → (causa), + (además), ≠ (contraste), ↑ ↓ (sube/baja).
+| 4 | Después, reconstruye el resumen con tus notas.
+ej: We need to come up with a solution and carry out the plan. | Necesitamos idear una solución y llevar a cabo el plan.
+ej: I put off the meeting because I had to deal with an emergency. | Pospuse la reunión porque tuve que atender una emergencia.
+ojo: En textos formales usa el sinónimo de una sola palabra (postpone en vez de put off).
+ojo: Algunos tienen tres partes y no se separan: come up with it ✓, come it up with ✗.
+pron: Acento en la partícula: carry ÓUT, point ÓUT, set ÚP.
+
+=== eng-b2-w6-c2 | 📻 | B2 · Semana 6 · Clase 2: Listening: noticia de radio
+desc: Escucha una noticia completa sobre el reciclaje en una ciudad, toma notas con keywords y resume.
+- 📻 | Good morning, and here is today's news | Buenos días, estas son las noticias de hoy | Good morning, and here is today's news. | Buenos días, estas son las noticias de hoy.
+- ♻️ | The city has launched a new recycling program | La ciudad ha lanzado un nuevo programa de reciclaje | The city has launched a new recycling program. | La ciudad ha lanzado un nuevo programa de reciclaje.
+- 🗑️ | Residents will be asked to separate their waste | Se pedirá a los vecinos que separen su basura | Residents will be asked to separate their waste into three bins. | Se pedirá a los vecinos separar su basura en tres tachos.
+- 📊 | According to official figures, | Según cifras oficiales, | According to official figures, only ten percent of waste is recycled. | Según cifras oficiales, solo el diez por ciento de la basura se recicla.
+- 📈 | The aim is to triple that number | El objetivo es triplicar esa cifra | The aim is to triple that number by 2030. | El objetivo es triplicar esa cifra para 2030.
+- 🏫 | Schools will play a key role | Los colegios tendrán un papel clave | Schools will play a key role in the campaign. | Los colegios tendrán un papel clave en la campaña.
+- 💬 | The mayor stated that | El alcalde declaró que | The mayor stated that the program was a priority. | El alcalde declaró que el programa era una prioridad.
+- 🤨 | However, critics claim that | Sin embargo, los críticos afirman que | However, critics claim that there aren't enough trucks. | Sin embargo, los críticos afirman que no hay suficientes camiones.
+- 💵 | The program is expected to cost | Se espera que el programa cueste | The program is expected to cost two million soles. | Se espera que el programa cueste dos millones de soles.
+- 🗓️ | It will come into effect next month | Entrará en vigor el próximo mes | The new rules will come into effect next month. | Las nuevas reglas entrarán en vigor el próximo mes.
+- 🎙️ | That's all for now. Stay tuned | Eso es todo por ahora. Sigan sintonizados | That's all for now. Stay tuned for more news. | Eso es todo por ahora. Sigan sintonizados.
+teoria:
+intro: Las noticias usan pasiva, reported speech y vocabulario formal. Escucha primero todo el texto con «🔊 Escuchar todo», toma notas con keywords y luego compara con el modelo de notas.
+tabla: La noticia completa ; Parte | Texto*
+| 1 | Good morning, and here is today's news. The city has launched a new recycling program.
+| 2 | Residents will be asked to separate their waste into three bins. According to official figures, only ten percent of waste is recycled. The aim is to triple that number by 2030.
+| 3 | Schools will play a key role in the campaign. The mayor stated that the program was a priority.
+| 4 | However, critics claim that there aren't enough trucks. The program is expected to cost two million soles. The new rules will come into effect next month. That's all for now. Stay tuned.
+tabla: Modelo de notas ; Pregunta | Notas
+| ¿Qué? | new recycling program
+| ¿Cómo? | separate waste → 3 bins
+| Datos | now 10 % → goal ×3 by 2030
+| ¿Quién ayuda? | schools = key role
+| Crítica | ≠ not enough trucks
+| Costo y fecha | 2 million soles; next month
+tabla: Lenguaje de noticias ; Inglés* | Español
+| according to | según
+| stated / announced that | declaró / anunció que
+| critics claim that | los críticos afirman que
+| is expected to | se espera que
+| come into effect | entrar en vigor
+| play a key role | tener un papel clave
+ej: According to experts, the situation will improve. | Según los expertos, la situación mejorará.
+ej: The new law is expected to come into effect in January. | Se espera que la nueva ley entre en vigor en enero.
+ojo: En noticias es común la pasiva: «se pedirá» = will be asked.
+ojo: «Actual» no es «actual»: actual = real, verdadero; actual (español) = current.
+pron: Recycling suena «risáikling». Figures suena «fíguers». Mayor suena «méier».
+
+# ===================== B2 · SEMANA 7: SPEAKING NATURAL =====================
+
+=== eng-b2-w7 | 🎙️ | B2 · Semana 7 · Clase 1: Hablar con naturalidad
+desc: Reformular, fillers, turn-taking: What I'm trying to say is… Let me put it another way. Sort of, kind of. Can I just add something? Sorry, go ahead.
+- 🔄 | Let me put it another way | Déjame decirlo de otra forma | Let me put it another way: it's too risky. | Déjame decirlo de otra forma: es demasiado arriesgado.
+- 🎯 | What I'm trying to say is… | Lo que intento decir es… | What I'm trying to say is that we need a plan. | Lo que intento decir es que necesitamos un plan.
+- 🌫️ | It's kind of strange | Es medio raro | It's kind of strange that he didn't call. | Es medio raro que no haya llamado.
+- 🤏 | I sort of agree | Estoy más o menos de acuerdo | I sort of agree, but not completely. | Estoy más o menos de acuerdo, pero no del todo.
+- ✋ | Can I just add something? | ¿Puedo añadir algo? | Sorry, can I just add something? | Perdón, ¿puedo añadir algo?
+- 🙏 | Sorry, go ahead | Perdón, sigue tú | Oh, sorry, go ahead. | Ay, perdón, sigue tú.
+- 🎤 | What do you reckon? | ¿Tú qué opinas? | I think it's a good idea. What do you reckon? | Creo que es buena idea. ¿Tú qué opinas?
+- 🔁 | So, basically, | O sea, básicamente, | So, basically, we have two options. | O sea, básicamente, tenemos dos opciones.
+- 🧠 | The thing is, | El tema es que, | The thing is, I don't have enough time. | El tema es que no tengo suficiente tiempo.
+- 💬 | To be honest, | Para ser honesto, | To be honest, I didn't like it. | Para ser honesto, no me gustó.
+- 🧭 | Going back to what you said, | Volviendo a lo que dijiste, | Going back to what you said, I think you're right. | Volviendo a lo que dijiste, creo que tienes razón.
+- 🤝 | Fair enough | Me parece justo / Vale | You need more time? Fair enough. | ¿Necesitas más tiempo? Me parece justo.
+teoria:
+intro: Hablar de forma natural en B2 incluye reformular cuando no encuentras la palabra, usar fillers con moderación y saber tomar y ceder el turno en una conversación.
+tabla: Reformular ; Inglés* | Español
+| Let me put it another way. | Déjame decirlo de otra forma.
+| What I'm trying to say is… | Lo que intento decir es…
+| In other words… | En otras palabras…
+| What I mean is… | Lo que quiero decir es…
+tabla: Fillers y suavizadores ; Inglés* | Español
+| kind of / sort of | medio / más o menos
+| basically | básicamente
+| the thing is | el tema es que
+| to be honest | para ser honesto
+| I guess | supongo
+tabla: Turnos de palabra ; Función | Inglés*
+| Pedir turno | Can I just add something? / If I could just say…
+| Ceder turno | Sorry, go ahead. / What do you think?
+| Retomar | Going back to what you said… / As I was saying…
+| Aceptar | Fair enough. / That makes sense.
+ej: The thing is, I kind of forgot about the meeting. | El tema es que medio me olvidé de la reunión.
+ej: Going back to what Ana said, I think she has a point. | Volviendo a lo que dijo Ana, creo que tiene razón.
+ojo: No uses fillers en cada frase; uno o dos ayudan, muchos distraen.
+ojo: «Reckon» es informal (británico); en un examen usa «think».
+pron: Kind of suena «káinda». Sort of suena «sórta». Going to suena «góna» en habla rápida.
+
+=== eng-b2-w7-c2 | 🎭 | B2 · Semana 7 · Clase 2: Idioms frecuentes
+desc: Piece of cake, break the ice, under the weather, hit the books, once in a blue moon, cost an arm and a leg, on cloud nine, call it a day, the last straw…
+- 🍰 | It's a piece of cake | Es pan comido | The exam was a piece of cake. | El examen fue pan comido.
+- 🧊 | break the ice | romper el hielo | He told a joke to break the ice. | Contó un chiste para romper el hielo.
+- 🤒 | feel under the weather | sentirse mal | I'm feeling a bit under the weather today. | Hoy me siento un poco mal.
+- 📚 | hit the books | ponerse a estudiar | I have an exam tomorrow. I need to hit the books. | Tengo examen mañana. Tengo que ponerme a estudiar.
+- 🌙 | once in a blue moon | muy de vez en cuando | I eat fast food once in a blue moon. | Como comida rápida muy de vez en cuando.
+- 💸 | cost an arm and a leg | costar un ojo de la cara | That phone cost an arm and a leg. | Ese celular costó un ojo de la cara.
+- ☁️ | be on cloud nine | estar en las nubes de felicidad | She was on cloud nine after the news. | Estaba feliz de la vida con la noticia.
+- 🛑 | call it a day | dar por terminado el día | We've done enough. Let's call it a day. | Ya hicimos bastante. Terminemos por hoy.
+- 🐪 | the last straw | la gota que derramó el vaso | His rudeness was the last straw. | Su grosería fue la gota que derramó el vaso.
+- 🎯 | hit the nail on the head | dar en el clavo | You hit the nail on the head. | Diste en el clavo.
+- 🤐 | let the cat out of the bag | revelar un secreto | Who let the cat out of the bag about the party? | ¿Quién reveló el secreto de la fiesta?
+- 🐎 | hold your horses | espera, no te apures | Hold your horses! We haven't finished yet. | ¡Espera! Todavía no terminamos.
+- 👂 | I'm all ears | Soy todo oídos | Tell me everything. I'm all ears. | Cuéntame todo. Soy todo oídos.
+- 🔔 | ring a bell | sonar familiar | That name rings a bell. | Ese nombre me suena.
+teoria:
+intro: Los idioms son expresiones cuyo significado no se deduce palabra por palabra. Los nativos los usan mucho en conversación informal; entenderlos es parte del nivel B2.
+tabla: Idioms y su equivalente ; Idiom* | Significado | Equivalente en español
+| a piece of cake | muy fácil | pan comido
+| break the ice | iniciar la conversación | romper el hielo
+| under the weather | un poco enfermo | estar mal
+| hit the books | estudiar mucho | ponerse a estudiar
+| once in a blue moon | muy rara vez | de Pascuas a Ramos
+| cost an arm and a leg | muy caro | costar un ojo de la cara
+| on cloud nine | muy feliz | feliz de la vida
+| call it a day | terminar | dar por terminado
+| the last straw | el límite | la gota que derramó el vaso
+| hit the nail on the head | acertar | dar en el clavo
+| let the cat out of the bag | revelar un secreto | soltar la sopa
+| ring a bell | sonar familiar | me suena
+ej: Learning to ride a bike was a piece of cake for her. | Aprender a montar bici fue pan comido para ella.
+ej: Does the name Alberto ring a bell? | ¿Te suena el nombre Alberto?
+ojo: No traduzcas idioms literalmente al español ni del español al inglés: «costar un ojo» ≠ cost an eye.
+ojo: Úsalos en conversación; en ensayos formales evítalos.
+pron: «Piece of cake» suena «písovkéik». «All ears» suena «ól íers».
+
+=== eng-b2-w7-c3 | 🗳️ | B2 · Semana 7 · Clase 3: Debate guiado
+desc: Frases para debatir: presentar postura, dar evidencia, refutar, conceder y concluir. Tema: ¿deberían prohibirse los celulares en el colegio?
+- 🎤 | I'm firmly convinced that… | Estoy firmemente convencido de que… | I'm firmly convinced that phones should be banned in class. | Estoy firmemente convencido de que se deberían prohibir los celulares en clase.
+- 📊 | Research shows that… | Las investigaciones muestran que… | Research shows that phones reduce concentration. | Las investigaciones muestran que los celulares reducen la concentración.
+- 💡 | A good example of this is… | Un buen ejemplo de esto es… | A good example of this is when students check social media. | Un buen ejemplo de esto es cuando los alumnos revisan redes sociales.
+- 🤝 | I take your point, but… | Acepto tu punto, pero… | I take your point, but phones can also be useful. | Acepto tu punto, pero los celulares también pueden ser útiles.
+- 🆗 | Admittedly, | Hay que admitir que, | Admittedly, some apps help students learn. | Hay que admitir que algunas apps ayudan a aprender.
+- ❌ | That's not necessarily true | Eso no es necesariamente cierto | That's not necessarily true. Many students use them well. | Eso no es necesariamente cierto. Muchos alumnos los usan bien.
+- ❓ | How can you be so sure? | ¿Cómo puedes estar tan seguro? | How can you be so sure that it works? | ¿Cómo puedes estar tan seguro de que funciona?
+- 🔄 | Let's look at it from another angle | Veámoslo desde otro ángulo | Let's look at it from another angle. | Veámoslo desde otro ángulo.
+- ⚖️ | It's a question of balance | Es una cuestión de equilibrio | In the end, it's a question of balance. | Al final, es una cuestión de equilibrio.
+- 🏁 | All things considered, | Considerándolo todo, | All things considered, I think limits are better than bans. | Considerándolo todo, creo que los límites son mejores que las prohibiciones.
+- 🙌 | I couldn't agree more | No podría estar más de acuerdo | I couldn't agree more with you. | No podría estar más de acuerdo contigo.
+- 🧐 | I see it differently | Yo lo veo de otra manera | I see it differently. | Yo lo veo de otra manera.
+teoria:
+intro: Un buen debate tiene estructura: presentas tu postura, la apoyas con evidencia, respondes a la otra parte (refutas o concedes) y concluyes. Practica el tema: «Should phones be banned at school?».
+tabla: Estructura de un turno ; Paso | Frase modelo*
+| Postura | I'm firmly convinced that…
+| Evidencia | Research shows that… / A good example of this is…
+| Concesión | Admittedly,… / I take your point, but…
+| Refutación | That's not necessarily true because…
+| Conclusión | All things considered,…
+tabla: Acuerdo y desacuerdo fuerte o suave ; Fuerza | Acuerdo* | Desacuerdo*
+| Fuerte | I couldn't agree more. | I completely disagree.
+| Medio | I agree with you. | I see it differently.
+| Suave | You may have a point. | I'm not so sure about that.
+ej: I take your point, but I still believe that phones distract students. | Acepto tu punto, pero sigo creyendo que los celulares distraen.
+ej: All things considered, the benefits outweigh the risks. | Considerándolo todo, los beneficios superan los riesgos.
+ojo: «Discutir» (debatir) = discuss o argue; «argue» también es «pelear verbalmente».
+ojo: «Discuss about» ✗ → discuss + tema ✓: We discussed the problem.
+pron: Admittedly suena «admítidli». Necessarily suena «nesesérili» (acento en «ser»).
+
+# ===================== B2 · SEMANA 8: PROYECTO FINAL B2 =====================
+
+=== eng-b2-w8 | 🎤 | B2 · Semana 8 · Clase 1: Proyecto: presentación 2–3 minutos
+desc: Presentar un tema con estructura clara: signposting, datos, ejemplos, condicionales y conclusión. Responder preguntas.
+- 👋 | I'd like to start by… | Me gustaría empezar… | I'd like to start by asking you a question. | Me gustaría empezar haciéndoles una pregunta.
+- 🗂️ | My talk is divided into three parts | Mi charla se divide en tres partes | My talk is divided into three parts. | Mi charla se divide en tres partes.
+- ➡️ | Moving on to my next point, | Pasando a mi siguiente punto, | Moving on to my next point, let's look at the causes. | Pasando a mi siguiente punto, veamos las causas.
+- 📈 | As you can see in this chart, | Como pueden ver en este gráfico, | As you can see in this chart, numbers have doubled. | Como pueden ver en este gráfico, las cifras se han duplicado.
+- 💡 | This is important because… | Esto es importante porque… | This is important because it affects everyone. | Esto es importante porque nos afecta a todos.
+- 🌍 | If we don't act now, … | Si no actuamos ahora, … | If we don't act now, it will be too late. | Si no actuamos ahora, será demasiado tarde.
+- 🧩 | Let me give you an example | Déjenme darles un ejemplo | Let me give you an example from my school. | Déjenme darles un ejemplo de mi colegio.
+- 🔁 | To recap, | Para recapitular, | To recap, we've seen the causes and the solutions. | Para recapitular, hemos visto las causas y las soluciones.
+- 🏁 | In conclusion, I'd like to say that… | Para concluir, quisiera decir que… | In conclusion, I'd like to say that small changes matter. | Para concluir, quisiera decir que los pequeños cambios importan.
+- ❓ | That's a great question | Esa es una gran pregunta | That's a great question. Let me think about it. | Esa es una gran pregunta. Déjenme pensarlo.
+- 🙏 | Thank you for your attention | Gracias por su atención | Thank you for your attention. Are there any questions? | Gracias por su atención. ¿Hay preguntas?
+teoria:
+intro: El proyecto oral B2 es una presentación de 2 a 3 minutos. Usa «signposting» (frases que guían al público), datos, un ejemplo personal y al menos un condicional.
+tabla: Guion de la presentación ; Parte | Frases modelo*
+| Inicio | Good morning, everyone. I'd like to start by…
+| Plan | My talk is divided into three parts. First,… then,… finally,…
+| Desarrollo | Moving on to my next point,… / As you can see,…
+| Ejemplo | Let me give you an example…
+| Argumento | If we did…, we would… / If we don't…, we'll…
+| Cierre | To recap,… In conclusion,…
+| Preguntas | That's a great question. / I'm not sure, but I think…
+tabla: Lista de control B2 ; Revisa | ✔
+| ¿Usé al menos dos condicionales? | ☐
+| ¿Usé la pasiva o reported speech? | ☐
+| ¿Usé conectores avanzados (however, therefore, despite)? | ☐
+| ¿Usé signposting para guiar? | ☐
+| ¿Hablé sin leer y con contacto visual? | ☐
+ej: If every family recycled, we would reduce waste by half. | Si cada familia reciclara, reduciríamos la basura a la mitad.
+ej: Moving on to my next point, let's talk about solutions. | Pasando a mi siguiente punto, hablemos de soluciones.
+ojo: «Presentation» no es «presentación» de una persona; para presentarte: introduce yourself.
+ojo: No digas «I'm going to talk you about» ✗ → I'm going to talk to you about / tell you about ✓.
+pron: Practica el ritmo: acentúa las palabras importantes y haz pausas antes de cada nueva parte.
+
+=== eng-b2-w8-c2 | 🖋️ | B2 · Semana 8 · Clase 2: Proyecto: ensayo de opinión (180–250 palabras)
+desc: Ensayo formal: introducción con tesis, dos párrafos con argumentos y contraargumento, conclusión. Lenguaje formal y cohesión.
+- 📝 | It is often said that… | A menudo se dice que… | It is often said that technology makes life easier. | A menudo se dice que la tecnología facilita la vida.
+- 🎯 | In this essay, I will argue that… | En este ensayo argumentaré que… | In this essay, I will argue that homework should be limited. | En este ensayo argumentaré que la tarea debería limitarse.
+- 1️⃣ | The main reason for this is that… | La razón principal es que… | The main reason for this is that students need rest. | La razón principal es que los alumnos necesitan descanso.
+- 📊 | There is evidence to suggest that… | Hay evidencia que sugiere que… | There is evidence to suggest that sleep improves memory. | Hay evidencia que sugiere que el sueño mejora la memoria.
+- ➕ | Furthermore, | Además, | Furthermore, too much homework causes stress. | Además, demasiada tarea causa estrés.
+- ⚖️ | On the other hand, some people argue that… | Por otro lado, algunos sostienen que… | On the other hand, some people argue that homework builds discipline. | Por otro lado, algunos sostienen que la tarea desarrolla disciplina.
+- 🧱 | While this may be true, | Si bien esto puede ser cierto, | While this may be true, discipline can be learned in other ways. | Si bien esto puede ser cierto, la disciplina se puede aprender de otras formas.
+- 🔍 | This suggests that… | Esto sugiere que… | This suggests that less is more. | Esto sugiere que menos es más.
+- 🏁 | In conclusion, | En conclusión, | In conclusion, homework should be short and meaningful. | En conclusión, la tarea debería ser corta y significativa.
+- 🧭 | Taking everything into account, | Teniendo todo en cuenta, | Taking everything into account, I believe a balance is needed. | Teniendo todo en cuenta, creo que se necesita un equilibrio.
+- 🌱 | It is essential that… | Es esencial que… | It is essential that schools listen to students. | Es esencial que los colegios escuchen a los alumnos.
+teoria:
+intro: El ensayo de opinión B2 tiene 4 párrafos y un registro formal: sin contracciones, sin idioms y con conectores variados. Presenta tu tesis, apóyala, reconoce la otra postura y concluye.
+tabla: Estructura del ensayo ; Párrafo | Contenido | Frases modelo*
+| 1. Introducción | tema + tesis | It is often said that… In this essay, I will argue that…
+| 2. Argumentos | 2 razones + evidencia | The main reason is… Furthermore,… There is evidence to suggest…
+| 3. Contraargumento | otra postura + respuesta | On the other hand, some argue… While this may be true,…
+| 4. Conclusión | resumen + opinión final | In conclusion,… Taking everything into account,…
+tabla: Informal → formal ; Informal | Formal*
+| a lot of | a great deal of / numerous
+| get | obtain / receive
+| big | significant / considerable
+| I think | I believe / It could be argued that
+| kids | children / young people
+| don't | do not
+| so | therefore / consequently
+ej: Taking everything into account, I believe that the advantages outweigh the disadvantages. | Teniendo todo en cuenta, creo que las ventajas superan a las desventajas.
+ej: While this may be true, it is not the only solution. | Si bien esto puede ser cierto, no es la única solución.
+ojo: En un ensayo formal no uses contracciones (don't → do not) ni preguntas retóricas en exceso.
+ojo: Cuenta las palabras: entre 180 y 250. Cada párrafo, una idea principal.
+pron: Lee tu ensayo en voz alta: si te quedas sin aire en una oración, probablemente es demasiado larga.
