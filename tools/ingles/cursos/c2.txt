@@ -1,0 +1,674 @@
+# ===================== C2 · SEMANA 1: VOZ PROPIA Y NATURALIDAD =====================
+
+=== eng-c2-w1 | 🎯 | C2 · Semana 1 · Clase 1: Precisión léxica (matices)
+desc: Say → claim, concede, insinuate, assert. Look → glance, stare, gaze, peer. Walk → stroll, stride, wander, trudge. Elegir la palabra exacta.
+- 📣 | assert | afirmar con firmeza | She asserted that the data was accurate. | Afirmó con firmeza que los datos eran correctos.
+- 🤝 | concede | admitir (a regañadientes) | He conceded that he had been wrong. | Admitió que se había equivocado.
+- 🐍 | insinuate | insinuar (algo negativo) | Are you insinuating that I lied? | ¿Estás insinuando que mentí?
+- 🗯️ | claim | afirmar (sin pruebas) | They claim the product is natural. | Afirman que el producto es natural.
+- 👀 | glance | echar un vistazo | She glanced at her watch. | Echó un vistazo a su reloj.
+- 😳 | stare | mirar fijamente | It's rude to stare at people. | Es de mala educación mirar fijamente a la gente.
+- 🌅 | gaze | contemplar | We gazed at the sunset over the sea. | Contemplamos el atardecer sobre el mar.
+- 🔦 | peer | escudriñar | He peered into the dark room. | Escudriñó la habitación oscura.
+- 🌳 | stroll | pasear tranquilamente | We strolled along the Malecón. | Paseamos tranquilamente por el Malecón.
+- 🦵 | stride | caminar a grandes zancadas | She strode confidently into the room. | Entró a la sala a grandes zancadas, segura.
+- 🧭 | wander | deambular | They wandered around the old town. | Deambularon por el casco antiguo.
+- 🥾 | trudge | caminar con pesadez | We trudged through the mud. | Avanzamos con pesadez por el barro.
+- 🤫 | whisper / mutter / mumble | susurrar / refunfuñar / balbucear | He muttered something under his breath. | Refunfuñó algo entre dientes.
+teoria:
+intro: En C2 la diferencia no está en la gramática, sino en la precisión: elegir el verbo que transmite exactamente la intención, la manera o la actitud. Los verbos genéricos (say, look, walk) tienen decenas de sinónimos con matices.
+tabla: Verbos de habla ; Verbo* | Matiz | Ejemplo*
+| assert | firmeza, seguridad | He asserted his innocence.
+| claim | sin pruebas, duda del hablante | She claims to be an expert.
+| concede | admitir algo en contra | I concede that you have a point.
+| insinuate | sugerir algo negativo indirectamente | What are you insinuating?
+| maintain | sostener pese a objeciones | He maintains he was at home.
+| remark | comentar de paso | She remarked that it was cold.
+| mutter / mumble | hablar bajo, molesto / poco claro | Stop mumbling!
+tabla: Verbos de mirar ; Verbo* | Matiz
+| glance | mirada rápida
+| stare | mirada fija, prolongada (a veces incómoda)
+| gaze | mirada larga, con admiración o ensueño
+| peer | mirar con esfuerzo (poca luz, lejos)
+| glimpse | ver fugazmente
+| scan | recorrer con la vista buscando algo
+tabla: Verbos de caminar ; Verbo* | Matiz
+| stroll | relajado, por placer
+| stride | pasos largos, decidido
+| wander | sin rumbo
+| trudge | cansado, con dificultad
+| tiptoe | de puntillas
+| limp | cojeando
+ej: She glanced at the letter, then stared at it in disbelief. | Echó un vistazo a la carta y luego la miró fijamente, incrédula.
+ej: Although he conceded the point, he maintained that the plan was sound. | Aunque admitió el punto, sostuvo que el plan era sólido.
+ojo: «Claim» no es neutro: sugiere que no crees del todo lo que se afirma.
+ojo: «Look at» es neutro; en escritura literaria, cambiarlo por el verbo exacto da vida al texto.
+pron: Stride rima con «ride». Trudge suena «tradch». Gaze suena «guéiz».
+
+=== eng-c2-w1-c2 | ✂️ | C2 · Semana 1 · Clase 2: Concisión: eliminar redundancias
+desc: Due to the fact that → because. In order to → to. At this point in time → now. Absolutely essential → essential. Escribir menos y decir más.
+- ✂️ | due to the fact that → because | debido al hecho de que → porque | We stayed in because it rained. | Nos quedamos porque llovió.
+- ✂️ | in order to → to | para (largo) → para (corto) | We left early to avoid traffic. | Salimos temprano para evitar el tráfico.
+- ✂️ | at this point in time → now | en este momento del tiempo → ahora | We can't answer now. | No podemos responder ahora.
+- ✂️ | absolutely essential → essential | absolutamente esencial → esencial | Water is essential. | El agua es esencial.
+- ✂️ | in spite of the fact that → although | a pesar del hecho de que → aunque | Although it was late, we continued. | Aunque era tarde, continuamos.
+- ✂️ | a large number of → many | un gran número de → muchos | Many students attended. | Asistieron muchos alumnos.
+- ✂️ | make a decision → decide | tomar una decisión → decidir | We need to decide today. | Necesitamos decidir hoy.
+- ✂️ | past history → history | historia pasada → historia | His history speaks for itself. | Su historia habla por sí sola.
+- ✂️ | the reason why is because → the reason is that | la razón por la que es porque → la razón es que | The reason is that we lacked time. | La razón es que nos faltó tiempo.
+- ✂️ | each and every → every | todos y cada uno → cada | Every student must sign. | Cada alumno debe firmar.
+- ✂️ | It is important to note that → (omitir) | Es importante notar que → (omitir) | Prices rose by 10 %. | Los precios subieron un 10 %.
+- ✂️ | There are many people who believe → Many believe | Hay mucha gente que cree → Muchos creen | Many believe that change is possible. | Muchos creen que el cambio es posible.
+teoria:
+intro: Escribir con naturalidad en C2 significa decir lo máximo con lo mínimo. Las frases infladas, las redundancias y las nominalizaciones innecesarias hacen el texto pesado. Revisa cada oración preguntándote: ¿qué palabras sobran?
+tabla: Frases infladas y su versión concisa ; Inflado | Conciso*
+| due to the fact that | because
+| in order to | to
+| at this point in time | now
+| in the event that | if
+| with regard to the matter of | about
+| has the ability to | can
+| it is possible that | may
+| in the near future | soon
+| a majority of | most
+tabla: Redundancias típicas ; Redundante | Correcto*
+| absolutely essential | essential
+| advance planning | planning
+| final outcome | outcome
+| free gift | gift
+| repeat again | repeat
+| return back | return
+| end result | result
+| collaborate together | collaborate
+tabla: Verbos escondidos en sustantivos ; Pesado | Directo*
+| make a decision | decide
+| give consideration to | consider
+| carry out an investigation | investigate
+| reach a conclusion | conclude
+| make an improvement | improve
+ej: Original: «Due to the fact that there is a lack of funding, the project will not be able to continue.» Concise: «Without funding, the project cannot continue.» | Original largo vs versión concisa: «Sin financiamiento, el proyecto no puede continuar.»
+ej: We must decide soon. | Debemos decidir pronto.
+ojo: Concisión no es telegrafía: conserva conectores y matices necesarios.
+ojo: En C1 aprendiste collocations como «make a decision»; en C2 elige entre esa y «decide» según el ritmo del texto.
+pron: Lee tu texto en voz alta: donde te aburres, sobra algo.
+
+=== eng-c2-w1-c3 | 🎚️ | C2 · Semana 1 · Clase 3: Registro: un mensaje en tres tonos
+desc: Formal, neutro e informal: reescribir el mismo mensaje (pedir, quejarse, disculparse, rechazar) adaptando vocabulario, estructura y cortesía.
+- 🎩 | We regret to inform you that | Lamentamos informarle que | We regret to inform you that the event has been canceled. | Lamentamos informarle que el evento ha sido cancelado.
+- 👔 | I'm sorry to let you know that | Siento comunicarte que | I'm sorry to let you know that the event has been canceled. | Siento comunicarte que el evento se canceló.
+- 👕 | Bad news, I'm afraid | Malas noticias, me temo | Bad news, I'm afraid: the event's off. | Malas noticias, me temo: el evento se canceló.
+- 🎩 | I would be grateful if you could | Le agradecería que pudiera | I would be grateful if you could send me the report. | Le agradecería que pudiera enviarme el informe.
+- 👔 | Could you send me the report? | ¿Podrías enviarme el informe? | Could you send me the report when you have a moment? | ¿Podrías enviarme el informe cuando tengas un momento?
+- 👕 | Can you send me the report? | ¿Me mandas el informe? | Hey, can you send me the report? | Oye, ¿me mandas el informe?
+- 🎩 | Please accept our sincere apologies | Le rogamos acepte nuestras sinceras disculpas | Please accept our sincere apologies for the inconvenience. | Le rogamos acepte nuestras sinceras disculpas por las molestias.
+- 👕 | Sorry about that! | ¡Perdón por eso! | Sorry about that! My bad. | ¡Perdón! Fue mi culpa.
+- 🎩 | I am writing to express my dissatisfaction | Le escribo para expresar mi descontento | I am writing to express my dissatisfaction with the service. | Le escribo para expresar mi descontento con el servicio.
+- 👕 | I'm not happy with | No estoy contento con | Honestly, I'm not happy with the service. | La verdad, no estoy contento con el servicio.
+- 🎩 | Unfortunately, I am unable to attend | Lamentablemente, no podré asistir | Unfortunately, I am unable to attend the meeting. | Lamentablemente, no podré asistir a la reunión.
+- 👕 | I can't make it, sorry | No puedo ir, lo siento | I can't make it tonight, sorry! | No puedo ir esta noche, ¡lo siento!
+teoria:
+intro: Un hablante C2 ajusta el registro según la persona y la situación. El mismo mensaje cambia en vocabulario (latino vs. germánico), estructura (pasiva vs. activa), cortesía (condicionales) y en el uso de contracciones y phrasal verbs.
+tabla: Un mensaje en tres tonos ; Formal* | Neutro* | Informal*
+| We regret to inform you that… | I'm sorry to tell you that… | Bad news, I'm afraid…
+| I would be grateful if you could… | Could you…? | Can you…?
+| Please accept our apologies. | I'm sorry for the trouble. | Sorry about that!
+| I am unable to attend. | I won't be able to come. | I can't make it.
+| Should you require further information… | If you need more information… | Any questions, just ask!
+tabla: Rasgos de cada registro ; Rasgo | Formal | Informal
+| Vocabulario | de origen latino: obtain, assist, require | germánico y phrasal verbs: get, help, need
+| Estructura | pasiva, impersonal | activa, personal
+| Contracciones | no (I am, do not) | sí (I'm, don't)
+| Cortesía | condicionales, would, could | imperativos suavizados, just
+| Saludos | Dear Sir or Madam / Yours faithfully | Hi / Cheers, Take care
+ej: Should you have any queries, please do not hesitate to contact me. | Si tiene alguna consulta, no dude en contactarme.
+ej: Any questions, just give me a shout! | ¡Cualquier pregunta, me avisas!
+ojo: Mezclar registros suena raro: «Dear Sir, what's up?» ✗.
+ojo: «Yours faithfully» si no sabes el nombre (Dear Sir/Madam); «Yours sincerely» si lo sabes (Dear Ms Torres).
+pron: En registro formal se pronuncia todo completo: «I am», «do not»; en informal se reduce: «I'm», «dunno».
+
+# ===================== C2 · SEMANA 2: LENGUAJE ACADÉMICO AVANZADO =====================
+
+=== eng-c2-w2 | 🏛️ | C2 · Semana 2 · Clase 1: Estructuras académicas complejas
+desc: Nominalización, fronting, It is not so much X as Y, What is striking is…, Such is…, So great was…, The more…, the more…, There is little doubt that…
+- 🧱 | The rapid growth of cities has led to… | El rápido crecimiento de las ciudades ha llevado a… | The rapid growth of cities has led to serious housing problems. | El rápido crecimiento de las ciudades ha provocado graves problemas de vivienda.
+- ⚖️ | It is not so much a question of money as of time | No es tanto cuestión de dinero como de tiempo | It is not so much a question of money as of time. | No es tanto una cuestión de dinero como de tiempo.
+- ✨ | What is striking is | Lo que llama la atención es | What is striking is the speed of the change. | Lo que llama la atención es la rapidez del cambio.
+- 🌊 | Such was the demand that | Tal fue la demanda que | Such was the demand that tickets sold out in minutes. | Tal fue la demanda que las entradas se agotaron en minutos.
+- 💥 | So great was the impact that | Tan grande fue el impacto que | So great was the impact that laws were changed. | Tan grande fue el impacto que se cambiaron las leyes.
+- 📈 | The more we learn, the more we realize | Cuanto más aprendemos, más nos damos cuenta | The more we learn, the more we realize how little we know. | Cuanto más aprendemos, más nos damos cuenta de lo poco que sabemos.
+- ✅ | There is little doubt that | Hay pocas dudas de que | There is little doubt that climate change is accelerating. | Hay pocas dudas de que el cambio climático se está acelerando.
+- 🔁 | Central to this debate is | En el centro de este debate está | Central to this debate is the question of access. | En el centro de este debate está la cuestión del acceso.
+- 🌐 | Far from being | Lejos de ser | Far from being a solution, it created new problems. | Lejos de ser una solución, creó nuevos problemas.
+- 🧭 | Insofar as | En la medida en que | The plan works insofar as people participate. | El plan funciona en la medida en que la gente participe.
+- 🔒 | It is precisely this that | Es precisamente esto lo que | It is precisely this that makes the theory convincing. | Es precisamente esto lo que hace convincente la teoría.
+- 📚 | Much has been written about | Se ha escrito mucho sobre | Much has been written about the causes of the crisis. | Se ha escrito mucho sobre las causas de la crisis.
+teoria:
+intro: El inglés académico avanzado condensa información con nominalizaciones y destaca ideas con estructuras enfáticas. Estas estructuras dan densidad, elegancia y control del foco del texto.
+tabla: Nominalización ; Verbal | Nominalizado*
+| Cities grew rapidly, which led to… | The rapid growth of cities led to…
+| Because prices increased… | The increase in prices…
+| When the government decided to… | The government's decision to…
+| Scientists analyzed the data and… | Analysis of the data showed…
+tabla: Estructuras de énfasis ; Estructura | Ejemplo*
+| What is + adj. + is… | What is remarkable is its simplicity.
+| It is not so much X as Y | It is not so much talent as effort.
+| Such + be + sustantivo + that | Such was his fame that…
+| So + adj. + be + sujeto + that | So strong was the wind that…
+| The + comparativo…, the + comparativo | The sooner, the better.
+| Central / Key / Crucial to X is Y | Crucial to success is planning.
+| Far from + -ing / ser | Far from helping, it made things worse.
+| Much / Little + pasiva | Little is known about its origins.
+ej: Little is known about the people who built the city. | Se sabe poco de las personas que construyeron la ciudad.
+ej: Far from solving the problem, the new law made it worse. | Lejos de resolver el problema, la nueva ley lo empeoró.
+ojo: No abuses de la nominalización: demasiados sustantivos seguidos hacen el texto ilegible.
+ojo: Con «so + adj.» y «such» al inicio se invierte el verbo: So great was ✓, So great it was ✗.
+pron: Insofar suena «insoufár». Precisely suena «prisáisli».
+
+=== eng-c2-w2-c2 | 🧵 | C2 · Semana 2 · Clase 2: Cohesión de alto nivel
+desc: By the same token, be that as it may, whereby, not least because, albeit, hitherto, thereby, in so doing, to that end, the former / the latter.
+- ⚖️ | By the same token, | Del mismo modo, | Exercise helps the body; by the same token, reading helps the mind. | El ejercicio ayuda al cuerpo; del mismo modo, la lectura ayuda a la mente.
+- 🤷 | Be that as it may, | Sea como sea, | Be that as it may, we must reach a decision. | Sea como sea, debemos tomar una decisión.
+- 🔗 | whereby | por el cual, mediante el cual | a system whereby students evaluate teachers | un sistema mediante el cual los alumnos evalúan a los profesores
+- 🎯 | not least because | sobre todo porque | The plan failed, not least because of poor communication. | El plan fracasó, sobre todo por la mala comunicación.
+- 🪶 | albeit | aunque, si bien | The results were positive, albeit limited. | Los resultados fueron positivos, aunque limitados.
+- ⏳ | hitherto | hasta ahora | a hitherto unknown species | una especie hasta ahora desconocida
+- ➡️ | thereby | con lo cual | They cut costs, thereby increasing profits. | Redujeron costos, con lo cual aumentaron las ganancias.
+- 🛠️ | In so doing, | Al hacerlo, | They opened the archives and, in so doing, revealed the truth. | Abrieron los archivos y, al hacerlo, revelaron la verdad.
+- 🎯 | To that end, | Con ese fin, | We want to reduce waste. To that end, we have introduced recycling bins. | Queremos reducir residuos. Con ese fin, hemos instalado tachos de reciclaje.
+- 1️⃣ | the former … the latter | el primero … el segundo | Of tea and coffee, I prefer the former. | Entre el té y el café, prefiero el primero.
+- 🔄 | That said, | Dicho esto, | The plan is ambitious. That said, it is feasible. | El plan es ambicioso. Dicho esto, es viable.
+- 📐 | In this respect, | En este sentido, | In this respect, the two cities are similar. | En este sentido, ambas ciudades son similares.
+teoria:
+intro: La cohesión de nivel C2 usa conectores precisos y formales que enlazan ideas con elegancia. Muchos vienen del inglés jurídico o académico y permiten encadenar razonamientos sin repetir palabras.
+tabla: Conectores avanzados ; Conector* | Función | Ejemplo*
+| by the same token | paralelismo | …; by the same token, …
+| be that as it may | concesión y avance | Be that as it may, we must act.
+| that said / having said that | matiz tras afirmar | It's costly. That said, it's worth it.
+| albeit | concesión breve (sin verbo) | a slow, albeit steady, recovery
+| not least because | causa principal entre otras | popular, not least because it's free
+| whereby | mecanismo | a process whereby…
+| thereby | consecuencia (+ -ing) | thereby reducing costs
+| in so doing | consecuencia de la acción | and, in so doing, …
+| to that end | finalidad | To that end, we…
+| hitherto | hasta ahora (formal) | hitherto unexplored
+| the former / the latter | referencia a dos elementos | the latter option
+tabla: Referencia sin repetir ; Recurso | Ejemplo*
+| this + sustantivo resumen | This approach / This trend / This shift…
+| such + sustantivo | Such measures are rare.
+| the former / the latter | Between X and Y, the latter is cheaper.
+| do so | They promised to help and did so.
+ej: The new policy, albeit controversial, has reduced crime. | La nueva política, aunque polémica, ha reducido el crimen.
+ej: The company automated production, thereby cutting costs by 20 %. | La empresa automatizó la producción, reduciendo así los costos en un 20 %.
+ojo: Albeit va sin verbo: albeit it was slow ✗ → albeit slow ✓ / although it was slow ✓.
+ojo: Thereby va con -ing; whereby con oración completa.
+pron: Albeit suena «olbí-it». Hitherto suena «jíderdu». Whereby suena «uerbái».
+
+# ===================== C2 · SEMANA 3: PRAGMÁTICA =====================
+
+=== eng-c2-w3 | 🕊️ | C2 · Semana 3 · Clase 1: Indirectness y cortesía
+desc: I was wondering if… Would you mind…? I'm afraid… It might be worth… You might want to… I don't suppose you could…? Decir «no» sin decir «no».
+- 🤔 | I was wondering if you could help me | Me preguntaba si podrías ayudarme | I was wondering if you could help me with this form. | Me preguntaba si podrías ayudarme con este formulario.
+- 🙏 | Would you mind closing the window? | ¿Te importaría cerrar la ventana? | Would you mind closing the window? It's a bit cold. | ¿Te importaría cerrar la ventana? Hace un poco de frío.
+- 😔 | I'm afraid that won't be possible | Me temo que eso no será posible | I'm afraid that won't be possible this week. | Me temo que eso no será posible esta semana.
+- 💡 | It might be worth checking again | Quizás valga la pena revisarlo otra vez | It might be worth checking the figures again. | Quizás valga la pena revisar las cifras otra vez.
+- 👉 | You might want to rethink that | Quizás quieras replantearte eso | You might want to rethink the introduction. | Quizás quieras replantearte la introducción.
+- 🫣 | I don't suppose you could lend me…? | ¿No podrías prestarme…, por casualidad? | I don't suppose you could lend me your notes? | ¿No podrías prestarme tus apuntes, por casualidad?
+- 🧊 | That's an interesting idea | Es una idea interesante (= no me convence) | That's an interesting idea. Let me think about it. | Es una idea interesante. Déjame pensarlo.
+- 🙊 | I'm not sure that's entirely accurate | No estoy seguro de que sea del todo exacto | I'm not sure that's entirely accurate. | No estoy seguro de que eso sea del todo exacto.
+- ⏰ | It's getting rather late | Se está haciendo algo tarde (= deberíamos irnos) | Well, it's getting rather late… | Bueno, se está haciendo algo tarde…
+- 🎁 | You shouldn't have! | ¡No debiste! (agradecimiento) | Flowers? Oh, you shouldn't have! | ¿Flores? ¡Ay, no debiste!
+- 📌 | Just a thought, but… | Es solo una idea, pero… | Just a thought, but maybe we could start earlier? | Es solo una idea, pero ¿y si empezamos antes?
+- 🙇 | Sorry to bother you, but… | Perdón por molestarte, pero… | Sorry to bother you, but could I ask a quick question? | Perdón por molestarte, pero ¿puedo hacerte una pregunta rápida?
+teoria:
+intro: La pragmática estudia lo que realmente queremos decir más allá de las palabras. En inglés, especialmente en contextos británicos y profesionales, se prefiere la indirecta: pedidos con pasado y condicional, críticas suavizadas y negativas camufladas.
+tabla: Escalera de cortesía para pedir ; Nivel* | Ejemplo*
+| Directo | Send me the file.
+| Neutro | Can you send me the file?
+| Cortés | Could you send me the file, please?
+| Muy cortés | Would you mind sending me the file?
+| Máxima cortesía | I was wondering if you could possibly send me the file.
+tabla: Lo que se dice vs lo que se quiere decir ; Se dice* | Significa
+| That's an interesting idea. | No me convence.
+| I'll bear it in mind. | Probablemente no lo haré.
+| You might want to… | Deberías…
+| It's getting rather late. | Quiero irme.
+| With the greatest respect… | Creo que estás muy equivocado.
+| I'm sure it's my fault, but… | Creo que es tu culpa.
+tabla: Suavizadores ; Recurso | Ejemplo*
+| Pasado de cortesía | I was hoping… / I wanted to ask…
+| Modales | might, could, would
+| Minimizadores | just, a bit, slightly, a little
+| Preguntas negativas | I don't suppose you could…? / Wouldn't it be better to…?
+ej: I was just wondering whether you'd had a chance to look at my proposal. | Solo me preguntaba si ya habías tenido oportunidad de ver mi propuesta.
+ej: It might be slightly better to send it tomorrow. | Quizás sería un poco mejor enviarlo mañana.
+ojo: «Would you mind…?» se responde «No, not at all» para decir que SÍ lo harás (no te importa).
+ojo: Ser demasiado directo en inglés puede sonar grosero aunque en español sea normal.
+pron: La entonación descendente suave y las pausas («Well… I'm afraid…») son parte de la cortesía.
+
+=== eng-c2-w3-c2 | 🧘 | C2 · Semana 3 · Clase 2: Responder comentarios difíciles con elegancia
+desc: Thank you for raising that. I take your point. Let me clarify. I hear you. I'd rather not comment on that. Let's agree to disagree. Defuse, clarify, redirect.
+- 🙏 | Thank you for raising that | Gracias por plantear eso | Thank you for raising that. It's an important point. | Gracias por plantear eso. Es un punto importante.
+- 🤝 | I take your point | Entiendo tu punto | I take your point, but let me offer another perspective. | Entiendo tu punto, pero permíteme ofrecer otra perspectiva.
+- 🔎 | Let me clarify what I meant | Permíteme aclarar lo que quise decir | Let me clarify what I meant by «efficient». | Permíteme aclarar qué quise decir con «eficiente».
+- 👂 | I hear you | Te escucho / Entiendo cómo te sientes | I hear you, and I understand your frustration. | Te escucho y entiendo tu frustración.
+- 🤐 | I'd rather not comment on that | Prefiero no comentar sobre eso | I'd rather not comment on that at this stage. | Prefiero no comentar sobre eso por ahora.
+- ↔️ | Let's agree to disagree | Aceptemos que no estamos de acuerdo | I think we'll have to agree to disagree. | Creo que tendremos que aceptar que no coincidimos.
+- 🧭 | Perhaps we could focus on | Quizás podríamos centrarnos en | Perhaps we could focus on what we can change. | Quizás podríamos centrarnos en lo que podemos cambiar.
+- 🙇 | You're absolutely right to point that out | Tienes toda la razón al señalarlo | You're absolutely right to point that out. We'll fix it. | Tienes toda la razón al señalarlo. Lo corregiremos.
+- 🧊 | I can see why you'd think that | Entiendo por qué piensas eso | I can see why you'd think that, but the data says otherwise. | Entiendo por qué piensas eso, pero los datos dicen otra cosa.
+- 🛡️ | That's not quite how I'd put it | Yo no lo diría exactamente así | That's not quite how I'd put it. | Yo no lo diría exactamente así.
+- 📩 | Can we discuss this privately? | ¿Podemos hablar de esto en privado? | Can we discuss this privately after the meeting? | ¿Podemos hablar de esto en privado después de la reunión?
+- ⏸️ | Let me get back to you on that | Déjame responderte sobre eso más tarde | Let me get back to you on that tomorrow. | Déjame responderte sobre eso mañana.
+teoria:
+intro: Ante críticas, preguntas incómodas o comentarios agresivos, un hablante C2 responde sin perder la calma ni la autoridad. La técnica tiene tres pasos: reconocer (defuse), aclarar (clarify) y reconducir (redirect).
+tabla: Técnica en tres pasos ; Paso | Objetivo | Frases*
+| 1. Reconocer | bajar la tensión | Thank you for raising that. / I hear you. / I can see why you'd think that.
+| 2. Aclarar | corregir sin atacar | Let me clarify… / That's not quite how I'd put it.
+| 3. Reconducir | volver a lo constructivo | Perhaps we could focus on… / Let me get back to you on that.
+tabla: Situaciones difíciles ; Situación | Respuesta*
+| Te acusan de un error real | You're absolutely right to point that out. We'll fix it.
+| Te malinterpretan | I think there may be a misunderstanding. What I meant was…
+| Pregunta que no puedes responder | I'd rather not comment on that at this stage.
+| Desacuerdo sin salida | Let's agree to disagree.
+| Ataque personal en público | Can we discuss this privately?
+ej: I can see why you'd think that. However, the figures tell a slightly different story. | Entiendo por qué piensas eso. Sin embargo, las cifras cuentan una historia algo distinta.
+ej: Thank you for raising that. Let me clarify what we're proposing. | Gracias por plantear eso. Permíteme aclarar lo que estamos proponiendo.
+ojo: Evita «You're wrong» y «With respect» repetido: suenan agresivos.
+ojo: «I hear you» muestra empatía, pero no significa que estés de acuerdo.
+pron: Habla más despacio y con tono bajo cuando la conversación se tensa: transmite control.
+
+# ===================== C2 · SEMANA 4: RETÓRICA =====================
+
+=== eng-c2-w4 | 🏛️ | C2 · Semana 4 · Clase 1: Recursos retóricos
+desc: Anáfora, antítesis, tricolon, pregunta retórica, litotes, hipérbole, quiasmo, aliteración. Reconocerlos y usarlos.
+- 🔁 | anaphora: We will not give up. We will not give in. | anáfora: repetición al inicio | We will not give up. We will not give in. We will not fail. | No nos rendiremos. No cederemos. No fallaremos.
+- ⚖️ | antithesis: It was the best of plans, the worst of results | antítesis: ideas opuestas | It was the best of plans and the worst of results. | Fue el mejor de los planes y el peor de los resultados.
+- 3️⃣ | tricolon: clear, simple and fair | tricolon: grupo de tres | We need rules that are clear, simple and fair. | Necesitamos reglas claras, simples y justas.
+- ❓ | rhetorical question: Who among us has never failed? | pregunta retórica | Who among us has never failed? | ¿Quién de nosotros nunca ha fracasado?
+- 🤏 | litotes: not bad / not unlike | litote: afirmar negando lo contrario | The result was not unimpressive. | El resultado no fue poco impresionante (= fue impresionante).
+- 🎈 | hyperbole: I've told you a million times | hipérbole: exageración | I've told you a million times! | ¡Te lo he dicho un millón de veces!
+- 🔄 | chiasmus: Eat to live, don't live to eat | quiasmo: estructura invertida | Eat to live; don't live to eat. | Come para vivir; no vivas para comer.
+- 🐍 | alliteration: bold, brave and brilliant | aliteración: repetición de sonidos | It was a bold, brave and brilliant decision. | Fue una decisión audaz, valiente y brillante.
+- 🌗 | contrast: not because it is easy, but because it is hard | contraste: no por… sino por… | We do it not because it is easy, but because it is hard. | Lo hacemos no porque sea fácil, sino porque es difícil.
+- 🪞 | metaphor: Knowledge is a lamp | metáfora | Knowledge is a lamp in the darkness. | El conocimiento es una lámpara en la oscuridad.
+- 📣 | climax: first…, then…, finally… | clímax: intensidad creciente | First they ignored us, then they doubted us, and finally they joined us. | Primero nos ignoraron, luego dudaron de nosotros y al final se unieron.
+teoria:
+intro: Los grandes discursos y textos persuasivos usan recursos retóricos para emocionar, convencer y ser recordados. En C2 debes reconocerlos al leer o escuchar y usarlos con naturalidad al hablar o escribir.
+tabla: Recursos retóricos ; Recurso | Qué es | Ejemplo*
+| Anaphora | repetir el inicio de frases | We shall fight… we shall fight… we shall never surrender.
+| Antithesis | contraponer ideas | One small step for a man, one giant leap for mankind.
+| Tricolon | tres elementos paralelos | Government of the people, by the people, for the people.
+| Rhetorical question | pregunta sin respuesta esperada | Are we really going to accept this?
+| Litotes | afirmar negando lo contrario | It's no small achievement.
+| Hyperbole | exageración | This bag weighs a ton.
+| Chiasmus | estructura en espejo | Never let a fool kiss you, or a kiss fool you.
+| Alliteration | repetir sonidos iniciales | Peter Piper picked a peck…
+| Climax | intensidad creciente | I came, I saw, I conquered.
+ej: It is not a question of whether we can afford to act, but whether we can afford not to. | No se trata de si podemos permitirnos actuar, sino de si podemos permitirnos no hacerlo.
+ej: This is no small achievement. | Este no es un logro menor.
+ojo: Un exceso de recursos suena artificial: uno o dos bien colocados son más eficaces.
+ojo: La litote es muy británica: «not bad» puede ser un gran elogio.
+pron: En la anáfora, repite la frase con el mismo ritmo y sube la intensidad cada vez.
+
+=== eng-c2-w4-c2 | 🎙️ | C2 · Semana 4 · Clase 2: Análisis de un discurso
+desc: Discurso original «The Water We Share»: identificar recursos retóricos, estructura y efecto en el público; escribir una reseña argumentada.
+- 🌊 | Friends, we gather today not to mourn, but to act | Amigos, nos reunimos hoy no para lamentarnos, sino para actuar | Friends, we gather today not to mourn, but to act. | Amigos, nos reunimos hoy no para lamentarnos, sino para actuar.
+- 🏔️ | Our glaciers are shrinking | Nuestros glaciares se están reduciendo | Our glaciers are shrinking. Our rivers are thinning. Our patience is running out. | Nuestros glaciares se reducen. Nuestros ríos se adelgazan. Nuestra paciencia se agota.
+- ❓ | How long can we pretend not to see? | ¿Cuánto tiempo más podemos fingir no ver? | How long can we pretend not to see? | ¿Cuánto tiempo más podemos fingir no ver?
+- ⚖️ | Water is not a luxury for the few; it is a right for all | El agua no es un lujo de pocos; es un derecho de todos | Water is not a luxury for the few; it is a right for all. | El agua no es un lujo de pocos; es un derecho de todos.
+- 🤝 | We must save water, share water and respect water | Debemos ahorrar agua, compartir agua y respetar el agua | We must save water, share water and respect water. | Debemos ahorrar, compartir y respetar el agua.
+- 🌱 | This is no small task | Esta no es una tarea menor | This is no small task, but it is not an impossible one. | No es una tarea menor, pero tampoco imposible.
+- 👧 | Our children will not ask what we said, but what we did | Nuestros hijos no preguntarán qué dijimos, sino qué hicimos | Our children will not ask what we said, but what we did. | Nuestros hijos no preguntarán qué dijimos, sino qué hicimos.
+- 🔥 | Let this be the moment we chose to act | Que este sea el momento en que decidimos actuar | Let this be the moment we chose to act. | Que este sea el momento en que decidimos actuar.
+- 🧐 | The speaker appeals to emotion through… | El orador apela a la emoción mediante… | The speaker appeals to emotion through vivid images. | El orador apela a la emoción mediante imágenes vívidas.
+- 📐 | The speech is structured around | El discurso se estructura en torno a | The speech is structured around three repetitions. | El discurso se estructura en torno a tres repeticiones.
+- 🎯 | The cumulative effect is | El efecto acumulado es | The cumulative effect is a sense of urgency. | El efecto acumulado es una sensación de urgencia.
+teoria:
+intro: Escucha (con «🔊 Escuchar todo») y lee un discurso breve escrito para esta clase. Luego identifica los recursos retóricos, la estructura y el efecto que buscan en el público, y redacta una reseña argumentada.
+tabla: El discurso completo ; Parte | Texto*
+| Apertura | Friends, we gather today not to mourn, but to act.
+| Problema | Our glaciers are shrinking. Our rivers are thinning. Our patience is running out. How long can we pretend not to see?
+| Principio | Water is not a luxury for the few; it is a right for all.
+| Llamado | We must save water, share water and respect water. This is no small task, but it is not an impossible one.
+| Cierre | Our children will not ask what we said, but what we did. Let this be the moment we chose to act.
+tabla: Recursos en el discurso ; Frase | Recurso
+| not to mourn, but to act | contraste
+| Our glaciers… Our rivers… Our patience… | anáfora + tricolon + clímax
+| How long can we pretend not to see? | pregunta retórica
+| a luxury for the few; a right for all | antítesis
+| save water, share water and respect water | tricolon + repetición
+| no small task | litote
+| not what we said, but what we did | antítesis
+tabla: Lenguaje para analizar ; Inglés* | Español
+| The speaker appeals to emotion / logic / authority | El orador apela a la emoción / la lógica / la autoridad
+| The use of … creates a sense of … | El uso de … crea una sensación de …
+| The speech is structured around… | El discurso se estructura en torno a…
+| The cumulative effect is… | El efecto acumulado es…
+| This device serves to… | Este recurso sirve para…
+ej: The use of anaphora creates a sense of urgency and rhythm. | El uso de la anáfora crea una sensación de urgencia y ritmo.
+ej: The closing antithesis serves to shift responsibility to the audience. | La antítesis final sirve para trasladar la responsabilidad al público.
+ojo: En un análisis no basta con nombrar el recurso: explica su EFECTO.
+ojo: «Discourse» suele ser «discurso» en sentido académico (análisis del lenguaje); un discurso hablado es «a speech».
+pron: Mourn suena «morn». Cumulative suena «kiúmiulativ».
+
+# ===================== C2 · SEMANA 5: LISTENING AUTÉNTICO =====================
+
+=== eng-c2-w5 | 🎧 | C2 · Semana 5 · Clase 1: Connected speech (habla real)
+desc: Gonna, wanna, gotta, dunno, whaddya, lemme, kinda, y'know; linking, elision y weak forms. Entender a nativos hablando rápido.
+- 🗣️ | I'm gonna call you | Te voy a llamar (= going to) | I'm gonna call you later, OK? | Te voy a llamar más tarde, ¿ya?
+- 🙋 | I wanna go home | Quiero ir a casa (= want to) | I'm tired. I wanna go home. | Estoy cansado. Quiero ir a casa.
+- ⏰ | I've gotta go | Me tengo que ir (= got to) | Sorry, I've gotta go. | Perdón, me tengo que ir.
+- 🤷 | I dunno | No sé (= don't know) | Where is he? — I dunno. | ¿Dónde está? — No sé.
+- ❓ | Whaddya want? | ¿Qué quieres? (= what do you) | Whaddya want for dinner? | ¿Qué quieres de cenar?
+- 🙏 | Lemme see | Déjame ver (= let me) | Lemme see your phone. | Déjame ver tu celular.
+- 🌫️ | It's kinda weird | Es medio raro (= kind of) | It's kinda weird, isn't it? | Es medio raro, ¿no?
+- 🤔 | Didja see that? | ¿Viste eso? (= did you) | Didja see that goal? | ¿Viste ese gol?
+- 🍽️ | Gimme a sec | Dame un segundo (= give me) | Gimme a sec, I'm almost ready. | Dame un segundo, ya casi estoy.
+- 🔗 | an apple → «a-napple» | linking: consonante + vocal | Can I have an apple? | ¿Me das una manzana?
+- ✂️ | next day → «nex day» | elisión: se pierde la t | See you the next day. | Te veo al día siguiente.
+- 🔉 | fish and chips → «fish'n chips» | weak form: and → 'n | I'd like fish and chips. | Quisiera pescado con papas fritas.
+- 🫢 | Whatcha doing? | ¿Qué estás haciendo? (= what are you) | Hey! Whatcha doing? | ¡Hola! ¿Qué estás haciendo?
+teoria:
+intro: Los nativos no pronuncian palabra por palabra: unen, reducen y eliminan sonidos. Esto se llama connected speech. Entenderlo es la clave para comprender películas, podcasts y conversaciones reales. Estas formas son orales: en escritura formal no se usan.
+tabla: Reducciones frecuentes ; Forma completa* | Se oye como*
+| going to | gonna
+| want to | wanna
+| got to | gotta
+| don't know | dunno
+| let me | lemme
+| give me | gimme
+| kind of | kinda
+| what do you | whaddya
+| did you | didja
+| what are you | whatcha
+tabla: Fenómenos del habla conectada ; Fenómeno | Qué pasa | Ejemplo*
+| Linking | la consonante final se une a la vocal siguiente | turn it off → «tur-ni-toff»
+| Elision | se pierde un sonido (t, d) | last night → «las night»
+| Weak forms | palabras gramaticales se reducen a «ə» | to → «tə», and → «'n», for → «fə»
+| Assimilation | un sonido cambia por el siguiente | ten pounds → «tem pounds»
+| Intrusive r / w | aparece un sonido para unir vocales | law and order → «law-r-and order»
+ej: What are you going to do? → «Whatcha gonna do?» | ¿Qué vas a hacer?
+ej: I don't know what you want. → «I dunno whaddya want.» | No sé qué quieres.
+ojo: No escribas gonna/wanna en un examen o email formal.
+ojo: Para hablar no hace falta reducir todo: con entenderlo basta, y usarlo con moderación suena natural.
+pron: Practica en «shadowing» con las frases de esta clase: copia exactamente el ritmo, no las palabras sueltas.
+
+=== eng-c2-w5-c2 | 🌐 | C2 · Semana 5 · Clase 2: Variedades del inglés (británico, americano y más)
+desc: Flat vs apartment, lift vs elevator, queue vs line, autumn vs fall; diferencias de ortografía, gramática y pronunciación; otros acentos.
+- 🏢 | flat (UK) / apartment (US) | departamento | We live in a small flat in London. | Vivimos en un departamento pequeño en Londres.
+- 🛗 | lift (UK) / elevator (US) | ascensor | Let's take the lift. | Tomemos el ascensor.
+- 🧍 | queue (UK) / line (US) | cola, fila | There was a long queue at the bank. | Había una larga cola en el banco.
+- 🍂 | autumn (UK) / fall (US) | otoño | I love New York in the fall. | Me encanta Nueva York en otoño.
+- 🍟 | chips (UK) / fries (US) | papas fritas | Fish and chips, please. | Pescado con papas fritas, por favor.
+- 🥔 | crisps (UK) / chips (US) | papitas de bolsa | A packet of crisps, please. | Una bolsa de papitas, por favor.
+- 🚇 | underground (UK) / subway (US) | metro | Take the underground to Oxford Circus. | Toma el metro hasta Oxford Circus.
+- 📱 | mobile (UK) / cell phone (US) | celular | My mobile has run out of battery. | Mi celular se quedó sin batería.
+- 👖 | trousers (UK) / pants (US) | pantalones | These trousers are too long. | Estos pantalones son muy largos.
+- 🏫 | Have you got…? (UK) / Do you have…? (US) | ¿Tienes…? | Have you got a pen? / Do you have a pen? | ¿Tienes un lapicero?
+- 🎨 | colour (UK) / color (US) | color | What's your favourite colour? | ¿Cuál es tu color favorito?
+- 🗓️ | at the weekend (UK) / on the weekend (US) | el fin de semana | What are you doing at the weekend? | ¿Qué haces el fin de semana?
+- 🦘 | No worries (AU) | No hay problema (Australia) | Thanks! — No worries, mate. | ¡Gracias! — No hay problema, amigo.
+teoria:
+intro: El inglés tiene muchas variedades. En C2 debes entender las diferencias principales entre el británico y el americano (vocabulario, ortografía, gramática y pronunciación) y reconocer otros acentos: australiano, irlandés, escocés, indio, sudafricano…
+tabla: Vocabulario ; Británico* | Americano* | Español
+| flat | apartment | departamento
+| lift | elevator | ascensor
+| queue | line | cola
+| autumn | fall | otoño
+| chips / crisps | fries / chips | papas fritas / papitas
+| mobile | cell phone | celular
+| trousers | pants | pantalones
+| petrol | gas | gasolina
+| holiday | vacation | vacaciones
+| rubbish | garbage / trash | basura
+tabla: Ortografía ; Británico* | Americano*
+| colour, favour | color, favor
+| centre, theatre | center, theater
+| organise, realise | organize, realize
+| travelled | traveled
+| programme | program
+tabla: Gramática y pronunciación ; Rasgo | Británico* | Americano*
+| Posesión | Have you got a car? | Do you have a car?
+| Present Perfect | I've just eaten. | I just ate. (también aceptado)
+| Preposiciones | at the weekend | on the weekend
+| La r final | car → «ka» | car → «kar»
+| La t entre vocales | water → «wóta» | water → «wóder»
+| a en «can't» | «kánt» (a larga) | «kænt»
+ej: I've just been to the shop to buy some crisps. (UK) | Acabo de ir a la tienda a comprar papitas.
+ej: I just went to the store to buy some chips. (US) | Acabo de ir a la tienda a comprar papitas.
+ojo: «Pants» en británico significa calzoncillos: cuidado al usarlo en Londres.
+ojo: Elige una variedad para escribir y sé coherente (no mezcles colour y center en el mismo texto).
+pron: Escucha la «r»: si suena al final de «car», probablemente es americano, escocés o irlandés.
+
+# ===================== C2 · SEMANA 6: STORYTELLING Y ORATORIA =====================
+
+=== eng-c2-w6 | 📖 | C2 · Semana 6 · Clase 1: Storytelling avanzado
+desc: Técnicas narrativas: in medias res, flashback, suspense, foreshadowing, cambio de ritmo. Little did I know… It all started when… Looking back,…
+- 🎬 | It all started when | Todo empezó cuando | It all started when I missed my flight. | Todo empezó cuando perdí mi vuelo.
+- 🌀 | Little did I know that | Poco sabía yo que | Little did I know that this mistake would change my life. | Poco sabía yo que ese error cambiaría mi vida.
+- ⏪ | Three years earlier, | Tres años antes, | Three years earlier, I had been working in a bank. | Tres años antes, había estado trabajando en un banco.
+- ⏳ | Then, out of nowhere, | Entonces, de la nada, | Then, out of nowhere, a stranger offered me a lift. | Entonces, de la nada, un extraño me ofreció llevarme.
+- 😮 | To my surprise, | Para mi sorpresa, | To my surprise, he knew my name. | Para mi sorpresa, sabía mi nombre.
+- 🫀 | My heart was pounding | El corazón me latía con fuerza | My heart was pounding as I opened the envelope. | El corazón me latía con fuerza al abrir el sobre.
+- 🌫️ | Something didn't feel right | Algo no se sentía bien | Something didn't feel right about the house. | Algo no se sentía bien en esa casa.
+- 🧩 | It was only later that I realized | Solo después me di cuenta | It was only later that I realized who he was. | Solo después me di cuenta de quién era.
+- 🔙 | Looking back, | Mirando atrás, | Looking back, it was the best thing that ever happened to me. | Mirando atrás, fue lo mejor que me ha pasado.
+- 🎯 | And that's when everything changed | Y fue entonces cuando todo cambió | And that's when everything changed. | Y fue entonces cuando todo cambió.
+- 🌅 | To this day, | Hasta el día de hoy, | To this day, I still wonder what would have happened. | Hasta el día de hoy, me pregunto qué habría pasado.
+- 🧠 | The moral of the story is | La moraleja de la historia es | The moral of the story is: never judge too quickly. | La moraleja es: nunca juzgues tan rápido.
+teoria:
+intro: Contar historias de forma cautivadora es una habilidad C2 en conversación, presentaciones y escritura. Se combina estructura narrativa, tiempos verbales precisos, detalles sensoriales y control del ritmo.
+tabla: Técnicas narrativas ; Técnica | Qué es | Frase modelo*
+| In medias res | empezar en plena acción | My heart was pounding as I opened the door.
+| Flashback | volver al pasado | Three years earlier, I had…
+| Foreshadowing | anticipar lo que vendrá | Little did I know that…
+| Suspense | retrasar la revelación | Something didn't feel right.
+| Giro | cambio inesperado | Then, out of nowhere,…
+| Reflexión | mirar atrás | Looking back,… / To this day,…
+tabla: Estructura de una buena anécdota ; Parte | Función | Ejemplo*
+| Gancho | atrapar | You won't believe what happened to me in Cusco.
+| Contexto | quién, dónde, cuándo | It was 2019 and I was backpacking alone.
+| Complicación | el problema | I had lost my passport.
+| Clímax | el momento de mayor tensión | The bus was leaving in ten minutes…
+| Resolución | cómo terminó | A street vendor had found it.
+| Reflexión | qué aprendí | Since then, I've always trusted people a little more.
+ej: Little did we know that the storm was heading straight for us. | Poco sabíamos que la tormenta venía directo hacia nosotros.
+ej: It was only later that I realized I had been talking to the director. | Solo después me di cuenta de que había estado hablando con el director.
+ojo: Al contar en vivo se usa mucho el presente histórico para dar viveza: «So I'm standing there, and this guy comes up to me…».
+ojo: Muestra emociones con detalles físicos (my hands were shaking) en vez de decirlas (I was nervous).
+pron: Baja la voz y ralentiza antes del clímax; sube el ritmo en la acción.
+
+=== eng-c2-w6-c2 | 🦉 | C2 · Semana 6 · Clase 2: Expresiones idiomáticas avanzadas y refranes
+desc: Bite the bullet, beat around the bush, a blessing in disguise, the elephant in the room, get the ball rolling, cut corners, every cloud has a silver lining…
+- 🦷 | bite the bullet | hacer de tripas corazón | I hate the dentist, but I'll bite the bullet. | Odio al dentista, pero haré de tripas corazón.
+- 🌳 | beat around the bush | andarse con rodeos | Stop beating around the bush and tell me. | Deja de andarte con rodeos y dime.
+- 🎁 | a blessing in disguise | no hay mal que por bien no venga | Losing that job was a blessing in disguise. | Perder ese trabajo fue, al final, una bendición.
+- 🐘 | the elephant in the room | el tema que nadie quiere tocar | Let's address the elephant in the room: the budget. | Hablemos del tema que nadie quiere tocar: el presupuesto.
+- ⚽ | get the ball rolling | poner las cosas en marcha | Let's get the ball rolling with a quick introduction. | Pongamos las cosas en marcha con una breve presentación.
+- ✂️ | cut corners | hacer las cosas a la ligera | Don't cut corners on safety. | No escatimes en seguridad.
+- ⛅ | Every cloud has a silver lining | No hay mal que por bien no venga | It rained all week, but every cloud has a silver lining: I finished my book. | Llovió toda la semana, pero no hay mal que por bien no venga: terminé mi libro.
+- 🐦 | kill two birds with one stone | matar dos pájaros de un tiro | I'll kill two birds with one stone and visit my aunt too. | Mataré dos pájaros de un tiro y visitaré a mi tía también.
+- 🧊 | the tip of the iceberg | la punta del iceberg | These problems are just the tip of the iceberg. | Estos problemas son solo la punta del iceberg.
+- 🎲 | a long shot | algo poco probable | It's a long shot, but it's worth trying. | Es poco probable, pero vale la pena intentarlo.
+- 🪜 | learn the ropes | aprender cómo funciona algo | It took me a month to learn the ropes. | Me tomó un mes aprender cómo funcionaba todo.
+- 🔥 | add fuel to the fire | echar leña al fuego | His comment only added fuel to the fire. | Su comentario solo echó leña al fuego.
+- 🏃 | The early bird catches the worm | Al que madruga, Dios lo ayuda | Leave at six. The early bird catches the worm! | Sal a las seis. ¡Al que madruga, Dios lo ayuda!
+- 🍳 | You can't make an omelette without breaking eggs | No se puede hacer una tortilla sin romper huevos | Change is hard, but you can't make an omelette without breaking eggs. | El cambio es difícil, pero no se hace una tortilla sin romper huevos.
+teoria:
+intro: En C2 se espera entender y usar con naturalidad expresiones idiomáticas y refranes, incluido en contextos profesionales. Algunos tienen equivalente en español; otros no, y hay que aprender su uso.
+tabla: Idioms avanzados ; Idiom* | Significado | Equivalente en español
+| bite the bullet | afrontar algo desagradable | hacer de tripas corazón
+| beat around the bush | evitar el tema | andarse con rodeos
+| a blessing in disguise | algo malo que resulta bueno | no hay mal que por bien no venga
+| the elephant in the room | problema obvio que se evita | —
+| get the ball rolling | empezar algo | poner en marcha
+| cut corners | hacer algo barato o rápido y mal | hacer a la ligera
+| the tip of the iceberg | pequeña parte de un gran problema | la punta del iceberg
+| a long shot | poca probabilidad | difícil, pero…
+| learn the ropes | aprender lo básico de algo | agarrarle la mano
+| add fuel to the fire | empeorar una situación | echar leña al fuego
+tabla: Refranes ; Inglés* | Español
+| Every cloud has a silver lining. | No hay mal que por bien no venga.
+| The early bird catches the worm. | Al que madruga, Dios lo ayuda.
+| Don't count your chickens before they hatch. | No vendas la piel del oso antes de cazarlo.
+| When in Rome, do as the Romans do. | Donde fueres, haz lo que vieres.
+| Actions speak louder than words. | Obras son amores, que no buenas razones.
+| You can't make an omelette without breaking eggs. | No se hacen tortillas sin romper huevos.
+ej: Let's not beat around the bush: we need to cut costs. | No nos andemos con rodeos: necesitamos reducir costos.
+ej: Don't count your chickens before they hatch; the contract isn't signed yet. | No vendas la piel del oso antes de cazarlo; el contrato aún no está firmado.
+ojo: Los nativos a veces solo dicen la primera mitad del refrán: «Well, when in Rome…».
+ojo: No inventes variaciones: «beat around the tree» ✗.
+pron: «Bite the bullet» suena «báit de búlit». «Silver lining» suena «sílver láining».
+
+# ===================== C2 · SEMANA 7: ESCRITURA CREATIVA =====================
+
+=== eng-c2-w7 | 🎨 | C2 · Semana 7 · Clase 1: Lenguaje figurado natural
+desc: Metáforas y símiles naturales: time flew, a sea of faces, as light as a feather, her words cut deep. Personificación y detalles sensoriales. Evitar clichés.
+- ⏳ | Time flew by | El tiempo voló | We were having so much fun that time flew by. | Nos divertíamos tanto que el tiempo voló.
+- 🌊 | a sea of faces | un mar de caras | He looked out at a sea of faces. | Miró hacia un mar de caras.
+- 🪶 | as light as a feather | ligero como una pluma | The box was as light as a feather. | La caja era ligera como una pluma.
+- 🗡️ | Her words cut deep | Sus palabras hirieron profundamente | Her words cut deep, though she didn't mean them. | Sus palabras hirieron hondo, aunque no lo decía en serio.
+- 🌬️ | The wind howled | El viento aullaba | The wind howled outside all night. | El viento aulló afuera toda la noche.
+- 🌙 | The moon peeked through the clouds | La luna se asomó entre las nubes | The moon peeked through the clouds. | La luna se asomó entre las nubes.
+- 🧊 | an icy silence | un silencio helado | An icy silence filled the room. | Un silencio helado llenó la habitación.
+- 🔥 | a burning ambition | una ambición ardiente | She had a burning ambition to become a pilot. | Tenía una ambición ardiente de ser piloto.
+- 🕸️ | a web of lies | una red de mentiras | He was trapped in a web of lies. | Estaba atrapado en una red de mentiras.
+- ☕ | The smell of coffee drifted through the house | El olor a café flotaba por la casa | The smell of fresh coffee drifted through the house. | El olor a café recién hecho flotaba por la casa.
+- 🌆 | The city never sleeps | La ciudad nunca duerme | Lima, like New York, never really sleeps. | Lima, como Nueva York, nunca duerme del todo.
+- 📚 | to devour a book | devorar un libro | I devoured the novel in one weekend. | Devoré la novela en un fin de semana.
+teoria:
+intro: El lenguaje figurado da vida a la escritura. En C2 se trata de usar metáforas y símiles que suenen naturales en inglés (no traducidos del español), con detalles sensoriales precisos y sin caer en clichés.
+tabla: Figuras ; Figura | Qué es | Ejemplo*
+| Simile | comparación con like / as | She swims like a fish.
+| Metaphor | comparación directa | Life is a journey.
+| Personification | cualidades humanas a cosas | The wind whispered.
+| Sensory detail | vista, oído, olfato, tacto, gusto | the crunch of dry leaves
+| Synecdoche | parte por el todo | All hands on deck.
+tabla: Metáforas conceptuales del inglés ; Concepto | Expresiones*
+| TIME IS MONEY | spend time, save time, waste time, invest time
+| ARGUMENT IS WAR | attack a position, defend a claim, win an argument
+| IDEAS ARE LIGHT | a bright idea, shed light on, a brilliant mind
+| EMOTIONS ARE TEMPERATURE | a warm welcome, a cold reply, heated debate
+| UNDERSTANDING IS SEEING | I see what you mean, a clear explanation
+tabla: Cliché → alternativa fresca ; Cliché | Alternativa*
+| as cold as ice | cold enough to make my teeth ache
+| a heart of gold | the kind of person who remembers your birthday
+| it was raining cats and dogs | the rain fell in sheets
+| dead tired | too tired to lift my phone
+ej: The old house groaned and creaked as the wind pushed against its walls. | La vieja casa gemía y crujía mientras el viento empujaba sus paredes.
+ej: The rain fell in sheets, turning the street into a river. | La lluvia caía a cántaros, convirtiendo la calle en un río.
+ojo: No traduzcas metáforas españolas literalmente: «estar en las nubes» ≠ be in the clouds (→ have your head in the clouds).
+ojo: Una metáfora por párrafo suele bastar; muchas seguidas cansan.
+pron: Lee en voz alta: el sonido de las palabras (howl, crunch, whisper) es parte del efecto.
+
+=== eng-c2-w7-c2 | 🎭 | C2 · Semana 7 · Clase 2: Diálogo con subtexto y «show, don't tell»
+desc: Escribir diálogos donde lo importante no se dice. Mostrar emociones con acciones. Verbos de diálogo y puntuación.
+- 🙂 | «Fine,» she said, not looking up | «Bien», dijo ella, sin levantar la vista | «Fine,» she said, not looking up from her book. | «Bien», dijo, sin levantar la vista del libro.
+- ✋ | His hands were shaking | Le temblaban las manos | His hands were shaking as he signed the paper. | Le temblaban las manos al firmar el papel.
+- 🚪 | She closed the door a little too hard | Cerró la puerta un poco demasiado fuerte | She closed the door a little too hard. | Cerró la puerta un poco más fuerte de lo necesario.
+- ☕ | He stirred his coffee long after the sugar had dissolved | Revolvió su café mucho después de que el azúcar se disolviera | He stirred his coffee long after the sugar had dissolved. | Siguió revolviendo el café mucho después de que el azúcar se hubiera disuelto.
+- 🤨 | «Interesting,» he said slowly | «Interesante», dijo lentamente | «Interesting,» he said slowly. «Very interesting.» | «Interesante», dijo lentamente. «Muy interesante.»
+- 😶 | There was a long pause | Hubo una larga pausa | There was a long pause before she answered. | Hubo una larga pausa antes de que respondiera.
+- 🗣️ | «You're late,» she observed | «Llegas tarde», observó ella | «You're late,» she observed, glancing at the clock. | «Llegas tarde», observó, mirando el reloj.
+- 😏 | «Of course,» he replied, with a thin smile | «Claro», respondió con una leve sonrisa | «Of course,» he replied, with a thin smile. | «Claro», respondió con una sonrisa forzada.
+- 🙊 | She opened her mouth, then closed it again | Abrió la boca y luego la volvió a cerrar | She opened her mouth to speak, then closed it again. | Abrió la boca para hablar y luego la volvió a cerrar.
+- 👀 | He didn't meet her eyes | No le sostuvo la mirada | He didn't meet her eyes when he said it. | No le sostuvo la mirada al decirlo.
+- 🌧️ | Outside, the rain kept falling | Afuera, la lluvia seguía cayendo | Outside, the rain kept falling as if nothing had happened. | Afuera, la lluvia seguía cayendo como si nada hubiera pasado.
+teoria:
+intro: En la buena escritura creativa, los personajes rara vez dicen lo que sienten. El subtexto es lo que se entiende sin decirse, y «show, don't tell» significa mostrar las emociones con acciones, gestos y detalles en lugar de nombrarlas.
+tabla: Tell → show ; Tell (decir) | Show (mostrar)*
+| She was angry. | She closed the door a little too hard.
+| He was nervous. | His hands were shaking as he signed.
+| She was sad. | She stared at the photo for a long time.
+| He was lying. | He didn't meet her eyes.
+| They were uncomfortable. | There was a long pause.
+tabla: Diálogo con subtexto ; Lo que se dice* | Lo que significa
+| «Fine.» (sin mirar) | no está bien
+| «Interesting.» (lentamente) | sospecha o desaprobación
+| «You're late.» | estoy molesta
+| «Of course.» (sonrisa forzada) | no estoy de acuerdo
+tabla: Verbos de diálogo y puntuación ; Regla | Ejemplo*
+| «said» es invisible: úsalo casi siempre | «Come here,» she said.
+| verbos precisos con moderación | whispered, snapped, muttered, observed
+| la coma va dentro de las comillas | «I know,» he said.
+| acción en vez de verbo de diálogo | «I know.» He looked away.
+ej: «It's nothing,» she said, twisting the ring on her finger. | «No es nada», dijo, girando el anillo en su dedo.
+ej: He laughed, but his eyes didn't. | Se rió, pero sus ojos no.
+ojo: Evita adverbios innecesarios: «she said angrily» → muestra la ira con una acción.
+ojo: En inglés el diálogo va entre comillas (" " o ' '), no con rayas como en español.
+pron: Lee tus diálogos en voz alta: si suenan como un libro de texto, no suenan como personas.
+
+# ===================== C2 · SEMANA 8: PROYECTO FINAL C2 =====================
+
+=== eng-c2-w8 | 🎤 | C2 · Semana 8 · Clase 1: Proyecto: charla de 5–8 minutos y debate
+desc: Charla tipo TED con historia, datos y mensaje; turno de preguntas; debate formal con réplica. Rúbrica C2.
+- 🪝 | I want to start with a story | Quiero empezar con una historia | I want to start with a story about my grandmother. | Quiero empezar con una historia sobre mi abuela.
+- 💡 | Here's the thing | El asunto es este | Here's the thing: we already have the solution. | El asunto es este: ya tenemos la solución.
+- 📊 | Consider this: | Consideren esto: | Consider this: one in three meals is wasted. | Consideren esto: una de cada tres comidas se desperdicia.
+- 🔄 | But here's where it gets interesting | Pero aquí es donde se pone interesante | But here's where it gets interesting. | Pero aquí es donde se pone interesante.
+- 🤔 | You might be wondering | Quizás se estén preguntando | You might be wondering what this has to do with you. | Quizás se pregunten qué tiene que ver esto con ustedes.
+- 🎯 | What I'm asking you to do is simple | Lo que les pido es simple | What I'm asking you to do is simple. | Lo que les pido es simple.
+- 🗣️ | My opponent makes a valid point; however, | Mi oponente plantea un punto válido; sin embargo, | My opponent makes a valid point; however, it ignores the cost. | Mi oponente plantea un punto válido; sin embargo, ignora el costo.
+- ⚔️ | I would challenge the assumption that | Cuestionaría la suposición de que | I would challenge the assumption that growth is always good. | Cuestionaría la suposición de que el crecimiento siempre es bueno.
+- 🧾 | The evidence simply does not support | La evidencia simplemente no respalda | The evidence simply does not support that claim. | La evidencia simplemente no respalda esa afirmación.
+- 🏁 | So I'll leave you with this question | Así que los dejo con esta pregunta | So I'll leave you with this question: what will you do tomorrow? | Así que los dejo con esta pregunta: ¿qué harán mañana?
+- 🙏 | Thank you | Gracias | Thank you. | Gracias.
+teoria:
+intro: El proyecto oral C2 tiene dos partes: una charla de 5 a 8 minutos (estilo TED: historia, ideas y un llamado a la acción) y un debate formal con exposición, réplica y conclusión. Se evalúa la precisión, la naturalidad y la capacidad de persuadir y responder.
+tabla: Estructura de la charla ; Parte | Tiempo | Frases modelo*
+| Historia de apertura | 1 min | I want to start with a story…
+| Idea central | 1 min | Here's the thing:…
+| Evidencia | 2 min | Consider this:… / But here's where it gets interesting.
+| Objeciones | 1 min | You might be wondering…
+| Llamado a la acción | 1 min | What I'm asking you to do is simple.
+| Cierre | 30 s | So I'll leave you with this question…
+tabla: Debate formal ; Fase | Frases*
+| Exposición | I firmly believe that… / I will make three points.
+| Réplica | My opponent makes a valid point; however,… / I would challenge the assumption that…
+| Refutación | The evidence simply does not support… / This argument rests on a false premise.
+| Conclusión | For all these reasons,… / The choice before us is clear.
+tabla: Rúbrica C2 ; Criterio | Nivel esperado
+| Precisión | vocabulario exacto, matices, sin errores que dificulten
+| Naturalidad | connected speech, idioms apropiados, registro adecuado
+| Organización | estructura clara, transiciones fluidas
+| Persuasión | retórica, evidencia, manejo de objeciones
+| Interacción | respuestas ágiles y diplomáticas
+ej: This argument rests on a false premise: that more is always better. | Este argumento se basa en una premisa falsa: que más siempre es mejor.
+ej: The choice before us is clear. | La decisión que tenemos delante es clara.
+ojo: En debate, critica las ideas, nunca a la persona.
+ojo: Mide el tiempo: una charla de 6 minutos son unas 750–800 palabras habladas.
+pron: Varía el volumen, la velocidad y las pausas; la monotonía es el mayor enemigo del orador.
+
+=== eng-c2-w8-c2 | 🏆 | C2 · Semana 8 · Clase 2: Proyecto: ensayo de 500–800 palabras
+desc: Ensayo C2: tesis compleja, argumentación matizada, voz propia, estilo preciso y conclusión con alcance. Revisión final con checklist.
+- 🎯 | This essay seeks to demonstrate that | Este ensayo busca demostrar que | This essay seeks to demonstrate that creativity can be taught. | Este ensayo busca demostrar que la creatividad se puede enseñar.
+- 🧩 | At the heart of this issue lies | En el centro de este tema se encuentra | At the heart of this issue lies a fundamental question. | En el centro de este tema se encuentra una pregunta fundamental.
+- 🔎 | A closer examination reveals | Un examen más detenido revela | A closer examination reveals a more complex picture. | Un examen más detenido revela un panorama más complejo.
+- ⚖️ | While there is some merit in this view, | Si bien esta postura tiene cierto mérito, | While there is some merit in this view, it oversimplifies the problem. | Si bien esta postura tiene cierto mérito, simplifica demasiado el problema.
+- 🧱 | This line of reasoning fails to account for | Este razonamiento no tiene en cuenta | This line of reasoning fails to account for cultural differences. | Este razonamiento no tiene en cuenta las diferencias culturales.
+- 🌐 | It is worth considering | Vale la pena considerar | It is worth considering the long-term consequences. | Vale la pena considerar las consecuencias a largo plazo.
+- 🔗 | This, in turn, | Esto, a su vez, | This, in turn, affects how we learn. | Esto, a su vez, afecta cómo aprendemos.
+- 🪞 | Paradoxically, | Paradójicamente, | Paradoxically, more choice can make us less happy. | Paradójicamente, más opciones pueden hacernos menos felices.
+- 🏁 | Ultimately, | En última instancia, | Ultimately, the question is not what we know, but how we think. | En última instancia, la cuestión no es qué sabemos, sino cómo pensamos.
+- 🔭 | This opens up the possibility of | Esto abre la posibilidad de | This opens up the possibility of a new kind of school. | Esto abre la posibilidad de un nuevo tipo de escuela.
+- 🖋️ | It is in this light that | Es bajo esta luz que | It is in this light that the reform should be judged. | Es desde esta perspectiva que debe juzgarse la reforma.
+teoria:
+intro: El ensayo C2 (500–800 palabras) demuestra dominio total: tesis compleja y matizada, argumentos y contraargumentos integrados, estilo preciso y conciso, cohesión elegante y una conclusión que abre perspectivas. Debe tener voz propia.
+tabla: Estructura flexible del ensayo C2 ; Parte | Contenido | Frases modelo*
+| Introducción | contexto + problema + tesis matizada | At the heart of this issue lies… This essay seeks to demonstrate that…
+| Desarrollo 1 | argumento principal con evidencia | A closer examination reveals…
+| Desarrollo 2 | complejidad, causas o consecuencias | This, in turn,… / Paradoxically,…
+| Contraargumento integrado | postura opuesta con matiz | While there is some merit in this view,… This line of reasoning fails to account for…
+| Conclusión | síntesis + alcance | Ultimately,… This opens up the possibility of…
+tabla: Checklist de revisión final ; Revisa | ✔
+| ¿La tesis es clara y no obvia? | ☐
+| ¿Cada párrafo avanza el argumento? | ☐
+| ¿Eliminé redundancias y frases infladas? | ☐
+| ¿Usé estructuras de énfasis y cohesión avanzada con moderación? | ☐
+| ¿El registro es coherente de principio a fin? | ☐
+| ¿La conclusión aporta algo más que un resumen? | ☐
+ej: While there is some merit in this view, it fails to account for the role of motivation. | Si bien esta postura tiene cierto mérito, no tiene en cuenta el papel de la motivación.
+ej: Ultimately, the measure of a society is how it treats its most vulnerable members. | En última instancia, la medida de una sociedad es cómo trata a sus miembros más vulnerables.
+ojo: En C2 la calidad importa más que la cantidad de recursos: claridad primero, elegancia después.
+ojo: Revisa en tres lecturas: contenido, estructura y lenguaje.
+pron: Lee el ensayo en voz alta como si fuera un discurso: así detectas frases torpes.
