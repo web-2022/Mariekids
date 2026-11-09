@@ -1,0 +1,1114 @@
+# ===================== A0 · SEMANA 1: SALUDOS, NOMBRE Y PAÍS =====================
+
+=== eng-a0-w1 | 👋 | A0 · Semana 1 · Clase 1: Hello! Saludos y despedidas
+desc: Hello, hi, good morning/afternoon/evening/night, goodbye, see you. What is your name? My name is… Nice to meet you.
+- 👋 | Hello | Hola | Hello, teacher! | ¡Hola, profesora!
+- 🙋 | Hi | Hola (informal) | Hi, Tom! | ¡Hola, Tom!
+- 🌅 | Good morning | Buenos días | Good morning, class! | ¡Buenos días, clase!
+- 🌞 | Good afternoon | Buenas tardes | Good afternoon, Mrs. Ruiz. | Buenas tardes, señora Ruiz.
+- 🌆 | Good evening | Buenas noches (al llegar) | Good evening, Grandpa. | Buenas noches, abuelito.
+- 🌙 | Good night | Buenas noches (al despedirte o dormir) | Good night, Mom. Sleep well. | Buenas noches, mamá. Que duermas bien.
+- 🖐️ | Goodbye | Adiós | Goodbye, friends! | ¡Adiós, amigos!
+- 👋 | Bye | Chau | Bye, see you! | ¡Chau, nos vemos!
+- ⏰ | See you later | Hasta luego | See you later, Ana. | Hasta luego, Ana.
+- 📅 | See you tomorrow | Hasta mañana | See you tomorrow at school. | Hasta mañana en el colegio.
+- 😊 | Have a nice day | Que tengas un buen día | Have a nice day, Dad! | ¡Que tengas un buen día, papá!
+- ❓ | What is your name? | ¿Cómo te llamas? | Hi! What is your name? | ¡Hola! ¿Cómo te llamas?
+- 🏷️ | My name is Ana | Me llamo Ana | Hello, my name is Ana. | Hola, me llamo Ana.
+- 🙂 | I am Leo | Soy Leo | Hi! I am Leo. | ¡Hola! Soy Leo.
+- 🤝 | Nice to meet you | Mucho gusto | Nice to meet you, Sofía. | Mucho gusto, Sofía.
+- 🤗 | Nice to meet you too | Mucho gusto también | Nice to meet you too, Leo. | Mucho gusto también, Leo.
+teoria:
+intro: Aprendemos a saludar y despedirnos según la hora del día, a decir nuestro nombre y a preguntar el nombre de otra persona.
+tabla: Saludos según la hora ; Cuándo | En inglés* | En español
+| Siempre | Hello / Hi | Hola
+| En la mañana | Good morning | Buenos días
+| En la tarde | Good afternoon | Buenas tardes
+| En la noche, al llegar | Good evening | Buenas noches
+| En la noche, al irte o dormir | Good night | Buenas noches
+tabla: Despedidas ; Inglés* | Español
+| Goodbye | Adiós
+| Bye | Chau
+| See you later | Hasta luego
+| See you tomorrow | Hasta mañana
+tabla: Presentarse ; Pregunta o respuesta* | Español
+| What is your name? | ¿Cómo te llamas?
+| My name is Ana. | Me llamo Ana.
+| I am Leo. | Soy Leo.
+| Nice to meet you. | Mucho gusto.
+ej: Hello! What is your name? | ¡Hola! ¿Cómo te llamas?
+ej: My name is Ana. Nice to meet you. | Me llamo Ana. Mucho gusto.
+ej: Good morning, teacher! | ¡Buenos días, profesora!
+ej: Good night, Mom! | ¡Buenas noches, mamá!
+ojo: «Good night» es solo para despedirte en la noche o ir a dormir. Para saludar cuando llegas en la noche se dice «Good evening».
+ojo: «Hi» es más informal que «Hello»: úsalo con amigos y familia.
+ojo: En inglés no se dice «My name are»: siempre «My name is».
+pron: Hello se dice parecido a «jelóu». Night suena «náit». Morning suena «móorning».
+pron: La «h» de hello y hi sí suena, como una «j» suave.
+
+=== eng-a0-w1-c2 | 🙂 | A0 · Semana 1 · Clase 2: How are you? Estados y cortesía
+desc: How are you? I'm fine / great / OK / tired… And you? Please, thank you, you're welcome, sorry, excuse me.
+- 🙂 | How are you? | ¿Cómo estás? | Hi, Ana! How are you? | ¡Hola, Ana! ¿Cómo estás?
+- 😊 | I'm fine, thank you | Estoy bien, gracias | I'm fine, thank you. And you? | Estoy bien, gracias. ¿Y tú?
+- 🤩 | I'm great | Estoy muy bien | I'm great today! | ¡Hoy estoy muy bien!
+- 👌 | I'm OK | Estoy bien (normal) | I'm OK, thanks. | Estoy bien, gracias.
+- 😐 | I'm so-so | Más o menos | I'm so-so today. | Hoy estoy más o menos.
+- 😴 | I'm tired | Estoy cansado | I'm tired. I want to sleep. | Estoy cansado. Quiero dormir.
+- 😄 | I'm happy | Estoy feliz | I'm happy. It's my birthday! | Estoy feliz. ¡Es mi cumpleaños!
+- 😢 | I'm sad | Estoy triste | I'm sad. My cat is sick. | Estoy triste. Mi gato está enfermo.
+- 🔁 | And you? | ¿Y tú? | I'm fine. And you? | Estoy bien. ¿Y tú?
+- 🙏 | Please | Por favor | Water, please. | Agua, por favor.
+- 💐 | Thank you | Gracias | Thank you, teacher! | ¡Gracias, profesora!
+- 💝 | Thank you very much | Muchas gracias | Thank you very much for the gift. | Muchas gracias por el regalo.
+- 😇 | You're welcome | De nada | Thank you! — You're welcome. | ¡Gracias! — De nada.
+- 😔 | Sorry | Perdón / Lo siento | Sorry, I'm late. | Perdón, llegué tarde.
+- 🙋 | Excuse me | Disculpe / Con permiso | Excuse me, where is the bathroom? | Disculpe, ¿dónde está el baño?
+- 🎉 | Welcome | Bienvenido | Welcome to my house! | ¡Bienvenido a mi casa!
+- 👫 | This is my friend | Este es mi amigo | This is my friend, Tom. | Este es mi amigo Tom.
+teoria:
+intro: Aprendemos a preguntar «¿cómo estás?», a responder cómo nos sentimos y las palabras mágicas de la cortesía.
+tabla: ¿Cómo estás? ; Pregunta y respuestas* | Español
+| How are you? | ¿Cómo estás?
+| I'm great! | ¡Muy bien!
+| I'm fine, thank you. | Bien, gracias.
+| I'm OK. | Bien (normal).
+| I'm so-so. | Más o menos.
+| I'm tired. | Estoy cansado.
+| I'm sad. | Estoy triste.
+| And you? | ¿Y tú?
+tabla: Palabras mágicas ; Inglés* | Español | Cuándo
+| Please | Por favor | Cuando pides algo
+| Thank you | Gracias | Cuando te dan algo
+| You're welcome | De nada | Cuando te dicen gracias
+| Sorry | Perdón | Cuando te equivocas
+| Excuse me | Disculpe | Para pedir permiso o llamar la atención
+ej: How are you? — I'm fine, thank you. And you? | ¿Cómo estás? — Bien, gracias. ¿Y tú?
+ej: Can I have water, please? | ¿Me das agua, por favor?
+ej: Thank you very much! — You're welcome. | ¡Muchas gracias! — De nada.
+ej: Excuse me, teacher. | Disculpe, profesora.
+ojo: «I'm» es la forma corta de «I am». Las dos están bien: I'm fine = I am fine.
+ojo: «Excuse me» es para pedir permiso ANTES de algo; «Sorry» es para disculparte DESPUÉS de un error.
+pron: Thank you suena «zénk iu»: pon la lengua entre los dientes en la «th».
+pron: Please suena «pliis», con la «i» larga.
+
+=== eng-a0-w1-c3 | 🌎 | A0 · Semana 1 · Clase 3: Where are you from? Países y nacionalidades
+desc: Where are you from? I'm from Peru. I'm Peruvian. Mexico/Mexican, Chile/Chilean, Spain/Spanish… Where do you live?
+- 🌎 | Where are you from? | ¿De dónde eres? | Hi, Leo! Where are you from? | ¡Hola, Leo! ¿De dónde eres?
+- 🇵🇪 | I'm from Peru | Soy de Perú | I'm from Peru. I live in Lima. | Soy de Perú. Vivo en Lima.
+- 🦙 | I'm Peruvian | Soy peruano | I'm Peruvian and I love ceviche. | Soy peruano y me encanta el ceviche.
+- 🇲🇽 | Mexico, Mexican | México, mexicano | Carlos is from Mexico. He's Mexican. | Carlos es de México. Es mexicano.
+- 🇨🇱 | Chile, Chilean | Chile, chileno | Sofía is from Chile. She's Chilean. | Sofía es de Chile. Es chilena.
+- 🇨🇴 | Colombia, Colombian | Colombia, colombiano | My teacher is Colombian. | Mi profesora es colombiana.
+- 🇦🇷 | Argentina, Argentinian | Argentina, argentino | Messi is Argentinian. | Messi es argentino.
+- 🇧🇷 | Brazil, Brazilian | Brasil, brasileño | My friend is from Brazil. | Mi amigo es de Brasil.
+- 🇪🇸 | Spain, Spanish | España, español | Ana is from Spain. She's Spanish. | Ana es de España. Es española.
+- 🇺🇸 | the United States, American | Estados Unidos, estadounidense | Tom is from the United States. He's American. | Tom es de Estados Unidos. Es estadounidense.
+- 🇬🇧 | England, English | Inglaterra, inglés | Emma is from England. She's English. | Emma es de Inglaterra. Es inglesa.
+- 🇨🇳 | China, Chinese | China, chino | Li is from China. He's Chinese. | Li es de China. Es chino.
+- 🇯🇵 | Japan, Japanese | Japón, japonés | Yuki is Japanese. | Yuki es japonesa.
+- 🏠 | Where do you live? | ¿Dónde vives? | Where do you live? — In Cusco. | ¿Dónde vives? — En Cusco.
+- 📍 | I live in Lima | Vivo en Lima | I live in Lima with my family. | Vivo en Lima con mi familia.
+teoria:
+intro: Aprendemos a decir de qué país somos, nuestra nacionalidad y dónde vivimos. En inglés, los países y nacionalidades se escriben siempre con mayúscula.
+tabla: Países y nacionalidades ; País* | Nacionalidad* | Español
+| Peru | Peruvian | Perú, peruano
+| Mexico | Mexican | México, mexicano
+| Chile | Chilean | Chile, chileno
+| Colombia | Colombian | Colombia, colombiano
+| Argentina | Argentinian | Argentina, argentino
+| Brazil | Brazilian | Brasil, brasileño
+| Spain | Spanish | España, español
+| the United States | American | Estados Unidos, estadounidense
+| England | English | Inglaterra, inglés
+| China | Chinese | China, chino
+| Japan | Japanese | Japón, japonés
+tabla: Las frases ; Inglés* | Español
+| Where are you from? | ¿De dónde eres?
+| I'm from Peru. | Soy de Perú.
+| I'm Peruvian. | Soy peruano.
+| Where do you live? | ¿Dónde vives?
+| I live in Lima. | Vivo en Lima.
+ej: Where are you from? — I'm from Peru. | ¿De dónde eres? — Soy de Perú.
+ej: He's Mexican. | Él es mexicano.
+ej: She's from Chile. She's Chilean. | Ella es de Chile. Es chilena.
+ej: I live in Arequipa. | Vivo en Arequipa.
+ojo: Con el país se usa «from»: I'm from Peru. Con la nacionalidad, no: I'm Peruvian (no «I'm from Peruvian»).
+ojo: En inglés las nacionalidades llevan mayúscula: Peruvian, Mexican, Spanish.
+pron: Peru suena «perú» pero con la «r» suave inglesa. Peruvian suena «perúvian».
+
+=== eng-a0-w1-c4 | 🔤 | A0 · Semana 1 · Clase 4: The alphabet A–M
+desc: Las letras A, B, C… hasta la M, con su sonido en inglés.
+- 🍎 | A | letra A (suena «éi») | A is for apple. | La A es de apple (manzana).
+- ⚽ | B | letra B (suena «bíi») | B is for ball. | La B es de ball (pelota).
+- 🐱 | C | letra C (suena «síi») | C is for cat. | La C es de cat (gato).
+- 🐶 | D | letra D (suena «díi») | D is for dog. | La D es de dog (perro).
+- 🐘 | E | letra E (suena «íi») | E is for elephant. | La E es de elephant (elefante).
+- 🐟 | F | letra F (suena «éf») | F is for fish. | La F es de fish (pez).
+- 🍇 | G | letra G (suena «yíi») | G is for grapes. | La G es de grapes (uvas).
+- 🏠 | H | letra H (suena «éich») | H is for house. | La H es de house (casa).
+- 🍦 | I | letra I (suena «ái») | I is for ice cream. | La I es de ice cream (helado).
+- 🧃 | J | letra J (suena «yéi») | J is for juice. | La J es de juice (jugo).
+- 🪁 | K | letra K (suena «kéi») | K is for kite. | La K es de kite (cometa).
+- 🦁 | L | letra L (suena «él») | L is for lion. | La L es de lion (león).
+- 🐵 | M | letra M (suena «ém») | M is for monkey. | La M es de monkey (mono).
+teoria:
+intro: El abecedario en inglés tiene 26 letras. Muchas se escriben igual que en español pero suenan distinto. Hoy aprendemos de la A a la M.
+tabla: Letras A–M ; Letra* | Suena como | Palabra*
+| A | éi | apple
+| B | bíi | ball
+| C | síi | cat
+| D | díi | dog
+| E | íi | elephant
+| F | éf | fish
+| G | yíi | grapes
+| H | éich | house
+| I | ái | ice cream
+| J | yéi | juice
+| K | kéi | kite
+| L | él | lion
+| M | ém | monkey
+ej: A, B, C, D, E | A, B, C, D, E
+ej: My name starts with M. | Mi nombre empieza con M.
+ojo: La A inglesa suena «éi» y la E suena «íi»: ¡es al revés de lo que parece! No las confundas.
+ojo: La I suena «ái» y la G suena «yíi».
+pron: Canta el abecedario despacio: es la mejor forma de recordarlo.
+
+=== eng-a0-w1-c5 | 🔡 | A0 · Semana 1 · Clase 5: The alphabet N–Z y deletrear
+desc: Las letras N a la Z y cómo deletrear tu nombre: How do you spell it?
+- 👃 | N | letra N (suena «én») | N is for nose. | La N es de nose (nariz).
+- 🍊 | O | letra O (suena «óu») | O is for orange. | La O es de orange (naranja).
+- 🐷 | P | letra P (suena «píi») | P is for pig. | La P es de pig (chancho).
+- 👑 | Q | letra Q (suena «kiú») | Q is for queen. | La Q es de queen (reina).
+- 🐰 | R | letra R (suena «ár») | R is for rabbit. | La R es de rabbit (conejo).
+- ☀️ | S | letra S (suena «és») | S is for sun. | La S es de sun (sol).
+- 🐯 | T | letra T (suena «tíi») | T is for tiger. | La T es de tiger (tigre).
+- ☂️ | U | letra U (suena «iú») | U is for umbrella. | La U es de umbrella (paraguas).
+- 🚐 | V | letra V (suena «víi») | V is for van. | La V es de van (camioneta).
+- 💧 | W | letra W (suena «dábol iú») | W is for water. | La W es de water (agua).
+- ❌ | X | letra X (suena «éks») | X is for x-ray. | La X es de x-ray (rayos X).
+- 💛 | Y | letra Y (suena «uái») | Y is for yellow. | La Y es de yellow (amarillo).
+- 🦓 | Z | letra Z (suena «síi» o «zéd») | Z is for zebra. | La Z es de zebra (cebra).
+- 🔤 | How do you spell your name? | ¿Cómo se deletrea tu nombre? | How do you spell your name? — A-N-A. | ¿Cómo se deletrea tu nombre? — A-N-A.
+- ✍️ | How do you spell it? | ¿Cómo se deletrea? | Cat. How do you spell it? — C-A-T. | Cat. ¿Cómo se deletrea? — C-A-T.
+teoria:
+intro: Terminamos el abecedario (de la N a la Z) y aprendemos a deletrear, algo muy útil para decir tu nombre o tu correo.
+tabla: Letras N–Z ; Letra* | Suena como | Palabra*
+| N | én | nose
+| O | óu | orange
+| P | píi | pig
+| Q | kiú | queen
+| R | ár | rabbit
+| S | és | sun
+| T | tíi | tiger
+| U | iú | umbrella
+| V | víi | van
+| W | dábol iú | water
+| X | éks | x-ray
+| Y | uái | yellow
+| Z | síi / zéd | zebra
+ej: How do you spell your name? — L-E-O. | ¿Cómo se deletrea tu nombre? — L-E-O.
+ej: How do you spell «dog»? — D-O-G. | ¿Cómo se deletrea «dog»? — D-O-G.
+ojo: La R se dice «ár», no «erre». La Y se dice «uái», no «i griega».
+ojo: La W se dice «dábol iú» (doble u).
+pron: Para deletrear, di cada letra separada y despacio: A… N… A.
+
+# ===================== A0 · SEMANA 2: NÚMEROS, EDAD Y FAMILIA =====================
+
+=== eng-a0-w2 | 🔢 | A0 · Semana 2 · Clase 1: Números del 0 al 10
+desc: Zero, one, two, three… ten. How many…?
+- 0️⃣ | zero | cero | I have zero candies. | Tengo cero caramelos.
+- 1️⃣ | one | uno | I have one dog. | Tengo un perro.
+- 2️⃣ | two | dos | I have two hands. | Tengo dos manos.
+- 3️⃣ | three | tres | Three little pigs. | Tres chanchitos.
+- 4️⃣ | four | cuatro | A dog has four legs. | Un perro tiene cuatro patas.
+- 5️⃣ | five | cinco | I have five fingers on one hand. | Tengo cinco dedos en una mano.
+- 6️⃣ | six | seis | I am six years old. | Tengo seis años.
+- 7️⃣ | seven | siete | A week has seven days. | Una semana tiene siete días.
+- 8️⃣ | eight | ocho | A spider has eight legs. | Una araña tiene ocho patas.
+- 9️⃣ | nine | nueve | Nine balloons. | Nueve globos.
+- 🔟 | ten | diez | I have ten fingers. | Tengo diez dedos.
+- ❓ | How many? | ¿Cuántos? | How many apples? — Three apples. | ¿Cuántas manzanas? — Tres manzanas.
+teoria:
+intro: Aprendemos a contar del 0 al 10 en inglés y a preguntar «¿cuántos hay?» con How many.
+tabla: Números del 0 al 10 ; Número | Inglés* | Suena como
+| 0 | zero | sírou
+| 1 | one | uán
+| 2 | two | tú
+| 3 | three | zríi
+| 4 | four | fóor
+| 5 | five | fáiv
+| 6 | six | síks
+| 7 | seven | séven
+| 8 | eight | éit
+| 9 | nine | náin
+| 10 | ten | tén
+ej: How many dogs? — Two dogs. | ¿Cuántos perros? — Dos perros.
+ej: I have five pencils. | Tengo cinco lápices.
+ej: One, two, three, go! | ¡Uno, dos, tres, ya!
+ojo: Después de How many el sustantivo va en plural: How many apples? (con «s»).
+ojo: Con más de uno, el objeto lleva «s»: one dog, two dogs.
+pron: Three empieza con la lengua entre los dientes: «zríi». Eight se dice «éit» (la «gh» no suena).
+
+=== eng-a0-w2-c2 | 🔢 | A0 · Semana 2 · Clase 2: Números del 11 al 20
+desc: Eleven, twelve, thirteen… nineteen, twenty. ¡Ojo con -teen!
+- 1️⃣1️⃣ | eleven | once | My brother is eleven. | Mi hermano tiene once años.
+- 1️⃣2️⃣ | twelve | doce | A dozen is twelve eggs. | Una docena son doce huevos.
+- 1️⃣3️⃣ | thirteen | trece | My cousin is thirteen. | Mi primo tiene trece años.
+- 1️⃣4️⃣ | fourteen | catorce | There are fourteen boys. | Hay catorce niños.
+- 1️⃣5️⃣ | fifteen | quince | I have fifteen stickers. | Tengo quince stickers.
+- 1️⃣6️⃣ | sixteen | dieciséis | Sixteen apples. | Dieciséis manzanas.
+- 1️⃣7️⃣ | seventeen | diecisiete | My sister is seventeen. | Mi hermana tiene diecisiete años.
+- 1️⃣8️⃣ | eighteen | dieciocho | Eighteen students. | Dieciocho estudiantes.
+- 1️⃣9️⃣ | nineteen | diecinueve | Nineteen balloons. | Diecinueve globos.
+- 2️⃣0️⃣ | twenty | veinte | There are twenty kids in my class. | Hay veinte niños en mi clase.
+teoria:
+intro: Aprendemos del 11 al 20. El 11 y el 12 son especiales; del 13 al 19 terminan en «-teen».
+tabla: Números del 11 al 20 ; Número | Inglés* | Suena como
+| 11 | eleven | iléven
+| 12 | twelve | tuélv
+| 13 | thirteen | zertíin
+| 14 | fourteen | fortíin
+| 15 | fifteen | fiftíin
+| 16 | sixteen | sikstíin
+| 17 | seventeen | seventíin
+| 18 | eighteen | eitíin
+| 19 | nineteen | naintíin
+| 20 | twenty | tuénti
+ej: I am thirteen years old. | Tengo trece años.
+ej: Twelve eggs are a dozen. | Doce huevos son una docena.
+ej: Count from eleven to twenty! | ¡Cuenta del once al veinte!
+ojo: Del 13 al 19 todos terminan en «-teen» y el acento va al final: thir-TEEN, four-TEEN.
+ojo: Fifteen no es «fiveteen», y thirteen no es «threeteen».
+pron: En -teen la «ii» es larga y fuerte: «fortíin». Así no se confunde con forty («fóorti»).
+
+=== eng-a0-w2-c3 | 🔢 | A0 · Semana 2 · Clase 3: Números del 21 al 30
+desc: Twenty-one, twenty-two… twenty-nine, thirty.
+- 2️⃣1️⃣ | twenty-one | veintiuno | My mom is twenty-one? No! | ¿Mi mamá tiene veintiuno? ¡No!
+- 2️⃣2️⃣ | twenty-two | veintidós | There are twenty-two chairs. | Hay veintidós sillas.
+- 2️⃣3️⃣ | twenty-three | veintitrés | Twenty-three students. | Veintitrés estudiantes.
+- 2️⃣4️⃣ | twenty-four | veinticuatro | A day has twenty-four hours. | Un día tiene veinticuatro horas.
+- 2️⃣5️⃣ | twenty-five | veinticinco | Twenty-five soles, please. | Veinticinco soles, por favor.
+- 2️⃣6️⃣ | twenty-six | veintiséis | The alphabet has twenty-six letters. | El abecedario tiene veintiséis letras.
+- 2️⃣7️⃣ | twenty-seven | veintisiete | Twenty-seven cookies. | Veintisiete galletas.
+- 2️⃣8️⃣ | twenty-eight | veintiocho | February has twenty-eight days. | Febrero tiene veintiocho días.
+- 2️⃣9️⃣ | twenty-nine | veintinueve | Twenty-nine stars. | Veintinueve estrellas.
+- 3️⃣0️⃣ | thirty | treinta | April has thirty days. | Abril tiene treinta días.
+teoria:
+intro: Del 21 al 29 se forma igual que en español: twenty (veinte) + el número, unidos con un guion.
+tabla: Del 21 al 30 ; Número | Inglés* | Cómo se forma
+| 21 | twenty-one | 20 + 1
+| 22 | twenty-two | 20 + 2
+| 23 | twenty-three | 20 + 3
+| 24 | twenty-four | 20 + 4
+| 25 | twenty-five | 20 + 5
+| 26 | twenty-six | 20 + 6
+| 27 | twenty-seven | 20 + 7
+| 28 | twenty-eight | 20 + 8
+| 29 | twenty-nine | 20 + 9
+| 30 | thirty | treinta
+ej: A day has twenty-four hours. | Un día tiene veinticuatro horas.
+ej: April has thirty days. | Abril tiene treinta días.
+ej: The alphabet has twenty-six letters. | El abecedario tiene veintiséis letras.
+ojo: Se escribe con guion: twenty-one, twenty-five.
+ojo: No digas «twenty and one»: es twenty-one, sin «and».
+pron: Thirty suena «zérti», con la lengua entre los dientes al inicio.
+
+=== eng-a0-w2-c4 | 💯 | A0 · Semana 2 · Clase 4: Decenas hasta 100, mil y un millón
+desc: Forty, fifty… ninety, one hundred, five hundred, one thousand, one million. Forty-five, ninety-nine.
+- 4️⃣0️⃣ | forty | cuarenta | My dad is forty years old. | Mi papá tiene cuarenta años.
+- 5️⃣0️⃣ | fifty | cincuenta | Fifty soles, please. | Cincuenta soles, por favor.
+- 6️⃣0️⃣ | sixty | sesenta | An hour has sixty minutes. | Una hora tiene sesenta minutos.
+- 7️⃣0️⃣ | seventy | setenta | My grandma is seventy. | Mi abuelita tiene setenta años.
+- 8️⃣0️⃣ | eighty | ochenta | Eighty kilometers. | Ochenta kilómetros.
+- 9️⃣0️⃣ | ninety | noventa | Ninety balloons. | Noventa globos.
+- 💯 | one hundred | cien | I have one hundred stickers! | ¡Tengo cien stickers!
+- 4️⃣5️⃣ | forty-five | cuarenta y cinco | The game is forty-five minutes. | El partido dura cuarenta y cinco minutos.
+- 9️⃣9️⃣ | ninety-nine | noventa y nueve | Ninety-nine red balloons. | Noventa y nueve globos rojos.
+- 2️⃣0️⃣0️⃣ | two hundred | doscientos | Two hundred people. | Doscientas personas.
+- 5️⃣0️⃣0️⃣ | five hundred | quinientos | Five hundred soles. | Quinientos soles.
+- 🔢 | one thousand | mil | One thousand stars in the sky. | Mil estrellas en el cielo.
+- 🤑 | one million | un millón | One million dollars! | ¡Un millón de dólares!
+teoria:
+intro: Aprendemos las decenas (de 10 en 10) hasta 100, cómo se forman números como 45 o 99, y los números grandes: cien, mil y un millón.
+tabla: De 10 en 10 ; Número | Inglés*
+| 10 | ten
+| 20 | twenty
+| 30 | thirty
+| 40 | forty
+| 50 | fifty
+| 60 | sixty
+| 70 | seventy
+| 80 | eighty
+| 90 | ninety
+| 100 | one hundred
+tabla: Números grandes ; Número | Inglés*
+| 200 | two hundred
+| 500 | five hundred
+| 1 000 | one thousand
+| 10 000 | ten thousand
+| 1 000 000 | one million
+tabla: Así se forman ; Número | Inglés* | Regla
+| 45 | forty-five | decena + guion + unidad
+| 72 | seventy-two | decena + guion + unidad
+| 99 | ninety-nine | decena + guion + unidad
+ej: An hour has sixty minutes. | Una hora tiene sesenta minutos.
+ej: My dad is forty-five years old. | Mi papá tiene cuarenta y cinco años.
+ej: One thousand people. | Mil personas.
+ej: One million dollars! | ¡Un millón de dólares!
+ojo: Forty se escribe sin «u» (no «fourty»).
+ojo: «-ty» (decenas) y «-teen» (13–19) suenan parecido: forty (40) vs fourteen (14). En -ty el acento va al inicio: «FÓR-ti»; en -teen al final: «for-TÍIN».
+ojo: Se dice one hundred y one thousand, con «one» adelante (no solo «hundred»). Y sin «s»: two hundred, no «two hundreds».
+pron: Hundred suena «jándred»; thousand suena «záusand»; million suena «míllion».
+
+=== eng-a0-w2-c5 | 🎂 | A0 · Semana 2 · Clase 5: Edad, teléfono y How many?
+desc: How old are you? I'm seven years old. What's your phone number? How many brothers do you have?
+- 🎂 | How old are you? | ¿Cuántos años tienes? | Hi, Leo! How old are you? | ¡Hola, Leo! ¿Cuántos años tienes?
+- 7️⃣ | I'm seven years old | Tengo siete años | I'm seven years old. And you? | Tengo siete años. ¿Y tú?
+- 👧 | She is ten years old | Ella tiene diez años | My sister is ten years old. | Mi hermana tiene diez años.
+- 👦 | He is twelve | Él tiene doce | My brother is twelve. | Mi hermano tiene doce.
+- 📞 | What's your phone number? | ¿Cuál es tu número de teléfono? | What's your phone number? — It's 987 654 321. | ¿Cuál es tu número? — Es 987 654 321.
+- 📱 | My phone number is… | Mi número de teléfono es… | My phone number is 912 345 678. | Mi número es 912 345 678.
+- 👨‍👩‍👧 | How many brothers do you have? | ¿Cuántos hermanos tienes? | How many brothers do you have? — Two. | ¿Cuántos hermanos tienes? — Dos.
+- 👭 | I have two sisters | Tengo dos hermanas | I have two sisters and one brother. | Tengo dos hermanas y un hermano.
+- 💰 | How much is it? | ¿Cuánto cuesta? | How much is it? — Five soles. | ¿Cuánto cuesta? — Cinco soles.
+- 🍎 | How many apples are there? | ¿Cuántas manzanas hay? | How many apples are there? — There are six. | ¿Cuántas manzanas hay? — Hay seis.
+teoria:
+intro: Usamos los números en la vida real: decir la edad, dar un número de teléfono, preguntar cuántos hay y cuánto cuesta.
+tabla: La edad ; Inglés* | Español
+| How old are you? | ¿Cuántos años tienes?
+| I'm seven years old. | Tengo siete años.
+| I'm seven. | Tengo siete.
+| He is twelve years old. | Él tiene doce años.
+| She is ten years old. | Ella tiene diez años.
+tabla: Preguntas con números ; Inglés* | Español
+| How many…? | ¿Cuántos…? (cosas que se cuentan)
+| How much is it? | ¿Cuánto cuesta?
+| What's your phone number? | ¿Cuál es tu número de teléfono?
+ej: How old are you? — I'm eight years old. | ¿Cuántos años tienes? — Tengo ocho años.
+ej: How many sisters do you have? — One. | ¿Cuántas hermanas tienes? — Una.
+ej: My phone number is nine eight seven… | Mi número es nueve ocho siete…
+ojo: En inglés la edad se dice con «be», no con «have»: I am seven years old ✓. «I have seven years» ✗.
+ojo: El teléfono se dice número por número: 9-8-7. El 0 se puede decir «zero» u «oh».
+pron: Years suena «yíers». Old suena «óuld».
+
+=== eng-a0-w2-c6 | 👨‍👩‍👧‍👦 | A0 · Semana 2 · Clase 6: My family
+desc: Mom, dad, parents, brother, sister, grandma, grandpa, uncle, aunt, cousin, baby… This is my mom.
+- 👨‍👩‍👧‍👦 | family | familia | I love my family. | Quiero a mi familia.
+- 👩 | mom | mamá | This is my mom. Her name is Rosa. | Esta es mi mamá. Se llama Rosa.
+- 👨 | dad | papá | This is my dad. He is tall. | Este es mi papá. Es alto.
+- 👩 | mother | madre | My mother is a teacher. | Mi madre es profesora.
+- 👨 | father | padre | My father is a doctor. | Mi padre es doctor.
+- 👫 | parents | padres (papá y mamá) | My parents are at work. | Mis padres están en el trabajo.
+- 👦 | brother | hermano | I have one brother. | Tengo un hermano.
+- 👧 | sister | hermana | My sister is eight. | Mi hermana tiene ocho años.
+- 👵 | grandma | abuelita | My grandma makes cakes. | Mi abuelita hace pasteles.
+- 👴 | grandpa | abuelito | My grandpa tells stories. | Mi abuelito cuenta cuentos.
+- 👴👵 | grandparents | abuelos | I visit my grandparents on Sundays. | Visito a mis abuelos los domingos.
+- 🧔 | uncle | tío | My uncle lives in Cusco. | Mi tío vive en Cusco.
+- 👩‍🦰 | aunt | tía | My aunt is funny. | Mi tía es graciosa.
+- 🧒 | cousin | primo, prima | My cousin is my best friend. | Mi primo es mi mejor amigo.
+- 👶 | baby | bebé | The baby is sleeping. | El bebé está durmiendo.
+- 🙋‍♂️ | son | hijo | Leo is my son. | Leo es mi hijo.
+- 🙋‍♀️ | daughter | hija | Ana is my daughter. | Ana es mi hija.
+teoria:
+intro: Aprendemos los nombres de los miembros de la familia y a presentarlos: This is my mom (Esta es mi mamá).
+tabla: La familia ; Inglés* | Español
+| mom / mother | mamá / madre
+| dad / father | papá / padre
+| parents | padres
+| brother | hermano
+| sister | hermana
+| grandma / grandmother | abuelita / abuela
+| grandpa / grandfather | abuelito / abuelo
+| grandparents | abuelos
+| uncle | tío
+| aunt | tía
+| cousin | primo / prima
+| son | hijo
+| daughter | hija
+| baby | bebé
+ej: This is my mom. | Esta es mi mamá.
+ej: These are my grandparents. | Estos son mis abuelos.
+ej: I have two brothers and one sister. | Tengo dos hermanos y una hermana.
+ej: My cousin's name is Lucía. | Mi prima se llama Lucía.
+ojo: «Parents» significa papá y mamá. Los demás familiares son «relatives» (parientes), no «parents».
+ojo: «Cousin» sirve para primo y para prima.
+pron: Daughter suena «dóter» (la «gh» no suena). Aunt suena «ánt».
+
+# ===================== A0 · SEMANA 3: COLORES Y OBJETOS =====================
+
+=== eng-a0-w3 | 🎨 | A0 · Semana 3 · Clase 1: Colors
+desc: Red, blue, yellow, green, orange, purple, pink, brown, black, white, gray… What color is it?
+- 🔴 | red | rojo | It's red. | Es rojo.
+- 🔵 | blue | azul | The sky is blue. | El cielo es azul.
+- 🟡 | yellow | amarillo | The sun is yellow. | El sol es amarillo.
+- 🟢 | green | verde | The grass is green. | El pasto es verde.
+- 🟠 | orange | anaranjado | The orange is orange. | La naranja es anaranjada.
+- 🟣 | purple | morado | Grapes are purple. | Las uvas son moradas.
+- 🌸 | pink | rosado | Her dress is pink. | Su vestido es rosado.
+- 🟤 | brown | marrón | My dog is brown. | Mi perro es marrón.
+- ⚫ | black | negro | The cat is black. | El gato es negro.
+- ⚪ | white | blanco | Snow is white. | La nieve es blanca.
+- 🩶 | gray | gris | The elephant is gray. | El elefante es gris.
+- 🩵 | light blue | celeste | My shirt is light blue. | Mi polo es celeste.
+- 🌲 | dark green | verde oscuro | The tree is dark green. | El árbol es verde oscuro.
+- 🎨 | What color is it? | ¿De qué color es? | What color is it? — It's blue. | ¿De qué color es? — Es azul.
+- 💙 | My favorite color is blue | Mi color favorito es el azul | My favorite color is blue. | Mi color favorito es el azul.
+teoria:
+intro: Aprendemos todos los colores, a preguntar de qué color es algo y a decir nuestro color favorito.
+tabla: Los colores ; Color | Inglés* | Suena como
+| 🔴 | red | réd
+| 🔵 | blue | blúu
+| 🟡 | yellow | iélou
+| 🟢 | green | gríin
+| 🟠 | orange | órinch
+| 🟣 | purple | pérpel
+| 🌸 | pink | pínk
+| 🟤 | brown | bráun
+| ⚫ | black | blák
+| ⚪ | white | uáit
+| 🩶 | gray | gréi
+tabla: Claro y oscuro ; Inglés* | Español
+| light blue | celeste (azul claro)
+| dark blue | azul oscuro
+| light green | verde claro
+| dark green | verde oscuro
+ej: What color is it? — It's red. | ¿De qué color es? — Es rojo.
+ej: The sky is blue. | El cielo es azul.
+ej: My favorite color is green. | Mi color favorito es el verde.
+ojo: En inglés el color va ANTES de la cosa: a red car (un carro rojo), no «a car red».
+ojo: Los colores no cambian en plural: red cars (no «reds cars»).
+pron: White suena «uáit». Purple suena «pérpel». Orange suena «órinch».
+
+=== eng-a0-w3-c2 | ✏️ | A0 · Semana 3 · Clase 2: School things
+desc: Pencil, pen, eraser, ruler, sharpener, notebook, book, backpack, scissors, glue, crayon, desk, chair, board…
+- ✏️ | pencil | lápiz | I have a pencil. | Tengo un lápiz.
+- 🖊️ | pen | lapicero | Can I have a pen, please? | ¿Me das un lapicero, por favor?
+- 🧽 | eraser | borrador | Where is my eraser? | ¿Dónde está mi borrador?
+- 📏 | ruler | regla | My ruler is long. | Mi regla es larga.
+- 🔪 | sharpener | tajador | I need a sharpener. | Necesito un tajador.
+- 📓 | notebook | cuaderno | Open your notebook. | Abre tu cuaderno.
+- 📕 | book | libro | This is my English book. | Este es mi libro de inglés.
+- 🎒 | backpack | mochila | My backpack is blue. | Mi mochila es azul.
+- 🖍️ | crayon | crayola | I have twelve crayons. | Tengo doce crayolas.
+- ✂️ | scissors | tijeras | The scissors are on the desk. | Las tijeras están en la carpeta.
+- 🧴 | glue | goma | I need glue for my project. | Necesito goma para mi proyecto.
+- 👝 | pencil case | cartuchera | My pencil case is red. | Mi cartuchera es roja.
+- 🪑 | chair | silla | Sit on your chair, please. | Siéntate en tu silla, por favor.
+- 🗄️ | desk | carpeta / escritorio | My desk is clean. | Mi carpeta está limpia.
+- 🟩 | board | pizarra | Look at the board. | Mira la pizarra.
+- ❓ | What is this? | ¿Qué es esto? | What is this? — It's a ruler. | ¿Qué es esto? — Es una regla.
+teoria:
+intro: Aprendemos los nombres de las cosas que usamos en el colegio y a preguntar «¿qué es esto?».
+tabla: Útiles escolares ; Inglés* | Español
+| pencil | lápiz
+| pen | lapicero
+| eraser | borrador
+| ruler | regla
+| sharpener | tajador
+| notebook | cuaderno
+| book | libro
+| backpack | mochila
+| pencil case | cartuchera
+| crayon | crayola
+| scissors | tijeras
+| glue | goma
+| desk | carpeta
+| chair | silla
+| board | pizarra
+ej: What is this? — It's a pencil. | ¿Qué es esto? — Es un lápiz.
+ej: Open your book, please. | Abre tu libro, por favor.
+ej: I have a blue pen. | Tengo un lapicero azul.
+ojo: «Scissors» siempre va en plural: The scissors are on the desk.
+ojo: «Pen» es lapicero; «pencil» es lápiz. ¡No los confundas!
+pron: Eraser suena «iréiser». Scissors suena «sísors».
+
+=== eng-a0-w3-c3 | 👉 | A0 · Semana 3 · Clase 3: A / an, this / that, these / those
+desc: A book, an apple. This is a red book. That is a blue pen. These are pencils. Those are chairs.
+- 📕 | a book | un libro | I have a book. | Tengo un libro.
+- 🍎 | an apple | una manzana | I eat an apple every day. | Como una manzana todos los días.
+- 🧽 | an eraser | un borrador | Do you have an eraser? | ¿Tienes un borrador?
+- 🐘 | an elephant | un elefante | An elephant is big. | Un elefante es grande.
+- 👇 | This is a red book | Este es un libro rojo | Look! This is a red book. | ¡Mira! Este es un libro rojo.
+- 👉 | That is a blue pen | Ese es un lapicero azul | That is a blue pen. | Ese es un lapicero azul.
+- ✏️ | These are pencils | Estos son lápices | These are my pencils. | Estos son mis lápices.
+- 🪑 | Those are chairs | Esos son sillas | Those are big chairs. | Esas son sillas grandes.
+- ❓ | What are these? | ¿Qué son estos? | What are these? — They are crayons. | ¿Qué son estos? — Son crayolas.
+- 🟠 | It's an orange crayon | Es una crayola anaranjada | It's an orange crayon. | Es una crayola anaranjada.
+- 🔢 | one book, two books | un libro, dos libros | One book, two books, three books. | Un libro, dos libros, tres libros.
+teoria:
+intro: Aprendemos a usar «a» y «an» (un, una), a señalar cosas cerca (this, these) y lejos (that, those), y a formar el plural con «s».
+tabla: A o an ; Regla | Ejemplo*
+| a + sonido de consonante | a book, a pen, a dog
+| an + sonido de vocal (a, e, i, o, u) | an apple, an eraser, an orange
+tabla: Cerca y lejos ; Inglés* | Español | Dónde
+| This is a book. | Este es un libro. | uno, cerca
+| That is a book. | Ese es un libro. | uno, lejos
+| These are books. | Estos son libros. | varios, cerca
+| Those are books. | Esos son libros. | varios, lejos
+ej: This is an apple. | Esta es una manzana.
+ej: Those are my friends. | Esos son mis amigos.
+ej: What is this? — It's a ruler. | ¿Qué es esto? — Es una regla.
+ojo: Usa «an» antes de vocal: an apple, an eraser. Pero «a» antes de consonante: a red apple (porque «red» empieza con consonante).
+ojo: Con these y those la cosa va en plural: these pencils, those chairs.
+pron: This suena «dis» con la lengua entre los dientes. These suena «diis», más largo.
+
+=== eng-a0-w3-c4 | 🐾 | A0 · Semana 3 · Clase 4: Animals
+desc: Dog, cat, bird, fish, rabbit, horse, cow, pig, duck, chicken, sheep, llama, lion, elephant, monkey… a brown dog.
+- 🐶 | dog | perro | I have a dog. | Tengo un perro.
+- 🐱 | cat | gato | The cat is black. | El gato es negro.
+- 🐦 | bird | pájaro | The bird is blue. | El pájaro es azul.
+- 🐟 | fish | pez | I have two fish. | Tengo dos peces.
+- 🐰 | rabbit | conejo | The rabbit is white. | El conejo es blanco.
+- 🐴 | horse | caballo | The horse is brown. | El caballo es marrón.
+- 🐮 | cow | vaca | The cow gives milk. | La vaca da leche.
+- 🐷 | pig | chancho | The pig is pink. | El chancho es rosado.
+- 🦆 | duck | pato | A yellow duck. | Un pato amarillo.
+- 🐔 | chicken | gallina / pollo | The chicken is on the farm. | La gallina está en la granja.
+- 🐑 | sheep | oveja | The sheep is white. | La oveja es blanca.
+- 🦙 | llama | llama | Llamas live in Peru. | Las llamas viven en Perú.
+- 🦁 | lion | león | The lion is big. | El león es grande.
+- 🐘 | elephant | elefante | The elephant is gray. | El elefante es gris.
+- 🐵 | monkey | mono | The monkey eats bananas. | El mono come plátanos.
+- 🐕 | a brown dog | un perro marrón | I have a brown dog. | Tengo un perro marrón.
+teoria:
+intro: Aprendemos los nombres de los animales de la casa, de la granja y de la selva, y a describirlos con colores.
+tabla: Mascotas ; Inglés* | Español
+| dog | perro
+| cat | gato
+| bird | pájaro
+| fish | pez
+| rabbit | conejo
+tabla: Granja ; Inglés* | Español
+| horse | caballo
+| cow | vaca
+| pig | chancho
+| duck | pato
+| chicken | gallina
+| sheep | oveja
+| llama | llama
+tabla: Animales salvajes ; Inglés* | Español
+| lion | león
+| elephant | elefante
+| monkey | mono
+| tiger | tigre
+| bear | oso
+ej: I have a black cat. | Tengo un gato negro.
+ej: The monkey is brown. | El mono es marrón.
+ej: Llamas live in the Andes. | Las llamas viven en los Andes.
+ojo: Fish y sheep no cambian en plural: one fish, two fish; one sheep, three sheep.
+ojo: El color va antes del animal: a brown dog, no «a dog brown».
+pron: Bird suena «bérd». Horse suena «jórs». Sheep suena «shíip» (la «ii» larga).
+
+# ===================== A0 · SEMANA 4: COMIDA Y GUSTOS =====================
+
+=== eng-a0-w4 | 😋 | A0 · Semana 4 · Clase 1: I like / I don't like
+desc: I like pizza. I don't like milk. Do you like apples? Yes, I do / No, I don't. My favorite food is… I'm hungry.
+- 😋 | I like pizza | Me gusta la pizza | I like pizza with cheese. | Me gusta la pizza con queso.
+- 😖 | I don't like milk | No me gusta la leche | I don't like milk. I like juice. | No me gusta la leche. Me gusta el jugo.
+- ❓ | Do you like apples? | ¿Te gustan las manzanas? | Do you like apples? — Yes, I do. | ¿Te gustan las manzanas? — Sí.
+- 👍 | Yes, I do | Sí (me gusta) | Do you like rice? — Yes, I do. | ¿Te gusta el arroz? — Sí.
+- 👎 | No, I don't | No (no me gusta) | Do you like fish? — No, I don't. | ¿Te gusta el pescado? — No.
+- 💗 | I love ice cream | Me encanta el helado | I love chocolate ice cream. | Me encanta el helado de chocolate.
+- 👦 | He likes bananas | A él le gustan los plátanos | My brother likes bananas. | A mi hermano le gustan los plátanos.
+- 👧 | She doesn't like soup | A ella no le gusta la sopa | My sister doesn't like soup. | A mi hermana no le gusta la sopa.
+- ⭐ | My favorite food is chicken | Mi comida favorita es el pollo | My favorite food is chicken and rice. | Mi comida favorita es el arroz con pollo.
+- 🍽️ | I'm hungry | Tengo hambre | Mom, I'm hungry! | ¡Mamá, tengo hambre!
+- 🥤 | I'm thirsty | Tengo sed | I'm thirsty. Can I have water? | Tengo sed. ¿Me das agua?
+- 🤤 | It's yummy! | ¡Está rico! | This cake is yummy! | ¡Este pastel está rico!
+- 🤢 | It's yucky! | ¡Está feo! (no está rico) | Yuck! It's yucky! | ¡Puaj! ¡Está feo!
+teoria:
+intro: Aprendemos a decir lo que nos gusta y lo que no, a preguntar a otros y a responder con «Yes, I do» o «No, I don't».
+tabla: Like con todas las personas ; Persona | Me gusta* | No me gusta*
+| I | I like pizza. | I don't like pizza.
+| You | You like pizza. | You don't like pizza.
+| He | He likes pizza. | He doesn't like pizza.
+| She | She likes pizza. | She doesn't like pizza.
+| We | We like pizza. | We don't like pizza.
+| They | They like pizza. | They don't like pizza.
+tabla: Preguntar y responder ; Inglés* | Español
+| Do you like pizza? | ¿Te gusta la pizza?
+| Yes, I do. | Sí.
+| No, I don't. | No.
+| Does she like pizza? | ¿A ella le gusta la pizza?
+| Yes, she does. / No, she doesn't. | Sí. / No.
+ej: I like apples, but I don't like bananas. | Me gustan las manzanas, pero no los plátanos.
+ej: Do you like chocolate? — Yes, I do! | ¿Te gusta el chocolate? — ¡Sí!
+ej: He likes soccer. | A él le gusta el fútbol.
+ojo: Con he y she se agrega «s»: he likes, she likes. ¡No olvides la «s»!
+ojo: En negativa con he/she se usa «doesn't» y el verbo SIN «s»: she doesn't like (no «she doesn't likes»).
+ojo: «Tengo hambre» es «I'm hungry», no «I have hungry».
+pron: Don't suena «dóunt». Doesn't suena «dásent».
+
+=== eng-a0-w4-c2 | 🍓 | A0 · Semana 4 · Clase 2: Fruits
+desc: Apple, banana, orange, grapes, strawberry, pineapple, mango, watermelon, pear, lemon, peach, papaya, avocado, cherry.
+- 🍎 | apple | manzana | I eat an apple every day. | Como una manzana todos los días.
+- 🍌 | banana | plátano | Monkeys love bananas. | A los monos les encantan los plátanos.
+- 🍊 | orange | naranja | Orange juice, please. | Jugo de naranja, por favor.
+- 🍇 | grapes | uvas | I like green grapes. | Me gustan las uvas verdes.
+- 🍓 | strawberry | fresa | Strawberries are red. | Las fresas son rojas.
+- 🍍 | pineapple | piña | The pineapple is sweet. | La piña es dulce.
+- 🥭 | mango | mango | I love mangoes. | Me encantan los mangos.
+- 🍉 | watermelon | sandía | Watermelon is big and green. | La sandía es grande y verde.
+- 🍐 | pear | pera | A green pear. | Una pera verde.
+- 🍋 | lemon | limón | Ceviche has lemon. | El ceviche tiene limón.
+- 🍑 | peach | durazno | The peach is soft. | El durazno es suave.
+- 🧡 | papaya | papaya | Papaya juice is my favorite. | El jugo de papaya es mi favorito.
+- 🥑 | avocado | palta | I like bread with avocado. | Me gusta el pan con palta.
+- 🍒 | cherry | cereza | Two red cherries. | Dos cerezas rojas.
+teoria:
+intro: Aprendemos los nombres de las frutas más comunes y a hablar de ellas con colores y gustos.
+tabla: Frutas ; Inglés* | Español
+| apple | manzana
+| banana | plátano
+| orange | naranja
+| grapes | uvas
+| strawberry | fresa
+| pineapple | piña
+| mango | mango
+| watermelon | sandía
+| pear | pera
+| lemon | limón
+| peach | durazno
+| papaya | papaya
+| avocado | palta
+| cherry | cereza
+ej: I like strawberries. | Me gustan las fresas.
+ej: Do you like mango? — Yes, I do. | ¿Te gusta el mango? — Sí.
+ej: An orange and a banana, please. | Una naranja y un plátano, por favor.
+ojo: «Grapes» casi siempre va en plural. Una uva = one grape.
+ojo: Plural con «-y»: strawberry → strawberries, cherry → cherries (la «y» cambia a «ies»).
+ojo: «An orange» lleva «an» porque empieza con vocal.
+pron: Banana suena «banána». Avocado suena «avokádou».
+
+=== eng-a0-w4-c3 | 🍗 | A0 · Semana 4 · Clase 3: Food
+desc: Bread, rice, chicken, fish, egg, cheese, soup, salad, potato, meat, beans, corn, pizza, hamburger, sandwich, cake.
+- 🍞 | bread | pan | I eat bread for breakfast. | Como pan en el desayuno.
+- 🍚 | rice | arroz | Chicken and rice. | Arroz con pollo.
+- 🍗 | chicken | pollo | I love roast chicken. | Me encanta el pollo a la brasa.
+- 🐟 | fish | pescado | Ceviche is made with fish. | El ceviche se hace con pescado.
+- 🥚 | egg | huevo | A fried egg, please. | Un huevo frito, por favor.
+- 🧀 | cheese | queso | Bread with cheese. | Pan con queso.
+- 🍲 | soup | sopa | Grandma makes chicken soup. | La abuelita hace sopa de pollo.
+- 🥗 | salad | ensalada | A green salad. | Una ensalada verde.
+- 🥔 | potato | papa | Peru has many potatoes. | Perú tiene muchas papas.
+- 🥩 | meat | carne | I don't eat meat. | Yo no como carne.
+- 🫘 | beans | frijoles | Rice and beans. | Arroz con frijoles.
+- 🌽 | corn | choclo / maíz | I like corn with cheese. | Me gusta el choclo con queso.
+- 🍕 | pizza | pizza | Let's eat pizza! | ¡Comamos pizza!
+- 🍔 | hamburger | hamburguesa | A hamburger with fries. | Una hamburguesa con papas fritas.
+- 🥪 | sandwich | sándwich | A cheese sandwich. | Un sándwich de queso.
+- 🎂 | cake | pastel / torta | Happy birthday! Here's your cake. | ¡Feliz cumpleaños! Aquí está tu torta.
+teoria:
+intro: Aprendemos los nombres de las comidas de todos los días, incluidas algunas muy peruanas.
+tabla: Comidas ; Inglés* | Español
+| bread | pan
+| rice | arroz
+| chicken | pollo
+| fish | pescado
+| egg | huevo
+| cheese | queso
+| soup | sopa
+| salad | ensalada
+| potato | papa
+| meat | carne
+| beans | frijoles
+| corn | choclo
+| pizza | pizza
+| hamburger | hamburguesa
+| sandwich | sándwich
+| cake | torta
+ej: I eat rice and chicken for lunch. | Almuerzo arroz con pollo.
+ej: Can I have a cheese sandwich, please? | ¿Me da un sándwich de queso, por favor?
+ej: Potatoes are from Peru! | ¡Las papas son de Perú!
+ojo: «Fish» es pez (vivo) y también pescado (comida).
+ojo: Algunas comidas no se cuentan: bread, rice, cheese, meat. No digas «a rice» ni «breads».
+ojo: Plural de potato: potatoes (con «-es»).
+pron: Chicken suena «chíken». Cheese suena «chíis» con la «i» larga.
+
+=== eng-a0-w4-c4 | 🥤 | A0 · Semana 4 · Clase 4: Drinks and meals
+desc: Water, milk, juice, tea, coffee, soda, hot chocolate. Breakfast, lunch, dinner, snack. Can I have…, please?
+- 💧 | water | agua | I drink water every day. | Tomo agua todos los días.
+- 🥛 | milk | leche | A glass of milk. | Un vaso de leche.
+- 🧃 | juice | jugo | Orange juice, please. | Jugo de naranja, por favor.
+- 🍵 | tea | té | My grandma drinks tea. | Mi abuelita toma té.
+- ☕ | coffee | café | My dad drinks coffee. | Mi papá toma café.
+- 🥤 | soda | gaseosa | No soda, please. | Sin gaseosa, por favor.
+- 🍫 | hot chocolate | chocolate caliente | Hot chocolate at Christmas! | ¡Chocolate caliente en Navidad!
+- 🌅 | breakfast | desayuno | I have breakfast at seven. | Tomo desayuno a las siete.
+- 🌞 | lunch | almuerzo | Lunch is ready! | ¡El almuerzo está listo!
+- 🌙 | dinner | cena | We have dinner together. | Cenamos juntos.
+- 🍪 | snack | lonchera / bocadito | My snack is an apple. | Mi lonchera es una manzana.
+- 🙏 | Can I have water, please? | ¿Me das agua, por favor? | Mom, can I have water, please? | Mamá, ¿me das agua, por favor?
+teoria:
+intro: Aprendemos las bebidas, las comidas del día y a pedir algo con cortesía.
+tabla: Bebidas ; Inglés* | Español
+| water | agua
+| milk | leche
+| juice | jugo
+| tea | té
+| coffee | café
+| soda | gaseosa
+| hot chocolate | chocolate caliente
+tabla: Comidas del día ; Inglés* | Español | Cuándo
+| breakfast | desayuno | mañana
+| lunch | almuerzo | mediodía
+| dinner | cena | noche
+| snack | lonchera | entre comidas
+ej: Can I have juice, please? | ¿Me das jugo, por favor?
+ej: I have breakfast at seven o'clock. | Tomo desayuno a las siete.
+ej: What's for dinner? | ¿Qué hay de cena?
+ojo: En inglés se dice «have breakfast / have lunch / have dinner», no «take breakfast».
+ojo: Para pedir algo con cortesía: «Can I have…, please?».
+pron: Water suena «uóter». Juice suena «yúus». Breakfast suena «brékfast».
+
+# ===================== A0 · SEMANA 5: CASA, CIUDAD Y ESCUELA =====================
+
+=== eng-a0-w5 | 🛋️ | A0 · Semana 5 · Clase 1: The living room
+desc: Sofa, armchair, chair, TV, window, door, lamp, rug, picture, bookshelf, clock, plant, curtains, cushion.
+- 🛋️ | sofa | sofá | The cat is on the sofa. | El gato está en el sofá.
+- 💺 | armchair | sillón | Grandpa sits in the armchair. | El abuelito se sienta en el sillón.
+- 🪑 | chair | silla | There are four chairs. | Hay cuatro sillas.
+- 📺 | TV | televisor | We watch TV in the living room. | Vemos tele en la sala.
+- 🪟 | window | ventana | Open the window, please. | Abre la ventana, por favor.
+- 🚪 | door | puerta | Close the door. | Cierra la puerta.
+- 💡 | lamp | lámpara | Turn on the lamp. | Prende la lámpara.
+- 🧶 | rug | alfombra | The rug is red. | La alfombra es roja.
+- 🖼️ | picture | cuadro / foto | A picture of my family. | Una foto de mi familia.
+- 📚 | bookshelf | librero | My books are on the bookshelf. | Mis libros están en el librero.
+- 🕰️ | clock | reloj (de pared) | The clock is on the wall. | El reloj está en la pared.
+- 🪴 | plant | planta | Water the plant, please. | Riega la planta, por favor.
+- 🎐 | curtains | cortinas | The curtains are blue. | Las cortinas son azules.
+- 🛏️ | cushion | cojín | A soft cushion. | Un cojín suave.
+- 🎮 | remote control | control remoto | Where is the remote control? | ¿Dónde está el control remoto?
+teoria:
+intro: Aprendemos los muebles y objetos de la sala, el lugar donde la familia descansa y ve televisión.
+tabla: La sala ; Inglés* | Español
+| sofa | sofá
+| armchair | sillón
+| chair | silla
+| TV | televisor
+| window | ventana
+| door | puerta
+| lamp | lámpara
+| rug | alfombra
+| picture | cuadro / foto
+| bookshelf | librero
+| clock | reloj de pared
+| plant | planta
+| curtains | cortinas
+| cushion | cojín
+| remote control | control remoto
+ej: The TV is in the living room. | El televisor está en la sala.
+ej: Open the window, please. | Abre la ventana, por favor.
+ej: There is a lamp next to the sofa. | Hay una lámpara al lado del sofá.
+ojo: «Clock» es reloj de pared; el de muñeca es «watch».
+ojo: «TV» se lee «ti-ví».
+pron: Window suena «uíndou». Picture suena «píkcher».
+
+=== eng-a0-w5-c2 | 🏠 | A0 · Semana 5 · Clase 2: My house
+desc: House, kitchen, bedroom, bathroom, dining room, garden, garage, stairs, bed, table, fridge, stove, sink, shower.
+- 🏠 | house | casa | This is my house. | Esta es mi casa.
+- 🍳 | kitchen | cocina | Mom is in the kitchen. | Mamá está en la cocina.
+- 🛏️ | bedroom | dormitorio | My bedroom is small. | Mi dormitorio es pequeño.
+- 🛁 | bathroom | baño | The bathroom is upstairs. | El baño está arriba.
+- 🍽️ | dining room | comedor | We eat in the dining room. | Comemos en el comedor.
+- 🌳 | garden | jardín | The dog is in the garden. | El perro está en el jardín.
+- 🚗 | garage | garaje / cochera | The car is in the garage. | El carro está en la cochera.
+- 🪜 | stairs | escaleras | Go up the stairs. | Sube las escaleras.
+- 🛌 | bed | cama | My bed is soft. | Mi cama es suave.
+- 🪵 | table | mesa | The food is on the table. | La comida está en la mesa.
+- 🧊 | fridge | refrigeradora | The milk is in the fridge. | La leche está en la refrigeradora.
+- 🔥 | stove | cocina (para cocinar) | Don't touch the stove! | ¡No toques la cocina!
+- 🚰 | sink | lavadero | Wash your hands in the sink. | Lávate las manos en el lavadero.
+- 🚿 | shower | ducha | I take a shower every morning. | Me ducho todas las mañanas.
+- 🧸 | toys | juguetes | My toys are in my bedroom. | Mis juguetes están en mi dormitorio.
+- 📍 | Where is Dad? — He's in the kitchen | ¿Dónde está papá? — Está en la cocina | Where is Dad? — He's in the kitchen. | ¿Dónde está papá? — Está en la cocina.
+teoria:
+intro: Aprendemos los ambientes de la casa y los objetos que hay en ellos, y a decir dónde está alguien.
+tabla: Ambientes ; Inglés* | Español
+| kitchen | cocina
+| bedroom | dormitorio
+| bathroom | baño
+| living room | sala
+| dining room | comedor
+| garden | jardín
+| garage | cochera
+tabla: Objetos ; Inglés* | Español | Dónde está
+| bed | cama | bedroom
+| table | mesa | dining room
+| fridge | refrigeradora | kitchen
+| stove | cocina | kitchen
+| sink | lavadero | kitchen
+| shower | ducha | bathroom
+ej: Where is Mom? — She's in the bedroom. | ¿Dónde está mamá? — Está en el dormitorio.
+ej: The fridge is in the kitchen. | La refrigeradora está en la cocina.
+ej: My house has three bedrooms. | Mi casa tiene tres dormitorios.
+ojo: «Kitchen» es el ambiente (cocina). El aparato para cocinar es «stove».
+ojo: Para decir dónde está alguien: He's / She's in the + lugar.
+pron: Kitchen suena «kíchen». Bathroom suena «báazrum».
+
+=== eng-a0-w5-c3 | 🏙️ | A0 · Semana 5 · Clase 3: My city
+desc: School, park, hospital, store, market, bank, church, library, restaurant, bakery, pharmacy, street, bus stop, zoo. There is / There are.
+- 🏫 | school | colegio | I go to school by bus. | Voy al colegio en bus.
+- 🌳 | park | parque | We play in the park. | Jugamos en el parque.
+- 🏥 | hospital | hospital | The doctor works in the hospital. | El doctor trabaja en el hospital.
+- 🏪 | store | tienda | There is a store on my street. | Hay una tienda en mi calle.
+- 🧺 | market | mercado | Mom buys fruit at the market. | Mamá compra fruta en el mercado.
+- 🏦 | bank | banco | The bank is next to the park. | El banco está al lado del parque.
+- ⛪ | church | iglesia | The church is very old. | La iglesia es muy antigua.
+- 📚 | library | biblioteca | I read books at the library. | Leo libros en la biblioteca.
+- 🍽️ | restaurant | restaurante | Let's eat at a restaurant. | Comamos en un restaurante.
+- 🥖 | bakery | panadería | I buy bread at the bakery. | Compro pan en la panadería.
+- 💊 | pharmacy | farmacia | The pharmacy is open. | La farmacia está abierta.
+- 🛣️ | street | calle | I live on this street. | Vivo en esta calle.
+- 🚏 | bus stop | paradero | Wait at the bus stop. | Espera en el paradero.
+- 🦒 | zoo | zoológico | There are lions at the zoo. | Hay leones en el zoológico.
+- ☝️ | There is a park | Hay un parque | There is a park near my house. | Hay un parque cerca de mi casa.
+- ✌️ | There are two stores | Hay dos tiendas | There are two stores on my street. | Hay dos tiendas en mi calle.
+teoria:
+intro: Aprendemos los lugares de la ciudad y a decir qué hay en nuestro barrio con «There is» (hay uno) y «There are» (hay varios).
+tabla: Lugares ; Inglés* | Español
+| school | colegio
+| park | parque
+| hospital | hospital
+| store | tienda
+| market | mercado
+| bank | banco
+| church | iglesia
+| library | biblioteca
+| restaurant | restaurante
+| bakery | panadería
+| pharmacy | farmacia
+| bus stop | paradero
+| zoo | zoológico
+tabla: There is / There are ; Inglés* | Español | Cuándo
+| There is a park. | Hay un parque. | uno
+| There are two parks. | Hay dos parques. | varios
+| Is there a bank? | ¿Hay un banco? | pregunta
+| There isn't a zoo. | No hay zoológico. | negativa
+ej: There is a bakery on my street. | Hay una panadería en mi calle.
+ej: There are three schools in my town. | Hay tres colegios en mi pueblo.
+ej: Is there a pharmacy near here? — Yes, there is. | ¿Hay una farmacia cerca? — Sí, hay.
+ojo: «Library» es biblioteca, no librería. Librería se dice «bookstore».
+ojo: Con uno: There is. Con varios: There are. Nunca «There is two».
+pron: Library suena «láibreri». Church suena «chérch».
+
+=== eng-a0-w5-c4 | 📍 | A0 · Semana 5 · Clase 4: At school: where is it?
+desc: Classroom, teacher, student, playground… In, on, under, next to, behind, in front of, between. Where is my pencil?
+- 🏫 | classroom | salón de clases | Our classroom is big. | Nuestro salón es grande.
+- 👩‍🏫 | teacher | profesor / profesora | My teacher is nice. | Mi profesora es amable.
+- 🧑‍🎓 | student | estudiante | There are twenty students. | Hay veinte estudiantes.
+- 🛝 | playground | patio de juegos | We play in the playground. | Jugamos en el patio.
+- 📦 | in | dentro de | The pencil is in the box. | El lápiz está dentro de la caja.
+- 🔝 | on | sobre / encima de | The book is on the desk. | El libro está sobre la carpeta.
+- ⬇️ | under | debajo de | The cat is under the chair. | El gato está debajo de la silla.
+- ↔️ | next to | al lado de | Ana is next to Leo. | Ana está al lado de Leo.
+- 🔙 | behind | detrás de | The ball is behind the door. | La pelota está detrás de la puerta.
+- ⏩ | in front of | delante de | The teacher is in front of the board. | La profesora está delante de la pizarra.
+- 🎯 | between | entre | The bank is between the park and the school. | El banco está entre el parque y el colegio.
+- ❓ | Where is my pencil? | ¿Dónde está mi lápiz? | Where is my pencil? — It's under the desk. | ¿Dónde está mi lápiz? — Está debajo de la carpeta.
+- 👀 | Where are my books? | ¿Dónde están mis libros? | Where are my books? — They're in your bag. | ¿Dónde están mis libros? — Están en tu mochila.
+teoria:
+intro: Aprendemos palabras del colegio y las preposiciones de lugar, para decir dónde están las cosas.
+tabla: Preposiciones de lugar ; Inglés* | Español | Ejemplo*
+| in | dentro de | in the box
+| on | sobre | on the desk
+| under | debajo de | under the chair
+| next to | al lado de | next to the door
+| behind | detrás de | behind the sofa
+| in front of | delante de | in front of the board
+| between | entre | between the two chairs
+tabla: Preguntar dónde está ; Inglés* | Español
+| Where is the ball? | ¿Dónde está la pelota?
+| It's on the table. | Está sobre la mesa.
+| Where are the keys? | ¿Dónde están las llaves?
+| They're in the bag. | Están en la mochila.
+ej: The cat is under the bed. | El gato está debajo de la cama.
+ej: My backpack is next to my chair. | Mi mochila está al lado de mi silla.
+ej: Where is the teacher? — She's in the classroom. | ¿Dónde está la profesora? — Está en el salón.
+ojo: Con una cosa: Where is…? It's… Con varias: Where are…? They're…
+ojo: «In» es dentro y «on» es encima. ¡No los confundas!
+pron: Behind suena «bijáind». Between suena «bituíin».
+
+# ===================== A0 · SEMANA 6: CIERRE A0 =====================
+
+=== eng-a0-w6 | 🆘 | A0 · Semana 6 · Clase 1: Frases de ayuda en clase
+desc: I don't understand. Can you repeat, please? Slowly, please. How do you say…? What does … mean? Can I go to the bathroom?
+- 🤔 | I don't understand | No entiendo | Sorry, I don't understand. | Perdón, no entiendo.
+- 🔁 | Can you repeat, please? | ¿Puede repetir, por favor? | Can you repeat, please? | ¿Puede repetir, por favor?
+- 🐢 | Slowly, please | Más despacio, por favor | Slowly, please. I'm learning. | Más despacio, por favor. Estoy aprendiendo.
+- 🗣️ | How do you say «gato» in English? | ¿Cómo se dice «gato» en inglés? | How do you say «gato» in English? — Cat. | ¿Cómo se dice «gato» en inglés? — Cat.
+- ❓ | What does «big» mean? | ¿Qué significa «big»? | What does «big» mean? — Grande. | ¿Qué significa «big»? — Grande.
+- 🚻 | Can I go to the bathroom? | ¿Puedo ir al baño? | Teacher, can I go to the bathroom? | Profesora, ¿puedo ir al baño?
+- 🆘 | Can you help me? | ¿Me puede ayudar? | Can you help me, please? | ¿Me puede ayudar, por favor?
+- 🤷 | I don't know | No sé | I don't know the answer. | No sé la respuesta.
+- 💡 | I know! | ¡Yo sé! | I know! It's blue! | ¡Yo sé! ¡Es azul!
+- ✋ | I have a question | Tengo una pregunta | Teacher, I have a question. | Profesora, tengo una pregunta.
+- ✅ | I'm ready | Estoy listo | I'm ready! Let's start. | ¡Estoy listo! Empecemos.
+- 🏁 | I finished | Terminé | I finished my homework. | Terminé mi tarea.
+- 👏 | Good job! | ¡Buen trabajo! | Good job, Leo! | ¡Buen trabajo, Leo!
+- 🚀 | Let's go! | ¡Vamos! | Let's go to the park! | ¡Vamos al parque!
+teoria:
+intro: Aprendemos frases de supervivencia: lo que necesitas decir en clase cuando no entiendes, quieres pedir algo o terminaste.
+tabla: Cuando no entiendes ; Inglés* | Español
+| I don't understand. | No entiendo.
+| Can you repeat, please? | ¿Puede repetir, por favor?
+| Slowly, please. | Más despacio, por favor.
+| What does … mean? | ¿Qué significa…?
+| How do you say … in English? | ¿Cómo se dice … en inglés?
+tabla: Para pedir algo ; Inglés* | Español
+| Can I go to the bathroom? | ¿Puedo ir al baño?
+| Can you help me? | ¿Me puede ayudar?
+| I have a question. | Tengo una pregunta.
+| Can I have a pencil, please? | ¿Me presta un lápiz, por favor?
+ej: Sorry, I don't understand. Can you repeat, please? | Perdón, no entiendo. ¿Puede repetir, por favor?
+ej: How do you say «perro» in English? — Dog. | ¿Cómo se dice «perro» en inglés? — Dog.
+ej: Teacher, I finished! | ¡Profesora, terminé!
+ojo: Para pedir permiso se usa «Can I…?»: Can I go out? (¿Puedo salir?).
+ojo: «I don't know» (no sé) y «I don't understand» (no entiendo) son diferentes.
+pron: Understand suena «anderstánd». Question suena «kuéschon».
+
+=== eng-a0-w6-c2 | 📅 | A0 · Semana 6 · Clase 2: Days of the week
+desc: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday. What day is it today? Yesterday, tomorrow, weekend.
+- 1️⃣ | Monday | lunes | Today is Monday. | Hoy es lunes.
+- 2️⃣ | Tuesday | martes | I have English on Tuesday. | Tengo inglés el martes.
+- 3️⃣ | Wednesday | miércoles | Wednesday is in the middle of the week. | El miércoles está en medio de la semana.
+- 4️⃣ | Thursday | jueves | I play soccer on Thursday. | Juego fútbol el jueves.
+- 5️⃣ | Friday | viernes | Friday is my favorite day! | ¡El viernes es mi día favorito!
+- 6️⃣ | Saturday | sábado | On Saturday I go to the park. | El sábado voy al parque.
+- 7️⃣ | Sunday | domingo | On Sunday I visit my grandma. | El domingo visito a mi abuelita.
+- ❓ | What day is it today? | ¿Qué día es hoy? | What day is it today? — It's Friday. | ¿Qué día es hoy? — Es viernes.
+- ⬅️ | yesterday | ayer | Yesterday was Monday. | Ayer fue lunes.
+- 📆 | today | hoy | Today is my birthday! | ¡Hoy es mi cumpleaños!
+- ➡️ | tomorrow | mañana | See you tomorrow! | ¡Hasta mañana!
+- 🎉 | weekend | fin de semana | I love the weekend. | Me encanta el fin de semana.
+- 🗓️ | week | semana | A week has seven days. | Una semana tiene siete días.
+teoria:
+intro: Aprendemos los siete días de la semana, siempre con mayúscula en inglés, y las palabras ayer, hoy y mañana.
+tabla: Los días ; Inglés* | Español | Suena como
+| Monday | lunes | mándei
+| Tuesday | martes | tiúsdei
+| Wednesday | miércoles | uénsdei
+| Thursday | jueves | zérsdei
+| Friday | viernes | fráidei
+| Saturday | sábado | sáterdei
+| Sunday | domingo | sándei
+tabla: Ayer, hoy y mañana ; Inglés* | Español
+| yesterday | ayer
+| today | hoy
+| tomorrow | mañana
+| weekend | fin de semana
+ej: What day is it today? — It's Monday. | ¿Qué día es hoy? — Es lunes.
+ej: On Saturday I play soccer. | El sábado juego fútbol.
+ej: Tomorrow is Sunday. | Mañana es domingo.
+ojo: Los días van con mayúscula: Monday, Friday.
+ojo: Para decir «el lunes» se usa «on»: on Monday (no «the Monday»).
+ojo: «Mañana» (el día siguiente) es «tomorrow»; «en la mañana» es «in the morning».
+pron: Wednesday se escribe con «d» pero suena «uénsdei». Thursday empieza con la lengua entre los dientes.
+
+=== eng-a0-w6-c3 | 🗓️ | A0 · Semana 6 · Clase 3: Months of the year
+desc: January, February, March… December. When is your birthday? My birthday is in May.
+- ❄️ | January | enero | January is the first month. | Enero es el primer mes.
+- 💘 | February | febrero | February is short. | Febrero es corto.
+- 🎒 | March | marzo | School starts in March. | El colegio empieza en marzo.
+- 🐣 | April | abril | April has thirty days. | Abril tiene treinta días.
+- 💐 | May | mayo | Mother's Day is in May. | El Día de la Madre es en mayo.
+- 👔 | June | junio | Father's Day is in June. | El Día del Padre es en junio.
+- 🇵🇪 | July | julio | Peru's Independence Day is in July. | Las Fiestas Patrias son en julio.
+- 🪁 | August | agosto | We fly kites in August. | Volamos cometas en agosto.
+- 🌱 | September | setiembre | Spring starts in September. | La primavera empieza en setiembre.
+- 🎃 | October | octubre | October is the purple month in Lima. | Octubre es el mes morado en Lima.
+- 🍂 | November | noviembre | November has thirty days. | Noviembre tiene treinta días.
+- 🎄 | December | diciembre | Christmas is in December. | La Navidad es en diciembre.
+- 🎂 | When is your birthday? | ¿Cuándo es tu cumpleaños? | When is your birthday? — It's in May. | ¿Cuándo es tu cumpleaños? — Es en mayo.
+- 🥳 | My birthday is in May | Mi cumpleaños es en mayo | My birthday is in May. | Mi cumpleaños es en mayo.
+teoria:
+intro: Aprendemos los doce meses del año (con mayúscula en inglés) y a decir cuándo es nuestro cumpleaños.
+tabla: Los meses ; Inglés* | Español
+| January | enero
+| February | febrero
+| March | marzo
+| April | abril
+| May | mayo
+| June | junio
+| July | julio
+| August | agosto
+| September | setiembre
+| October | octubre
+| November | noviembre
+| December | diciembre
+ej: When is your birthday? — It's in October. | ¿Cuándo es tu cumpleaños? — Es en octubre.
+ej: Christmas is in December. | La Navidad es en diciembre.
+ej: There are twelve months in a year. | Hay doce meses en un año.
+ojo: Con meses se usa «in»: in May, in July.
+ojo: Los meses van con mayúscula: January, not «january».
+pron: February suena «fébruari». August suena «ógast».
+
+=== eng-a0-w6-c4 | ⛅ | A0 · Semana 6 · Clase 4: Seasons and weather
+desc: Spring, summer, autumn, winter. Sunny, rainy, cloudy, windy, hot, cold. What's the weather like?
+- 🌸 | spring | primavera | In spring there are many flowers. | En primavera hay muchas flores.
+- ☀️ | summer | verano | I go to the beach in summer. | Voy a la playa en verano.
+- 🍂 | autumn | otoño | Leaves fall in autumn. | Las hojas caen en otoño.
+- ❄️ | winter | invierno | It's cold in winter. | Hace frío en invierno.
+- 🌞 | It's sunny | Está soleado | It's sunny today! | ¡Hoy está soleado!
+- 🌧️ | It's rainy | Está lluvioso | It's rainy. Take your umbrella. | Está lluvioso. Lleva tu paraguas.
+- ☁️ | It's cloudy | Está nublado | Lima is often cloudy. | Lima suele estar nublada.
+- 🌬️ | It's windy | Hace viento | It's windy. Let's fly a kite! | Hace viento. ¡Volemos una cometa!
+- 🥵 | It's hot | Hace calor | It's hot in summer. | Hace calor en verano.
+- 🥶 | It's cold | Hace frío | It's cold. Put on your jacket. | Hace frío. Ponte tu casaca.
+- 🌨️ | It's snowing | Está nevando | It's snowing in the mountains. | Está nevando en las montañas.
+- ❓ | What's the weather like? | ¿Cómo está el clima? | What's the weather like today? — It's sunny. | ¿Cómo está el clima hoy? — Está soleado.
+teoria:
+intro: Aprendemos las cuatro estaciones y a decir cómo está el clima. Para el clima casi siempre empezamos con «It's».
+tabla: Estaciones ; Inglés* | Español
+| spring | primavera
+| summer | verano
+| autumn / fall | otoño
+| winter | invierno
+tabla: El clima ; Inglés* | Español
+| It's sunny. | Está soleado.
+| It's rainy. | Está lluvioso.
+| It's cloudy. | Está nublado.
+| It's windy. | Hace viento.
+| It's hot. | Hace calor.
+| It's cold. | Hace frío.
+ej: What's the weather like? — It's cloudy. | ¿Cómo está el clima? — Está nublado.
+ej: In winter it's cold. | En invierno hace frío.
+ej: I love summer! | ¡Me encanta el verano!
+ojo: «Hace calor» no es «It makes hot»: es «It's hot».
+ojo: En Estados Unidos otoño se dice «fall»; en Inglaterra, «autumn».
+pron: Weather suena «uéder». Autumn suena «ótum» (la «n» final no suena).
+
+=== eng-a0-w6-c5 | 🏆 | A0 · Semana 6 · Clase 5: Repaso A0: ¡Me presento!
+desc: Todo junto: me presento con nombre, edad, país, familia, gustos y mi casa.
+- 👋 | Hello, my name is Ana | Hola, me llamo Ana | Hello, my name is Ana. Nice to meet you! | Hola, me llamo Ana. ¡Mucho gusto!
+- 🎂 | I'm eight years old | Tengo ocho años | I'm eight years old. | Tengo ocho años.
+- 🇵🇪 | I'm from Peru | Soy de Perú | I'm from Peru. I'm Peruvian. | Soy de Perú. Soy peruana.
+- 📍 | I live in Lima | Vivo en Lima | I live in Lima with my family. | Vivo en Lima con mi familia.
+- 👨‍👩‍👧 | I have one brother and one sister | Tengo un hermano y una hermana | I have one brother and one sister. | Tengo un hermano y una hermana.
+- 💙 | My favorite color is blue | Mi color favorito es el azul | My favorite color is blue. | Mi color favorito es el azul.
+- 🐶 | I have a dog | Tengo un perro | I have a dog. His name is Max. | Tengo un perro. Se llama Max.
+- 🍕 | I like pizza | Me gusta la pizza | I like pizza, but I don't like fish. | Me gusta la pizza, pero no el pescado.
+- 🎂 | My birthday is in May | Mi cumpleaños es en mayo | My birthday is in May. | Mi cumpleaños es en mayo.
+- 🏠 | My house has two bedrooms | Mi casa tiene dos dormitorios | My house has two bedrooms. | Mi casa tiene dos dormitorios.
+- ⚽ | On Saturday I play soccer | El sábado juego fútbol | On Saturday I play soccer in the park. | El sábado juego fútbol en el parque.
+- 🙏 | Thank you for listening | Gracias por escuchar | That's all. Thank you for listening! | Eso es todo. ¡Gracias por escuchar!
+teoria:
+intro: Repasamos todo el A0 para presentarnos completo: nombre, edad, país, familia, gustos, casa y días.
+tabla: Mi presentación ; Tema | Frase modelo*
+| Nombre | My name is Ana.
+| Edad | I'm eight years old.
+| País | I'm from Peru.
+| Dónde vivo | I live in Lima.
+| Familia | I have one brother.
+| Color favorito | My favorite color is blue.
+| Mascota | I have a dog.
+| Comida | I like pizza.
+| Cumpleaños | My birthday is in May.
+| Casa | My house has two bedrooms.
+ej: Hello! My name is Leo. I'm seven years old. I'm from Peru. | ¡Hola! Me llamo Leo. Tengo siete años. Soy de Perú.
+ej: I like apples, but I don't like milk. | Me gustan las manzanas, pero no la leche.
+ojo: Recuerda: I'm seven years old (con «am»), no «I have seven years».
+ojo: Recuerda la «s» con he/she: My mom likes coffee.
+pron: Practica tu presentación en voz alta, despacio y sonriendo. ¡Grábate y escúchate!

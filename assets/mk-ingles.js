@@ -7,6 +7,12 @@
 (function () {
   "use strict";
   var L = window.MK_LESSON || { items: [] };
+  // frases compactas: si faltan preguntas o ejemplos, se completan solas
+  (L.items || []).forEach(function (it) {
+    if (!it.examplesEn || !it.examplesEn.length) { it.examplesEn = [it.en]; it.examplesEs = [it.es]; }
+    if (!it.examplesEs || it.examplesEs.length < it.examplesEn.length) it.examplesEs = it.examplesEn.map(function (x, i) { return (it.examplesEs || [])[i] || it.es; });
+    if (!it.questions || !it.questions.length) it.questions = ["¿Cómo se dice «" + it.es + "» en inglés?"];
+  });
   var PASS = L.pass || 0.8;
   var SLUG = (location.pathname.split("/").pop() || "").replace(/\.html$/i, "");
   var card = document.getElementById("lessonCard");
@@ -180,7 +186,7 @@
   }
 
   function options(step, correctText) {
-    var others = shuffle(ITEMS.filter(function (i) { return i.en !== step.item.en; })).slice(0, 2).map(function (i) { return i.en; });
+    var others = shuffle(ITEMS.filter(function (i) { return i.en !== step.item.en; })).slice(0, ITEMS.length >= 12 ? 3 : 2).map(function (i) { return i.en; });
     var opts = shuffle([correctText].concat(others));
     var box = el("div", "options");
     opts.forEach(function (o) {
@@ -458,7 +464,7 @@
     var list = el("div", "vocab-list"), rows = [];
     ITEMS.forEach(function (it, i) {
       var r = el("div", "vocab-row");
-      r.appendChild(el("span", "vocab-emoji", it.emoji));
+      r.appendChild(el("span", "vocab-emoji" + ([].concat(Array.from(it.emoji || "")).filter(function (c) { return /\p{Extended_Pictographic}|\u20E3/u.test(c); }).length > 2 ? " long" : ""), it.emoji));
       var t = el("div", "vocab-txt");
       var line = enLine(it.en, "vocab-en", { noSpeaker: true });
       t.appendChild(line);
@@ -502,6 +508,100 @@
     updateBars();
   }
 
+  /* ---------- 📖 Teoría: resumen del tema con audio en inglés y español ---------- */
+  var TH = L.teoria, thPanel = null;
+  function thOpen() {
+    stopVoz();
+    if (!thPanel) thPanel = thBuild();
+    document.body.appendChild(thPanel);
+    document.body.classList.add("th-open");
+    thPanel.querySelector(".th-box").scrollTop = 0;
+    setTimeout(function () { var c = thPanel.querySelector(".th-close"); if (c) c.focus(); }, 50);
+  }
+  function thClose() { stopVoz(); thStopAll(); if (thPanel && thPanel.parentNode) thPanel.parentNode.removeChild(thPanel); document.body.classList.remove("th-open"); }
+  function sayBtn(lang, text) {
+    var b = el("button", "th-say " + lang, lang === "en" ? "🔊 EN" : "🔊 ES"); b.type = "button";
+    b.setAttribute("aria-label", lang === "en" ? "Escuchar en inglés" : "Escuchar en español");
+    b.onclick = function (ev) { ev.stopPropagation(); thStopAll(); if (lang === "en") say(text); else sayEs(text); };
+    return b;
+  }
+  var thQueue = [], thPlaying = false, thAllBtn = null;
+  function thStopAll() { thPlaying = false; thQueue = []; if (thAllBtn) thAllBtn.textContent = "🔊 Escuchar todo"; if (thPanel) thPanel.querySelectorAll(".th-now").forEach(function (e) { e.classList.remove("th-now"); }); }
+  function thNext() {
+    if (!thPlaying) return;
+    var p = thQueue.shift(); if (!p) { thStopAll(); return; }
+    if (thPanel) thPanel.querySelectorAll(".th-now").forEach(function (e) { e.classList.remove("th-now"); });
+    if (p.node) { p.node.classList.add("th-now"); p.node.scrollIntoView({ behavior: "smooth", block: "nearest" }); }
+    var go = function () { setTimeout(thNext, 450); };
+    if (!window.MKVoz) { setTimeout(go, 700); return; }
+    if (p.lang === "en") window.MKVoz.speak(p.text, { lang: "en", rate: slow ? 0.6 : undefined, onend: go });
+    else window.MKVoz.speakMixto(p.text, function (w) { return !!EN_WORDS[w.toLowerCase()]; }, { modo: "explicar", onend: go });
+  }
+  function thBuild() {
+    var ov = el("div", "th-overlay"); ov.setAttribute("role", "dialog"); ov.setAttribute("aria-label", "Teoría");
+    ov.onclick = function (e) { if (e.target === ov) thClose(); };
+    var box = el("div", "th-box"); ov.appendChild(box);
+    var head = el("div", "th-head");
+    head.appendChild(el("div", "th-title", "📖 Teoría · " + esc(L.titulo || document.title.replace(/^MK • /, ""))));
+    var x = el("button", "th-close", "✖"); x.type = "button"; x.setAttribute("aria-label", "Cerrar teoría"); x.onclick = thClose;
+    head.appendChild(x); box.appendChild(head);
+    var tools = el("div", "th-tools");
+    thAllBtn = el("button", "tool-btn listen", "🔊 Escuchar todo"); thAllBtn.type = "button";
+    tools.appendChild(thAllBtn); box.appendChild(tools);
+    var seq = [];
+    function sec(icon, title) { var d = el("section", "th-sec"); d.appendChild(el("h3", "th-h", icon + " " + title)); box.appendChild(d); return d; }
+    if (TH.intro) {
+      var s1 = sec("🎯", "Qué vamos a aprender"), p = el("p", "th-intro", esc(TH.intro));
+      p.appendChild(sayBtn("es", TH.intro)); s1.appendChild(p); seq.push({ lang: "es", text: TH.intro, node: p });
+    }
+    (TH.bloques || []).forEach(function (bq) {
+      var s2 = sec("📋", bq.tit || "La regla"), wrap = el("div", "th-tblwrap"), t = el("table", "th-table");
+      var tr = el("tr"); bq.cab.forEach(function (c) { tr.appendChild(el("th", "", esc(c))); }); tr.appendChild(el("th", "th-c", "")); t.appendChild(tr);
+      bq.filas.forEach(function (f) {
+        var r = el("tr"), enTxt = bq.en.map(function (i) { return f[i]; }).filter(Boolean).join(". ");
+        f.forEach(function (c, i) {
+          var td = el("td", bq.en.indexOf(i) >= 0 ? "en" : "", "");
+          if (bq.en.indexOf(i) >= 0 && c) { td.appendChild(enLine(c, "th-en", { noSpeaker: true })); } else td.innerHTML = esc(c);
+          r.appendChild(td);
+        });
+        var tdb = el("td", "th-c");
+        if (enTxt) { tdb.appendChild(sayBtn("en", enTxt)); seq.push({ lang: "en", text: enTxt, node: r }); }
+        r.appendChild(tdb); t.appendChild(r);
+      });
+      wrap.appendChild(t); s2.appendChild(wrap);
+    });
+    if (TH.ejemplos && TH.ejemplos.length) {
+      var s3 = sec("💬", "Ejemplos");
+      TH.ejemplos.forEach(function (e) {
+        var r = el("div", "th-ex"), tx = el("div", "th-ex-txt");
+        tx.appendChild(enLine(e[0], "th-ex-en", { noSpeaker: true }));
+        tx.appendChild(el("div", "th-ex-es", esc(e[1] || "")));
+        r.appendChild(tx);
+        var bs = el("div", "th-btns"); bs.appendChild(sayBtn("en", e[0])); if (e[1]) bs.appendChild(sayBtn("es", e[1]));
+        r.appendChild(bs); s3.appendChild(r);
+        seq.push({ lang: "en", text: e[0], node: r }); if (e[1]) seq.push({ lang: "es", text: e[1], node: r });
+      });
+    }
+    [["⚠️", "Ojo", TH.ojo], ["🗣️", "Pronunciación", TH.pron], ["💡", "Para recordar", TH.notas]].forEach(function (g) {
+      if (!g[2] || !g[2].length) return;
+      var s4 = sec(g[0], g[1]), ul = el("ul", "th-list");
+      g[2].forEach(function (txt) { var li = el("li", "", esc(txt)); li.appendChild(sayBtn("es", txt)); ul.appendChild(li); seq.push({ lang: "es", text: txt, node: li }); });
+      s4.appendChild(ul);
+    });
+    var back = el("button", "main-btn th-back", "✅ Volver a practicar"); back.type = "button"; back.onclick = thClose;
+    box.appendChild(back);
+    thAllBtn.onclick = function () {
+      if (thPlaying) { thStopAll(); stopVoz(); return; }
+      stopVoz(); thQueue = seq.slice(); thPlaying = true; thAllBtn.textContent = "⏸ Pausar"; thNext();
+    };
+    return ov;
+  }
+  if (TH) {
+    var bar = el("div", "th-bar"), tb = el("button", "th-open-btn", "📖 Ver teoría"); tb.type = "button"; tb.onclick = thOpen;
+    bar.appendChild(tb); card.parentNode.insertBefore(bar, card);
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && thPanel && thPanel.parentNode) thClose(); });
+  }
+
   function start() {
     queue = buildPlan(); done = 0; firstOk = 0; scored = 0; wrongN = 0; okN = 0; missed = [];
     if (IS_TEST) render(); else vocab();
@@ -513,7 +613,8 @@
   // pequeña API para pruebas
   window.MKIngles = {
     current: function () { return cur && { en: cur.item.en, type: cur.type, gi: cur.gi, oi: cur.oi, item: cur.item }; },
-    restart: start
+    restart: start,
+    teoria: function () { return !!TH; }, abrirTeoria: function () { if (TH) thOpen(); }, cerrarTeoria: thClose
   };
   start();
 })();

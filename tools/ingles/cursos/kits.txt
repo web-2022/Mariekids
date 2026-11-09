@@ -1,0 +1,16 @@
+# Tests rápidos: toman preguntas al azar de todas las clases del nivel
+=== eng-kit-a0-test | 🧪 | Kit · Test rápido A0
+desc: 8 preguntas al azar de todo el A0.
+kit: a0 8
+=== eng-kit-a1-test | 🧪 | Kit · Test rápido A1
+desc: 10 preguntas al azar de todo el A1.
+kit: a1 10
+=== eng-kit-a2-test | 🧪 | Kit · Test rápido A2
+desc: 10 preguntas al azar de todo el A2.
+kit: a2 10
+=== eng-kit-b1-test | 🧪 | Kit · Test rápido B1
+desc: 12 preguntas al azar de todo el B1.
+kit: b1 12
+=== eng-kit-b2-test | 🧪 | Kit · Test rápido B2
+desc: 15 preguntas al azar de todo el B2.
+kit: b2 15

@@ -1,0 +1,817 @@
+# ===================== A1 · SEMANA 1: RUTINA DIARIA (PRESENT SIMPLE) =====================
+
+=== eng-a1-w1 | ⏰ | A1 · Semana 1 · Clase 1: My daily routine
+desc: Wake up, get up, brush my teeth, take a shower, get dressed, have breakfast, go to school, do my homework, go to bed.
+- ⏰ | I wake up at seven | Me despierto a las siete | I wake up at seven every day. | Me despierto a las siete todos los días.
+- 🛏️ | I get up | Me levanto | I get up at ten past seven. | Me levanto a las siete y diez.
+- 🪥 | I brush my teeth | Me lavo los dientes | I brush my teeth after breakfast. | Me lavo los dientes después del desayuno.
+- 🚿 | I take a shower | Me ducho | I take a shower in the morning. | Me ducho en la mañana.
+- 👕 | I get dressed | Me visto | I get dressed for school. | Me visto para el colegio.
+- 🥣 | I have breakfast | Tomo desayuno | I have breakfast with my family. | Tomo desayuno con mi familia.
+- 🚌 | I go to school | Voy al colegio | I go to school by bus. | Voy al colegio en bus.
+- 🍛 | I have lunch | Almuerzo | I have lunch at one o'clock. | Almuerzo a la una.
+- 📚 | I do my homework | Hago mi tarea | I do my homework in the afternoon. | Hago mi tarea en la tarde.
+- ⚽ | I play with my friends | Juego con mis amigos | I play with my friends in the park. | Juego con mis amigos en el parque.
+- 🍽️ | I have dinner | Ceno | I have dinner at eight. | Ceno a las ocho.
+- 📺 | I watch TV | Veo televisión | I watch TV after dinner. | Veo televisión después de la cena.
+- 😴 | I go to bed | Me voy a dormir | I go to bed at nine thirty. | Me voy a dormir a las nueve y media.
+teoria:
+intro: Aprendemos los verbos de la rutina diaria para contar lo que hacemos cada día, en orden, desde que nos despertamos hasta que nos vamos a dormir.
+tabla: Mi rutina ; Cuándo | Inglés* | Español
+| 7:00 | I wake up. | Me despierto.
+| 7:10 | I get up. | Me levanto.
+| 7:15 | I take a shower. | Me ducho.
+| 7:25 | I get dressed. | Me visto.
+| 7:30 | I have breakfast. | Tomo desayuno.
+| 7:45 | I brush my teeth. | Me lavo los dientes.
+| 8:00 | I go to school. | Voy al colegio.
+| 1:00 | I have lunch. | Almuerzo.
+| 4:00 | I do my homework. | Hago mi tarea.
+| 8:00 | I have dinner. | Ceno.
+| 9:30 | I go to bed. | Me voy a dormir.
+ej: First I wake up, then I take a shower. | Primero me despierto, luego me ducho.
+ej: I go to school at eight o'clock. | Voy al colegio a las ocho.
+ej: After school I do my homework. | Después del colegio hago mi tarea.
+ojo: En inglés no hay «me»: «Me levanto» es «I get up», no «I me get up».
+ojo: «Tomar desayuno» es «have breakfast», no «take breakfast».
+pron: Breakfast suena «brékfast». Shower suena «sháuer».
+
+=== eng-a1-w1-c2 | 📗 | A1 · Semana 1 · Clase 2: Present Simple completo
+desc: I work / He works. I don't work / She doesn't work. Do you work? Does he work? Yes, I do / No, he doesn't.
+- 🙋 | I play soccer | Yo juego fútbol | I play soccer on Saturdays. | Juego fútbol los sábados.
+- 👉 | You play the piano | Tú tocas el piano | You play the piano very well. | Tocas el piano muy bien.
+- 👦 | He plays basketball | Él juega básquet | He plays basketball after school. | Él juega básquet después del colegio.
+- 👧 | She watches TV | Ella ve televisión | She watches TV at night. | Ella ve televisión en la noche.
+- 🐶 | It eats bones | (El perro) come huesos | My dog eats bones. | Mi perro come huesos.
+- 👫 | We go to school | Nosotros vamos al colegio | We go to school together. | Vamos juntos al colegio.
+- 👨‍👩‍👧 | They live in Lima | Ellos viven en Lima | They live in Lima. | Ellos viven en Lima.
+- 🚫 | I don't eat meat | No como carne | I don't eat meat. I eat fish. | No como carne. Como pescado.
+- ⛔ | She doesn't like coffee | A ella no le gusta el café | She doesn't like coffee. | A ella no le gusta el café.
+- ❓ | Do you speak English? | ¿Hablas inglés? | Do you speak English? — Yes, I do. | ¿Hablas inglés? — Sí.
+- ❔ | Does he work here? | ¿Él trabaja aquí? | Does he work here? — No, he doesn't. | ¿Él trabaja aquí? — No.
+- 👍 | Yes, I do | Sí (con do) | Do you like it? — Yes, I do. | ¿Te gusta? — Sí.
+- 👎 | No, she doesn't | No (con does) | Does she cook? — No, she doesn't. | ¿Ella cocina? — No.
+- 🔤 | He studies, she goes, it watches | Reglas de la «s» | He studies English and goes to school. | Él estudia inglés y va al colegio.
+teoria:
+intro: El Present Simple sirve para hábitos y rutinas (lo que haces siempre). Con he, she e it el verbo lleva «s». Para negar y preguntar usamos do / does.
+tabla: Afirmativa ; Persona | Ejemplo* | Español
+| I | I work. | Yo trabajo.
+| You | You work. | Tú trabajas.
+| He | He works. | Él trabaja.
+| She | She works. | Ella trabaja.
+| It | It works. | Funciona.
+| We | We work. | Nosotros trabajamos.
+| They | They work. | Ellos trabajan.
+tabla: Negativa ; Persona | Ejemplo*
+| I / You / We / They | I don't work.
+| He / She / It | He doesn't work.
+tabla: Pregunta y respuestas cortas ; Pregunta* | Sí* | No*
+| Do you work? | Yes, I do. | No, I don't.
+| Does he work? | Yes, he does. | No, he doesn't.
+| Do they work? | Yes, they do. | No, they don't.
+tabla: Ortografía de la «s» ; Regla | Ejemplo*
+| Casi todos: + s | work → works, play → plays
+| Termina en -s, -sh, -ch, -x, -o: + es | watch → watches, go → goes, do → does
+| Consonante + y: y → ies | study → studies, fly → flies
+| Irregular | have → has
+ej: My mom works in a hospital. | Mi mamá trabaja en un hospital.
+ej: He doesn't play the guitar. | Él no toca la guitarra.
+ej: Does your sister speak English? — Yes, she does. | ¿Tu hermana habla inglés? — Sí.
+ojo: ¡La «s» de he/she/it es el error más común! She likes ✓, she like ✗.
+ojo: Con doesn't el verbo vuelve a su forma normal: She doesn't like ✓, she doesn't likes ✗.
+ojo: En preguntas también: Does he play? ✓, Does he plays? ✗.
+pron: La «s» final se pronuncia: works suena «uérks»; watches suena «uóchis».
+
+=== eng-a1-w1-c3 | 🕰️ | A1 · Semana 1 · Clase 3: What time is it?
+desc: It's seven o'clock, half past seven, quarter past, quarter to. At seven. In the morning, afternoon, evening. At night.
+- 🕰️ | What time is it? | ¿Qué hora es? | Excuse me, what time is it? | Disculpe, ¿qué hora es?
+- 🕖 | It's seven o'clock | Son las siete en punto | It's seven o'clock. Wake up! | Son las siete en punto. ¡Despiértate!
+- 🕢 | It's half past seven | Son las siete y media | It's half past seven. Let's go! | Son las siete y media. ¡Vamos!
+- 🕒 | It's quarter past three | Son las tres y cuarto | It's quarter past three. | Son las tres y cuarto.
+- 🕘 | It's quarter to nine | Son las nueve menos cuarto | It's quarter to nine. | Son las nueve menos cuarto.
+- 🕔 | It's ten past five | Son las cinco y diez | It's ten past five. | Son las cinco y diez.
+- 🕥 | It's ten thirty | Son las diez y treinta | It's ten thirty. | Son las diez y treinta.
+- ⏰ | at eight o'clock | a las ocho | School starts at eight o'clock. | El colegio empieza a las ocho.
+- 🌅 | in the morning | en la mañana | I study in the morning. | Estudio en la mañana.
+- 🌞 | in the afternoon | en la tarde | I play in the afternoon. | Juego en la tarde.
+- 🌆 | in the evening | en la noche (temprano) | I read in the evening. | Leo en la noche.
+- 🌙 | at night | en la noche | I sleep at night. | Duermo en la noche.
+- 🕛 | at noon | al mediodía | We have lunch at noon. | Almorzamos al mediodía.
+teoria:
+intro: Aprendemos a preguntar y decir la hora, y a decir a qué hora hacemos las cosas (at) y en qué parte del día (in the morning…).
+tabla: Decir la hora ; Hora | Inglés* | Español
+| 7:00 | It's seven o'clock. | Son las siete en punto.
+| 7:10 | It's ten past seven. | Son las siete y diez.
+| 7:15 | It's quarter past seven. | Son las siete y cuarto.
+| 7:30 | It's half past seven. | Son las siete y media.
+| 7:45 | It's quarter to eight. | Son las ocho menos cuarto.
+| 7:50 | It's ten to eight. | Son las ocho menos diez.
+| 7:30 | It's seven thirty. | Son las siete y treinta (forma fácil).
+tabla: Partes del día ; Inglés* | Español
+| in the morning | en la mañana
+| in the afternoon | en la tarde
+| in the evening | en la noche (temprano)
+| at night | en la noche
+| at noon | al mediodía
+| at midnight | a medianoche
+ej: What time is it? — It's half past four. | ¿Qué hora es? — Son las cuatro y media.
+ej: I have English class at three o'clock. | Tengo clase de inglés a las tres.
+ej: I go to bed at ten at night. | Me acuesto a las diez de la noche.
+ojo: «A las 8» es «at eight», no «in eight».
+ojo: «Past» es «y» (pasadas) y «to» es «menos» (faltan): ten to nine = las nueve menos diez.
+ojo: Forma fácil: di la hora y los minutos: 7:45 = seven forty-five.
+pron: O'clock suena «oklók». Quarter suena «kuórter». Half suena «jáf» (la «l» no suena).
+
+# ===================== A1 · SEMANA 2: FRECUENCIA =====================
+
+=== eng-a1-w2 | 🔁 | A1 · Semana 2 · Clase 1: How often? Adverbios de frecuencia
+desc: Always, usually, often, sometimes, rarely, never. Every day, once a week, twice a week. How often…?
+- 💯 | always | siempre | I always brush my teeth. | Siempre me lavo los dientes.
+- 🔵 | usually | normalmente | I usually walk to school. | Normalmente camino al colegio.
+- 🟢 | often | a menudo | I often read books. | A menudo leo libros.
+- 🟡 | sometimes | a veces | I sometimes eat pizza. | A veces como pizza.
+- 🟠 | rarely | casi nunca | I rarely watch TV. | Casi nunca veo televisión.
+- 🚫 | never | nunca | I never drink coffee. | Nunca tomo café.
+- 📅 | every day | todos los días | I study English every day. | Estudio inglés todos los días.
+- 1️⃣ | once a week | una vez a la semana | I go swimming once a week. | Voy a nadar una vez a la semana.
+- 2️⃣ | twice a week | dos veces a la semana | I play soccer twice a week. | Juego fútbol dos veces a la semana.
+- 3️⃣ | three times a week | tres veces a la semana | We have English three times a week. | Tenemos inglés tres veces a la semana.
+- ❓ | How often do you play soccer? | ¿Con qué frecuencia juegas fútbol? | How often do you play soccer? — Twice a week. | ¿Con qué frecuencia juegas fútbol? — Dos veces a la semana.
+- 🎉 | on weekends | los fines de semana | On weekends I visit my grandma. | Los fines de semana visito a mi abuelita.
+teoria:
+intro: Aprendemos a decir con qué frecuencia hacemos algo, desde «siempre» (100 %) hasta «nunca» (0 %).
+tabla: De siempre a nunca ; % | Inglés* | Español
+| 100 % | always | siempre
+| 90 % | usually | normalmente
+| 70 % | often | a menudo
+| 50 % | sometimes | a veces
+| 10 % | rarely | casi nunca
+| 0 % | never | nunca
+tabla: Cuántas veces ; Inglés* | Español
+| once a week | una vez a la semana
+| twice a week | dos veces a la semana
+| three times a month | tres veces al mes
+| every day | todos los días
+| every Monday | todos los lunes
+ej: How often do you eat fruit? — Every day. | ¿Con qué frecuencia comes fruta? — Todos los días.
+ej: I never go to bed late. | Nunca me acuesto tarde.
+ej: She sometimes helps her mom. | Ella a veces ayuda a su mamá.
+ojo: Después de «never» no se pone «not»: I never eat meat ✓, I don't never eat ✗.
+ojo: Una vez = once, dos veces = twice; desde tres se dice «times»: three times.
+pron: Often suena «ófen» (la «t» casi no suena). Usually suena «iúshuali».
+
+=== eng-a1-w2-c2 | 📍 | A1 · Semana 2 · Clase 2: Dónde va el adverbio
+desc: I always get up early. She is always happy. He never eats candy. Do you usually…? Every day va al final.
+- ⏰ | I always get up early | Siempre me levanto temprano | I always get up early on Mondays. | Siempre me levanto temprano los lunes.
+- 😊 | She is always happy | Ella siempre está feliz | My grandma is always happy. | Mi abuelita siempre está feliz.
+- 🍬 | He never eats candy | Él nunca come dulces | My dad never eats candy. | Mi papá nunca come dulces.
+- 🙋 | Do you usually get up early? | ¿Normalmente te levantas temprano? | Do you usually get up early? — Yes, I do. | ¿Normalmente te levantas temprano? — Sí.
+- ⏱️ | I'm never late | Nunca llego tarde | I'm never late for school. | Nunca llego tarde al colegio.
+- 🚌 | We sometimes take the bus | A veces tomamos el bus | We sometimes take the bus. | A veces tomamos el bus.
+- 🧹 | They rarely clean their room | Casi nunca limpian su cuarto | They rarely clean their room. | Casi nunca limpian su cuarto.
+- 📖 | I read every night | Leo todas las noches | I read a book every night. | Leo un libro todas las noches.
+- 🎮 | She often plays video games | Ella juega videojuegos a menudo | She often plays video games after school. | Ella juega videojuegos a menudo después del colegio.
+- 😴 | He is usually tired | Él normalmente está cansado | He is usually tired on Fridays. | Él normalmente está cansado los viernes.
+teoria:
+intro: Aprendemos dónde se coloca el adverbio de frecuencia en la oración: es diferente con el verbo «be» y con los demás verbos.
+tabla: La posición ; Regla | Ejemplo*
+| ANTES del verbo normal | I always eat breakfast.
+| DESPUÉS de am / is / are | She is always happy.
+| En preguntas, después del sujeto | Do you often read?
+| Expresiones con «every» y «once», AL FINAL | I swim twice a week.
+ej: I usually have lunch at school. | Normalmente almuerzo en el colegio.
+ej: My teacher is never angry. | Mi profesora nunca está enojada.
+ej: Does he often play tennis? | ¿Él juega tenis a menudo?
+ojo: No digas «I eat always fruit»: el adverbio va antes del verbo: I always eat fruit.
+ojo: Con «be» va después: I am always tired ✓, I always am tired ✗.
+pron: Lee la oración completa sin pausas: «ai-ól-ueis-ít».
+
+# ===================== A1 · SEMANA 3: GUSTOS Y ACTIVIDADES =====================
+
+=== eng-a1-w3 | ❤️ | A1 · Semana 3 · Clase 1: Like, love, enjoy + -ing
+desc: I like playing soccer. I love drawing. I enjoy reading. I hate getting up early. I prefer swimming. Do you like…?
+- ⚽ | I like playing soccer | Me gusta jugar fútbol | I like playing soccer with my friends. | Me gusta jugar fútbol con mis amigos.
+- 🎨 | I love drawing | Me encanta dibujar | I love drawing animals. | Me encanta dibujar animales.
+- 📖 | I enjoy reading | Disfruto leyendo | I enjoy reading comics. | Disfruto leyendo historietas.
+- 😣 | I hate getting up early | Odio levantarme temprano | I hate getting up early on Mondays. | Odio levantarme temprano los lunes.
+- 🏊 | I prefer swimming | Prefiero nadar | I prefer swimming to running. | Prefiero nadar a correr.
+- 🎮 | I don't like playing video games | No me gusta jugar videojuegos | I don't like playing video games. | No me gusta jugar videojuegos.
+- ❓ | Do you like music? | ¿Te gusta la música? | Do you like music? — Yes, I love it! | ¿Te gusta la música? — ¡Sí, me encanta!
+- 💃 | She likes dancing | A ella le gusta bailar | She likes dancing salsa. | A ella le gusta bailar salsa.
+- 🚲 | He loves riding his bike | A él le encanta montar bicicleta | He loves riding his bike in the park. | A él le encanta montar bicicleta en el parque.
+- 🍳 | We enjoy cooking | Disfrutamos cocinando | We enjoy cooking with Grandma. | Disfrutamos cocinando con la abuelita.
+- 🎤 | They like singing | A ellos les gusta cantar | They like singing in the car. | A ellos les gusta cantar en el carro.
+- 🤔 | What do you like doing? | ¿Qué te gusta hacer? | What do you like doing on weekends? | ¿Qué te gusta hacer los fines de semana?
+teoria:
+intro: Después de like, love, enjoy, hate y prefer usamos el verbo con «-ing» para hablar de actividades que nos gustan o no.
+tabla: Del más al menos ; Inglés* | Español
+| I love dancing. | Me encanta bailar. 😍
+| I like dancing. | Me gusta bailar. 🙂
+| I enjoy dancing. | Disfruto bailando. 😊
+| I don't like dancing. | No me gusta bailar. 🙁
+| I hate dancing. | Odio bailar. 😣
+tabla: Ortografía de -ing ; Regla | Ejemplo*
+| Casi todos: + ing | play → playing, read → reading
+| Termina en -e: quita la e | dance → dancing, ride → riding
+| Vocal + consonante corta: dobla | swim → swimming, run → running, get → getting
+ej: What do you like doing? — I like drawing. | ¿Qué te gusta hacer? — Me gusta dibujar.
+ej: My brother loves playing soccer. | A mi hermano le encanta jugar fútbol.
+ej: Does she like cooking? — No, she doesn't. | ¿A ella le gusta cocinar? — No.
+ojo: Se dice «I like swimming», no «I like swim».
+ojo: Con he/she: He likes, she loves, he enjoys (con «s»).
+pron: La terminación -ing suena «-in» con la «g» muy suave: playing = «pléiin».
+
+=== eng-a1-w3-c2 | 🏅 | A1 · Semana 3 · Clase 2: Sports and hobbies
+desc: Play soccer, basketball, volleyball, tennis, chess. Go swimming, go running. Draw, paint, read, sing, dance, play the guitar.
+- ⚽ | play soccer | jugar fútbol | I play soccer every Saturday. | Juego fútbol todos los sábados.
+- 🏀 | play basketball | jugar básquet | He plays basketball at school. | Él juega básquet en el colegio.
+- 🏐 | play volleyball | jugar vóley | Peru loves to play volleyball. | A Perú le encanta jugar vóley.
+- 🎾 | play tennis | jugar tenis | My mom plays tennis. | Mi mamá juega tenis.
+- ♟️ | play chess | jugar ajedrez | I play chess with my dad. | Juego ajedrez con mi papá.
+- 🏊 | go swimming | ir a nadar | We go swimming in summer. | Vamos a nadar en verano.
+- 🏃 | go running | salir a correr | She goes running in the park. | Ella sale a correr en el parque.
+- 🚴 | ride a bike | montar bicicleta | I ride my bike on Sundays. | Monto bicicleta los domingos.
+- ✏️ | draw | dibujar | I draw cartoons. | Dibujo caricaturas.
+- 🖌️ | paint | pintar | We paint pictures in art class. | Pintamos cuadros en la clase de arte.
+- 📚 | read | leer | I read before bed. | Leo antes de dormir.
+- 🎤 | sing | cantar | She sings very well. | Ella canta muy bien.
+- 💃 | dance | bailar | They dance at parties. | Ellos bailan en las fiestas.
+- 🎸 | play the guitar | tocar la guitarra | My uncle plays the guitar. | Mi tío toca la guitarra.
+- 🎹 | play the piano | tocar el piano | I play the piano. | Toco el piano.
+teoria:
+intro: Aprendemos deportes y pasatiempos, y qué verbo usa cada uno: play, go o do.
+tabla: Play, go o do ; Verbo | Con qué | Ejemplos*
+| play | deportes con pelota y juegos | play soccer, play chess, play tennis
+| play the | instrumentos | play the guitar, play the piano
+| go | actividades en -ing | go swimming, go running, go fishing
+| do | otras actividades | do karate, do yoga, do gymnastics
+tabla: Pasatiempos ; Inglés* | Español
+| draw | dibujar
+| paint | pintar
+| read | leer
+| sing | cantar
+| dance | bailar
+| cook | cocinar
+ej: I play volleyball and my sister does karate. | Yo juego vóley y mi hermana hace karate.
+ej: Do you play an instrument? — Yes, I play the guitar. | ¿Tocas un instrumento? — Sí, toco la guitarra.
+ej: Let's go swimming! | ¡Vamos a nadar!
+ojo: Con instrumentos se usa «the»: play the guitar. Con deportes, no: play soccer (no «play the soccer»).
+ojo: «Tocar» un instrumento es «play», no «touch».
+pron: Guitar suena «guitár» con el acento al final. Chess suena «chés».
+
+=== eng-a1-w3-c3 | 💪 | A1 · Semana 3 · Clase 3: Can / can't (habilidades)
+desc: I can swim. I can't drive. Can you dance? Yes, I can / No, I can't. She can speak English.
+- 🏊 | I can swim | Sé nadar / Puedo nadar | I can swim very fast. | Sé nadar muy rápido.
+- 🚗 | I can't drive | No sé manejar | I can't drive. I'm eight! | No sé manejar. ¡Tengo ocho años!
+- 💃 | Can you dance? | ¿Sabes bailar? | Can you dance? — Yes, I can. | ¿Sabes bailar? — Sí.
+- 👍 | Yes, I can | Sí, puedo / sé | Can you cook? — Yes, I can. | ¿Sabes cocinar? — Sí.
+- 👎 | No, I can't | No, no puedo / no sé | Can you fly? — No, I can't! | ¿Puedes volar? — ¡No!
+- 🗣️ | She can speak English | Ella sabe hablar inglés | She can speak English and Spanish. | Ella sabe hablar inglés y español.
+- 🐦 | Birds can fly | Los pájaros pueden volar | Birds can fly, but fish can't. | Los pájaros pueden volar, pero los peces no.
+- 🎸 | He can play the guitar | Él sabe tocar la guitarra | My cousin can play the guitar. | Mi primo sabe tocar la guitarra.
+- 🤸 | We can't do a cartwheel | No sabemos hacer la rueda | We can't do a cartwheel yet. | Todavía no sabemos hacer la rueda.
+- ❔ | What can you do? | ¿Qué sabes hacer? | What can you do? — I can draw. | ¿Qué sabes hacer? — Sé dibujar.
+teoria:
+intro: «Can» expresa habilidad (saber hacer algo) o posibilidad. Es igual para todas las personas y va seguido del verbo sin «to».
+tabla: Can en tres formas ; Forma | Ejemplo* | Español
+| Afirmativa | I can swim. | Sé nadar.
+| Negativa | I can't swim. | No sé nadar.
+| Pregunta | Can you swim? | ¿Sabes nadar?
+| Respuesta sí | Yes, I can. | Sí.
+| Respuesta no | No, I can't. | No.
+tabla: Todas las personas ; Persona | Ejemplo*
+| I | I can dance.
+| You | You can dance.
+| He / She / It | He can dance.
+| We | We can dance.
+| They | They can dance.
+ej: My dog can jump very high. | Mi perro puede saltar muy alto.
+ej: Can you help me, please? | ¿Puedes ayudarme, por favor?
+ej: I can't find my pencil. | No encuentro mi lápiz.
+ojo: Con he/she NO se agrega «s»: He can swim ✓, He cans swim ✗.
+ojo: Después de can no va «to»: I can swim ✓, I can to swim ✗.
+pron: Can suena «kan» (corto) y can't suena «kánt» (más largo y fuerte). Fíjate en la «t».
+
+# ===================== A1 · SEMANA 4: FAMILIA Y DESCRIPCIONES =====================
+
+=== eng-a1-w4 | 🧑 | A1 · Semana 4 · Clase 1: What does he look like?
+desc: Tall, short, thin, strong, young, old. Long/short/curly/straight hair. Blue/brown eyes. He has short black hair.
+- 🧍 | He is tall | Él es alto | My dad is very tall. | Mi papá es muy alto.
+- 🧒 | She is short | Ella es bajita | My sister is short. | Mi hermana es bajita.
+- 🥢 | He is thin | Él es delgado | My uncle is thin. | Mi tío es delgado.
+- 💪 | He is strong | Él es fuerte | My brother is strong. | Mi hermano es fuerte.
+- 👶 | She is young | Ella es joven | My aunt is young. | Mi tía es joven.
+- 👴 | He is old | Él es mayor | My grandpa is old but active. | Mi abuelito es mayor pero activo.
+- 👱‍♀️ | She has long hair | Ella tiene el cabello largo | She has long blond hair. | Ella tiene el cabello largo y rubio.
+- 💇‍♂️ | He has short hair | Él tiene el cabello corto | He has short black hair. | Él tiene el cabello corto y negro.
+- 👩‍🦱 | She has curly hair | Ella tiene el cabello rizado | My mom has curly hair. | Mi mamá tiene el cabello rizado.
+- 💁 | She has straight hair | Ella tiene el cabello lacio | Ana has straight brown hair. | Ana tiene el cabello lacio y castaño.
+- 👀 | He has brown eyes | Él tiene ojos marrones | He has big brown eyes. | Él tiene ojos marrones grandes.
+- 👓 | She wears glasses | Ella usa lentes | My teacher wears glasses. | Mi profesora usa lentes.
+- 🧔 | He has a beard | Él tiene barba | My uncle has a beard. | Mi tío tiene barba.
+- ❓ | What does he look like? | ¿Cómo es él (físicamente)? | What does your dad look like? — He's tall. | ¿Cómo es tu papá? — Es alto.
+teoria:
+intro: Aprendemos a describir cómo es una persona por fuera: su cuerpo, su cabello y sus ojos.
+tabla: Ser (be) + adjetivo ; Inglés* | Español
+| He is tall. | Él es alto.
+| She is short. | Ella es bajita.
+| He is thin. | Él es delgado.
+| She is young. | Ella es joven.
+| He is old. | Él es mayor.
+tabla: Tener (have) + cabello y ojos ; Inglés* | Español
+| She has long hair. | Tiene el cabello largo.
+| He has short hair. | Tiene el cabello corto.
+| She has curly hair. | Tiene el cabello rizado.
+| She has straight hair. | Tiene el cabello lacio.
+| He has blue eyes. | Tiene ojos azules.
+ej: What does she look like? — She's tall and she has long black hair. | ¿Cómo es ella? — Es alta y tiene el cabello largo y negro.
+ej: My grandpa has white hair and a beard. | Mi abuelito tiene el cabello blanco y barba.
+ojo: El orden es: tamaño + forma + color + hair: long curly black hair.
+ojo: «Hair» no lleva plural: She has long hair ✓, hairs ✗.
+ojo: Con he/she se usa «has», no «have».
+pron: Hair suena «jér». Eyes suena «áis». Straight suena «stréit».
+
+=== eng-a1-w4-c2 | 😊 | A1 · Semana 4 · Clase 2: Personality
+desc: Kind, funny, friendly, shy, smart, hard-working, lazy, quiet, talkative, brave, polite, patient. What is he like?
+- 💕 | kind | amable | My grandma is very kind. | Mi abuelita es muy amable.
+- 😂 | funny | gracioso | My brother is funny. | Mi hermano es gracioso.
+- 🤝 | friendly | amigable | Our neighbors are friendly. | Nuestros vecinos son amigables.
+- 🙈 | shy | tímido | I'm a little shy. | Soy un poco tímido.
+- 🧠 | smart | inteligente | She is very smart. | Ella es muy inteligente.
+- 🐝 | hard-working | trabajador | My mom is hard-working. | Mi mamá es trabajadora.
+- 🦥 | lazy | flojo | My cat is lazy. | Mi gato es flojo.
+- 🤫 | quiet | callado / tranquilo | Leo is a quiet boy. | Leo es un niño callado.
+- 🗣️ | talkative | conversador | My aunt is very talkative. | Mi tía es muy conversadora.
+- 🦁 | brave | valiente | Firefighters are brave. | Los bomberos son valientes.
+- 🎩 | polite | educado | Please be polite. | Por favor, sé educado.
+- ⏳ | patient | paciente | My teacher is patient. | Mi profesora es paciente.
+- 😠 | bossy | mandón | My sister is bossy! | ¡Mi hermana es mandona!
+- ❓ | What is he like? | ¿Cómo es él (de carácter)? | What is your friend like? — He's funny and kind. | ¿Cómo es tu amigo? — Es gracioso y amable.
+teoria:
+intro: Aprendemos adjetivos para describir el carácter de una persona (cómo es por dentro) y la pregunta «What is he like?».
+tabla: Carácter ; Inglés* | Español | Lo contrario*
+| kind | amable | unkind
+| friendly | amigable | unfriendly
+| hard-working | trabajador | lazy
+| talkative | conversador | quiet
+| patient | paciente | impatient
+| polite | educado | rude
+| brave | valiente | scared
+tabla: Dos preguntas diferentes ; Pregunta* | Para qué
+| What does he look like? | Cómo es por fuera (físico)
+| What is he like? | Cómo es por dentro (carácter)
+ej: What is your best friend like? — She's kind and funny. | ¿Cómo es tu mejor amiga? — Es amable y graciosa.
+ej: I'm not lazy, I'm hard-working! | ¡No soy flojo, soy trabajador!
+ojo: Los adjetivos no cambian: kind boy, kind girls (no «kinds»).
+ojo: «What is he like?» NO pregunta qué le gusta: pregunta cómo es.
+pron: Polite suena «poláit». Patient suena «péishent».
+
+=== eng-a1-w4-c3 | 🦵 | A1 · Semana 4 · Clase 3: Parts of the body
+desc: Head, hair, face, eyes, ears, nose, mouth, teeth, neck, shoulders, arm, hand, finger, leg, knee, foot/feet.
+- 🧠 | head | cabeza | Touch your head. | Tócate la cabeza.
+- 💇 | hair | cabello | Brush your hair. | Péinate el cabello.
+- 🙂 | face | cara | Wash your face. | Lávate la cara.
+- 👀 | eyes | ojos | Close your eyes. | Cierra los ojos.
+- 👂 | ears | orejas | Elephants have big ears. | Los elefantes tienen orejas grandes.
+- 👃 | nose | nariz | My nose is cold. | Tengo la nariz fría.
+- 👄 | mouth | boca | Open your mouth. | Abre la boca.
+- 🦷 | teeth | dientes | Brush your teeth. | Lávate los dientes.
+- 🦒 | neck | cuello | Giraffes have long necks. | Las jirafas tienen el cuello largo.
+- 🤷 | shoulders | hombros | Head, shoulders, knees and toes! | ¡Cabeza, hombros, rodillas y pies!
+- 💪 | arm | brazo | Raise your arm. | Levanta el brazo.
+- ✋ | hand | mano | Raise your hand. | Levanta la mano.
+- ☝️ | finger | dedo | I have ten fingers. | Tengo diez dedos.
+- 🦵 | leg | pierna | My leg hurts. | Me duele la pierna.
+- 🦿 | knee | rodilla | I hurt my knee. | Me lastimé la rodilla.
+- 🦶 | foot / feet | pie / pies | I have two feet. | Tengo dos pies.
+- 🤕 | My head hurts | Me duele la cabeza | My head hurts. I'm sick. | Me duele la cabeza. Estoy enfermo.
+teoria:
+intro: Aprendemos las partes del cuerpo, algunos plurales especiales y a decir qué nos duele.
+tabla: El cuerpo ; Inglés* | Español
+| head | cabeza
+| face | cara
+| eye / eyes | ojo / ojos
+| ear / ears | oreja / orejas
+| nose | nariz
+| mouth | boca
+| tooth / teeth | diente / dientes
+| neck | cuello
+| arm | brazo
+| hand | mano
+| finger | dedo
+| leg | pierna
+| knee | rodilla
+| foot / feet | pie / pies
+tabla: Plurales especiales ; Uno* | Varios*
+| tooth | teeth
+| foot | feet
+| child | children
+| person | people
+ej: Head, shoulders, knees and toes! | ¡Cabeza, hombros, rodillas y pies!
+ej: My stomach hurts. | Me duele el estómago.
+ej: Wash your hands before lunch. | Lávate las manos antes del almuerzo.
+ojo: En inglés se usa el posesivo: Me duele LA cabeza = My head hurts. Lávate LAS manos = Wash YOUR hands.
+ojo: Plural raro: one foot, two feet; one tooth, many teeth.
+pron: Knee suena «níi» (la k no suena). Mouth suena «máuz».
+
+=== eng-a1-w4-c4 | 🔑 | A1 · Semana 4 · Clase 4: Possessives
+desc: My, your, his, her, its, our, their. Ana's bag. Whose is this? I have got / She has got.
+- 🙋 | my book | mi libro | This is my book. | Este es mi libro.
+- 👉 | your bag | tu mochila | Is this your bag? | ¿Esta es tu mochila?
+- 👦 | his name | su nombre (de él) | His name is Tom. | Su nombre es Tom.
+- 👧 | her name | su nombre (de ella) | Her name is Ana. | Su nombre es Ana.
+- 🐶 | its tail | su cola (de un animal o cosa) | The dog wags its tail. | El perro mueve su cola.
+- 👫 | our house | nuestra casa | Our house is near the park. | Nuestra casa está cerca del parque.
+- 👨‍👩‍👧 | their car | su carro (de ellos) | Their car is red. | Su carro es rojo.
+- 🎒 | Ana's backpack | la mochila de Ana | This is Ana's backpack. | Esta es la mochila de Ana.
+- 🧔 | my dad's car | el carro de mi papá | My dad's car is blue. | El carro de mi papá es azul.
+- ❓ | Whose is this? | ¿De quién es esto? | Whose is this pencil? — It's Leo's. | ¿De quién es este lápiz? — Es de Leo.
+- 🐱 | I have got a cat | Tengo un gato | I have got a black cat. | Tengo un gato negro.
+- 🚲 | She has got a bike | Ella tiene una bici | She has got a new bike. | Ella tiene una bici nueva.
+teoria:
+intro: Aprendemos a decir de quién es algo con los posesivos (my, your, his…) y con «'s» (Ana's).
+tabla: Posesivos ; Persona | Posesivo* | Ejemplo*
+| I | my | my book
+| you | your | your book
+| he | his | his book
+| she | her | her book
+| it | its | its tail
+| we | our | our book
+| they | their | their book
+tabla: El 's (de) ; Inglés* | Español
+| Ana's bag | la mochila de Ana
+| my mom's car | el carro de mi mamá
+| the teacher's desk | el escritorio de la profesora
+ej: Her brother is my friend. | Su hermano (de ella) es mi amigo.
+ej: Whose is this? — It's Tom's. | ¿De quién es esto? — Es de Tom.
+ej: Our teacher is from London. | Nuestra profesora es de Londres.
+ojo: «Su» tiene varias formas en inglés: his (de él), her (de ella), their (de ellos), its (de una cosa o animal).
+ojo: «La mochila de Ana» = Ana's backpack, no «the backpack of Ana».
+ojo: «Its» (su) no lleva apóstrofo; «it's» es «it is».
+pron: Their suena «déer», igual que there. Whose suena «júus».
+
+# ===================== A1 · SEMANA 5: CIUDAD Y DIRECCIONES =====================
+
+=== eng-a1-w5 | 🧭 | A1 · Semana 5 · Clase 1: Directions
+desc: Go straight, turn left, turn right, cross the street, at the corner, on the left/right, next to, across from, near, far.
+- ⬆️ | Go straight | Siga derecho | Go straight for two blocks. | Siga derecho dos cuadras.
+- ⬅️ | Turn left | Voltee a la izquierda | Turn left at the bank. | Voltee a la izquierda en el banco.
+- ➡️ | Turn right | Voltee a la derecha | Turn right on Main Street. | Voltee a la derecha en la calle principal.
+- 🚸 | Cross the street | Cruce la calle | Cross the street at the light. | Cruce la calle en el semáforo.
+- 📐 | at the corner | en la esquina | The store is at the corner. | La tienda está en la esquina.
+- 👈 | on the left | a la izquierda | The park is on the left. | El parque está a la izquierda.
+- 👉 | on the right | a la derecha | The school is on the right. | El colegio está a la derecha.
+- ↔️ | next to | al lado de | The bank is next to the hospital. | El banco está al lado del hospital.
+- ↕️ | across from | frente a | The church is across from the park. | La iglesia está frente al parque.
+- 🎯 | between | entre | The café is between the bank and the store. | El café está entre el banco y la tienda.
+- 📍 | near | cerca | The zoo is near my house. | El zoológico está cerca de mi casa.
+- 🛣️ | far | lejos | The airport is far. | El aeropuerto está lejos.
+- 🧱 | two blocks | dos cuadras | It's two blocks from here. | Está a dos cuadras de aquí.
+teoria:
+intro: Aprendemos a dar direcciones paso a paso y a decir dónde está un lugar en la ciudad.
+tabla: Dar direcciones ; Inglés* | Español
+| Go straight. | Siga derecho.
+| Turn left. | Voltee a la izquierda.
+| Turn right. | Voltee a la derecha.
+| Cross the street. | Cruce la calle.
+| Go past the bank. | Pase el banco.
+| It's at the corner. | Está en la esquina.
+tabla: Dónde está ; Inglés* | Español
+| on the left / on the right | a la izquierda / a la derecha
+| next to | al lado de
+| across from | frente a
+| between | entre
+| near / far from | cerca de / lejos de
+| behind | detrás de
+ej: Go straight and turn right. The park is on the left. | Siga derecho y voltee a la derecha. El parque está a la izquierda.
+ej: The pharmacy is across from the school. | La farmacia está frente al colegio.
+ej: Is it far? — No, it's near. | ¿Está lejos? — No, está cerca.
+ojo: Para dar instrucciones se usa el verbo solo, sin «you»: Turn left (no «You turn left»).
+ojo: «Near» va sin «of»: near the park ✓, near of the park ✗.
+pron: Straight suena «stréit». Right suena «ráit». Left suena «léft».
+
+=== eng-a1-w5-c2 | 🗺️ | A1 · Semana 5 · Clase 2: Asking for directions
+desc: Excuse me, where is…? How do I get to…? Is it far? It takes ten minutes. By bus, by car, by bike, on foot.
+- 🙋 | Excuse me, where is the bank? | Disculpe, ¿dónde está el banco? | Excuse me, where is the bank? — It's on Lima Street. | Disculpe, ¿dónde está el banco? — Está en la calle Lima.
+- 🧭 | How do I get to the museum? | ¿Cómo llego al museo? | How do I get to the museum? | ¿Cómo llego al museo?
+- ❓ | Is there a pharmacy near here? | ¿Hay una farmacia cerca? | Is there a pharmacy near here? — Yes, there is. | ¿Hay una farmacia cerca? — Sí, hay.
+- 📏 | Is it far? | ¿Está lejos? | Is it far from here? — No, it's close. | ¿Está lejos de aquí? — No, está cerca.
+- ⏱️ | It takes ten minutes | Toma diez minutos | It takes ten minutes on foot. | Toma diez minutos a pie.
+- 🚌 | by bus | en bus | I go to school by bus. | Voy al colegio en bus.
+- 🚗 | by car | en carro | My dad goes to work by car. | Mi papá va al trabajo en carro.
+- 🚲 | by bike | en bicicleta | I go to the park by bike. | Voy al parque en bicicleta.
+- 🚶 | on foot | a pie | We go to school on foot. | Vamos al colegio a pie.
+- 🚕 | Take a taxi | Tome un taxi | Take a taxi to the airport. | Tome un taxi al aeropuerto.
+- 🗺️ | I'm lost | Estoy perdido | Excuse me, I'm lost. | Disculpe, estoy perdido.
+- 🙏 | Thanks for your help | Gracias por su ayuda | Thanks for your help! | ¡Gracias por su ayuda!
+teoria:
+intro: Aprendemos a pedir direcciones con educación, a preguntar si un lugar está lejos y a decir cómo nos movemos (en bus, a pie…).
+tabla: Preguntar ; Inglés* | Español
+| Excuse me, where is…? | Disculpe, ¿dónde está…?
+| How do I get to…? | ¿Cómo llego a…?
+| Is there a … near here? | ¿Hay un … cerca?
+| Is it far? | ¿Está lejos?
+| How long does it take? | ¿Cuánto tiempo toma?
+tabla: Medios de transporte ; Inglés* | Español
+| by bus | en bus
+| by car | en carro
+| by bike | en bicicleta
+| by train | en tren
+| by plane | en avión
+| on foot | a pie
+ej: Excuse me, how do I get to the train station? | Disculpe, ¿cómo llego a la estación de tren?
+ej: It takes twenty minutes by bus. | Toma veinte minutos en bus.
+ej: Go straight and turn left. You can't miss it! | Siga derecho y voltee a la izquierda. ¡No se puede perder!
+ojo: «En bus» es «by bus» (sin «the»). Pero «a pie» es «on foot», no «by foot».
+ojo: Empieza siempre con «Excuse me» para ser educado.
+pron: Museum suena «miuzíum». Lost suena «lóst».
+
+# ===================== A1 · SEMANA 6: COMPRAS Y RESTAURANTE =====================
+
+=== eng-a1-w6 | 👕 | A1 · Semana 6 · Clase 1: Clothes
+desc: Shirt, T-shirt, pants, jeans, shorts, skirt, dress, sweater, jacket, coat, shoes, sneakers, socks, cap, hat, scarf.
+- 👔 | shirt | camisa | A white shirt. | Una camisa blanca.
+- 👕 | T-shirt | polo | I'm wearing a red T-shirt. | Llevo un polo rojo.
+- 👖 | pants | pantalón | My pants are black. | Mi pantalón es negro.
+- 👖 | jeans | jean | I love my blue jeans. | Me encanta mi jean azul.
+- 🩳 | shorts | short | I wear shorts in summer. | Uso short en verano.
+- 👗 | dress | vestido | She has a pink dress. | Ella tiene un vestido rosado.
+- 🥻 | skirt | falda | A long skirt. | Una falda larga.
+- 🧶 | sweater | chompa | It's cold. Wear a sweater. | Hace frío. Ponte una chompa.
+- 🧥 | jacket | casaca | My jacket is warm. | Mi casaca es abrigadora.
+- 🧥 | coat | abrigo | A long winter coat. | Un abrigo largo de invierno.
+- 👞 | shoes | zapatos | Black shoes for school. | Zapatos negros para el colegio.
+- 👟 | sneakers | zapatillas | My new sneakers are white. | Mis zapatillas nuevas son blancas.
+- 🧦 | socks | medias | A pair of socks. | Un par de medias.
+- 🧢 | cap | gorra | I wear a cap at the beach. | Uso gorra en la playa.
+- 👒 | hat | sombrero | A big sun hat. | Un sombrero grande para el sol.
+- 🧣 | scarf | chalina | A warm scarf for winter. | Una chalina abrigadora para el invierno.
+- 👀 | I'm wearing… | Estoy usando… / Llevo puesto… | Today I'm wearing jeans and a T-shirt. | Hoy llevo puesto un jean y un polo.
+teoria:
+intro: Aprendemos los nombres de la ropa y a decir lo que llevamos puesto con «I'm wearing».
+tabla: Ropa ; Inglés* | Español
+| shirt | camisa
+| T-shirt | polo
+| pants / jeans | pantalón / jean
+| shorts | short
+| skirt | falda
+| dress | vestido
+| sweater | chompa
+| jacket | casaca
+| coat | abrigo
+| shoes | zapatos
+| sneakers | zapatillas
+| socks | medias
+| cap / hat | gorra / sombrero
+| scarf | chalina
+tabla: Siempre en plural ; Inglés* | Con «a pair of»*
+| pants | a pair of pants
+| jeans | a pair of jeans
+| shorts | a pair of shorts
+| socks | a pair of socks
+| shoes | a pair of shoes
+ej: What are you wearing? — I'm wearing a blue sweater. | ¿Qué llevas puesto? — Una chompa azul.
+ej: My pants are new. | Mi pantalón es nuevo.
+ej: Put on your jacket. | Ponte la casaca.
+ojo: Pants, jeans y shorts son plurales: My jeans ARE blue ✓, my jeans is ✗.
+ojo: «Polo» en Perú es «T-shirt» en inglés.
+ojo: Ponerse = put on; quitarse = take off; llevar puesto = wear.
+pron: Sweater suena «suéter». Clothes suena «clóuds».
+
+=== eng-a1-w6-c2 | 🛍️ | A1 · Semana 6 · Clase 2: Shopping
+desc: How much is it? How much are they? It's 20 soles. Can I try it on? What size? Small, medium, large. I'll take it.
+- 💲 | How much is it? | ¿Cuánto cuesta? | How much is this T-shirt? — It's twenty soles. | ¿Cuánto cuesta este polo? — Veinte soles.
+- 💵 | How much are they? | ¿Cuánto cuestan? | How much are these shoes? — They're fifty soles. | ¿Cuánto cuestan estos zapatos? — Cincuenta soles.
+- 🏷️ | It's twenty soles | Cuesta veinte soles | It's twenty soles. | Cuesta veinte soles.
+- 👗 | Can I try it on? | ¿Me lo puedo probar? | Can I try it on, please? | ¿Me lo puedo probar, por favor?
+- 📏 | What size are you? | ¿Qué talla eres? | What size are you? — Medium. | ¿Qué talla eres? — Mediana.
+- S | small | pequeña (talla S) | Do you have it in small? | ¿Lo tiene en talla pequeña?
+- M | medium | mediana (talla M) | A medium T-shirt, please. | Un polo talla mediana, por favor.
+- L | large | grande (talla L) | It's too small. I need a large. | Es muy pequeño. Necesito talla grande.
+- 🔽 | Do you have a smaller size? | ¿Tiene una talla más pequeña? | It's too big. Do you have a smaller size? | Es muy grande. ¿Tiene una talla más pequeña?
+- ✅ | I'll take it | Me lo llevo | I like it. I'll take it! | Me gusta. ¡Me lo llevo!
+- 💳 | Can I pay by card? | ¿Puedo pagar con tarjeta? | Can I pay by card? — Yes, of course. | ¿Puedo pagar con tarjeta? — Sí, claro.
+- 💰 | Here's your change | Aquí está su vuelto | Here's your change. Have a nice day! | Aquí está su vuelto. ¡Que tenga un buen día!
+teoria:
+intro: Aprendemos a comprar ropa y cosas: preguntar precios, tallas, probarnos algo y pagar.
+tabla: En la tienda ; Inglés* | Español
+| How much is it? | ¿Cuánto cuesta? (una cosa)
+| How much are they? | ¿Cuánto cuestan? (varias)
+| Can I try it on? | ¿Me lo puedo probar?
+| It's too big / too small. | Es muy grande / muy pequeño.
+| Do you have it in blue? | ¿Lo tiene en azul?
+| I'll take it. | Me lo llevo.
+| Can I pay by card / in cash? | ¿Puedo pagar con tarjeta / en efectivo?
+tabla: Tallas ; Letra | Inglés*
+| S | small
+| M | medium
+| L | large
+| XL | extra large
+ej: Excuse me, how much is this cap? — It's fifteen soles. | Disculpe, ¿cuánto cuesta esta gorra? — Quince soles.
+ej: These shoes are too small. | Estos zapatos me quedan pequeños.
+ej: Can I pay in cash? | ¿Puedo pagar en efectivo?
+ojo: Con una cosa: How much IS it? Con varias: How much ARE they?
+ojo: «Too big» es «demasiado grande» (no me queda); «very big» es solo «muy grande».
+pron: Size suena «sáis». Change suena «chéinch».
+
+=== eng-a1-w6-c3 | 🍔 | A1 · Semana 6 · Clase 3: At the restaurant
+desc: Can I see the menu? I'd like a burger. Can I have water, please? For here or to go? The bill, please. Starter, main course, dessert.
+- 📋 | Can I see the menu, please? | ¿Puedo ver la carta, por favor? | Can I see the menu, please? | ¿Puedo ver la carta, por favor?
+- 🍔 | I'd like a burger | Quisiera una hamburguesa | I'd like a burger with fries. | Quisiera una hamburguesa con papas fritas.
+- 💧 | Can I have water, please? | ¿Me da agua, por favor? | Can I have a glass of water, please? | ¿Me da un vaso de agua, por favor?
+- 🍽️ | Are you ready to order? | ¿Listos para pedir? | Are you ready to order? — Yes, we are. | ¿Listos para pedir? — Sí.
+- 🥗 | starter | entrada | For a starter, a salad. | De entrada, una ensalada.
+- 🍝 | main course | plato de fondo | For the main course, spaghetti. | De plato de fondo, espaguetis.
+- 🍰 | dessert | postre | What's for dessert? | ¿Qué hay de postre?
+- 🛍️ | For here or to go? | ¿Para comer aquí o para llevar? | For here or to go? — To go, please. | ¿Para aquí o para llevar? — Para llevar, por favor.
+- 🤤 | It's delicious | Está delicioso | This ceviche is delicious! | ¡Este ceviche está delicioso!
+- 🧾 | The bill, please | La cuenta, por favor | Excuse me, the bill, please. | Disculpe, la cuenta, por favor.
+- 🧑‍🍳 | waiter / waitress | mozo / moza | The waiter is very friendly. | El mozo es muy amable.
+- 🙅 | Anything else? — No, thank you | ¿Algo más? — No, gracias | Anything else? — No, thank you. | ¿Algo más? — No, gracias.
+teoria:
+intro: Aprendemos a pedir comida en un restaurante con cortesía, desde la carta hasta la cuenta.
+tabla: Pedir ; Inglés* | Español
+| Can I see the menu, please? | ¿Puedo ver la carta?
+| I'd like a pizza. | Quisiera una pizza.
+| Can I have some water? | ¿Me da agua?
+| Anything else? | ¿Algo más?
+| The bill, please. | La cuenta, por favor.
+tabla: El menú ; Inglés* | Español
+| starter | entrada
+| main course | plato de fondo
+| dessert | postre
+| drink | bebida
+| side dish | acompañamiento
+ej: I'd like chicken and rice, please. | Quisiera arroz con pollo, por favor.
+ej: For dessert, I'd like ice cream. | De postre, quisiera helado.
+ej: Can we have the bill, please? | ¿Nos trae la cuenta, por favor?
+ojo: «I'd like» (quisiera) es más educado que «I want» (quiero).
+ojo: «Postre» es «dessert» (con dos «s»); «desert» (una «s») es desierto.
+pron: Menu suena «méniu». Dessert suena «disért», con el acento al final.
+
+# ===================== A1 · SEMANA 7: EL FIN DE SEMANA =====================
+
+=== eng-a1-w7 | 🎡 | A1 · Semana 7 · Clase 1: Weekend activities
+desc: Go to the park, visit my grandparents, go to the movies, go shopping, clean my room, sleep late, have a picnic, go to the beach.
+- 🌳 | go to the park | ir al parque | On weekends I go to the park. | Los fines de semana voy al parque.
+- 👴👵 | visit my grandparents | visitar a mis abuelos | I visit my grandparents on Sundays. | Visito a mis abuelos los domingos.
+- 🎬 | go to the movies | ir al cine | We go to the movies on Saturday. | Vamos al cine el sábado.
+- 🛍️ | go shopping | ir de compras | My mom and I go shopping. | Mi mamá y yo vamos de compras.
+- 🧹 | clean my room | limpiar mi cuarto | I clean my room on Saturday morning. | Limpio mi cuarto el sábado en la mañana.
+- 😴 | sleep late | dormir hasta tarde | I sleep late on Sundays. | Duermo hasta tarde los domingos.
+- 🧺 | have a picnic | hacer un picnic | We have a picnic in the park. | Hacemos un picnic en el parque.
+- 🏖️ | go to the beach | ir a la playa | In summer we go to the beach. | En verano vamos a la playa.
+- 👫 | with my friends | con mis amigos | I play with my friends. | Juego con mis amigos.
+- 👨‍👩‍👧 | with my family | con mi familia | I have lunch with my family. | Almuerzo con mi familia.
+- 📺 | watch movies | ver películas | We watch movies at home. | Vemos películas en casa.
+- 🍦 | eat ice cream | comer helado | We eat ice cream on Sundays. | Comemos helado los domingos.
+- ❓ | What do you do on weekends? | ¿Qué haces los fines de semana? | What do you do on weekends? — I go to the park. | ¿Qué haces los fines de semana? — Voy al parque.
+teoria:
+intro: Aprendemos actividades típicas del fin de semana para contar qué hacemos y con quién.
+tabla: Actividades ; Inglés* | Español
+| go to the park | ir al parque
+| go to the movies | ir al cine
+| go to the beach | ir a la playa
+| go shopping | ir de compras
+| visit my grandparents | visitar a mis abuelos
+| have a picnic | hacer un picnic
+| clean my room | limpiar mi cuarto
+| sleep late | dormir hasta tarde
+ej: What do you do on weekends? — I visit my grandparents. | ¿Qué haces los fines de semana? — Visito a mis abuelos.
+ej: On Saturday I clean my room and on Sunday I go to the park. | El sábado limpio mi cuarto y el domingo voy al parque.
+ojo: «Los fines de semana» = on weekends; «el sábado» = on Saturday.
+ojo: «Ir de compras» es «go shopping», no «go to shopping».
+pron: Movies suena «múuvis». Weekend suena «uíikend».
+
+=== eng-a1-w7-c2 | 🕰️ | A1 · Semana 7 · Clase 2: Was / were (el pasado de be)
+desc: I was at home. We were at the beach. It was fun. Was it fun? Yes, it was. Where were you?
+- 🏠 | I was at home | Estaba en casa | Yesterday I was at home. | Ayer estuve en casa.
+- 🏖️ | We were at the beach | Estábamos en la playa | Last weekend we were at the beach. | El fin de semana pasado estuvimos en la playa.
+- 🎉 | It was fun | Fue divertido | The party was fun! | ¡La fiesta fue divertida!
+- 😴 | She was tired | Ella estaba cansada | She was tired after school. | Ella estaba cansada después del colegio.
+- 🤩 | They were happy | Ellos estaban felices | They were happy at the zoo. | Estaban felices en el zoológico.
+- 🚫 | I wasn't at school | No estaba en el colegio | I wasn't at school on Monday. I was sick. | No fui al colegio el lunes. Estaba enfermo.
+- ⛔ | We weren't hungry | No teníamos hambre | We weren't hungry. | No teníamos hambre.
+- ❓ | Was it fun? | ¿Fue divertido? | Was the movie fun? — Yes, it was. | ¿La película fue divertida? — Sí.
+- 📍 | Where were you? | ¿Dónde estabas? | Where were you yesterday? — I was at my grandma's. | ¿Dónde estabas ayer? — Donde mi abuelita.
+- ⬅️ | yesterday | ayer | Yesterday was Sunday. | Ayer fue domingo.
+- 📅 | last weekend | el fin de semana pasado | Last weekend was great. | El fin de semana pasado fue genial.
+teoria:
+intro: «Was» y «were» son el pasado del verbo «be» (ser/estar). Sirven para decir dónde estábamos o cómo fue algo.
+tabla: Was y were ; Persona | Afirmativa* | Negativa*
+| I | I was | I wasn't
+| You | You were | You weren't
+| He / She / It | She was | She wasn't
+| We | We were | We weren't
+| They | They were | They weren't
+tabla: Preguntas ; Pregunta* | Respuesta*
+| Was it fun? | Yes, it was. / No, it wasn't.
+| Were you at home? | Yes, I was. / No, I wasn't.
+| Where were you? | I was at the park.
+ej: Where were you last Saturday? — I was at the beach. | ¿Dónde estabas el sábado pasado? — En la playa.
+ej: The test wasn't difficult. | El examen no fue difícil.
+ej: Were your friends there? — Yes, they were. | ¿Tus amigos estaban ahí? — Sí.
+ojo: I, he, she, it → was. You, we, they → were.
+ojo: «Fue divertido» = It was fun (no «It fun»).
+pron: Was suena «uós». Were suena «uér».
+
+=== eng-a1-w7-c3 | ⏪ | A1 · Semana 7 · Clase 3: Last weekend I played…
+desc: Played, watched, visited, cleaned, cooked, walked, talked, danced, studied, stayed. Last weekend, yesterday, two days ago.
+- ⚽ | I played soccer | Jugué fútbol | Last weekend I played soccer. | El fin de semana pasado jugué fútbol.
+- 📺 | I watched a movie | Vi una película | Yesterday I watched a movie. | Ayer vi una película.
+- 👵 | I visited my grandma | Visité a mi abuelita | On Sunday I visited my grandma. | El domingo visité a mi abuelita.
+- 🧹 | I cleaned my room | Limpié mi cuarto | I cleaned my room on Saturday. | Limpié mi cuarto el sábado.
+- 🍳 | We cooked pancakes | Cocinamos panqueques | We cooked pancakes for breakfast. | Cocinamos panqueques en el desayuno.
+- 🚶 | They walked to the park | Caminaron al parque | They walked to the park. | Caminaron al parque.
+- 📞 | She talked to her friend | Ella habló con su amiga | She talked to her friend on the phone. | Ella habló con su amiga por teléfono.
+- 💃 | We danced at the party | Bailamos en la fiesta | We danced all night at the party. | Bailamos toda la noche en la fiesta.
+- 📚 | I studied for the test | Estudié para el examen | I studied for the test on Sunday. | Estudié para el examen el domingo.
+- 🏠 | I stayed at home | Me quedé en casa | It was rainy, so I stayed at home. | Estaba lluvioso, así que me quedé en casa.
+- ⏪ | two days ago | hace dos días | I visited the zoo two days ago. | Visité el zoológico hace dos días.
+- ❓ | What did you do last weekend? | ¿Qué hiciste el fin de semana pasado? | What did you do last weekend? — I played soccer. | ¿Qué hiciste el fin de semana pasado? — Jugué fútbol.
+teoria:
+intro: Empezamos el pasado con los verbos regulares: se les agrega «-ed». Sirve para contar lo que hicimos ayer o el fin de semana pasado.
+tabla: Verbos regulares en pasado ; Presente* | Pasado* | Español
+| play | played | jugué
+| watch | watched | vi
+| visit | visited | visité
+| clean | cleaned | limpié
+| cook | cooked | cociné
+| walk | walked | caminé
+| talk | talked | hablé
+| dance | danced | bailé
+| study | studied | estudié
+| stay | stayed | me quedé
+tabla: Reglas del -ed ; Regla | Ejemplo*
+| Casi todos: + ed | play → played
+| Termina en -e: + d | dance → danced
+| Consonante + y: y → ied | study → studied
+| Vocal corta + consonante: dobla | stop → stopped
+ej: Yesterday I watched TV and played video games. | Ayer vi televisión y jugué videojuegos.
+ej: Last summer we visited Cusco. | El verano pasado visitamos Cusco.
+ojo: El pasado es igual para todas las personas: I played, she played, they played (sin «s»).
+ojo: «Hace dos días» = two days ago (ago va al final).
+pron: El -ed suena de tres formas: «t» (walked = «uókt»), «d» (played = «pléid») e «id» (visited = «vísitid»).
+
+# ===================== A1 · SEMANA 8: PROYECTO FINAL A1 =====================
+
+=== eng-a1-w8 | 🎤 | A1 · Semana 8 · Clase 1: Proyecto: All about me
+desc: Me presento completo: quién soy, mi rutina, mi familia, mis gustos y mi fin de semana.
+- 🙋 | Let me introduce myself | Permítanme presentarme | Hello everyone! Let me introduce myself. | ¡Hola a todos! Permítanme presentarme.
+- 🎂 | I am eight years old | Tengo ocho años | My name is Leo and I am eight years old. | Me llamo Leo y tengo ocho años.
+- 🏠 | I live with my parents | Vivo con mis padres | I live with my parents and my sister. | Vivo con mis padres y mi hermana.
+- ⏰ | Every morning I get up at six | Todas las mañanas me levanto a las seis | Every morning I get up at six. | Todas las mañanas me levanto a las seis.
+- ⚽ | My favorite sport is soccer | Mi deporte favorito es el fútbol | My favorite sport is soccer. | Mi deporte favorito es el fútbol.
+- 🍝 | I love spaghetti | Me encanta el espagueti | I love spaghetti, but I don't like onions. | Me encanta el espagueti, pero no la cebolla.
+- 👩 | My mom is kind and funny | Mi mamá es amable y graciosa | My mom is kind and funny. | Mi mamá es amable y graciosa.
+- 🎨 | I can draw very well | Sé dibujar muy bien | I can draw very well. | Sé dibujar muy bien.
+- 🔁 | I usually play after school | Normalmente juego después del colegio | I usually play after school. | Normalmente juego después del colegio.
+- 🏖️ | Last weekend I visited the beach | El fin de semana pasado visité la playa | Last weekend I visited the beach with my family. | El fin de semana pasado visité la playa con mi familia.
+- 🌟 | In the future I want to be a doctor | En el futuro quiero ser doctor | In the future I want to be a doctor. | En el futuro quiero ser doctor.
+- 🙏 | Thank you for listening | Gracias por escuchar | That's all. Thank you for listening! | Eso es todo. ¡Gracias por escuchar!
+teoria:
+intro: Unimos todo lo del A1 para hacer una presentación oral sobre nosotros: datos, rutina, familia, gustos, habilidades y el fin de semana pasado.
+tabla: Guion de la presentación ; Parte | Frase modelo*
+| Saludo | Hello everyone! Let me introduce myself.
+| Datos | My name is Leo. I'm eight years old.
+| Familia | I live with my parents and my sister.
+| Rutina | Every morning I get up at six.
+| Frecuencia | I usually play after school.
+| Gustos | I love spaghetti. My favorite sport is soccer.
+| Habilidad | I can draw very well.
+| Pasado | Last weekend I visited the beach.
+| Cierre | Thank you for listening!
+ej: Hello everyone! My name is Ana. I'm nine years old and I live in Lima. | ¡Hola a todos! Me llamo Ana. Tengo nueve años y vivo en Lima.
+ej: On weekends I usually go to the park with my dog. | Los fines de semana normalmente voy al parque con mi perro.
+ojo: Usa conectores para unir ideas: and (y), but (pero), because (porque), then (luego).
+ojo: Revisa la «s» de he/she en presente y el «-ed» en pasado.
+pron: Habla despacio, mira al público y sonríe. Practica tres veces en voz alta.
+
+=== eng-a1-w8-c2 | ✉️ | A1 · Semana 8 · Clase 2: Proyecto: Writing an email
+desc: Escribir un correo a un amigo: Dear…, How are you?, I'm writing to tell you…, See you soon, Best wishes.
+- ✉️ | Dear Tom, | Querido Tom: | Dear Tom, how are you? | Querido Tom: ¿cómo estás?
+- 🙂 | How are you? I'm fine | ¿Cómo estás? Yo estoy bien | How are you? I'm fine, thank you. | ¿Cómo estás? Yo estoy bien, gracias.
+- 📝 | I'm writing to tell you about my week | Te escribo para contarte sobre mi semana | I'm writing to tell you about my week. | Te escribo para contarte sobre mi semana.
+- 🏫 | My new school is great | Mi nuevo colegio es genial | My new school is great and my teacher is kind. | Mi nuevo colegio es genial y mi profesora es amable.
+- 👫 | I have a new friend | Tengo un amigo nuevo | I have a new friend. His name is Leo. | Tengo un amigo nuevo. Se llama Leo.
+- 🏖️ | Last weekend we went to the beach | El fin de semana pasado fuimos a la playa | Last weekend we went to the beach. | El fin de semana pasado fuimos a la playa.
+- ❓ | What about you? | ¿Y tú? / ¿Qué me cuentas? | What about you? Write soon! | ¿Y tú? ¡Escríbeme pronto!
+- 📮 | Write soon | Escríbeme pronto | Please write soon! | ¡Por favor, escríbeme pronto!
+- 👋 | See you soon | Nos vemos pronto | See you soon, Tom! | ¡Nos vemos pronto, Tom!
+- 💌 | Best wishes, Ana | Saludos, Ana | Best wishes, Ana | Saludos, Ana
+- 💛 | Love, Ana | Con cariño, Ana | Love, Ana | Con cariño, Ana
+teoria:
+intro: Aprendemos a escribir un correo sencillo a un amigo, con saludo, contenido y despedida.
+tabla: Partes de un correo ; Parte | Ejemplo*
+| Saludo | Dear Tom,
+| Pregunta amable | How are you? I'm fine.
+| Motivo | I'm writing to tell you about my week.
+| Contenido | My new school is great. Last weekend we went to the beach.
+| Pregunta al amigo | What about you?
+| Cierre | Write soon! See you soon.
+| Firma | Best wishes, Ana
+ej: Dear Grandma, I miss you a lot! | Querida abuelita: ¡Te extraño mucho!
+ej: I'm writing to tell you that I passed my English test. | Te escribo para contarte que aprobé mi examen de inglés.
+ojo: Después de «Dear Tom» va coma, no dos puntos: Dear Tom,
+ojo: «Love» como despedida es para familia y amigos cercanos; «Best wishes» sirve para todos.
+pron: Wishes suena «uíshis». Dear suena «díer».
