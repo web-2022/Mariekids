@@ -555,12 +555,13 @@
       p.appendChild(sayBtn("es", TH.intro)); s1.appendChild(p); seq.push({ lang: "es", text: TH.intro, node: p });
     }
     (TH.bloques || []).forEach(function (bq) {
-      var s2 = sec("📋", bq.tit || "La regla"), wrap = el("div", "th-tblwrap"), t = el("table", "th-table");
+      var s2 = sec("📋", bq.tit || "La regla"), wrap = el("div", "th-tblwrap"), t = el("table", "th-table" + (bq.cab.length >= 3 ? " th-stack" : ""));
       var tr = el("tr"); bq.cab.forEach(function (c) { tr.appendChild(el("th", "", esc(c))); }); tr.appendChild(el("th", "th-c", "")); t.appendChild(tr);
       bq.filas.forEach(function (f) {
         var r = el("tr"), enTxt = bq.en.map(function (i) { return f[i]; }).filter(Boolean).join(". ");
         f.forEach(function (c, i) {
           var td = el("td", bq.en.indexOf(i) >= 0 ? "en" : "", "");
+          if (bq.cab[i]) td.setAttribute("data-label", bq.cab[i]);   // en celular la tabla se apila como tarjetas
           if (bq.en.indexOf(i) >= 0 && c) { td.appendChild(enLine(c, "th-en", { noSpeaker: true })); } else td.innerHTML = esc(c);
           r.appendChild(td);
         });

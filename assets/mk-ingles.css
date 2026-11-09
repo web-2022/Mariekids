@@ -148,6 +148,20 @@ body.th-open { overflow: hidden; }
 .th-back { display: block; width: 100%; margin-top: 16px; min-height: 48px; }
 
 /* ---------- Pantallas ---------- */
+/* Tablas de 3+ columnas: en pantallas angostas cada fila se vuelve una tarjeta (sin scroll lateral) */
+@media (max-width: 600px) {
+  .th-table th { white-space: normal; }
+  .th-table th, .th-table td { padding: 6px 5px; overflow-wrap: anywhere; }
+  .th-table td.th-c { padding-right: 4px; }
+  .th-table.th-stack, .th-table.th-stack tr, .th-table.th-stack td { display: block; width: auto; }
+  .th-table.th-stack tr:first-child { display: none; }
+  .th-table.th-stack tr { position: relative; padding: 8px 86px 8px 10px; border-top: 1px solid #e2e8f0; }
+  .th-table.th-stack tr:nth-child(2) { border-top: 0; }
+  .th-table.th-stack tr:nth-child(even) { background: #f8fafc; }
+  .th-table.th-stack td { border: 0; padding: 2px 0; background: none !important; text-align: left; }
+  .th-table.th-stack td[data-label]:not(:empty)::before { content: attr(data-label) " · "; font-weight: 800; color: #64748b; font-size: .78em; }
+  .th-table.th-stack td.th-c { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); padding: 0; }
+}
 .option-btn, .tile, .tool-btn, button.main-btn { min-height: 44px; }
 @media (max-width: 360px) {
   body { padding: 8px !important; }

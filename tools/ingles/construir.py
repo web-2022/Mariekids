@@ -22,7 +22,7 @@ from pathlib import Path
 
 AQUI = Path(__file__).resolve().parent
 RAIZ = AQUI.parent.parent
-VERSION = "7"
+VERSION = "8"
 PLANT = (AQUI / "plantilla.html").read_text(encoding="utf8")
 NIVELES = ["a0", "a1", "a2", "b1", "b2", "c1", "c2"]
 GRUPO = {"a0": "g1", "a1": "g2", "a2": "g3", "b1": "g4", "b2": "g5", "c1": "g6", "c2": "g7", "kit": "g8"}
