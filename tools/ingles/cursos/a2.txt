@@ -1,0 +1,660 @@
+# ===================== A2 · SEMANA 1: PRESENT CONTINUOUS =====================
+
+=== eng-a2-w1 | 🏃 | A2 · Semana 1 · Clase 1: What are you doing right now?
+desc: I'm studying right now. What are you doing? She's cooking. It's raining. Look! Listen!
+- 📖 | I'm studying right now | Estoy estudiando ahora mismo | I'm studying right now. Call me later. | Estoy estudiando ahora mismo. Llámame más tarde.
+- ❓ | What are you doing? | ¿Qué estás haciendo? | What are you doing? — I'm reading. | ¿Qué estás haciendo? — Estoy leyendo.
+- 🍳 | She's cooking dinner | Ella está cocinando la cena | Mom is in the kitchen. She's cooking dinner. | Mamá está en la cocina. Está cocinando la cena.
+- 🌧️ | It's raining | Está lloviendo | Take an umbrella. It's raining. | Lleva paraguas. Está lloviendo.
+- ⚽ | They're playing soccer | Están jugando fútbol | The kids are in the park. They're playing soccer. | Los niños están en el parque. Están jugando fútbol.
+- 👶 | The baby is sleeping | El bebé está durmiendo | Shh! The baby is sleeping. | ¡Shh! El bebé está durmiendo.
+- 📞 | I'm talking on the phone | Estoy hablando por teléfono | Wait, I'm talking on the phone. | Espera, estoy hablando por teléfono.
+- 📺 | We're watching TV | Estamos viendo televisión | We're watching TV in the living room. | Estamos viendo televisión en la sala.
+- 🏃 | He's running | Él está corriendo | He's running in the park. | Él está corriendo en el parque.
+- 🚌 | Look! The bus is coming | ¡Mira! Viene el bus | Look! The bus is coming. | ¡Mira! Viene el bus.
+- 🐦 | Listen! The birds are singing | ¡Escucha! Los pájaros están cantando | Listen! The birds are singing. | ¡Escucha! Los pájaros están cantando.
+- ✍️ | I'm writing an email | Estoy escribiendo un correo | I'm writing an email to my cousin. | Estoy escribiendo un correo a mi primo.
+teoria:
+intro: El Present Continuous dice lo que está pasando AHORA. Se forma con am / is / are + verbo con -ing.
+tabla: La fórmula ; Persona | Ejemplo* | Español
+| I | I am playing. | Estoy jugando.
+| You | You are playing. | Estás jugando.
+| He / She / It | She is playing. | Ella está jugando.
+| We | We are playing. | Estamos jugando.
+| They | They are playing. | Están jugando.
+tabla: Palabras que avisan que es AHORA ; Inglés* | Español
+| now / right now | ahora / ahora mismo
+| at the moment | en este momento
+| Look! | ¡Mira!
+| Listen! | ¡Escucha!
+| today / this week | hoy / esta semana
+ej: Look! It's snowing! | ¡Mira! ¡Está nevando!
+ej: What are you doing? — I'm doing my homework. | ¿Qué estás haciendo? — Estoy haciendo mi tarea.
+ej: My parents are working at the moment. | Mis padres están trabajando en este momento.
+ojo: No olvides am/is/are: She is cooking ✓, She cooking ✗.
+ojo: En inglés se usa el -ing aunque en español digamos el verbo simple: «¿Qué haces?» (ahora) = What are you doing?
+pron: Las formas cortas son más naturales: I'm, you're, he's, she's, we're, they're.
+
+=== eng-a2-w1-c2 | 📗 | A2 · Semana 1 · Clase 2: Present Continuous completo
+desc: Afirmativa, negativa y pregunta con todas las personas. Respuestas cortas. Ortografía del -ing.
+- ✅ | I'm eating | Estoy comiendo | I'm eating a sandwich. | Estoy comiendo un sándwich.
+- 🚫 | I'm not eating | No estoy comiendo | I'm not eating. I'm not hungry. | No estoy comiendo. No tengo hambre.
+- ⛔ | She isn't working | Ella no está trabajando | She isn't working today. | Hoy ella no está trabajando.
+- 🙅 | They aren't listening | Ellos no están escuchando | They aren't listening to the teacher. | No están escuchando a la profesora.
+- ❓ | Are you listening? | ¿Estás escuchando? | Are you listening to me? — Yes, I am. | ¿Me estás escuchando? — Sí.
+- ❔ | Is he sleeping? | ¿Él está durmiendo? | Is he sleeping? — No, he isn't. | ¿Él está durmiendo? — No.
+- 👍 | Yes, I am | Sí (con am) | Are you having fun? — Yes, I am! | ¿Te estás divirtiendo? — ¡Sí!
+- 👎 | No, they aren't | No (con are) | Are they coming? — No, they aren't. | ¿Están viniendo? — No.
+- 💃 | dance → dancing | bailar → bailando | We are dancing at the party. | Estamos bailando en la fiesta.
+- 🏊 | swim → swimming | nadar → nadando | The kids are swimming in the pool. | Los niños están nadando en la piscina.
+- 🧑‍🤝‍🧑 | lie → lying | echarse → echado | The dog is lying on the sofa. | El perro está echado en el sofá.
+- 🤔 | Where are you going? | ¿A dónde vas? | Where are you going? — To the store. | ¿A dónde vas? — A la tienda.
+teoria:
+intro: Vemos el Present Continuous completo: cómo negar, cómo preguntar, cómo responder corto y cómo se escribe el -ing.
+tabla: Afirmativa / negativa ; Persona | Afirmativa* | Negativa*
+| I | I'm working. | I'm not working.
+| You | You're working. | You aren't working.
+| He / She / It | He's working. | He isn't working.
+| We | We're working. | We aren't working.
+| They | They're working. | They aren't working.
+tabla: Preguntas y respuestas cortas ; Pregunta* | Sí* | No*
+| Am I late? | Yes, you are. | No, you aren't.
+| Are you working? | Yes, I am. | No, I'm not.
+| Is she working? | Yes, she is. | No, she isn't.
+| Are they working? | Yes, they are. | No, they aren't.
+tabla: Ortografía del -ing ; Regla | Ejemplo*
+| Casi todos: + ing | read → reading, play → playing
+| Termina en -e: quita la e | dance → dancing, write → writing
+| Vocal corta + consonante: dobla | run → running, sit → sitting, swim → swimming
+| Termina en -ie: ie → y | lie → lying, die → dying
+ej: Is it raining? — No, it isn't. It's sunny. | ¿Está lloviendo? — No. Está soleado.
+ej: Why are you laughing? | ¿Por qué te estás riendo?
+ojo: En respuestas cortas no se usa la forma corta con «yes»: Yes, I am ✓, Yes, I'm ✗.
+ojo: «Writing» lleva una sola «t»; «sitting», dos.
+pron: Isn't suena «ísent». Aren't suena «árent».
+
+=== eng-a2-w1-c3 | ⚖️ | A2 · Semana 1 · Clase 3: Simple vs Continuous
+desc: I usually walk, but today I'm taking the bus. Verbos que no van en -ing: like, love, want, need, know, understand.
+- 🚶 | I usually walk to school | Normalmente camino al colegio | I usually walk to school. | Normalmente camino al colegio.
+- 🚌 | Today I'm taking the bus | Hoy estoy tomando el bus | Today I'm taking the bus because it's raining. | Hoy tomo el bus porque está lloviendo.
+- 👩‍⚕️ | She works in a hospital | Ella trabaja en un hospital | My aunt works in a hospital. | Mi tía trabaja en un hospital.
+- 🏖️ | This week she's working at home | Esta semana está trabajando en casa | This week she's working at home. | Esta semana está trabajando en casa.
+- ❤️ | I like this song | Me gusta esta canción | I like this song! | ¡Me gusta esta canción!
+- 🙋 | I want a glass of water | Quiero un vaso de agua | I want a glass of water, please. | Quiero un vaso de agua, por favor.
+- 🧠 | I know the answer | Sé la respuesta | I know the answer! | ¡Sé la respuesta!
+- 🤔 | I don't understand | No entiendo | Sorry, I don't understand this word. | Perdón, no entiendo esta palabra.
+- 🎒 | I need a new backpack | Necesito una mochila nueva | I need a new backpack. | Necesito una mochila nueva.
+- 🍽️ | Do you cook every day? | ¿Cocinas todos los días? | Do you cook every day? — Yes, I do. | ¿Cocinas todos los días? — Sí.
+- 🍳 | Are you cooking now? | ¿Estás cocinando ahora? | Are you cooking now? — Yes, pasta! | ¿Estás cocinando ahora? — ¡Sí, pasta!
+teoria:
+intro: Comparamos los dos presentes: el Simple para hábitos y verdades; el Continuous para lo que pasa ahora o en estos días. Algunos verbos casi nunca van en -ing.
+tabla: ¿Cuál uso? ; Present Simple* | Present Continuous*
+| I play soccer on Saturdays. | I'm playing soccer now.
+| She works in a bank. | She's working from home this week.
+| It rains a lot in winter. | It's raining right now.
+tabla: Verbos que no van en -ing (de estado) ; Inglés* | Español
+| like / love / hate | gustar / encantar / odiar
+| want / need | querer / necesitar
+| know / understand | saber / entender
+| believe / remember | creer / recordar
+| have (= tener) | tener
+ej: I usually have cereal, but today I'm eating eggs. | Normalmente como cereal, pero hoy estoy comiendo huevos.
+ej: I know your sister. | Conozco a tu hermana.
+ojo: «I'm knowing» ✗ → «I know» ✓. «I'm wanting» ✗ → «I want» ✓.
+ojo: Palabras clave: always, usually, every day → Simple. Now, right now, today, this week → Continuous.
+pron: Compara: «ai uók» (I walk) y «aim uókin» (I'm walking).
+
+# ===================== A2 · SEMANA 2: PAST SIMPLE =====================
+
+=== eng-a2-w2 | 🗺️ | A2 · Semana 2 · Clase 1: Irregular verbs (1)
+desc: Go–went, eat–ate, have–had, see–saw, take–took, make–made, get–got, come–came, do–did, buy–bought, drink–drank, write–wrote.
+- 🚶 | go – went | ir – fui | Last summer I went to Cusco. | El verano pasado fui a Cusco.
+- 🍕 | eat – ate | comer – comí | We ate pizza last night. | Comimos pizza anoche.
+- 🎉 | have – had | tener – tuve | I had a great time. | La pasé genial.
+- 👀 | see – saw | ver – vi | I saw a llama at Machu Picchu. | Vi una llama en Machu Picchu.
+- 📸 | take – took | tomar – tomé | She took a lot of photos. | Ella tomó muchas fotos.
+- 🎂 | make – made | hacer – hice | Mom made a cake. | Mamá hizo una torta.
+- 🎁 | get – got | conseguir/recibir – recibí | I got a new bike for my birthday. | Recibí una bici nueva por mi cumpleaños.
+- 🏠 | come – came | venir – vine | My cousins came to my house. | Mis primos vinieron a mi casa.
+- 📚 | do – did | hacer – hice | I did my homework yesterday. | Hice mi tarea ayer.
+- 🛍️ | buy – bought | comprar – compré | I bought a T-shirt. | Compré un polo.
+- 🥤 | drink – drank | beber – bebí | We drank orange juice. | Tomamos jugo de naranja.
+- ✍️ | write – wrote | escribir – escribí | I wrote a letter to my grandma. | Escribí una carta a mi abuelita.
+- 📖 | read – read | leer – leí | I read a book last week. | Leí un libro la semana pasada.
+- 🗣️ | say – said | decir – dije | She said «hello». | Ella dijo «hola».
+teoria:
+intro: Muchos verbos muy usados no terminan en -ed en pasado: son irregulares y hay que aprenderlos de memoria. Hoy vemos los más frecuentes.
+tabla: Irregulares frecuentes (1) ; Presente* | Pasado* | Español
+| go | went | ir
+| eat | ate | comer
+| have | had | tener
+| see | saw | ver
+| take | took | tomar
+| make | made | hacer (fabricar)
+| get | got | conseguir
+| come | came | venir
+| do | did | hacer
+| buy | bought | comprar
+| drink | drank | beber
+| write | wrote | escribir
+| read | read | leer
+| say | said | decir
+ej: Yesterday I went to the park and saw my friends. | Ayer fui al parque y vi a mis amigos.
+ej: We had chicken for lunch. | Almorzamos pollo.
+ojo: El pasado irregular es igual para todas las personas: I went, she went, they went.
+ojo: «Read» en pasado se escribe igual pero suena distinto: presente «ríid», pasado «réd».
+pron: Bought suena «bót». Said suena «séd». Ate suena «éit».
+
+=== eng-a2-w2-c2 | 🗺️ | A2 · Semana 2 · Clase 2: Irregular verbs (2)
+desc: Begin–began, break–broke, drive–drove, feel–felt, find–found, forget–forgot, give–gave, know–knew, leave–left, lose–lost, meet–met, run–ran, sleep–slept, swim–swam, tell–told, think–thought, win–won.
+- 🏁 | begin – began | empezar – empecé | The movie began at seven. | La película empezó a las siete.
+- 💔 | break – broke | romper – rompí | I broke my glasses. | Rompí mis lentes.
+- 🚗 | drive – drove | manejar – manejé | Dad drove to Ica. | Papá manejó a Ica.
+- 🤒 | feel – felt | sentir – sentí | I felt sick yesterday. | Ayer me sentí enfermo.
+- 🔎 | find – found | encontrar – encontré | I found my keys! | ¡Encontré mis llaves!
+- 🤦 | forget – forgot | olvidar – olvidé | I forgot my homework. | Olvidé mi tarea.
+- 🎁 | give – gave | dar – di | She gave me a present. | Ella me dio un regalo.
+- 🧠 | know – knew | saber – sabía | I knew the answer. | Sabía la respuesta.
+- 🚪 | leave – left | salir/dejar – salí | We left at eight. | Salimos a las ocho.
+- 😢 | lose – lost | perder – perdí | We lost the game. | Perdimos el partido.
+- 🤝 | meet – met | conocer – conocí | I met a new friend. | Conocí a un nuevo amigo.
+- 🏃 | run – ran | correr – corrí | I ran in the race. | Corrí en la carrera.
+- 😴 | sleep – slept | dormir – dormí | I slept ten hours. | Dormí diez horas.
+- 🏊 | swim – swam | nadar – nadé | We swam in the sea. | Nadamos en el mar.
+- 🗨️ | tell – told | contar/decir – conté | Grandpa told us a story. | El abuelito nos contó un cuento.
+- 💭 | think – thought | pensar – pensé | I thought it was easy. | Pensé que era fácil.
+- 🏆 | win – won | ganar – gané | Our team won the cup! | ¡Nuestro equipo ganó la copa!
+teoria:
+intro: Seguimos con más verbos irregulares muy frecuentes. Agrúpalos por cómo cambian para recordarlos mejor.
+tabla: Irregulares frecuentes (2) ; Presente* | Pasado* | Español
+| begin | began | empezar
+| break | broke | romper
+| drive | drove | manejar
+| feel | felt | sentir
+| find | found | encontrar
+| forget | forgot | olvidar
+| give | gave | dar
+| know | knew | saber
+| leave | left | salir / dejar
+| lose | lost | perder
+| meet | met | conocer
+| run | ran | correr
+| sleep | slept | dormir
+| swim | swam | nadar
+| tell | told | contar
+| think | thought | pensar
+| win | won | ganar
+tabla: Grupos que se parecen ; Patrón | Ejemplos*
+| i → a | begin began, swim swam, drink drank
+| ee → e + t | sleep slept, feel felt, meet met
+| -ought / -aught | think thought, buy bought, catch caught
+ej: We won the game and felt very happy. | Ganamos el partido y nos sentimos muy felices.
+ej: I lost my pencil, but I found it later. | Perdí mi lápiz, pero lo encontré después.
+ojo: «Lose» (perder) y «lost»; no confundas con «loose» (suelto).
+ojo: «Meet» en pasado es «met»: conocer a alguien por primera vez.
+pron: Thought suena «zót». Knew suena «niú» (la k no suena).
+
+=== eng-a2-w2-c3 | ❓ | A2 · Semana 2 · Clase 3: Did / didn't
+desc: Did you go? Yes, I did / No, I didn't. I didn't go. What did you do? Yesterday, last week, two days ago, in 2020.
+- ❓ | Did you like it? | ¿Te gustó? | Did you like the movie? — Yes, I did. | ¿Te gustó la película? — Sí.
+- 👍 | Yes, I did | Sí (en pasado) | Did you finish? — Yes, I did. | ¿Terminaste? — Sí.
+- 👎 | No, I didn't | No (en pasado) | Did you call him? — No, I didn't. | ¿Lo llamaste? — No.
+- 🚫 | I didn't go | No fui | I didn't go to school yesterday. | Ayer no fui al colegio.
+- ⛔ | She didn't eat breakfast | Ella no tomó desayuno | She didn't eat breakfast today. | Hoy ella no tomó desayuno.
+- 🤔 | What did you do yesterday? | ¿Qué hiciste ayer? | What did you do yesterday? — I played soccer. | ¿Qué hiciste ayer? — Jugué fútbol.
+- 📍 | Where did you go? | ¿A dónde fuiste? | Where did you go on vacation? — To Piura. | ¿A dónde fuiste de vacaciones? — A Piura.
+- 🕐 | What time did you get up? | ¿A qué hora te levantaste? | What time did you get up? — At seven. | ¿A qué hora te levantaste? — A las siete.
+- ⬅️ | yesterday | ayer | I visited my aunt yesterday. | Ayer visité a mi tía.
+- 📅 | last week | la semana pasada | Last week we had a test. | La semana pasada tuvimos un examen.
+- ⏪ | two days ago | hace dos días | I saw her two days ago. | La vi hace dos días.
+- 🗓️ | in 2020 | en 2020 | My sister was born in 2020. | Mi hermana nació en 2020.
+teoria:
+intro: Para preguntar y negar en pasado usamos «did» y «didn't». ¡Ojo!: después de did/didn't el verbo vuelve a presente.
+tabla: Las tres formas ; Forma | Ejemplo* | Español
+| Afirmativa | I went to the park. | Fui al parque.
+| Negativa | I didn't go to the park. | No fui al parque.
+| Pregunta | Did you go to the park? | ¿Fuiste al parque?
+| Sí | Yes, I did. | Sí.
+| No | No, I didn't. | No.
+tabla: Preguntas con palabra ; Pregunta* | Español
+| What did you do? | ¿Qué hiciste?
+| Where did you go? | ¿A dónde fuiste?
+| When did you arrive? | ¿Cuándo llegaste?
+| Who did you see? | ¿A quién viste?
+tabla: Expresiones de tiempo pasado ; Inglés* | Español
+| yesterday | ayer
+| last night / last week / last year | anoche / la semana pasada / el año pasado
+| two days ago | hace dos días
+| in 2019 | en 2019
+ej: Did she call you? — No, she didn't. | ¿Ella te llamó? — No.
+ej: We didn't watch TV last night. | Anoche no vimos televisión.
+ojo: Did you went ✗ → Did you go ✓. I didn't ate ✗ → I didn't eat ✓.
+ojo: «Anoche» es «last night», no «yesterday night».
+pron: Didn't suena «dídent». Did you se une: «díyu».
+
+# ===================== A2 · SEMANA 3: COMPARATIVOS Y SUPERLATIVOS =====================
+
+=== eng-a2-w3 | 📏 | A2 · Semana 3 · Clase 1: Comparatives & Superlatives (práctica con niveles)
+desc: Página especial: practica -er/-est, more/most, as…as con dibujos y teoría por niveles.
+mantener
+
+=== eng-a2-w3-c2 | 📈 | A2 · Semana 3 · Clase 2: Comparatives (más que)
+desc: Bigger, taller, faster, happier, more interesting, more expensive, better, worse… than.
+- 🐘 | bigger than | más grande que | An elephant is bigger than a horse. | Un elefante es más grande que un caballo.
+- 🦒 | taller than | más alto que | The giraffe is taller than the zebra. | La jirafa es más alta que la cebra.
+- 🐆 | faster than | más rápido que | A cheetah is faster than a lion. | Un guepardo es más rápido que un león.
+- 🧊 | colder than | más frío que | Puno is colder than Lima. | Puno es más frío que Lima.
+- 😄 | happier than | más feliz que | Today I'm happier than yesterday. | Hoy estoy más feliz que ayer.
+- 🏙️ | busier than | más ocupado que | Lima is busier than my town. | Lima es más agitada que mi pueblo.
+- 🔥 | hotter than | más caliente que | Piura is hotter than Arequipa. | Piura es más caluroso que Arequipa.
+- 📚 | more interesting than | más interesante que | This book is more interesting than that one. | Este libro es más interesante que ese.
+- 💰 | more expensive than | más caro que | A car is more expensive than a bike. | Un carro es más caro que una bici.
+- 🌸 | more beautiful than | más bonito que | The garden is more beautiful in spring. | El jardín es más bonito en primavera.
+- 👍 | better than | mejor que | My new phone is better than my old one. | Mi celular nuevo es mejor que el viejo.
+- 👎 | worse than | peor que | The traffic is worse than yesterday. | El tráfico está peor que ayer.
+- 🚶 | farther than | más lejos que | The beach is farther than the park. | La playa está más lejos que el parque.
+teoria:
+intro: Para comparar dos cosas usamos el comparativo + «than» (que). Los adjetivos cortos llevan -er; los largos, «more».
+tabla: Cómo se forma ; Tipo de adjetivo | Regla | Ejemplo*
+| Corto (1 sílaba) | + er | tall → taller
+| Termina en -e | + r | nice → nicer
+| Vocal + consonante | dobla + er | big → bigger, hot → hotter
+| Termina en -y | y → ier | happy → happier, busy → busier
+| Largo (2+ sílabas) | more + adjetivo | more interesting, more expensive
+| Irregular | — | good → better, bad → worse, far → farther
+ej: My brother is taller than me. | Mi hermano es más alto que yo.
+ej: Math is more difficult than art. | Matemática es más difícil que arte.
+ej: Your idea is better than mine. | Tu idea es mejor que la mía.
+ojo: No uses las dos: «more bigger» ✗ → «bigger» ✓.
+ojo: «Que» en comparaciones es «than», no «that»: taller than me ✓.
+pron: Than suena «dan» (corto). Better suena «béter»; en EE. UU. casi «béder».
+
+=== eng-a2-w3-c3 | 🏆 | A2 · Semana 3 · Clase 3: Superlatives y as…as
+desc: The biggest, the tallest, the happiest, the most beautiful, the best, the worst. As tall as, not as fast as.
+- 🐋 | the biggest | el más grande | The blue whale is the biggest animal. | La ballena azul es el animal más grande.
+- 🏔️ | the highest | el más alto | Everest is the highest mountain. | El Everest es la montaña más alta.
+- 🐆 | the fastest | el más rápido | The cheetah is the fastest animal. | El guepardo es el animal más rápido.
+- 😄 | the happiest | el más feliz | It was the happiest day of my life. | Fue el día más feliz de mi vida.
+- 🌺 | the most beautiful | el más bonito | It's the most beautiful beach in Peru. | Es la playa más bonita del Perú.
+- 💎 | the most expensive | el más caro | This is the most expensive watch. | Este es el reloj más caro.
+- 🥇 | the best | el mejor | You are the best friend! | ¡Eres el mejor amigo!
+- 🥴 | the worst | el peor | It was the worst movie ever. | Fue la peor película de la historia.
+- 🟰 | as tall as | tan alto como | I'm as tall as my mom. | Soy tan alto como mi mamá.
+- 🐢 | not as fast as | no tan rápido como | A turtle is not as fast as a rabbit. | Una tortuga no es tan rápida como un conejo.
+- 🏫 | the smartest in the class | el más inteligente de la clase | She is the smartest in the class. | Ella es la más inteligente de la clase.
+teoria:
+intro: El superlativo dice cuál es «el más» de todos: the + -est o the most. Con «as…as» decimos que dos cosas son iguales.
+tabla: Comparativo y superlativo ; Adjetivo* | Comparativo* | Superlativo*
+| tall | taller | the tallest
+| big | bigger | the biggest
+| happy | happier | the happiest
+| beautiful | more beautiful | the most beautiful
+| interesting | more interesting | the most interesting
+| good | better | the best
+| bad | worse | the worst
+| far | farther | the farthest
+tabla: Igualdad ; Inglés* | Español
+| as tall as | tan alto como
+| as good as | tan bueno como
+| not as big as | no tan grande como
+ej: Lake Titicaca is the highest navigable lake in the world. | El lago Titicaca es el lago navegable más alto del mundo.
+ej: My cat is as lazy as my dog. | Mi gato es tan flojo como mi perro.
+ojo: El superlativo lleva «the»: the best ✓, best ✗ (en general).
+ojo: «Del mundo / de la clase» se dice con «in»: the tallest in the world.
+pron: The best suena «de bést». The most suena «de móust».
+
+# ===================== A2 · SEMANA 4: FUTURO CON GOING TO =====================
+
+=== eng-a2-w4 | 🗓️ | A2 · Semana 4 · Clase 1: Plans with going to
+desc: I'm going to travel. What are you going to do? She's going to study medicine. We're going to have a party.
+- ✈️ | I'm going to travel | Voy a viajar | Next summer I'm going to travel to Cusco. | El próximo verano voy a viajar a Cusco.
+- ❓ | What are you going to do? | ¿Qué vas a hacer? | What are you going to do this weekend? | ¿Qué vas a hacer este fin de semana?
+- 🩺 | She's going to study medicine | Ella va a estudiar medicina | My sister is going to study medicine. | Mi hermana va a estudiar medicina.
+- 🎉 | We're going to have a party | Vamos a hacer una fiesta | We're going to have a party on Friday. | Vamos a hacer una fiesta el viernes.
+- 🚫 | I'm not going to watch TV | No voy a ver televisión | I'm not going to watch TV tonight. | Esta noche no voy a ver televisión.
+- 🏠 | They're going to buy a house | Van a comprar una casa | They're going to buy a new house. | Van a comprar una casa nueva.
+- 🧹 | He's going to clean his room | Él va a limpiar su cuarto | He's going to clean his room later. | Él va a limpiar su cuarto más tarde.
+- 🎂 | Are you going to come? | ¿Vas a venir? | Are you going to come to my party? — Yes, I am. | ¿Vas a venir a mi fiesta? — Sí.
+- 📖 | I'm going to read a book | Voy a leer un libro | Tonight I'm going to read a book. | Esta noche voy a leer un libro.
+- ⚽ | We're going to play soccer | Vamos a jugar fútbol | After school we're going to play soccer. | Después del colegio vamos a jugar fútbol.
+- 🧳 | Where are you going to go? | ¿A dónde vas a ir? | Where are you going to go on vacation? | ¿A dónde vas a ir de vacaciones?
+teoria:
+intro: «Going to» sirve para hablar de planes e intenciones: lo que ya decidimos hacer. Se forma con am / is / are + going to + verbo.
+tabla: Afirmativa y negativa ; Persona | Afirmativa* | Negativa*
+| I | I'm going to travel. | I'm not going to travel.
+| You | You're going to travel. | You aren't going to travel.
+| He / She | She's going to travel. | She isn't going to travel.
+| We | We're going to travel. | We aren't going to travel.
+| They | They're going to travel. | They aren't going to travel.
+tabla: Preguntas ; Pregunta* | Respuesta*
+| Are you going to study? | Yes, I am. / No, I'm not.
+| Is she going to come? | Yes, she is. / No, she isn't.
+| What are you going to do? | I'm going to play.
+ej: I'm going to be a pilot when I grow up. | Voy a ser piloto cuando sea grande.
+ej: Are they going to visit us? — Yes, they are. | ¿Nos van a visitar? — Sí.
+ojo: No olvides am/is/are: I'm going to play ✓, I going to play ✗.
+ojo: Después de «going to» va el verbo normal: going to play ✓, going to playing ✗.
+pron: En conversación «going to» suena «góna»: I'm gonna play (solo hablado, no escrito).
+
+=== eng-a2-w4-c2 | 🔮 | A2 · Semana 4 · Clase 2: Predicciones y expresiones de futuro
+desc: Look at the clouds! It's going to rain. Be careful, you're going to fall! Tomorrow, next week, this weekend, in two days, soon.
+- 🌧️ | It's going to rain | Va a llover | Look at those clouds! It's going to rain. | ¡Mira esas nubes! Va a llover.
+- ⚠️ | You're going to fall! | ¡Te vas a caer! | Be careful! You're going to fall! | ¡Cuidado! ¡Te vas a caer!
+- 🚌 | We're going to miss the bus | Vamos a perder el bus | Hurry up! We're going to miss the bus. | ¡Apúrate! Vamos a perder el bus.
+- 👶 | She's going to have a baby | Va a tener un bebé | My aunt is going to have a baby. | Mi tía va a tener un bebé.
+- ➡️ | tomorrow | mañana | Tomorrow I'm going to visit my grandma. | Mañana voy a visitar a mi abuelita.
+- 📅 | next week | la próxima semana | Next week we're going to have a test. | La próxima semana vamos a tener un examen.
+- 🎈 | this weekend | este fin de semana | This weekend I'm going to go to the beach. | Este fin de semana voy a ir a la playa.
+- ⏩ | in two days | en dos días | My cousin is going to arrive in two days. | Mi primo va a llegar en dos días.
+- 📆 | next year | el próximo año | Next year I'm going to start fourth grade. | El próximo año voy a empezar cuarto grado.
+- 🔜 | soon | pronto | The movie is going to start soon. | La película va a empezar pronto.
+- 🌙 | tonight | esta noche | What are you going to do tonight? | ¿Qué vas a hacer esta noche?
+teoria:
+intro: «Going to» también sirve para predecir algo que vemos que va a pasar (hay una pista). Además, aprendemos las expresiones de tiempo futuro.
+tabla: Dos usos de going to ; Uso | Ejemplo*
+| Plan decidido | I'm going to study tonight.
+| Predicción con pista | Look at the clouds! It's going to rain.
+tabla: Expresiones de futuro ; Inglés* | Español
+| tonight | esta noche
+| tomorrow | mañana
+| this weekend | este fin de semana
+| next week / next month / next year | la próxima semana / el próximo mes / el próximo año
+| in two days | en dos días
+| soon | pronto
+| later | más tarde
+ej: The baby is tired. He's going to sleep soon. | El bebé está cansado. Va a dormir pronto.
+ej: Next month we're going to move to Trujillo. | El próximo mes nos vamos a mudar a Trujillo.
+ojo: «La próxima semana» = next week (sin «the»).
+ojo: «En dos días» (futuro) = in two days; «hace dos días» (pasado) = two days ago.
+pron: Tomorrow suena «tumórou». Tonight suena «tunáit».
+
+# ===================== A2 · SEMANA 5: MODALES =====================
+
+=== eng-a2-w5 | 🙏 | A2 · Semana 5 · Clase 1: Can / could
+desc: I can swim. I can't drive. I could read when I was five. Can I…? Could you help me, please?
+- 🏊 | I can swim | Sé nadar | I can swim very well. | Sé nadar muy bien.
+- 🚗 | I can't drive | No sé manejar | I can't drive yet. | Todavía no sé manejar.
+- 📖 | I could read when I was five | Sabía leer cuando tenía cinco años | I could read when I was five. | Sabía leer cuando tenía cinco años.
+- 🚴 | I couldn't ride a bike | No sabía montar bicicleta | Last year I couldn't ride a bike. | El año pasado no sabía montar bicicleta.
+- 🙋 | Can I go out? | ¿Puedo salir? | Can I go out to play? — Yes, you can. | ¿Puedo salir a jugar? — Sí, puedes.
+- 🪟 | Can you open the window? | ¿Puedes abrir la ventana? | Can you open the window, please? | ¿Puedes abrir la ventana, por favor?
+- 🤝 | Could you help me, please? | ¿Podría ayudarme, por favor? | Could you help me with my bag, please? | ¿Podría ayudarme con mi maleta, por favor?
+- 🔁 | Could you repeat that? | ¿Podría repetirlo? | Sorry, could you repeat that? | Perdón, ¿podría repetirlo?
+- 🧂 | Could I have some salt? | ¿Podría darme sal? | Could I have some salt, please? | ¿Me podría pasar la sal, por favor?
+- ⛔ | You can't eat in class | No puedes comer en clase | You can't eat in class. | No puedes comer en clase.
+- 🎉 | We could go to the movies | Podríamos ir al cine | We could go to the movies on Saturday. | Podríamos ir al cine el sábado.
+teoria:
+intro: «Can» y «could» sirven para habilidad, permiso, pedir favores y sugerir. «Could» es el pasado de «can» y también una forma más educada.
+tabla: Usos ; Uso | Can* | Could*
+| Habilidad | I can swim. | I could swim when I was six.
+| Permiso | Can I go out? | Could I go out? (más formal)
+| Pedir favor | Can you help me? | Could you help me? (más educado)
+| Sugerir | — | We could play outside.
+tabla: Negativas ; Inglés* | Español
+| can't | no puedo / no sé
+| couldn't | no podía / no sabía
+ej: Can you swim? — Yes, I can. | ¿Sabes nadar? — Sí.
+ej: Could you close the door, please? | ¿Podría cerrar la puerta, por favor?
+ojo: Después de can/could va el verbo sin «to»: I can swim ✓, I can to swim ✗.
+ojo: Con adultos o desconocidos, «Could you…?» suena más amable que «Can you…?».
+pron: Could suena «kud» (la «l» no suena). Couldn't suena «kúdent».
+
+=== eng-a2-w5-c2 | 💡 | A2 · Semana 5 · Clase 2: Should / shouldn't (consejos)
+desc: You should rest. You shouldn't eat so much candy. Should I…? What should I do?
+- 🛌 | You should rest | Deberías descansar | You look tired. You should rest. | Te ves cansado. Deberías descansar.
+- 🍬 | You shouldn't eat so much candy | No deberías comer tantos dulces | You shouldn't eat so much candy. | No deberías comer tantos dulces.
+- 🩺 | You should see a doctor | Deberías ir al médico | You have a fever. You should see a doctor. | Tienes fiebre. Deberías ir al médico.
+- 💧 | You should drink more water | Deberías tomar más agua | It's hot. You should drink more water. | Hace calor. Deberías tomar más agua.
+- 📱 | You shouldn't use your phone at night | No deberías usar el celular de noche | You shouldn't use your phone at night. | No deberías usar el celular de noche.
+- 📚 | We should study for the test | Deberíamos estudiar para el examen | We should study for the test. | Deberíamos estudiar para el examen.
+- ❓ | Should I wear a jacket? | ¿Debería ponerme casaca? | Should I wear a jacket? — Yes, it's cold. | ¿Debería ponerme casaca? — Sí, hace frío.
+- 🤔 | What should I do? | ¿Qué debería hacer? | I lost my homework. What should I do? | Perdí mi tarea. ¿Qué debería hacer?
+- 🙏 | You should say sorry | Deberías pedir perdón | You should say sorry to your sister. | Deberías pedirle perdón a tu hermana.
+- 🦷 | He should brush his teeth | Él debería lavarse los dientes | He should brush his teeth after meals. | Él debería lavarse los dientes después de comer.
+teoria:
+intro: «Should» sirve para dar consejos o decir lo que es una buena idea. Es igual para todas las personas.
+tabla: Las tres formas ; Forma | Ejemplo* | Español
+| Afirmativa | You should sleep more. | Deberías dormir más.
+| Negativa | You shouldn't eat junk food. | No deberías comer comida chatarra.
+| Pregunta | Should I call her? | ¿Debería llamarla?
+| Pedir consejo | What should I do? | ¿Qué debería hacer?
+ej: You should wear a helmet when you ride your bike. | Deberías usar casco cuando montas bicicleta.
+ej: Should we take an umbrella? — Yes, it's going to rain. | ¿Deberíamos llevar paraguas? — Sí, va a llover.
+ojo: Should no lleva «to» ni «s»: He should study ✓, He shoulds to study ✗.
+ojo: «Should» es un consejo; «must» o «have to» son obligaciones (más fuerte).
+pron: Should suena «shud» (la «l» no suena). Shouldn't suena «shúdent».
+
+=== eng-a2-w5-c3 | 📌 | A2 · Semana 5 · Clase 3: Have to, don't have to, must, mustn't
+desc: I have to do my homework. She has to wake up early. You don't have to pay. You must wear a seatbelt. You mustn't run here.
+- 📚 | I have to do my homework | Tengo que hacer mi tarea | I can't play. I have to do my homework. | No puedo jugar. Tengo que hacer mi tarea.
+- ⏰ | She has to wake up early | Ella tiene que levantarse temprano | She has to wake up early for school. | Ella tiene que levantarse temprano para el colegio.
+- 🆓 | You don't have to pay | No tienes que pagar | It's free. You don't have to pay. | Es gratis. No tienes que pagar.
+- ❓ | Do you have to wear a uniform? | ¿Tienes que usar uniforme? | Do you have to wear a uniform? — Yes, I do. | ¿Tienes que usar uniforme? — Sí.
+- 🚗 | You must wear a seatbelt | Debes usar cinturón | You must wear a seatbelt in the car. | Debes usar cinturón en el carro.
+- 🚫 | You mustn't run here | No debes correr aquí | You mustn't run in the hospital. | No debes correr en el hospital.
+- 🧼 | We have to wash our hands | Tenemos que lavarnos las manos | We have to wash our hands before lunch. | Tenemos que lavarnos las manos antes del almuerzo.
+- 🙅 | He doesn't have to come | Él no tiene que venir | He doesn't have to come tomorrow. | Él no tiene que venir mañana.
+- 🚦 | You must stop at a red light | Debes parar en luz roja | You must stop at a red light. | Debes parar en luz roja.
+- 🔇 | You mustn't talk during the test | No debes hablar durante el examen | You mustn't talk during the test. | No debes hablar durante el examen.
+- 🕰️ | I had to wait | Tuve que esperar | The bus was late. I had to wait. | El bus llegó tarde. Tuve que esperar.
+teoria:
+intro: Aprendemos a hablar de obligaciones y prohibiciones. Cuidado: «don't have to» y «mustn't» significan cosas muy diferentes.
+tabla: Obligación y prohibición ; Inglés* | Significa | Ejemplo*
+| have to / has to | es necesario, obligación | I have to study.
+| must | obligación fuerte o regla | You must wear a helmet.
+| don't have to | NO es necesario (puedes elegir) | You don't have to come.
+| mustn't | está PROHIBIDO | You mustn't touch that.
+| had to | tuve que (pasado) | I had to wait.
+tabla: Have to con todas las personas ; Persona | Ejemplo*
+| I / You / We / They | I have to go.
+| He / She / It | She has to go.
+| Pregunta | Do you have to go? / Does he have to go?
+ej: You don't have to bring food. There is a lot. | No tienes que traer comida. Hay mucha.
+ej: You mustn't swim here. It's dangerous! | ¡No debes nadar aquí! Es peligroso.
+ojo: «You don't have to run» = no es necesario correr. «You mustn't run» = ¡prohibido correr!
+ojo: Con he/she: He has to ✓, He have to ✗.
+pron: Have to suena «jáfta». Has to suena «jásta». Mustn't suena «másent» (la primera t no suena).
+
+# ===================== A2 · SEMANA 6: CONECTORES =====================
+
+=== eng-a2-w6 | 🔗 | A2 · Semana 6 · Clase 1: And, but, or, so, because
+desc: Unir ideas: and (y), but (pero), or (o), so (así que), because (porque), also, too.
+- ➕ | and | y | I like apples and bananas. | Me gustan las manzanas y los plátanos.
+- ↔️ | but | pero | I like soccer, but I don't like tennis. | Me gusta el fútbol, pero no el tenis.
+- 🔀 | or | o | Do you want tea or coffee? | ¿Quieres té o café?
+- ➡️ | so | así que / entonces | It was raining, so we stayed home. | Estaba lloviendo, así que nos quedamos en casa.
+- ❓ | because | porque | I'm happy because it's Friday. | Estoy feliz porque es viernes.
+- 🤔 | Why? — Because… | ¿Por qué? — Porque… | Why are you late? — Because the bus was late. | ¿Por qué llegas tarde? — Porque el bus llegó tarde.
+- ➕ | also | también (en medio) | I also play the piano. | También toco el piano.
+- 🔁 | too | también (al final) | I like pizza. — Me too! | Me gusta la pizza. — ¡A mí también!
+- 🚫 | either | tampoco | I don't like fish. — I don't either. | No me gusta el pescado. — A mí tampoco.
+- 🤝 | both… and… | tanto… como… | Both my mom and my dad work. | Tanto mi mamá como mi papá trabajan.
+- 🔗 | I was tired, so I went to bed | Estaba cansado, así que me fui a dormir | I was tired, so I went to bed early. | Estaba cansado, así que me fui a dormir temprano.
+teoria:
+intro: Los conectores unen ideas para que nuestras oraciones sean más largas y claras. Cada uno tiene un significado diferente.
+tabla: Conectores básicos ; Conector* | Para qué | Ejemplo*
+| and | sumar | I have a dog and a cat.
+| but | contrastar | It's cheap, but it's good.
+| or | elegir | Pizza or pasta?
+| so | consecuencia | I was hungry, so I ate.
+| because | causa (porque) | I ate because I was hungry.
+tabla: También y tampoco ; Inglés* | Español
+| I also like it. | También me gusta.
+| I like it too. | Me gusta también.
+| Me too. | Yo también.
+| I don't like it either. | Tampoco me gusta.
+| Me neither. | Yo tampoco.
+ej: I studied a lot, so I passed the test. | Estudié mucho, así que aprobé el examen.
+ej: She didn't come because she was sick. | Ella no vino porque estaba enferma.
+ojo: «So» va con la consecuencia y «because» con la causa: I was sick, so I stayed home = I stayed home because I was sick.
+ojo: «Porque» es «because»; la pregunta «¿por qué?» es «why?».
+pron: Because suena «bikós». Either suena «íider» o «áider».
+
+=== eng-a2-w6-c2 | 🪜 | A2 · Semana 6 · Clase 2: First, then, after that, finally
+desc: Contar en orden: first, then, next, after that, finally. Before, after, when, while.
+- 1️⃣ | First | Primero | First, I wake up. | Primero, me despierto.
+- 2️⃣ | Then | Luego | Then, I take a shower. | Luego, me ducho.
+- 3️⃣ | Next | Después | Next, I have breakfast. | Después, tomo desayuno.
+- 4️⃣ | After that | Después de eso | After that, I go to school. | Después de eso, voy al colegio.
+- 🏁 | Finally | Finalmente | Finally, I go to bed. | Finalmente, me voy a dormir.
+- ⏮️ | before | antes de | I wash my hands before lunch. | Me lavo las manos antes del almuerzo.
+- ⏭️ | after | después de | I play after school. | Juego después del colegio.
+- 🕰️ | when | cuando | When I was five, I lived in Tacna. | Cuando tenía cinco años, vivía en Tacna.
+- ⏳ | while | mientras | I listen to music while I study. | Escucho música mientras estudio.
+- 🍪 | First mix, then bake | Primero mezcla, luego hornea | First mix the flour, then bake the cookies. | Primero mezcla la harina, luego hornea las galletas.
+- ⏱️ | at the end | al final | At the end of the movie, everybody cried. | Al final de la película, todos lloraron.
+teoria:
+intro: Los conectores de secuencia ordenan los pasos de una historia, una receta o una rutina. Van al principio de la oración, seguidos de coma.
+tabla: En orden ; Conector* | Español
+| First, | Primero,
+| Then, | Luego,
+| Next, | Después,
+| After that, | Después de eso,
+| Finally, | Finalmente,
+tabla: Tiempo ; Inglés* | Español | Ejemplo*
+| before | antes de | before dinner
+| after | después de | after school
+| when | cuando | when I was a child
+| while | mientras | while I was walking
+ej: First, we went to the zoo. Then, we had lunch. Finally, we went home. | Primero fuimos al zoológico. Luego almorzamos. Finalmente volvimos a casa.
+ej: Brush your teeth before you go to bed. | Lávate los dientes antes de acostarte.
+ojo: «Después de comer» = after eating (con -ing) o after I eat.
+ojo: «At the end» (al final de algo) no es lo mismo que «finally» (por último en una lista).
+pron: Finally suena «fáinali». While suena «uáil».
+
+# ===================== A2 · SEMANA 7: ESCUCHAR Y HABLAR =====================
+
+=== eng-a2-w7 | 🖼️ | A2 · Semana 7 · Clase 1: Describing a picture
+desc: In this picture I can see… On the left, on the right, in the middle, in the background. There is/are… They are playing.
+- 🖼️ | In this picture, I can see | En esta imagen puedo ver | In this picture, I can see a park. | En esta imagen puedo ver un parque.
+- 👈 | On the left | A la izquierda | On the left, there is a big tree. | A la izquierda hay un árbol grande.
+- 👉 | On the right | A la derecha | On the right, there are two dogs. | A la derecha hay dos perros.
+- 🎯 | In the middle | En el medio | In the middle, a girl is reading. | En el medio, una niña está leyendo.
+- 🏔️ | In the background | Al fondo | In the background, there are mountains. | Al fondo hay montañas.
+- 🔝 | At the top | Arriba | At the top, the sky is blue. | Arriba, el cielo es azul.
+- 🔽 | At the bottom | Abajo | At the bottom, there is a river. | Abajo hay un río.
+- 🌳 | It looks like a park | Parece un parque | It looks like a park in summer. | Parece un parque en verano.
+- 😊 | They look happy | Se ven felices | The children look happy. | Los niños se ven felices.
+- ⚽ | They are playing | Están jugando | Two boys are playing soccer. | Dos niños están jugando fútbol.
+- 🌞 | It's a sunny day | Es un día soleado | It's a sunny day and people are outside. | Es un día soleado y la gente está afuera.
+- 🤔 | I think it's… | Creo que es… | I think it's Sunday. | Creo que es domingo.
+teoria:
+intro: Aprendemos a describir una imagen paso a paso: qué hay, dónde está y qué están haciendo las personas.
+tabla: Dónde está en la imagen ; Inglés* | Español
+| on the left | a la izquierda
+| on the right | a la derecha
+| in the middle | en el medio
+| in the background | al fondo
+| in the foreground | adelante
+| at the top / at the bottom | arriba / abajo
+tabla: Frases para describir ; Inglés* | Español
+| In this picture, I can see… | En esta imagen puedo ver…
+| There is a… / There are some… | Hay un… / Hay unos…
+| A man is walking. | Un hombre está caminando.
+| They look happy. | Se ven felices.
+| It looks like… | Parece…
+| I think… | Creo que…
+ej: In this picture, I can see a family. They are having a picnic. | En esta imagen veo una familia. Están haciendo un picnic.
+ej: On the right, a boy is flying a kite. | A la derecha, un niño está volando una cometa.
+ojo: Para lo que pasa en la imagen usa el Present Continuous: is walking, are playing.
+ojo: «Look + adjetivo» (se ve feliz) y «look like + cosa» (parece un parque).
+pron: Background suena «bákgraund». Picture suena «píkcher».
+
+=== eng-a2-w7-c2 | 💬 | A2 · Semana 7 · Clase 2: Conversation phrases
+desc: Could you say that again? What do you mean? Really? That's interesting! Me too. Me neither. I agree. I don't think so.
+- 🔁 | Could you say that again? | ¿Podrías decirlo otra vez? | Sorry, could you say that again? | Perdón, ¿podrías decirlo otra vez?
+- 🤨 | What do you mean? | ¿Qué quieres decir? | What do you mean? I don't understand. | ¿Qué quieres decir? No entiendo.
+- 😮 | Really? | ¿En serio? | I won the race! — Really? Great! | ¡Gané la carrera! — ¿En serio? ¡Genial!
+- 🤩 | That's interesting! | ¡Qué interesante! | I lived in Japan. — That's interesting! | Viví en Japón. — ¡Qué interesante!
+- 🙋 | Me too | Yo también | I love chocolate. — Me too! | Me encanta el chocolate. — ¡A mí también!
+- 🙅 | Me neither | Yo tampoco | I don't like snakes. — Me neither. | No me gustan las serpientes. — A mí tampoco.
+- 👍 | I agree | Estoy de acuerdo | This game is fun. — I agree! | Este juego es divertido. — ¡Estoy de acuerdo!
+- 👎 | I don't think so | No creo | Is it going to rain? — I don't think so. | ¿Va a llover? — No creo.
+- 🤔 | Let me think | Déjame pensar | What's your favorite color? — Let me think… | ¿Cuál es tu color favorito? — Déjame pensar…
+- 😢 | That's too bad | Qué pena | I'm sick. — That's too bad. | Estoy enfermo. — Qué pena.
+- 🎉 | Congratulations! | ¡Felicitaciones! | I passed my exam! — Congratulations! | ¡Aprobé mi examen! — ¡Felicitaciones!
+- 🗣️ | How about you? | ¿Y tú? | I like summer. How about you? | Me gusta el verano. ¿Y a ti?
+teoria:
+intro: Aprendemos frases para mantener una conversación: pedir que repitan, reaccionar, estar de acuerdo o no, y devolver la pregunta.
+tabla: Si no entiendes ; Inglés* | Español
+| Could you say that again? | ¿Podrías repetirlo?
+| What do you mean? | ¿Qué quieres decir?
+| Could you speak more slowly? | ¿Podrías hablar más despacio?
+tabla: Reaccionar ; Inglés* | Español
+| Really? | ¿En serio?
+| That's great! | ¡Qué bueno!
+| That's interesting! | ¡Qué interesante!
+| That's too bad. | Qué pena.
+| Congratulations! | ¡Felicitaciones!
+tabla: Acuerdo ; Inglés* | Español
+| Me too. | Yo también.
+| Me neither. | Yo tampoco.
+| I agree. | Estoy de acuerdo.
+| I don't agree. / I don't think so. | No estoy de acuerdo. / No creo.
+ej: I'm going to Cusco next week. — Really? That's great! | Voy a Cusco la próxima semana. — ¿En serio? ¡Qué bueno!
+ej: I don't like spiders. — Me neither! | No me gustan las arañas. — ¡A mí tampoco!
+ojo: «Me too» responde a una frase positiva; «Me neither», a una negativa.
+ojo: «Estoy de acuerdo» es «I agree», no «I am agree».
+pron: Really suena «ríli». Neither suena «níider» o «náider».
+
+# ===================== A2 · SEMANA 8: PROYECTO FINAL A2 =====================
+
+=== eng-a2-w8 | 🎤 | A2 · Semana 8 · Clase 1: Proyecto: My life now and next
+desc: Presente, presente continuo, pasado y futuro juntos: hablar de tu vida ahora, antes y tus planes.
+- 📘 | I study English every day | Estudio inglés todos los días | I study English every day after school. | Estudio inglés todos los días después del colegio.
+- ✍️ | I'm writing an email now | Ahora estoy escribiendo un correo | I'm writing an email to my teacher now. | Ahora estoy escribiendo un correo a mi profesora.
+- 🏖️ | Last year I went to the beach | El año pasado fui a la playa | Last year I went to Máncora with my family. | El año pasado fui a Máncora con mi familia.
+- 🇨🇱 | Next year I'm going to visit Chile | El próximo año voy a visitar Chile | Next year I'm going to visit Chile. | El próximo año voy a visitar Chile.
+- 🌟 | It was the best day | Fue el mejor día | It was the best day of my summer. | Fue el mejor día de mi verano.
+- 📈 | My English is better than last year | Mi inglés es mejor que el año pasado | My English is better than last year. | Mi inglés está mejor que el año pasado.
+- 💡 | I should practice more | Debería practicar más | I should practice speaking more. | Debería practicar más la conversación.
+- 📚 | I have to finish my project | Tengo que terminar mi proyecto | I have to finish my project by Friday. | Tengo que terminar mi proyecto para el viernes.
+- 🎯 | I can speak a little English | Sé hablar un poco de inglés | Now I can speak a little English. | Ahora sé hablar un poco de inglés.
+- 🔗 | First…, then…, finally… | Primero…, luego…, finalmente… | First I studied, then I played, and finally I slept. | Primero estudié, luego jugué y finalmente dormí.
+- 🙏 | Thank you for listening | Gracias por escuchar | That's my story. Thank you for listening! | Esa es mi historia. ¡Gracias por escuchar!
+teoria:
+intro: Repasamos los tiempos del A2 para hablar de nuestra vida: lo que hacemos siempre, lo que hacemos ahora, lo que hicimos y lo que vamos a hacer.
+tabla: Los tiempos del A2 ; Tiempo | Para qué | Ejemplo*
+| Present Simple | hábitos | I study every day.
+| Present Continuous | ahora | I'm studying now.
+| Past Simple | pasado terminado | I studied yesterday.
+| Going to | planes | I'm going to study tomorrow.
+tabla: Guion del proyecto ; Parte | Frase modelo*
+| Ahora | These days I'm learning English.
+| Rutina | I usually get up at seven.
+| Pasado | Last summer I went to the beach.
+| Futuro | Next year I'm going to visit Chile.
+| Consejo | I should practice more.
+ej: I usually walk to school, but today I'm taking the bus. | Normalmente camino al colegio, pero hoy tomo el bus.
+ej: Last year I couldn't swim. Now I can! | El año pasado no sabía nadar. ¡Ahora sí!
+ojo: Fíjate en las palabras de tiempo para elegir el tiempo verbal: every day, now, yesterday, next year.
+ojo: Usa conectores para unir: and, but, so, because, then.
+pron: Practica tu historia en voz alta y grábate. Escucha si se oyen las terminaciones -s y -ed.
+
+=== eng-a2-w8-c2 | 🧳 | A2 · Semana 8 · Clase 2: Proyecto: My best trip
+desc: Contar un viaje en pasado con conectores: where, when, who, what you did, how it was.
+- 🧳 | Last summer I went on a trip | El verano pasado me fui de viaje | Last summer I went on a trip to Arequipa. | El verano pasado me fui de viaje a Arequipa.
+- 👨‍👩‍👧 | I went with my family | Fui con mi familia | I went with my family and my dog. | Fui con mi familia y mi perro.
+- 🚌 | We traveled by bus | Viajamos en bus | We traveled by bus for sixteen hours. | Viajamos en bus dieciséis horas.
+- 🏨 | We stayed in a small hotel | Nos quedamos en un hotel pequeño | We stayed in a small hotel near the square. | Nos quedamos en un hotel pequeño cerca de la plaza.
+- 🌋 | We saw the Misti volcano | Vimos el volcán Misti | On the first day, we saw the Misti volcano. | El primer día vimos el volcán Misti.
+- 🍲 | We ate delicious food | Comimos comida deliciosa | We ate rocoto relleno. It was delicious! | Comimos rocoto relleno. ¡Estaba delicioso!
+- 📸 | I took a lot of photos | Tomé muchas fotos | I took a lot of photos of the city. | Tomé muchas fotos de la ciudad.
+- 😄 | It was amazing | Fue increíble | The trip was amazing. | El viaje fue increíble.
+- 🥶 | The weather was cold at night | El clima estaba frío en la noche | The weather was sunny, but cold at night. | El clima estaba soleado, pero frío en la noche.
+- 🔁 | I want to go back | Quiero volver | I want to go back next year. | Quiero volver el próximo año.
+- 🏆 | It was the best trip of my life | Fue el mejor viaje de mi vida | It was the best trip of my life! | ¡Fue el mejor viaje de mi vida!
+teoria:
+intro: Aprendemos a contar un viaje de forma ordenada usando el pasado (regulares e irregulares), conectores y adjetivos.
+tabla: Preguntas guía ; Pregunta* | Respuesta modelo*
+| Where did you go? | I went to Arequipa.
+| When did you go? | Last summer.
+| Who did you go with? | With my family.
+| How did you travel? | By bus.
+| What did you do? | We saw the Misti and ate rocoto relleno.
+| How was it? | It was amazing!
+ej: First, we visited the cathedral. Then, we ate at a picantería. | Primero visitamos la catedral. Luego comimos en una picantería.
+ej: It was the best trip of my life because I was with my family. | Fue el mejor viaje de mi vida porque estuve con mi familia.
+ojo: «Ir de viaje» = go on a trip. «Viajar» = travel (sin «to» si no dices a dónde).
+ojo: Revisa los irregulares: go → went, see → saw, eat → ate, take → took.
+pron: Traveled suena «trávelt». Amazing suena «améizing».

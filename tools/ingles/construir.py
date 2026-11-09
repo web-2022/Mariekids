@@ -46,6 +46,7 @@ def parse(path):
             if s.startswith("sub:"): cur["sub"] = s[4:].strip(); continue
             if s.startswith("kit:"): k = s[4:].split(); cur["kit"] = (k[0], int(k[1])); continue
             if s.startswith("total:"): cur["total"] = int(s[6:]); continue
+            if s == "mantener": cur["mantener"] = True; continue   # página especial: no se reconstruye, solo va en la ruta
             if s.startswith("q:"): cur["items"][-1]["questions"] = [s[2:].strip()]; continue
             if s.startswith("- "):
                 main, *more = s[2:].split("||")
@@ -105,6 +106,7 @@ def main():
             lv = nivel(c["slug"]); i2 = NIVELES.index(lv) + 1 if lv in NIVELES else 99
             c["next"] = {"href": f"eng-{NIVELES[i2]}-w1.html", "title": titulo_menu(f"eng-{NIVELES[i2]}-w1.html")} if i2 < len(NIVELES) else None
     for c in todas:
+        if c.get("mantener"): continue
         if "kit" in c:
             lv, tot = c["kit"]; items = por_nivel.get(lv, [])
             if not items: continue          # ese nivel todavía no está en los cursos: se deja la página como está
