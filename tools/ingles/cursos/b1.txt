@@ -1,0 +1,918 @@
+# ===================== B1 · SEMANA 1: PRESENT PERFECT =====================
+
+=== eng-b1-w1 | 🌍 | B1 · Semana 1 · Clase 1: Present Perfect (experiencias)
+desc: Have you ever…? I've been to Cusco. I've never eaten sushi. She has traveled a lot. Experiencias de vida sin fecha.
+- 🌍 | Have you ever been to Cusco? | ¿Alguna vez has estado en Cusco? | Have you ever been to Cusco? — Yes, I have. | ¿Alguna vez has estado en Cusco? — Sí.
+- ✈️ | I've been to Mexico twice | He estado en México dos veces | I've been to Mexico twice. | He estado en México dos veces.
+- 🍣 | I've never eaten sushi | Nunca he comido sushi | I've never eaten sushi. Is it good? | Nunca he comido sushi. ¿Es rico?
+- 🧳 | She has traveled a lot | Ella ha viajado mucho | My aunt has traveled a lot. | Mi tía ha viajado mucho.
+- 🎬 | Have you seen this movie? | ¿Has visto esta película? | Have you seen this movie? — No, I haven't. | ¿Has visto esta película? — No.
+- 🐴 | I've ridden a horse | He montado a caballo | I've ridden a horse in Huaraz. | He montado a caballo en Huaraz.
+- 🏅 | We have won three medals | Hemos ganado tres medallas | Our school has won three medals this year. | Nuestro colegio ha ganado tres medallas este año.
+- 🎤 | He has never sung in public | Él nunca ha cantado en público | He has never sung in public. He's shy. | Él nunca ha cantado en público. Es tímido.
+- 🌊 | Have you ever swum in the sea? | ¿Alguna vez has nadado en el mar? | Have you ever swum in the sea at night? | ¿Alguna vez has nadado en el mar de noche?
+- 📕 | I've read that book | He leído ese libro | I've read that book three times. | He leído ese libro tres veces.
+- 🤝 | They have met the president | Han conocido al presidente | They have met the president of the club. | Han conocido al presidente del club.
+- 🙋 | How many countries have you visited? | ¿Cuántos países has visitado? | How many countries have you visited? — Four. | ¿Cuántos países has visitado? — Cuatro.
+- 💯 | It's the best meal I've ever had | Es la mejor comida que he probado | It's the best meal I've ever had! | ¡Es la mejor comida que he probado en mi vida!
+teoria:
+intro: El Present Perfect une el pasado con el presente. Lo usamos para experiencias de la vida cuando NO decimos cuándo pasó. Se forma con have / has + participio.
+tabla: La fórmula ; Persona | Afirmativa* | Negativa* | Pregunta*
+| I | I have (I've) worked. | I haven't worked. | Have I worked?
+| You | You have (You've) worked. | You haven't worked. | Have you worked?
+| He / She / It | She has (She's) worked. | She hasn't worked. | Has she worked?
+| We | We have (We've) worked. | We haven't worked. | Have we worked?
+| They | They have (They've) worked. | They haven't worked. | Have they worked?
+tabla: Respuestas cortas ; Pregunta* | Sí* | No*
+| Have you ever been to Puno? | Yes, I have. | No, I haven't.
+| Has she ever flown? | Yes, she has. | No, she hasn't.
+tabla: Palabras de experiencia ; Inglés* | Español
+| ever (en preguntas) | alguna vez
+| never | nunca
+| once / twice / three times | una vez / dos veces / tres veces
+| the best … I've ever … | el mejor … que he … en mi vida
+ej: Have you ever tried ceviche? — Yes, many times! | ¿Alguna vez has probado ceviche? — ¡Sí, muchas veces!
+ej: I've never been on a plane. | Nunca he subido a un avión.
+ojo: Si dices CUÁNDO (yesterday, in 2020, last week) usa el pasado simple: I went to Cusco last year ✓, I have gone to Cusco last year ✗.
+ojo: «He estado en» = have been to (no «have gone to», que significa que se fue y aún no vuelve).
+ojo: Con never no se usa not: I've never seen it ✓, I haven't never seen it ✗.
+pron: I've suena «áiv», she's «shíis», haven't «jávent», hasn't «jásent».
+
+=== eng-b1-w1-c2 | 📜 | B1 · Semana 1 · Clase 2: Participios irregulares
+desc: Be–been, do–done, go–gone, see–seen, eat–eaten, write–written, take–taken, give–given, break–broken, fly–flown, swim–swum, drink–drunk, make–made, buy–bought, lose–lost.
+- 🌀 | be – was/were – been | ser/estar – estado | I've been very busy. | He estado muy ocupado.
+- ✅ | do – did – done | hacer – hecho | Have you done your homework? | ¿Has hecho tu tarea?
+- 🚪 | go – went – gone | ir – ido | She has gone to the store. | Ella se ha ido a la tienda.
+- 👀 | see – saw – seen | ver – visto | I've seen that movie. | He visto esa película.
+- 🍽️ | eat – ate – eaten | comer – comido | Have you eaten anything? | ¿Has comido algo?
+- ✍️ | write – wrote – written | escribir – escrito | He has written two books. | Él ha escrito dos libros.
+- 📸 | take – took – taken | tomar – tomado | I've taken a lot of photos. | He tomado muchas fotos.
+- 🎁 | give – gave – given | dar – dado | They've given me a present. | Me han dado un regalo.
+- 💔 | break – broke – broken | romper – roto | I've broken my phone. | He roto mi celular.
+- ✈️ | fly – flew – flown | volar – volado | Have you ever flown in a helicopter? | ¿Alguna vez has volado en helicóptero?
+- 🏊 | swim – swam – swum | nadar – nadado | I've swum in Lake Titicaca. | He nadado en el lago Titicaca.
+- 🥤 | drink – drank – drunk | beber – bebido | Have you drunk chicha morada? | ¿Has tomado chicha morada?
+- 🛠️ | make – made – made | hacer – hecho | We've made a big mistake. | Hemos cometido un gran error.
+- 🛍️ | buy – bought – bought | comprar – comprado | I've bought the tickets. | He comprado las entradas.
+- 😢 | lose – lost – lost | perder – perdido | I've lost my keys again! | ¡He perdido mis llaves otra vez!
+- 🗣️ | speak – spoke – spoken | hablar – hablado | Have you spoken to the teacher? | ¿Has hablado con la profesora?
+- 🧠 | forget – forgot – forgotten | olvidar – olvidado | I've forgotten his name. | He olvidado su nombre.
+- 🎓 | know – knew – known | conocer – conocido | I've known her for years. | La conozco desde hace años.
+teoria:
+intro: El Present Perfect necesita el participio (tercera columna). En verbos regulares es igual al pasado (-ed); los irregulares hay que aprenderlos. Agruparlos por patrón ayuda mucho.
+tabla: Los tres iguales (A-A-A) ; Base* | Pasado* | Participio*
+| cut | cut | cut
+| put | put | put
+| let | let | let
+| hit | hit | hit
+tabla: Pasado = participio (A-B-B) ; Base* | Pasado* | Participio*
+| buy | bought | bought
+| make | made | made
+| lose | lost | lost
+| have | had | had
+| find | found | found
+| tell | told | told
+tabla: Tres formas distintas (A-B-C) ; Base* | Pasado* | Participio*
+| be | was / were | been
+| do | did | done
+| go | went | gone
+| see | saw | seen
+| eat | ate | eaten
+| write | wrote | written
+| take | took | taken
+| give | gave | given
+| break | broke | broken
+| speak | spoke | spoken
+| forget | forgot | forgotten
+| know | knew | known
+| fly | flew | flown
+tabla: Patrón i – a – u ; Base* | Pasado* | Participio*
+| drink | drank | drunk
+| swim | swam | swum
+| sing | sang | sung
+| begin | began | begun
+| ring | rang | rung
+ej: She has gone to Lima. (todavía está allá) | Ella se ha ido a Lima.
+ej: She has been to Lima. (ya volvió) | Ella ha estado en Lima.
+ojo: No uses el pasado como participio: I have went ✗ → I have gone ✓. I have saw ✗ → I have seen ✓.
+ojo: Been vs gone: been = fue y volvió; gone = se fue y sigue allá.
+pron: Been suena «bín», done «dan», gone «gon», written «ríten», known «nóun» (sin k).
+
+=== eng-b1-w1-c3 | ⏳ | B1 · Semana 1 · Clase 3: For, since, already, yet, just
+desc: I've lived here for ten years / since 2015. How long have you…? I've already finished. Have you finished yet? I've just arrived.
+- 🏠 | I've lived here for ten years | Vivo aquí desde hace diez años | I've lived in Arequipa for ten years. | Vivo en Arequipa desde hace diez años.
+- 📅 | I've lived here since 2015 | Vivo aquí desde 2015 | I've lived here since 2015. | Vivo aquí desde 2015.
+- ⏱️ | How long have you known her? | ¿Desde cuándo la conoces? | How long have you known her? — Since we were kids. | ¿Desde cuándo la conoces? — Desde niños.
+- 🐶 | We've had our dog for two years | Tenemos a nuestro perro hace dos años | We've had our dog for two years. | Tenemos a nuestro perro hace dos años.
+- 🎒 | She has been sick since Monday | Ella está enferma desde el lunes | She has been sick since Monday. | Ella está enferma desde el lunes.
+- ✅ | I've already finished | Ya terminé | I've already finished my homework. | Ya terminé mi tarea.
+- ❓ | Have you finished yet? | ¿Ya terminaste? | Have you finished the book yet? | ¿Ya terminaste el libro?
+- ⏳ | I haven't finished yet | Todavía no termino | I haven't finished yet. Give me five minutes. | Todavía no termino. Dame cinco minutos.
+- 🚪 | I've just arrived | Acabo de llegar | I've just arrived home. | Acabo de llegar a casa.
+- 📩 | She has just called | Ella acaba de llamar | Your mom has just called. | Tu mamá acaba de llamar.
+- 🆕 | I haven't seen him lately | No lo he visto últimamente | I haven't seen Carlos lately. | No he visto a Carlos últimamente.
+- 🔢 | This is the first time I've tried it | Es la primera vez que lo pruebo | This is the first time I've tried cuy. | Es la primera vez que pruebo cuy.
+teoria:
+intro: El Present Perfect también sirve para algo que empezó en el pasado y SIGUE ahora (for / since), y para hablar de acciones recientes con already, yet y just.
+tabla: For y since ; Palabra* | Se usa con | Ejemplos*
+| for | una duración (cuánto tiempo) | for two hours, for a week, for ten years, for a long time
+| since | un punto de inicio (desde cuándo) | since Monday, since 2015, since I was a child, since 8 o'clock
+tabla: Already, yet, just ; Palabra* | Significa | Dónde va | Ejemplo*
+| already | ya | antes del participio | I've already eaten.
+| yet | ya (pregunta) / todavía (negativa) | al final | Have you eaten yet? / I haven't eaten yet.
+| just | acabar de | antes del participio | I've just eaten.
+tabla: Pregunta por la duración ; Pregunta* | Respuesta*
+| How long have you lived here? | For five years. / Since 2020.
+| How long have you had your phone? | For six months.
+ej: I've studied English since I was eight. | Estudio inglés desde que tenía ocho años.
+ej: The movie has just started. | La película acaba de empezar.
+ojo: «Vivo aquí desde hace 5 años» NO es presente en inglés: I live here for 5 years ✗ → I've lived here for 5 years ✓.
+ojo: «Desde hace» = for; «desde» = since. Since three years ✗ → for three years ✓.
+ojo: «Acabo de llegar» = I've just arrived (no «I finish of arrive»).
+pron: Already suena «olrédi». Yet suena «iét». Since suena «sins».
+
+=== eng-b1-w1-c4 | ⚖️ | B1 · Semana 1 · Clase 4: Present Perfect vs Past Simple
+desc: I've been to Cusco (experiencia) vs I went to Cusco last year (fecha). Have you ever…? — Yes. When did you go?
+- 🌍 | I've been to Cusco | He estado en Cusco | I've been to Cusco. It's beautiful. | He estado en Cusco. Es hermoso.
+- 📅 | I went to Cusco last year | Fui a Cusco el año pasado | I went to Cusco last year with my class. | Fui a Cusco el año pasado con mi clase.
+- ❓ | When did you go? | ¿Cuándo fuiste? | Have you been to Ica? — Yes. — When did you go? | ¿Has estado en Ica? — Sí. — ¿Cuándo fuiste?
+- 🔑 | I've lost my keys | He perdido mis llaves (aún no las tengo) | I've lost my keys. Can you help me? | He perdido mis llaves. ¿Me ayudas?
+- 🗝️ | I lost my keys yesterday | Perdí mis llaves ayer | I lost my keys yesterday, but I found them. | Ayer perdí mis llaves, pero las encontré.
+- 📚 | I've read five books this month | He leído cinco libros este mes | I've read five books this month. | He leído cinco libros este mes.
+- 📖 | I read five books last month | Leí cinco libros el mes pasado | I read five books last month. | Leí cinco libros el mes pasado.
+- 🏫 | She has worked here since 2018 | Ella trabaja aquí desde 2018 | She has worked here since 2018. | Ella trabaja aquí desde 2018.
+- 🏢 | She worked there for two years | Trabajó allí dos años | She worked there for two years and then left. | Trabajó allí dos años y luego se fue.
+- 🎨 | Picasso painted many pictures | Picasso pintó muchos cuadros | Picasso painted many pictures. | Picasso pintó muchos cuadros.
+- 👩‍🎨 | My sister has painted three pictures | Mi hermana ha pintado tres cuadros | My sister has painted three pictures this year. | Mi hermana ha pintado tres cuadros este año.
+- 🕐 | What time did you arrive? | ¿A qué hora llegaste? | What time did you arrive? — At nine. | ¿A qué hora llegaste? — A las nueve.
+teoria:
+intro: Los hispanohablantes confundimos mucho estos dos tiempos. La clave: ¿dices cuándo pasó? ¿el tiempo ya terminó? Entonces es Past Simple.
+tabla: ¿Cuál uso? ; Present Perfect* | Past Simple*
+| I've visited Cusco. (alguna vez) | I visited Cusco in 2022. (fecha)
+| I've lost my phone. (todavía no aparece) | I lost my phone, but I found it.
+| I've worked here since 2020. (sigue) | I worked there for two years. (ya no)
+| I've seen him today. (hoy no termina) | I saw him yesterday.
+tabla: Palabras guía ; Present Perfect* | Past Simple*
+| ever, never | yesterday
+| already, yet, just | last week / last year
+| for, since (hasta ahora) | ago
+| today, this week, this year | in 2019, when I was a child
+ej: Have you ever eaten ceviche? — Yes, I have. I ate it last Sunday. | ¿Has comido ceviche? — Sí. Lo comí el domingo pasado.
+ej: I've known Ana since 2019. We met at school. | Conozco a Ana desde 2019. Nos conocimos en el colegio.
+ojo: Una conversación suele empezar en Present Perfect (Have you ever…?) y seguir en Past Simple con los detalles (When did you…? How was it?).
+ojo: «Ago» siempre va con pasado simple: I've arrived two hours ago ✗ → I arrived two hours ago ✓.
+pron: Escucha la diferencia: «ai víziti» (I visited) y «aiv víziti» (I've visited): la «v» es corta pero importante.
+
+# ===================== B1 · SEMANA 2: NARRAR EN PASADO =====================
+
+=== eng-b1-w2 | 🎞️ | B1 · Semana 2 · Clase 1: Past Continuous
+desc: I was studying at 8 p.m. They were playing. What were you doing? It was raining. Todas las personas, negativa y pregunta.
+- 📚 | I was studying at eight | Estaba estudiando a las ocho | At eight o'clock I was studying. | A las ocho estaba estudiando.
+- ⚽ | They were playing soccer | Estaban jugando fútbol | At four they were playing soccer. | A las cuatro estaban jugando fútbol.
+- 🌧️ | It was raining | Estaba lloviendo | It was raining all morning. | Estuvo lloviendo toda la mañana.
+- ❓ | What were you doing? | ¿Qué estabas haciendo? | What were you doing last night at ten? | ¿Qué estabas haciendo anoche a las diez?
+- 😴 | I was sleeping | Estaba durmiendo | Sorry, I didn't answer. I was sleeping. | Perdón, no contesté. Estaba durmiendo.
+- 🍳 | Mom was cooking | Mamá estaba cocinando | Mom was cooking and Dad was cleaning. | Mamá estaba cocinando y papá estaba limpiando.
+- 🚫 | We weren't watching TV | No estábamos viendo televisión | We weren't watching TV. We were reading. | No estábamos viendo tele. Estábamos leyendo.
+- 🙅 | She wasn't listening | Ella no estaba escuchando | She wasn't listening to the teacher. | Ella no estaba escuchando a la profesora.
+- ❔ | Were you sleeping? | ¿Estabas durmiendo? | Were you sleeping? — No, I wasn't. | ¿Estabas durmiendo? — No.
+- 🌅 | The sun was shining | El sol estaba brillando | The sun was shining and the birds were singing. | El sol brillaba y los pájaros cantaban.
+- 🚶 | People were walking in the park | La gente caminaba en el parque | Many people were walking in the park. | Mucha gente caminaba en el parque.
+- 🎧 | He was listening to music all afternoon | Estuvo escuchando música toda la tarde | He was listening to music all afternoon. | Estuvo escuchando música toda la tarde.
+teoria:
+intro: El Past Continuous describe una acción que estaba en progreso en un momento del pasado. Sirve para dar el «fondo» o escenario de una historia.
+tabla: La fórmula ; Persona | Afirmativa* | Negativa* | Pregunta*
+| I | I was working. | I wasn't working. | Was I working?
+| You | You were working. | You weren't working. | Were you working?
+| He / She / It | She was working. | She wasn't working. | Was she working?
+| We | We were working. | We weren't working. | Were we working?
+| They | They were working. | They weren't working. | Were they working?
+tabla: Respuestas cortas ; Pregunta* | Sí* | No*
+| Were you studying? | Yes, I was. | No, I wasn't.
+| Was it raining? | Yes, it was. | No, it wasn't.
+| Were they playing? | Yes, they were. | No, they weren't.
+ej: At midnight I was still doing my homework. | A medianoche todavía estaba haciendo mi tarea.
+ej: It was a cold night. The wind was blowing. | Era una noche fría. El viento soplaba.
+ojo: I / he / she / it → was. You / we / they → were. They was ✗ → They were ✓.
+ojo: Los verbos de estado (know, like, want) no van en -ing: I was knowing ✗ → I knew ✓.
+pron: Was suena «uos» (débil: «uəs»). Weren't suena «uérent».
+
+=== eng-b1-w2-c2 | 📖 | B1 · Semana 2 · Clase 2: When / while: contar una historia
+desc: I was walking home when it started to rain. While I was cooking, the phone rang. Escenario + acción que interrumpe.
+- 🌧️ | I was walking home when it started to rain | Caminaba a casa cuando empezó a llover | I was walking home when it started to rain. | Caminaba a casa cuando empezó a llover.
+- 📞 | While I was cooking, the phone rang | Mientras cocinaba, sonó el teléfono | While I was cooking, the phone rang. | Mientras cocinaba, sonó el teléfono.
+- 💡 | The lights went out while we were watching a movie | Se fue la luz mientras veíamos una película | The lights went out while we were watching a movie. | Se fue la luz mientras veíamos una película.
+- 🤕 | She fell while she was running | Se cayó mientras corría | She fell while she was running in the park. | Se cayó mientras corría en el parque.
+- 🐕 | When I opened the door, the dog ran out | Cuando abrí la puerta, el perro salió corriendo | When I opened the door, the dog ran out. | Cuando abrí la puerta, el perro salió corriendo.
+- 👋 | I saw my friend while I was waiting for the bus | Vi a mi amigo mientras esperaba el bus | I saw my friend while I was waiting for the bus. | Vi a mi amigo mientras esperaba el bus.
+- 🎂 | We were having dinner when they arrived | Estábamos cenando cuando llegaron | We were having dinner when they arrived. | Estábamos cenando cuando llegaron.
+- 🔊 | Suddenly, I heard a noise | De repente, escuché un ruido | Suddenly, I heard a strange noise. | De repente, escuché un ruido extraño.
+- 🌙 | It was a dark and stormy night | Era una noche oscura y tormentosa | It was a dark and stormy night. | Era una noche oscura y tormentosa.
+- 🎉 | In the end, everything was fine | Al final, todo salió bien | In the end, everything was fine. | Al final, todo salió bien.
+- ⏰ | At that moment, the teacher came in | En ese momento, entró la profesora | At that moment, the teacher came in. | En ese momento, entró la profesora.
+- 🧭 | One day, I was walking in the forest | Un día, caminaba por el bosque | One day, I was walking in the forest… | Un día, caminaba por el bosque…
+teoria:
+intro: Para narrar combinamos Past Continuous (la acción larga, el escenario) y Past Simple (la acción corta que interrumpe). When y while las conectan.
+tabla: Acción larga + acción corta ; Estructura | Ejemplo*
+| Past Continuous + when + Past Simple | I was sleeping when the alarm rang.
+| While + Past Continuous, Past Simple | While I was sleeping, the alarm rang.
+| Dos acciones largas a la vez | While I was cooking, my sister was setting the table.
+| Acciones en secuencia (todas Past Simple) | When she arrived, we started to eat.
+tabla: Palabras para narrar ; Inglés* | Español
+| One day… | Un día…
+| It was a … day/night | Era un día / una noche …
+| Suddenly… | De repente…
+| At that moment… | En ese momento…
+| Then… / After that… | Luego… / Después de eso…
+| In the end… / Finally… | Al final… / Finalmente…
+ej: While we were playing, it started to rain, so we went inside. | Mientras jugábamos, empezó a llover, así que entramos.
+ej: When the teacher came in, everybody was talking. | Cuando entró la profesora, todos estaban hablando.
+ojo: «While» va con la acción larga (-ing); «when» suele ir con la acción corta.
+ojo: Cambia el significado: When he arrived, we were eating (ya comíamos) vs When he arrived, we ate (comimos después).
+pron: Suddenly suena «sádenli». While suena «uáil».
+
+=== eng-b1-w2-c3 | 🕰️ | B1 · Semana 2 · Clase 3: Used to (costumbres del pasado)
+desc: I used to play with dolls. I didn't use to like vegetables. Did you use to…? Hábitos que ya no existen.
+- 🧸 | I used to play with dolls | Antes jugaba con muñecas | When I was little, I used to play with dolls. | Cuando era pequeña, jugaba con muñecas.
+- 🥦 | I didn't use to like vegetables | Antes no me gustaban las verduras | I didn't use to like vegetables, but now I love them. | Antes no me gustaban las verduras, pero ahora me encantan.
+- ❓ | Did you use to live here? | ¿Antes vivías aquí? | Did you use to live in Trujillo? — Yes, I did. | ¿Antes vivías en Trujillo? — Sí.
+- 👓 | He used to wear glasses | Él antes usaba lentes | He used to wear glasses, but now he wears contacts. | Él antes usaba lentes, pero ahora usa lentes de contacto.
+- 🏡 | We used to live in the countryside | Antes vivíamos en el campo | We used to live in the countryside. | Antes vivíamos en el campo.
+- 📺 | There used to be a cinema here | Antes había un cine aquí | There used to be a cinema on this corner. | Antes había un cine en esta esquina.
+- 🚲 | My dad used to ride his bike to work | Mi papá antes iba en bici al trabajo | My dad used to ride his bike to work. | Mi papá antes iba en bici al trabajo.
+- 💇 | She used to have long hair | Ella antes tenía el pelo largo | She used to have long hair. | Ella antes tenía el pelo largo.
+- 😨 | I used to be afraid of the dark | Antes le tenía miedo a la oscuridad | I used to be afraid of the dark. | Antes le tenía miedo a la oscuridad.
+- 🍬 | We used to eat candy every day | Antes comíamos dulces todos los días | We used to eat candy every day. | Antes comíamos dulces todos los días.
+- 📞 | People used to write letters | La gente antes escribía cartas | People used to write letters. Now they send messages. | La gente antes escribía cartas. Ahora manda mensajes.
+teoria:
+intro: «Used to» habla de costumbres o situaciones del pasado que YA NO pasan. En español solemos decir «antes + imperfecto» (antes jugaba, antes vivía).
+tabla: Las tres formas ; Forma | Estructura | Ejemplo*
+| Afirmativa | used to + verbo | I used to play.
+| Negativa | didn't use to + verbo | I didn't use to play.
+| Pregunta | Did … use to + verbo? | Did you use to play?
+tabla: Used to vs pasado simple ; Used to* | Past Simple*
+| I used to go to the beach every summer. (costumbre) | I went to the beach last summer. (una vez)
+| She used to live in Tacna. (por años) | She lived in Tacna for two years.
+ej: When my grandpa was young, he used to walk to school. | Cuando mi abuelo era joven, caminaba al colegio.
+ej: Did you use to watch cartoons? — Yes, every morning! | ¿Antes veías dibujos animados? — ¡Sí, todas las mañanas!
+ojo: En negativa y pregunta se escribe «use to» (sin d): I didn't used to ✗ → I didn't use to ✓.
+ojo: Para el presente no se usa: I use to get up early ✗ → I usually get up early ✓.
+pron: Used to suena «iústu» (la «d» no suena y la «s» es una s, no una z).
+
+# ===================== B1 · SEMANA 3: FUTURO =====================
+
+=== eng-b1-w3 | 🔮 | B1 · Semana 3 · Clase 1: Will (decisiones, promesas, predicciones)
+desc: I'll help you. I won't tell anyone. I think it will rain. Will you marry me? Shall I open the window?
+- 🤝 | I'll help you | Te ayudo / Te ayudaré | That bag looks heavy. I'll help you. | Esa maleta se ve pesada. Te ayudo.
+- 🤐 | I won't tell anyone | No le diré a nadie | Don't worry, I won't tell anyone. | No te preocupes, no le diré a nadie.
+- 🌧️ | I think it will rain | Creo que va a llover | I think it will rain tomorrow. | Creo que mañana va a llover.
+- 💍 | Will you marry me? | ¿Te casarías conmigo? | Will you marry me? — Yes, I will! | ¿Te casas conmigo? — ¡Sí!
+- 🪟 | Shall I open the window? | ¿Abro la ventana? | It's hot. Shall I open the window? | Hace calor. ¿Abro la ventana?
+- 📞 | I'll call you later | Te llamo más tarde | I'm busy now. I'll call you later. | Estoy ocupado. Te llamo más tarde.
+- 🍕 | I'll have the pizza, please | Para mí la pizza, por favor | I'll have the pizza and a lemonade, please. | Para mí la pizza y una limonada, por favor.
+- 🤞 | I promise I'll be careful | Prometo que tendré cuidado | I promise I'll be careful. | Prometo que tendré cuidado.
+- 🤖 | Robots will do many jobs | Los robots harán muchos trabajos | In the future, robots will do many jobs. | En el futuro, los robots harán muchos trabajos.
+- 🙄 | He probably won't come | Probablemente él no venga | He's sick, so he probably won't come. | Está enfermo, así que probablemente no venga.
+- 🎂 | I'll be fifteen next year | Cumpliré quince el próximo año | I'll be fifteen next year. | El próximo año cumpliré quince.
+- 🤔 | I don't think she'll win | No creo que ella gane | I don't think she'll win the race. | No creo que ella gane la carrera.
+teoria:
+intro: «Will» se usa para decisiones tomadas en el momento, promesas, ofrecimientos, pedidos y predicciones basadas en opinión. Es igual para todas las personas.
+tabla: La fórmula ; Forma | Ejemplo* | Español
+| Afirmativa | I will (I'll) help. | Ayudaré.
+| Negativa | I will not (won't) help. | No ayudaré.
+| Pregunta | Will you help? | ¿Ayudarás?
+| Respuesta corta | Yes, I will. / No, I won't. | Sí. / No.
+tabla: Usos de will ; Uso | Ejemplo*
+| Decisión en el momento | The phone is ringing. I'll answer it.
+| Promesa | I'll always love you.
+| Ofrecimiento | I'll carry your bag.
+| Pedido | Will you close the door, please?
+| Predicción (opinión) | I think Peru will win.
+| Ofrecer con shall (I/we) | Shall I help you? Shall we go?
+tabla: Palabras de predicción ; Inglés* | Español
+| I think … will | Creo que …
+| I don't think … will | No creo que …
+| probably / definitely | probablemente / definitivamente
+| maybe / perhaps | quizás
+ej: It's cold. — I'll close the window. | Hace frío. — Cierro la ventana.
+ej: I'm sure you'll pass the exam. | Estoy seguro de que aprobarás el examen.
+ojo: Después de will va el verbo sin «to»: I will to go ✗ → I will go ✓.
+ojo: «Creo que no vendrá» se dice I don't think he'll come (no «I think he won't come», aunque es posible, suena menos natural).
+ojo: Won't = will not; no confundas con want (querer).
+pron: I'll suena «áil», you'll «iúl», won't «uóunt» (diferente de want «uánt»).
+
+=== eng-b1-w3-c2 | 🗓️ | B1 · Semana 3 · Clase 2: Will, going to o presente continuo
+desc: I'm meeting Ana at 5 (cita). I'm going to study medicine (plan). I'll answer it (decisión ya). The train leaves at 6 (horario).
+- 📅 | I'm meeting Ana at five | Me reúno con Ana a las cinco | I'm meeting Ana at five at the café. | Me reúno con Ana a las cinco en el café.
+- 🩺 | I'm going to study medicine | Voy a estudiar medicina | When I finish school, I'm going to study medicine. | Cuando termine el colegio, voy a estudiar medicina.
+- ☎️ | I'll answer it | Yo contesto | The phone is ringing. — I'll answer it! | Suena el teléfono. — ¡Yo contesto!
+- 🚆 | The train leaves at six | El tren sale a las seis | Hurry! The train leaves at six. | ¡Apúrate! El tren sale a las seis.
+- 🎬 | The movie starts at eight | La película empieza a las ocho | The movie starts at eight, so let's leave at seven. | La película empieza a las ocho, así que salgamos a las siete.
+- ✈️ | We're flying to Cusco on Friday | Volamos a Cusco el viernes | We're flying to Cusco on Friday. We have the tickets. | Volamos a Cusco el viernes. Tenemos los pasajes.
+- ⛅ | It's going to rain (look at the sky) | Va a llover (mira el cielo) | Look at the sky! It's going to rain. | ¡Mira el cielo! Va a llover.
+- 🤔 | I think it will be sunny | Creo que estará soleado | I think it will be sunny tomorrow. | Creo que mañana estará soleado.
+- 🏖️ | What are you doing this weekend? | ¿Qué vas a hacer este fin de semana? | What are you doing this weekend? — I'm visiting my grandparents. | ¿Qué haces este fin de semana? — Visito a mis abuelos.
+- ⏳ | This time tomorrow I'll be flying | Mañana a esta hora estaré volando | This time tomorrow I'll be flying to Miami. | Mañana a esta hora estaré volando a Miami.
+- 🛌 | Don't call at ten, I'll be sleeping | No llames a las diez, estaré durmiendo | Don't call me at ten. I'll be sleeping. | No me llames a las diez. Estaré durmiendo.
+teoria:
+intro: El inglés tiene varias formas para el futuro y cada una tiene un matiz. Elegir bien hace que suenes natural.
+tabla: ¿Qué forma de futuro uso? ; Forma | Uso | Ejemplo*
+| Present Continuous | cita o plan ya organizado (hora, lugar) | I'm seeing the dentist tomorrow.
+| be going to | intención, plan decidido | I'm going to learn French.
+| be going to | predicción con evidencia | Watch out! You're going to fall.
+| will | decisión en el momento, promesa, opinión | I'll have tea, please.
+| Present Simple | horarios fijos (trenes, clases, películas) | The class starts at nine.
+| will be + -ing (Future Continuous) | acción en progreso en un momento futuro | At 10 tomorrow I'll be taking the exam.
+tabla: Future Continuous ; Persona | Ejemplo*
+| Afirmativa | I'll be working.
+| Negativa | I won't be working.
+| Pregunta | Will you be working?
+ej: I've decided. I'm going to join the swimming team. | Lo decidí. Voy a entrar al equipo de natación.
+ej: Our flight leaves at 7:30, so we're getting up at five. | Nuestro vuelo sale a las 7:30, así que nos levantamos a las cinco.
+ojo: Para ofrecerte ayuda en el momento no uses going to: I'm going to help you with that bag ✗ (suena planeado) → I'll help you ✓.
+ojo: Para una cita con hora, el Present Continuous es lo más natural: I'm having lunch with Ana on Sunday.
+pron: «I'll be» suena «áil bi»; únelo como una sola palabra.
+
+=== eng-b1-w3-c3 | 🔀 | B1 · Semana 3 · Clase 3: First Conditional y oraciones de tiempo futuro
+desc: If it rains, we'll stay home. Unless you hurry, you'll be late. When I finish, I'll call you. As soon as I arrive, I'll text you.
+- 🌧️ | If it rains, we'll stay home | Si llueve, nos quedaremos en casa | If it rains, we'll stay home and watch a movie. | Si llueve, nos quedaremos en casa a ver una película.
+- 📚 | If you study, you'll pass | Si estudias, aprobarás | If you study, you'll pass the exam. | Si estudias, aprobarás el examen.
+- 🍫 | If you eat too much, you'll feel sick | Si comes demasiado, te sentirás mal | If you eat too much chocolate, you'll feel sick. | Si comes mucho chocolate, te sentirás mal.
+- ⏰ | Unless you hurry, you'll be late | Si no te apuras, llegarás tarde | Unless you hurry, you'll miss the bus. | Si no te apuras, perderás el bus.
+- 📞 | When I finish, I'll call you | Cuando termine, te llamo | When I finish my homework, I'll call you. | Cuando termine mi tarea, te llamo.
+- 📲 | As soon as I arrive, I'll text you | Apenas llegue, te escribo | As soon as I arrive in Lima, I'll text you. | Apenas llegue a Lima, te escribo.
+- 🚫 | I won't go if you don't come | No iré si tú no vienes | I won't go to the party if you don't come. | No iré a la fiesta si tú no vienes.
+- ❓ | What will you do if you win? | ¿Qué harás si ganas? | What will you do if you win the prize? | ¿Qué harás si ganas el premio?
+- 🛏️ | Before I go to bed, I'll check my email | Antes de acostarme, revisaré mi correo | Before I go to bed, I'll check my email. | Antes de acostarme, revisaré mi correo.
+- 🐶 | If you see my dog, please call me | Si ves a mi perro, por favor llámame | If you see my dog, please call me. | Si ves a mi perro, por favor llámame.
+- 🌡️ | If you heat ice, it melts | Si calientas hielo, se derrite | If you heat ice, it melts. | Si calientas hielo, se derrite.
+- 🧊 | If water reaches 100 degrees, it boils | Si el agua llega a 100 grados, hierve | If water reaches 100 degrees, it boils. | Si el agua llega a 100 grados, hierve.
+teoria:
+intro: El First Conditional habla de situaciones posibles en el futuro y su resultado. También vemos el Zero Conditional (verdades que siempre pasan) y oraciones con when, as soon as, before, after.
+tabla: Condicionales 0 y 1 ; Tipo | Estructura | Ejemplo*
+| Zero (siempre es verdad) | If + presente, presente | If you heat ice, it melts.
+| First (posible en el futuro) | If + presente, will + verbo | If it rains, I'll stay home.
+| First con imperativo | If + presente, imperativo | If you see him, tell him to call me.
+| First con modal | If + presente, can / may / should | If you're tired, you should rest.
+tabla: Oraciones de tiempo futuro ; Conector* | Español | Ejemplo*
+| when | cuando | When I get home, I'll eat.
+| as soon as | apenas / en cuanto | As soon as she arrives, we'll start.
+| before | antes de que | Before you leave, close the door.
+| after | después de que | After we eat, we'll play.
+| until | hasta que | I'll wait until you come.
+| unless | a menos que / si no | Unless it rains, we'll go.
+ej: If you don't wear a jacket, you'll catch a cold. | Si no te pones casaca, te vas a resfriar.
+ej: I'll wait here until you come back. | Esperaré aquí hasta que vuelvas.
+ojo: Después de if / when / as soon as NO va will: If it will rain ✗ → If it rains ✓. When I will finish ✗ → When I finish ✓.
+ojo: La coma va cuando «if» empieza la oración: If it rains, we'll stay. / We'll stay if it rains.
+ojo: «Unless» ya es negativo: Unless you don't hurry ✗ → Unless you hurry ✓.
+pron: Une «If it» = «ífit». Unless suena «anlés».
+
+# ===================== B1 · SEMANA 4: OPINAR, COMPARAR, ARGUMENTAR =====================
+
+=== eng-b1-w4 | 💭 | B1 · Semana 4 · Clase 1: Dar tu opinión
+desc: In my opinion… I think… I believe… As far as I'm concerned… If you ask me… It seems to me that… What do you think about…?
+- 💭 | In my opinion, | En mi opinión, | In my opinion, homework is important. | En mi opinión, la tarea es importante.
+- 🤔 | I think that | Creo que | I think that kids should play outside more. | Creo que los niños deberían jugar más afuera.
+- 🙏 | I believe that | Creo firmemente que | I believe that everyone can learn English. | Creo que todos pueden aprender inglés.
+- 👤 | Personally, | Personalmente, | Personally, I prefer the mountains. | Personalmente, prefiero las montañas.
+- 🗣️ | If you ask me, | Si me preguntas, | If you ask me, that movie was boring. | Si me preguntas, esa película fue aburrida.
+- 👁️ | It seems to me that | Me parece que | It seems to me that the plan is too expensive. | Me parece que el plan es demasiado caro.
+- 🎯 | As far as I'm concerned, | En lo que a mí respecta, | As far as I'm concerned, the decision is final. | En lo que a mí respecta, la decisión es final.
+- ❓ | What do you think about…? | ¿Qué piensas de…? | What do you think about social media? | ¿Qué piensas de las redes sociales?
+- 🧐 | How do you feel about…? | ¿Qué opinas de…? | How do you feel about school uniforms? | ¿Qué opinas de los uniformes escolares?
+- 🤷 | I'm not sure, but… | No estoy seguro, pero… | I'm not sure, but I think it's a good idea. | No estoy seguro, pero creo que es buena idea.
+- 💯 | I'm convinced that | Estoy convencido de que | I'm convinced that we can win. | Estoy convencido de que podemos ganar.
+- 🔍 | From my point of view, | Desde mi punto de vista, | From my point of view, reading is better than TV. | Desde mi punto de vista, leer es mejor que la tele.
+teoria:
+intro: En B1 aprendemos a dar opiniones con frases variadas, no solo «I think». Una buena opinión tiene: frase de opinión + idea + razón (because…).
+tabla: Frases para opinar ; Inglés* | Español | Fuerza
+| I think / I believe | creo | normal
+| In my opinion / From my point of view | en mi opinión | formal
+| Personally / If you ask me | personalmente / si me preguntas | informal
+| It seems to me that | me parece que | suave
+| I'm convinced that / I'm sure that | estoy convencido | fuerte
+| I'm not sure, but | no estoy seguro, pero | débil
+tabla: Pedir opinión ; Inglés* | Español
+| What do you think about…? | ¿Qué piensas de…?
+| How do you feel about…? | ¿Qué te parece…?
+| What's your opinion on…? | ¿Cuál es tu opinión sobre…?
+| Do you agree? | ¿Estás de acuerdo?
+ej: In my opinion, phones should not be allowed in class because they distract students. | En mi opinión, los celulares no deberían permitirse en clase porque distraen a los alumnos.
+ej: What do you think about online classes? — Personally, I prefer real classes. | ¿Qué piensas de las clases virtuales? — Personalmente, prefiero las presenciales.
+ojo: «En mi opinión» es «In my opinion», no «In my opinion I think» (repetido).
+ojo: «Pienso de» se dice think about / think of: What do you think of it? ✓, What do you think it? ✗.
+pron: Opinion suena «opínion». Believe suena «bilív». Concerned suena «konsérnd».
+
+=== eng-b1-w4-c2 | 🤝 | B1 · Semana 4 · Clase 2: Estar de acuerdo, discrepar y argumentar
+desc: I totally agree. That's a good point, but… I see what you mean, however… Although…, On the other hand…, First of all…, Another reason is…
+- 👍 | I totally agree | Estoy totalmente de acuerdo | I totally agree with you. | Estoy totalmente de acuerdo contigo.
+- ✋ | I'm afraid I disagree | Me temo que no estoy de acuerdo | I'm afraid I disagree. | Me temo que no estoy de acuerdo.
+- 💡 | That's a good point, but… | Buen punto, pero… | That's a good point, but it's too expensive. | Buen punto, pero es demasiado caro.
+- 👀 | I see what you mean, but… | Entiendo lo que dices, pero… | I see what you mean, but I don't agree. | Entiendo lo que dices, pero no estoy de acuerdo.
+- ⚖️ | On the one hand… on the other hand… | Por un lado… por otro lado… | On the one hand, it's fun; on the other hand, it's dangerous. | Por un lado es divertido; por otro, es peligroso.
+- 🔄 | However, | Sin embargo, | Cars are fast. However, they pollute. | Los carros son rápidos. Sin embargo, contaminan.
+- 🌗 | Although it was late, we kept working | Aunque era tarde, seguimos trabajando | Although it was late, we kept working. | Aunque era tarde, seguimos trabajando.
+- 1️⃣ | First of all, | En primer lugar, | First of all, I want to thank you. | En primer lugar, quiero agradecerte.
+- ➕ | Another reason is that | Otra razón es que | Another reason is that it's healthy. | Otra razón es que es saludable.
+- 🎯 | For example, | Por ejemplo, | Some fruits, for example mangoes, are very sweet. | Algunas frutas, por ejemplo los mangos, son muy dulces.
+- 🏁 | To sum up, | En resumen, | To sum up, I think it's a great idea. | En resumen, creo que es una gran idea.
+- 😊 | You're right | Tienes razón | You're right. I didn't think about that. | Tienes razón. No había pensado en eso.
+teoria:
+intro: Discutir con respeto es una habilidad clave. Primero reconocemos la idea del otro y luego damos la nuestra con razones y conectores.
+tabla: Acuerdo y desacuerdo ; Inglés* | Español
+| I totally agree. / Absolutely. | Totalmente de acuerdo.
+| You're right. | Tienes razón.
+| I partly agree. | Estoy de acuerdo en parte.
+| I see what you mean, but… | Entiendo, pero…
+| That's a good point, but… | Buen punto, pero…
+| I'm afraid I disagree. | Me temo que no estoy de acuerdo.
+tabla: Conectores para argumentar ; Conector* | Español | Uso
+| First of all, / Firstly, | En primer lugar | empezar
+| Another reason is that | Otra razón es que | sumar
+| For example, / For instance, | Por ejemplo | ejemplificar
+| However, | Sin embargo | contrastar (inicio de oración)
+| Although + oración | Aunque | contrastar (une dos ideas)
+| On the other hand, | Por otro lado | otra cara
+| To sum up, / In conclusion, | En resumen / En conclusión | cerrar
+ej: I see what you mean, but I think online classes are less personal. | Entiendo, pero creo que las clases virtuales son menos personales.
+ej: Although the test was difficult, most students passed. | Aunque el examen fue difícil, la mayoría aprobó.
+ojo: «Estoy de acuerdo» = I agree (sin am): I am agree ✗.
+ojo: However va al inicio con coma; although une dos oraciones: Although it rained, we played ✓. However it rained, we played ✗.
+pron: Disagree suena «disagrí». However suena «jauéver». Although suena «oldóu».
+
+=== eng-b1-w4-c3 | 🗺️ | B1 · Semana 4 · Clase 3: Describir lugares como guía turístico
+desc: It's located in… It's famous for… It's worth visiting. You can… The best time to visit is… Too crowded / not big enough.
+- 📍 | It's located in the south of Peru | Está ubicado en el sur del Perú | Arequipa is located in the south of Peru. | Arequipa está ubicada en el sur del Perú.
+- 🌟 | It's famous for its food | Es famoso por su comida | Lima is famous for its food. | Lima es famosa por su comida.
+- 👍 | It's worth visiting | Vale la pena visitarlo | The Colca Canyon is worth visiting. | Vale la pena visitar el Cañón del Colca.
+- 🏛️ | You can visit old churches | Puedes visitar iglesias antiguas | In Ayacucho you can visit many old churches. | En Ayacucho puedes visitar muchas iglesias antiguas.
+- 📆 | The best time to visit is in May | La mejor época para visitar es mayo | The best time to visit Cusco is in May. | La mejor época para visitar Cusco es mayo.
+- 🧑‍🤝‍🧑 | It's too crowded | Hay demasiada gente | The beach is too crowded on Sundays. | La playa está muy llena los domingos.
+- 📏 | It isn't big enough | No es lo suficientemente grande | The hotel room isn't big enough for four people. | La habitación no es lo suficientemente grande para cuatro.
+- 🏞️ | It has breathtaking views | Tiene vistas impresionantes | Huaraz has breathtaking views of the mountains. | Huaraz tiene vistas impresionantes de las montañas.
+- 🍲 | You shouldn't miss the local food | No te pierdas la comida local | You shouldn't miss the local food. | No te pierdas la comida local.
+- 🌴 | It's one of the most beautiful places in the country | Es uno de los lugares más bonitos del país | Máncora is one of the most beautiful places in the country. | Máncora es uno de los lugares más bonitos del país.
+- 🏙️ | It's much bigger than my town | Es mucho más grande que mi pueblo | Lima is much bigger than my town. | Lima es mucho más grande que mi pueblo.
+- 💸 | It's a bit expensive, but it's worth it | Es un poco caro, pero vale la pena | It's a bit expensive, but it's worth it. | Es un poco caro, pero vale la pena.
+teoria:
+intro: Para describir un lugar como guía usamos frases de ubicación, fama y recomendación, además de comparativos con «much / a bit» y too / enough.
+tabla: Frases de guía ; Inglés* | Español
+| It's located in / near… | Está ubicado en / cerca de…
+| It's famous for… | Es famoso por…
+| It's worth visiting. | Vale la pena visitarlo.
+| You can… / You shouldn't miss… | Puedes… / No te pierdas…
+| The best time to visit is… | La mejor época para ir es…
+| It's one of the most … places in… | Es uno de los lugares más … de…
+tabla: Too y enough ; Estructura | Ejemplo* | Español
+| too + adjetivo | It's too cold. | Hace demasiado frío.
+| adjetivo + enough | It's warm enough. | Está lo suficientemente cálido.
+| not + adjetivo + enough | It isn't big enough. | No es lo suficientemente grande.
+| enough + sustantivo | We don't have enough time. | No tenemos suficiente tiempo.
+tabla: Comparar con matices ; Inglés* | Español
+| much bigger / a lot bigger | mucho más grande
+| a bit cheaper / slightly cheaper | un poco más barato
+| not as … as | no tan … como
+ej: Puno is famous for Lake Titicaca and its colorful festivals. | Puno es famoso por el lago Titicaca y sus coloridas fiestas.
+ej: It's a bit cold at night, so bring a warm jacket. | Hace un poco de frío en la noche, así que lleva una casaca abrigadora.
+ojo: «Enough» va DESPUÉS del adjetivo: enough big ✗ → big enough ✓.
+ojo: «Vale la pena» = it's worth it / it's worth + -ing: It's worth to visit ✗ → It's worth visiting ✓.
+pron: Worth suena «uérz». Enough suena «inóf».
+
+# ===================== B1 · SEMANA 5: MODALES =====================
+
+=== eng-b1-w5 | 🎲 | B1 · Semana 5 · Clase 1: Might, may, could (posibilidad)
+desc: It might rain. She may be late. We could go to the beach. I might not come. Maybe vs may be.
+- 🌦️ | It might rain later | Puede que llueva más tarde | Take an umbrella. It might rain later. | Lleva paraguas. Puede que llueva más tarde.
+- ⏰ | She may be late | Puede que ella llegue tarde | She may be late because of the traffic. | Puede que llegue tarde por el tráfico.
+- 🏖️ | We could go to the beach | Podríamos ir a la playa | If it's sunny, we could go to the beach. | Si está soleado, podríamos ir a la playa.
+- 🙅 | I might not come | Puede que no venga | I'm tired. I might not come tonight. | Estoy cansado. Puede que no venga esta noche.
+- 🤷 | Maybe | Quizás | Maybe we'll go to the cinema. | Quizás vayamos al cine.
+- 📱 | It may be in your bag | Puede que esté en tu mochila | Your phone may be in your bag. | Tu celular puede que esté en tu mochila.
+- 🧪 | This could be dangerous | Esto podría ser peligroso | Don't touch it. This could be dangerous. | No lo toques. Esto podría ser peligroso.
+- 💼 | He may not get the job | Puede que no consiga el trabajo | He may not get the job. | Puede que no consiga el trabajo.
+- 🚗 | They might buy a new car | Puede que compren un carro nuevo | They might buy a new car next year. | Puede que compren un carro nuevo el próximo año.
+- 🎁 | It might be a surprise | Podría ser una sorpresa | Don't open it! It might be a surprise. | ¡No lo abras! Podría ser una sorpresa.
+- ❓ | Do you think it'll rain? — It might | ¿Crees que lloverá? — Puede ser | Do you think it'll rain? — It might. | ¿Crees que lloverá? — Puede ser.
+teoria:
+intro: Might, may y could expresan posibilidad: algo que quizás pase o quizás sea verdad. Son iguales para todas las personas y van con el verbo sin «to».
+tabla: Grados de seguridad ; Expresión* | Seguridad
+| It will rain. | 100 %
+| It will probably rain. | 80 %
+| It may rain. / It might rain. | 50 %
+| It could rain. | 40 %
+| It might not rain. | 50 % que no
+| It won't rain. | 0 %
+tabla: Formas ; Forma | Ejemplo*
+| Afirmativa | She might come.
+| Negativa | She might not come. / She may not come.
+| Pregunta (poco común) | Do you think she'll come?
+ej: I may go to the party, but I'm not sure. | Puede que vaya a la fiesta, pero no estoy seguro.
+ej: We could visit the museum if it rains. | Podríamos visitar el museo si llueve.
+ojo: «Maybe» (una palabra) = quizás. «May be» (dos palabras) = puede ser: Maybe he's sick = He may be sick.
+ojo: No uses «can» para posibilidad futura: It can rain tomorrow ✗ → It might rain tomorrow ✓.
+ojo: Couldn't no es «tal vez no»: para eso usa might not.
+pron: Might suena «máit». Maybe suena «méibi».
+
+=== eng-b1-w5-c2 | 🚦 | B1 · Semana 5 · Clase 2: Permiso y obligación (repaso y más)
+desc: Must, have to, don't have to, mustn't, need to, needn't, be allowed to, can't, should, had better.
+- 📋 | You must wear a uniform | Debes usar uniforme | You must wear a uniform at school. | Debes usar uniforme en el colegio.
+- 🗓️ | I have to work on Saturdays | Tengo que trabajar los sábados | I have to work on Saturdays. | Tengo que trabajar los sábados.
+- 🆓 | You don't have to come | No tienes que venir | You don't have to come if you're busy. | No tienes que venir si estás ocupado.
+- 🚭 | You mustn't smoke here | Está prohibido fumar aquí | You mustn't smoke in the hospital. | Está prohibido fumar en el hospital.
+- 🧾 | I need to buy some bread | Necesito comprar pan | I need to buy some bread. | Necesito comprar pan.
+- 🙂 | You needn't worry | No hace falta que te preocupes | You needn't worry. Everything is fine. | No hace falta que te preocupes. Todo está bien.
+- ✅ | We're allowed to use dictionaries | Nos permiten usar diccionarios | We're allowed to use dictionaries in the exam. | Nos permiten usar diccionarios en el examen.
+- ⛔ | We aren't allowed to use phones | No nos permiten usar celulares | We aren't allowed to use phones in class. | No nos permiten usar celulares en clase.
+- ❓ | Are we allowed to take photos? | ¿Se puede tomar fotos? | Are we allowed to take photos in the museum? | ¿Se puede tomar fotos en el museo?
+- ⚠️ | You'd better hurry | Más te vale apurarte | You'd better hurry or you'll miss the bus. | Más te vale apurarte o perderás el bus.
+- 🕰️ | I had to wait for an hour | Tuve que esperar una hora | I had to wait for an hour at the doctor's. | Tuve que esperar una hora en el médico.
+- 🔮 | You'll have to study harder | Tendrás que estudiar más | You'll have to study harder next year. | Tendrás que estudiar más el próximo año.
+teoria:
+intro: Repasamos y ampliamos las formas de expresar obligación, falta de obligación, permiso y prohibición, en presente, pasado y futuro.
+tabla: Obligación y permiso ; Expresión* | Significado | Ejemplo*
+| must | obligación (reglas, lo que siento necesario) | I must finish this today.
+| have to | obligación externa | I have to wear a tie at work.
+| need to | necesidad | I need to sleep.
+| don't have to / needn't | no es necesario | You don't have to pay.
+| mustn't | prohibido | You mustn't cheat.
+| can / be allowed to | permiso | We can / are allowed to leave early.
+| can't / not be allowed to | sin permiso | We can't / aren't allowed to run.
+| should / ought to | consejo | You should rest.
+| had better ('d better) | consejo fuerte, advertencia | You'd better go now.
+tabla: En otros tiempos (must no tiene pasado ni futuro) ; Tiempo | Ejemplo*
+| Pasado | I had to study. / We were allowed to play.
+| Futuro | I'll have to study. / We'll be allowed to play.
+| Present Perfect | I've had to work a lot this week.
+ej: Do we have to bring our books tomorrow? — No, you don't have to. | ¿Tenemos que traer los libros mañana? — No, no hace falta.
+ej: When I was a child, I wasn't allowed to watch TV at night. | De niño no me permitían ver tele de noche.
+ojo: «Must not» (prohibido) ≠ «don't have to» (no es necesario).
+ojo: Must no tiene pasado: I musted ✗ → I had to ✓.
+ojo: «Had better» se refiere al presente/futuro, aunque tenga «had».
+pron: Allowed suena «aláud». Needn't suena «nídent». You'd better suena «iud béter».
+
+=== eng-b1-w5-c3 | 🧩 | B1 · Semana 5 · Clase 3: Gerundio o infinitivo
+desc: I enjoy reading. I want to travel. I'm good at drawing. I stopped eating sugar. Remember to call me. I'm interested in learning.
+- 📚 | I enjoy reading | Disfruto leer | I enjoy reading in bed. | Disfruto leer en la cama.
+- ✈️ | I want to travel | Quiero viajar | I want to travel around the world. | Quiero viajar por el mundo.
+- 🎨 | I'm good at drawing | Soy bueno dibujando | I'm good at drawing animals. | Soy bueno dibujando animales.
+- 🍬 | I stopped eating sugar | Dejé de comer azúcar | I stopped eating sugar last month. | Dejé de comer azúcar el mes pasado.
+- 📞 | Remember to call me | Acuérdate de llamarme | Remember to call me when you arrive. | Acuérdate de llamarme cuando llegues.
+- 🧠 | I'm interested in learning Japanese | Me interesa aprender japonés | I'm interested in learning Japanese. | Me interesa aprender japonés.
+- 🙅 | I don't mind waiting | No me molesta esperar | I don't mind waiting. Take your time. | No me molesta esperar. Tómate tu tiempo.
+- 🎯 | She decided to study law | Ella decidió estudiar derecho | She decided to study law. | Ella decidió estudiar derecho.
+- 🔁 | Keep trying! | ¡Sigue intentando! | Don't give up. Keep trying! | No te rindas. ¡Sigue intentando!
+- 🏊 | Swimming is good for you | Nadar es bueno para ti | Swimming is good for your health. | Nadar es bueno para tu salud.
+- 💬 | Thanks for helping me | Gracias por ayudarme | Thanks for helping me with my homework. | Gracias por ayudarme con mi tarea.
+- 🌙 | I'm looking forward to seeing you | Tengo muchas ganas de verte | I'm looking forward to seeing you on Saturday. | Tengo muchas ganas de verte el sábado.
+- 🎓 | I hope to finish soon | Espero terminar pronto | I hope to finish my project soon. | Espero terminar mi proyecto pronto.
+teoria:
+intro: Cuando un verbo va después de otro verbo, puede ir en -ing (gerundio) o con «to» (infinitivo). Depende del primer verbo. También después de preposiciones siempre va -ing.
+tabla: Verbo + -ing ; Verbo* | Ejemplo*
+| enjoy | I enjoy dancing.
+| finish | I finished reading.
+| mind | Do you mind waiting?
+| keep | Keep going!
+| avoid | Avoid eating late.
+| suggest | I suggest taking a taxi.
+| practice | Practice speaking.
+| can't stand | I can't stand waiting.
+tabla: Verbo + to + verbo ; Verbo* | Ejemplo*
+| want | I want to go.
+| need | I need to rest.
+| decide | We decided to stay.
+| hope | I hope to see you.
+| plan | They plan to travel.
+| learn | I'm learning to swim.
+| promise | He promised to help.
+| would like | I'd like to try.
+tabla: Preposición + -ing ; Expresión* | Español
+| good at drawing | bueno para dibujar
+| interested in learning | interesado en aprender
+| thanks for coming | gracias por venir
+| before leaving / after eating | antes de salir / después de comer
+| look forward to seeing | tener ganas de ver
+tabla: Cambian de significado ; Inglés* | Español
+| I stopped eating. | Dejé de comer.
+| I stopped to eat. | Me detuve para comer.
+| Remember to lock the door. | Acuérdate de cerrar con llave.
+| I remember locking the door. | Recuerdo haber cerrado con llave.
+ej: I'm thinking of joining the theater club. | Estoy pensando en entrar al club de teatro.
+ej: I'd like to visit Machu Picchu one day. | Me gustaría visitar Machu Picchu algún día.
+ojo: Después de preposición no va «to + verbo»: interested in learn ✗ → interested in learning ✓.
+ojo: «Look forward to» lleva -ing aunque tenga «to»: look forward to see ✗ → look forward to seeing ✓.
+ojo: Como sujeto se usa -ing: To swim is good ✗ (poco natural) → Swimming is good ✓.
+pron: En «want to» el sonido se une: «uánta». En conversación «wanna» (solo hablado).
+
+# ===================== B1 · SEMANA 6: CONVERSACIÓN REAL =====================
+
+=== eng-b1-w6 | 🔧 | B1 · Semana 6 · Clase 1: Phrasal verbs de todos los días
+desc: Get up, wake up, turn on/off, put on, take off, look for, find out, give up, look after, run out of, come back, pick up, set up, go on, find out.
+- ⏰ | wake up | despertarse | I wake up at six every day. | Me despierto a las seis todos los días.
+- 🛏️ | get up | levantarse | I get up ten minutes after I wake up. | Me levanto diez minutos después de despertarme.
+- 💡 | turn on / turn off | prender / apagar | Turn off the lights when you leave. | Apaga las luces cuando salgas.
+- 🧥 | put on | ponerse (ropa) | Put on your jacket. It's cold. | Ponte la casaca. Hace frío.
+- 👟 | take off | quitarse (ropa) / despegar | Take off your shoes, please. | Quítate los zapatos, por favor.
+- 🔎 | look for | buscar | I'm looking for my glasses. | Estoy buscando mis lentes.
+- 💡 | find out | averiguar, enterarse | I found out the truth. | Me enteré de la verdad.
+- 🏳️ | give up | rendirse, dejar | Don't give up! You can do it. | ¡No te rindas! Tú puedes.
+- 👶 | look after | cuidar | My grandma looks after my little brother. | Mi abuelita cuida a mi hermanito.
+- 🥛 | run out of | quedarse sin | We've run out of milk. | Nos hemos quedado sin leche.
+- 🔙 | come back | volver | When are you coming back? | ¿Cuándo vuelves?
+- 🚗 | pick up | recoger | I'll pick you up at eight. | Te recojo a las ocho.
+- ▶️ | go on | continuar | Please go on. I'm listening. | Por favor, continúa. Te escucho.
+- 🤝 | get on with | llevarse bien con | I get on well with my cousins. | Me llevo bien con mis primos.
+- 📝 | fill in | llenar (formulario) | Please fill in this form. | Por favor, llene este formulario.
+teoria:
+intro: Los phrasal verbs son verbos + partícula (up, on, off, out, for…) que cambian el significado. Los nativos los usan todo el tiempo, así que hay que aprenderlos como vocabulario.
+tabla: Phrasal verbs frecuentes ; Phrasal verb* | Español | Ejemplo*
+| wake up | despertarse | I woke up late.
+| get up | levantarse | Get up!
+| turn on / off | prender / apagar | Turn on the TV.
+| put on / take off | ponerse / quitarse | Put on your hat.
+| look for | buscar | What are you looking for?
+| find out | averiguar | Let's find out.
+| give up | rendirse / dejar | She gave up sugar.
+| look after | cuidar | Can you look after my dog?
+| run out of | quedarse sin | I ran out of money.
+| come back | volver | Come back soon!
+| pick up | recoger | Pick up your toys.
+| get on with | llevarse bien | I get on with her.
+tabla: ¿Dónde va el objeto? ; Caso | Ejemplo*
+| Sustantivo: antes o después de la partícula | Turn off the TV. / Turn the TV off.
+| Pronombre: siempre en medio | Turn it off. (no Turn off it)
+| Algunos no se separan | Look after him. / Look for it.
+ej: I looked for my keys everywhere, but I didn't find them. | Busqué mis llaves por todos lados, pero no las encontré.
+ej: Can you pick me up after school? | ¿Puedes recogerme después del colegio?
+ojo: Con pronombre: Turn off it ✗ → Turn it off ✓. Put on it ✗ → Put it on ✓.
+ojo: «Look for» (buscar) no es «look at» (mirar) ni «look after» (cuidar).
+pron: En phrasal verbs se acentúa la partícula: turn ÓFF, give ÚP, pick ÚP.
+
+=== eng-b1-w6-c2 | 🗨️ | B1 · Semana 6 · Clase 2: Estrategias de conversación
+desc: Well… Let me see… Actually… Anyway… By the way… I mean… You know… What I mean is… Sorry to interrupt, but… Shadowing.
+- 🤔 | Well, let me see… | Bueno, déjame ver… | Well, let me see… I think it's on Tuesday. | Bueno, déjame ver… Creo que es el martes.
+- 🧐 | Actually, | En realidad, | Actually, I'm from Chiclayo, not Lima. | En realidad, soy de Chiclayo, no de Lima.
+- ↩️ | Anyway, | En fin, / Bueno, | Anyway, let's talk about something else. | En fin, hablemos de otra cosa.
+- 💬 | By the way, | Por cierto, | By the way, did you call Maria? | Por cierto, ¿llamaste a María?
+- 🔁 | I mean, | O sea, / Quiero decir, | It was good. I mean, not perfect, but good. | Estuvo bien. O sea, no perfecto, pero bien.
+- 🤷 | You know, | Sabes, / Este… | It's, you know, a little complicated. | Es, sabes, un poco complicado.
+- 🗣️ | What I mean is… | Lo que quiero decir es… | What I mean is that we need more time. | Lo que quiero decir es que necesitamos más tiempo.
+- ✋ | Sorry to interrupt, but… | Perdón por interrumpir, pero… | Sorry to interrupt, but it's time to go. | Perdón por interrumpir, pero ya es hora de irnos.
+- 🔄 | As I was saying, | Como te decía, | As I was saying, the trip was amazing. | Como te decía, el viaje fue increíble.
+- 🎤 | Go ahead | Adelante | Can I ask something? — Sure, go ahead. | ¿Puedo preguntar algo? — Claro, adelante.
+- 🙃 | It depends | Depende | Do you like spicy food? — It depends. | ¿Te gusta la comida picante? — Depende.
+- 😅 | That reminds me… | Eso me recuerda… | That reminds me, I have to buy a present. | Eso me recuerda que tengo que comprar un regalo.
+teoria:
+intro: Para conversar con fluidez no basta la gramática: necesitamos palabras que nos den tiempo para pensar, cambien de tema o aclaren. Practica con shadowing: escucha una frase y repítela al mismo tiempo, copiando el ritmo.
+tabla: Ganar tiempo para pensar ; Inglés* | Español
+| Well… | Bueno…
+| Let me see… / Let me think… | Déjame ver… / Déjame pensar…
+| That's a good question. | Buena pregunta.
+| You know… | Sabes… / Este…
+tabla: Aclarar y corregir ; Inglés* | Español
+| I mean… / What I mean is… | O sea… / Lo que quiero decir es…
+| Actually… | En realidad…
+| In other words… | En otras palabras…
+tabla: Cambiar de tema o volver ; Inglés* | Español
+| By the way… | Por cierto…
+| Anyway… | En fin…
+| That reminds me… | Eso me recuerda…
+| As I was saying… | Como te decía…
+| Sorry to interrupt, but… | Perdón por interrumpir, pero…
+nota: Shadowing en 3 pasos: 1) escucha la frase con 🔊; 2) repítela en voz alta junto con el audio; 3) grábate y compara.
+ej: Well, let me think… Actually, I prefer the blue one. | Bueno, déjame pensar… En realidad, prefiero el azul.
+ej: By the way, have you finished the project? | Por cierto, ¿terminaste el proyecto?
+ojo: «Actually» es un falso amigo: significa «en realidad», no «actualmente» (= currently / nowadays).
+ojo: No abuses de «you know» o «like»: úsalos poco para sonar natural.
+pron: Actually suena «ákchuali». Anyway suena «éniuei».
+
+=== eng-b1-w6-c3 | 🎧 | B1 · Semana 6 · Clase 3: Listening: una llamada para hacer planes
+desc: Escucha y entiende un diálogo real por partes: invitar, aceptar, rechazar, proponer otra fecha y confirmar.
+- 📞 | Hi Sam, it's Lucía. Are you free on Saturday? | Hola Sam, soy Lucía. ¿Estás libre el sábado? | Hi Sam, it's Lucía. Are you free on Saturday? | Hola Sam, soy Lucía. ¿Estás libre el sábado?
+- 🎬 | Do you fancy going to the cinema? | ¿Te provoca ir al cine? | Do you fancy going to the cinema? | ¿Te provoca ir al cine?
+- 😕 | I'd love to, but I can't | Me encantaría, pero no puedo | I'd love to, but I can't. I'm visiting my grandma. | Me encantaría, pero no puedo. Voy a visitar a mi abuela.
+- 📅 | How about Sunday instead? | ¿Y qué tal el domingo? | How about Sunday instead? | ¿Y qué tal el domingo mejor?
+- 👍 | Sunday works for me | El domingo me queda bien | Sunday works for me. | El domingo me queda bien.
+- ⏰ | What time shall we meet? | ¿A qué hora nos vemos? | What time shall we meet? — Let's say four. | ¿A qué hora nos vemos? — Digamos a las cuatro.
+- 📍 | Let's meet outside the mall | Encontrémonos afuera del centro comercial | Let's meet outside the mall at four. | Encontrémonos afuera del centro comercial a las cuatro.
+- 🎟️ | I'll buy the tickets online | Yo compro las entradas por internet | Don't worry, I'll buy the tickets online. | No te preocupes, yo compro las entradas por internet.
+- 💸 | How much do I owe you? | ¿Cuánto te debo? | How much do I owe you? — Fifteen soles. | ¿Cuánto te debo? — Quince soles.
+- ✅ | See you on Sunday, then | Nos vemos el domingo, entonces | Great! See you on Sunday, then. | ¡Genial! Nos vemos el domingo, entonces.
+- 🙌 | Sounds good! | ¡Suena bien! | Shall we have pizza after the movie? — Sounds good! | ¿Comemos pizza después de la película? — ¡Suena bien!
+teoria:
+intro: En esta clase escuchas una conversación completa dividida en frases. Primero escucha todo con «🔊 Escuchar todo», luego practica cada frase. Fíjate en cómo se invita, se rechaza con cortesía y se propone otra opción.
+tabla: El diálogo completo ; Persona | Frase*
+| Lucía | Hi Sam, it's Lucía. Are you free on Saturday?
+| Lucía | Do you fancy going to the cinema?
+| Sam | I'd love to, but I can't. I'm visiting my grandma.
+| Sam | How about Sunday instead?
+| Lucía | Sunday works for me. What time shall we meet?
+| Sam | Let's meet outside the mall at four.
+| Lucía | I'll buy the tickets online.
+| Sam | Great! See you on Sunday, then.
+tabla: Invitar y responder ; Función | Inglés*
+| Invitar | Do you fancy…? / Would you like to…? / How about…?
+| Aceptar | I'd love to! / Sounds good! / Sure, why not?
+| Rechazar con cortesía | I'd love to, but… / Sorry, I can't. I'm busy.
+| Proponer otra opción | How about…instead? / What about next week?
+| Confirmar | See you then! / It's a deal.
+ej: Would you like to come to my party? — Thanks! I'd love to. | ¿Te gustaría venir a mi fiesta? — ¡Gracias! Me encantaría.
+ej: Sorry, I can't make it on Friday. How about Saturday? | Lo siento, el viernes no puedo. ¿Qué tal el sábado?
+ojo: «Fancy + -ing» (británico) = «tener ganas de»: Do you fancy going out?
+ojo: Para rechazar, nunca digas solo «No»: da una razón y propone otra opción.
+pron: «Would you» se une: «wúyu». «I'd love to» suena «aid lóv tu».
+
+# ===================== B1 · SEMANA 7: READING Y WRITING =====================
+
+=== eng-b1-w7 | 🔗 | B1 · Semana 7 · Clase 1: Relative clauses (who, which, that, where, whose)
+desc: The girl who lives next door. The book which I'm reading. The town where I was born. The boy whose dad is a pilot.
+- 👧 | The girl who lives next door | La chica que vive al lado | The girl who lives next door is my best friend. | La chica que vive al lado es mi mejor amiga.
+- 📘 | The book which I'm reading | El libro que estoy leyendo | The book which I'm reading is very exciting. | El libro que estoy leyendo es muy emocionante.
+- 🏘️ | The town where I was born | El pueblo donde nací | This is the town where I was born. | Este es el pueblo donde nací.
+- ✈️ | The boy whose dad is a pilot | El chico cuyo papá es piloto | That's the boy whose dad is a pilot. | Ese es el chico cuyo papá es piloto.
+- 🧑‍🏫 | A teacher is a person who teaches | Un profesor es una persona que enseña | A teacher is a person who teaches students. | Un profesor es una persona que enseña a alumnos.
+- 📱 | The phone that I bought is great | El celular que compré es genial | The phone that I bought last week is great. | El celular que compré la semana pasada es genial.
+- 🍽️ | The restaurant where we ate was cheap | El restaurante donde comimos era barato | The restaurant where we ate was cheap and good. | El restaurante donde comimos era barato y bueno.
+- 🐕 | The dog that bit me | El perro que me mordió | The dog that bit me belongs to my neighbor. | El perro que me mordió es de mi vecino.
+- 📅 | The day when we met | El día en que nos conocimos | I remember the day when we met. | Recuerdo el día en que nos conocimos.
+- 🎁 | The present you gave me | El regalo que me diste | I love the present you gave me. | Me encanta el regalo que me diste.
+- 🏆 | The team which won the cup | El equipo que ganó la copa | The team which won the cup was from Cusco. | El equipo que ganó la copa era de Cusco.
+- 🎨 | Machu Picchu, which is in Cusco, is amazing | Machu Picchu, que está en Cusco, es increíble | Machu Picchu, which is in Cusco, is amazing. | Machu Picchu, que está en Cusco, es increíble.
+teoria:
+intro: Las oraciones de relativo dan información sobre un sustantivo sin empezar otra oración. En español casi siempre decimos «que»; en inglés depende de si es persona, cosa, lugar o posesión.
+tabla: Pronombres relativos ; Pronombre* | Se usa para | Ejemplo*
+| who | personas | The man who called is my uncle.
+| which | cosas y animales | The cake which you made is delicious.
+| that | personas o cosas (informal) | The film that we saw was long.
+| where | lugares | The school where I study is big.
+| whose | posesión (cuyo) | The girl whose bag is red.
+| when | momentos | The year when I was born.
+tabla: ¿Se puede omitir? ; Caso | Ejemplo*
+| Si el relativo es el objeto: sí | The book (that) I read was good.
+| Si el relativo es el sujeto: no | The man who called… (no se quita)
+tabla: Con comas (información extra) ; Ejemplo* | Nota
+| My mother, who is a nurse, works at night. | información adicional, va entre comas
+| Lima, which is the capital, is very big. | con comas no se usa «that»
+ej: The woman who sells empanadas is very nice. | La señora que vende empanadas es muy amable.
+ej: Do you know a place where we can eat? | ¿Conoces un lugar donde podamos comer?
+ojo: No repitas el pronombre: The book that I read it ✗ → The book that I read ✓.
+ojo: Para personas no uses which: The man which ✗ → The man who ✓.
+ojo: «Whose» (cuyo) no es «who's» (who is).
+pron: Who suena «jú», whose «júus», which «uích», where «uér».
+
+=== eng-b1-w7-c2 | ✍️ | B1 · Semana 7 · Clase 2: Escribir un párrafo y collocations
+desc: Topic sentence, ideas de apoyo y cierre. Moreover, in addition, as a result, in conclusion. Make vs do: make a mistake, do homework.
+- 🎯 | The main idea of this paragraph is… | La idea principal de este párrafo es… | The main idea of this paragraph is that sport is healthy. | La idea principal de este párrafo es que el deporte es saludable.
+- ➕ | In addition, | Además, | In addition, sport helps you make friends. | Además, el deporte te ayuda a hacer amigos.
+- ➕ | Moreover, | Además (formal), | Moreover, it reduces stress. | Además, reduce el estrés.
+- ➡️ | As a result, | Como resultado, | I trained every day. As a result, I won. | Entrené todos los días. Como resultado, gané.
+- 🏁 | In conclusion, | En conclusión, | In conclusion, everyone should do some exercise. | En conclusión, todos deberían hacer algo de ejercicio.
+- ❌ | make a mistake | cometer un error | Don't worry if you make a mistake. | No te preocupes si cometes un error.
+- 📚 | do homework | hacer la tarea | I do my homework after lunch. | Hago mi tarea después del almuerzo.
+- 🤝 | make friends | hacer amigos | It's easy to make friends at camp. | Es fácil hacer amigos en el campamento.
+- 🏋️ | do exercise | hacer ejercicio | I do exercise three times a week. | Hago ejercicio tres veces por semana.
+- 🗒️ | make a decision | tomar una decisión | It's time to make a decision. | Es hora de tomar una decisión.
+- 🧽 | do the dishes | lavar los platos | I do the dishes after dinner. | Lavo los platos después de la cena.
+- 🗣️ | make a noise | hacer ruido | Please don't make a noise. The baby is sleeping. | Por favor, no hagas ruido. El bebé duerme.
+- 📈 | make progress | progresar | You're making great progress! | ¡Estás progresando mucho!
+- 🙏 | do me a favor | hazme un favor | Can you do me a favor? | ¿Me haces un favor?
+teoria:
+intro: Un buen párrafo tiene tres partes: una oración principal (topic sentence), 2 o 3 ideas de apoyo con ejemplos y una oración de cierre. Además aprendemos collocations: palabras que siempre van juntas.
+tabla: Estructura del párrafo ; Parte | Ejemplo*
+| Topic sentence | Playing sports has many benefits.
+| Idea 1 + ejemplo | Firstly, it keeps you healthy. For example, running makes your heart strong.
+| Idea 2 | In addition, it helps you make friends.
+| Idea 3 | Moreover, it reduces stress.
+| Cierre | In conclusion, everyone should play a sport.
+tabla: Make vs do ; Make* (crear, producir) | Do* (tareas, actividades)
+| make a mistake | do homework
+| make a decision | do exercise
+| make friends | do the dishes
+| make a noise | do the shopping
+| make progress | do your best
+| make money | do a favor
+| make a plan | do business
+tabla: Otras collocations útiles ; Inglés* | Español
+| take a photo | tomar una foto
+| take a break | tomar un descanso
+| have a good time | pasarla bien
+| pay attention | prestar atención
+| catch a cold | resfriarse
+| tell the truth | decir la verdad
+ej: I made a lot of mistakes, but I did my best. | Cometí muchos errores, pero di lo mejor de mí.
+ej: Pay attention and take notes. | Presta atención y toma apuntes.
+ojo: «Hacer una pregunta» = ask a question (no «make a question»).
+ojo: «Tomar una decisión» = make a decision (no «take a decision» en inglés americano).
+ojo: Moreover e In addition van al inicio de la oración, con coma.
+pron: Mistake suena «mistéik». Progress suena «prógres».
+
+=== eng-b1-w7-c3 | 📰 | B1 · Semana 7 · Clase 3: Reading: My first trip alone
+desc: Lectura completa de 180 palabras dividida en frases, con audio, comprensión y vocabulario.
+- 🚌 | Last year I traveled alone for the first time | El año pasado viajé solo por primera vez | Last year I traveled alone for the first time. | El año pasado viajé solo por primera vez.
+- 🎒 | I was nervous, but also very excited | Estaba nervioso, pero también muy emocionado | I was nervous, but also very excited. | Estaba nervioso, pero también muy emocionado.
+- 🗺️ | I took a night bus from Lima to Huaraz | Tomé un bus nocturno de Lima a Huaraz | I took a night bus from Lima to Huaraz. | Tomé un bus nocturno de Lima a Huaraz.
+- 😴 | While I was sleeping, the bus climbed the mountains | Mientras dormía, el bus subió las montañas | While I was sleeping, the bus climbed the mountains. | Mientras dormía, el bus subió las montañas.
+- 🌄 | When I woke up, I saw snowy peaks everywhere | Cuando desperté, vi cumbres nevadas por todos lados | When I woke up, I saw snowy peaks everywhere. | Cuando desperté, vi cumbres nevadas por todos lados.
+- 🏨 | I stayed in a hostel where I met travelers from many countries | Me quedé en un hostal donde conocí viajeros de muchos países | I stayed in a hostel where I met travelers from many countries. | Me quedé en un hostal donde conocí viajeros de muchos países.
+- 🥾 | On the second day, we hiked to a lake | El segundo día caminamos hasta una laguna | On the second day, we hiked to a turquoise lake. | El segundo día caminamos hasta una laguna turquesa.
+- 😮‍💨 | The walk was harder than I expected | La caminata fue más difícil de lo que esperaba | The walk was harder than I expected because of the altitude. | La caminata fue más difícil de lo que esperaba por la altura.
+- 🏳️ | I almost gave up, but my new friends encouraged me | Casi me rendí, pero mis nuevos amigos me animaron | I almost gave up, but my new friends encouraged me. | Casi me rendí, pero mis nuevos amigos me animaron.
+- 🏞️ | It was the most beautiful place I've ever seen | Fue el lugar más bonito que he visto | It was the most beautiful place I've ever seen. | Fue el lugar más bonito que he visto en mi vida.
+- 💪 | Since then, I've felt more confident | Desde entonces, me siento más seguro | Since then, I've felt more confident. | Desde entonces, me siento más seguro de mí mismo.
+- 🔁 | I'm going to travel alone again next year | Voy a volver a viajar solo el próximo año | I'm going to travel alone again next year. | El próximo año voy a volver a viajar solo.
+teoria:
+intro: Lee (y escucha con «🔊 Escuchar todo») un texto completo. Fíjate en cómo combina todos los tiempos del B1: pasado simple, pasado continuo, present perfect y going to.
+tabla: El texto completo ; Párrafo | Texto*
+| 1 | Last year I traveled alone for the first time. I was nervous, but also very excited. I took a night bus from Lima to Huaraz.
+| 2 | While I was sleeping, the bus climbed the mountains. When I woke up, I saw snowy peaks everywhere. I stayed in a hostel where I met travelers from many countries.
+| 3 | On the second day, we hiked to a turquoise lake. The walk was harder than I expected because of the altitude. I almost gave up, but my new friends encouraged me.
+| 4 | It was the most beautiful place I've ever seen. Since then, I've felt more confident. I'm going to travel alone again next year.
+tabla: Preguntas de comprensión ; Pregunta* | Respuesta*
+| How did the writer travel to Huaraz? | By night bus.
+| Who did he meet at the hostel? | Travelers from many countries.
+| Why was the walk difficult? | Because of the altitude.
+| How does he feel now? | More confident.
+tabla: Vocabulario del texto ; Inglés* | Español
+| alone | solo (sin compañía)
+| snowy peaks | cumbres nevadas
+| hostel | hostal
+| to hike | hacer caminata
+| altitude | altura
+| to encourage | animar
+| confident | seguro de sí mismo
+ej: I almost gave up. | Casi me rindo.
+ej: It was harder than I expected. | Fue más difícil de lo que esperaba.
+ojo: «Más… de lo que esperaba» = more… than I expected (no «that»).
+ojo: «Alone» = solo (sin nadie); «only» = solamente.
+pron: Altitude suena «áltitud». Encouraged suena «enkárijd».
+
+# ===================== B1 · SEMANA 8: PROYECTO FINAL B1 =====================
+
+=== eng-b1-w8 | 🎤 | B1 · Semana 8 · Clase 1: Proyecto: hablar 2 minutos
+desc: Presentación oral sobre una experiencia importante: introducción, historia en pasado, lo que aprendiste y planes.
+- 👋 | Today I'd like to talk about… | Hoy me gustaría hablar sobre… | Today I'd like to talk about an important day in my life. | Hoy me gustaría hablar sobre un día importante en mi vida.
+- 📍 | It happened when I was twelve | Pasó cuando tenía doce años | It happened when I was twelve. | Pasó cuando tenía doce años.
+- 🎞️ | I was living in Chiclayo at the time | En ese tiempo vivía en Chiclayo | I was living in Chiclayo at the time. | En ese tiempo vivía en Chiclayo.
+- 😮 | Suddenly, something unexpected happened | De repente, pasó algo inesperado | Suddenly, something unexpected happened. | De repente, pasó algo inesperado.
+- 💭 | I felt… because… | Me sentí… porque… | I felt proud because I didn't give up. | Me sentí orgulloso porque no me rendí.
+- 📚 | I learned that… | Aprendí que… | I learned that mistakes help us grow. | Aprendí que los errores nos ayudan a crecer.
+- 🔄 | Since then, I have… | Desde entonces, he… | Since then, I have become more patient. | Desde entonces, me he vuelto más paciente.
+- 🔮 | In the future, I'm going to… | En el futuro, voy a… | In the future, I'm going to help other kids. | En el futuro, voy a ayudar a otros niños.
+- 🏁 | To sum up, | En resumen, | To sum up, it was a day I'll never forget. | En resumen, fue un día que nunca olvidaré.
+- 🙏 | Thank you for listening. Any questions? | Gracias por escuchar. ¿Alguna pregunta? | Thank you for listening. Do you have any questions? | Gracias por escuchar. ¿Tienen alguna pregunta?
+- 🌟 | It was a day I'll never forget | Fue un día que nunca olvidaré | It was a day I'll never forget. | Fue un día que nunca olvidaré.
+teoria:
+intro: El proyecto final B1 es hablar 2 minutos sobre una experiencia. Usa la estructura de abajo, los tiempos del nivel y conectores. Grábate y revisa con la lista de control.
+tabla: Guion de 2 minutos ; Parte | Tiempo | Frase modelo*
+| Introducción | 15 s | Today I'd like to talk about…
+| Contexto | 20 s | It happened when I was… I was living in…
+| Historia | 45 s | One day… Suddenly… When… while…
+| Sentimientos | 15 s | I felt… because…
+| Lección | 15 s | I learned that… Since then, I have…
+| Futuro y cierre | 10 s | In the future, I'm going to… Thank you for listening.
+tabla: Lista de control ; Revisa | ✔
+| ¿Usé Past Simple y Past Continuous? | ☐
+| ¿Usé Present Perfect (since then, I've…)? | ☐
+| ¿Usé going to o will? | ☐
+| ¿Usé conectores (when, while, however, so, because)? | ☐
+| ¿Pronuncié las terminaciones -ed? | ☐
+ej: It happened two years ago, while I was playing in a tournament. | Pasó hace dos años, mientras jugaba en un torneo.
+ej: Since then, I've practiced every day. | Desde entonces, he practicado todos los días.
+ojo: No leas: mira tus apuntes con palabras clave y habla.
+ojo: Habla despacio y haz pausas entre las partes.
+pron: Practica el sonido -ed: worked «uórkt», played «pléid», wanted «uánted».
+
+=== eng-b1-w8-c2 | 📝 | B1 · Semana 8 · Clase 2: Proyecto: escribir 150 palabras (email y reseña)
+desc: Email informal a un amigo y reseña de una película o lugar: saludos, párrafos, recomendaciones y despedidas.
+- ✉️ | Hi Tom, how are things? | Hola Tom, ¿cómo va todo? | Hi Tom, how are things? | Hola Tom, ¿cómo va todo?
+- 🙏 | Thanks for your last email | Gracias por tu último correo | Thanks for your last email. It was great to hear from you. | Gracias por tu último correo. Me alegró saber de ti.
+- 😔 | Sorry I haven't written for so long | Perdón por no escribir en tanto tiempo | Sorry I haven't written for so long. I've been very busy. | Perdón por no escribirte en tanto tiempo. He estado muy ocupado.
+- 📰 | Guess what! | ¡Adivina qué! | Guess what! I've joined the school band. | ¡Adivina qué! He entrado a la banda del colegio.
+- 💬 | Write back soon | Escríbeme pronto | Write back soon and tell me your news. | Escríbeme pronto y cuéntame tus novedades.
+- 👋 | Best wishes, | Saludos, / Un abrazo, | Best wishes, Lucía | Un abrazo, Lucía
+- 🎬 | The film is set in… | La película se desarrolla en… | The film is set in a small town in the Andes. | La película se desarrolla en un pueblo de los Andes.
+- 🎭 | The acting was excellent | La actuación fue excelente | The acting was excellent and the music was beautiful. | La actuación fue excelente y la música preciosa.
+- 🌀 | The plot is a bit confusing | La trama es un poco confusa | The plot is a bit confusing at the beginning. | La trama es un poco confusa al principio.
+- 👍 | I'd highly recommend it | Lo recomiendo mucho | I'd highly recommend it to teenagers. | Lo recomiendo mucho a los adolescentes.
+- ⭐ | I'd give it four stars out of five | Le daría cuatro estrellas de cinco | Overall, I'd give it four stars out of five. | En general, le daría cuatro estrellas de cinco.
+- 🤔 | The only thing I didn't like was… | Lo único que no me gustó fue… | The only thing I didn't like was the ending. | Lo único que no me gustó fue el final.
+teoria:
+intro: El writing del proyecto B1 tiene 150 palabras. Puedes elegir un email informal o una reseña. Ambos necesitan párrafos claros, conectores y vocabulario variado.
+tabla: Email informal ; Parte | Frases*
+| Saludo | Hi Tom, / Dear Ana,
+| Inicio | Thanks for your email. / How are things?
+| Noticias | Guess what! I've… / Last weekend I…
+| Preguntas | How about you? What have you been up to?
+| Cierre | Write back soon. / See you soon.
+| Despedida | Best wishes, / Love, / Take care,
+tabla: Reseña ; Parte | Frases*
+| Presentación | Last week I saw… / The film is set in…
+| Lo bueno | The acting was excellent. / The best part was…
+| Lo malo | The only thing I didn't like was… / It's a bit too long.
+| Recomendación | I'd highly recommend it to… / It's worth seeing.
+| Puntaje | I'd give it four stars out of five.
+ej: Sorry I haven't written for so long. I've been busy with exams. | Perdón por no escribirte en tanto tiempo. He estado ocupado con exámenes.
+ej: If you like adventure films, you'll love it. | Si te gustan las películas de aventura, te va a encantar.
+ojo: En un email informal se usan contracciones (I've, it's); en uno formal, no.
+ojo: «La película trata de» = The film is about (no «treats of»).
+pron: Recommend suena «rekoménd». Overall suena «óuverol».
