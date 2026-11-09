@@ -14,3 +14,60 @@ kit: b1 12
 === eng-kit-b2-test | 🧪 | Kit · Test rápido B2
 desc: 15 preguntas al azar de todo el B2.
 kit: b2 15
+=== eng-kit-c1-test | 🧪 | Kit · Test rápido C1
+desc: 15 preguntas al azar de todo el C1.
+kit: c1 15
+=== eng-kit-c2-test | 🧪 | Kit · Test rápido C2
+desc: 15 preguntas al azar de todo el C2.
+kit: c2 15
+
+=== eng-kit-daily-routine | 🗓️ | Kit · Rutina diaria de clase (plantilla)
+desc: Ritual de inicio, fecha y clima, instrucciones del salón, juego, lectura, escritura y despedida: frases para usar en cada clase.
+- 👋 | Hello! How are you today? | ¡Hola! ¿Cómo estás hoy? | Hello, everyone! How are you today? | ¡Hola a todos! ¿Cómo están hoy?
+- 🙂 | I'm fine, thank you. And you? | Estoy bien, gracias. ¿Y tú? | I'm fine, thank you. And you? | Estoy bien, gracias. ¿Y tú?
+- 📅 | Today is Monday | Hoy es lunes | Today is Monday, the third of March. | Hoy es lunes tres de marzo.
+- ☀️ | It's sunny today | Hoy está soleado | Look outside! It's sunny today. | ¡Miren afuera! Hoy está soleado.
+- 🙋 | Who is absent today? | ¿Quién faltó hoy? | Let's take attendance. Who is absent today? | Pasemos lista. ¿Quién faltó hoy?
+- 👂 | Listen and repeat | Escucha y repite | Listen and repeat after me. | Escuchen y repitan después de mí.
+- 📖 | Open your books at page ten | Abran sus libros en la página diez | Please open your books at page ten. | Por favor, abran sus libros en la página diez.
+- 🤫 | Be quiet, please | Silencio, por favor | Be quiet, please. Let's listen. | Silencio, por favor. Escuchemos.
+- 🤝 | Work in pairs | Trabajen en parejas | Now work in pairs and ask your partner. | Ahora trabajen en parejas y pregúntenle a su compañero.
+- 🎲 | Let's play a game | Juguemos un juego | Let's play a game! Make two teams. | ¡Juguemos un juego! Formen dos equipos.
+- 📚 | Let's read together | Leamos juntos | Let's read the story together. | Leamos el cuento juntos.
+- ✍️ | Write three sentences | Escribe tres oraciones | Write three sentences about your weekend. | Escriban tres oraciones sobre su fin de semana.
+- ❓ | Can you say that again, please? | ¿Puede repetirlo, por favor? | Sorry, can you say that again, please? | Perdón, ¿puede repetirlo, por favor?
+- 🙌 | Great job! | ¡Muy bien hecho! | Great job, everyone! | ¡Muy bien hecho, todos!
+- 🎒 | It's time to go. Tidy up, please | Es hora de irse. Ordenen, por favor | It's time to go. Tidy up, please. | Es hora de irnos. Ordenen, por favor.
+- 👋 | See you tomorrow! | ¡Hasta mañana! | Goodbye, class! See you tomorrow! | ¡Adiós, clase! ¡Hasta mañana!
+teoria:
+intro: Esta plantilla reúne las frases de una rutina diaria en inglés para el salón o la casa. Repetir siempre la misma rutina (saludo, fecha, clima, práctica, juego, lectura, escritura y despedida) da seguridad y hace que el inglés se use todos los días.
+tabla: La rutina paso a paso ; Paso | Frase*
+| 1. Saludo | Hello! How are you today?
+| 2. Fecha | Today is Monday, the third of March.
+| 3. Clima | It's sunny / cloudy / rainy / cold today.
+| 4. Lista | Who is absent today?
+| 5. Escuchar | Listen and repeat.
+| 6. Juego | Let's play a game!
+| 7. Lectura | Let's read together.
+| 8. Escritura | Write three sentences.
+| 9. Elogio | Great job!
+| 10. Despedida | Tidy up, please. See you tomorrow!
+tabla: Instrucciones del salón ; Inglés* | Español
+| Open your books. / Close your books. | Abran / cierren sus libros.
+| Stand up. / Sit down. | Párense. / Siéntense.
+| Raise your hand. | Levanten la mano.
+| Work in pairs / in groups. | Trabajen en parejas / en grupos.
+| Be quiet, please. | Silencio, por favor.
+| Look at the board. | Miren la pizarra.
+tabla: Frases del alumno ; Inglés* | Español
+| Can you say that again, please? | ¿Puede repetirlo, por favor?
+| How do you say … in English? | ¿Cómo se dice … en inglés?
+| What does … mean? | ¿Qué significa …?
+| Can I go to the bathroom, please? | ¿Puedo ir al baño, por favor?
+| I don't understand. | No entiendo.
+| I've finished. | Ya terminé.
+ej: How do you say «cuaderno» in English? — Notebook. | ¿Cómo se dice «cuaderno» en inglés? — Notebook.
+ej: What does «tidy up» mean? — It means «ordenar». | ¿Qué significa «tidy up»? — Significa «ordenar».
+ojo: «Can I go to the bathroom?» ✓, no «Can I go to the bath?» (bath = bañera).
+ojo: La fecha se dice con ordinales: the third of March (no «the three of March»).
+pron: Repeat suena «ripít». Absent suena «ábsent». Tidy suena «táidi».

@@ -99,7 +99,8 @@ def main():
     # siguiente clase (en el orden de los archivos)
     for i, c in enumerate(todas):
         if "kit" in c: continue
-        nx = next((d for d in todas[i + 1:] if "kit" not in d), None)
+        if c["slug"].startswith("eng-kit-"): c["next"] = None; continue   # kits sueltos (rutina diaria): fuera de la cadena
+        nx = next((d for d in todas[i + 1:] if "kit" not in d and not d["slug"].startswith("eng-kit-")), None)
         if nx and nivel(nx["slug"]) == nivel(c["slug"]) or nx:
             c["next"] = {"href": nx["slug"] + ".html", "title": nx["title"]}
         else:   # última clase escrita: sigue con la primera semana del nivel siguiente (aunque aún no esté en los cursos)

@@ -1,0 +1,3118 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MK • Kit · Test rápido C1</title>
+
+        <!-- PWA -->
+        <meta name="apple-mobile-web-app-title" content="MK" />
+        <link rel="manifest" href="manifest.json">
+        <meta name="theme-color" content="#1976d2">
+        <style>
+            * {
+                box-sizing: border-box;
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            }
+
+            body {
+                margin: 0;
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: linear-gradient(145deg, #dbeafe, #e0f2fe);
+                padding: 18px;
+            }
+
+            .app {
+                background: #ffffff;
+                width: 100%;
+                max-width: 520px;
+                padding: 18px;
+                border-radius: 24px;
+                box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+                border: 3px solid #2563eb;
+            }
+
+            /* 🌟 Encabezado infantil */
+            /* Contenedor*/
+            .brand-header-kids {
+                position: relative;
+                overflow: hidden;
+                padding: 14px 14px 12px;
+                border-radius: 22px;
+                margin-bottom: 12px;
+                background: linear-gradient(135deg, #93c5fd, #60a5fa, #2563eb);
+                border: 2px solid rgba(255, 255, 255, .65);
+                box-shadow: 0 14px 28px rgba(37, 99, 235, .25);
+                color: #fff;
+            }
+
+            /* ✅ Clickable (ir a index.html) */
+            .brand-header-kids.clickable {
+                cursor: pointer;
+                user-select: none;
+                transition: transform 0.12s ease, filter 0.12s ease, box-shadow 0.12s ease;
+            }
+
+            .brand-header-kids.clickable:hover {
+                transform: translateY(-1px);
+                filter: brightness(1.02);
+                box-shadow: 0 18px 34px rgba(37, 99, 235, .28);
+            }
+
+            .brand-header-kids.clickable:active {
+                transform: translateY(0px) scale(0.995);
+            }
+
+            /* Para que el click funcione aunque toques estrellas/burbujas */
+            .brand-header-kids .bubble,
+            .brand-header-kids .star {
+                pointer-events: none;
+            }
+
+            .brand-row {
+                position: relative;
+                z-index: 2;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+
+            .kids-badge {
+                width: 52px;
+                height: 52px;
+                border-radius: 18px;
+                display: grid;
+                place-items: center;
+                font-size: 1.55rem;
+                background: rgba(255, 255, 255, .22);
+                border: 1px solid rgba(255, 255, 255, .35);
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35);
+            }
+
+            .kids-title {
+                font-weight: 950;
+                font-size: 1.55rem;
+                letter-spacing: .02em;
+                line-height: 1.05;
+                text-shadow: 0 2px 0 rgba(0, 0, 0, .12);
+            }
+
+            .kids-subtitle {
+                margin-top: 4px;
+                font-size: .9rem;
+                font-weight: 750;
+                opacity: .95;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                flex-wrap: wrap;
+            }
+
+            .kids-pill {
+                background: rgba(255, 255, 255, .22);
+                border: 1px solid rgba(255, 255, 255, .35);
+                padding: 4px 10px;
+                border-radius: 999px;
+                font-size: .82rem;
+                font-weight: 850;
+            }
+
+            /* ⭐ estrellas (si las quieres) */
+            .star {
+                position: absolute;
+                z-index: 1;
+                opacity: .9;
+                filter: drop-shadow(0 2px 0 rgba(0, 0, 0, .12));
+                animation: twinkle 2.8s ease-in-out infinite;
+                pointer-events: none;
+            }
+
+            .star.s1 {
+                top: 8px;
+                right: 18px;
+                font-size: 1.15rem;
+                animation-delay: 0s;
+            }
+
+            .star.s2 {
+                top: 40px;
+                right: 60px;
+                font-size: .95rem;
+                animation-delay: .6s;
+            }
+
+            .star.s3 {
+                bottom: 12px;
+                right: 26px;
+                font-size: 1.25rem;
+                animation-delay: 1.1s;
+            }
+
+            /* Estilo base de burbuja + animación*/
+            .bubble {
+                position: absolute;
+                z-index: 0;
+                border-radius: 999px;
+                background: rgba(255, 255, 255, .22);
+                border: 1px solid rgba(255, 255, 255, .28);
+                box-shadow: inset 0 2px 0 rgba(255, 255, 255, .45);
+                pointer-events: none;
+
+                /* mejor compatibilidad */
+                -webkit-backdrop-filter: blur(2px);
+                backdrop-filter: blur(2px);
+
+                animation: floaty 6s ease-in-out infinite;
+            }
+
+            /* Posición de cada burbuja*/
+            .b1 {
+                left: -16px;
+                top: -18px;
+                animation-delay: 0s;
+                transform: rotate(5deg);
+                width: 84px;
+                height: 84px;
+            }
+
+            .b2 {
+                left: 40px;
+                bottom: -22px;
+                width: 52px;
+                height: 52px;
+                animation-delay: .8s;
+            }
+
+            .b3 {
+                right: -22px;
+                bottom: -26px;
+                width: 76px;
+                height: 76px;
+                animation-delay: 1.3s;
+            }
+
+            /* Movimiento flotante*/
+            @keyframes floaty {
+                0%,
+                100% {
+                    transform: translateY(0) scale(1);
+                }
+
+                50% {
+                    transform: translateY(-8px) scale(1.03);
+                }
+            }
+
+            /* NAV */
+            .nav {
+                display: flex;
+                gap: 10px;
+                background: #eff6ff;
+                border: 1px solid #bfdbfe;
+                padding: 10px;
+                border-radius: 18px;
+                margin-bottom: 14px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-btn {
+                border: 1px solid #bfdbfe;
+                background: #ffffff;
+                border-radius: 999px;
+                padding: 8px 12px;
+                cursor: pointer;
+                font-weight: 700;
+                font-size: 0.95rem;
+                transition: transform 0.1s ease, background 0.15s ease, border-color 0.15s ease, opacity 0.1s ease;
+                min-width: 120px;
+            }
+
+            .nav-btn:hover {
+                transform: translateY(-1px);
+                background: #e0f2fe;
+                border-color: #93c5fd;
+            }
+
+            .nav-btn.active {
+                background: linear-gradient(90deg, #60a5fa, #2563eb);
+                color: #fff;
+                border-color: transparent;
+            }
+
+            h1 {
+                margin: 0 0 4px 0;
+                text-align: center;
+                font-size: 1.5rem;
+            }
+
+            .subtitle {
+                text-align: center;
+                font-size: 0.9rem;
+                color: #6b7280;
+                margin-bottom: 14px;
+            }
+
+            .status-bar {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 8px;
+                padding: 8px 12px;
+                border-radius: 999px;
+                background: #eff6ff;
+                border: 1px solid #bfdbfe;
+                font-size: 0.9rem;
+            }
+
+            .xp,
+            .hearts {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                font-weight: 600;
+            }
+
+            .xp span {
+                color: #16a34a;
+            }
+
+            .hearts span {
+                color: #f97316;
+            }
+
+            .progress-wrapper {
+                margin-bottom: 14px;
+            }
+
+            .progress-label {
+                display: flex;
+                justify-content: space-between;
+                font-size: 0.8rem;
+                color: #6b7280;
+                margin-bottom: 4px;
+            }
+
+            .progress {
+                width: 100%;
+                height: 10px;
+                background: #e5e7eb;
+                border-radius: 999px;
+                overflow: hidden;
+            }
+
+            .progress-inner {
+                height: 100%;
+                width: 0%;
+                border-radius: 999px;
+                background: linear-gradient(90deg, #60a5fa, #2563eb);
+                transition: width 0.2s ease;
+            }
+
+            .card {
+                border-radius: 20px;
+                padding: 5px;
+                background: #f9fafb;
+                border: 1px solid #e5e7eb;
+                margin-bottom: 5px;
+                transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+            }
+
+            .card.correct {
+                animation: pulse 0.4s ease;
+                border-color: #2563eb;
+                box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
+            }
+
+            .card.wrong {
+                animation: shake 0.3s ease;
+                border-color: #ef4444;
+                box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3);
+            }
+
+            @keyframes pulse {
+                0% { transform: scale(1) }
+                50% { transform: scale(1.03) }
+                100% { transform: scale(1) }
+            }
+
+            @keyframes shake {
+                0%, 100% { transform: translateX(0) }
+                20% { transform: translateX(-4px) }
+                40% { transform: translateX(4px) }
+                60% { transform: translateX(-4px) }
+                80% { transform: translateX(4px) }
+            }
+
+            .emoji-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 12px;
+                margin-bottom: 6px;
+            }
+
+            .emoji {
+                font-size: 5rem;
+                text-align: center;
+            }
+
+            .speak-btn {
+                font-size: 1.6rem;
+                cursor: pointer;
+                background: #eff6ff;
+                border-radius: 999px;
+                border: 1px solid #bfdbfe;
+                padding: 6px 10px;
+                transition: transform 0.1s ease, background 0.15s ease, border-color 0.15s ease;
+            }
+
+            .speak-btn:hover {
+                transform: scale(1.1);
+                background: #dbeafe;
+                border-color: #93c5fd;
+            }
+
+            .word {
+                text-align: center;
+                font-size: 1.6rem;
+                font-weight: 700;
+                margin-bottom: 2px;
+            }
+
+            .translation {
+                text-align: center;
+                font-size: 0.95rem;
+                color: #6b7280;
+                margin-bottom: 12px;
+            }
+
+            .example-en,
+            .example-es,
+            .question {
+                font-size: 0.98rem;
+                margin: 6px 0;
+            }
+
+            .label {
+                font-weight: 600;
+            }
+
+            .question {
+                margin-top: 12px;
+                font-weight: 700;
+                color: #111827;
+            }
+
+            .controls {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-top: 10px;
+            }
+
+            button.main-btn {
+                flex: 1;
+                border: none;
+                padding: 10px 12px;
+                border-radius: 999px;
+                font-size: 0.95rem;
+                cursor: pointer;
+                background: linear-gradient(90deg, #60a5fa, #2563eb);
+                color: #ffffff;
+                font-weight: 600;
+                letter-spacing: 0.02em;
+                transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.15s ease;
+                min-width: 120px;
+            }
+
+            button.main-btn:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+                filter: brightness(1.05);
+            }
+
+            .feedback {
+                margin-top: 10px;
+                font-size: 0.95rem;
+                text-align: center;
+                min-height: 5px;
+                font-weight: 600;
+            }
+
+            .feedback.good {
+                color: #16a34a;
+            }
+
+            .feedback.bad {
+                color: #ef4444;
+            }
+
+            .options {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                margin-top: 12px;
+            }
+
+            .option-btn {
+                flex: 1;
+                min-width: 80px;
+                border-radius: 14px;
+                border: 1px solid #d1d5db;
+                background: #ffffff;
+                padding: 8px 10px;
+                font-size: 0.9rem;
+                cursor: pointer;
+                transition: background 0.15s ease, transform 0.1s ease, border 0.1s ease, opacity 0.1s ease;
+                font-weight: 600;
+            }
+
+            .option-btn:hover:not(:disabled) {
+                background: #e0f2fe;
+                transform: translateY(-1px);
+                border-color: #93c5fd;
+            }
+
+            .option-btn:disabled {
+                cursor: default;
+                opacity: 0.6;
+            }
+
+            /* Secciones */
+            .section { display: none; }
+            .section.active { display: block; }
+
+            /* Tarjetas placeholder */
+            .placeholder-title {
+                text-align: center;
+                font-size: 1.2rem;
+                font-weight: 800;
+                margin: 6px 0 2px;
+            }
+
+            .placeholder-text {
+                text-align: center;
+                color: #6b7280;
+                margin: 0;
+            }
+        </style>
+        <link rel="stylesheet" href="assets/mk-ingles.css?v=7">
+    </head>
+
+    <body>
+        <div class="app">
+
+            <!-- 🌟 Encabezado infantil: Marie Kids (CLICK -> index.html) -->
+            <div class="brand-header-kids clickable"
+                 aria-label="Marie Kids"
+                 role="link"
+                 tabindex="0"
+                 onclick="goHome()"
+                 onkeydown="if(event.key==='Enter' || event.key===' '){ event.preventDefault(); goHome(); }">
+                <div class="bubble b1"></div>
+                <div class="bubble b2"></div>
+                <div class="bubble b3"></div>
+
+                <div class="star s1">⭐</div>
+                <div class="star s2">✨</div>
+                <div class="star s3">🌟</div>
+
+                <div class="brand-row">
+                    <div class="kids-badge" aria-hidden="true">🧸</div>
+                    <div>
+                        <div class="kids-title">Marie Kids</div>
+                        <div class="kids-subtitle">
+                            Inglés divertido
+                            <span class="kids-pill">Escucha</span>
+                            <span class="kids-pill">👉 Responde</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================== INGLÉS ================== -->
+            <section class="section active" id="courseEnglish">
+                <h1>Kit · Test rápido C1</h1>
+                <p class="subtitle">Escucha, repite y practica. 👆 Toca cualquier palabra en inglés para escuchar cómo se pronuncia. 📖 Mira la teoría cuando quieras.</p>
+
+                <div class="status-bar">
+                    <div class="xp">✅ Correctas: <span id="xpValue">0</span></div>
+                    <div class="hearts">🧠 Por mejorar: <span id="heartsValue">0</span></div>
+                </div>
+
+                <div class="progress-wrapper">
+                    <div class="progress-label">
+                        <span>Progreso de la lección</span>
+                        <span id="progressText">0/10</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-inner" id="progressBar"></div>
+                    </div>
+                </div>
+
+                <div class="card" id="lessonCard"></div>
+
+                <div class="controls">
+                    <button class="main-btn" onclick="goHome()">⬅ Ruta de Inglés</button>
+                    <button class="main-btn" onclick="shareApp()">📤 Compartir app</button>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Sonidos -->
+        <audio id="sound-correct" src="correct.mp3" preload="auto"></audio>
+        <audio id="sound-wrong" src="wrong.mp3" preload="auto"></audio>
+        <audio id="sound-levelup" src="levelup.mp3" preload="auto"></audio>
+
+        <script>
+            // ✅ IR A HOME (index.html)
+            function goHome() {
+                location.href = "ruta-ingles.html";
+            }
+        </script>
+
+        <script>
+            window.MK_LESSON = {
+ "items": [
+  {
+   "emoji": "🎬",
+   "en": "By the time we arrived, the film had started",
+   "es": "Cuando llegamos, la película ya había empezado",
+   "examplesEn": [
+    "By the time we arrived, the film had already started."
+   ],
+   "examplesEs": [
+    "Para cuando llegamos, la película ya había empezado."
+   ]
+  },
+  {
+   "emoji": "⏳",
+   "en": "She had been waiting for an hour",
+   "es": "Llevaba una hora esperando",
+   "examplesEn": [
+    "She had been waiting for an hour when he finally called."
+   ],
+   "examplesEs": [
+    "Llevaba una hora esperando cuando por fin él llamó."
+   ]
+  },
+  {
+   "emoji": "🗝️",
+   "en": "I realized I had left my keys at home",
+   "es": "Me di cuenta de que había dejado mis llaves en casa",
+   "examplesEn": [
+    "I realized I had left my keys at home."
+   ],
+   "examplesEs": [
+    "Me di cuenta de que había dejado las llaves en casa."
+   ]
+  },
+  {
+   "emoji": "🥵",
+   "en": "He was exhausted because he had been running",
+   "es": "Estaba agotado porque había estado corriendo",
+   "examplesEn": [
+    "He was exhausted because he had been running all morning."
+   ],
+   "examplesEs": [
+    "Estaba agotado porque había estado corriendo toda la mañana."
+   ]
+  },
+  {
+   "emoji": "✈️",
+   "en": "I had never flown before that trip",
+   "es": "Nunca había volado antes de ese viaje",
+   "examplesEn": [
+    "I had never flown before that trip to Cusco."
+   ],
+   "examplesEs": [
+    "Nunca había volado antes de ese viaje a Cusco."
+   ]
+  },
+  {
+   "emoji": "🏚️",
+   "en": "The house had been empty for years",
+   "es": "La casa llevaba años vacía",
+   "examplesEn": [
+    "The house had been empty for years before they bought it."
+   ],
+   "examplesEs": [
+    "La casa llevaba años vacía antes de que la compraran."
+   ]
+  },
+  {
+   "emoji": "🔦",
+   "en": "We had been walking for hours when we saw the light",
+   "es": "Llevábamos horas caminando cuando vimos la luz",
+   "examplesEn": [
+    "We had been walking for hours when we saw the light."
+   ],
+   "examplesEs": [
+    "Llevábamos horas caminando cuando vimos la luz."
+   ]
+  },
+  {
+   "emoji": "📩",
+   "en": "No sooner had I sat down than the phone rang",
+   "es": "Apenas me senté, sonó el teléfono",
+   "examplesEn": [
+    "No sooner had I sat down than the phone rang."
+   ],
+   "examplesEs": [
+    "Apenas me había sentado cuando sonó el teléfono."
+   ]
+  },
+  {
+   "emoji": "🎓",
+   "en": "Once she had finished her degree, she moved abroad",
+   "es": "Una vez que terminó la carrera, se fue al extranjero",
+   "examplesEn": [
+    "Once she had finished her degree, she moved abroad."
+   ],
+   "examplesEs": [
+    "Una vez terminada la carrera, se fue al extranjero."
+   ]
+  },
+  {
+   "emoji": "😶",
+   "en": "It was the first time I had seen snow",
+   "es": "Era la primera vez que veía nieve",
+   "examplesEn": [
+    "It was the first time I had ever seen snow."
+   ],
+   "examplesEs": [
+    "Era la primera vez que veía nieve."
+   ]
+  },
+  {
+   "emoji": "🌧️",
+   "en": "The ground was wet. It had been raining",
+   "es": "El suelo estaba mojado. Había estado lloviendo",
+   "examplesEn": [
+    "The ground was wet. It had been raining all night."
+   ],
+   "examplesEs": [
+    "El suelo estaba mojado. Había llovido toda la noche."
+   ]
+  },
+  {
+   "emoji": "🕯️",
+   "en": "Everyone had gone home by midnight",
+   "es": "Para medianoche todos se habían ido",
+   "examplesEn": [
+    "Everyone had gone home by midnight."
+   ],
+   "examplesEs": [
+    "Para medianoche todos se habían ido a casa."
+   ]
+  },
+  {
+   "emoji": "🏁",
+   "en": "By 2030, I will have finished university",
+   "es": "Para 2030 habré terminado la universidad",
+   "examplesEn": [
+    "By 2030, I will have finished university."
+   ],
+   "examplesEs": [
+    "Para 2030 habré terminado la universidad."
+   ]
+  },
+  {
+   "emoji": "⏳",
+   "en": "By June, I'll have been working here for five years",
+   "es": "En junio cumpliré cinco años trabajando aquí",
+   "examplesEn": [
+    "By June, I'll have been working here for five years."
+   ],
+   "examplesEs": [
+    "En junio llevaré cinco años trabajando aquí."
+   ]
+  },
+  {
+   "emoji": "⚡",
+   "en": "The show is about to start",
+   "es": "El show está a punto de empezar",
+   "examplesEn": [
+    "Hurry up! The show is about to start."
+   ],
+   "examplesEs": [
+    "¡Apúrate! El show está a punto de empezar."
+   ]
+  },
+  {
+   "emoji": "🚆",
+   "en": "The train is due to arrive at six",
+   "es": "El tren debe llegar a las seis",
+   "examplesEn": [
+    "The train is due to arrive at six."
+   ],
+   "examplesEs": [
+    "Está previsto que el tren llegue a las seis."
+   ]
+  },
+  {
+   "emoji": "🧪",
+   "en": "Scientists are on the verge of a breakthrough",
+   "es": "Los científicos están al borde de un gran descubrimiento",
+   "examplesEn": [
+    "Scientists are on the verge of a major breakthrough."
+   ],
+   "examplesEs": [
+    "Los científicos están a punto de un gran descubrimiento."
+   ]
+  },
+  {
+   "emoji": "🎯",
+   "en": "She's bound to win",
+   "es": "Seguro que gana",
+   "examplesEn": [
+    "She's trained so hard. She's bound to win."
+   ],
+   "examplesEs": [
+    "Ha entrenado tanto. Seguro que gana."
+   ]
+  },
+  {
+   "emoji": "📰",
+   "en": "Prices are set to rise next year",
+   "es": "Se prevé que los precios suban el próximo año",
+   "examplesEn": [
+    "Prices are set to rise next year."
+   ],
+   "examplesEs": [
+    "Se prevé que los precios suban el próximo año."
+   ]
+  },
+  {
+   "emoji": "🏛️",
+   "en": "The president is to visit Peru in May",
+   "es": "El presidente visitará el Perú en mayo",
+   "examplesEn": [
+    "The president is to visit Peru in May."
+   ],
+   "examplesEs": [
+    "El presidente visitará el Perú en mayo."
+   ]
+  },
+  {
+   "emoji": "🌙",
+   "en": "This time next week, I'll be lying on a beach",
+   "es": "La próxima semana a esta hora estaré echado en una playa",
+   "examplesEn": [
+    "This time next week, I'll be lying on a beach."
+   ],
+   "examplesEs": [
+    "La próxima semana a esta hora estaré tumbado en una playa."
+   ]
+  },
+  {
+   "emoji": "🚫",
+   "en": "I won't have finished by Friday",
+   "es": "No habré terminado para el viernes",
+   "examplesEn": [
+    "Sorry, I won't have finished by Friday."
+   ],
+   "examplesEs": [
+    "Lo siento, no habré terminado para el viernes."
+   ]
+  },
+  {
+   "emoji": "🤔",
+   "en": "Will you have eaten by then?",
+   "es": "¿Ya habrás comido para entonces?",
+   "examplesEn": [
+    "Will you have eaten by the time I arrive?"
+   ],
+   "examplesEs": [
+    "¿Ya habrás comido para cuando llegue?"
+   ]
+  },
+  {
+   "emoji": "📈",
+   "en": "The company is likely to expand",
+   "es": "Es probable que la empresa crezca",
+   "examplesEn": [
+    "The company is likely to expand into Chile."
+   ],
+   "examplesEs": [
+    "Es probable que la empresa se expanda a Chile."
+   ]
+  },
+  {
+   "emoji": "🚶",
+   "en": "Walking home, I saw an old friend",
+   "es": "Caminando a casa, vi a un viejo amigo",
+   "examplesEn": [
+    "Walking home, I saw an old friend."
+   ],
+   "examplesEs": [
+    "Caminando a casa, vi a un viejo amigo."
+   ]
+  },
+  {
+   "emoji": "✅",
+   "en": "Having finished the report, she went home",
+   "es": "Tras terminar el informe, se fue a casa",
+   "examplesEn": [
+    "Having finished the report, she went home."
+   ],
+   "examplesEs": [
+    "Tras haber terminado el informe, se fue a casa."
+   ]
+  },
+  {
+   "emoji": "⛪",
+   "en": "Built in 1540, the church is the oldest in town",
+   "es": "Construida en 1540, la iglesia es la más antigua",
+   "examplesEn": [
+    "Built in 1540, the church is the oldest in town."
+   ],
+   "examplesEs": [
+    "Construida en 1540, la iglesia es la más antigua del pueblo."
+   ]
+  },
+  {
+   "emoji": "🪑",
+   "en": "The man sitting by the window is my uncle",
+   "es": "El hombre sentado junto a la ventana es mi tío",
+   "examplesEn": [
+    "The man sitting by the window is my uncle."
+   ],
+   "examplesEs": [
+    "El hombre sentado junto a la ventana es mi tío."
+   ]
+  },
+  {
+   "emoji": "🤷",
+   "en": "Not knowing what to do, I called my mom",
+   "es": "Sin saber qué hacer, llamé a mi mamá",
+   "examplesEn": [
+    "Not knowing what to do, I called my mom."
+   ],
+   "examplesEs": [
+    "Sin saber qué hacer, llamé a mi mamá."
+   ]
+  },
+  {
+   "emoji": "📦",
+   "en": "The products made here are exported",
+   "es": "Los productos fabricados aquí se exportan",
+   "examplesEn": [
+    "The products made here are exported to Europe."
+   ],
+   "examplesEs": [
+    "Los productos fabricados aquí se exportan a Europa."
+   ]
+  },
+  {
+   "emoji": "😴",
+   "en": "Feeling tired, he went to bed early",
+   "es": "Como se sentía cansado, se acostó temprano",
+   "examplesEn": [
+    "Feeling tired, he went to bed early."
+   ],
+   "examplesEs": [
+    "Sintiéndose cansado, se acostó temprano."
+   ]
+  },
+  {
+   "emoji": "📖",
+   "en": "Written in simple English, the book is easy to read",
+   "es": "Escrito en inglés sencillo, el libro es fácil de leer",
+   "examplesEn": [
+    "Written in simple English, the book is easy to read."
+   ],
+   "examplesEs": [
+    "Escrito en inglés sencillo, el libro es fácil de leer."
+   ]
+  },
+  {
+   "emoji": "🧳",
+   "en": "Having lived abroad, she understands other cultures",
+   "es": "Tras haber vivido fuera, entiende otras culturas",
+   "examplesEn": [
+    "Having lived abroad, she understands other cultures."
+   ],
+   "examplesEs": [
+    "Habiendo vivido en el extranjero, entiende otras culturas."
+   ]
+  },
+  {
+   "emoji": "🗒️",
+   "en": "Anyone wishing to attend should register",
+   "es": "Quien desee asistir debe inscribirse",
+   "examplesEn": [
+    "Anyone wishing to attend should register online."
+   ],
+   "examplesEs": [
+    "Quien desee asistir debe inscribirse en línea."
+   ]
+  },
+  {
+   "emoji": "🌋",
+   "en": "Located in the Andes, Huaraz attracts climbers",
+   "es": "Ubicada en los Andes, Huaraz atrae a escaladores",
+   "examplesEn": [
+    "Located in the Andes, Huaraz attracts climbers from all over the world."
+   ],
+   "examplesEs": [
+    "Ubicada en los Andes, Huaraz atrae a escaladores de todo el mundo."
+   ]
+  },
+  {
+   "emoji": "⚠️",
+   "en": "When used correctly, this tool saves time",
+   "es": "Bien usada, esta herramienta ahorra tiempo",
+   "examplesEn": [
+    "When used correctly, this tool saves a lot of time."
+   ],
+   "examplesEs": [
+    "Si se usa bien, esta herramienta ahorra mucho tiempo."
+   ]
+  },
+  {
+   "emoji": "📢",
+   "en": "raise awareness of",
+   "es": "concienciar sobre",
+   "examplesEn": [
+    "The campaign aims to raise awareness of climate change."
+   ],
+   "examplesEs": [
+    "La campaña busca concienciar sobre el cambio climático."
+   ]
+  },
+  {
+   "emoji": "🔬",
+   "en": "conduct research",
+   "es": "realizar una investigación",
+   "examplesEn": [
+    "They conducted research on rainforest birds."
+   ],
+   "examplesEs": [
+    "Realizaron una investigación sobre aves de la selva."
+   ]
+  },
+  {
+   "emoji": "🎭",
+   "en": "play a key role in",
+   "es": "desempeñar un papel clave en",
+   "examplesEn": [
+    "Teachers play a key role in society."
+   ],
+   "examplesEs": [
+    "Los profesores desempeñan un papel clave en la sociedad."
+   ]
+  },
+  {
+   "emoji": "⚠️",
+   "en": "pose a threat to",
+   "es": "suponer una amenaza para",
+   "examplesEn": [
+    "Plastic poses a threat to marine life."
+   ],
+   "examplesEs": [
+    "El plástico supone una amenaza para la vida marina."
+   ]
+  },
+  {
+   "emoji": "🧠",
+   "en": "draw a conclusion",
+   "es": "sacar una conclusión",
+   "examplesEn": [
+    "It's too early to draw a conclusion."
+   ],
+   "examplesEs": [
+    "Es demasiado pronto para sacar una conclusión."
+   ]
+  },
+  {
+   "emoji": "🛠️",
+   "en": "address an issue",
+   "es": "abordar un problema",
+   "examplesEn": [
+    "The government must address the issue of housing."
+   ],
+   "examplesEs": [
+    "El gobierno debe abordar el problema de la vivienda."
+   ]
+  },
+  {
+   "emoji": "🎯",
+   "en": "meet the needs of",
+   "es": "satisfacer las necesidades de",
+   "examplesEn": [
+    "The program meets the needs of rural students."
+   ],
+   "examplesEs": [
+    "El programa satisface las necesidades de los alumnos rurales."
+   ]
+  },
+  {
+   "emoji": "💡",
+   "en": "gain insight into",
+   "es": "comprender a fondo",
+   "examplesEn": [
+    "The study gives us insight into teenage behavior."
+   ],
+   "examplesEs": [
+    "El estudio nos permite comprender la conducta adolescente."
+   ]
+  },
+  {
+   "emoji": "🤝",
+   "en": "reach a consensus",
+   "es": "llegar a un consenso",
+   "examplesEn": [
+    "The committee failed to reach a consensus."
+   ],
+   "examplesEs": [
+    "El comité no logró llegar a un consenso."
+   ]
+  },
+  {
+   "emoji": "📊",
+   "en": "carry out a survey",
+   "es": "hacer una encuesta",
+   "examplesEn": [
+    "We carried out a survey of 200 students."
+   ],
+   "examplesEs": [
+    "Hicimos una encuesta a 200 alumnos."
+   ]
+  },
+  {
+   "emoji": "📉",
+   "en": "have an impact on",
+   "es": "tener un impacto en",
+   "examplesEn": [
+    "Social media has a huge impact on young people."
+   ],
+   "examplesEs": [
+    "Las redes sociales tienen un gran impacto en los jóvenes."
+   ]
+  },
+  {
+   "emoji": "🔎",
+   "en": "shed light on",
+   "es": "arrojar luz sobre",
+   "examplesEn": [
+    "New evidence sheds light on the mystery."
+   ],
+   "examplesEs": [
+    "Nuevas pruebas arrojan luz sobre el misterio."
+   ]
+  },
+  {
+   "emoji": "🧱",
+   "en": "lay the foundations for",
+   "es": "sentar las bases de",
+   "examplesEn": [
+    "Good habits lay the foundations for success."
+   ],
+   "examplesEs": [
+    "Los buenos hábitos sientan las bases del éxito."
+   ]
+  },
+  {
+   "emoji": "📌",
+   "en": "take into account",
+   "es": "tener en cuenta",
+   "examplesEn": [
+    "We must take cultural differences into account."
+   ],
+   "examplesEs": [
+    "Debemos tener en cuenta las diferencias culturales."
+   ]
+  },
+  {
+   "emoji": "🔍",
+   "en": "assess",
+   "es": "evaluar",
+   "examplesEn": [
+    "We need to assess the risks."
+   ],
+   "examplesEs": [
+    "Necesitamos evaluar los riesgos."
+   ]
+  },
+  {
+   "emoji": "⬆️",
+   "en": "enhance",
+   "es": "mejorar, potenciar",
+   "examplesEn": [
+    "Music can enhance memory."
+   ],
+   "examplesEs": [
+    "La música puede potenciar la memoria."
+   ]
+  },
+  {
+   "emoji": "⬇️",
+   "en": "undermine",
+   "es": "socavar, debilitar",
+   "examplesEn": [
+    "Lies undermine trust."
+   ],
+   "examplesEs": [
+    "Las mentiras socavan la confianza."
+   ]
+  },
+  {
+   "emoji": "🖍️",
+   "en": "highlight",
+   "es": "destacar",
+   "examplesEn": [
+    "The report highlights three problems."
+   ],
+   "examplesEs": [
+    "El informe destaca tres problemas."
+   ]
+  },
+  {
+   "emoji": "🌱",
+   "en": "foster",
+   "es": "fomentar",
+   "examplesEn": [
+    "Schools should foster creativity."
+   ],
+   "examplesEs": [
+    "Los colegios deberían fomentar la creatividad."
+   ]
+  },
+  {
+   "emoji": "🚧",
+   "en": "hinder",
+   "es": "obstaculizar",
+   "examplesEn": [
+    "Poor internet hinders online learning."
+   ],
+   "examplesEs": [
+    "Un internet deficiente obstaculiza el aprendizaje en línea."
+   ]
+  },
+  {
+   "emoji": "📈",
+   "en": "increase → rise",
+   "es": "aumentar → aumento",
+   "examplesEn": [
+    "Prices increased sharply. → There was a sharp rise in prices."
+   ],
+   "examplesEs": [
+    "Los precios subieron bruscamente. → Hubo un fuerte aumento de precios."
+   ]
+  },
+  {
+   "emoji": "🔄",
+   "en": "Many people believe → It is widely believed",
+   "es": "Mucha gente cree → Se cree ampliamente",
+   "examplesEn": [
+    "Many people believe that… → It is widely believed that…"
+   ],
+   "examplesEs": [
+    "Mucha gente cree que… → Se cree ampliamente que…"
+   ]
+  },
+  {
+   "emoji": "🧩",
+   "en": "because pollution increased → due to the increase in pollution",
+   "es": "porque aumentó la contaminación → debido al aumento de la contaminación",
+   "examplesEn": [
+    "Due to the increase in pollution, many people got sick."
+   ],
+   "examplesEs": [
+    "Debido al aumento de la contaminación, mucha gente se enfermó."
+   ]
+  },
+  {
+   "emoji": "🗣️",
+   "en": "The author claims that",
+   "es": "El autor sostiene que",
+   "examplesEn": [
+    "The author claims that technology isolates us."
+   ],
+   "examplesEs": [
+    "El autor sostiene que la tecnología nos aísla."
+   ]
+  },
+  {
+   "emoji": "🧾",
+   "en": "According to the study,",
+   "es": "Según el estudio,",
+   "examplesEn": [
+    "According to the study, sleep improves learning."
+   ],
+   "examplesEs": [
+    "Según el estudio, el sueño mejora el aprendizaje."
+   ]
+  },
+  {
+   "emoji": "🧐",
+   "en": "This implies that",
+   "es": "Esto implica que",
+   "examplesEn": [
+    "This implies that the method works."
+   ],
+   "examplesEs": [
+    "Esto implica que el método funciona."
+   ]
+  },
+  {
+   "emoji": "🧠",
+   "en": "decide → decision → decisive",
+   "es": "decidir → decisión → decisivo",
+   "examplesEn": [
+    "It was a decisive moment."
+   ],
+   "examplesEs": [
+    "Fue un momento decisivo."
+   ]
+  },
+  {
+   "emoji": "💪",
+   "en": "strong → strength → strengthen",
+   "es": "fuerte → fuerza → fortalecer",
+   "examplesEn": [
+    "Exercise strengthens your bones."
+   ],
+   "examplesEs": [
+    "El ejercicio fortalece los huesos."
+   ]
+  },
+  {
+   "emoji": "🌍",
+   "en": "global → globalize → globalization",
+   "es": "global → globalizar → globalización",
+   "examplesEn": [
+    "Globalization has changed trade."
+   ],
+   "examplesEs": [
+    "La globalización ha cambiado el comercio."
+   ]
+  },
+  {
+   "emoji": "😊",
+   "en": "happy → happiness → unhappy",
+   "es": "feliz → felicidad → infeliz",
+   "examplesEn": [
+    "Money doesn't guarantee happiness."
+   ],
+   "examplesEs": [
+    "El dinero no garantiza la felicidad."
+   ]
+  },
+  {
+   "emoji": "🧪",
+   "en": "possible → impossible → possibility",
+   "es": "posible → imposible → posibilidad",
+   "examplesEn": [
+    "There is a possibility of rain."
+   ],
+   "examplesEs": [
+    "Hay posibilidad de lluvia."
+   ]
+  },
+  {
+   "emoji": "📏",
+   "en": "responsible → irresponsible → responsibility",
+   "es": "responsable → irresponsable → responsabilidad",
+   "examplesEn": [
+    "It's our responsibility to recycle."
+   ],
+   "examplesEs": [
+    "Es nuestra responsabilidad reciclar."
+   ]
+  },
+  {
+   "emoji": "⚖️",
+   "en": "legal → illegal → legalize",
+   "es": "legal → ilegal → legalizar",
+   "examplesEn": [
+    "It's illegal to park here."
+   ],
+   "examplesEs": [
+    "Es ilegal estacionar aquí."
+   ]
+  },
+  {
+   "emoji": "🤝",
+   "en": "agree → disagree → agreement",
+   "es": "estar de acuerdo → discrepar → acuerdo",
+   "examplesEn": [
+    "They signed an agreement."
+   ],
+   "examplesEs": [
+    "Firmaron un acuerdo."
+   ]
+  },
+  {
+   "emoji": "🧭",
+   "en": "understand → misunderstand → misunderstanding",
+   "es": "entender → malinterpretar → malentendido",
+   "examplesEn": [
+    "It was just a misunderstanding."
+   ],
+   "examplesEs": [
+    "Fue solo un malentendido."
+   ]
+  },
+  {
+   "emoji": "🍽️",
+   "en": "eat → overeat / cook → undercook",
+   "es": "comer → comer en exceso / cocinar → cocinar poco",
+   "examplesEn": [
+    "The chicken was undercooked."
+   ],
+   "examplesEs": [
+    "El pollo estaba crudo por dentro."
+   ]
+  },
+  {
+   "emoji": "🔁",
+   "en": "write → rewrite",
+   "es": "escribir → reescribir",
+   "examplesEn": [
+    "Please rewrite the last paragraph."
+   ],
+   "examplesEs": [
+    "Por favor, reescribe el último párrafo."
+   ]
+  },
+  {
+   "emoji": "🌟",
+   "en": "danger → dangerous → endanger",
+   "es": "peligro → peligroso → poner en peligro",
+   "examplesEn": [
+    "Pollution endangers many species."
+   ],
+   "examplesEs": [
+    "La contaminación pone en peligro a muchas especies."
+   ]
+  },
+  {
+   "emoji": "🔍",
+   "en": "simple → simplify → simplicity",
+   "es": "simple → simplificar → simplicidad",
+   "examplesEn": [
+    "Can you simplify the explanation?"
+   ],
+   "examplesEs": [
+    "¿Puedes simplificar la explicación?"
+   ]
+  },
+  {
+   "emoji": "🌌",
+   "en": "Never have I seen such a beautiful sky",
+   "es": "Nunca he visto un cielo tan hermoso",
+   "examplesEn": [
+    "Never have I seen such a beautiful sky."
+   ],
+   "examplesEs": [
+    "Nunca he visto un cielo tan hermoso."
+   ]
+  },
+  {
+   "emoji": "🎵",
+   "en": "Not only did she sing, but she also danced",
+   "es": "No solo cantó, sino que también bailó",
+   "examplesEn": [
+    "Not only did she sing, but she also danced."
+   ],
+   "examplesEs": [
+    "No solo cantó, sino que también bailó."
+   ]
+  },
+  {
+   "emoji": "🕰️",
+   "en": "Rarely do we see snow in Lima",
+   "es": "Rara vez vemos nieve en Lima",
+   "examplesEn": [
+    "Rarely do we see snow in Lima."
+   ],
+   "examplesEs": [
+    "Rara vez vemos nieve en Lima."
+   ]
+  },
+  {
+   "emoji": "🚪",
+   "en": "Hardly had I arrived when it started to rain",
+   "es": "Apenas había llegado cuando empezó a llover",
+   "examplesEn": [
+    "Hardly had I arrived when it started to rain."
+   ],
+   "examplesEs": [
+    "Apenas había llegado cuando empezó a llover."
+   ]
+  },
+  {
+   "emoji": "⚡",
+   "en": "No sooner had we left than the storm began",
+   "es": "Apenas salimos, empezó la tormenta",
+   "examplesEn": [
+    "No sooner had we left than the storm began."
+   ],
+   "examplesEs": [
+    "Apenas salimos, empezó la tormenta."
+   ]
+  },
+  {
+   "emoji": "🚫",
+   "en": "Under no circumstances should you open this door",
+   "es": "Bajo ninguna circunstancia abras esta puerta",
+   "examplesEn": [
+    "Under no circumstances should you open this door."
+   ],
+   "examplesEs": [
+    "Bajo ninguna circunstancia debes abrir esta puerta."
+   ]
+  },
+  {
+   "emoji": "💡",
+   "en": "Only then did I understand",
+   "es": "Solo entonces lo entendí",
+   "examplesEn": [
+    "Only then did I understand what she meant."
+   ],
+   "examplesEs": [
+    "Solo entonces entendí lo que quería decir."
+   ]
+  },
+  {
+   "emoji": "🤫",
+   "en": "Little did he know",
+   "es": "Poco sabía él",
+   "examplesEn": [
+    "Little did he know that we were planning a party."
+   ],
+   "examplesEs": [
+    "Poco sabía él que le estábamos planeando una fiesta."
+   ]
+  },
+  {
+   "emoji": "🧭",
+   "en": "Seldom have I met such a kind person",
+   "es": "Pocas veces he conocido a alguien tan amable",
+   "examplesEn": [
+    "Seldom have I met such a kind person."
+   ],
+   "examplesEs": [
+    "Pocas veces he conocido a alguien tan amable."
+   ]
+  },
+  {
+   "emoji": "🔐",
+   "en": "At no time did I lie",
+   "es": "En ningún momento mentí",
+   "examplesEn": [
+    "At no time did I lie to you."
+   ],
+   "examplesEs": [
+    "En ningún momento te mentí."
+   ]
+  },
+  {
+   "emoji": "🌧️",
+   "en": "Had I known, I would have come",
+   "es": "De haberlo sabido, habría venido",
+   "examplesEn": [
+    "Had I known, I would have come earlier."
+   ],
+   "examplesEs": [
+    "De haberlo sabido, habría venido antes."
+   ]
+  },
+  {
+   "emoji": "📞",
+   "en": "Should you need help, call me",
+   "es": "Si necesitaras ayuda, llámame",
+   "examplesEn": [
+    "Should you need any help, please call me."
+   ],
+   "examplesEs": [
+    "Si necesitaras ayuda, por favor llámame."
+   ]
+  },
+  {
+   "emoji": "🏆",
+   "en": "Only by working together can we succeed",
+   "es": "Solo trabajando juntos podemos lograrlo",
+   "examplesEn": [
+    "Only by working together can we succeed."
+   ],
+   "examplesEs": [
+    "Solo trabajando juntos podremos lograrlo."
+   ]
+  },
+  {
+   "emoji": "🏖️",
+   "en": "What I need is a holiday",
+   "es": "Lo que necesito son unas vacaciones",
+   "examplesEn": [
+    "What I need is a long holiday."
+   ],
+   "examplesEs": [
+    "Lo que necesito son unas largas vacaciones."
+   ]
+  },
+  {
+   "emoji": "📞",
+   "en": "It was Ana who called, not Rosa",
+   "es": "Fue Ana quien llamó, no Rosa",
+   "examplesEn": [
+    "It was Ana who called, not Rosa."
+   ],
+   "examplesEs": [
+    "Fue Ana quien llamó, no Rosa."
+   ]
+  },
+  {
+   "emoji": "🕊️",
+   "en": "All I want is some peace and quiet",
+   "es": "Lo único que quiero es un poco de paz",
+   "examplesEn": [
+    "All I want is some peace and quiet."
+   ],
+   "examplesEs": [
+    "Lo único que quiero es un poco de paz y tranquilidad."
+   ]
+  },
+  {
+   "emoji": "💭",
+   "en": "The reason why I came is to apologize",
+   "es": "La razón por la que vine es para disculparme",
+   "examplesEn": [
+    "The reason why I came is to apologize."
+   ],
+   "examplesEs": [
+    "La razón por la que vine es para disculparme."
+   ]
+  },
+  {
+   "emoji": "😤",
+   "en": "The thing that bothers me is the noise",
+   "es": "Lo que me molesta es el ruido",
+   "examplesEn": [
+    "The thing that bothers me is the noise at night."
+   ],
+   "examplesEs": [
+    "Lo que me molesta es el ruido de noche."
+   ]
+  },
+  {
+   "emoji": "🌀",
+   "en": "What happened was that the car broke down",
+   "es": "Lo que pasó fue que se malogró el carro",
+   "examplesEn": [
+    "What happened was that the car broke down."
+   ],
+   "examplesEs": [
+    "Lo que pasó fue que se malogró el carro."
+   ]
+  },
+  {
+   "emoji": "📅",
+   "en": "It was in 2015 that we moved to Lima",
+   "es": "Fue en 2015 cuando nos mudamos a Lima",
+   "examplesEn": [
+    "It was in 2015 that we moved to Lima."
+   ],
+   "examplesEs": [
+    "Fue en 2015 cuando nos mudamos a Lima."
+   ]
+  },
+  {
+   "emoji": "🎯",
+   "en": "What surprised me most was his reaction",
+   "es": "Lo que más me sorprendió fue su reacción",
+   "examplesEn": [
+    "What surprised me most was his reaction."
+   ],
+   "examplesEs": [
+    "Lo que más me sorprendió fue su reacción."
+   ]
+  },
+  {
+   "emoji": "🙋",
+   "en": "It's you who should apologize",
+   "es": "Eres tú quien debería disculparse",
+   "examplesEn": [
+    "It's you who should apologize, not me."
+   ],
+   "examplesEs": [
+    "Eres tú quien debería disculparse, no yo."
+   ]
+  },
+  {
+   "emoji": "🛠️",
+   "en": "What we did was call a mechanic",
+   "es": "Lo que hicimos fue llamar a un mecánico",
+   "examplesEn": [
+    "What we did was call a mechanic."
+   ],
+   "examplesEs": [
+    "Lo que hicimos fue llamar a un mecánico."
+   ]
+  },
+  {
+   "emoji": "📍",
+   "en": "The place where we met was a small café",
+   "es": "El lugar donde nos conocimos fue un café pequeño",
+   "examplesEn": [
+    "The place where we met was a small café in Barranco."
+   ],
+   "examplesEs": [
+    "El lugar donde nos conocimos fue un pequeño café en Barranco."
+   ]
+  },
+  {
+   "emoji": "🗣️",
+   "en": "It could be argued that",
+   "es": "Se podría argumentar que",
+   "examplesEn": [
+    "It could be argued that exams cause unnecessary stress."
+   ],
+   "examplesEs": [
+    "Se podría argumentar que los exámenes causan estrés innecesario."
+   ]
+  },
+  {
+   "emoji": "📊",
+   "en": "Teenagers tend to sleep later",
+   "es": "Los adolescentes tienden a dormir más tarde",
+   "examplesEn": [
+    "Teenagers tend to sleep later than adults."
+   ],
+   "examplesEs": [
+    "Los adolescentes tienden a dormir más tarde que los adultos."
+   ]
+  },
+  {
+   "emoji": "👁️",
+   "en": "The results appear to confirm",
+   "es": "Los resultados parecen confirmar",
+   "examplesEn": [
+    "The results appear to confirm our hypothesis."
+   ],
+   "examplesEs": [
+    "Los resultados parecen confirmar nuestra hipótesis."
+   ]
+  },
+  {
+   "emoji": "🎖️",
+   "en": "Arguably,",
+   "es": "Posiblemente, / Se podría decir que",
+   "examplesEn": [
+    "Arguably, he is the best player of his generation."
+   ],
+   "examplesEs": [
+    "Se podría decir que es el mejor jugador de su generación."
+   ]
+  },
+  {
+   "emoji": "📏",
+   "en": "To some extent,",
+   "es": "Hasta cierto punto,",
+   "examplesEn": [
+    "To some extent, I agree with the author."
+   ],
+   "examplesEs": [
+    "Hasta cierto punto, estoy de acuerdo con el autor."
+   ]
+  },
+  {
+   "emoji": "🎲",
+   "en": "It is likely that",
+   "es": "Es probable que",
+   "examplesEn": [
+    "It is likely that prices will rise."
+   ],
+   "examplesEs": [
+    "Es probable que los precios suban."
+   ]
+  },
+  {
+   "emoji": "🔍",
+   "en": "This may suggest that",
+   "es": "Esto podría sugerir que",
+   "examplesEn": [
+    "This may suggest that the treatment works."
+   ],
+   "examplesEs": [
+    "Esto podría sugerir que el tratamiento funciona."
+   ]
+  },
+  {
+   "emoji": "🌐",
+   "en": "Broadly speaking,",
+   "es": "En términos generales,",
+   "examplesEn": [
+    "Broadly speaking, the plan was a success."
+   ],
+   "examplesEs": [
+    "En términos generales, el plan fue un éxito."
+   ]
+  },
+  {
+   "emoji": "🧾",
+   "en": "There is some evidence that",
+   "es": "Hay cierta evidencia de que",
+   "examplesEn": [
+    "There is some evidence that music helps concentration."
+   ],
+   "examplesEs": [
+    "Hay cierta evidencia de que la música ayuda a concentrarse."
+   ]
+  },
+  {
+   "emoji": "🤏",
+   "en": "It seems reasonable to assume that",
+   "es": "Parece razonable suponer que",
+   "examplesEn": [
+    "It seems reasonable to assume that the trend will continue."
+   ],
+   "examplesEs": [
+    "Parece razonable suponer que la tendencia continuará."
+   ]
+  },
+  {
+   "emoji": "🧩",
+   "en": "In most cases,",
+   "es": "En la mayoría de los casos,",
+   "examplesEn": [
+    "In most cases, the symptoms disappear in a week."
+   ],
+   "examplesEs": [
+    "En la mayoría de los casos, los síntomas desaparecen en una semana."
+   ]
+  },
+  {
+   "emoji": "🙊",
+   "en": "I'm not entirely convinced that",
+   "es": "No estoy del todo convencido de que",
+   "examplesEn": [
+    "I'm not entirely convinced that it will work."
+   ],
+   "examplesEs": [
+    "No estoy del todo convencido de que funcione."
+   ]
+  },
+  {
+   "emoji": "🪝",
+   "en": "In an increasingly connected world,",
+   "es": "En un mundo cada vez más conectado,",
+   "examplesEn": [
+    "In an increasingly connected world, privacy has become a luxury."
+   ],
+   "examplesEs": [
+    "En un mundo cada vez más conectado, la privacidad se ha vuelto un lujo."
+   ]
+  },
+  {
+   "emoji": "🧭",
+   "en": "This essay will examine",
+   "es": "Este ensayo examinará",
+   "examplesEn": [
+    "This essay will examine the causes and consequences of migration."
+   ],
+   "examplesEs": [
+    "Este ensayo examinará las causas y consecuencias de la migración."
+   ]
+  },
+  {
+   "emoji": "💡",
+   "en": "In light of recent events,",
+   "es": "A la luz de los acontecimientos recientes,",
+   "examplesEn": [
+    "In light of recent events, the policy must be reviewed."
+   ],
+   "examplesEs": [
+    "A la luz de los hechos recientes, la política debe revisarse."
+   ]
+  },
+  {
+   "emoji": "📌",
+   "en": "Given that",
+   "es": "Dado que",
+   "examplesEn": [
+    "Given that resources are limited, we must prioritize."
+   ],
+   "examplesEs": [
+    "Dado que los recursos son limitados, debemos priorizar."
+   ]
+  },
+  {
+   "emoji": "📂",
+   "en": "With regard to",
+   "es": "Con respecto a",
+   "examplesEn": [
+    "With regard to funding, the situation is critical."
+   ],
+   "examplesEs": [
+    "Con respecto al financiamiento, la situación es crítica."
+   ]
+  },
+  {
+   "emoji": "🧱",
+   "en": "Notwithstanding",
+   "es": "No obstante, / A pesar de",
+   "examplesEn": [
+    "Notwithstanding these difficulties, the project succeeded."
+   ],
+   "examplesEs": [
+    "A pesar de estas dificultades, el proyecto tuvo éxito."
+   ]
+  },
+  {
+   "emoji": "🔄",
+   "en": "Conversely,",
+   "es": "Por el contrario,",
+   "examplesEn": [
+    "Some prefer cities. Conversely, others choose rural life."
+   ],
+   "examplesEs": [
+    "Algunos prefieren las ciudades. Por el contrario, otros eligen el campo."
+   ]
+  },
+  {
+   "emoji": "🎯",
+   "en": "In particular,",
+   "es": "En particular,",
+   "examplesEn": [
+    "Young people, in particular, are affected."
+   ],
+   "examplesEs": [
+    "Los jóvenes, en particular, se ven afectados."
+   ]
+  },
+  {
+   "emoji": "🔢",
+   "en": "namely",
+   "es": "a saber",
+   "examplesEn": [
+    "Two factors, namely cost and time, were decisive."
+   ],
+   "examplesEs": [
+    "Dos factores, a saber el costo y el tiempo, fueron decisivos."
+   ]
+  },
+  {
+   "emoji": "➡️",
+   "en": "Thus, / Hence,",
+   "es": "Así, / De ahí que,",
+   "examplesEn": [
+    "The data was incomplete; hence, the delay."
+   ],
+   "examplesEs": [
+    "Los datos estaban incompletos; de ahí la demora."
+   ]
+  },
+  {
+   "emoji": "🧮",
+   "en": "To a large extent,",
+   "es": "En gran medida,",
+   "examplesEn": [
+    "To a large extent, success depends on effort."
+   ],
+   "examplesEs": [
+    "En gran medida, el éxito depende del esfuerzo."
+   ]
+  },
+  {
+   "emoji": "🏁",
+   "en": "It is therefore clear that",
+   "es": "Por lo tanto, queda claro que",
+   "examplesEn": [
+    "It is therefore clear that action is needed."
+   ],
+   "examplesEs": [
+    "Por lo tanto, queda claro que se necesita actuar."
+   ]
+  },
+  {
+   "emoji": "🎯",
+   "en": "The aim of this report is to",
+   "es": "El objetivo de este informe es",
+   "examplesEn": [
+    "The aim of this report is to evaluate the school canteen."
+   ],
+   "examplesEs": [
+    "El objetivo de este informe es evaluar la cafetería del colegio."
+   ]
+  },
+  {
+   "emoji": "🔎",
+   "en": "It was found that",
+   "es": "Se encontró que",
+   "examplesEn": [
+    "It was found that most students skip breakfast."
+   ],
+   "examplesEs": [
+    "Se encontró que la mayoría de alumnos no toma desayuno."
+   ]
+  },
+  {
+   "emoji": "👥",
+   "en": "The majority of respondents",
+   "es": "La mayoría de los encuestados",
+   "examplesEn": [
+    "The majority of respondents were satisfied."
+   ],
+   "examplesEs": [
+    "La mayoría de los encuestados estaba satisfecha."
+   ]
+  },
+  {
+   "emoji": "📉",
+   "en": "A minority expressed concern about",
+   "es": "Una minoría expresó preocupación por",
+   "examplesEn": [
+    "A minority expressed concern about the prices."
+   ],
+   "examplesEs": [
+    "Una minoría expresó preocupación por los precios."
+   ]
+  },
+  {
+   "emoji": "✅",
+   "en": "It is recommended that",
+   "es": "Se recomienda que",
+   "examplesEn": [
+    "It is recommended that the menu be changed."
+   ],
+   "examplesEs": [
+    "Se recomienda que se cambie el menú."
+   ]
+  },
+  {
+   "emoji": "📢",
+   "en": "I would strongly suggest that",
+   "es": "Sugeriría encarecidamente que",
+   "examplesEn": [
+    "I would strongly suggest that more vegetables be offered."
+   ],
+   "examplesEs": [
+    "Sugeriría encarecidamente que se ofrezcan más verduras."
+   ]
+  },
+  {
+   "emoji": "💡",
+   "en": "One possible solution would be to",
+   "es": "Una posible solución sería",
+   "examplesEn": [
+    "One possible solution would be to extend the opening hours."
+   ],
+   "examplesEs": [
+    "Una posible solución sería ampliar el horario."
+   ]
+  },
+  {
+   "emoji": "💰",
+   "en": "This would involve",
+   "es": "Esto implicaría",
+   "examplesEn": [
+    "This would involve hiring two more staff."
+   ],
+   "examplesEs": [
+    "Esto implicaría contratar a dos personas más."
+   ]
+  },
+  {
+   "emoji": "📈",
+   "en": "The benefits would outweigh the costs",
+   "es": "Los beneficios superarían los costos",
+   "examplesEn": [
+    "The benefits would far outweigh the costs."
+   ],
+   "examplesEs": [
+    "Los beneficios superarían con creces los costos."
+   ]
+  },
+  {
+   "emoji": "🗂️",
+   "en": "As shown in the table,",
+   "es": "Como se muestra en la tabla,",
+   "examplesEn": [
+    "As shown in the table, attendance has increased."
+   ],
+   "examplesEs": [
+    "Como se muestra en la tabla, la asistencia ha aumentado."
+   ]
+  },
+  {
+   "emoji": "🏁",
+   "en": "In summary,",
+   "es": "En resumen,",
+   "examplesEn": [
+    "In summary, the canteen needs several improvements."
+   ],
+   "examplesEs": [
+    "En resumen, la cafetería necesita varias mejoras."
+   ]
+  },
+  {
+   "emoji": "🙏",
+   "en": "I trust these suggestions will be considered",
+   "es": "Confío en que se considerarán estas sugerencias",
+   "examplesEn": [
+    "I trust these suggestions will be taken into consideration."
+   ],
+   "examplesEs": [
+    "Confío en que estas sugerencias serán tomadas en cuenta."
+   ]
+  },
+  {
+   "emoji": "👌",
+   "en": "Not bad at all",
+   "es": "Nada mal (= muy bueno)",
+   "examplesEn": [
+    "Your presentation? Not bad at all!"
+   ],
+   "examplesEs": [
+    "¿Tu presentación? ¡Nada mal!"
+   ]
+  },
+  {
+   "emoji": "😐",
+   "en": "I'm not exactly thrilled",
+   "es": "No estoy precisamente encantado",
+   "examplesEn": [
+    "I'm not exactly thrilled about working on Sunday."
+   ],
+   "examplesEs": [
+    "No estoy precisamente encantado de trabajar el domingo."
+   ]
+  },
+  {
+   "emoji": "🧩",
+   "en": "It's a bit of a problem",
+   "es": "Es un problemita (= un problema serio)",
+   "examplesEn": [
+    "We've lost the keys. It's a bit of a problem."
+   ],
+   "examplesEs": [
+    "Perdimos las llaves. Es un pequeño problema."
+   ]
+  },
+  {
+   "emoji": "🙄",
+   "en": "Oh, great! (irónico)",
+   "es": "¡Ay, genial! (irónico)",
+   "examplesEn": [
+    "It's raining again. Oh, great!"
+   ],
+   "examplesEs": [
+    "Está lloviendo otra vez. ¡Genial!"
+   ]
+  },
+  {
+   "emoji": "💬",
+   "en": "That's one way of putting it",
+   "es": "Es una forma de decirlo",
+   "examplesEn": [
+    "He called it «creative». — That's one way of putting it."
+   ],
+   "examplesEs": [
+    "Lo llamó «creativo». — Es una forma de decirlo."
+   ]
+  },
+  {
+   "emoji": "😏",
+   "en": "Fancy that!",
+   "es": "¡Quién lo diría!",
+   "examplesEn": [
+    "He was late again. Fancy that!"
+   ],
+   "examplesEs": [
+    "Llegó tarde otra vez. ¡Quién lo diría!"
+   ]
+  },
+  {
+   "emoji": "🌦️",
+   "en": "It wasn't the best day of my life",
+   "es": "No fue el mejor día de mi vida (= fue horrible)",
+   "examplesEn": [
+    "Losing my wallet wasn't the best day of my life."
+   ],
+   "examplesEs": [
+    "Perder la billetera no fue el mejor día de mi vida."
+   ]
+  },
+  {
+   "emoji": "🤨",
+   "en": "I'm not sure that's such a good idea",
+   "es": "No sé si es tan buena idea (= es mala idea)",
+   "examplesEn": [
+    "I'm not sure that's such a good idea."
+   ],
+   "examplesEs": [
+    "No sé si es tan buena idea."
+   ]
+  },
+  {
+   "emoji": "🧊",
+   "en": "It could have gone better",
+   "es": "Pudo haber salido mejor (= salió mal)",
+   "examplesEn": [
+    "The interview could have gone better."
+   ],
+   "examplesEs": [
+    "La entrevista pudo haber salido mejor."
+   ]
+  },
+  {
+   "emoji": "😅",
+   "en": "You don't say!",
+   "es": "¡No me digas! (irónico: obvio)",
+   "examplesEn": [
+    "It's hot in summer. — You don't say!"
+   ],
+   "examplesEs": [
+    "En verano hace calor. — ¡No me digas!"
+   ]
+  },
+  {
+   "emoji": "🎯",
+   "en": "With all due respect,",
+   "es": "Con todo respeto, (= no estoy de acuerdo)",
+   "examplesEn": [
+    "With all due respect, I think you're mistaken."
+   ],
+   "examplesEs": [
+    "Con todo respeto, creo que está equivocado."
+   ]
+  },
+  {
+   "emoji": "🤐",
+   "en": "I'll think about it",
+   "es": "Lo pensaré (a veces = no)",
+   "examplesEn": [
+    "Would you like to join? — I'll think about it."
+   ],
+   "examplesEs": [
+    "¿Te quieres unir? — Lo pensaré."
+   ]
+  },
+  {
+   "emoji": "🎓",
+   "en": "Today I'd like to focus on how memory works",
+   "es": "Hoy quiero centrarme en cómo funciona la memoria",
+   "examplesEn": [
+    "Today I'd like to focus on how memory works."
+   ],
+   "examplesEs": [
+    "Hoy quisiera centrarme en cómo funciona la memoria."
+   ]
+  },
+  {
+   "emoji": "🧠",
+   "en": "Memory is not a single system",
+   "es": "La memoria no es un sistema único",
+   "examplesEn": [
+    "Memory is not a single system, but a set of processes."
+   ],
+   "examplesEs": [
+    "La memoria no es un sistema único, sino un conjunto de procesos."
+   ]
+  },
+  {
+   "emoji": "🗂️",
+   "en": "Broadly speaking, we can distinguish three stages",
+   "es": "En términos generales, distinguimos tres etapas",
+   "examplesEn": [
+    "Broadly speaking, we can distinguish three stages: encoding, storage and retrieval."
+   ],
+   "examplesEs": [
+    "En términos generales, distinguimos tres etapas: codificación, almacenamiento y recuperación."
+   ]
+  },
+  {
+   "emoji": "🔐",
+   "en": "Encoding is how information enters the brain",
+   "es": "La codificación es cómo entra la información al cerebro",
+   "examplesEn": [
+    "Encoding is how information first enters the brain."
+   ],
+   "examplesEs": [
+    "La codificación es cómo entra la información al cerebro."
+   ]
+  },
+  {
+   "emoji": "💾",
+   "en": "Storage refers to how it is kept over time",
+   "es": "El almacenamiento se refiere a cómo se guarda",
+   "examplesEn": [
+    "Storage refers to how it is kept over time."
+   ],
+   "examplesEs": [
+    "El almacenamiento se refiere a cómo se conserva en el tiempo."
+   ]
+  },
+  {
+   "emoji": "🔎",
+   "en": "Retrieval is the ability to access it later",
+   "es": "La recuperación es la capacidad de acceder después",
+   "examplesEn": [
+    "Retrieval is the ability to access it when we need it."
+   ],
+   "examplesEs": [
+    "La recuperación es la capacidad de acceder a ella cuando la necesitamos."
+   ]
+  },
+  {
+   "emoji": "😴",
+   "en": "Interestingly, sleep plays a crucial role",
+   "es": "Curiosamente, el sueño tiene un papel crucial",
+   "examplesEn": [
+    "Interestingly, sleep plays a crucial role in storage."
+   ],
+   "examplesEs": [
+    "Curiosamente, el sueño tiene un papel crucial en el almacenamiento."
+   ]
+  },
+  {
+   "emoji": "🔁",
+   "en": "This is why spaced repetition is so effective",
+   "es": "Por eso la repetición espaciada es tan eficaz",
+   "examplesEn": [
+    "This is why spaced repetition is so effective."
+   ],
+   "examplesEs": [
+    "Por eso la repetición espaciada es tan eficaz."
+   ]
+  },
+  {
+   "emoji": "❗",
+   "en": "It's worth emphasizing that",
+   "es": "Vale la pena destacar que",
+   "examplesEn": [
+    "It's worth emphasizing that forgetting is normal."
+   ],
+   "examplesEs": [
+    "Vale la pena destacar que olvidar es normal."
+   ]
+  },
+  {
+   "emoji": "↩️",
+   "en": "Let me come back to this point later",
+   "es": "Volveré a este punto más tarde",
+   "examplesEn": [
+    "Let me come back to this point later."
+   ],
+   "examplesEs": [
+    "Volveré a este punto más adelante."
+   ]
+  },
+  {
+   "emoji": "🏁",
+   "en": "To wrap up,",
+   "es": "Para cerrar,",
+   "examplesEn": [
+    "To wrap up, memory is active, not passive."
+   ],
+   "examplesEs": [
+    "Para cerrar, la memoria es activa, no pasiva."
+   ]
+  },
+  {
+   "emoji": "▶️",
+   "en": "Shall we get started?",
+   "es": "¿Empezamos?",
+   "examplesEn": [
+    "Everyone's here. Shall we get started?"
+   ],
+   "examplesEs": [
+    "Ya están todos. ¿Empezamos?"
+   ]
+  },
+  {
+   "emoji": "📋",
+   "en": "The purpose of today's meeting is",
+   "es": "El propósito de la reunión de hoy es",
+   "examplesEn": [
+    "The purpose of today's meeting is to review the budget."
+   ],
+   "examplesEs": [
+    "El propósito de la reunión de hoy es revisar el presupuesto."
+   ]
+  },
+  {
+   "emoji": "✋",
+   "en": "I'd like to raise a point",
+   "es": "Quisiera plantear un punto",
+   "examplesEn": [
+    "I'd like to raise a point about the deadline."
+   ],
+   "examplesEs": [
+    "Quisiera plantear un punto sobre el plazo."
+   ]
+  },
+  {
+   "emoji": "😈",
+   "en": "Just to play devil's advocate,",
+   "es": "Solo para hacer de abogado del diablo,",
+   "examplesEn": [
+    "Just to play devil's advocate, what if it fails?"
+   ],
+   "examplesEs": [
+    "Solo para hacer de abogado del diablo, ¿y si falla?"
+   ]
+  },
+  {
+   "emoji": "🔄",
+   "en": "Let's circle back to that later",
+   "es": "Volvamos a eso después",
+   "examplesEn": [
+    "Good question. Let's circle back to that later."
+   ],
+   "examplesEs": [
+    "Buena pregunta. Volvamos a eso después."
+   ]
+  },
+  {
+   "emoji": "⏸️",
+   "en": "Can we put that on hold?",
+   "es": "¿Podemos dejar eso en pausa?",
+   "examplesEn": [
+    "Can we put that on hold until next week?"
+   ],
+   "examplesEs": [
+    "¿Podemos dejar eso en pausa hasta la próxima semana?"
+   ]
+  },
+  {
+   "emoji": "🧭",
+   "en": "Let's stick to the agenda",
+   "es": "Ciñámonos a la agenda",
+   "examplesEn": [
+    "We're running out of time. Let's stick to the agenda."
+   ],
+   "examplesEs": [
+    "Nos queda poco tiempo. Ciñámonos a la agenda."
+   ]
+  },
+  {
+   "emoji": "🤔",
+   "en": "Could you elaborate on that?",
+   "es": "¿Podrías ampliar eso?",
+   "examplesEn": [
+    "Could you elaborate on that idea?"
+   ],
+   "examplesEs": [
+    "¿Podrías ampliar esa idea?"
+   ]
+  },
+  {
+   "emoji": "🎯",
+   "en": "If I understand you correctly,",
+   "es": "Si te entiendo bien,",
+   "examplesEn": [
+    "If I understand you correctly, you want to delay the launch."
+   ],
+   "examplesEs": [
+    "Si te entiendo bien, quieres retrasar el lanzamiento."
+   ]
+  },
+  {
+   "emoji": "📝",
+   "en": "Let's go over the action points",
+   "es": "Repasemos las tareas acordadas",
+   "examplesEn": [
+    "Before we finish, let's go over the action points."
+   ],
+   "examplesEs": [
+    "Antes de terminar, repasemos las tareas acordadas."
+   ]
+  },
+  {
+   "emoji": "👤",
+   "en": "Who's going to take care of that?",
+   "es": "¿Quién se va a encargar de eso?",
+   "examplesEn": [
+    "Who's going to take care of the report?"
+   ],
+   "examplesEs": [
+    "¿Quién se va a encargar del informe?"
+   ]
+  },
+  {
+   "emoji": "🏁",
+   "en": "I think that covers everything",
+   "es": "Creo que eso cubre todo",
+   "examplesEn": [
+    "I think that covers everything. Thanks, everyone."
+   ],
+   "examplesEs": [
+    "Creo que eso cubre todo. Gracias a todos."
+   ]
+  },
+  {
+   "emoji": "👀",
+   "en": "I see where you're coming from, but…",
+   "es": "Entiendo tu punto de vista, pero…",
+   "examplesEn": [
+    "I see where you're coming from, but I see it differently."
+   ],
+   "examplesEs": [
+    "Entiendo tu punto de vista, pero lo veo de otra forma."
+   ]
+  },
+  {
+   "emoji": "📏",
+   "en": "I'm not sure I'd go that far",
+   "es": "No sé si llegaría tan lejos",
+   "examplesEn": [
+    "It's a disaster? I'm not sure I'd go that far."
+   ],
+   "examplesEs": [
+    "¿Un desastre? No sé si llegaría tan lejos."
+   ]
+  },
+  {
+   "emoji": "🤝",
+   "en": "That's a fair point",
+   "es": "Es un punto válido",
+   "examplesEn": [
+    "That's a fair point. I hadn't considered it."
+   ],
+   "examplesEs": [
+    "Es un punto válido. No lo había considerado."
+   ]
+  },
+  {
+   "emoji": "🙏",
+   "en": "Would you be willing to…?",
+   "es": "¿Estaría dispuesto a…?",
+   "examplesEn": [
+    "Would you be willing to extend the deadline?"
+   ],
+   "examplesEs": [
+    "¿Estaría dispuesto a ampliar el plazo?"
+   ]
+  },
+  {
+   "emoji": "↔️",
+   "en": "What if we met halfway?",
+   "es": "¿Y si llegamos a un punto medio?",
+   "examplesEn": [
+    "What if we met halfway on the price?"
+   ],
+   "examplesEs": [
+    "¿Y si llegamos a un punto medio en el precio?"
+   ]
+  },
+  {
+   "emoji": "🔁",
+   "en": "I'm afraid that's not quite what we had in mind",
+   "es": "Me temo que eso no es lo que teníamos en mente",
+   "examplesEn": [
+    "I'm afraid that's not quite what we had in mind."
+   ],
+   "examplesEs": [
+    "Me temo que eso no es exactamente lo que teníamos en mente."
+   ]
+  },
+  {
+   "emoji": "🧩",
+   "en": "Perhaps we could look at it differently",
+   "es": "Quizás podríamos verlo de otra manera",
+   "examplesEn": [
+    "Perhaps we could look at it from a different angle."
+   ],
+   "examplesEs": [
+    "Quizás podríamos verlo desde otro ángulo."
+   ]
+  },
+  {
+   "emoji": "💰",
+   "en": "That's beyond our budget",
+   "es": "Eso excede nuestro presupuesto",
+   "examplesEn": [
+    "I'm afraid that's beyond our budget."
+   ],
+   "examplesEs": [
+    "Me temo que eso excede nuestro presupuesto."
+   ]
+  },
+  {
+   "emoji": "✅",
+   "en": "We could agree to that, provided that…",
+   "es": "Podríamos aceptar eso, siempre que…",
+   "examplesEn": [
+    "We could agree to that, provided that delivery is free."
+   ],
+   "examplesEs": [
+    "Podríamos aceptarlo, siempre que el envío sea gratis."
+   ]
+  },
+  {
+   "emoji": "🧊",
+   "en": "Let's not get sidetracked",
+   "es": "No nos desviemos del tema",
+   "examplesEn": [
+    "Let's not get sidetracked. Back to the main issue."
+   ],
+   "examplesEs": [
+    "No nos desviemos. Volvamos al tema principal."
+   ]
+  },
+  {
+   "emoji": "🔚",
+   "en": "I think we have a deal",
+   "es": "Creo que tenemos un trato",
+   "examplesEn": [
+    "I think we have a deal. Let's put it in writing."
+   ],
+   "examplesEs": [
+    "Creo que tenemos un trato. Pongámoslo por escrito."
+   ]
+  },
+  {
+   "emoji": "❤️",
+   "en": "I appreciate your flexibility",
+   "es": "Agradezco su flexibilidad",
+   "examplesEn": [
+    "I really appreciate your flexibility on this."
+   ],
+   "examplesEs": [
+    "Agradezco mucho su flexibilidad en esto."
+   ]
+  },
+  {
+   "emoji": "📰",
+   "en": "allegedly",
+   "es": "supuestamente (sin pruebas)",
+   "examplesEn": [
+    "The minister allegedly accepted a bribe."
+   ],
+   "examplesEs": [
+    "El ministro supuestamente aceptó un soborno."
+   ]
+  },
+  {
+   "emoji": "📻",
+   "en": "reportedly",
+   "es": "según se informa",
+   "examplesEn": [
+    "The singer is reportedly planning a tour."
+   ],
+   "examplesEs": [
+    "Según se informa, la cantante planea una gira."
+   ]
+  },
+  {
+   "emoji": "🙄",
+   "en": "the so-called experts",
+   "es": "los llamados expertos (con desconfianza)",
+   "examplesEn": [
+    "The so-called experts were wrong again."
+   ],
+   "examplesEs": [
+    "Los llamados expertos se equivocaron otra vez."
+   ]
+  },
+  {
+   "emoji": "🤨",
+   "en": "supposedly",
+   "es": "supuestamente",
+   "examplesEn": [
+    "This diet supposedly helps you lose weight."
+   ],
+   "examplesEs": [
+    "Esta dieta supuestamente ayuda a bajar de peso."
+   ]
+  },
+  {
+   "emoji": "✔️",
+   "en": "undeniably",
+   "es": "innegablemente",
+   "examplesEn": [
+    "It is undeniably a great achievement."
+   ],
+   "examplesEs": [
+    "Es innegablemente un gran logro."
+   ]
+  },
+  {
+   "emoji": "😬",
+   "en": "admittedly",
+   "es": "hay que reconocer que",
+   "examplesEn": [
+    "Admittedly, the plan has some weaknesses."
+   ],
+   "examplesEs": [
+    "Hay que reconocer que el plan tiene debilidades."
+   ]
+  },
+  {
+   "emoji": "🏛️",
+   "en": "regime vs government",
+   "es": "régimen vs gobierno",
+   "examplesEn": [
+    "Calling it a «regime» shows a negative bias."
+   ],
+   "examplesEs": [
+    "Llamarlo «régimen» muestra un sesgo negativo."
+   ]
+  },
+  {
+   "emoji": "💬",
+   "en": "Critics slammed the decision",
+   "es": "Los críticos arremetieron contra la decisión",
+   "examplesEn": [
+    "Critics slammed the decision as reckless."
+   ],
+   "examplesEs": [
+    "Los críticos arremetieron contra la decisión por imprudente."
+   ]
+  },
+  {
+   "emoji": "🧾",
+   "en": "It is a fact that… vs I believe that…",
+   "es": "Es un hecho que… vs Creo que…",
+   "examplesEn": [
+    "It is a fact that water boils at 100°C."
+   ],
+   "examplesEs": [
+    "Es un hecho que el agua hierve a 100 °C."
+   ]
+  },
+  {
+   "emoji": "🎯",
+   "en": "The author implies that",
+   "es": "El autor da a entender que",
+   "examplesEn": [
+    "The author implies that the government is to blame."
+   ],
+   "examplesEs": [
+    "El autor da a entender que el gobierno tiene la culpa."
+   ]
+  },
+  {
+   "emoji": "🔍",
+   "en": "The evidence is largely anecdotal",
+   "es": "La evidencia es mayormente anecdótica",
+   "examplesEn": [
+    "The evidence is largely anecdotal."
+   ],
+   "examplesEs": [
+    "La evidencia es mayormente anecdótica."
+   ]
+  },
+  {
+   "emoji": "⚖️",
+   "en": "The article presents only one side",
+   "es": "El artículo presenta solo una postura",
+   "examplesEn": [
+    "The article presents only one side of the debate."
+   ],
+   "examplesEs": [
+    "El artículo presenta solo una postura del debate."
+   ]
+  },
+  {
+   "emoji": "📅",
+   "en": "The four-day working week has gained popularity",
+   "es": "La semana laboral de cuatro días ha ganado popularidad",
+   "examplesEn": [
+    "The four-day working week has gained considerable popularity."
+   ],
+   "examplesEs": [
+    "La semana laboral de cuatro días ha ganado bastante popularidad."
+   ]
+  },
+  {
+   "emoji": "🧪",
+   "en": "Several trials have reported encouraging results",
+   "es": "Varios ensayos han reportado resultados alentadores",
+   "examplesEn": [
+    "Several trials have reported encouraging results."
+   ],
+   "examplesEs": [
+    "Varios ensayos han reportado resultados alentadores."
+   ]
+  },
+  {
+   "emoji": "📈",
+   "en": "Productivity reportedly remained stable",
+   "es": "Según se informa, la productividad se mantuvo estable",
+   "examplesEn": [
+    "Productivity reportedly remained stable or even increased."
+   ],
+   "examplesEs": [
+    "Según se informa, la productividad se mantuvo estable o incluso aumentó."
+   ]
+  },
+  {
+   "emoji": "😌",
+   "en": "Employees claimed to feel less stressed",
+   "es": "Los empleados afirmaron sentirse menos estresados",
+   "examplesEn": [
+    "Employees claimed to feel less stressed and more motivated."
+   ],
+   "examplesEs": [
+    "Los empleados afirmaron sentirse menos estresados y más motivados."
+   ]
+  },
+  {
+   "emoji": "🏥",
+   "en": "However, not every sector can adapt",
+   "es": "Sin embargo, no todos los sectores pueden adaptarse",
+   "examplesEn": [
+    "However, not every sector can adapt so easily."
+   ],
+   "examplesEs": [
+    "Sin embargo, no todos los sectores pueden adaptarse tan fácilmente."
+   ]
+  },
+  {
+   "emoji": "🚑",
+   "en": "Hospitals and schools require constant staffing",
+   "es": "Hospitales y colegios requieren personal constante",
+   "examplesEn": [
+    "Hospitals and schools require constant staffing."
+   ],
+   "examplesEs": [
+    "Hospitales y colegios requieren personal de forma constante."
+   ]
+  },
+  {
+   "emoji": "🤔",
+   "en": "Critics argue that the trials were too small",
+   "es": "Los críticos sostienen que los ensayos fueron muy pequeños",
+   "examplesEn": [
+    "Critics argue that the trials were too small to be conclusive."
+   ],
+   "examplesEs": [
+    "Los críticos sostienen que los ensayos fueron demasiado pequeños para ser concluyentes."
+   ]
+  },
+  {
+   "emoji": "🧭",
+   "en": "Moreover, most participants volunteered",
+   "es": "Además, la mayoría de participantes se ofreció voluntariamente",
+   "examplesEn": [
+    "Moreover, most participating companies volunteered."
+   ],
+   "examplesEs": [
+    "Además, la mayoría de empresas participantes se ofreció voluntariamente."
+   ]
+  },
+  {
+   "emoji": "⚖️",
+   "en": "This raises questions about the results",
+   "es": "Esto plantea dudas sobre los resultados",
+   "examplesEn": [
+    "This raises questions about how representative the results are."
+   ],
+   "examplesEs": [
+    "Esto plantea dudas sobre qué tan representativos son los resultados."
+   ]
+  },
+  {
+   "emoji": "🌱",
+   "en": "Undeniably, the idea deserves further study",
+   "es": "Innegablemente, la idea merece más estudio",
+   "examplesEn": [
+    "Undeniably, the idea deserves further study."
+   ],
+   "examplesEs": [
+    "Innegablemente, la idea merece un estudio más profundo."
+   ]
+  },
+  {
+   "emoji": "🏁",
+   "en": "It would be premature to apply it everywhere",
+   "es": "Sería prematuro aplicarlo en todas partes",
+   "examplesEn": [
+    "It would be premature to apply it everywhere."
+   ],
+   "examplesEs": [
+    "Sería prematuro aplicarlo en todas partes."
+   ]
+  },
+  {
+   "emoji": "🪝",
+   "en": "Imagine a world where…",
+   "es": "Imaginen un mundo donde…",
+   "examplesEn": [
+    "Imagine a world where every child has access to clean water."
+   ],
+   "examplesEs": [
+    "Imaginen un mundo donde todos los niños tengan agua potable."
+   ]
+  },
+  {
+   "emoji": "❓",
+   "en": "Have you ever wondered why…?",
+   "es": "¿Alguna vez se han preguntado por qué…?",
+   "examplesEn": [
+    "Have you ever wondered why we forget names so easily?"
+   ],
+   "examplesEs": [
+    "¿Alguna vez se han preguntado por qué olvidamos los nombres tan fácilmente?"
+   ]
+  },
+  {
+   "emoji": "3️⃣",
+   "en": "It's cheaper, faster and safer",
+   "es": "Es más barato, más rápido y más seguro",
+   "examplesEn": [
+    "The new system is cheaper, faster and safer."
+   ],
+   "examplesEs": [
+    "El nuevo sistema es más barato, más rápido y más seguro."
+   ]
+  },
+  {
+   "emoji": "📊",
+   "en": "The figures speak for themselves",
+   "es": "Las cifras hablan por sí solas",
+   "examplesEn": [
+    "The figures speak for themselves."
+   ],
+   "examplesEs": [
+    "Las cifras hablan por sí solas."
+   ]
+  },
+  {
+   "emoji": "🔁",
+   "en": "Let me rephrase that",
+   "es": "Permítanme reformularlo",
+   "examplesEn": [
+    "Let me rephrase that more simply."
+   ],
+   "examplesEs": [
+    "Permítanme decirlo de forma más simple."
+   ]
+  },
+  {
+   "emoji": "🎯",
+   "en": "What this means in practice is…",
+   "es": "Lo que esto significa en la práctica es…",
+   "examplesEn": [
+    "What this means in practice is lower bills for families."
+   ],
+   "examplesEs": [
+    "Lo que esto significa en la práctica es facturas más bajas para las familias."
+   ]
+  },
+  {
+   "emoji": "🧱",
+   "en": "Some of you may be thinking…",
+   "es": "Algunos de ustedes quizás estén pensando…",
+   "examplesEn": [
+    "Some of you may be thinking that this is too expensive."
+   ],
+   "examplesEs": [
+    "Algunos quizás estén pensando que esto es demasiado caro."
+   ]
+  },
+  {
+   "emoji": "🙌",
+   "en": "That's an excellent question",
+   "es": "Excelente pregunta",
+   "examplesEn": [
+    "That's an excellent question, and I'm glad you asked."
+   ],
+   "examplesEs": [
+    "Excelente pregunta, y me alegra que la haga."
+   ]
+  },
+  {
+   "emoji": "🤷",
+   "en": "I don't have the exact figure, but…",
+   "es": "No tengo la cifra exacta, pero…",
+   "examplesEn": [
+    "I don't have the exact figure, but I can send it to you later."
+   ],
+   "examplesEs": [
+    "No tengo la cifra exacta, pero puedo enviársela después."
+   ]
+  },
+  {
+   "emoji": "🌟",
+   "en": "If there's one thing I'd like you to remember, it's this",
+   "es": "Si hay algo que quiero que recuerden, es esto",
+   "examplesEn": [
+    "If there's one thing I'd like you to remember, it's this: small actions matter."
+   ],
+   "examplesEs": [
+    "Si hay algo que quiero que recuerden, es esto: las pequeñas acciones importan."
+   ]
+  },
+  {
+   "emoji": "🏁",
+   "en": "The question is not whether…, but when",
+   "es": "La pregunta no es si…, sino cuándo",
+   "examplesEn": [
+    "The question is not whether we change, but when."
+   ],
+   "examplesEs": [
+    "La pregunta no es si cambiaremos, sino cuándo."
+   ]
+  },
+  {
+   "emoji": "🎯",
+   "en": "This essay contends that",
+   "es": "Este ensayo sostiene que",
+   "examplesEn": [
+    "This essay contends that public transport should be free."
+   ],
+   "examplesEs": [
+    "Este ensayo sostiene que el transporte público debería ser gratuito."
+   ]
+  },
+  {
+   "emoji": "1️⃣",
+   "en": "The most compelling argument is that",
+   "es": "El argumento más convincente es que",
+   "examplesEn": [
+    "The most compelling argument is that it reduces traffic."
+   ],
+   "examplesEs": [
+    "El argumento más convincente es que reduce el tráfico."
+   ]
+  },
+  {
+   "emoji": "📊",
+   "en": "A recent study found that",
+   "es": "Un estudio reciente encontró que",
+   "examplesEn": [
+    "A recent study found that free buses doubled ridership."
+   ],
+   "examplesEs": [
+    "Un estudio reciente encontró que los buses gratuitos duplicaron los pasajeros."
+   ]
+  },
+  {
+   "emoji": "🔗",
+   "en": "This is significant because",
+   "es": "Esto es importante porque",
+   "examplesEn": [
+    "This is significant because it lowers emissions."
+   ],
+   "examplesEs": [
+    "Esto es importante porque reduce las emisiones."
+   ]
+  },
+  {
+   "emoji": "↩️",
+   "en": "Opponents of this view maintain that",
+   "es": "Quienes se oponen a esta idea sostienen que",
+   "examplesEn": [
+    "Opponents of this view maintain that it is too costly."
+   ],
+   "examplesEs": [
+    "Quienes se oponen a esta idea sostienen que es demasiado costoso."
+   ]
+  },
+  {
+   "emoji": "🧱",
+   "en": "However, this argument overlooks",
+   "es": "Sin embargo, este argumento pasa por alto",
+   "examplesEn": [
+    "However, this argument overlooks the long-term savings."
+   ],
+   "examplesEs": [
+    "Sin embargo, este argumento pasa por alto el ahorro a largo plazo."
+   ]
+  },
+  {
+   "emoji": "📌",
+   "en": "It must be acknowledged that",
+   "es": "Hay que reconocer que",
+   "examplesEn": [
+    "It must be acknowledged that funding is a real challenge."
+   ],
+   "examplesEs": [
+    "Hay que reconocer que el financiamiento es un desafío real."
+   ]
+  },
+  {
+   "emoji": "➡️",
+   "en": "It follows that",
+   "es": "De ello se deduce que",
+   "examplesEn": [
+    "It follows that investment is justified."
+   ],
+   "examplesEs": [
+    "De ello se deduce que la inversión está justificada."
+   ]
+  },
+  {
+   "emoji": "🌍",
+   "en": "The implications of this are far-reaching",
+   "es": "Las implicancias de esto son de gran alcance",
+   "examplesEn": [
+    "The implications of this are far-reaching."
+   ],
+   "examplesEs": [
+    "Las implicancias de esto son de gran alcance."
+   ]
+  },
+  {
+   "emoji": "🏁",
+   "en": "On balance,",
+   "es": "Haciendo un balance,",
+   "examplesEn": [
+    "On balance, the benefits clearly outweigh the drawbacks."
+   ],
+   "examplesEs": [
+    "Haciendo un balance, los beneficios superan claramente las desventajas."
+   ]
+  },
+  {
+   "emoji": "🔮",
+   "en": "Further research is needed to",
+   "es": "Se necesita más investigación para",
+   "examplesEn": [
+    "Further research is needed to assess the long-term effects."
+   ],
+   "examplesEs": [
+    "Se necesita más investigación para evaluar los efectos a largo plazo."
+   ]
+  }
+ ],
+ "total": 15,
+ "pass": 0.8,
+ "next": null
+};
+        </script>
+        <script src="assets/voz-peru.js"></script>
+<script src="assets/mk-ingles.js?v=7"></script>
+
+        <script>
+            // Registrar Service Worker (PWA)
+            if ("serviceWorker" in navigator) {
+                window.addEventListener("load", () => {
+                    navigator.serviceWorker.register("./service-worker.js").catch(() => { });
+                });
+            }
+        </script>
+
+        <script>
+            function shareApp() {
+                const shareData = {
+                    title: "MK • Inglés",
+                    text: "📚 Aprende inglés jugando con MK",
+                    url: window.location.href
+                };
+
+                if (navigator.share) {
+                    navigator.share(shareData)
+                        .catch(() => { });
+                } else {
+                    navigator.clipboard.writeText(shareData.url);
+                    alert("🔗 Link copiado para compartir");
+                }
+            }
+        </script>
+
+    </body>
+
+</html>
