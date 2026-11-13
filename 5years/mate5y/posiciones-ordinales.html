@@ -1914,7 +1914,8 @@
 
 
     </style>
-  </head>
+    <link rel="stylesheet" href="../../assets/mate3y-compacto.css?v=1" />
+</head>
 
   <body>
     <div class="app">
@@ -6416,7 +6417,7 @@
           scene.style.width = `${item.width || 250}px`;
           scene.style.height = `${item.height || 160}px`;
 
-          (item.decorations || []).forEach(dec => {
+          (Array.isArray(item.decorations) ? item.decorations : []).forEach(dec => {
             let node;
             if (dec.type === "text") {
               node = document.createElement("div");
