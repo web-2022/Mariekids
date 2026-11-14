@@ -1,0 +1,6 @@
+.cripto { display: inline-grid; gap: 4px; font: 900 34px/1.1 "Segoe UI", Arial, sans-serif; color: #0f172a; background: #fff; border-radius: 16px; padding: 12px 18px; box-shadow: 0 4px 0 #cbd5e1; }
+.cripto .cr { display: grid; grid-template-columns: 30px repeat(var(--w), 38px); justify-items: center; align-items: center; }
+.cripto .cr.res { border-top: 4px solid #0f172a; padding-top: 4px; }
+.cripto .op { color: #7c3aed; }
+.cripto .cx { color: #e11d48; background: #fde68a; border-radius: 8px; padding: 0 4px; }
+@media (max-width: 360px) { .cripto { font-size: 28px; } .cripto .cr { grid-template-columns: 24px repeat(var(--w), 32px); } }

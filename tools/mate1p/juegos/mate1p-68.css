@@ -1,0 +1,4 @@
+.figs4 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; width: 100%; max-width: 300px; margin: 0 auto; }
+.figs4 .f4 { background: #fff; border-radius: 14px; padding: 4px; text-align: center; box-shadow: 0 3px 0 #cbd5e1; }
+.figs4 .f4 b { display: block; color: #7c3aed; font-size: 18px; }
+@media (min-width: 700px) { .figs4 { grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: 560px; } }

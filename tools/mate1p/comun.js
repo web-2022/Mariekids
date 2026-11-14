@@ -516,7 +516,7 @@ const NAME = n => MKChar.names[n];
 /* ---------- Final de la lección: enlace al siguiente tema ---------- */
 function nextTopic(n) {
   return (level, passed, stars, box) => {
-    if (!passed || n > 64) return;
+    if (!passed || n > 69) return;
     const href = `mate1p-${String(n).padStart(2, "0")}.html`;
     box.innerHTML = `<a class="btn alt next-topic" href="${href}">➡️ Siguiente tema</a>`;
   };
@@ -539,7 +539,7 @@ function lesson(o, GEN) {
     theme: o.theme || THEMES[o.n % THEMES.length], deco: o.deco || ["🔢", "➕", "⭐", "✏️"],
     hello: o.hello, intro: [o.intro || "Observa bien el dibujo y elige la respuesta: A, B, C o D."],
     champion: o.champion || "¡Eres un campeón de las matemáticas! 🏆", rounds: o.rounds,
-    levels: o.levels,
+    levels: o.levels, openLevels: o.openLevels !== false,   // 1.º primaria: el alumno elige cualquier nivel
     check(k) { const bad = []; GEN.forEach((L, i) => L.forEach((g, j) => { for (let t = 0; t < k / 10; t++) { try { checkQ(g(), bad, `N${i + 1}.${j + 1}`); } catch (e) { bad.push(`N${i + 1}.${j + 1}: ${e.message}`); } } })); return [...new Set(bad)]; },
     round(level, idx, ui) { ask(ui, pick(GEN[level])()); },
     onEnd: nextTopic(o.next || o.n + 1)

@@ -58,6 +58,6 @@ const GEN = [
         err: w => w === 2 * b ? "Falta restar la abeja." : w === b ? "Ese es el osito; falta el doble y restar." : "" }; },
   ]
 ];
-lesson({ n: 45, next: 62, title: "Valores ocultos, igualdades y balanzas", short: "Balanzas", char: "rayo", music: "aventura", deco: ["⚖️", "⭐", "🍎", "🍓"],
+lesson({ n: 45, next: 67, title: "Valores ocultos, igualdades y balanzas", short: "Balanzas", char: "rayo", music: "aventura", deco: ["⚖️", "⭐", "🍎", "🍓"],
   hello: "¡Hola! Soy <b>Rayo</b> 🐉. Cada figura esconde un <b>valor</b>. ¡Usa las igualdades y las balanzas para descubrirlo!",
   levels: LEVELS3(["Balanzas y estrellas", "Lados iguales"], ["Dos pistas", "Figura por figura"], ["", "Tres igualdades"]) }, GEN);

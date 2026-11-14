@@ -269,7 +269,7 @@
     function renderLevels() {
       const box = $("levels"); box.innerHTML = "";
       cfg.levels.forEach((L, i) => {
-        const open = i < progress.unlocked;
+        const open = cfg.openLevels || i < progress.unlocked;   // openLevels: todos los niveles libres
         const b = document.createElement("button"); b.type = "button";
         b.className = "level-btn" + (open ? "" : " locked");
         b.innerHTML = `<span class="ico">${open ? L.icon : "🔒"}</span><span><b>Nivel ${i + 1}: ${L.title}</b><small>${L.desc}</small></span><span class="stars">${starText(starsFor(progress.best[i] || 0))}</span>`;

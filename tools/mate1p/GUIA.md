@@ -23,7 +23,7 @@ Las lecciones replican el estilo de los concursos de 1.º grado que envió el au
 Se aprueba con 7 de 10 a la primera; el tema queda ✅ en el menú (`mk_topic_mate1p-NN_complete`).
 
 ## Temas
-20 stages y 64 temas (ver `ruta-mate.html`). Los temas 62 (Sumas con letras, Stage 14), 64 (Ecuaciones de primer grado, Stage 14) y 63 (Medida de segmentos, Stage 15) se añadieron después: su archivo tiene número alto, pero en el menú van en su stage y `next:` encadena el «Siguiente tema». El Stage 20 es de Olimpiadas:
+20 stages y 69 temas (ver `ruta-mate.html`). Temas 65-69 (añadidos después): 65 Fracciones (Stage 9), 66 Áreas y 68 Trazos de figuras (Stage 15), 67 Criptoaritmética y 69 Inecuaciones (Stage 14). En 1.º primaria los 3 niveles están abiertos (`openLevels`). Los temas 62 (Sumas con letras, Stage 14), 64 (Ecuaciones de primer grado, Stage 14) y 63 (Medida de segmentos, Stage 15) se añadieron después: su archivo tiene número alto, pero en el menú van en su stage y `next:` encadena el «Siguiente tema». El Stage 20 es de Olimpiadas:
 59 Retos olímpicos (números), 60 Retos olímpicos (figuras y lógica) y 61 Simulacro (12 preguntas, aprueba con 9).
 Los temas 59-61 usan `olimpiada.js` (se incluye con la línea `// @incluir olimpiada.js`).
 

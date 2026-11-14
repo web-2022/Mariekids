@@ -40,6 +40,6 @@ const GEN = [
         err: w => w === k + c ? `Sumaste ${k} + ${c}, pero son ${k} niños con ${c} cada uno.` : "" }; },
   ]
 ];
-lesson({ n: 29, title: "Reparto en partes iguales", short: "Repartir", char: "pipo", music: "ukelele", deco: ["🤝", "🍪", "🍬", "👧"],
+lesson({ n: 29, next: 65, title: "Reparto en partes iguales", short: "Repartir", char: "pipo", music: "ukelele", deco: ["🤝", "🍪", "🍬", "👧"],
   hello: "¡Hola! Soy <b>Pipo</b> 🐧. <b>Repartir</b> en partes iguales es que a todos les toque lo mismo.",
   levels: LEVELS3(["Repartir", "Uno para ti, uno para mí"], ["Problemas de reparto", "Mesas y lápices"], ["", "¿Cuántos sobran? ¿Cuántos había?"]) }, GEN);

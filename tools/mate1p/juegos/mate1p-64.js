@@ -112,6 +112,6 @@ GEN[2].push(() => { const x = between(5, 12), a = between(2, 4), b = x - a, ans 
       { t: `El sucesor de x es <b>${ans}</b>.` }
     ],
     err: w => w === x ? "Ese es el valor de x; falta el sucesor (+1)." : "" }; });
-lesson({ n: 64, next: 46, title: "Ecuaciones de primer grado (halla x)", short: "Ecuaciones", char: "kiki", music: "electro", deco: ["⚖️", "❓", "🔤", "⭐"],
+lesson({ n: 64, next: 69, title: "Ecuaciones de primer grado (halla x)", short: "Ecuaciones", char: "kiki", music: "electro", deco: ["⚖️", "❓", "🔤", "⭐"],
   hello: "¡Hola! Soy <b>Kiki</b>. Una <b>ecuación</b> es como una balanza en equilibrio: si x + 3 = 8, quito 3 de cada lado y descubro que <b>x = 5</b>. ¡Siempre puedes comprobar tu respuesta!",
   levels: LEVELS3(["La balanza", "x + 3 = 8"], ["Restas y problemas", "x − 4 = 9 · 12 − x = 5"], ["", "2x = 10 · 3x + 2 = 14"]) }, GEN);

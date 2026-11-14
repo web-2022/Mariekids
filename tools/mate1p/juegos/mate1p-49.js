@@ -62,6 +62,6 @@ const GEN = [
         err: w => w === k * s ? "Contaste cuadraditos; el perímetro es el borde." : "" }; },
   ]
 ];
-lesson({ n: 49, title: "Perímetro de figuras sencillas", short: "Perímetro", char: "coco", music: "funk", deco: ["📏", "🟩", "🔺", "▭"],
+lesson({ n: 49, next: 66, title: "Perímetro de figuras sencillas", short: "Perímetro", char: "coco", music: "funk", deco: ["📏", "🟩", "🔺", "▭"],
   hello: "¡Hola! Soy <b>Coco</b> 🐵. El <b>perímetro</b> es lo que mide todo el borde de una figura. ¡Recórrelo con tu dedo!",
   levels: LEVELS3(["Rectángulos y triángulos", "Sumar los lados"], ["Cuadrados y cuadrículas", "Lados iguales"], ["", "Figuras con cuadraditos"]) }, GEN);
