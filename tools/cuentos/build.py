@@ -34,7 +34,8 @@ def build(n):
     DIR = os.path.join(REPO, "Cuentos", folder)
     os.makedirs(os.path.join(DIR, "img"), exist_ok=True)
     for k, sc in enumerate(st["scenes"], 1):
-        open(os.path.join(DIR, "img", f"c{nn}-{k}.svg"), "w", encoding="utf-8").write(sc["img"])
+        if not sc.get("file"):   # «file»: imagen propia ya guardada en img/ (por ejemplo, ilustraciones hechas aparte)
+            open(os.path.join(DIR, "img", f"c{nn}-{k}.svg"), "w", encoding="utf-8").write(sc["img"])
     # página
     head = TEMPLATE[:HEAD_END]
     head = head.replace("<title>Marie Kids • La Paloma y el Árbol Seco</title>", f"<title>Marie Kids • {esc(st['title'])}</title>")
@@ -47,7 +48,7 @@ def build(n):
         dialogs = "".join(f'                <p class="dialogue">{esc(d)}</p>\n' for d in sc.get("d", []))
         body.append(f'''            <!-- ESCENA {k} -->
             <div class="scene-card{' active' if k == 1 else ''}">
-{h2}                <img src="img/c{nn}-{k}.svg" class="scene-img" alt="{html.escape(sc['alt'])}">
+{h2}                <img src="img/{sc.get('file') or f'c{nn}-{k}.svg'}" class="scene-img" alt="{html.escape(sc['alt'])}">
                 <button class="readBtn">🔊 Leer</button>
                 <p>
                     {esc(sc['p'])}

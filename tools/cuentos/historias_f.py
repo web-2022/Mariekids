@@ -58,3 +58,7 @@ STORIES[39] = {
                                   "Despedida corta y cariñosa, y cumpla: llegue a tiempo. Llorar los primeros días es normal; con la rutina se calma."]),
     ],
 }
+
+# Ilustraciones definitivas enviadas por el autor (Cuentos/3-anios/img/c39-1..5.webp)
+for _k, _sc in enumerate(STORIES[39]["scenes"], 1):
+    _sc["file"] = f"c39-{_k}.webp"
