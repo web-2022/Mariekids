@@ -125,6 +125,8 @@
                 { n: 20, t: "La Rana que se Creía Vaca", tema: "Ser uno mismo" },
                 { n: 21, t: "El Zapato que se Escapaba", tema: "Humor" } ] },
         ];
+        // carpeta de cada cuento (igual que tools/cuentos/carpetas.py)
+        const FOLDER = n => [13, 14, 20, 21, 36, 39].includes(n) ? "3-anios" : [11, 12, 23, 28].includes(n) ? "primaria-1-2" : [29, 30].includes(n) ? "primaria-3-4" : "4-5-anios";
         let done = new Set();
         try { done = new Set((JSON.parse(localStorage.getItem("mk_cuentos_leidos_v1")) || []).map(Number)); } catch (e) { }
         const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -135,7 +137,7 @@
                 tot++;
                 if (!it.n) return `<div class="card off"><span class="badge soon">Pronto</span><div class="em">${it.e}</div><b>${esc(it.t)}</b><span class="t">${esc(it.tema)}</span></div>`;
                 pub++; const nn = String(it.n).padStart(2, "0"), ok = done.has(it.n); if (ok) read++;
-                return `<a class="card on" href="../cuento${nn}.html"><span class="badge ${ok ? "done" : "new"}">${ok ? "✅ Leído" : "Leer"}</span><img src="../Cuentos/mini/c${nn}.webp" alt="" loading="lazy"><b>${esc(it.t)}</b><span class="t">${esc(it.tema)}</span></a>`;
+                return `<a class="card on" href="../Cuentos/${FOLDER(it.n)}/cuento${nn}.html"><span class="badge ${ok ? "done" : "new"}">${ok ? "✅ Leído" : "Leer"}</span><img src="../Cuentos/mini/c${nn}.webp" alt="" loading="lazy"><b>${esc(it.t)}</b><span class="t">${esc(it.tema)}</span></a>`;
             }).join("")}</div>`).join("");
         document.getElementById("count").textContent = `📚 ${pub} cuentos listos de ${tot} · ✅ ${read} leídos`;
         if ("serviceWorker" in navigator) navigator.serviceWorker.register("../service-worker.js").catch(() => { });

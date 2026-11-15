@@ -14,7 +14,9 @@ for mod in ("historias_a", "historias_b", "historias_c", "historias_d", "histori
         pass
 
 REPO = sys.argv[1]
-TEMPLATE = open(os.path.join(REPO, "cuento01.html"), encoding="utf-8").read()
+from carpetas import CARPETA
+# plantilla: el cuento 01 ya en su carpeta (rutas relativas ../../)
+TEMPLATE = open(os.path.join(REPO, "Cuentos", CARPETA[1], "cuento01.html"), encoding="utf-8").read()
 HEAD_END = TEMPLATE.index("            <!-- ESCENA 1 -->")
 TAIL_START = TEMPLATE.index("            <div class=\"actions\">")
 
@@ -27,8 +29,12 @@ def build(n):
     st = STORIES[n]
     nn = f"{n:02d}"
     # ilustraciones
+    folder = st.get("folder") or CARPETA.get(n)
+    assert folder, f"cuento {nn}: falta su carpeta en carpetas.py"
+    DIR = os.path.join(REPO, "Cuentos", folder)
+    os.makedirs(os.path.join(DIR, "img"), exist_ok=True)
     for k, sc in enumerate(st["scenes"], 1):
-        open(os.path.join(REPO, "Cuentos", f"c{nn}-{k}.svg"), "w", encoding="utf-8").write(sc["img"])
+        open(os.path.join(DIR, "img", f"c{nn}-{k}.svg"), "w", encoding="utf-8").write(sc["img"])
     # página
     head = TEMPLATE[:HEAD_END]
     head = head.replace("<title>Marie Kids • La Paloma y el Árbol Seco</title>", f"<title>Marie Kids • {esc(st['title'])}</title>")
@@ -41,7 +47,7 @@ def build(n):
         dialogs = "".join(f'                <p class="dialogue">{esc(d)}</p>\n' for d in sc.get("d", []))
         body.append(f'''            <!-- ESCENA {k} -->
             <div class="scene-card{' active' if k == 1 else ''}">
-{h2}                <img src="Cuentos/c{nn}-{k}.svg" class="scene-img" alt="{html.escape(sc['alt'])}">
+{h2}                <img src="img/c{nn}-{k}.svg" class="scene-img" alt="{html.escape(sc['alt'])}">
                 <button class="readBtn">🔊 Leer</button>
                 <p>
                     {esc(sc['p'])}
@@ -66,7 +72,7 @@ def build(n):
 {ps}            </div>
 
 ''')
-    open(os.path.join(REPO, f"cuento{nn}.html"), "w", encoding="utf-8").write(head + "\n".join(body) + TAIL_START_TEXT)
+    open(os.path.join(DIR, f"cuento{nn}.html"), "w", encoding="utf-8").write(head + "\n".join(body) + TAIL_START_TEXT)
     print("ok", nn, st["title"])
 
 
