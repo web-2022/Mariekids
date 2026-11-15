@@ -7,7 +7,7 @@ import sys, os, html, importlib
 
 sys.path.insert(0, os.path.dirname(__file__))
 STORIES = {}
-for mod in ("historias_a", "historias_b", "historias_c", "historias_d", "historias_e"):
+for mod in ("historias_a", "historias_b", "historias_c", "historias_d", "historias_e", "historias_f"):
     try:
         STORIES.update(importlib.import_module(mod).STORIES)
     except ModuleNotFoundError:
@@ -56,6 +56,14 @@ def build(n):
                     {esc(st['msg'])}
                 </p>
             </div>
+
+''')
+    for tit, lines in st.get("extra", []):   # tarjetas finales (para conversar en familia)
+        ps = "".join(f'                <p class="dialogue">{esc(t)}</p>\n' for t in lines)
+        body.append(f'''            <div class="scene-card">
+                <h3>{esc(tit)}</h3>
+                <button class="readBtn">🔊 Leer</button>
+{ps}            </div>
 
 ''')
     open(os.path.join(REPO, f"cuento{nn}.html"), "w", encoding="utf-8").write(head + "\n".join(body) + TAIL_START_TEXT)
