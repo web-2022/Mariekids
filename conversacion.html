@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>MVG Learning • Conversación guiada</title>
+    <meta name="apple-mobile-web-app-title" content="MK" />
+    <meta name="theme-color" content="#2563eb" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png" />
+    <link rel="apple-touch-icon" href="icons/icon-192.png" />
+    <link rel="stylesheet" href="assets/conversacion.css?v=1" />
+</head>
+<body>
+    <header class="cv-top">
+        <a href="ruta-ingles.html" aria-label="Volver al curso de inglés">←</a>
+        <div><h1>🗣️ Conversación guiada</h1><small>Inglés · MVG Learning</small></div>
+    </header>
+    <main id="conv"></main>
+    <script src="assets/voz-peru.js?v=7"></script>
+    <script src="assets/conversacion.js?v=1"></script>
+    <script>
+        if ("serviceWorker" in navigator) navigator.serviceWorker.register("service-worker.js").catch(function () { });
+    </script>
+</body>
+</html>

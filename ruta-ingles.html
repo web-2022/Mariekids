@@ -1197,6 +1197,10 @@
         }
         .continue[hidden] { display: none; }
         .search { display: flex; align-items: center; gap: 8px; min-height: 46px; padding: 0 14px; border: 2px solid var(--line); border-radius: 16px; background: #fff; }
+        .conv-banner { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 10px 0 14px; padding: 12px 16px; min-height: 52px; border-radius: 18px; text-decoration: none; color: #fff; font-size: 1.05rem;
+            background: linear-gradient(135deg, #ec4899, #8b5cf6); box-shadow: 0 5px 0 #6d28d9; }
+        .conv-banner span { font-size: .85rem; font-weight: 700; opacity: .95; flex: 1 1 200px; }
+        .conv-banner i { font-style: normal; margin-left: auto; }
         .search input { width: 100%; border: 0; outline: 0; font: inherit; font-weight: 800; font-size: 16px; color: var(--ink); background: transparent; }
 
         .card .card-num {
@@ -1278,6 +1282,8 @@
                 <input id="q" type="search" placeholder="Buscar tema…" autocomplete="off" />
             </label>
         </section>
+
+        <a class="conv-banner" href="conversacion.html">🗣️ <b>Conversación guiada</b><span>Habla en inglés con la app y recibe corrección al instante</span><i>▶</i></a>
 
         <main class="grid" id="grid" aria-label="Temas de Inglés"></main>
 
