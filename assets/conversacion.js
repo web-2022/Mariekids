@@ -163,13 +163,44 @@
   }
   // Escenario completo dentro de cualquier contenedor (página propia o panel dentro de una clase).
   // opts.enClase: true cuando se abre desde una clase (enlaces a «Mis errores» van a conversacion.html)
+  // 🎧 Escuchar todo el diálogo: pregunta (inglés) → traducción (español, opcional) → respuesta modelo (inglés)
+  function conEs() { try { return localStorage.getItem("mk_eng_allEs") !== "0"; } catch (x) { return true; } }
+  function escucharTodo(root, e) {
+    var btn = root.querySelector(".cv-allbtn"), tog = root.querySelector(".cv-alles"), box = root.querySelector(".cv-guion"), on = false, cola = [];
+    tog.onclick = function () { var v = !conEs(); try { localStorage.setItem("mk_eng_allEs", v ? "1" : "0"); } catch (x) { } tog.textContent = v ? "🇪🇸 Con español: Sí" : "🇪🇸 Con español: No"; };
+    function parar() { on = false; cola = []; btn.textContent = "🎧 Escuchar todo el diálogo"; box.querySelectorAll(".now").forEach(function (n) { n.classList.remove("now"); }); callar(); }
+    function sig() {
+      if (!on) return;
+      var p = cola.shift(); if (!p) { parar(); return; }
+      box.querySelectorAll(".now").forEach(function (n) { n.classList.remove("now"); });
+      p.n.classList.add("now"); p.n.scrollIntoView({ block: "nearest", behavior: "smooth" });
+      decir(p.t, { es: p.es, rate: p.es ? undefined : .85, onend: function () { if (on) setTimeout(sig, p.es ? 350 : 700); } });
+    }
+    btn.onclick = function () {
+      if (on) { parar(); return; }
+      box.hidden = false;
+      box.innerHTML = e.turnos.map(function (t, i) {
+        return '<div class="cv-gl gl-app"><b>🤖</b> <span>' + esc(t.app) + '</span><small>' + esc(t.es || "") + '</small></div>' +
+          '<div class="cv-gl gl-yo"><b>🙂</b> <span>' + esc(t.esperado) + '</span></div>';
+      }).join("");
+      var ls = box.querySelectorAll(".cv-gl"), es = conEs();
+      cola = [];
+      e.turnos.forEach(function (t, i) {
+        cola.push({ t: t.app, n: ls[2 * i] });
+        if (es && t.es) cola.push({ t: t.es, es: true, n: ls[2 * i] });
+        cola.push({ t: t.esperado, n: ls[2 * i + 1] });
+      });
+      on = true; btn.textContent = "⏸ Detener"; callar(); sig();
+    };
+  }
   function montar(root, nv, d, e, paso, opts) {
     callar(); opts = opts || {};
     root.innerHTML = (opts.volver ? '<button type="button" class="cv-otras">⬅ Otras conversaciones</button>' : "") +
-      '<section class="cv-hero cv-sit-hero"><span class="cv-bigem">' + e.emoji + '</span><div><small>Situación</small><h2>' + esc(e.titulo) + '</h2><p>' + esc(e.intro) + '</p></div></section>' +
+      '<section class="cv-hero cv-sit-hero"><span class="cv-bigem">' + e.emoji + '</span><div><small>Situación</small><h2>' + esc(e.titulo) + '</h2><p>' + esc(e.intro) + '</p><div class="cv-all"><button type="button" class="cv-allbtn">🎧 Escuchar todo el diálogo</button><button type="button" class="cv-alles">' + (conEs() ? "🇪🇸 Con español: Sí" : "🇪🇸 Con español: No") + '</button></div></div></section><div class="cv-guion" hidden></div>' +
       '<nav class="cv-tabs">' + PASOS.map(function (p, i) { return '<button type="button" data-paso="' + p[0] + '" class="' + (p[0] === paso ? "on" : "") + '"><i>' + (i + 1) + '</i>' + p[1] + '</button>'; }).join("") + '</nav><div class="cvBody"></div>';
     var body = root.querySelector(".cvBody");
-    root.onclick = function (ev) { if (opts.volver && ev.target.closest(".cv-otras")) { opts.volver(); return; } var b = ev.target.closest("[data-paso]"); if (b) { ev.preventDefault(); montar(root, nv, d, e, b.dataset.paso, opts); (root.closest(".cv-panel") || window).scrollTo(0, 0); root.scrollIntoView({ block: "start" }); } };
+    escucharTodo(root, e);
+    root.onclick = function (ev) { if (ev.target.closest(".cv-allbtn,.cv-alles")) return; if (opts.volver && ev.target.closest(".cv-otras")) { opts.volver(); return; } var b = ev.target.closest("[data-paso]"); if (b) { ev.preventDefault(); montar(root, nv, d, e, b.dataset.paso, opts); (root.closest(".cv-panel") || window).scrollTo(0, 0); root.scrollIntoView({ block: "start" }); } };
     var sig = function (p) { return '<button type="button" class="cv-next" data-paso="' + p + '">Siguiente ➜</button>'; };
     if (paso === "vocab") vocab(body, e, sig("repite"));
     else if (paso === "repite") repite(body, e, sig("pron"));

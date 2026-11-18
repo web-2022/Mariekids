@@ -118,3 +118,14 @@ body.cv-lock { overflow: hidden; }
 .cv-sit-hero h2 { font-size: 1.4rem; }
 .cv-bigem { font-size: 3.4rem; line-height: 1; flex: 0 0 auto; background: #eef2ff; border-radius: 22px; width: 76px; height: 76px; display: grid; place-items: center; }
 @media (max-width: 380px) { .cv-bigem { font-size: 2.6rem; width: 60px; height: 60px; } .cv-sit-hero h2 { font-size: 1.2rem; } }
+
+/* 🎧 Escuchar todo el diálogo */
+.cv-all{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.cv-all button{border:0;border-radius:999px;padding:8px 14px;font:inherit;font-weight:700;cursor:pointer;background:#fff;color:#2563eb;box-shadow:0 2px 6px rgba(0,0,0,.12)}
+.cv-all .cv-alles{color:#8b5cf6}
+.cv-guion{background:#fff;border-radius:16px;padding:10px;margin:10px 0;box-shadow:0 2px 10px rgba(37,99,235,.12);display:grid;gap:6px}
+.cv-guion[hidden]{display:none}
+.cv-gl{padding:8px 12px;border-radius:12px;background:#eff6ff;line-height:1.35}
+.cv-gl.gl-yo{background:#fdf2f8;margin-left:18px}
+.cv-gl small{display:block;color:#64748b;font-size:.85em}
+.cv-gl.now{outline:3px solid #f59e0b;background:#fef3c7}

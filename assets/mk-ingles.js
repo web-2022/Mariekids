@@ -461,6 +461,11 @@
 
     var all = el("button", "tool-btn listen vocab-all", "▶ Escuchar todo"); all.type = "button";
     card.appendChild(all);
+    var conEs = true; try { conEs = localStorage.getItem("mk_eng_allEs") !== "0"; } catch (e) { }
+    var esBtn = el("button", "tool-btn vocab-es-tog" + (conEs ? " on" : ""), conEs ? "🇪🇸 Con español: Sí" : "🇪🇸 Con español: No"); esBtn.type = "button";
+    esBtn.title = "Al escuchar todo, leer también el significado en español";
+    esBtn.onclick = function () { conEs = !conEs; esBtn.classList.toggle("on", conEs); esBtn.textContent = conEs ? "🇪🇸 Con español: Sí" : "🇪🇸 Con español: No"; try { localStorage.setItem("mk_eng_allEs", conEs ? "1" : "0"); } catch (e) { } };
+    card.appendChild(esBtn);
     var list = el("div", "vocab-list"), rows = [];
     ITEMS.forEach(function (it, i) {
       var r = el("div", "vocab-row");
@@ -494,7 +499,12 @@
       var i = idx++; mark(i);
       rows[i].scrollIntoView({ behavior: "smooth", block: "nearest" });
       if (!("speechSynthesis" in window)) { setTimeout(playNext, 900); return; }
-      say(ITEMS[i].en, null, function () { if (playing) setTimeout(playNext, 1100); });   // pausa para repetir
+      var luego = function () { if (playing) setTimeout(playNext, 1100); };   // pausa para repetir
+      say(ITEMS[i].en, null, function () {
+        if (!playing) return;
+        if (conEs && ITEMS[i].es && window.MKVoz) setTimeout(function () { if (playing) window.MKVoz.speak(ITEMS[i].es, { modo: "leer", onend: luego }); }, 350);
+        else luego();
+      });
     }
     all.onclick = function () {
       if (playing) { stopAll(); return; }
@@ -610,8 +620,8 @@
     var slug = m[1], nv = m[2].toLowerCase();
     function cargar(cb) {
       if (window.MKConv) return cb();
-      var l = document.createElement("link"); l.rel = "stylesheet"; l.href = "assets/conversacion.css?v=4"; document.head.appendChild(l);
-      var s = document.createElement("script"); s.src = "assets/conversacion.js?v=4"; s.onload = cb; document.head.appendChild(s);
+      var l = document.createElement("link"); l.rel = "stylesheet"; l.href = "assets/conversacion.css?v=5"; document.head.appendChild(l);
+      var s = document.createElement("script"); s.src = "assets/conversacion.js?v=5"; s.onload = cb; document.head.appendChild(s);
     }
     cargar(function () {
       MKConv.tiene(nv, slug, function (ok) {

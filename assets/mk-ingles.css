@@ -183,3 +183,5 @@ body.th-open { overflow: hidden; }
 @media (min-width: 1200px) and (min-height: 800px) {
   .app { max-width: 760px !important; }
 }
+
+.vocab-es-tog{margin-left:8px;opacity:.65}.vocab-es-tog.on{opacity:1}
