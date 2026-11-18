@@ -1,0 +1,122 @@
+/* Conversación guiada de cada clase del nivel A0.
+   El «id» de cada escenario es el nombre de la página de la clase (eng-a0-w1 → eng-a0-w1.html).
+   Formato igual que b0.js (ver LEEME.md). */
+window.MK_CONV = window.MK_CONV || {};
+window.MK_CONV.a0 = {
+  nivel: "A0", titulo: "Conversaciones de cada clase", curso: "A0", color: "#22c55e",
+  escenarios: [
+    {
+      id: "eng-a0-w1", emoji: "👋", titulo: "Un día de saludos",
+      intro: "Es tu primer día de clases. Saluda a tu profesora, preséntate, despídete en la tarde y luego saluda a tu familia en la noche.",
+      vocab: [
+        { en: "Good morning", es: "Buenos días", ej: "Good morning, Miss Lucy!" },
+        { en: "Good afternoon", es: "Buenas tardes", ej: "Good afternoon, class." },
+        { en: "Good evening", es: "Buenas noches (al llegar)", ej: "Good evening, Grandma!" },
+        { en: "Good night", es: "Buenas noches (al despedirte o dormir)", ej: "Good night, Mom!" },
+        { en: "My name is…", es: "Me llamo…", ej: "My name is Ana." },
+        { en: "Nice to meet you too", es: "Mucho gusto también", ej: "Nice to meet you too, Miss Lucy." },
+        { en: "See you tomorrow", es: "Hasta mañana", ej: "Goodbye! See you tomorrow." },
+        { en: "You too", es: "Tú también / igualmente", ej: "Have a nice day! — You too!" }
+      ],
+      clave: ["Good morning, Miss Lucy!", "My name is Ana.", "Nice to meet you too.", "Goodbye! See you tomorrow.", "Good evening, Grandma!", "Good night, Mom!"],
+      pares: [
+        { palabras: ["night", "nice"], es: ["noche", "lindo"] },
+        { palabras: ["bye", "boy"], es: ["chau", "niño"] },
+        { palabras: ["see", "she"], es: ["ver", "ella"] }
+      ],
+      turnos: [
+        { app: "Good morning! I'm Miss Lucy, your teacher.", es: "¡Buenos días! Soy la señorita Lucy, tu profesora.",
+          esperado: "Good morning, Miss Lucy!",
+          variantes: [{ t: "Good morning, teacher!", nota: "Correcto. En inglés es más común decir el nombre: «Good morning, Miss Lucy»." }, { t: "Hello, Miss Lucy!" }, { t: "Good morning!" }],
+          errores: [{ re: "\\bgood (day|tomorrow)\\b", id: "good-morning", corr: "Good morning, Miss Lucy!", exp: "«Buenos días» se dice «Good morning». «Good day» casi no se usa y «tomorrow» significa «mañana» (el día siguiente)." },
+                    { re: "\\bgood mornings\\b", id: "sin-s", corr: "Good morning, Miss Lucy!", exp: "Se dice «Good morning», sin -s." }] },
+        { app: "What is your name?", es: "¿Cómo te llamas?",
+          esperado: "My name is Ana.", acepta: ["^(hello |hi )?(my name is|i am) [a-z]+( [a-z]+)?$"],
+          variantes: [{ t: "I'm Ana.", nota: "«My name is Ana» y «I'm Ana» son correctas." }],
+          errores: [{ re: "\\bme name\\b", id: "me-my", corr: "My name is Ana.", exp: "«Mi» se dice «my», no «me»." },
+                    { re: "\\bmy name [a-z]+$", id: "falta-is", corr: "My name is Ana.", exp: "Falta «is»: «My name IS Ana»." },
+                    { re: "^(i )?call me\\b|\\bi call\\b", id: "me-llamo", corr: "My name is Ana.", exp: "«Me llamo» no se traduce palabra por palabra: se dice «My name is…» o «I'm…»." }] },
+        { app: "Nice to meet you, Ana!", es: "¡Mucho gusto, Ana!",
+          esperado: "Nice to meet you too.",
+          variantes: [{ t: "Nice to meet you too, Miss Lucy." }, { t: "Nice to meet you.", nota: "Cuando te lo dicen primero, agrega «too»: «Nice to meet you TOO» (mucho gusto también)." }, { t: "You too." }],
+          errores: [] },
+        { app: "It's three o'clock. Time to go home! What do you say?", es: "Son las tres. ¡Hora de ir a casa! ¿Qué dices?",
+          esperado: "Goodbye, Miss Lucy! See you tomorrow.",
+          variantes: [{ t: "Bye! See you tomorrow.", nota: "«Bye» es más informal; con la profesora «Goodbye» suena mejor." }, { t: "See you tomorrow, Miss Lucy!" }, { t: "Goodbye!" }, { t: "Good afternoon. See you tomorrow." }],
+          errores: [{ re: "^good night\\b", id: "night-tarde", corr: "Goodbye, Miss Lucy! See you tomorrow.", exp: "En la tarde no se dice «good night». «Good night» es solo de noche, al despedirte o al ir a dormir." }] },
+        { app: "Have a nice day!", es: "¡Que tengas un buen día!",
+          esperado: "Thank you! You too.",
+          variantes: [{ t: "Thanks! You too.", nota: "«Thanks» es más informal y muy común." }, { t: "Thank you, you too!" }, { t: "Thank you!" }],
+          errores: [{ re: "\\bme too\\b", id: "you-too", corr: "Thank you! You too.", exp: "Para devolver un buen deseo se dice «You too» (igualmente). «Me too» significa «yo también»." }] },
+        { app: "It's eight p.m. You arrive at your grandma's house. What do you say?", es: "Son las 8 p. m. Llegas a la casa de tu abuelita. ¿Qué dices?",
+          esperado: "Good evening, Grandma!",
+          variantes: [{ t: "Hello, Grandma!" }, { t: "Hi, Grandma!", nota: "«Hi» es informal y cariñoso; «Good evening» es el saludo de la noche al llegar." }],
+          errores: [{ re: "\\bgood night\\b", id: "evening-night", corr: "Good evening, Grandma!", exp: "Al LLEGAR de noche se dice «Good evening». «Good night» es para DESPEDIRTE o ir a dormir." }] },
+        { app: "It's time to sleep. What do you say to Mom?", es: "Es hora de dormir. ¿Qué le dices a mamá?",
+          esperado: "Good night, Mom!",
+          variantes: [{ t: "Good night, Mom. See you tomorrow." }, { t: "Good night!" }],
+          errores: [{ re: "\\bgood evening\\b", id: "night-evening", corr: "Good night, Mom!", exp: "Para ir a dormir se dice «Good night». «Good evening» es solo para saludar al llegar." }] }
+      ]
+    },
+    {
+      id: "eng-a0-w1-c2", emoji: "🙂", titulo: "Visita a la casa de un amigo",
+      intro: "Vas con tu amigo Tom a la casa de Lily. Responde cómo estás, presenta a tu amigo y usa las palabras de cortesía.",
+      vocab: [
+        { en: "How are you?", es: "¿Cómo estás?", ej: "Hi! How are you?" },
+        { en: "I'm fine, thank you", es: "Estoy bien, gracias", ej: "I'm fine, thank you. And you?" },
+        { en: "This is my friend", es: "Este es mi amigo", ej: "This is my friend, Tom." },
+        { en: "Yes, please", es: "Sí, por favor", ej: "Juice? — Yes, please." },
+        { en: "Thank you very much", es: "Muchas gracias", ej: "Thank you very much!" },
+        { en: "You're welcome", es: "De nada", ej: "Thank you! — You're welcome." },
+        { en: "Sorry", es: "Perdón / Lo siento", ej: "I'm sorry!" },
+        { en: "Excuse me", es: "Disculpe / Con permiso", ej: "Excuse me, where is the bathroom?" },
+        { en: "tired", es: "cansado", ej: "I'm tired, but I'm happy." }
+      ],
+      clave: ["I'm fine, thank you. And you?", "This is my friend, Tom.", "Yes, please.", "Thank you very much!", "I'm sorry!", "Excuse me, where is the bathroom?"],
+      pares: [
+        { palabras: ["sorry", "so-so"], es: ["perdón", "más o menos"] },
+        { palabras: ["thank", "tank"], es: ["agradecer", "tanque"] },
+        { palabras: ["sad", "said"], es: ["triste", "dijo"] }
+      ],
+      turnos: [
+        { app: "Hi! Welcome to my house! How are you?", es: "¡Hola! ¡Bienvenido a mi casa! ¿Cómo estás?",
+          esperado: "I'm fine, thank you. And you?", acepta: ["^(hi |hello )?i am (fine|great|ok|okay|good|happy|so so|very well)\\b"],
+          variantes: [{ t: "I'm great, thanks! And you?", nota: "Muy natural. Recuerda preguntar «And you?» para ser amable." }, { t: "I'm OK, thank you." }],
+          errores: [{ re: "^(hi |hello )?i (fine|great|ok|okay|good|happy|tired|sad)\\b", id: "falta-am", corr: "I'm fine, thank you. And you?", exp: "Falta «am»: «I AM fine» o «I'm fine». En inglés no se omite el verbo." },
+                    { re: "\\band your\\b", id: "you-your", corr: "And you?", exp: "«¿Y tú?» se dice «And you?», no «and your» (tu)." }] },
+        { app: "I'm great, thanks! Who is this?", es: "¡Estoy genial, gracias! ¿Quién es él?",
+          esperado: "This is my friend, Tom.", acepta: ["^this is my (friend|brother|cousin)( [a-z]+)?$"],
+          variantes: [{ t: "He is my friend, Tom.", nota: "Correcto. Para presentar a alguien, lo más natural es «This is my friend»." }, { t: "This is Tom. He is my friend." }],
+          errores: [{ re: "^this my\\b", id: "falta-is", corr: "This is my friend, Tom.", exp: "Falta «is»: «This IS my friend» (Este ES mi amigo)." },
+                    { re: "\\bmy friend is tom\\b|^is my friend", id: "presentar", corr: "This is my friend, Tom.", exp: "Para presentar a alguien se empieza con «This is…»." }] },
+        { app: "Hello, Tom! Do you want some juice?", es: "¡Hola, Tom! ¿Quieres un poco de jugo?",
+          esperado: "Yes, please.",
+          variantes: [{ t: "Yes, please. Thank you!" }, { t: "No, thank you.", nota: "Si no quieres, «No, thank you» es la forma amable." }],
+          errores: [{ re: "^yes$", id: "please", corr: "Yes, please.", exp: "Agrega «please» para ser amable: «Yes, please» (Sí, por favor)." },
+                    { re: "^no$", id: "please", corr: "No, thank you.", exp: "Un «no» solo suena brusco. Di «No, thank you»." }] },
+        { app: "Here you are.", es: "Aquí tienes.",
+          esperado: "Thank you very much!",
+          variantes: [{ t: "Thank you!" }, { t: "Thanks!", nota: "«Thanks» es informal; «Thank you very much» es la más amable." }, { t: "Thank you so much!" }],
+          errores: [{ re: "\\bthank you much\\b|\\bthanks you\\b", id: "thank-you", corr: "Thank you very much!", exp: "Se dice «Thank you very much» o «Thanks» (no «thanks you» ni «thank you much»)." }] },
+        { app: "You're welcome! Oh no! Your juice is on the floor!", es: "¡De nada! ¡Oh, no! ¡Tu jugo está en el piso!",
+          esperado: "I'm sorry!",
+          variantes: [{ t: "Oh, sorry!" }, { t: "Sorry!" }, { t: "I'm so sorry!", nota: "«I'm so sorry» suena más sincero cuando fue tu culpa." }],
+          errores: [{ re: "^(oh )?excuse me\\b", id: "sorry-excuse", corr: "I'm sorry!", exp: "Para disculparte por un error se dice «Sorry». «Excuse me» es para pedir permiso o llamar la atención." }] },
+        { app: "No problem! You look tired. Are you OK?", es: "¡No hay problema! Te ves cansado. ¿Estás bien?",
+          esperado: "I'm tired, but I'm happy.", acepta: ["^(yes |no )?i am (tired|ok|okay|fine|happy|sad|so so|good|great)\\b"],
+          variantes: [{ t: "Yes, I'm OK. I'm a little tired." }, { t: "I'm OK, thank you." }],
+          errores: [{ re: "^(yes |no )?i (tired|ok|okay|fine|happy|sad)\\b", id: "falta-am", corr: "I'm tired, but I'm happy.", exp: "Falta «am»: «I AM tired» o «I'm tired»." },
+                    { re: "\\bi have tired\\b|\\bi am tire\\b", id: "tired", corr: "I'm tired.", exp: "«Estoy cansado» = «I'm tired» (con «be» y la palabra «tired»)." }] },
+        { app: "You need the bathroom. Ask politely.", es: "Necesitas el baño. Pregunta con amabilidad.",
+          esperado: "Excuse me, where is the bathroom?",
+          variantes: [{ t: "Excuse me, where's the bathroom?" }, { t: "Where is the bathroom, please?", nota: "Correcto. Empezar con «Excuse me» es lo más educado." }],
+          errores: [{ re: "^sorry where\\b", id: "excuse-sorry", corr: "Excuse me, where is the bathroom?", exp: "Para pedir algo con educación se empieza con «Excuse me», no con «Sorry»." },
+                    { re: "\\bwhere the bathroom\\b|\\bwhere bathroom\\b", id: "where-is", corr: "Excuse me, where is the bathroom?", exp: "Falta «is»: «Where IS the bathroom?»." }] },
+        { app: "It's late. Thank you for coming! Bye!", es: "Es tarde. ¡Gracias por venir! ¡Chau!",
+          esperado: "Thank you! See you later!",
+          variantes: [{ t: "Thank you! Bye!" }, { t: "Thanks for everything! Bye!", nota: "Muy amable: agradeces todo antes de irte." }, { t: "Bye! See you tomorrow!" }],
+          errores: [{ re: "^you are welcome\\b", id: "welcome-thanks", corr: "Thank you! See you later!", exp: "Ella te agradece por venir, pero tú también agradeces su invitación: «Thank you!»." }] }
+      ]
+    }
+  ]
+};

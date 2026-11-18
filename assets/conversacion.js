@@ -11,7 +11,7 @@
     { id: "b3", nombre: "B3", sub: "Reuniones de trabajo", curso: "C1", emoji: "💼" }
   ];
   var KEY = "mk_conv_v1", INTERVALOS = [0, 1, 3, 7, 14, 30];
-  var $app = document.getElementById("conv");
+  var $app = document.getElementById("conv");   // solo en conversacion.html; en las clases se usa MKConv.abrir
   var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
 
   /* ---------- estado guardado ---------- */
@@ -106,7 +106,7 @@
   /* ---------- datos por nivel ---------- */
   function cargarNivel(id, cb) {
     if (window.MK_CONV && MK_CONV[id]) { cb(MK_CONV[id]); return; }
-    var s = document.createElement("script"); s.src = "assets/conversacion/" + id + ".js?v=1";
+    var s = document.createElement("script"); s.src = "assets/conversacion/" + id + ".js?v=2";
     s.onload = function () { cb(window.MK_CONV && MK_CONV[id]); }; s.onerror = function () { cb(null); };
     document.head.appendChild(s);
   }
@@ -133,7 +133,7 @@
     if (h[0] === "errores") return vistaErrores();
     vistaHome();
   }
-  window.addEventListener("hashchange", render);
+  if ($app) window.addEventListener("hashchange", render);
 
   function vistaHome(aviso) {
     var p = pendientes().length;
@@ -158,15 +158,22 @@
 
   var PASOS = [["vocab", "📚 Vocabulario"], ["repite", "🔁 Escucha y repite"], ["pron", "🗣️ Pronunciación"], ["dialogo", "💬 Diálogo"], ["examen", "📝 Examen"]];
   function vistaEscenario(nv, d, e, paso) {
-    $app.innerHTML = '<a class="cv-back" href="#nivel/' + nv + '">⬅ ' + d.nivel + ' · ' + esc(d.titulo) + '</a>' +
-      '<section class="cv-hero sm"><h2>' + e.emoji + ' ' + esc(e.titulo) + '</h2><p>' + esc(e.intro) + '</p></section>' +
-      '<nav class="cv-tabs">' + PASOS.map(function (p, i) { return '<a href="#esc/' + nv + '/' + e.id + '/' + p[0] + '" class="' + (p[0] === paso ? "on" : "") + '"><i>' + (i + 1) + '</i>' + p[1] + '</a>'; }).join("") + '</nav><div id="cvBody"></div>';
-    var body = document.getElementById("cvBody");
-    var sig = function (p) { return '<a class="cv-next" href="#esc/' + nv + '/' + e.id + '/' + p + '">Siguiente ➜</a>'; };
+    $app.innerHTML = '<a class="cv-back" href="#nivel/' + nv + '">⬅ ' + d.nivel + ' · ' + esc(d.titulo) + '</a><div id="cvEsc"></div>';
+    montar(document.getElementById("cvEsc"), nv, d, e, paso, {});
+  }
+  // Escenario completo dentro de cualquier contenedor (página propia o panel dentro de una clase).
+  // opts.enClase: true cuando se abre desde una clase (enlaces a «Mis errores» van a conversacion.html)
+  function montar(root, nv, d, e, paso, opts) {
+    callar(); opts = opts || {};
+    root.innerHTML = '<section class="cv-hero sm"><h2>' + e.emoji + ' ' + esc(e.titulo) + '</h2><p>' + esc(e.intro) + '</p></section>' +
+      '<nav class="cv-tabs">' + PASOS.map(function (p, i) { return '<button type="button" data-paso="' + p[0] + '" class="' + (p[0] === paso ? "on" : "") + '"><i>' + (i + 1) + '</i>' + p[1] + '</button>'; }).join("") + '</nav><div class="cvBody"></div>';
+    var body = root.querySelector(".cvBody");
+    root.onclick = function (ev) { var b = ev.target.closest("[data-paso]"); if (b) { ev.preventDefault(); montar(root, nv, d, e, b.dataset.paso, opts); (root.closest(".cv-panel") || window).scrollTo(0, 0); root.scrollIntoView({ block: "start" }); } };
+    var sig = function (p) { return '<button type="button" class="cv-next" data-paso="' + p + '">Siguiente ➜</button>'; };
     if (paso === "vocab") vocab(body, e, sig("repite"));
     else if (paso === "repite") repite(body, e, sig("pron"));
     else if (paso === "pron") pron(body, e, sig("dialogo"));
-    else dialogo(body, nv, d, e, paso === "examen");
+    else dialogo(body, nv, d, e, paso === "examen", opts);
   }
 
   function vocab(body, e, next) {
@@ -222,7 +229,8 @@
   }
 
   /* ---------- diálogo (práctica y examen) ---------- */
-  function dialogo(body, nv, d, e, examen) {
+  function dialogo(body, nv, d, e, examen, opts) {
+    opts = opts || {};
     var i = 0, nivelPista = 0, primera = true, puntos = 0, errSes = [], dichoBien = [], intentos = 0;
     body.innerHTML = '<p class="cv-tip">' + (examen ? "📝 <b>Modo examen:</b> sin pistas, una sola respuesta por pregunta." : "💬 La app te pregunta y lee en voz alta. Responde con 🎤 o escribe. Si te trabas, pide una pista.") + '</p>' +
       '<div class="cv-chat" id="chat"></div><div class="cv-input" id="inp"></div>';
@@ -304,8 +312,9 @@
       var cuenta = {}; errSes.forEach(function (z) { var c = cuenta[z.id] = cuenta[z.id] || { n: 0, z: z }; c.n++; });
       var top = Object.keys(cuenta).map(function (k2) { return cuenta[k2]; }).sort(function (a, b) { return b.n - a.n; }).slice(0, 3);
       var otros = d.escenarios.filter(function (z) { return starsDe(z.id) < 2 && z.id !== e.id; });
-      var rec_ = st < 2 ? { txt: "Repite este escenario en modo práctica.", href: "#esc/" + nv + "/" + e.id + "/dialogo" }
-        : !examen ? { txt: "¡Ahora pruébate en el modo examen!", href: "#esc/" + nv + "/" + e.id + "/examen" }
+      var rec_ = st < 2 ? { txt: "Repite este escenario en modo práctica.", paso: "dialogo" }
+        : !examen ? { txt: "¡Ahora pruébate en el modo examen!", paso: "examen" }
+        : opts.enClase ? { txt: "¡Dominas esta conversación! Sigue con la siguiente clase.", paso: "" }
         : otros[0] ? { txt: "Sigue con «" + otros[0].titulo + "».", href: "#esc/" + nv + "/" + otros[0].id }
         : { txt: "¡Pasa al siguiente nivel!", href: "#" };
       inp.innerHTML = "";
@@ -313,7 +322,7 @@
         '<p>✅ Aciertos a la primera: <b>' + puntos + ' de ' + tot + '</b> · 🔥 Racha: <b>' + racha() + '</b> día(s)' + (medalla ? '<br>🏅 <b>¡Ganaste la medalla del nivel ' + d.nivel + '!</b>' : "") + '</p>' +
         (top.length ? '<h4>Errores principales para practicar</h4><ol>' + top.map(function (c) { return '<li>' + esc(c.z.exp) + '<div class="cv-ok">' + esc(c.z.corr) + '</div></li>'; }).join("") + '</ol>' : '<p>🎉 ¡Sin errores importantes!</p>') +
         (dichoBien.length ? '<h4>Frases que ya dominas</h4><ul>' + dichoBien.slice(0, 4).map(function (f) { return "<li>" + esc(f) + "</li>"; }).join("") + "</ul>" : "") +
-        '<p class="cv-recom">👉 <b>Recomendación:</b> ' + esc(rec_.txt) + '</p><div class="cv-row"><a class="cv-next" href="' + rec_.href + '">Continuar ➜</a>' + (S.errores.length ? '<a class="cv-next alt" href="#errores">📒 Mis errores</a>' : "") + '</div></div>', "sum");
+        '<p class="cv-recom">👉 <b>Recomendación:</b> ' + esc(rec_.txt) + '</p><div class="cv-row">' + (rec_.paso ? '<button type="button" class="cv-next" data-paso="' + rec_.paso + '">Continuar ➜</button>' : rec_.href ? '<a class="cv-next" href="' + rec_.href + '">Continuar ➜</a>' : "") + (S.errores.length ? '<a class="cv-next alt" href="' + (opts.enClase ? "conversacion.html" : "") + '#errores">📒 Mis errores</a>' : "") + '</div></div>', "sum");
     }
     preguntar();
   }
@@ -355,6 +364,22 @@
     uno();
   }
 
-  window.MKConv = { evaluar: evaluar, tokens: tokens, sim: sim, pista: pista, estado: function () { return S; } };   // para pruebas
-  render();
+  // Abrir la conversación de una clase en un panel: MKConv.abrir("a0", "eng-a0-w1")
+  function abrir(nv, id, cb) {
+    cargarNivel(nv, function (d) {
+      var e = d && d.escenarios.filter(function (x) { return x.id === id; })[0];
+      if (!e) { cb && cb(false); return; }
+      var ov = document.createElement("div"); ov.className = "cv-panel"; ov.setAttribute("role", "dialog");
+      ov.innerHTML = '<div class="cv-pbar"><b>🗣️ Conversación guiada</b><button type="button" class="cv-close">✖ Volver a la clase</button></div><div class="cv-pin"></div>';
+      document.body.appendChild(ov); document.body.classList.add("cv-lock");
+      var cerrar = function () { callar(); if (rec) try { rec.abort(); } catch (x) { } ov.remove(); document.body.classList.remove("cv-lock"); document.removeEventListener("keydown", esc_); };
+      var esc_ = function (ev) { if (ev.key === "Escape") cerrar(); };
+      ov.querySelector(".cv-close").onclick = cerrar; document.addEventListener("keydown", esc_);
+      montar(ov.querySelector(".cv-pin"), nv, d, e, "vocab", { enClase: true });
+      cb && cb(true);
+    });
+  }
+  function tiene(nv, id, cb) { cargarNivel(nv, function (d) { cb(!!(d && d.escenarios.some(function (x) { return x.id === id; }))); }); }
+  window.MKConv = { evaluar: evaluar, tokens: tokens, sim: sim, pista: pista, abrir: abrir, tiene: tiene, estado: function () { return S; } };
+  if ($app) render();
 })();
