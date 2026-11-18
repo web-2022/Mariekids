@@ -106,7 +106,7 @@
   /* ---------- datos por nivel ---------- */
   function cargarNivel(id, cb) {
     if (window.MK_CONV && MK_CONV[id]) { cb(MK_CONV[id]); return; }
-    var s = document.createElement("script"); s.src = "assets/conversacion/" + id + ".js?v=2";
+    var s = document.createElement("script"); s.src = "assets/conversacion/" + id + ".js?v=3";
     s.onload = function () { cb(window.MK_CONV && MK_CONV[id]); }; s.onerror = function () { cb(null); };
     document.head.appendChild(s);
   }
@@ -165,10 +165,11 @@
   // opts.enClase: true cuando se abre desde una clase (enlaces a «Mis errores» van a conversacion.html)
   function montar(root, nv, d, e, paso, opts) {
     callar(); opts = opts || {};
-    root.innerHTML = '<section class="cv-hero sm"><h2>' + e.emoji + ' ' + esc(e.titulo) + '</h2><p>' + esc(e.intro) + '</p></section>' +
+    root.innerHTML = (opts.volver ? '<button type="button" class="cv-otras">⬅ Otras conversaciones</button>' : "") +
+      '<section class="cv-hero cv-sit-hero"><span class="cv-bigem">' + e.emoji + '</span><div><small>Situación</small><h2>' + esc(e.titulo) + '</h2><p>' + esc(e.intro) + '</p></div></section>' +
       '<nav class="cv-tabs">' + PASOS.map(function (p, i) { return '<button type="button" data-paso="' + p[0] + '" class="' + (p[0] === paso ? "on" : "") + '"><i>' + (i + 1) + '</i>' + p[1] + '</button>'; }).join("") + '</nav><div class="cvBody"></div>';
     var body = root.querySelector(".cvBody");
-    root.onclick = function (ev) { var b = ev.target.closest("[data-paso]"); if (b) { ev.preventDefault(); montar(root, nv, d, e, b.dataset.paso, opts); (root.closest(".cv-panel") || window).scrollTo(0, 0); root.scrollIntoView({ block: "start" }); } };
+    root.onclick = function (ev) { if (opts.volver && ev.target.closest(".cv-otras")) { opts.volver(); return; } var b = ev.target.closest("[data-paso]"); if (b) { ev.preventDefault(); montar(root, nv, d, e, b.dataset.paso, opts); (root.closest(".cv-panel") || window).scrollTo(0, 0); root.scrollIntoView({ block: "start" }); } };
     var sig = function (p) { return '<button type="button" class="cv-next" data-paso="' + p + '">Siguiente ➜</button>'; };
     if (paso === "vocab") vocab(body, e, sig("repite"));
     else if (paso === "repite") repite(body, e, sig("pron"));
@@ -365,21 +366,57 @@
   }
 
   // Abrir la conversación de una clase en un panel: MKConv.abrir("a0", "eng-a0-w1")
-  function abrir(nv, id, cb) {
+  // Escenarios de una clase: los que tienen clase === slug (o id === slug). Los que no traen vocabulario,
+  // frases clave o pares de pronunciación los heredan del primero de la clase.
+  function deClase(d, slug) {
+    var l = d ? d.escenarios.filter(function (x) { return (x.clase || x.id) === slug; }) : [];
+    l.forEach(function (x) {
+      if (!x.vocab) x.vocab = l[0].vocab || [];
+      if (!x.pares) x.pares = l[0].pares || [];
+      if (!x.clave) x.clave = x.turnos.map(function (t) { return t.esperado; });
+    });
+    return l;
+  }
+  // Abrir las conversaciones de una clase en un panel: MKConv.abrir("a0", "eng-a0-w1")
+  function abrir(nv, slug, cb) {
     cargarNivel(nv, function (d) {
-      var e = d && d.escenarios.filter(function (x) { return x.id === id; })[0];
-      if (!e) { cb && cb(false); return; }
+      var lista = deClase(d, slug);
+      if (!lista.length) { cb && cb(false); return; }
       var ov = document.createElement("div"); ov.className = "cv-panel"; ov.setAttribute("role", "dialog");
       ov.innerHTML = '<div class="cv-pbar"><b>🗣️ Conversación guiada</b><button type="button" class="cv-close">✖ Volver a la clase</button></div><div class="cv-pin"></div>';
       document.body.appendChild(ov); document.body.classList.add("cv-lock");
       var cerrar = function () { callar(); if (rec) try { rec.abort(); } catch (x) { } ov.remove(); document.body.classList.remove("cv-lock"); document.removeEventListener("keydown", esc_); };
       var esc_ = function (ev) { if (ev.key === "Escape") cerrar(); };
       ov.querySelector(".cv-close").onclick = cerrar; document.addEventListener("keydown", esc_);
-      montar(ov.querySelector(".cv-pin"), nv, d, e, "vocab", { enClase: true });
+      var pin = ov.querySelector(".cv-pin");
+      var ultimoKey = "mk_conv_ultimo_" + slug;
+      var elegir = function () {
+        callar(); pin.onclick = null;
+        pin.innerHTML = '<section class="cv-hero sm"><h2>Elige una situación</h2><p>Esta clase tiene <b>' + lista.length + '</b> conversaciones distintas. Practica todas: cada una usa lo que aprendiste en la clase.</p></section>' +
+          '<button type="button" class="cv-sorpresa">🎲 Sorpréndeme</button><div class="cv-sits">' + lista.map(function (x, i) {
+            return '<button type="button" class="cv-sit" data-i="' + i + '"><span class="cv-sitem">' + x.emoji + '</span><b>' + esc(x.titulo) + '</b><small>' + esc(x.intro) + '</small><span class="cv-sitst">' + estrellas(starsDe(x.id)) + '</span></button>';
+          }).join("") + '</div>';
+        pin.onclick = function (ev) {
+          var b = ev.target.closest(".cv-sit, .cv-sorpresa"); if (!b) return;
+          var i;
+          if (b.classList.contains("cv-sorpresa")) {   // prefiere las que tienen menos estrellas y no repite la última
+            var ult = ""; try { ult = localStorage.getItem(ultimoKey) || ""; } catch (x) { }
+            var cand = lista.map(function (x, k) { return k; }).filter(function (k) { return lista.length < 2 || lista[k].id !== ult; });
+            var min = Math.min.apply(null, cand.map(function (k) { return starsDe(lista[k].id); }));
+            cand = cand.filter(function (k) { return starsDe(lista[k].id) === min; });
+            i = cand[Math.floor(Math.random() * cand.length)];
+          } else i = +b.dataset.i;
+          try { localStorage.setItem(ultimoKey, lista[i].id); } catch (x) { }
+          pin.onclick = null;
+          montar(pin, nv, d, lista[i], "vocab", { enClase: true, volver: lista.length > 1 ? elegir : null });
+          ov.scrollTo(0, 0);
+        };
+      };
+      if (lista.length > 1) elegir(); else montar(pin, nv, d, lista[0], "vocab", { enClase: true });
       cb && cb(true);
     });
   }
-  function tiene(nv, id, cb) { cargarNivel(nv, function (d) { cb(!!(d && d.escenarios.some(function (x) { return x.id === id; }))); }); }
+  function tiene(nv, slug, cb) { cargarNivel(nv, function (d) { cb(deClase(d, slug).length); }); }
   window.MKConv = { evaluar: evaluar, tokens: tokens, sim: sim, pista: pista, abrir: abrir, tiene: tiene, estado: function () { return S; } };
   if ($app) render();
 })();

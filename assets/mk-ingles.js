@@ -610,15 +610,15 @@
     var slug = m[1], nv = m[2].toLowerCase();
     function cargar(cb) {
       if (window.MKConv) return cb();
-      var l = document.createElement("link"); l.rel = "stylesheet"; l.href = "assets/conversacion.css?v=2"; document.head.appendChild(l);
-      var s = document.createElement("script"); s.src = "assets/conversacion.js?v=2"; s.onload = cb; document.head.appendChild(s);
+      var l = document.createElement("link"); l.rel = "stylesheet"; l.href = "assets/conversacion.css?v=3"; document.head.appendChild(l);
+      var s = document.createElement("script"); s.src = "assets/conversacion.js?v=3"; s.onload = cb; document.head.appendChild(s);
     }
     cargar(function () {
       MKConv.tiene(nv, slug, function (ok) {
         if (!ok) return;
         var bar = document.querySelector(".th-bar");
         if (!bar) { bar = el("div", "th-bar"); card.parentNode.insertBefore(bar, card); }
-        var b = el("button", "th-open-btn cv-in-clase", "🗣️ Conversación"); b.type = "button";
+        var b = el("button", "th-open-btn cv-in-clase", "🗣️ Conversación" + (ok > 1 ? " (" + ok + ")" : "")); b.type = "button";
         b.onclick = function () { if (window.MKVoz) MKVoz.stop(); MKConv.abrir(nv, slug); };
         bar.appendChild(b);
       });

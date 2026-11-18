@@ -100,3 +100,21 @@ body.cv-lock { overflow: hidden; }
 .cv-pin { max-width: 760px; margin: 0 auto; padding: 10px 16px; }
 .cv-panel .cv-input { bottom: 0; }
 .cv-in-clase { background: linear-gradient(135deg, #ec4899, #8b5cf6) !important; box-shadow: 0 5px 0 #6d28d9 !important; }
+
+/* Elegir situación y encabezado grande de la situación */
+.cv-sorpresa { width: 100%; border: 0; border-radius: 18px; min-height: 52px; font-weight: 900; font-size: 1.05rem; color: #fff; cursor: pointer; margin-bottom: 12px;
+  background: linear-gradient(135deg, #ec4899, #8b5cf6); box-shadow: 0 5px 0 #6d28d9; }
+.cv-sits { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+.cv-sit { border: 0; text-align: left; background: #fff; border-radius: 20px; padding: 14px; cursor: pointer; display: flex; flex-direction: column; gap: 4px;
+  box-shadow: 0 5px 0 #ddd6fe; font: inherit; color: inherit; min-height: 150px; }
+.cv-sit:active { transform: translateY(3px); box-shadow: 0 2px 0 #ddd6fe; }
+.cv-sit b { font-size: 1.1rem; color: #4c1d95; }
+.cv-sit small { color: #475569; line-height: 1.35; }
+.cv-sitem { font-size: 2.6rem; line-height: 1; }
+.cv-sitst { margin-top: auto; }
+.cv-otras { border: 0; background: none; color: #2563eb; font-weight: 900; font-size: 1rem; min-height: 44px; cursor: pointer; padding: 0; }
+.cv-sit-hero { display: flex; gap: 14px; align-items: center; border-top-width: 8px; }
+.cv-sit-hero small { text-transform: uppercase; letter-spacing: .06em; font-weight: 900; color: #ec4899; font-size: .72rem; }
+.cv-sit-hero h2 { font-size: 1.4rem; }
+.cv-bigem { font-size: 3.4rem; line-height: 1; flex: 0 0 auto; background: #eef2ff; border-radius: 22px; width: 76px; height: 76px; display: grid; place-items: center; }
+@media (max-width: 380px) { .cv-bigem { font-size: 2.6rem; width: 60px; height: 60px; } .cv-sit-hero h2 { font-size: 1.2rem; } }
