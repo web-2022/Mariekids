@@ -1,0 +1,394 @@
+@ eng-a1-w1
+# ⏰ | Tu mañana | Una amiga nueva te pregunta por tu rutina de la mañana.
+> What time do you get up? | ¿A qué hora te levantas? | I get up at six thirty. | I get up at 6:30. ~ At six thirty.
+> What do you do after that? | ¿Qué haces después? | I take a shower and get dressed. | I take a shower.
+> Do you have breakfast at home? | ¿Desayunas en casa? | Yes, I have breakfast with my family. | Yes, I do.
+> How do you go to school? | ¿Cómo vas al colegio? | I go to school by bus. | By bus.
+! \bi go to school in bus\b | I go to school by bus. | Con transportes se usa «by»: «BY bus».
+# 🌙 | Tu noche | Tu abuelo te pregunta qué haces en la noche.
+> What do you do after school? | ¿Qué haces después del colegio? | I do my homework. | I do homework.
+! \bi make my homework\b | I do my homework. | Las tareas se «hacen» con «do»: «do my homework».
+> What time do you have dinner? | ¿A qué hora cenas? | I have dinner at seven. | At seven.
+> Do you watch TV at night? | ¿Ves tele en la noche? | Yes, I watch TV for an hour. | No, I read a book.
+> What time do you go to bed? | ¿A qué hora te acuestas? | I go to bed at nine. | At nine o'clock.
+# 👨‍🍳 | La rutina de tu papá | Un compañero te pregunta por la rutina de tu papá.
+> What does your dad do in the morning? | ¿Qué hace tu papá en la mañana? | He gets up early and makes coffee. | He makes coffee.
+! \bhe get up\b | He gets up early. | Con «he» el verbo lleva -s: «he GETS up».
+> Where does he work? | ¿Dónde trabaja? | He works in a hospital. | In a hospital.
+! \bhe work in\b | He works in a hospital. | Con «he» el verbo lleva -s: «he WORKS».
+> What time does he come home? | ¿A qué hora llega a casa? | He comes home at six. | At six.
+> Does he cook dinner? | ¿Él cocina la cena? | Yes, he cooks dinner on Fridays. | Yes, he does.
+
+@ eng-a1-w1-c2
+# 🎤 | Entrevista a una deportista | Entrevistas a una nadadora para el periódico escolar.
+> Ask her where she lives. | Pregúntale dónde vive. | Where do you live? | Where do you live, please?
+! \bwhere you live\b | Where do you live? | En las preguntas va «do»: «Where DO you live?».
+> I live in Cusco. Ask her if she trains every day. | Vivo en Cusco. Pregúntale si entrena todos los días. | Do you train every day? | Do you practice every day?
+> Yes, I do. Ask her what she eats for breakfast. | Sí. Pregúntale qué desayuna. | What do you eat for breakfast? | What do you have for breakfast?
+> Oats and fruit. Thank her. | Avena y fruta. Agradécele. | Thank you very much! | Thank you for the interview!
+# 🐱 | ¿Tu gato hace eso? | Tu amigo te pregunta por tu gato.
+> Does your cat sleep a lot? | ¿Tu gato duerme mucho? | Yes, he sleeps all day. | Yes, he does.
+> Does he eat fish? | ¿Come pescado? | No, he doesn't eat fish. | No, he doesn't.
+! \bhe (do not|dont) eat\b | He doesn't eat fish. | Con «he» la negación es «doesn't».
+! \bhe doesn.t eats\b|\bhe does not eats\b | He doesn't eat fish. | Después de «doesn't» el verbo va sin -s: «doesn't EAT».
+> Does he play with you? | ¿Juega contigo? | Yes, he plays with me every day. | Yes, he does.
+> What does he do at night? | ¿Qué hace en la noche? | He runs around the house. | He sleeps.
+# 🏫 | Tu colegio | Una visitante pregunta por tu colegio.
+> Do you wear a uniform? | ¿Usas uniforme? | Yes, we wear a uniform. | Yes, we do.
+> Does your school have a pool? | ¿Tu colegio tiene piscina? | No, it doesn't. | No, it doesn't have a pool.
+> What subject do you like? | ¿Qué curso te gusta? | I like math. | Math. ~ I like science.
+> Does your teacher give a lot of homework? | ¿Tu profesora deja mucha tarea? | Yes, she does. | No, she doesn't.
+
+@ eng-a1-w1-c3
+# 🚉 | En la estación de tren | Preguntas la hora en una estación.
+> Excuse me, what time is it? | Disculpa, ¿qué hora es? | It is half past three. | It's three thirty.
+> What time does the train leave? | ¿A qué hora sale el tren? | It leaves at four o'clock. | At four o'clock.
+> How many minutes is that? | ¿Cuántos minutos faltan? | Thirty minutes. | It's thirty minutes.
+> Thank you! | ¡Gracias! | You're welcome. | No problem.
+# 🎬 | Horario del cine | Lees el horario del cine con tu hermana.
+> What time is the first movie? | ¿A qué hora es la primera película? | It is at a quarter past two. | At two fifteen.
+> And the second one? | ¿Y la segunda? | It is at a quarter to six. | At five forty-five.
+> What time is it now? | ¿Qué hora es ahora? | It is five o'clock. | It's five.
+> Let's see the second one! | ¡Veamos la segunda! | OK, let's go! | Good idea!
+# 📱 | Llamada a tu abuela | Tu abuela llama y pregunta por horarios.
+> What time do you have lunch? | ¿A qué hora almuerzas? | I have lunch at one o'clock. | At one.
+> What time does your school finish? | ¿A qué hora termina tu colegio? | It finishes at half past two. | At two thirty.
+> Can I visit you at four? | ¿Puedo visitarte a las cuatro? | Yes, four o'clock is good. | Yes, sure!
+> See you at four! | ¡Nos vemos a las cuatro! | See you, Grandma! | See you!
+
+@ eng-a1-w2
+# 🦷 | Hábitos saludables | La doctora pregunta por tus hábitos.
+> How often do you brush your teeth? | ¿Con qué frecuencia te lavas los dientes? | I brush my teeth three times a day. | Three times a day.
+> Do you eat vegetables? | ¿Comes verduras? | Yes, I usually eat vegetables. | Yes, I often eat vegetables.
+> How often do you eat candy? | ¿Con qué frecuencia comes dulces? | I sometimes eat candy. | Sometimes.
+> Do you exercise? | ¿Haces ejercicio? | Yes, I always play soccer on weekends. | Yes, twice a week.
+# 🎮 | Videojuegos | Tu mamá quiere saber cuánto juegas.
+> How often do you play video games? | ¿Con qué frecuencia juegas videojuegos? | I play video games on weekends. | Only on weekends.
+> Do you play on school days? | ¿Juegas los días de colegio? | No, I never play on school days. | No, never.
+> How often do you read? | ¿Con qué frecuencia lees? | I read every night. | Every night.
+> Good job! | ¡Buen trabajo! | Thanks, Mom! | Thank you!
+# 🏖️ | Vacaciones | Un amigo te pregunta qué haces en vacaciones.
+> How often do you go to the beach? | ¿Con qué frecuencia vas a la playa? | I go to the beach once a week. | Once a week.
+> Do you ever visit your cousins? | ¿Alguna vez visitas a tus primos? | Yes, I often visit them. | Yes, sometimes.
+> Do you get up early on holiday? | ¿Te levantas temprano en vacaciones? | No, I hardly ever get up early. | No, never.
+> Lucky you! | ¡Qué suerte! | Ha ha, yes! | Yes!
+
+@ eng-a1-w2-c2
+# 🐕 | Tu perro | Un vecino pregunta por tu perro.
+> Is your dog friendly? | ¿Tu perro es amigable? | Yes, he is always friendly. | Yes, he's always friendly.
+! \bhe always is\b | He is always friendly. | Con «be», el adverbio va después: «he IS ALWAYS».
+> Does he bark at night? | ¿Ladra en la noche? | He never barks at night. | No, never.
+> Do you walk him every day? | ¿Lo paseas todos los días? | Yes, I always walk him after school. | Yes, every day.
+! \bi walk always\b | I always walk him. | El adverbio va antes del verbo: «I ALWAYS walk».
+> He is a good dog! | ¡Es un buen perro! | Yes, he is! | Thanks!
+# 🎒 | Llegar al colegio | Tu tutora conversa sobre puntualidad.
+> Are you late for school? | ¿Llegas tarde al colegio? | No, I am never late. | No, I'm never late.
+! \bi never am late\b | I am never late. | Con «be», el adverbio va después: «I am NEVER late».
+> How do you usually come? | ¿Cómo vienes normalmente? | I usually come by car. | Usually by car.
+> Are you tired in the morning? | ¿Estás cansado en la mañana? | I am sometimes tired. | Sometimes.
+> Do you eat breakfast before school? | ¿Desayunas antes del colegio? | I always eat breakfast. | Yes, always.
+# 🧹 | Tareas de la casa | Hablas de tareas de la casa con tu tía.
+> Do you help at home? | ¿Ayudas en casa? | Yes, I often help my mom. | Yes, often.
+> Do you make your bed? | ¿Tiendes tu cama? | I always make my bed. | Yes, always.
+> Do you wash the dishes? | ¿Lavas los platos? | I sometimes wash the dishes. | Sometimes.
+> Is your room tidy? | ¿Tu cuarto está ordenado? | It is usually tidy. | Usually.
+
+@ eng-a1-w3
+# 🎨 | Pasatiempos | Conoces a alguien en un taller de verano.
+> What do you like doing in your free time? | ¿Qué te gusta hacer en tu tiempo libre? | I like drawing and reading. | I love drawing.
+! \bi like draw\b | I like drawing. | Después de «like» va el verbo con -ing: «like DRAWING».
+> Do you enjoy cooking? | ¿Disfrutas cocinar? | Yes, I enjoy cooking with my dad. | Yes, I do.
+! \bi enjoy to cook\b | I enjoy cooking. | Después de «enjoy» siempre va -ing: «enjoy COOKING».
+> What do you hate doing? | ¿Qué odias hacer? | I hate cleaning my room. | I hate washing the dishes.
+> Me too! | ¡Yo también! | Ha ha! | Ha ha, really?
+# 🎶 | Gustos musicales | Hablas de música con tu primo.
+> Do you like singing? | ¿Te gusta cantar? | Yes, I love singing. | Yes, I do.
+> Do you like dancing? | ¿Te gusta bailar? | No, I don't like dancing. | Not really.
+> What do you love listening to? | ¿Qué te encanta escuchar? | I love listening to pop music. | Pop music.
+> Let's sing together! | ¡Cantemos juntos! | Yes, let's sing! | OK!
+# 🏕️ | Campamento | En el campamento, el guía pregunta qué disfrutan.
+> Do you like swimming in the lake? | ¿Te gusta nadar en el lago? | Yes, I like swimming. | Yes, I do.
+> Do you enjoy camping? | ¿Disfrutas acampar? | Yes, I enjoy sleeping in a tent. | Yes, a lot.
+> What don't you like doing here? | ¿Qué no te gusta hacer aquí? | I don't like walking a lot. | I don't like getting up early.
+> OK, no long walks today! | ¡Bien, hoy no hay caminatas largas! | Great! | Thank you!
+
+@ eng-a1-w3-c2
+# ⚽ | Inscripción en un club | Te inscribes en un club deportivo.
+> What sport do you play? | ¿Qué deporte practicas? | I play soccer. | Soccer.
+> How often do you play? | ¿Con qué frecuencia juegas? | I play twice a week. | Twice a week.
+> Do you do any other sport? | ¿Haces otro deporte? | Yes, I do karate. | Yes, I go swimming.
+! \bi play karate\b | I do karate. | Para artes marciales se usa «do»: «DO karate».
+> Great! Here is your card. | ¡Genial! Aquí está tu carné. | Thank you! | Thanks!
+# 🏓 | Los hobbies de tu familia | Tu profesora pregunta por los pasatiempos de tu familia.
+> What is your mom's hobby? | ¿Cuál es el pasatiempo de tu mamá? | She likes gardening. | Gardening.
+> Does your brother play basketball? | ¿Tu hermano juega básquet? | Yes, he plays basketball. | Yes, he does.
+> What about your grandpa? | ¿Y tu abuelo? | He plays chess. | He likes chess.
+> And your hobby? | ¿Y tu pasatiempo? | My hobby is painting. | I like painting.
+# 📺 | El partido en la tele | Ves un partido con tu tío.
+> Who is your favorite player? | ¿Quién es tu jugador favorito? | My favorite player is Messi. | Messi.
+> Do you go to the stadium? | ¿Vas al estadio? | Sometimes I go with my dad. | Yes, sometimes.
+> Do you play on a team? | ¿Juegas en un equipo? | Yes, I play on my school team. | Yes, I do.
+> Goal! | ¡Gol! | Goal! Yes! | Yay!
+
+@ eng-a1-w3-c3
+# 🎭 | Audición del show escolar | Te inscribes en el show de talentos.
+> Can you sing? | ¿Sabes cantar? | Yes, I can sing. | Yes, I can.
+> Can you play an instrument? | ¿Sabes tocar un instrumento? | Yes, I can play the guitar. | Yes, the guitar.
+! \bi can to play\b | I can play the guitar. | Después de «can» va el verbo sin «to»: «can PLAY».
+> Can you dance? | ¿Sabes bailar? | No, I can't dance. | No, I can't.
+> OK, you can sing and play! | ¡Bien, cantarás y tocarás! | Great! Thank you! | Thank you!
+# 🐧 | Animales y habilidades | En el acuario hablan de lo que pueden hacer los animales.
+> Can penguins fly? | ¿Los pingüinos pueden volar? | No, they can't fly. | No, they can't.
+> Can they swim? | ¿Pueden nadar? | Yes, they can swim very well. | Yes, they can.
+> Can a fish walk? | ¿Un pez puede caminar? | No, it can't. | No!
+> What can a parrot do? | ¿Qué puede hacer un loro? | A parrot can talk. | It can talk and fly.
+# 🧑‍🍳 | ¿Puedes ayudar? | Tu mamá necesita ayuda en casa.
+> Can you cook rice? | ¿Sabes cocinar arroz? | Yes, I can cook rice. | No, I can't.
+> Can you ride a bike to the store? | ¿Puedes ir en bici a la tienda? | Yes, I can. | Yes, I can ride a bike.
+> Can your brother help too? | ¿Tu hermano puede ayudar también? | No, he can't. He is sleeping. | No, he can't.
+> Thank you, sweetie! | ¡Gracias, cariño! | You're welcome, Mom! | No problem!
+
+@ eng-a1-w4
+# 🔎 | Perdido en el centro comercial | Tu hermanito se perdió. Describes cómo es al guardia.
+> What does your brother look like? | ¿Cómo es tu hermano? | He is short and he has black hair. | He is short with black hair.
+! \bhe has short\b | He is short. | La estatura va con «is»: «he IS short».
+> What color are his eyes? | ¿De qué color son sus ojos? | He has brown eyes. | Brown.
+> What is he wearing? | ¿Qué lleva puesto? | He is wearing a red T-shirt. | A red T-shirt.
+> Is this him? | ¿Es él? | Yes! Thank you very much! | Yes, that's him!
+# 👵 | Recoger a la abuela | Tu amiga va a recoger a tu abuela al aeropuerto.
+> What does your grandma look like? | ¿Cómo es tu abuela? | She is tall and she has gray hair. | She has gray hair.
+> Does she wear glasses? | ¿Usa lentes? | Yes, she wears glasses. | Yes, she does.
+> Is her hair long or short? | ¿Su pelo es largo o corto? | It is short and curly. | Short.
+> OK, I can find her! | ¡Bien, la puedo encontrar! | Thank you! | Great!
+# 🖍️ | Dibuja a tu amigo | Un compañero dibuja a alguien según tu descripción.
+> Is your friend tall? | ¿Tu amiga es alta? | No, she is short. | No, she isn't.
+> What color is her hair? | ¿De qué color es su pelo? | She has blond hair. | Blond.
+! \bshe has hair blond\b | She has blond hair. | El adjetivo va antes: «BLOND hair».
+> Long or short? | ¿Largo o corto? | Long and straight. | It's long.
+> Here is the picture! | ¡Aquí está el dibujo! | It's perfect! | Wow, thanks!
+
+@ eng-a1-w4-c2
+# 🐶 | Adoptar una mascota | En el albergue describes al perrito que quieres.
+> What kind of dog do you want? | ¿Qué tipo de perro quieres? | I want a friendly dog. | A friendly dog.
+> This one is very calm. Do you like calm dogs? | Este es muy tranquilo. ¿Te gustan los perros tranquilos? | Yes, I like calm dogs. | Yes, I do.
+> Are you a patient person? | ¿Eres una persona paciente? | Yes, I am very patient. | Yes, I am.
+> Perfect! | ¡Perfecto! | Thank you! | Great!
+# 👩‍🏫 | Tu profesor favorito | Hablas de tu profesor favorito.
+> Who is your favorite teacher? | ¿Quién es tu profesor favorito? | My favorite teacher is Mr. Torres. | Mr. Torres.
+> What is he like? | ¿Cómo es (su personalidad)? | He is funny and kind. | He's funny.
+! \bhe is like funny\b | He is funny. | «What is he like?» se responde sin «like»: «He is funny».
+> Is he strict? | ¿Es estricto? | No, he isn't strict. | No, he's relaxed.
+> I want a teacher like him! | ¡Quiero un profesor como él! | Yes, he is great! | Me too!
+# 🤝 | Mejor amigo | Una nueva amiga pregunta por tu mejor amigo.
+> Who is your best friend? | ¿Quién es tu mejor amigo? | My best friend is Matías. | Matías.
+> What is he like? | ¿Cómo es? | He is friendly and generous. | He's very nice.
+> Is he shy? | ¿Es tímido? | No, he is very talkative. | No, he isn't.
+> He sounds cool! | ¡Suena genial! | Yes, he is. | He is!
+
+@ eng-a1-w4-c3
+# 🤒 | En el médico | Te sientes mal y vas al médico.
+> What's the matter? | ¿Qué te pasa? | I have a headache. | My head hurts.
+> Does your stomach hurt? | ¿Te duele el estómago? | Yes, my stomach hurts too. | Yes, a little.
+! \bmy stomach hurt\b | My stomach hurts. | «Stomach» es «it»: «my stomach HURTS».
+> Open your mouth, please. | Abre la boca, por favor. | OK. | Aaah.
+> Rest and drink water. | Descansa y toma agua. | Thank you, doctor. | Thank you!
+# 🧘 | Clase de yoga | La profesora de yoga da instrucciones.
+> Touch your toes. Can you do it? | Toca los dedos de tus pies. ¿Puedes? | Yes, I can. | No, I can't.
+> Raise your arms. Are your arms up? | Levanta los brazos. ¿Están arriba? | Yes, my arms are up. | Yes.
+> Close your eyes. How do you feel? | Cierra los ojos. ¿Cómo te sientes? | I feel relaxed. | Relaxed.
+> Very good! | ¡Muy bien! | Thank you! | Thanks!
+# 👾 | Inventa un monstruo | Inventas un monstruo con tu amiga.
+> How many heads does your monster have? | ¿Cuántas cabezas tiene tu monstruo? | It has two heads. | Two heads.
+> How many eyes? | ¿Cuántos ojos? | It has five eyes. | Five.
+> Does it have long legs? | ¿Tiene piernas largas? | Yes, it has very long legs. | Yes, it does.
+> What color are its hands? | ¿De qué color son sus manos? | Its hands are green. | Green.
+
+@ eng-a1-w4-c4
+# 🎒 | Objetos perdidos | En la oficina de objetos perdidos.
+> Is this your jacket? | ¿Esta es tu casaca? | Yes, it is mine. | Yes, it's mine.
+> And this bag? Is it yours? | ¿Y esta mochila? ¿Es tuya? | No, it is my sister's bag. | No, it's my sister's.
+> Whose umbrella is this? | ¿De quién es este paraguas? | It is my dad's. | It's his.
+> Here you are. | Aquí tienes. | Thank you very much! | Thanks!
+# 🏠 | Tu cuarto y el de tu hermano | Tu amiga visita y pregunta de quién es cada cosa.
+> Is this your bed? | ¿Esta es tu cama? | Yes, this is my bed. | Yes, it's mine.
+> Whose guitar is that? | ¿De quién es esa guitarra? | It is my brother's guitar. | It's his.
+> Are these your parents' books? | ¿Son libros de tus papás? | Yes, they are their books. | Yes, they're theirs.
+> Your room is nice! | ¡Tu cuarto es lindo! | Thank you! | Thanks!
+# 🐾 | El parque de perros | Hablas con dueños de perros.
+> Is that your dog? | ¿Ese es tu perro? | Yes, he is my dog. | Yes, he's mine.
+> What is his name? | ¿Cómo se llama? | His name is Rocky. | Rocky.
+> Whose dog is the white one? | ¿De quién es el blanco? | It is our neighbor's dog. | It's my neighbor's.
+> They are friends! | ¡Son amigos! | Yes, they play together. | Yes!
+
+@ eng-a1-w5
+# 🗺️ | Dar indicaciones | Un turista busca el museo.
+> Excuse me, where is the museum? | Disculpa, ¿dónde está el museo? | Go straight and turn left. | Go straight and then turn left.
+> Is it far? | ¿Está lejos? | No, it is near. | No, it's very near.
+> Is it next to the park? | ¿Está al lado del parque? | Yes, it is next to the park. | Yes, it is.
+> Thank you! | ¡Gracias! | You're welcome! | No problem.
+# 🏫 | Llegar a tu casa | Un compañero quiere visitarte y pides cómo llegar.
+> How do I get to your house from school? | ¿Cómo llego a tu casa desde el colegio? | Turn right and walk two blocks. | Turn right and go straight two blocks.
+> And then? | ¿Y luego? | Turn left at the bakery. | Turn left.
+> What color is your house? | ¿De qué color es tu casa? | It is blue. | Blue.
+> See you there! | ¡Nos vemos allí! | See you! | OK, see you!
+# 🏬 | En el centro comercial | Buscas la tienda de juguetes.
+> Excuse me, where is the toy store? | Disculpa, ¿dónde está la juguetería? | It is on the second floor. | On the second floor.
+> Where are the stairs? | ¿Dónde están las escaleras? | They are behind the elevator. | Behind the elevator.
+> Is it between the shoe store and the bank? | ¿Está entre la zapatería y el banco? | Yes, it is between them. | Yes, it is.
+> Thank you! | ¡Gracias! | You're welcome. | Bye!
+
+@ eng-a1-w5-c2
+# 💊 | Buscar una farmacia | Estás en otra ciudad y necesitas una farmacia.
+> Ask for a pharmacy. | Pregunta por una farmacia. | Excuse me, is there a pharmacy near here? | Excuse me, where is the pharmacy?
+> Yes, on Lima Street. Ask how to get there. | Sí, en la calle Lima. Pregunta cómo llegar. | How do I get there? | Can you tell me how to get there?
+> Go straight two blocks. It's on the corner. Thank her. | Sigue dos cuadras. Está en la esquina. Agradece. | Thank you very much! | Thanks a lot!
+> Have a nice day! | ¡Que tengas un buen día! | You too! | Thanks, you too!
+# 🚇 | En el metro | Preguntas cómo llegar al estadio en metro.
+> Ask how to get to the stadium. | Pregunta cómo llegar al estadio. | Excuse me, how can I get to the stadium? | How do I get to the stadium?
+> Take line two. Ask how many stops. | Toma la línea dos. Pregunta cuántas paradas. | How many stops is it? | How many stops?
+> Five stops. Ask if it is far from the station. | Cinco paradas. Pregunta si está lejos de la estación. | Is it far from the station? | Is it far?
+> No, it's very close. | No, está muy cerca. | Great, thank you! | Thanks!
+# 🏖️ | En la playa | Buscas el baño en una playa.
+> Ask where the bathroom is. | Pregunta dónde está el baño. | Excuse me, where is the bathroom? | Where are the restrooms, please?
+> It's behind the restaurant. Ask if it's open. | Está detrás del restaurante. Pregunta si está abierto. | Is it open? | Is it open now?
+> Yes. Ask if there are showers too. | Sí. Pregunta si también hay duchas. | Are there showers too? | Are there any showers?
+> Yes, next to the bathroom. | Sí, al lado del baño. | Thank you! | Thanks!
+
+@ eng-a1-w6
+# 🧳 | Hacer la maleta | Preparas la maleta para un viaje.
+> We are going to the mountains. What do you need? | Vamos a la sierra. ¿Qué necesitas? | I need a jacket and a scarf. | A jacket.
+> Do you need shorts? | ¿Necesitas shorts? | No, I don't. It's cold. | No.
+> What shoes do you want? | ¿Qué zapatos quieres? | My boots, please. | Boots.
+> Don't forget your hat! | ¡No olvides tu gorro! | OK, thank you! | OK, Mom!
+# 👕 | ¿Qué llevas puesto? | Tu amigo te llama en videollamada.
+> What are you wearing today? | ¿Qué llevas puesto hoy? | I am wearing jeans and a T-shirt. | Jeans and a T-shirt.
+> What color is your T-shirt? | ¿De qué color es tu polo? | It is yellow. | Yellow.
+> Are you wearing sneakers? | ¿Llevas zapatillas? | Yes, I am wearing white sneakers. | Yes, I am.
+> Nice! | ¡Bonito! | Thanks! | Thank you!
+# 🎭 | Disfraz | Preparas un disfraz para una fiesta.
+> What do you want to wear to the party? | ¿Qué quieres ponerte para la fiesta? | I want to wear a pirate costume. | A pirate costume.
+> Do you need a hat? | ¿Necesitas sombrero? | Yes, a black hat. | Yes, I do.
+> And boots? | ¿Y botas? | Yes, I need black boots. | Yes.
+> You look great! | ¡Te ves genial! | Thank you! | Thanks!
+
+@ eng-a1-w6-c2
+# 👟 | Comprar zapatillas | Compras zapatillas en una tienda.
+> Hello! Can I help you? | ¡Hola! ¿Te ayudo? | Yes, I'm looking for sneakers. | Yes, please. I want some sneakers.
+> What size are you? | ¿Qué talla eres? | I am size thirty-six. | Size thirty-six.
+> Do you want to try them on? | ¿Quieres probártelas? | Yes, please. | Yes, can I try them on?
+> How much are they? | ¿Cuánto cuestan? | They are eighty soles. | Eighty soles.
+# 🎁 | Regalo para mamá | Compras un regalo para tu mamá.
+> Ask the price of the scarf. | Pregunta el precio de la chalina. | How much is this scarf? | How much is it?
+> It's thirty soles. Ask for another color. | Cuesta treinta soles. Pide otro color. | Do you have it in red? | Is there a red one?
+> Yes, here it is. Say you'll take it. | Sí, aquí está. Di que lo llevas. | I'll take it, please. | I'll take it.
+> Cash or card? | ¿Efectivo o tarjeta? | Cash, please. | Card, please.
+# 👗 | Devolver una prenda | La talla no te queda y vuelves a la tienda.
+> Hello! What's the problem? | ¡Hola! ¿Cuál es el problema? | This T-shirt is too small. | It's too small.
+> Do you want a bigger size? | ¿Quieres una talla más grande? | Yes, a medium, please. | Yes, please.
+> Here you are. Do you want to try it on? | Aquí tienes. ¿Quieres probártela? | Yes. Where is the fitting room? | Yes, please.
+> It's over there. | Está por allá. | Thank you! | Thanks!
+
+@ eng-a1-w6-c3
+# 🍽️ | Pedir en un restaurante | Pides la comida con tu familia.
+> Are you ready to order? | ¿Listos para pedir? | Yes, I'd like the chicken, please. | Yes, chicken, please.
+> Would you like a salad? | ¿Quisiera ensalada? | Yes, please. | No, thank you.
+> What would you like to drink? | ¿Qué desea tomar? | Lemonade, please. | I'd like a lemonade.
+> Anything else? | ¿Algo más? | No, thank you. | That's all, thanks.
+# 🍰 | El postre y la cuenta | Terminas de comer.
+> Would you like dessert? | ¿Desea postre? | Yes, chocolate cake, please. | Yes, please. Ice cream.
+> How was your meal? | ¿Qué tal la comida? | It was delicious, thank you. | Delicious!
+> Ask for the bill. | Pide la cuenta. | Can I have the bill, please? | The bill, please.
+> Here you are. | Aquí tiene. | Thank you! | Thanks!
+# 🚗 | Pedido para llevar | Pides comida para llevar.
+> Hi! For here or to go? | ¡Hola! ¿Para comer aquí o para llevar? | To go, please. | It's to go.
+> What would you like? | ¿Qué desea? | Two burgers and fries, please. | Two burgers, please.
+> Any drinks? | ¿Bebidas? | Two waters, please. | No, thanks.
+> That's thirty soles. | Son treinta soles. | Here you are. | OK, here you are.
+
+@ eng-a1-w7
+# 📱 | Planes del fin de semana | Tu amigo te escribe el viernes.
+> What do you do on weekends? | ¿Qué haces los fines de semana? | I usually go to the park. | I play soccer.
+> Do you sleep late on Saturday? | ¿Duermes hasta tarde el sábado? | Yes, I sleep late. | Yes, I do.
+> Do you want to go to the cinema on Sunday? | ¿Quieres ir al cine el domingo? | Yes, I'd love to! | Sure!
+> Great! See you on Sunday! | ¡Genial! ¡Nos vemos el domingo! | See you! | See you on Sunday!
+# 🏞️ | Picnic familiar | Organizan un picnic.
+> Where do you want to go this weekend? | ¿A dónde quieres ir este fin de semana? | Let's go to the countryside. | To the park.
+> What do we take? | ¿Qué llevamos? | Sandwiches, fruit and water. | Sandwiches and juice.
+> Do you want to ride bikes? | ¿Quieres montar bici? | Yes, let's ride bikes! | Yes!
+> Perfect! | ¡Perfecto! | Yay! | Great!
+# 🎨 | Un sábado en casa | Llueve el sábado.
+> It's raining. What do you want to do? | Está lloviendo. ¿Qué quieres hacer? | Let's watch a movie. | Let's play a board game.
+> Do you want popcorn? | ¿Quieres canchita? | Yes, please! | Yes!
+> Can you help me bake cookies later? | ¿Me ayudas a hornear galletas luego? | Yes, I love baking. | Sure!
+> What a nice Saturday! | ¡Qué lindo sábado! | Yes! | Yes, it is!
+
+@ eng-a1-w7-c2
+# 🎉 | ¿Dónde estabas? | Tu amiga te buscó ayer.
+> Where were you yesterday? | ¿Dónde estabas ayer? | I was at my grandma's house. | At my grandma's.
+! \bi were\b | I was at my grandma's house. | Con «I» se usa «was»: «I WAS».
+> Was it fun? | ¿Fue divertido? | Yes, it was fun. | Yes, it was.
+> Were your cousins there? | ¿Estaban tus primos? | Yes, they were there. | Yes, they were.
+! \bthey was\b | They were there. | Con «they» se usa «were»: «they WERE».
+> Cool! | ¡Genial! | Yes! | It was great!
+# 🌧️ | ¿Cómo estuvo? | Tu tía pregunta por el paseo de ayer.
+> How was the trip? | ¿Cómo estuvo el paseo? | It was great. | It was fantastic!
+> Was the weather good? | ¿Estuvo bueno el clima? | No, it was cloudy. | No, it wasn't.
+> Were you tired? | ¿Estabas cansado? | Yes, I was very tired. | Yes, I was.
+> Was the food good? | ¿Estaba buena la comida? | Yes, it was delicious. | Yes!
+# 🏫 | El primer día | Tu papá pregunta por tu primer día en el colegio nuevo.
+> How was your first day? | ¿Cómo fue tu primer día? | It was good. | It was very good!
+> Were you nervous? | ¿Estabas nervioso? | Yes, I was a little nervous. | Yes, I was.
+> Were the kids friendly? | ¿Los niños eran amables? | Yes, they were very friendly. | Yes, they were.
+> Was your teacher nice? | ¿Tu profesora era amable? | Yes, she was nice. | Yes, she was.
+
+@ eng-a1-w7-c3
+# 🏖️ | Lunes en el colegio | Tu profesora pregunta por tu fin de semana.
+> What did you do last weekend? | ¿Qué hiciste el fin de semana pasado? | I played soccer with my friends. | I visited my grandparents.
+! \bi play soccer\b | I played soccer. | Es pasado: «playED».
+> Did you watch TV? | ¿Viste tele? | Yes, I watched a movie. | Yes, I did.
+> Did you study? | ¿Estudiaste? | Yes, I studied on Sunday. | Yes, a little.
+> Sounds good! | ¡Suena bien! | It was fun! | Yes!
+# 🎂 | La fiesta de ayer | Un amigo no fue a la fiesta y te pregunta.
+> Did you dance at the party? | ¿Bailaste en la fiesta? | Yes, I danced a lot. | Yes, I did.
+> Did you play games? | ¿Jugaste juegos? | Yes, we played musical chairs. | Yes, we did.
+> What time did you arrive home? | ¿A qué hora llegaste a casa? | I arrived at nine. | At nine.
+> I want to go next time! | ¡Quiero ir la próxima vez! | Yes, come with me! | OK!
+# 📞 | Llamada a tu abuelo | Tu abuelo te llama el domingo en la noche.
+> Did you help your mom this weekend? | ¿Ayudaste a tu mamá este fin de semana? | Yes, I cleaned my room. | Yes, I did.
+> Did you visit the park? | ¿Visitaste el parque? | Yes, I walked my dog there. | Yes, I did.
+> Did you cook something? | ¿Cocinaste algo? | Yes, I cooked pancakes. | No, I didn't.
+> Good job! | ¡Buen trabajo! | Thank you, Grandpa! | Thanks!
+
+@ eng-a1-w8
+# 🎤 | Presentación personal | Te presentas en un club de inglés.
+> Tell us your name and age. | Dinos tu nombre y edad. | My name is Valeria and I am ten years old. | I am Valeria. I'm ten.
+> Where do you live? | ¿Dónde vives? | I live in Arequipa. | In Arequipa.
+> What do you like doing? | ¿Qué te gusta hacer? | I like reading and swimming. | I like swimming.
+> What can you do well? | ¿Qué sabes hacer bien? | I can play the piano. | I can draw very well.
+# 🤳 | Video para un amigo extranjero | Grabas un video sobre ti.
+> Describe yourself. | Descríbete. | I am tall and I have brown hair. | I have brown hair.
+> What is your personality like? | ¿Cómo es tu personalidad? | I am friendly and funny. | I'm friendly.
+> What do you usually do on weekends? | ¿Qué haces normalmente los fines de semana? | I usually visit my cousins. | I play soccer.
+> What did you do last weekend? | ¿Qué hiciste el fin de semana pasado? | I watched a movie. | I visited my grandma.
+# 🏆 | Entrevista para una beca | Una entrevista corta para un curso de verano.
+> Who is in your family? | ¿Quiénes son tu familia? | My mom, my dad and my sister. | I have a mom, a dad and a sister.
+> What is your favorite subject? | ¿Cuál es tu curso favorito? | My favorite subject is science. | Science.
+> How often do you study English? | ¿Con qué frecuencia estudias inglés? | I study English every day. | Three times a week.
+> Thank you. Good luck! | Gracias. ¡Buena suerte! | Thank you very much! | Thanks!
+
+@ eng-a1-w8-c2
+# 📧 | Correo a tu nuevo amigo | Dictas un correo a tu nuevo amigo de Canadá.
+> How do you start the email? | ¿Cómo empiezas el correo? | Hi Liam, | Dear Liam,
+> Say who you are. | Di quién eres. | My name is Pablo and I am from Peru. | I'm Pablo from Peru.
+> Ask him a question. | Hazle una pregunta. | What do you like doing? | What is your favorite sport?
+> How do you finish the email? | ¿Cómo terminas el correo? | Write soon! Pablo | Best wishes, Pablo
+# 🙏 | Correo de agradecimiento | Escribes para agradecer un regalo.
+> Start the email to Aunt Clara. | Empieza el correo para tía Clara. | Dear Aunt Clara, | Hi Aunt Clara,
+> Thank her for the gift. | Agradece el regalo. | Thank you very much for the book. | Thanks for the book.
+> Say why you like it. | Di por qué te gusta. | I love it because it is very funny. | It is very interesting.
+> Finish the email. | Termina el correo. | Love, Sara | Hugs, Sara
+# 📅 | Invitar por correo | Invitas a un amigo a tu cumpleaños.
+> Start the email. | Empieza el correo. | Hi Tomás, | Dear Tomás,
+> Invite him. | Invítalo. | Do you want to come to my birthday party? | Come to my birthday party!
+> Say the day and time. | Di el día y la hora. | It is on Saturday at four o'clock. | On Saturday at four.
+> Finish the email. | Termina el correo. | See you soon! Ana | Bye! Ana
