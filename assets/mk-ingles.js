@@ -610,8 +610,8 @@
     var slug = m[1], nv = m[2].toLowerCase();
     function cargar(cb) {
       if (window.MKConv) return cb();
-      var l = document.createElement("link"); l.rel = "stylesheet"; l.href = "assets/conversacion.css?v=3"; document.head.appendChild(l);
-      var s = document.createElement("script"); s.src = "assets/conversacion.js?v=3"; s.onload = cb; document.head.appendChild(s);
+      var l = document.createElement("link"); l.rel = "stylesheet"; l.href = "assets/conversacion.css?v=4"; document.head.appendChild(l);
+      var s = document.createElement("script"); s.src = "assets/conversacion.js?v=4"; s.onload = cb; document.head.appendChild(s);
     }
     cargar(function () {
       MKConv.tiene(nv, slug, function (ok) {

@@ -1,0 +1,508 @@
+// A0 · las dos primeras clases (eng-a0-w1, eng-a0-w1-c2) están en a0-base.js
+
+@ eng-a0-w1-c3
+# ✈️ | En el aeropuerto | Llegas a un aeropuerto. Una agente te pregunta tu nombre y de dónde eres.
+> Hello! What is your name? | ¡Hola! ¿Cómo te llamas? | My name is Ana. | I am Ana. ~ Ana.::Correcto y corto; con frase completa suena más amable.
+> Where are you from? | ¿De dónde eres? | I am from Peru. | I'm from Peru. ~ From Peru.
+! \bi am of peru\b | I am from Peru. | Para el país de origen se usa «from»: «I am FROM Peru».
+! \bi from\b | I am from Peru. | Falta «am»: «I AM from Peru».
+> Are you Peruvian? | ¿Eres peruana? | Yes, I am Peruvian. | Yes, I am. ~ Yes, I'm Peruvian.
+! \bperuvian\b.*\bi am\b|\bi am peruvians\b | Yes, I am Peruvian. | Las nacionalidades no llevan -s ni van antes: «I am Peruvian».
+> Welcome to the United States! | ¡Bienvenida a Estados Unidos! | Thank you! | Thanks! ~ Thank you very much!
+# 🌍 | Amigos de muchos países | En un campamento internacional conoces a niños de otros países.
+> Hi! I am Yuki. I am from Japan. And you? | ¡Hola! Soy Yuki. Soy de Japón. ¿Y tú? | Hi, Yuki! I am from Peru. | Hi! I'm from Peru.
+> Is Tom from England? | ¿Tom es de Inglaterra? | Yes, he is English. | Yes, he is. ~ Yes, Tom is English.
+! \bhe is england\b | Yes, he is English. | Después de «he is» va la nacionalidad: «English». El país es «England».
+> Where is Carlos from? | ¿De dónde es Carlos? | He is from Mexico. | Carlos is from Mexico. ~ From Mexico.
+! \bshe is from mexico\b | He is from Mexico. | Carlos es chico: usa «he».
+> Where is Sofia from? | ¿De dónde es Sofía? | She is from Brazil. | Sofia is from Brazil. ~ She's Brazilian.
+# 🎥 | Videollamada con una clase de otro país | Tu clase hace una videollamada con niños de Canadá.
+> Good morning! We are from Canada. Where are you from? | ¡Buenos días! Somos de Canadá. ¿De dónde son ustedes? | Good morning! We are from Peru. | We're from Peru. ~ Hello! We are Peruvian.
+! \bwe is\b | We are from Peru. | Con «we» se usa «are»: «We ARE».
+> What city are you from? | ¿De qué ciudad son? | We are from Lima. | We're from Lima. ~ From Lima.
+> What language do you speak? | ¿Qué idioma hablan? | We speak Spanish. | Spanish. ~ We speak Spanish and a little English.
+> Nice to meet you! | ¡Mucho gusto! | Nice to meet you too! | Nice to meet you too. Bye!
+
+@ eng-a0-w1-c4
+# 📞 | Deletrea tu nombre en el teléfono | Llamas a una biblioteca y te piden deletrear tu nombre.
+> Hello! What is your name, please? | ¡Hola! ¿Cómo te llamas, por favor? | My name is Ema. | I am Ema. ~ Ema.
+> How do you spell it? | ¿Cómo se deletrea? | E, M, A. | It's E, M, A.
++ \be\b.*\bm\b.*\ba\b
+> Is it E, M, A? | ¿Es E, M, A? | Yes, that's right. | Yes. ~ Yes, it is.
+> Thank you, Ema. Have a nice day! | Gracias, Ema. ¡Que tengas un buen día! | Thank you. Goodbye! | Thanks! Bye! ~ You too!
+# 🔤 | Juego de letras en clase | La profesora juega a las letras con la clase.
+> What is the first letter of the alphabet? | ¿Cuál es la primera letra del alfabeto? | It is A. | A. ~ The first letter is A.
+> What letter comes after B? | ¿Qué letra viene después de la B? | C comes after B. | C. ~ It's C.
+> What is the first letter of "apple"? | ¿Cuál es la primera letra de «apple»? | It is A. | A.
+> Spell "BAG", please. | Deletrea «BAG», por favor. | B, A, G. | It's B, A, G.
++ \bb\b.*\ba\b.*\bg\b
+# 🏷️ | Etiquetas para tus cuadernos | Tu amiga te ayuda a escribir etiquetas con nombres.
+> What is your friend's name? | ¿Cómo se llama tu amigo? | His name is Fabio. | He is Fabio. ~ Fabio.
+> How do you spell Fabio? | ¿Cómo se deletrea Fabio? | F, A, B, I, O. | It's F, A, B, I, O.
++ \bf\b.*\ba\b.*\bb\b
+> Is it with B or with V? | ¿Es con B o con V? | It is with B. | With B. ~ B.
+> Great! I can write it now. | ¡Genial! Ya puedo escribirlo. | Thank you! | Thanks a lot!
+
+@ eng-a0-w1-c5
+# 🏨 | Registro en un hotel | Llegas con tu familia a un hotel y el recepcionista te pide el apellido.
+> Good evening! What is your last name? | ¡Buenas noches! ¿Cuál es tu apellido? | My last name is Rojas. | It's Rojas. ~ Rojas.
+> Can you spell it, please? | ¿Puedes deletrearlo, por favor? | R, O, J, A, S. | Sure. R, O, J, A, S.
++ \br\b.*\bo\b.*\bj\b
+> Is it with J or with H? | ¿Es con J o con H? | It is with J. | With J. ~ J.
+> Here is your key. Room 5. | Aquí está tu llave. Cuarto 5. | Thank you very much! | Thank you! ~ Thanks!
+# 🎓 | Concurso de deletreo | Estás en un concurso de deletreo (spelling bee).
+> Your word is "zoo". Spell it, please. | Tu palabra es «zoo». Deletréala, por favor. | Z, O, O. | Zoo. Z, O, O. ~ Z, double O.::¡Muy bien! «Double O» es como lo dicen los nativos.
++ \bz\b.*\bo\b
+> Correct! Next word: "sun". | ¡Correcto! Siguiente palabra: «sun». | S, U, N. | Sun. S, U, N.
++ \bs\b.*\bu\b.*\bn\b
+> What is the last letter of the alphabet? | ¿Cuál es la última letra del alfabeto? | It is Z. | Z. ~ The last letter is Z.
+> You are the winner! | ¡Eres la ganadora! | Thank you! I am very happy! | Thank you! ~ Yay! Thank you!
+# 📧 | Dicta tu correo | Una profesora nueva anota tu correo electrónico.
+> What is your email? | ¿Cuál es tu correo? | It is luis at mail dot com. | My email is luis at mail dot com.
+> How do you spell "Luis"? | ¿Cómo se deletrea «Luis»? | L, U, I, S. | It's L, U, I, S.
++ \bl\b.*\bu\b.*\bi\b
+> Is it "mail" with I? | ¿Es «mail» con I? | Yes, M, A, I, L. | Yes. ~ Yes, it is.
+> Perfect. Thank you, Luis. | Perfecto. Gracias, Luis. | You're welcome! | Thank you! Bye!
+
+@ eng-a0-w2
+# 🍬 | Cuenta caramelos | Cuentas caramelos con tu hermanito.
+> How many candies are there? | ¿Cuántos caramelos hay? | There are seven candies. | Seven. ~ Seven candies.
++ \b(7|seven)\b
+> I eat two. How many now? | Me como dos. ¿Cuántos quedan? | Five candies. | Five. ~ There are five candies.
++ \b(5|five)\b
+> Mom gives us three more. How many now? | Mamá nos da tres más. ¿Cuántos hay ahora? | Eight candies. | Eight. ~ There are eight candies.
++ \b(8|eight)\b
+> Let's share! | ¡Compartamos! | OK! Four for you and four for me. | Four and four! ~ OK!
+# 🚀 | Cuenta regresiva del cohete | En la feria de ciencias lanzan un cohete de juguete.
+> Let's count from ten to zero! Start, please. | ¡Contemos de diez a cero! Empieza tú. | Ten, nine, eight, seven, six. | Ten, nine, eight!
+> Five, four... and then? | Cinco, cuatro... ¿y luego? | Three, two, one, zero! | Three, two, one! ~ Three, two, one, blast off!::¡Así lo dicen en los lanzamientos!
+> What number is after six? | ¿Qué número viene después del seis? | Seven. | It's seven. ~ Seven comes after six.
++ \b(7|seven)\b
+> What number is before four? | ¿Qué número viene antes del cuatro? | Three. | It's three.
++ \b(3|three)\b
+# 🏃 | Carrera en el colegio | Ves una carrera y dices los números de los corredores.
+> What number is the girl in red? | ¿Qué número tiene la niña de rojo? | She is number four. | Number four. ~ Four.
++ \b(4|four)\b
+> And the boy in blue? | ¿Y el niño de azul? | He is number nine. | Number nine. ~ Nine.
++ \b(9|nine)\b
+> Who is first? | ¿Quién va primero? | Number four is first. | The girl in red. ~ Number four.
+> How many runners are there? | ¿Cuántos corredores hay? | There are ten runners. | Ten. ~ Ten runners.
++ \b(10|ten)\b
+
+@ eng-a0-w2-c2
+# 🎂 | Velas de cumpleaños | Es el cumpleaños de tu prima.
+> How old is your cousin? | ¿Cuántos años tiene tu prima? | She is twelve years old. | She is twelve. ~ Twelve.
++ \b(12|twelve)\b
+! \bshe has twelve\b | She is twelve years old. | En inglés la edad va con «be»: «She IS twelve».
+> How many candles are on the cake? | ¿Cuántas velas hay en la torta? | There are twelve candles. | Twelve candles. ~ Twelve.
++ \b(12|twelve)\b
+> How many guests are there? | ¿Cuántos invitados hay? | There are fifteen guests. | Fifteen. ~ Fifteen guests.
++ \b(15|fifteen)\b
+> Let's sing! | ¡Cantemos! | Happy birthday to you! | Happy birthday!
+# 🚌 | En el paradero | Esperas el bus con tu papá.
+> Which bus do we take? | ¿Qué bus tomamos? | We take bus number eighteen. | Bus eighteen. ~ Number eighteen.
++ \b(18|eighteen)\b
+! \beighty\b | eighteen | Cuidado: «eighteen» (18) termina en «-teen» con fuerza al final; «eighty» es 80.
+> Is it bus thirteen? | ¿Es el bus trece? | No, it is bus eighteen. | No, eighteen. ~ No, it isn't.
+> How many minutes do we wait? | ¿Cuántos minutos esperamos? | Eleven minutes. | We wait eleven minutes.
++ \b(11|eleven)\b
+> Here it is! | ¡Aquí está! | Let's go! | Great! Let's go!
+# 🏀 | Marcador de básquet | Ves un partido de básquet y lees el marcador.
+> What is the score of the red team? | ¿Cuál es el puntaje del equipo rojo? | The red team has sixteen. | Sixteen. ~ Sixteen points.
++ \b(16|sixteen)\b
+> And the blue team? | ¿Y el equipo azul? | The blue team has fourteen. | Fourteen. ~ Fourteen points.
++ \b(14|fourteen)\b
+> What is the number of your favorite player? | ¿Qué número tiene tu jugador favorito? | His number is nineteen. | Nineteen. ~ Number nineteen.
++ \b(19|nineteen)\b
+> Who is winning? | ¿Quién va ganando? | The red team is winning. | The red team. ~ Red!
+
+@ eng-a0-w2-c3
+# 📅 | El calendario de la clase | Miras el calendario del mes con tu profesora.
+> How many days are in this month? | ¿Cuántos días tiene este mes? | There are thirty days. | Thirty. ~ Thirty days.
++ \b(30|thirty)\b
+> What is today's number? | ¿Qué número es hoy? | Today is twenty-one. | It's twenty-one. ~ Twenty-one.
++ \b(21|twenty one)\b
+> And tomorrow? | ¿Y mañana? | Tomorrow is twenty-two. | Twenty-two.
++ \b(22|twenty two)\b
+> When is the class party? | ¿Cuándo es la fiesta de la clase? | The party is on the twenty-eighth. | On the twenty-eighth. ~ On day twenty-eight.
+# 🧮 | Cuenta tus figuritas | Cuentas tus figuritas del álbum con un amigo.
+> How many stickers do you have? | ¿Cuántas figuritas tienes? | I have twenty-five stickers. | Twenty-five. ~ I have twenty-five.
++ \b(25|twenty five)\b
+> I have twenty-three. Who has more? | Yo tengo veintitrés. ¿Quién tiene más? | I have more. | Me! ~ I have more stickers.
+> How many stickers are in the album? | ¿Cuántas figuritas tiene el álbum? | There are thirty stickers. | Thirty.
++ \b(30|thirty)\b
+> How many are missing for you? | ¿Cuántas te faltan? | Five are missing. | Five. ~ I need five more.
++ \b(5|five)\b
+# 🏫 | Contando alumnos | La profesora pasa lista.
+> How many students are in the class? | ¿Cuántos alumnos hay en la clase? | There are twenty-six students. | Twenty-six.
++ \b(26|twenty six)\b
+> How many girls? | ¿Cuántas niñas? | There are fourteen girls. | Fourteen.
++ \b(14|fourteen)\b
+> And how many boys? | ¿Y cuántos niños? | There are twelve boys. | Twelve.
++ \b(12|twelve)\b
+> Great math! | ¡Buenas matemáticas! | Thank you, teacher! | Thanks!
+
+@ eng-a0-w2-c4
+# 🛒 | Precios en el mercado | Vas al mercado con tu mamá y lees los precios.
+> How much is the watermelon? | ¿Cuánto cuesta la sandía? | It is ten soles. | Ten soles.
++ \b(10|ten)\b
+> How much is the bag of rice? | ¿Cuánto cuesta la bolsa de arroz? | It is forty soles. | Forty soles. ~ Forty.
++ \b(40|forty)\b
+! \bfourteen\b | forty | «Forty» (40) lleva la fuerza al inicio: FOR-ty. «Fourteen» (14) la lleva al final: four-TEEN.
+> How much is everything? | ¿Cuánto es todo? | It is fifty soles. | Fifty soles. ~ Fifty.
++ \b(50|fifty)\b
+> Here is one hundred soles. | Aquí hay cien soles. | Here is your change: fifty soles. | Fifty soles change. ~ Thank you!
+# 🏟️ | El estadio | Tu tío te cuenta datos de un estadio grande.
+> How many people are in the stadium? | ¿Cuánta gente hay en el estadio? | There are one thousand people. | A thousand people. ~ One thousand.
++ \bthousand\b
+> Is it one million? | ¿Es un millón? | No, it is one thousand. | No, a thousand.
+> How many players are on the field? | ¿Cuántos jugadores hay en la cancha? | There are twenty-two players. | Twenty-two.
++ \b(22|twenty two)\b
+> What a big stadium! | ¡Qué estadio tan grande! | Yes, it is very big! | Yes! ~ It's huge!
+# 🎮 | Puntos del videojuego | Juegas un videojuego con tu hermano.
+> How many points do you have? | ¿Cuántos puntos tienes? | I have ninety points. | Ninety. ~ Ninety points.
++ \b(90|ninety)\b
+> I have sixty. Who is winning? | Yo tengo sesenta. ¿Quién va ganando? | I am winning. | Me! ~ I'm winning.
+> How many points do you need to win? | ¿Cuántos puntos necesitas para ganar? | I need one hundred points. | One hundred. ~ A hundred.
++ \bhundred\b
+> Good luck! | ¡Buena suerte! | Thank you! | Thanks!
+
+@ eng-a0-w2-c5
+# 🩺 | En el consultorio | La enfermera llena tu ficha.
+> What is your name? | ¿Cómo te llamas? | My name is Diego. | I am Diego. ~ Diego.
+> How old are you? | ¿Cuántos años tienes? | I am eight years old. | I'm eight. ~ Eight.
+! \bi have (eight|\d+|[a-z]+) years\b | I am eight years old. | En inglés la edad se dice con «be»: «I AM eight», no «I have eight years».
+> What is your phone number? | ¿Cuál es tu número de teléfono? | It is nine, eight, seven, six, five, four. | My phone number is nine, eight, seven, six, five, four.
+> Thank you, Diego. | Gracias, Diego. | You're welcome. | Thank you! ~ Bye!
+# 🐶 | Mascotas de la clase | Hablas con tu compañera sobre mascotas.
+> How many pets do you have? | ¿Cuántas mascotas tienes? | I have two pets. | Two. ~ Two pets.
++ \b(2|two)\b
+> How many dogs? | ¿Cuántos perros? | I have one dog. | One dog. ~ One.
+> How old is your dog? | ¿Cuántos años tiene tu perro? | He is three years old. | He's three. ~ Three.
+! \bhe has three years\b | He is three years old. | La edad va con «be»: «He IS three».
+> I have a cat. She is five. | Yo tengo una gata. Tiene cinco. | Cool! | Nice! ~ How cute!
+# 🎟️ | Comprar entradas al cine | Compras entradas para tu familia.
+> How many tickets? | ¿Cuántas entradas? | Four tickets, please. | Four, please. ~ Four.
++ \b(4|four)\b
+> How old are the children? | ¿Cuántos años tienen los niños? | They are seven and nine. | Seven and nine.
+> Children are five soles. Adults are twelve. | Los niños pagan cinco soles. Los adultos, doce. | OK. Here you are. | OK, thank you.
+> Enjoy the movie! | ¡Disfruten la película! | Thank you! | Thanks!
+
+@ eng-a0-w2-c6
+# 📸 | Fotos de la familia | Le enseñas fotos de tu familia a una amiga.
+> Who is this? | ¿Quién es esta? | This is my mother. | She is my mother. ~ My mom.
+> What is her name? | ¿Cómo se llama ella? | Her name is Rosa. | She is Rosa. ~ Rosa.
+! \bhis name is rosa\b | Her name is Rosa. | Para una mujer se usa «her»: «HER name».
+> And who is this boy? | ¿Y quién es este niño? | He is my brother. | This is my brother. ~ My brother.
+> How old is he? | ¿Cuántos años tiene? | He is ten years old. | He's ten. ~ Ten.
+# 🏡 | La visita de la abuela | Tu abuela llega de visita y pregunta por todos.
+> Hello, sweetheart! Where is your father? | ¡Hola, cariño! ¿Dónde está tu papá? | He is at work. | My father is at work. ~ At work.
+> And your sister? | ¿Y tu hermana? | She is in her room. | My sister is in her room.
+> How many brothers and sisters do you have? | ¿Cuántos hermanos tienes? | I have one brother and one sister. | One brother and one sister.
+> I love my family! | ¡Amo a mi familia! | I love you, Grandma! | Me too!
+# 🌳 | El árbol genealógico | Presentas tu árbol genealógico en clase.
+> Who is your grandfather? | ¿Quién es tu abuelo? | My grandfather is Pedro. | His name is Pedro. ~ Pedro.
+> Is your aunt married? | ¿Tu tía está casada? | Yes, she is married. | Yes, she is.
+> Do you have cousins? | ¿Tienes primos? | Yes, I have three cousins. | Yes, I do. ~ Yes, three cousins.
+> Thank you for your family tree! | ¡Gracias por tu árbol genealógico! | You're welcome! | Thank you!
+
+@ eng-a0-w3
+# 🎨 | La clase de arte | La profesora reparte pinturas.
+> What color do you want? | ¿Qué color quieres? | I want blue, please. | Blue, please. ~ Blue.
+> What color is the sun in your picture? | ¿De qué color es el sol en tu dibujo? | It is yellow. | Yellow. ~ The sun is yellow.
+> And the grass? | ¿Y el pasto? | The grass is green. | Green. ~ It's green.
+> What is your favorite color? | ¿Cuál es tu color favorito? | My favorite color is purple. | Purple. ~ I like purple.
+# 🎈 | Globos para la fiesta | Eliges globos para una fiesta.
+> What color are these balloons? | ¿De qué color son estos globos? | They are red. | Red. ~ They're red.
+> Do you want pink or orange balloons? | ¿Quieres globos rosados o naranjas? | I want pink balloons. | Pink, please. ~ Pink.
+> How many blue balloons? | ¿Cuántos globos azules? | Five blue balloons. | Five, please.
+> What color is the cake? | ¿De qué color es la torta? | It is white and brown. | White and brown.
+# 🚦 | El semáforo | Cruzas la calle con tu papá.
+> What color is the light now? | ¿De qué color está la luz ahora? | It is red. | Red. ~ The light is red.
+> Can we cross? | ¿Podemos cruzar? | No, we can't. | No! ~ No, we wait.
+> And now? | ¿Y ahora? | Now it is green. | Green! ~ It's green.
+> Let's go! | ¡Vamos! | OK, let's go! | OK!
+
+@ eng-a0-w3-c2
+# 🎒 | Preparando la mochila | Tu mamá revisa tu mochila antes del colegio.
+> Do you have your pencil? | ¿Tienes tu lápiz? | Yes, I have my pencil. | Yes, I do. ~ Yes.
+> Where is your eraser? | ¿Dónde está tu borrador? | It is in my pencil case. | In my pencil case.
+> Do you have your ruler? | ¿Tienes tu regla? | No, I don't. | No, I don't have my ruler.
+> Here is your ruler! | ¡Aquí está tu regla! | Thank you, Mom! | Thanks!
+# 🏫 | Préstamo en clase | Tu compañero necesita útiles.
+> Can I have a pen, please? | ¿Me prestas un lapicero, por favor? | Yes, here you are. | Sure, here you are. ~ Here you are.
+> What color is it? | ¿De qué color es? | It is blue. | Blue.
+> Do you have scissors? | ¿Tienes tijeras? | Yes, I have scissors. | Yes, I do.
+> Thank you! | ¡Gracias! | You're welcome. | No problem!
+# 📚 | En la librería | Compras útiles en la librería.
+> Hello! Can I help you? | ¡Hola! ¿Te ayudo? | Yes, I want a notebook, please. | A notebook, please.
+> What color? | ¿De qué color? | A green notebook, please. | Green, please.
+! \ba notebook green\b | a green notebook | El color va antes: «a GREEN notebook».
+> Anything else? | ¿Algo más? | Yes, two pencils and a sharpener. | Two pencils, please.
+> That's eight soles. | Son ocho soles. | Here you are. | Here you are. Thank you!
+
+@ eng-a0-w3-c3
+# 🖼️ | En el museo | Visitas un museo con tu clase.
+> What is this? | ¿Qué es esto? | This is a painting. | It's a painting.
+> And what is that, over there? | ¿Y qué es eso, allá? | That is an elephant statue. | It's an elephant statue.
+! \ba elephant\b | an elephant | Antes de un sonido vocal se usa «an»: «AN elephant».
+> What are these? | ¿Qué son estos? | These are old coins. | They are old coins.
+> And those? | ¿Y esos? | Those are dinosaur bones. | They are dinosaur bones.
+# 🍎 | La lonchera | Compartes tu lonchera con un amigo.
+> What is this? | ¿Qué es esto? | This is an apple. | It's an apple.
+! \ba apple\b | an apple | «Apple» empieza con vocal: «AN apple».
+> Is that a banana? | ¿Eso es un plátano? | Yes, that is a banana. | Yes, it is.
+> What are these? | ¿Qué son estos? | These are cookies. | They are cookies.
+> Can I have one? | ¿Me das uno? | Yes, here you are. | Sure!
+# 🧸 | Ordenando juguetes | Ordenas los juguetes con tu hermano.
+> Is this your toy? | ¿Este es tu juguete? | Yes, this is my toy. | Yes, it is.
+> What is that? | ¿Qué es eso? | That is an umbrella. | It's an umbrella.
+> Are these your cars? | ¿Estos son tus carros? | Yes, these are my cars. | Yes, they are.
+> And those balls? | ¿Y esas pelotas? | Those are your balls. | They are yours.
+
+@ eng-a0-w3-c4
+# 🦁 | En el zoológico | Visitas el zoológico con tu familia.
+> Look! What animal is that? | ¡Mira! ¿Qué animal es ese? | That is a lion. | It's a lion. ~ A lion.
+> What color is it? | ¿De qué color es? | It is yellow and brown. | Yellow and brown.
+> What is your favorite animal? | ¿Cuál es tu animal favorito? | My favorite animal is the elephant. | The elephant. ~ I like elephants.
+> Is the elephant big or small? | ¿El elefante es grande o pequeño? | It is very big. | Big. ~ It's big.
+# 🐄 | En la granja | Visitas una granja.
+> What animal says "moo"? | ¿Qué animal dice «mu»? | The cow. | A cow. ~ The cow says moo.
+> How many chickens are there? | ¿Cuántas gallinas hay? | There are six chickens. | Six. ~ Six chickens.
++ \b(6|six)\b
+> Do you like horses? | ¿Te gustan los caballos? | Yes, I like horses. | Yes, I do.
+> What is the pig's name? | ¿Cómo se llama el cerdito? | His name is Pinky. | Pinky.
+# 🐾 | Tu mascota | Tu amiga te pregunta por tu mascota.
+> Do you have a pet? | ¿Tienes mascota? | Yes, I have a cat. | Yes, a cat. ~ Yes, I do.
+> What is its name? | ¿Cómo se llama? | Its name is Luna. | Luna. ~ Her name is Luna.
+> What color is it? | ¿De qué color es? | It is black and white. | Black and white.
+> Is it big? | ¿Es grande? | No, it is small. | No, it's small.
+
+@ eng-a0-w4
+# 🍦 | Heladería | Eliges un helado con tu tío.
+> Do you like chocolate ice cream? | ¿Te gusta el helado de chocolate? | Yes, I like chocolate. | Yes, I do.
+> Do you like strawberry? | ¿Te gusta el de fresa? | No, I don't like strawberry. | No, I don't.
+! \bi no like\b | I don't like strawberry. | La negación es «I DON'T like», no «I no like».
+> What do you like? | ¿Qué te gusta? | I like vanilla and chocolate. | Vanilla and chocolate.
+> Here you are! | ¡Aquí tienes! | Thank you! Yummy! | Thanks!
+# ⚽ | Nuevo amigo | Conoces a un nuevo compañero y hablan de gustos.
+> I like soccer. Do you like soccer? | Me gusta el fútbol. ¿Te gusta el fútbol? | Yes, I like soccer. | Yes, I do. ~ Yes!
+> Do you like video games? | ¿Te gustan los videojuegos? | Yes, I love video games. | Yes, I do.
+> Do you like homework? | ¿Te gustan las tareas? | No, I don't like homework. | No, I don't.
+> Me too! | ¡Yo tampoco! | Ha ha! | Ha ha, yes!
+# 🎵 | La radio del auto | Viajas en auto con tu papá y cambian de radio.
+> Do you like this song? | ¿Te gusta esta canción? | Yes, I like it. | Yes, I do.
+> Does your mom like rock? | ¿A tu mamá le gusta el rock? | No, she doesn't like rock. | No, she doesn't.
+! \bshe (do not|dont) like\b | She doesn't like rock. | Con «she» se usa «doesn't»: «She DOESN'T like».
+> What music do you like? | ¿Qué música te gusta? | I like pop music. | Pop. ~ I like pop.
+> OK, pop music! | ¡Bien, música pop! | Thank you, Dad! | Yay!
+
+@ eng-a0-w4-c2
+# 🍌 | Puesto de frutas | Compras frutas en el mercado.
+> Good morning! What do you want? | ¡Buenos días! ¿Qué quieres? | I want bananas, please. | Bananas, please.
+> How many? | ¿Cuántos? | Six bananas, please. | Six, please.
+> Do you want apples too? | ¿Quieres manzanas también? | Yes, three apples, please. | Yes, please.
+> Here you are! | ¡Aquí tienes! | Thank you! | Thanks!
+# 🥗 | Ensalada de frutas | Preparas una ensalada de frutas con tu abuela.
+> What fruit do we have? | ¿Qué fruta tenemos? | We have mango, papaya and grapes. | Mango and papaya.
+> Do you like papaya? | ¿Te gusta la papaya? | Yes, I like papaya. | Yes, I do.
+> What color is the mango? | ¿De qué color es el mango? | It is yellow. | Yellow.
+> Mmm, delicious! | ¡Mmm, delicioso! | Yes, it's delicious! | Yummy!
+# 🍓 | Lonchera saludable | Tu maestra pregunta qué fruta trajiste.
+> What fruit is in your lunch box? | ¿Qué fruta hay en tu lonchera? | There is an orange. | An orange.
+! \ba orange\b | an orange | «Orange» empieza con vocal: «AN orange».
+> Do you like oranges? | ¿Te gustan las naranjas? | Yes, I love oranges. | Yes, I do.
+> What is your favorite fruit? | ¿Cuál es tu fruta favorita? | My favorite fruit is strawberry. | Strawberries.
+> Fruit is good for you! | ¡La fruta es buena para ti! | Yes, it is! | Yes!
+
+@ eng-a0-w4-c3
+# 🍕 | Pedir pizza | Llamas para pedir una pizza.
+> Hello, Pizza Time! What do you want? | ¡Hola, Pizza Time! ¿Qué deseas? | I want a pizza, please. | A pizza, please.
+> Cheese or ham? | ¿De queso o de jamón? | Cheese, please. | A cheese pizza, please.
+> Big or small? | ¿Grande o pequeña? | Big, please. | A big pizza, please.
+> OK. Thirty minutes. | Listo. Treinta minutos. | Thank you! | Thanks! Bye!
+# 🍽️ | La cena | Tu mamá pregunta qué quieres de comer.
+> What do you want for dinner? | ¿Qué quieres de cena? | I want chicken and rice. | Chicken and rice, please.
+> Do you want salad? | ¿Quieres ensalada? | Yes, please. | Yes, a little salad.
+> Do you like fish? | ¿Te gusta el pescado? | No, I don't like fish. | No, I don't.
+> OK, chicken tonight! | ¡Bien, pollo esta noche! | Yay! Thank you! | Thank you, Mom!
+# 🥪 | El quiosco del colegio | Compras en el quiosco durante el recreo.
+> Hi! What do you want? | ¡Hola! ¿Qué quieres? | A sandwich, please. | I want a sandwich, please.
+> Ham or cheese? | ¿De jamón o de queso? | Cheese, please. | A cheese sandwich, please.
+> Anything else? | ¿Algo más? | Yes, a cookie, please. | No, thank you.
+> That's three soles. | Son tres soles. | Here you are. | Here you are. Thanks!
+
+@ eng-a0-w4-c4
+# 🥤 | En la cafetería | Pides bebidas con tu familia.
+> What do you want to drink? | ¿Qué quieres tomar? | I want orange juice, please. | Orange juice, please.
+> Hot or cold? | ¿Caliente o frío? | Cold, please. | Cold.
+> And for your mom? | ¿Y para tu mamá? | A coffee, please. | Coffee, please.
+> Here you are! | ¡Aquí tienen! | Thank you! | Thanks!
+# 🍳 | Desayuno, almuerzo y cena | Tu amiga te pregunta qué comes en el día.
+> What do you eat for breakfast? | ¿Qué comes en el desayuno? | I eat bread and eggs. | Bread and eggs.
+> What do you drink for breakfast? | ¿Qué tomas en el desayuno? | I drink milk. | Milk.
+> What do you have for lunch? | ¿Qué comes en el almuerzo? | I have rice and chicken. | Rice and chicken.
+> And for dinner? | ¿Y en la cena? | I have soup. | Soup. ~ I eat soup.
+# 💧 | Después de jugar | Llegas con sed después de jugar fútbol.
+> Are you thirsty? | ¿Tienes sed? | Yes, I am thirsty. | Yes, I am. ~ Yes!
+> Do you want water or soda? | ¿Quieres agua o gaseosa? | Water, please. | I want water, please.
+> Do you want ice? | ¿Quieres hielo? | Yes, please. | No, thank you.
+> Here is your water. | Aquí está tu agua. | Thank you very much! | Thanks!
+
+@ eng-a0-w5
+# 🛋️ | Buscando el control remoto | No encuentras el control de la tele.
+> Where is the remote control? | ¿Dónde está el control remoto? | It is on the sofa. | On the sofa.
+! \bin the sofa\b | on the sofa | Sobre una superficie se dice «on»: «ON the sofa».
+> Is it under the cushion? | ¿Está debajo del cojín? | Yes, it is under the cushion. | Yes, it is.
+> Where is the lamp? | ¿Dónde está la lámpara? | It is next to the sofa. | Next to the sofa.
+> Let's watch TV! | ¡Veamos la tele! | OK! | Great!
+# 🖼️ | Visita en la sala | Una amiga visita tu sala por primera vez.
+> What a nice living room! Is that your TV? | ¡Qué linda sala! ¿Esa es tu tele? | Yes, it is our TV. | Yes, it is.
+> What is on the wall? | ¿Qué hay en la pared? | There is a picture. | A picture. ~ It's a family picture.
+> Is there a rug? | ¿Hay una alfombra? | Yes, there is a rug. | Yes, there is.
+> Can I sit here? | ¿Me puedo sentar aquí? | Yes, sit on the armchair. | Sure!
+# 🧹 | Ordenar la sala | Ayudas a ordenar la sala.
+> Where is the book? | ¿Dónde está el libro? | It is on the table. | On the table.
+> Put the cushions on the sofa, please. | Pon los cojines en el sofá, por favor. | OK. | OK, Mom.
+> Where are your shoes? | ¿Dónde están tus zapatos? | They are under the table. | Under the table.
+> Great! The room is clean. | ¡Genial! La sala está limpia. | Yay! | Yes!
+
+@ eng-a0-w5-c2
+# 🏠 | Tour por tu casa | Le enseñas tu casa a un primo.
+> How many bedrooms are there? | ¿Cuántos dormitorios hay? | There are three bedrooms. | Three. ~ Three bedrooms.
+> Where is the kitchen? | ¿Dónde está la cocina? | The kitchen is next to the living room. | Next to the living room.
+> Is there a garden? | ¿Hay jardín? | Yes, there is a small garden. | Yes, there is.
+> Where is your bedroom? | ¿Dónde está tu dormitorio? | It is upstairs. | Upstairs.
+# 🔍 | ¿Dónde está mamá? | Llegas a casa y buscas a tu mamá.
+> Mom is not here. Is she in the kitchen? | Mamá no está aquí. ¿Está en la cocina? | No, she isn't. | No.
+> Is she in the bathroom? | ¿Está en el baño? | No, she is in the garden. | No, she's in the garden.
+> What is she doing? | ¿Qué está haciendo? | She is watering the plants. | Watering the plants.
+> Let's help her! | ¡Ayudémosla! | OK! | Good idea!
+# 🏡 | Casa nueva | Tu familia ve una casa para alquilar.
+> Do you like the house? | ¿Te gusta la casa? | Yes, I like it. | Yes, I do.
+> Is it big or small? | ¿Es grande o pequeña? | It is big. | It's big.
+> How many bathrooms are there? | ¿Cuántos baños hay? | There are two bathrooms. | Two.
+> Is there a garage? | ¿Hay cochera? | Yes, there is a garage. | Yes, there is.
+
+@ eng-a0-w5-c3
+# 🗺️ | Un turista pregunta | Un turista te pregunta por lugares de tu ciudad.
+> Excuse me, is there a bank near here? | Disculpa, ¿hay un banco cerca? | Yes, there is a bank on this street. | Yes, there is.
+> Where is the park? | ¿Dónde está el parque? | It is next to the church. | Next to the church.
+> Is there a supermarket? | ¿Hay un supermercado? | Yes, it is in front of the park. | Yes, there is.
+> Thank you very much! | ¡Muchas gracias! | You're welcome! | No problem!
+# 🚲 | Paseo en bicicleta | Paseas en bici con tu papá por la ciudad.
+> What is that building? | ¿Qué es ese edificio? | That is the hospital. | It's the hospital.
+> Where is your school? | ¿Dónde está tu colegio? | It is near the park. | Near the park.
+> Do you like your city? | ¿Te gusta tu ciudad? | Yes, I like my city. | Yes, I do.
+> Let's go to the park! | ¡Vamos al parque! | Yes, let's go! | OK!
+# 📮 | Hacer encargos | Tu mamá te da una lista de lugares.
+> First, we go to the bakery. What do we buy there? | Primero vamos a la panadería. ¿Qué compramos allí? | We buy bread. | Bread.
+> Then we go to the post office. Where is it? | Luego vamos a correos. ¿Dónde está? | It is next to the bank. | Next to the bank.
+> Then the pharmacy. Is it far? | Luego la farmacia. ¿Está lejos? | No, it is near. | No, it's near.
+> Good! Let's go. | ¡Bien! Vamos. | OK, Mom! | OK!
+
+@ eng-a0-w5-c4
+# 🏫 | Alumno nuevo | Ayudas a un alumno nuevo a encontrar lugares.
+> Where is the library? | ¿Dónde está la biblioteca? | It is next to the gym. | Next to the gym.
+> Where is the bathroom? | ¿Dónde está el baño? | It is at the end of the hall. | At the end of the hall.
+> Is the cafeteria upstairs? | ¿La cafetería está arriba? | No, it is downstairs. | No, it isn't.
+> Thank you! | ¡Gracias! | You're welcome! | No problem!
+# 🏃 | Buscando a la profesora | Necesitas encontrar a tu profesora de inglés.
+> Where is Miss Lucy? | ¿Dónde está la Miss Lucy? | She is in the teachers' room. | In the teachers' room.
+> Where is the teachers' room? | ¿Dónde está la sala de profesores? | It is next to the principal's office. | Next to the office.
+> Is she in the classroom? | ¿Está en el aula? | No, she isn't. | No.
+> OK, thank you! | ¡Bien, gracias! | You're welcome. | Bye!
+# ⚽ | En el recreo | Juegas en el recreo con tus amigos.
+> Where is the ball? | ¿Dónde está la pelota? | It is in the playground. | In the playground.
+> Where are the other kids? | ¿Dónde están los otros niños? | They are in the gym. | In the gym.
+> Is the gym open? | ¿El gimnasio está abierto? | Yes, it is open. | Yes, it is.
+> Let's play! | ¡Juguemos! | Yes, let's play! | OK!
+
+@ eng-a0-w6
+# 🙋 | No entiendo | No entiendes una palabra en clase.
+> Open your book on page ten. | Abran su libro en la página diez. | Sorry, can you repeat, please? | Can you repeat, please?
+> Open your book on page ten. | Abran su libro en la página diez. | OK, thank you. | Thank you!
+> What does "page" mean? | ¿Qué significa «page»? | It means "página". | "Página".
+> Very good! | ¡Muy bien! | Thank you, teacher! | Thanks!
+# 🚻 | Pedir permiso | Necesitas pedir permisos en clase.
+> Yes, Ana? | ¿Sí, Ana? | May I go to the bathroom, please? | Can I go to the bathroom, please?
+> Yes, you can. | Sí, puedes. | Thank you. | Thank you, teacher!
+> Do you have a question? | ¿Tienes una pregunta? | How do you say "borrador" in English? | How do you say "borrador"?
+> "Eraser." | «Eraser». | Thank you! | Eraser! Thank you.
+# 🐢 | Más despacio | Tu profesor habla muy rápido.
+> Write-the-words-in-your-notebook-now-quickly! | ¡Escriban-las-palabras-en-su-cuaderno-rápido! | Can you speak slowly, please? | Slowly, please.
+> Write the words in your notebook. | Escriban las palabras en su cuaderno. | OK, thank you. | Thank you!
+> How do you spell "notebook"? | ¿Cómo se deletrea «notebook»? | N, O, T, E, B, O, O, K. | I don't know.
+> Excellent! | ¡Excelente! | Thank you! | Thanks!
+
+@ eng-a0-w6-c2
+# 📆 | La agenda de la semana | Tu mamá revisa tus actividades de la semana.
+> What day is today? | ¿Qué día es hoy? | Today is Monday. | It's Monday. ~ Monday.
+> When is your swimming class? | ¿Cuándo es tu clase de natación? | It is on Wednesday. | On Wednesday.
+! \bin wednesday\b | on Wednesday | Con los días se usa «on»: «ON Wednesday».
+> What do you do on Saturday? | ¿Qué haces el sábado? | I play soccer on Saturday. | I play soccer.
+> And on Sunday? | ¿Y el domingo? | I visit my grandma. | I rest.
+# 🎉 | Planear una fiesta | Planeas una fiesta con tu amigo.
+> When is the party? | ¿Cuándo es la fiesta? | The party is on Friday. | On Friday.
+> Is Friday good for you? | ¿El viernes te queda bien? | Yes, Friday is good. | Yes!
+> What day is tomorrow? | ¿Qué día es mañana? | Tomorrow is Tuesday. | Tuesday.
+> See you on Friday! | ¡Nos vemos el viernes! | See you! | See you on Friday!
+# 📺 | Programas de la tele | Hablas de tus programas favoritos.
+> When is your favorite show? | ¿Cuándo es tu programa favorito? | It is on Thursday. | On Thursday.
+> Do you have school on Saturday? | ¿Tienes colegio el sábado? | No, I don't. | No.
+> What is your favorite day? | ¿Cuál es tu día favorito? | My favorite day is Saturday. | Saturday.
+> Why? | ¿Por qué? | Because I play with my friends. | Because I play.
+
+@ eng-a0-w6-c3
+# 🎂 | Cumpleaños de la clase | Hacen el calendario de cumpleaños de la clase.
+> When is your birthday? | ¿Cuándo es tu cumpleaños? | My birthday is in May. | In May. ~ It's in May.
+! \bon may\b | in May | Con los meses se usa «in»: «IN May».
+> When is your mom's birthday? | ¿Cuándo es el cumpleaños de tu mamá? | It is in October. | In October.
+> What month is it now? | ¿En qué mes estamos? | It is November. | November.
+> Thank you! | ¡Gracias! | You're welcome! | No problem.
+# 🏖️ | Las vacaciones | Hablas de las vacaciones.
+> When are the summer holidays? | ¿Cuándo son las vacaciones de verano? | They are in January and February. | In January and February.
+> Do you go to the beach in February? | ¿Vas a la playa en febrero? | Yes, I go to the beach. | Yes, I do.
+> When does school start? | ¿Cuándo empieza el colegio? | School starts in March. | In March.
+> What is your favorite month? | ¿Cuál es tu mes favorito? | My favorite month is December. | December.
+# 🎄 | Fiestas del año | Tu profesora pregunta por fiestas.
+> When is Christmas? | ¿Cuándo es Navidad? | Christmas is in December. | In December.
+> When is Peru's Independence Day? | ¿Cuándo son las Fiestas Patrias? | It is in July. | In July.
+> When is Mother's Day? | ¿Cuándo es el Día de la Madre? | It is in May. | In May.
+> Very good! | ¡Muy bien! | Thank you! | Thanks!
+
+@ eng-a0-w6-c4
+# ☀️ | El clima de hoy | Antes de salir revisas el clima.
+> What's the weather like today? | ¿Cómo está el clima hoy? | It is sunny. | It's sunny. ~ Sunny.
+> Is it hot or cold? | ¿Hace calor o frío? | It is hot. | It's hot.
+! \bit has hot\b|\bit makes hot\b | It is hot. | El clima va con «it is»: «It IS hot».
+> Do you need an umbrella? | ¿Necesitas paraguas? | No, I don't. | No, I need a cap.
+> Have a nice day! | ¡Que tengas buen día! | Thank you! | You too!
+# 🌧️ | Día de lluvia | Llueve y no puedes salir al recreo.
+> Look outside. Is it raining? | Mira afuera. ¿Está lloviendo? | Yes, it is raining. | Yes, it is.
+> Can we play outside? | ¿Podemos jugar afuera? | No, we can't. | No.
+> What season is it? | ¿Qué estación es? | It is winter. | Winter.
+> Let's play inside. | Juguemos adentro. | OK! | Good idea!
+# 🌸 | Tu estación favorita | Hablas de las estaciones con tu amiga.
+> What is your favorite season? | ¿Cuál es tu estación favorita? | My favorite season is summer. | Summer.
+> Why? | ¿Por qué? | Because it is hot and sunny. | Because I go to the beach.
+> What is the weather like in winter? | ¿Cómo es el clima en invierno? | It is cold and cloudy. | It's cold.
+> I like spring. It has flowers! | Me gusta la primavera. ¡Tiene flores! | Me too! | Nice!
+
+@ eng-a0-w6-c5
+# 🎤 | Preséntate a la clase | Te presentas completo frente a la clase.
+> Hello! What is your name? | ¡Hola! ¿Cómo te llamas? | My name is Lucía. | I am Lucía.
+> How old are you? | ¿Cuántos años tienes? | I am nine years old. | I'm nine.
+! \bi have (nine|\d+|[a-z]+) years\b | I am nine years old. | La edad va con «be»: «I AM nine».
+> Where are you from? | ¿De dónde eres? | I am from Peru. | I'm from Peru.
+> What do you like? | ¿Qué te gusta? | I like dogs and music. | I like music.
+# 📝 | Entrevista para el periódico escolar | Un compañero te entrevista para el periódico.
+> What is your favorite color? | ¿Cuál es tu color favorito? | My favorite color is green. | Green.
+> How many brothers and sisters do you have? | ¿Cuántos hermanos tienes? | I have one sister. | One sister.
+> When is your birthday? | ¿Cuándo es tu cumpleaños? | My birthday is in August. | In August.
+> What is your favorite food? | ¿Cuál es tu comida favorita? | My favorite food is pizza. | Pizza.
+# 💌 | Amigo por correspondencia | Haces una videollamada con un amigo de Inglaterra.
+> Hi! I am Jack. I live in London. And you? | ¡Hola! Soy Jack. Vivo en Londres. ¿Y tú? | Hi, Jack! I am Rosa. I live in Lima. | I am Rosa, from Lima.
+> What is the weather like in Lima? | ¿Cómo está el clima en Lima? | It is sunny and hot. | It's sunny.
+> Do you have a pet? | ¿Tienes mascota? | Yes, I have a dog. | No, I don't.
+> Bye! See you next week! | ¡Chau! ¡Nos vemos la próxima semana! | Bye, Jack! See you! | See you!

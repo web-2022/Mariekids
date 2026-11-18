@@ -106,7 +106,7 @@
   /* ---------- datos por nivel ---------- */
   function cargarNivel(id, cb) {
     if (window.MK_CONV && MK_CONV[id]) { cb(MK_CONV[id]); return; }
-    var s = document.createElement("script"); s.src = "assets/conversacion/" + id + ".js?v=3";
+    var s = document.createElement("script"); s.src = "assets/conversacion/" + id + ".js?v=4";
     s.onload = function () { cb(window.MK_CONV && MK_CONV[id]); }; s.onerror = function () { cb(null); };
     document.head.appendChild(s);
   }
@@ -207,7 +207,7 @@
     body.innerHTML = '<p class="cv-tip">Estas palabras se confunden. Escúchalas y di la palabra que te pido: te muestro lo que entendió el micrófono.</p>' + (e.pares || []).map(function (p, i) {
       return '<div class="cv-par"><div class="cv-pw">' + p.palabras.map(function (w, j) { return '<button class="cv-chip" data-p="' + i + '" data-j="' + j + '">🔊 <b>' + esc(w) + '</b><small>' + esc((p.es || [])[j] || "") + '</small></button>'; }).join("") + '</div>' +
         '<button class="cv-mic sm" data-p="' + i + '" data-m="1"' + (SR ? "" : " disabled") + '>🎤 Dilo</button><div class="cv-res" id="pp' + i + '"></div></div>';
-    }).join("") + next;
+    }).join("") + ((e.pares || []).length ? "" : '<p class="cv-tip">En esta situación no hay pares de palabras difíciles. ¡Pasa al diálogo!</p>') + next;
     var objetivo = {};
     body.onclick = function (ev) {
       var b = ev.target.closest("[data-p]"); if (!b) return; var p = e.pares[+b.dataset.p], out = document.getElementById("pp" + b.dataset.p);
@@ -368,11 +368,31 @@
   // Abrir la conversación de una clase en un panel: MKConv.abrir("a0", "eng-a0-w1")
   // Escenarios de una clase: los que tienen clase === slug (o id === slug). Los que no traen vocabulario,
   // frases clave o pares de pronunciación los heredan del primero de la clase.
+  // Formato compacto: {c, e, t, i, d:[[app, es, esperado, "var1|var2::nota", [[re, corr, exp]], [acepta]]]}
+  function norm(x, k) {
+    if (!x.c) return x;
+    return { id: x.c + "-" + k, clase: x.c, emoji: x.e, titulo: x.t, intro: x.i, vocab: x.v, turnos: x.d.map(function (t) {
+      return { app: t[0], es: t[1], esperado: t[2],
+        variantes: (t[3] || "").split("|").filter(Boolean).map(function (v) { var q = v.split("::"); return q[1] ? { t: q[0], nota: q[1] } : { t: q[0] }; }),
+        errores: (t[4] || []).map(function (r, j) { return { re: r[0], id: "e" + j + "-" + r[0].replace(/\W+/g, "").slice(0, 12), corr: r[1], exp: r[2] }; }),
+        acepta: t[5] || [] };
+    }) };
+  }
+  var PARES = [["ship","sheep"],["live","leave"],["it","eat"],["sit","seat"],["full","fool"],["pen","pan"],["bad","bed"],["cat","cut"],["hat","hot"],["three","tree"],["think","sink"],["thin","tin"],["very","berry"],["van","ban"],["walk","work"],["want","won't"],["fifteen","fifty"],["thirteen","thirty"],["fourteen","forty"],["sixteen","sixty"],["seventeen","seventy"],["eighteen","eighty"],["nineteen","ninety"],["sheet","seat"],["shoe","chew"],["watch","wash"],["chair","share"],["juice","use"],["yellow","jello"],["light","right"],["play","pray"],["glass","grass"],["beach","bitch"],["week","weak"],["hear","here"],["buy","by"],["write","right"],["son","sun"],["meet","meat"],["cook","cookie"],["coffee","copy"],["rice","lice"],["hot","hat"],["cold","called"],["boat","bought"],["fun","phone"],["bus","boss"],["cup","cap"],["day","they"],["then","than"],["was","wasn't"],["can","can't"],["went","want"],["sleep","slip"],["feel","fill"],["heat","hit"],["leave","live"],["better","bitter"],["travel","trouble"],["desert","dessert"],["advice","advise"],["price","prize"],["bill","bell"],["fair","fear"],["year","ear"],["worked","walked"],["hard","heart"],["lose","loose"],["quite","quiet"],["cloth","clothes"],["three","free"],["mouth","mouse"]];
+  function paresAuto(x) {
+    var txt = " " + tokens(x.turnos.map(function (t) { return t.app + " " + t.esperado; }).join(" ") + " " + (x.vocab || []).map(function (v) { return v.en; }).join(" ")).join(" ") + " ";
+    return PARES.filter(function (p) { return txt.indexOf(" " + p[0] + " ") >= 0 || txt.indexOf(" " + p[1] + " ") >= 0; }).slice(0, 4).map(function (p) { return { palabras: p }; });
+  }
+  function vocabAuto() {
+    var L = window.MK_LESSON; if (!L || !L.items) return [];
+    return L.items.slice(0, 12).map(function (it) { return { en: it.en, es: it.es, ej: (it.examplesEn && it.examplesEn[0]) || it.en }; });
+  }
   function deClase(d, slug) {
+    if (d && !d._n) { d.escenarios = d.escenarios.map(norm); d._n = 1; }
     var l = d ? d.escenarios.filter(function (x) { return (x.clase || x.id) === slug; }) : [];
     l.forEach(function (x) {
-      if (!x.vocab) x.vocab = l[0].vocab || [];
-      if (!x.pares) x.pares = l[0].pares || [];
+      if (!x.vocab) x.vocab = l[0].vocab || vocabAuto();
+      if (!x.pares) x.pares = l[0].pares && l[0].pares.length ? l[0].pares : paresAuto(x);
       if (!x.clave) x.clave = x.turnos.map(function (t) { return t.esperado; });
     });
     return l;
