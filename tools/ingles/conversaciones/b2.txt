@@ -1,0 +1,335 @@
+@ eng-b2-w1
+# 💰 | Si ganaras la lotería | Un amigo te pregunta qué harías con un premio enorme.
+> What would you do if you won the lottery? | ¿Qué harías si ganaras la lotería? | If I won the lottery, I would buy a house for my parents. | I'd travel around the world.
+! \bif i would win\b | If I won the lottery… | Después de «if» va pasado, no «would»: «If I WON».
+> Would you stop working? | ¿Dejarías de trabajar? | No, I wouldn't. I'd start my own business. | Probably not.
+> Where would you live? | ¿Dónde vivirías? | I would live near the sea. | I'd live in Italy.
+> Would you tell anyone? | ¿Se lo contarías a alguien? | I'd only tell my family. | No, I wouldn't.
+# 🦸 | Superpoderes | Juego de «¿Qué harías si…?».
+> If you could have one superpower, what would it be? | Si pudieras tener un superpoder, ¿cuál sería? | If I could, I would fly. | I'd be invisible.
+> What would you do with it? | ¿Qué harías con él? | I would travel without paying for tickets. | I'd help people in danger.
+> If you were invisible for a day, where would you go? | Si fueras invisible un día, ¿a dónde irías? | If I were invisible, I would visit a famous studio. | I'd go to a concert.
+! \bif i was invisible\b | If I were invisible… | En inglés formal se prefiere «If I WERE».
+> Sounds fun! | ¡Suena divertido! | It would be amazing! | Wouldn't it?
+# 🤝 | Dilemas | Hablan de dilemas morales.
+> If you found a wallet in the street, what would you do? | Si encontraras una billetera en la calle, ¿qué harías? | I would take it to the police. | I'd try to find the owner.
+> If a friend copied in an exam, would you tell the teacher? | Si un amigo copiara en un examen, ¿le dirías al profesor? | I wouldn't tell, but I'd talk to my friend. | Probably not.
+> If you were the president, what would you change? | Si fueras presidente, ¿qué cambiarías? | I would improve education. | I'd invest in health.
+> Interesting answers! | ¡Respuestas interesantes! | Thanks! | Thank you.
+
+@ eng-b2-w1-c2
+# 🧪 | Ciencia y condicionales | Tu profesora repasa condicionales con hechos.
+> What happens if you heat ice? | ¿Qué pasa si calientas hielo? | If you heat ice, it melts. | It melts.
+> What will you do if it rains tomorrow? | ¿Qué harás si llueve mañana? | If it rains, I'll stay at home. | I'll take an umbrella.
+> What would you do if you lived on Mars? | ¿Qué harías si vivieras en Marte? | If I lived on Mars, I would miss the ocean. | I'd study the planet.
+> What would you have done if you had missed the bus today? | ¿Qué habrías hecho si hubieras perdido el bus hoy? | I would have taken a taxi. | I'd have walked.
+# 🎓 | Decisiones pasadas | Hablas con tu tío sobre decisiones.
+> If you had studied medicine, would you be a doctor now? | Si hubieras estudiado medicina, ¿serías doctor ahora? | Yes, if I had studied medicine, I would be a doctor now. | Probably.
+> Would you be happier? | ¿Serías más feliz? | I don't think I would be happier. | Maybe not.
+> If you hadn't moved to Lima, where would you live? | Si no te hubieras mudado a Lima, ¿dónde vivirías? | I would live in Piura. | In my hometown.
+> Do you regret anything? | ¿Te arrepientes de algo? | Not really. I'm happy with my choices. | A little.
+# ⚽ | El partido perdido | Analizan un partido que perdieron.
+> If we had trained more, would we have won? | Si hubiéramos entrenado más, ¿habríamos ganado? | Yes, if we had trained more, we would have won. | Probably.
+! \bif we would have trained\b | If we had trained… | En el tercer condicional: «If we HAD trained».
+> What will happen if we lose again? | ¿Qué pasará si perdemos otra vez? | If we lose again, we will be out of the tournament. | We'll be out.
+> What would you change if you were the coach? | ¿Qué cambiarías si fueras el entrenador? | If I were the coach, I'd change the strategy. | I'd train every day.
+> Let's do our best! | ¡Demos lo mejor! | Yes, let's go! | Absolutely.
+
+@ eng-b2-w1-c3
+# 😔 | Arrepentimientos | Un amigo te cuenta que perdió un vuelo.
+> I missed my flight this morning. | Perdí mi vuelo esta mañana. | Oh no! If you had left earlier, you wouldn't have missed it. | That's terrible!
+> I know. I wish I had set an alarm. | Lo sé. Ojalá hubiera puesto una alarma. | If only you had checked the time! | Next time you'll remember.
+> What would you have done? | ¿Qué habrías hecho tú? | I would have taken a taxi. | I'd have left the night before.
+> I'll book another one. | Reservaré otro. | Good luck! | Let me know if you need help.
+# 🎹 | Deseos | Hablas de cosas que desearías.
+> What do you wish you could do? | ¿Qué desearías poder hacer? | I wish I could play the piano. | I wish I could speak French.
+> Do you wish you lived somewhere else? | ¿Desearías vivir en otro lugar? | Yes, I wish I lived near the beach. | No, I like my city.
+! \bi wish i live\b | I wish I lived… | Con «wish» sobre el presente se usa pasado: «I wish I LIVED».
+> What do you wish you had done as a child? | ¿Qué desearías haber hecho de niño? | I wish I had learned to swim. | I wish I had studied music.
+> It's never too late! | ¡Nunca es tarde! | You're right! | True!
+# 📖 | Historia alternativa | Clase de historia imaginando otro pasado.
+> What would have happened if the Internet hadn't been invented? | ¿Qué habría pasado si no se hubiera inventado Internet? | We would have written more letters. | Life would have been slower.
+> If the Incas had had horses, what would have happened? | Si los incas hubieran tenido caballos, ¿qué habría pasado? | They might have resisted the Spanish better. | History would have been different.
+> If only we could travel in time! | ¡Si tan solo pudiéramos viajar en el tiempo! | I wish we could! | That would be amazing.
+> Great thinking! | ¡Buen razonamiento! | Thanks! | Thank you.
+
+@ eng-b2-w2
+# 😓 | Pareces cansado | Tu compañera de trabajo nota que estás agotado.
+> You look exhausted. What have you been doing? | Te ves agotado. ¿Qué has estado haciendo? | I've been working on a project all night. | I've been studying for hours.
+! \bi have been work\b | I've been working… | Present perfect continuous: «have been + -ING».
+> How long have you been working on it? | ¿Cuánto tiempo has estado trabajando en eso? | I've been working on it since Monday. | For three days.
+> Have you been sleeping well? | ¿Has estado durmiendo bien? | No, I haven't been sleeping well. | Not really.
+> Take a break! | ¡Tómate un descanso! | I will, thanks. | You're right.
+# 🎨 | Pintura fresca | Tu mamá llega y ve todo desordenado.
+> Why are your hands blue? | ¿Por qué tienes las manos azules? | I've been painting my room. | I've been painting.
+> How long have you been doing it? | ¿Cuánto tiempo llevas haciéndolo? | I've been painting for two hours. | Since lunch.
+> Have you been listening to music too? | ¿También has estado escuchando música? | Yes, I've been listening to my playlist. | Yes, all the time.
+> It looks great! | ¡Se ve genial! | Thank you! | Thanks, Mom!
+# 🗣️ | Aprender idiomas | Un amigo te pregunta por tu inglés.
+> How long have you been learning English? | ¿Cuánto tiempo llevas aprendiendo inglés? | I've been learning English for five years. | Since I was ten.
+> Have you been practicing every day? | ¿Has estado practicando todos los días? | Yes, I've been practicing with an app. | Almost every day.
+> Have you been watching series in English? | ¿Has estado viendo series en inglés? | Yes, I've been watching them with subtitles. | Yes, I have.
+> Your English is really good! | ¡Tu inglés es muy bueno! | Thank you, I've been working hard! | Thanks!
+
+@ eng-b2-w2-c2
+# 📚 | Cuántos libros | Hablas de tu reto de lectura.
+> How many books have you read this year? | ¿Cuántos libros has leído este año? | I've read twelve books. | Twelve so far.
+! \bi have been reading twelve books\b | I've read twelve books. | Para una cantidad terminada se usa perfect simple: «I've READ twelve».
+> How long have you been reading this one? | ¿Cuánto tiempo llevas leyendo este? | I've been reading it for a week. | Since Monday.
+> Have you finished it? | ¿Lo has terminado? | No, I haven't finished it yet. | Not yet.
+> Tell me when you're done! | ¡Avísame cuando termines! | I will! | Sure.
+# 🏃 | Entrenando para la maratón | Tu amiga entrena para una maratón.
+> How long have you been training? | ¿Cuánto tiempo llevas entrenando? | I've been training for six months. | Since January.
+> How many kilometers have you run this week? | ¿Cuántos kilómetros has corrido esta semana? | I've run forty kilometers. | Forty.
+> Have you been eating well? | ¿Has estado comiendo bien? | Yes, I've been eating a lot of pasta. | Yes, I have.
+> You'll do great! | ¡Te irá genial! | Thanks! | I hope so!
+# 🍳 | La cocina | Tu papá entra a la cocina.
+> It smells great! What have you been cooking? | ¡Huele genial! ¿Qué has estado cocinando? | I've been cooking lasagna. | I've been baking a cake.
+> Have you finished? | ¿Has terminado? | Yes, I've just finished it. | Almost.
+> Have you cleaned the kitchen? | ¿Has limpiado la cocina? | Not yet, I've been busy cooking. | No, I haven't.
+> I'll help you! | ¡Te ayudo! | Thanks, Dad! | Great!
+
+@ eng-b2-w3
+# 🏖️ | Viaje con problemas | Cuentas un viaje bueno a pesar de los problemas.
+> How was your trip? | ¿Cómo estuvo tu viaje? | Although it rained a lot, we had fun. | It was great despite the rain.
+! \bdespite it rained\b | despite the rain / although it rained | «Despite» va con sustantivo o -ing: «despite THE RAIN».
+> Was the hotel good? | ¿El hotel era bueno? | It was small. However, it was very clean. | It was cheap, but clean.
+> Did you like the food? | ¿Te gustó la comida? | I loved it, whereas my brother hated it. | Yes, despite being spicy.
+> Would you go back? | ¿Volverías? | Yes, in spite of the weather. | Definitely.
+# 💼 | Dos trabajos | Comparas dos ofertas de trabajo.
+> Which job will you take? | ¿Qué trabajo aceptarás? | Although job A pays more, I prefer job B. | Job B, despite the lower salary.
+> Why? | ¿Por qué? | Job B is closer to home, whereas job A is far. | Because it's closer.
+> Isn't the salary important? | ¿No es importante el sueldo? | It is. However, time with my family matters more. | Yes, but not the most important.
+> Good decision. | Buena decisión. | Thanks! | I think so.
+# 🏙️ | Ciudad vs campo | Debatís dónde vivir.
+> Is it better to live in the city or the countryside? | ¿Es mejor vivir en la ciudad o en el campo? | The city has more jobs, whereas the countryside is quieter. | I prefer the city.
+> But the city is polluted. | Pero la ciudad está contaminada. | True. However, there are more opportunities. | That's right, but it's convenient.
+> Would you move to the countryside? | ¿Te mudarías al campo? | Despite the peace, I wouldn't move. | Maybe when I'm older.
+> Fair point. | Buen punto. | Thanks. | Exactly.
+
+@ eng-b2-w3-c2
+# 🌍 | Cambio climático | Explicas causas y consecuencias en clase.
+> Why is the planet getting warmer? | ¿Por qué el planeta se calienta? | Because of greenhouse gases. | Due to pollution.
+! \bbecause greenhouse gases\b | because of greenhouse gases | Antes de sustantivo: «because OF».
+> What are the consequences? | ¿Cuáles son las consecuencias? | As a result, glaciers are melting. | Therefore, sea levels are rising.
+> What can we do? | ¿Qué podemos hacer? | We should use public transport in order to reduce emissions. | Recycle more so that there is less waste.
+> Excellent explanation! | ¡Excelente explicación! | Thank you! | Thanks.
+# 💪 | Tu rutina saludable | Explicas tu rutina a un amigo.
+> Why do you get up so early? | ¿Por qué te levantas tan temprano? | I get up early in order to go running. | So that I can exercise.
+> What else do you do? | ¿Qué más haces? | I eat healthy food. Moreover, I sleep eight hours. | I also drink lots of water.
+> Has it worked? | ¿Ha funcionado? | Yes, as a result, I feel more energetic. | Yes, I feel better.
+> I should try it! | ¡Debería probarlo! | You should! | Go for it!
+# 🏫 | Propuesta al director | Propones un cambio en tu colegio.
+> What do you want to propose? | ¿Qué quieres proponer? | I propose a recycling program. | We want more recycling bins.
+> Why? | ¿Por qué? | Because there is too much waste. Furthermore, it teaches responsibility. | Due to the amount of plastic.
+> What do you need? | ¿Qué necesitas? | We need bins so that students can separate waste. | More bins and posters.
+> I'll think about it. | Lo pensaré. | Thank you for listening. | Thanks.
+
+@ eng-b2-w4
+# 🏛️ | Visita al museo | Eres guía y explicas un museo.
+> When was this museum built? | ¿Cuándo se construyó este museo? | It was built in 1924. | In 1924.
+! \bit was build\b | It was built in 1924. | En pasiva va el participio: «was BUILT».
+> Who was this painting painted by? | ¿Quién pintó este cuadro? | It was painted by a Peruvian artist. | By Szyszlo.
+> Is the museum visited by many people? | ¿El museo es visitado por mucha gente? | Yes, it is visited by thousands of people every year. | Yes, it is.
+> Will the museum be renovated? | ¿Renovarán el museo? | Yes, it will be renovated next year. | Yes, next year.
+# 🍫 | Cómo se hace el chocolate | Explicas el proceso en una fábrica.
+> Where are the cocoa beans grown? | ¿Dónde se cultivan los granos de cacao? | They are grown in the jungle. | In tropical regions.
+> What happens next? | ¿Qué pasa luego? | They are dried and roasted. | The beans are roasted.
+> How is the chocolate made? | ¿Cómo se hace el chocolate? | It is mixed with sugar and milk. | The cocoa is mixed with sugar.
+> When is it sold? | ¿Cuándo se vende? | It is sold after it has been packed. | After packing.
+# 🚨 | Noticias del barrio | Comentas noticias con tu vecino.
+> Did you hear? A car was stolen last night. | ¿Supiste? Robaron un auto anoche. | Really? Has the thief been caught? | Oh no! Was anyone hurt?
+> No, but the police have been called. | No, pero llamaron a la policía. | I hope it will be found soon. | Hopefully it will be found.
+> And the park is being repaired. | Y están reparando el parque. | Good! It should have been repaired years ago. | Finally!
+> Yes, finally! | ¡Sí, por fin! | Let's hope it's finished soon. | Exactly.
+
+@ eng-b2-w4-c2
+# 📞 | ¿Qué te dijo? | Tu amiga habló con tu crush.
+> I talked to Diego. | Hablé con Diego. | What did he say? | Really? What did he say?
+> He said he was going to the party. | Dijo que iba a ir a la fiesta. | Did he say he would dance? | Great! Who is he going with?
+> He told me he liked your drawing. | Me dijo que le gustaba tu dibujo. | Really? He said that? | That's so nice!
+> Yes! He said he would talk to you. | ¡Sí! Dijo que hablaría contigo. | I can't wait! | Wow!
+# 🏢 | Mensaje del jefe | Le cuentas a un colega lo que dijo el jefe.
+> What did the boss say in the meeting? | ¿Qué dijo el jefe en la reunión? | He said the project was late. | He said we needed to hurry.
+! \bhe said the project is late\b | He said the project was late. | En estilo indirecto el tiempo retrocede: «is» → «WAS».
+> Did he mention the deadline? | ¿Mencionó la fecha límite? | He said it would be next Friday. | Yes, he said it was Friday.
+> Anything else? | ¿Algo más? | He told us he had hired a new designer. | He said we'd get a bonus.
+> Good news! | ¡Buenas noticias! | Yes, finally! | Indeed.
+# 🩺 | Lo que dijo el doctor | Le cuentas a tu mamá la consulta.
+> What did the doctor say? | ¿Qué dijo el doctor? | She said I had a small infection. | She said it wasn't serious.
+> Did she give you medicine? | ¿Te dio medicina? | She said I had to take antibiotics. | Yes, she said I should take pills.
+> For how long? | ¿Por cuánto tiempo? | She told me to take them for a week. | For seven days.
+> OK, rest now. | Bien, ahora descansa. | I will, Mom. | OK.
+
+@ eng-b2-w4-c3
+# 🎤 | La entrevista | Cuentas qué te preguntaron en una entrevista.
+> What did they ask you? | ¿Qué te preguntaron? | They asked me why I wanted the job. | They asked what my strengths were.
+! \bthey asked me why did i want\b | They asked me why I wanted the job. | En preguntas indirectas no hay inversión: «why I WANTED».
+> Did they ask about your experience? | ¿Te preguntaron por tu experiencia? | Yes, they asked if I had worked abroad. | Yes, they asked whether I had experience.
+> What did they tell you at the end? | ¿Qué te dijeron al final? | They told me to wait for a call. | They asked me to send my references.
+> Fingers crossed! | ¡Crucemos los dedos! | Thanks! | I hope so!
+# 👮 | La multa | Cuentas cuando un policía te detuvo.
+> What did the officer ask? | ¿Qué preguntó el policía? | He asked where I was going. | He asked if I had my license.
+> What did he tell you to do? | ¿Qué te dijo que hicieras? | He told me to show my documents. | He asked me to get out of the car.
+> Did he warn you? | ¿Te advirtió? | He warned me not to drive so fast. | Yes, he warned me.
+> Did he give you a fine? | ¿Te puso multa? | He admitted I wasn't speeding, so no. | No, luckily.
+# 🏫 | La reunión de padres | Tu mamá te cuenta la reunión.
+> What did the teacher say? | ¿Qué dijo la profesora? | She suggested that I study more math. | She said I was improving.
+> Did she ask about your homework? | ¿Preguntó por tus tareas? | She asked whether I did it every day. | Yes, she asked about it.
+> What did she recommend? | ¿Qué recomendó? | She recommended reading every night. | She advised me to read more.
+> OK, let's make a plan. | Bien, hagamos un plan. | Good idea. | OK, Mom.
+
+@ eng-b2-w5
+# 🕵️ | El misterio | Haces de detective con tu amigo.
+> The lights are on, but nobody answers. | Las luces están prendidas, pero nadie contesta. | They must be asleep. | They might be in the garden.
+> Their car isn't here. | Su auto no está. | They can't be home then. | They must be out.
+! \bthey must not be home\b | They can't be home. | Para deducir que algo es imposible se usa «can't», no «must not».
+> The dog is barking. | El perro está ladrando. | Someone might be at the door. | It must be hungry.
+> Let's call them. | Llamémoslos. | Good idea. | OK.
+# 🏃 | En la oficina | Comentas sobre una compañera.
+> Maria has been working since six a.m. | María trabaja desde las seis. | She must be exhausted. | She must be tired.
+> She's smiling a lot today. | Hoy sonríe mucho. | She might have good news. | She must be happy about something.
+> She isn't eating lunch. | No está almorzando. | She can't be hungry. | She may not be hungry.
+> Let's ask her! | ¡Preguntémosle! | Sure. | Good idea.
+# 📦 | El paquete | Llega un paquete sin remitente.
+> There's a package for you. | Hay un paquete para ti. | It must be my new shoes. | It might be from my aunt.
+> It's very heavy. | Es muy pesado. | It can't be shoes then. | It could be books.
+> It says "fragile". | Dice «frágil». | It might be the glasses I ordered. | It must be glass.
+> Open it! | ¡Ábrelo! | OK, let's see. | Let's see!
+
+@ eng-b2-w5-c2
+# 🍪 | ¿Quién se comió las galletas? | Las galletas desaparecieron.
+> The cookies are gone! | ¡Las galletas desaparecieron! | My brother must have eaten them. | Someone must have eaten them.
+! \bmust have ate\b | must have eaten | Después de «must have» va participio: «EATEN».
+> But he was at school all day. | Pero estuvo en el colegio todo el día. | Then he can't have eaten them. | It can't have been him.
+> The window is open. | La ventana está abierta. | The cat might have taken them. | A bird might have come in.
+> Mystery solved? | ¿Misterio resuelto? | Maybe! | I think so.
+# 🚗 | El auto rayado | Encuentras tu auto rayado.
+> What happened to your car? | ¿Qué le pasó a tu auto? | Someone must have hit it last night. | Someone must have scratched it.
+> Did you see anyone? | ¿Viste a alguien? | No, it might have happened while I was sleeping. | No, I didn't.
+> Could it have been the neighbor? | ¿Pudo haber sido el vecino? | No, he can't have done it. He's away. | Maybe.
+> Check the cameras. | Revisa las cámaras. | Good idea. | I will.
+# 🗿 | Misterios de la historia | Hablas de las líneas de Nazca.
+> Who made the Nazca Lines? | ¿Quién hizo las líneas de Nazca? | The Nazca people must have made them. | An ancient culture.
+> Why did they make them? | ¿Por qué las hicieron? | They might have been for their gods. | They could have been calendars.
+> Could aliens have made them? | ¿Pudieron hacerlas extraterrestres? | No, aliens can't have made them! | I doubt it.
+> Ha ha, probably not. | Ja, ja, probablemente no. | Definitely not! | Exactly.
+
+@ eng-b2-w6
+# 💼 | Primera semana | Tu jefe hace seguimiento.
+> Have you caught up with the emails? | ¿Te pusiste al día con los correos? | Yes, I've caught up with them. | Almost.
+> Can you carry out the survey this week? | ¿Puedes realizar la encuesta esta semana? | Sure, I'll carry it out on Wednesday. | Yes, no problem.
+> Did you figure out the software? | ¿Entendiste el software? | Yes, I figured it out yesterday. | Not completely.
+> If you have problems, I'll back you up. | Si tienes problemas, te respaldo. | Thank you, I appreciate it. | Thanks!
+# 📚 | Estudiando para el examen | Hablas con un compañero de la universidad.
+> Have you looked over your notes? | ¿Has repasado tus apuntes? | Yes, I've looked them over twice. | Not yet.
+> I'm falling behind in physics. | Me estoy atrasando en física. | Don't worry, I can help you catch up. | Let's study together.
+> Can you point out the key topics? | ¿Puedes señalar los temas clave? | Sure, I'll point them out. | Of course.
+> Thanks, I won't give up! | ¡Gracias, no me rendiré! | That's the spirit! | You can do it!
+# 🗓️ | Reunión reprogramada | Coordinas con una colega.
+> The meeting has been called off. | Se canceló la reunión. | Really? Why did they call it off? | Oh, OK.
+> The manager is ill. Can we put it off until Monday? | El gerente está enfermo. ¿La pasamos al lunes? | Yes, let's put it off until Monday. | Sure.
+> Can you set up the room? | ¿Puedes preparar la sala? | Yes, I'll set it up. | No problem.
+> Thanks for stepping in. | Gracias por intervenir. | Anytime. | You're welcome.
+
+@ eng-b2-w6-c2
+# 📻 | Comentar una noticia | Comentas una noticia de radio con tu papá.
+> Did you hear the news this morning? | ¿Escuchaste las noticias esta mañana? | Yes, they said a new bridge will be built. | Yes, about the bridge.
+> What did they say about the cost? | ¿Qué dijeron del costo? | They said it would cost ten million. | It's very expensive.
+> When will it open? | ¿Cuándo abrirá? | It's expected to open next year. | Next year.
+> Good news for the city! | ¡Buenas noticias para la ciudad! | I agree. | Definitely.
+# 🌀 | Alerta del clima | Escuchas una alerta por la radio.
+> What did the radio say about the storm? | ¿Qué dijo la radio de la tormenta? | It said a storm is approaching the coast. | A storm is coming.
+> What are people advised to do? | ¿Qué se aconseja hacer? | People are advised to stay indoors. | Stay at home.
+> Are schools closed? | ¿Los colegios están cerrados? | Yes, schools will be closed tomorrow. | Yes, they are.
+> Let's buy some supplies. | Compremos provisiones. | Good idea. | OK.
+# 🏆 | Noticias deportivas | Comentas una noticia deportiva.
+> Did you hear about the match? | ¿Supiste del partido? | Yes, Peru won two to one. | Yes! We won!
+> Who scored? | ¿Quién anotó? | According to the report, Lapadula scored twice. | Lapadula.
+> What did the coach say? | ¿Qué dijo el entrenador? | He said the team had played very well. | He was proud.
+> Great news! | ¡Grandes noticias! | Absolutely! | Yes!
+
+@ eng-b2-w7
+# ☕ | Charla casual | Conversas con un colega en la cafetería.
+> So, how was your weekend? | Y, ¿qué tal tu fin de semana? | It was pretty relaxing, actually. | Not bad, you know, quiet.
+> Did you do anything fun? | ¿Hiciste algo divertido? | Well, I kind of went hiking. | I sort of stayed home.
+> Sounds nice. Anyway, are you ready for the meeting? | Suena bien. En fin, ¿listo para la reunión? | More or less, to be honest. | I guess so.
+> Same here! | ¡Yo igual! | Let's grab a coffee first. | Ha ha, good luck to us!
+# 🗨️ | Ganar tiempo y suavizar | Te piden tu opinión sobre algo delicado.
+> What do you think of my presentation? | ¿Qué piensas de mi presentación? | Well, it was pretty good, but a bit long. | To be honest, it was great.
+> Too long? | ¿Muy larga? | Yeah, maybe you could cut a few slides. | Kind of, yes.
+> Anything else? | ¿Algo más? | Not really, I mean, it was clear. | That's about it.
+> Thanks for being honest. | Gracias por ser sincero. | No worries! | Anytime.
+# 👋 | Despedirse con naturalidad | Terminas una conversación con una amiga.
+> It was great to see you! | ¡Fue genial verte! | Same here! We should do this more often. | You too!
+> Let's catch up next week. | Pongámonos al día la próxima semana. | Sounds good. I'll text you. | Definitely.
+> I have to run now. | Tengo que irme ya. | No problem, take care! | Sure, see you!
+> Bye! | ¡Chao! | Catch you later! | Bye!
+
+@ eng-b2-w7-c2
+# 🥶 | Romper el hielo | Conoces gente en un evento.
+> It's a bit awkward, nobody's talking. | Es algo incómodo, nadie habla. | Let's break the ice! I'll start. | I'll break the ice.
+> Good idea! You're very brave. | ¡Buena idea! Eres valiente. | Thanks! I'm not usually the life of the party. | Ha ha, thanks.
+> Do you know anyone here? | ¿Conoces a alguien aquí? | Not really, I'm a fish out of water. | Just the host.
+> Me neither! | ¡Yo tampoco! | Then let's stick together! | Great!
+# 🎓 | El examen fácil | Comentas un examen con un compañero.
+> How was the test? | ¿Qué tal el examen? | It was a piece of cake! | Piece of cake.
+> Really? I found it hard. | ¿En serio? A mí me pareció difícil. | Don't worry, you'll get the hang of it. | Hang in there!
+> I studied until midnight. | Estudié hasta medianoche. | Wow, you burned the midnight oil! | That's a lot.
+> I'll hit the books again. | Volveré a estudiar. | Good luck! | You can do it!
+# 💸 | Caro como un ojo de la cara | Un amigo compró algo caro.
+> I bought a new phone. | Compré un celular nuevo. | Did it cost an arm and a leg? | Was it expensive?
+> Yes, but it was worth it. | Sí, pero valió la pena. | Well, you only live once! | Fair enough.
+> My mom thinks I'm crazy. | Mi mamá cree que estoy loco. | Don't worry, it's not the end of the world. | Ha ha.
+> True! | ¡Cierto! | Enjoy it! | Exactly.
+
+@ eng-b2-w7-c3
+# 🏫 | ¿Más horas de clase? | Debate guiado en clase.
+> Should schools have longer days? | ¿Los colegios deberían tener jornadas más largas? | I'm against it, because students need time to rest. | In my view, no.
+> But students would learn more. | Pero los alumnos aprenderían más. | I see your point, but quality matters more than quantity. | That's not necessarily true.
+> What's your alternative? | ¿Cuál es tu alternativa? | I'd suggest better teaching methods. | More practical classes.
+> Let's hear the other side. | Escuchemos la otra posición. | Of course. | Go ahead.
+# 🚗 | ¿Prohibir autos en el centro? | Debate municipal.
+> Should cars be banned from the city center? | ¿Deberían prohibirse los autos en el centro? | I strongly believe they should be banned. | I'm in favor of it.
+> What about people who need to drive? | ¿Y las personas que necesitan manejar? | That's a fair point, but there could be exceptions. | They could use public transport.
+> Wouldn't shops lose customers? | ¿Las tiendas no perderían clientes? | Actually, studies show they gain customers. | Not necessarily.
+> Convincing! | ¡Convincente! | Thank you. | Thanks.
+# 🤖 | ¿La IA quitará empleos? | Debate sobre tecnología.
+> Will AI take our jobs? | ¿La IA nos quitará los empleos? | It will replace some jobs, but it will create others. | Some, but not all.
+> Isn't that dangerous? | ¿No es peligroso? | It could be, unless we prepare people. | Only if we don't adapt.
+> How should we prepare? | ¿Cómo deberíamos prepararnos? | By learning new skills. | Through education.
+> Good conclusion. | Buena conclusión. | Thank you. | Thanks.
+
+@ eng-b2-w8
+# 📊 | Presentación de tu proyecto | Presentas un proyecto ante la clase.
+> Please introduce your topic. | Por favor presenta tu tema. | Today I'm going to talk about recycling in our school. | My presentation is about recycling.
+> How is it organized? | ¿Cómo está organizada? | First I'll explain the problem, then the solution. | It has three parts.
+> Can you give some data? | ¿Puedes dar datos? | As you can see in this chart, we waste a lot of plastic. | We throw away 50 kilos a week.
+> How do you finish? | ¿Cómo terminas? | To sum up, small changes make a big difference. | Thank you for listening.
+# ❓ | Preguntas del público | Respondes preguntas tras tu presentación.
+> How much would the project cost? | ¿Cuánto costaría el proyecto? | That's a good question. It would cost about five hundred soles. | About five hundred soles.
+> Who would be responsible? | ¿Quién sería responsable? | The student council would be responsible. | The students.
+> What if students don't participate? | ¿Y si los alumnos no participan? | We would run a campaign to motivate them. | We'd give prizes.
+> Thank you for your answers. | Gracias por sus respuestas. | Thank you for your questions. | My pleasure.
+# 😬 | Problemas técnicos | El proyector falla durante tu presentación.
+> The projector isn't working! | ¡El proyector no funciona! | No problem, I'll continue without slides. | Let me try again.
+> Can you explain without the chart? | ¿Puedes explicar sin el gráfico? | Sure. Basically, the numbers have doubled. | Of course.
+> It's working again! | ¡Funciona otra vez! | Great! As I was saying... | Perfect, let's continue.
+> Well handled! | ¡Bien manejado! | Thank you! | Thanks.
+
+@ eng-b2-w8-c2
+# ✍️ | Planificar un ensayo | Planeas tu ensayo de opinión con tu profesora.
+> What's your essay topic? | ¿Cuál es el tema de tu ensayo? | Should homework be banned? | Social media and teenagers.
+> What's your opinion? | ¿Cuál es tu opinión? | I believe homework should be reduced, not banned. | I think it should be banned.
+> How will you organize it? | ¿Cómo lo organizarás? | Introduction, two arguments, a counterargument and a conclusion. | Four paragraphs.
+> Good plan. | Buen plan. | Thank you! | Thanks.
+# 🔗 | Conectar ideas | Tu compañero revisa tus conectores.
+> How do you add a second argument? | ¿Cómo añades un segundo argumento? | Furthermore, homework causes stress. | Moreover, it causes stress.
+> How do you show the other side? | ¿Cómo muestras la otra postura? | On the other hand, some say it builds discipline. | However, some people disagree.
+> How do you conclude? | ¿Cómo concluyes? | In conclusion, homework should be limited. | To sum up, less is more.
+> Nice connectors! | ¡Buenos conectores! | Thanks! | Thank you.
+# 📝 | Retroalimentación | Tu profesora comenta tu borrador.
+> Your introduction is a bit long. | Tu introducción es un poco larga. | I'll shorten it. | Thanks, I'll cut it.
+> You need an example in paragraph two. | Necesitas un ejemplo en el párrafo dos. | I'll add a statistic. | OK, I'll add one.
+> Your conclusion repeats too much. | Tu conclusión repite demasiado. | I'll rewrite it with my final opinion. | I'll change it.
+> Send it on Friday. | Envíalo el viernes. | I will, thank you. | Sure.
