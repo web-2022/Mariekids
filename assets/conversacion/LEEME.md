@@ -24,3 +24,8 @@ Campos de cada turno:
 
 El motor detecta además, sin configurar: falta de «the»/«a» y «didn't» en lugar de «don't».
 Progreso: localStorage `mk_conv_v1` (estrellas, días, medallas y banco de errores con repetición espaciada).
+
+## Conversaciones de cada clase (generadas)
+Los archivos a0.js … c2.js se GENERAN con `python3 tools/ingles/conversaciones/construir.py`
+a partir de `tools/ingles/conversaciones/<nivel>.txt` (formato compacto explicado al inicio de construir.py).
+No edites a mano a0.js … c2.js: edita el .txt y vuelve a construir.

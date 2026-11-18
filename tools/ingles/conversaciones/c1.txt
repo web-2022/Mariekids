@@ -1,0 +1,324 @@
+@ eng-c1-w1
+# 🛫 | El viaje que salió mal | Cuentas a un colega un viaje de negocios accidentado.
+> How was your business trip? | ¿Qué tal tu viaje de negocios? | It was chaotic. By the time I got to the airport, my flight had already left. | A disaster, honestly. My flight had left before I arrived.
+! \bmy flight already left when\b | my flight had already left | Para una acción anterior a otra en el pasado se usa el past perfect: «HAD already left».
+> What had happened? | ¿Qué había pasado? | I had been stuck in traffic for two hours. | There had been an accident on the highway.
+> What did you do? | ¿Qué hiciste? | I rebooked, but I had lost a whole day. | I took the next flight.
+> At least you made it. | Al menos llegaste. | True, but I had missed the main meeting. | Yes, eventually.
+# 🔦 | Relato de misterio | Narran juntos una historia de suspenso.
+> Set the scene. | Describe la escena. | It was midnight, and it had been raining for hours. | The house had been empty for years.
+> What did the detective notice? | ¿Qué notó el detective? | He noticed that someone had broken the window. | The door had been forced.
+> Why was the butler nervous? | ¿Por qué estaba nervioso el mayordomo? | Because he had been lying all along. | He had seen the thief.
+> Great twist! | ¡Gran giro! | Thanks, I'd been planning it for a while. | Thank you.
+# 🧗 | Una experiencia que te cambió | Cuentas un logro personal en una entrevista.
+> Tell me about a challenge you overcame. | Háblame de un reto que superaste. | I climbed a mountain after I had been training for months. | I ran a marathon I had prepared for all year.
+> Had you done anything like that before? | ¿Habías hecho algo así antes? | No, I had never climbed above 4,000 meters. | Never.
+> How did you feel at the top? | ¿Cómo te sentiste en la cima? | Exhausted but proud, because I had nearly given up. | Incredible.
+> What did it teach you? | ¿Qué te enseñó? | That persistence pays off. | That I'm stronger than I thought.
+
+@ eng-c1-w1-c2
+# 📆 | Agenda del directorio | Coordinas plazos con tu gerente.
+> Will the report be ready by Friday? | ¿Estará listo el informe para el viernes? | Yes, I'll have finished it by Thursday evening. | By Friday I'll have finished it.
+> What will you be doing on Monday morning? | ¿Qué estarás haciendo el lunes en la mañana? | I'll be meeting the auditors. | I'll be presenting to the board.
+> Is the CEO about to announce the merger? | ¿El CEO está por anunciar la fusión? | Yes, he's due to announce it next week. | It seems he's about to.
+> Keep me posted. | Mantenme al tanto. | Will do. | Of course.
+# 🧳 | Planes a futuro | Conversas con una amiga sobre tu vida en cinco años.
+> Where do you see yourself in five years? | ¿Dónde te ves en cinco años? | By then, I'll have completed my master's degree. | I'll be working abroad.
+> Will you still be living here? | ¿Seguirás viviendo aquí? | I'll probably be living in Canada. | I doubt it.
+> How long will you have been working by then? | ¿Cuánto tiempo llevarás trabajando para entonces? | I'll have been working for ten years. | About ten years.
+> Ambitious! | ¡Ambicioso! | Fingers crossed. | Hopefully.
+# 🚄 | Logística de un evento | Organizas una conferencia.
+> When are the guests arriving? | ¿Cuándo llegan los invitados? | Their flight lands at nine tomorrow. | They're arriving at nine.
+> Will the venue be ready? | ¿Estará listo el local? | The decorators will have finished by noon. | Yes, by noon.
+> Who's giving the opening speech? | ¿Quién da el discurso inaugural? | The minister is to open the event. | The director is due to speak first.
+> Sounds organized. | Suena organizado. | We're on track. | Everything's under control.
+
+@ eng-c1-w1-c3
+# 📰 | Resumir una noticia | Resumes una noticia con oraciones compactas.
+> What's the news about? | ¿De qué trata la noticia? | A report published yesterday shows rising unemployment. | A study released this week shows unemployment is rising.
+> Who conducted it? | ¿Quién lo hizo? | Researchers working at the university. | A team based in Lima.
+> What did they find? | ¿Qué encontraron? | Having analyzed the data, they found young people were most affected. | Young people were the most affected.
+> Clear summary. | Resumen claro. | Thank you. | Thanks.
+# 🏛️ | Visita guiada | Describes un edificio con cláusulas reducidas.
+> Tell us about this building. | Cuéntanos de este edificio. | Built in 1910, it was the first bank in the city. | Designed by a French architect, it's very elegant.
+> And the people in the painting? | ¿Y la gente del cuadro? | The man standing on the left is the founder. | Those sitting are his family.
+> Why is it closed on Mondays? | ¿Por qué cierra los lunes? | Being a historic site, it needs regular maintenance. | For maintenance.
+> Fascinating. | Fascinante. | It really is. | Glad you like it.
+# 🧑‍💼 | Contar tu día de forma eficiente | Le resumes tu día a tu pareja.
+> How was your day? | ¿Qué tal tu día? | Having finished the presentation, I finally relaxed. | Busy, but productive.
+> Did you meet the new client? | ¿Conociste al nuevo cliente? | Yes, the client sent by head office was very demanding. | Yes, I did.
+> Anything else? | ¿Algo más? | Walking home, I bumped into an old friend. | Not much.
+> Nice! | ¡Qué bien! | It was a good day overall. | Yes!
+
+@ eng-c1-w2
+# 🎓 | Seminario universitario | Participas en un seminario.
+> What does the research highlight? | ¿Qué destaca la investigación? | It highlights a significant increase in screen time. | It draws attention to a growing problem.
+> Is the evidence strong? | ¿La evidencia es sólida? | Yes, there is compelling evidence. | It provides strong evidence.
+> What are the implications? | ¿Cuáles son las implicancias? | It has far-reaching implications for education. | It raises important questions.
+> Can you conclude anything? | ¿Puedes concluir algo? | We can draw the conclusion that limits are necessary. | It suggests we need policy changes.
+# 📑 | Revisión de un paper | Comentas un artículo con tu asesor.
+> What's the main argument? | ¿Cuál es el argumento principal? | The author puts forward the argument that cities need more green space. | The author argues for urban parks.
+> Does the author address counterarguments? | ¿El autor aborda contraargumentos? | Yes, she raises some objections and responds to them. | Partially.
+> What's missing? | ¿Qué falta? | It lacks a detailed analysis of costs. | More data.
+> Good critique. | Buena crítica. | Thank you. | Thanks.
+# 🗂️ | Presentar resultados | Presentas datos a tu equipo de investigación.
+> What did the survey reveal? | ¿Qué reveló la encuesta? | It revealed a marked decline in reading habits. | Reading has declined sharply.
+> To what extent? | ¿En qué medida? | To a large extent, especially among teenagers. | Significantly.
+> What do you recommend? | ¿Qué recomiendas? | Further research should be carried out. | We should conduct more research.
+> Agreed. | De acuerdo. | Thank you. | Great.
+
+@ eng-c1-w2-c2
+# 🔄 | Parafrasear a un experto | Explicas con tus palabras lo que dijo un experto.
+> The expert said: "Sleep deprivation impairs cognitive performance." Paraphrase it. | El experto dijo eso. Parafraséalo. | In other words, lack of sleep affects how well we think. | Not sleeping enough harms our thinking.
+> And "Regular exercise mitigates stress"? | ¿Y «Regular exercise mitigates stress»? | Basically, exercising often reduces stress. | Exercise helps reduce stress.
+> How would you report his claim? | ¿Cómo reportarías su afirmación? | He maintains that sleep is essential for learning. | He argues that sleep matters.
+> Well done. | Bien hecho. | Thanks. | Thank you.
+# 📚 | Citar fuentes | Hablas con tu tutor sobre tu tesis.
+> How do you introduce a source? | ¿Cómo introduces una fuente? | According to Smith, social media affects self-esteem. | As Smith points out, …
+> And to show disagreement? | ¿Y para mostrar desacuerdo? | Smith claims this, but other studies contradict it. | However, Lee challenges this view.
+> How do you avoid copying? | ¿Cómo evitas copiar? | I paraphrase and cite the author. | I use my own words and give credit.
+> Good practice. | Buena práctica. | Thank you. | Thanks.
+# 🗣️ | Reformular en una reunión | Aclaras lo que dijo un colega.
+> I didn't understand Ana's point. | No entendí el punto de Ana. | What she means is that the budget is too tight. | She's saying we need more money.
+> Can you put it more simply? | ¿Puedes decirlo más simple? | Put simply, we can't afford it. | We don't have enough money.
+> So what does she suggest? | ¿Entonces qué sugiere? | She suggests postponing the launch. | Delaying the project.
+> Now I get it. | Ahora entiendo. | Great. | Glad that helped.
+
+@ eng-c1-w2-c3
+# 🧩 | Formar palabras | Juego de vocabulario con prefijos y sufijos.
+> What's the opposite of "possible"? | ¿Cuál es lo contrario de «possible»? | Impossible. | It's impossible.
+> Make a noun from "develop". | Forma un sustantivo de «develop». | Development. | The noun is development.
+> Make an adjective from "danger". | Forma un adjetivo de «danger». | Dangerous. | It's dangerous.
+> What does "rewrite" mean? | ¿Qué significa «rewrite»? | It means to write again. | To write something again.
+# 📝 | Mejorar un texto | Mejoras un texto con mejores palabras.
+> "The plan was not successful." Say it with one word. | Dilo con una palabra. | The plan was unsuccessful. | It was unsuccessful.
+> "He is not responsible." Improve it. | Mejóralo. | He is irresponsible. | He's irresponsible.
+> "The team showed a lot of effort." Use an adjective. | Usa un adjetivo. | The team was very hard-working. | The team was very determined.
+> Much better! | ¡Mucho mejor! | Thanks! | Thank you.
+# 🏢 | Vocabulario de trabajo | Describes a un candidato.
+> How would you describe her? | ¿Cómo la describirías? | She's reliable and highly motivated. | Very dependable.
+> Any weaknesses? | ¿Alguna debilidad? | She can be a bit inflexible. | She's sometimes impatient.
+> Would she fit the role? | ¿Encajaría en el puesto? | Definitely, she's very knowledgeable. | I think she's suitable.
+> Thanks for the input. | Gracias por tu opinión. | My pleasure. | Anytime.
+
+@ eng-c1-w3
+# 🎭 | Crítica de teatro | Escribes una crítica oral con énfasis.
+> How was the play? | ¿Qué tal la obra? | Never have I seen such a powerful performance. | Rarely have I enjoyed a play so much.
+! \bnever i have seen\b | Never have I seen… | Tras «Never» al inicio, se invierte: «Never HAVE I seen».
+> What about the actors? | ¿Y los actores? | Not only did they act brilliantly, but they also sang. | They were outstanding.
+> Any weaknesses? | ¿Alguna debilidad? | Only at the end did the story lose some energy. | Hardly any.
+> I must see it! | ¡Tengo que verla! | You won't regret it. | Definitely.
+# 🏆 | Discurso de aceptación | Das un discurso de premio.
+> Start your speech. | Empieza tu discurso. | Seldom have I felt so honored. | Never did I expect this award.
+> Thank your team. | Agradece a tu equipo. | Not only did my team support me, but they also inspired me. | I couldn't have done it without them.
+> Mention the difficulties. | Menciona las dificultades. | At no point did we think of giving up. | Little did we know how hard it would be.
+> Close the speech. | Cierra el discurso. | Thank you all from the bottom of my heart. | Thank you so much.
+# ⚠️ | Advertencias formales | Redactas normas para un laboratorio.
+> What about entering without goggles? | ¿Y entrar sin lentes? | Under no circumstances should you enter without goggles. | You should never enter without goggles.
+> And leaving experiments alone? | ¿Y dejar experimentos solos? | On no account should experiments be left unattended. | Never leave them alone.
+> When can students touch the equipment? | ¿Cuándo pueden tocar el equipo? | Only after the teacher explains should they touch it. | After the explanation.
+> Very clear rules. | Reglas muy claras. | Thank you. | Thanks.
+
+@ eng-c1-w3-c2
+# 🔑 | ¿Qué es lo que necesitas? | Aclaras qué quieres en una tienda.
+> So you want the blue laptop? | ¿Entonces quieres la laptop azul? | No, what I want is the silver one. | It's the silver one that I want.
+> Because of the color? | ¿Por el color? | It's the battery life that matters to me. | What matters is the battery.
+> Anything else? | ¿Algo más? | What I really need is a good warranty. | A longer warranty.
+> We can do that. | Podemos hacerlo. | Perfect. | Great, thanks.
+# 🧾 | Aclarar un malentendido | Corriges a un colega.
+> You sent the report late. | Enviaste tarde el informe. | Actually, it was Pedro who sent it late. | It wasn't me who sent it late.
+> But you were in charge. | Pero tú estabas a cargo. | What I was in charge of was the data, not the sending. | Only of the data.
+> I see. | Ya veo. | What we need is a clearer process. | No problem.
+> Fair enough. | Me parece justo. | Thanks for understanding. | Agreed.
+# 🎯 | Enfatizar en una presentación | Destacas lo esencial ante un cliente.
+> What makes your product different? | ¿Qué hace diferente a tu producto? | What makes it different is its price. | It's the price that makes it unique.
+> Why should we choose you? | ¿Por qué deberíamos elegirlos? | It's our service that sets us apart. | What sets us apart is our service.
+> What's the next step? | ¿Cuál es el siguiente paso? | What we'll do next is send you a proposal. | We'll send a proposal.
+> Sounds good. | Suena bien. | Thank you. | Great.
+
+@ eng-c1-w3-c3
+# 🔬 | Resultados prudentes | Presentas resultados preliminares.
+> Does the treatment work? | ¿Funciona el tratamiento? | The results suggest that it may be effective. | It appears to work.
+> Can you be certain? | ¿Puedes estar seguro? | Not entirely. It seems likely, but more data is needed. | We can't be certain yet.
+> What might explain the improvement? | ¿Qué podría explicar la mejora? | It could possibly be due to the new dosage. | Perhaps the dosage.
+> Cautious but promising. | Prudente pero prometedor. | Exactly. | That's the idea.
+# 💬 | Dar feedback suave | Comentas el trabajo de un practicante.
+> What do you think of my report? | ¿Qué te parece mi informe? | It's quite good, although some parts could perhaps be clearer. | Generally good, with a few issues.
+> Which parts? | ¿Qué partes? | The conclusion seems a little rushed. | The conclusion, possibly.
+> Should I rewrite it? | ¿Debería reescribirlo? | It might be worth revising it. | You may want to revise it.
+> Thanks for being kind. | Gracias por ser amable. | You're welcome. | No problem.
+# 📈 | Predicción económica | Hablas de la economía en una entrevista.
+> Will the economy grow next year? | ¿Crecerá la economía el próximo año? | It is likely to grow slightly. | It will probably grow a little.
+> Is a crisis possible? | ¿Es posible una crisis? | It cannot be ruled out, but it seems unlikely. | It's possible, but unlikely.
+> What should people do? | ¿Qué debería hacer la gente? | It would arguably be wise to save more. | Perhaps save more.
+> Thank you for your analysis. | Gracias por su análisis. | My pleasure. | Thank you.
+
+@ eng-c1-w4
+# 🎤 | Abrir una conferencia | Inicias una charla formal.
+> Please begin. | Por favor empiece. | Good morning. I'd like to begin by thanking the organizers. | Good morning, everyone. Thank you for coming.
+> What's your topic? | ¿Cuál es su tema? | Today I will address the issue of water scarcity. | My talk focuses on water scarcity.
+> How is your talk structured? | ¿Cómo está estructurada su charla? | Firstly, I'll outline the problem; secondly, I'll propose solutions. | In three parts.
+> Please continue. | Por favor continúe. | Thank you. | Let's begin.
+# ✉️ | Correo formal | Dictas un correo a una institución.
+> How do you start? | ¿Cómo empiezas? | Dear Sir or Madam, I am writing with regard to the scholarship. | Dear Ms. Smith,
+> Add a second point. | Añade un segundo punto. | Furthermore, I would like to request further information. | In addition, I'd like more details.
+> Contrast two ideas. | Contrasta dos ideas. | Nevertheless, I understand the deadline has passed. | However, I know it's late.
+> Close the email. | Cierra el correo. | I look forward to your reply. Yours faithfully, | Kind regards,
+# 📜 | Debate parlamentario | Presentas argumentos formalmente.
+> Present your first argument. | Presenta tu primer argumento. | To begin with, education should be free for all. | First of all, …
+> Add another argument. | Añade otro argumento. | Moreover, it would reduce inequality. | In addition, it reduces inequality.
+> Acknowledge the opposing view. | Reconoce la postura contraria. | Admittedly, it would be costly. | Granted, it is expensive.
+> Conclude. | Concluye. | In conclusion, the benefits outweigh the costs. | To conclude, …
+
+@ eng-c1-w4-c2
+# 📋 | Informe de un incidente | Reportas un incidente en la empresa.
+> What is the purpose of the report? | ¿Cuál es el propósito del informe? | The aim of this report is to describe the incident. | This report aims to describe what happened.
+> What were the findings? | ¿Cuáles fueron los hallazgos? | It was found that safety rules were not followed. | Safety procedures were ignored.
+> What do you recommend? | ¿Qué recomiendas? | It is recommended that staff receive training. | I recommend training.
+> Clear and professional. | Claro y profesional. | Thank you. | Thanks.
+# 💡 | Propuesta de proyecto | Propones una iniciativa a la gerencia.
+> What are you proposing? | ¿Qué propone? | I propose creating a mentoring program. | A mentoring program for new staff.
+> What are the benefits? | ¿Cuáles son los beneficios? | It would improve retention and morale. | Better morale.
+> What resources would be needed? | ¿Qué recursos se necesitarían? | We would require a small budget and two coordinators. | A small budget.
+> When could it start? | ¿Cuándo podría empezar? | It could be implemented next quarter. | Next quarter.
+# 📊 | Encuesta a clientes | Presentas resultados de una encuesta.
+> How many customers responded? | ¿Cuántos clientes respondieron? | A total of 500 customers responded. | Five hundred.
+> What were the main complaints? | ¿Cuáles fueron las quejas principales? | The majority complained about delivery times. | Late deliveries.
+> What action should be taken? | ¿Qué acción se debería tomar? | It is suggested that we hire more drivers. | Hire more drivers.
+> Thank you for the summary. | Gracias por el resumen. | You're welcome. | My pleasure.
+
+@ eng-c1-w5
+# 😏 | Ironía entre amigos | Tu amigo llega tardísimo.
+> Sorry I'm late! | ¡Perdón por la tardanza! | Oh, only an hour late. Impressive. | No worries, I love waiting.
+> Traffic was terrible. | El tráfico estaba terrible. | Of course it was. | What a surprise.
+> Are you angry? | ¿Estás molesto? | Not at all, I'm absolutely thrilled. | Me? Never.
+> OK, coffee's on me. | Bueno, yo invito el café. | Now we're talking! | That's more like it.
+# 🌧️ | Understatement | Comentas un desastre minimizándolo.
+> How was the camping trip? | ¿Qué tal el campamento? | It was a bit damp. It rained for three days. | Not ideal.
+> And the tent? | ¿Y la carpa? | It wasn't exactly waterproof. | It had seen better days.
+> Did you enjoy it? | ¿Lo disfrutaste? | It wasn't the best trip of my life. | Let's say it was memorable.
+> Ha ha, poor you! | ¡Ja, ja, pobre! | It could have been worse. | I'll survive.
+# 🏢 | Tono en el trabajo | Interpretas el tono de un correo.
+> My boss wrote "Per my last email…". What does it mean? | Mi jefe escribió «Per my last email…». ¿Qué significa? | It means he's slightly annoyed you didn't read it. | He's irritated.
+> And "Interesting idea"? | ¿Y «Interesting idea»? | It might mean he isn't convinced. | It's polite disagreement.
+> How should I reply? | ¿Cómo debería responder? | Apologize briefly and answer the question. | Be brief and polite.
+> Thanks, that helps. | Gracias, eso ayuda. | Anytime. | No problem.
+
+@ eng-c1-w5-c2
+# 🎓 | Después de la conferencia | Comentas una conferencia con un compañero.
+> What was the lecture about? | ¿De qué trató la conferencia? | It was about the impact of urbanization on biodiversity. | Urban growth and nature.
+> What was the speaker's main point? | ¿Cuál fue el punto principal? | She argued that cities could support biodiversity. | That cities can help nature.
+> Did you find it convincing? | ¿Te pareció convincente? | Largely, although some evidence was weak. | Mostly.
+> Should we read her book? | ¿Deberíamos leer su libro? | It's definitely worth reading. | Yes, I think so.
+# 📝 | Tomar apuntes | Revisas apuntes con una compañera.
+> Did you note the key statistic? | ¿Anotaste la estadística clave? | Yes, 60 percent of species live near cities. | Sixty percent.
+> What were the three solutions? | ¿Cuáles fueron las tres soluciones? | Green roofs, corridors and native plants. | Green roofs and corridors.
+> What examples did she give? | ¿Qué ejemplos dio? | She mentioned Singapore and Berlin. | Singapore.
+> Thanks, my notes were incomplete. | Gracias, mis apuntes estaban incompletos. | No problem. | Happy to help.
+# ❓ | Preguntas al ponente | Haces una pregunta en la ronda final.
+> Any questions? | ¿Preguntas? | Thank you for the talk. Could you elaborate on the costs? | I have a question about costs.
+> Costs vary, but they're decreasing. | Los costos varían, pero están bajando. | Could you give a specific example? | Do you have an example?
+> In Berlin, green roofs cost 20 percent less now. | En Berlín, los techos verdes cuestan 20 % menos ahora. | That's very helpful, thank you. | Thank you.
+> You're welcome. | De nada. | Thanks again. | Great.
+
+@ eng-c1-w6
+# 📌 | Dirigir una reunión | Diriges la reunión semanal.
+> Let's get started. What's on the agenda? | Empecemos. ¿Qué hay en la agenda? | First, the budget; then, the marketing plan. | We have three items today.
+> Can we move on to the budget? | ¿Pasamos al presupuesto? | Sure. Let's move on. Carla, could you update us? | Yes, let's move on.
+> We're running out of time. | Se nos acaba el tiempo. | Let's wrap up and continue next week. | Let's leave the rest for Friday.
+> Who will send the minutes? | ¿Quién enviará el acta? | I'll send them by tomorrow. | I'll take care of it.
+# 🙋 | Interrumpir con cortesía | Interrumpes a un colega en una reunión.
+> And another thing about the schedule… | Y otra cosa sobre el cronograma… | Sorry to interrupt, but could I add something? | If I may, just a quick point.
+> Go ahead. | Adelante. | The client wants it earlier. | We need to bring it forward.
+> Are you sure? | ¿Estás seguro? | Yes, they confirmed it this morning. | Absolutely.
+> Thanks for that. | Gracias por eso. | Sorry again for interrupting. | No problem.
+# 💻 | Reunión virtual | Problemas en una videollamada.
+> Can everyone hear me? | ¿Me escuchan todos? | Sorry, you're breaking up a bit. | Your audio is cutting out.
+> Is that better? | ¿Mejor así? | Yes, much better now. | Yes, we can hear you.
+> Could you share your screen? | ¿Podrías compartir tu pantalla? | Sure, can you see it now? | Of course, one second.
+> Yes, thanks. | Sí, gracias. | Great, let's continue. | OK, let's go on.
+
+@ eng-c1-w6-c2
+# 💰 | Negociar un precio | Negocias con un proveedor.
+> Our price is ten thousand dollars. | Nuestro precio es diez mil dólares. | I see where you're coming from, but that's above our budget. | That's a bit higher than we expected.
+> What can you offer? | ¿Qué pueden ofrecer? | We could offer eight thousand if you deliver in two weeks. | Eight thousand.
+> That's difficult. | Es difícil. | Perhaps we could meet halfway at nine thousand. | How about nine thousand?
+> Deal. | Trato hecho. | Excellent, I'll send the contract. | Great.
+# 🤝 | Desacuerdo diplomático | Tu colega propone algo con lo que no estás de acuerdo.
+> We should cut the training budget. | Deberíamos recortar el presupuesto de capacitación. | I'm not sure that's the best option. | I take your point, but I have some concerns.
+> Why not? | ¿Por qué no? | Training improves productivity in the long run. | It's an investment.
+> So what do you suggest? | ¿Entonces qué sugieres? | Wouldn't it be better to reduce travel costs instead? | Cut travel costs.
+> Let's consider that. | Consideremos eso. | Thank you for being open. | Great.
+# 📅 | Negociar un plazo | Pides más tiempo a tu cliente.
+> We need the project by June. | Necesitamos el proyecto para junio. | I understand, but would you consider July? | June is very tight for us.
+> Why the delay? | ¿Por qué el retraso? | The new requirements added about four weeks of work. | There are new requirements.
+> What if we reduce the scope? | ¿Y si reducimos el alcance? | In that case, June might be feasible. | Then June could work.
+> Let's do that. | Hagámoslo. | Agreed. | Perfect.
+
+@ eng-c1-w7
+# 📰 | Leer entre líneas | Analizas un artículo con tu profesora.
+> Is the article neutral? | ¿El artículo es neutral? | Not really, it's clearly biased in favor of the company. | No, it seems biased.
+> What makes you say that? | ¿Qué te hace decir eso? | It only quotes the company's spokesperson. | It ignores the other side.
+> What about the language? | ¿Y el lenguaje? | It uses loaded words like "heroic" and "visionary". | Very emotional words.
+> Good analysis. | Buen análisis. | Thank you. | Thanks.
+# 📺 | Publicidad engañosa | Analizas un comercial.
+> What does the ad claim? | ¿Qué afirma el anuncio? | It claims the drink makes you smarter. | That it boosts intelligence.
+> Is there evidence? | ¿Hay evidencia? | It cites a study, but doesn't say who funded it. | Not really.
+> Who is the target audience? | ¿Cuál es el público objetivo? | It's aimed at anxious students. | Students.
+> Would you buy it? | ¿Lo comprarías? | Not without independent evidence. | No, I'm skeptical.
+# 🗳️ | Dos periódicos | Comparas dos titulares sobre lo mismo.
+> One says "Protesters clash with police", the other "Police attack protesters". | Uno dice A, el otro B. | They reflect different points of view. | Each reflects a bias.
+> Which seems more objective? | ¿Cuál parece más objetivo? | Neither, really. Both choose their words carefully. | The first one, slightly.
+> How can we get the full picture? | ¿Cómo tener el panorama completo? | By reading several sources. | Compare different sources.
+> Wise advice. | Sabio consejo. | Thanks. | Thank you.
+
+@ eng-c1-w7-c2
+# 🗓️ | La semana de cuatro días | Debates el artículo leído.
+> What's the main idea of the article? | ¿Cuál es la idea principal del artículo? | It argues that a four-day week boosts productivity. | That working four days is better.
+> Do you agree? | ¿Estás de acuerdo? | To some extent, but it depends on the industry. | Partly.
+> What about hospitals? | ¿Y los hospitales? | It would be harder to apply there. | It wouldn't work so easily.
+> Would you like it? | ¿Te gustaría? | Who wouldn't? | Absolutely.
+# 💼 | Proponerlo a tu jefe | Propones probar la semana de cuatro días.
+> Why should we try it? | ¿Por qué deberíamos probarlo? | Studies suggest it improves well-being and productivity. | It could improve morale.
+> What are the risks? | ¿Cuáles son los riesgos? | Clients might find it harder to reach us. | Lower availability.
+> How would you test it? | ¿Cómo lo probarías? | We could run a three-month pilot. | With a pilot.
+> I'll think about it. | Lo pensaré. | Thank you for considering it. | Thanks.
+# 🔎 | Cuestionar las fuentes | Evalúas la fiabilidad del artículo.
+> Who wrote the article? | ¿Quién escribió el artículo? | A think tank that promotes flexible work. | A pro-flexibility group.
+> Does that matter? | ¿Importa eso? | Yes, it may have a vested interest. | It could be biased.
+> Is the sample large enough? | ¿La muestra es suficiente? | Only sixty companies, so it's limited. | Not really.
+> So, trustworthy or not? | Entonces, ¿confiable o no? | Partly, but we'd need more evidence. | With some reservations.
+
+@ eng-c1-w8
+# 🎤 | Presentación de 3–5 minutos | Presentas un tema ante un jurado.
+> Introduce your topic. | Presenta tu tema. | Today I'd like to talk about the future of renewable energy. | My presentation focuses on solar energy.
+> Why does it matter? | ¿Por qué importa? | Because it's crucial for tackling climate change. | It's key to reducing emissions.
+> Give an example. | Da un ejemplo. | Chile now generates over 20 percent of its power from solar. | Look at Chile's solar parks.
+> Conclude. | Concluye. | To conclude, investing in renewables is no longer optional. | In short, the future is renewable.
+# ❓ | Preguntas difíciles del jurado | Respondes a preguntas exigentes.
+> Isn't solar energy too expensive? | ¿La energía solar no es muy cara? | That's a fair question. Actually, costs have fallen dramatically. | Not anymore.
+> What about cloudy countries? | ¿Y los países nublados? | They can combine it with wind and hydro. | They can use wind power.
+> How would you fund it? | ¿Cómo lo financiarías? | Through a mix of public and private investment. | With green bonds.
+> Thank you. | Gracias. | Thank you for your questions. | My pleasure.
+# 😰 | Te quedas en blanco | Recuperas el hilo durante la presentación.
+> You seem to have lost your place. | Parece que perdiste el hilo. | Let me just check my notes for a moment. | Sorry, let me rephrase that.
+> Take your time. | Tómate tu tiempo. | Thank you. As I was saying, costs are falling. | Right, where was I?
+> Please continue. | Por favor continúa. | Moving on to my final point… | So, finally…
+> Well recovered. | Bien recuperado. | Thank you. | Thanks.
+
+@ eng-c1-w8-c2
+# 🖋️ | Planificar el ensayo argumentativo | Planificas con tu tutor.
+> What's your thesis? | ¿Cuál es tu tesis? | University education should be free for all. | Free university education benefits society.
+> What are your main arguments? | ¿Cuáles son tus argumentos principales? | It promotes equality and drives economic growth. | Equality and growth.
+> How will you address counterarguments? | ¿Cómo abordarás los contraargumentos? | I'll acknowledge the cost and then refute it. | I'll concede and then rebut.
+> Sounds solid. | Suena sólido. | Thank you. | Thanks.
+# 🔗 | Conectores avanzados | Mejoras la cohesión de tu ensayo.
+> How can you introduce a concession? | ¿Cómo introduces una concesión? | Admittedly, free education is costly. | While it is true that it's expensive, …
+> How do you refute it? | ¿Cómo lo refutas? | Nevertheless, the long-term benefits outweigh the costs. | However, the benefits are greater.
+> How do you conclude? | ¿Cómo concluyes? | All things considered, free education is a worthwhile investment. | In conclusion, …
+> Excellent. | Excelente. | Thank you. | Thanks.
+# 📝 | Retroalimentación final | Tu tutor comenta tu borrador.
+> Your argument is strong, but the evidence is thin. | Tu argumento es sólido, pero la evidencia es escasa. | I'll add statistics from recent studies. | I'll include more data.
+> The introduction is too general. | La introducción es muy general. | I'll start with a striking fact. | I'll make it more specific.
+> Some sentences are too long. | Algunas oraciones son muy largas. | I'll split them for clarity. | I'll shorten them.
+> Great, resubmit by Monday. | Genial, reenvíalo el lunes. | Will do, thank you. | Sure.

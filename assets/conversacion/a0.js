@@ -1,7 +1,7 @@
 /* GENERADO por tools/ingles/conversaciones/construir.py — edita a0.txt */
 /* Conversación guiada de cada clase del nivel A0.
    El «id» de cada escenario es el nombre de la página de la clase (eng-a0-w1 → eng-a0-w1.html).
-   Formato igual que b0.js (ver LEEME.md). */
+   (clases eng-a0-w1 y w1-c2; el resto está en a0.txt) Formato igual que b0.js (ver LEEME.md). */
 window.MK_CONV = window.MK_CONV || {};
 window.MK_CONV.a0 = {
   nivel: "A0", titulo: "Conversaciones de cada clase", curso: "A0", color: "#22c55e",
