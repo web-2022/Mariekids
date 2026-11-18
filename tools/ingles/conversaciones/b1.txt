@@ -1,0 +1,423 @@
+@ eng-b1-w1
+# 🌍 | Experiencias de viaje | Un amigo extranjero te pregunta por tus experiencias.
+> Have you ever been to another country? | ¿Alguna vez has estado en otro país? | Yes, I have been to Chile. | Yes, I've been to Chile.
+! \bi have went\b | I have been to Chile. | Después de «have» va el participio: «have BEEN», no «have went».
+> Have you ever flown in a plane? | ¿Alguna vez has volado en avión? | Yes, I have flown many times. | Yes, I have.
+> Have you ever eaten sushi? | ¿Alguna vez has comido sushi? | No, I have never eaten sushi. | No, I haven't.
+! \bi have never ate\b | I have never eaten sushi. | Participio de «eat»: «EATEN».
+> You should try it! | ¡Deberías probarlo! | Maybe I will! | I'd love to.
+# 🎢 | Aventuras | En un campamento, juegan «Have you ever…?».
+> Have you ever ridden a horse? | ¿Alguna vez has montado a caballo? | Yes, I have ridden a horse once. | Yes, once.
+> Have you ever climbed a mountain? | ¿Alguna vez has escalado una montaña? | No, I haven't, but I'd like to. | No, never.
+> Have you ever met a famous person? | ¿Alguna vez has conocido a alguien famoso? | Yes, I have met a famous singer. | No, I haven't.
+> What's the craziest thing you've ever done? | ¿Qué es lo más loco que has hecho? | I have jumped from a high bridge. | I've gone bungee jumping.
+# 💼 | Entrevista de trabajo de verano | Postulas a un trabajo de verano.
+> Have you ever worked before? | ¿Has trabajado antes? | Yes, I have worked in a café. | No, this is my first job.
+> Have you ever worked with children? | ¿Has trabajado con niños? | Yes, I have taught kids to swim. | Yes, I have.
+> Have you ever used a cash register? | ¿Has usado una caja registradora? | No, I haven't, but I learn fast. | No, never.
+> Great. You can start on Monday. | Genial. Puedes empezar el lunes. | Thank you so much! | Thanks!
+
+@ eng-b1-w1-c2
+# 📋 | Lista de pendientes | Revisas con tu jefe lo que ya hiciste.
+> Have you written the report? | ¿Has escrito el informe? | Yes, I have written it. | Yes, I've written it.
+! \bi have wrote\b | I have written it. | Participio de «write»: «WRITTEN».
+> Have you sent the emails? | ¿Has enviado los correos? | Yes, I have sent them. | Yes, I have.
+> Have you spoken to the client? | ¿Has hablado con el cliente? | No, I haven't spoken to him yet. | Not yet.
+! \bi have not spoke\b | I haven't spoken to him. | Participio de «speak»: «SPOKEN».
+> Please do it today. | Por favor hazlo hoy. | Sure, I will. | OK, no problem.
+# 🏠 | Tu mamá llega a casa | Tu mamá revisa la casa.
+> Have you done your homework? | ¿Has hecho tu tarea? | Yes, I have done it. | Yes, I've done it.
+> Have you fed the cat? | ¿Le has dado de comer al gato? | Yes, I have given him food. | Yes, I have.
+> Have you seen my keys? | ¿Has visto mis llaves? | No, I haven't seen them. | No, I haven't.
+> Who has broken this glass? | ¿Quién ha roto este vaso? | My brother has broken it. | Not me!
+# 🎬 | Películas y libros | Comentas películas con un amigo.
+> Have you seen the new Marvel movie? | ¿Has visto la nueva película de Marvel? | Yes, I have seen it twice. | No, I haven't seen it.
+> Have you read the book? | ¿Has leído el libro? | No, I haven't read it. | Yes, I have.
+> Have you heard the soundtrack? | ¿Has escuchado la banda sonora? | Yes, I have heard it. It's great. | Yes.
+> Let's watch it together! | ¡Veámosla juntos! | Sure! | Good idea!
+
+@ eng-b1-w1-c3
+# 🏡 | Tu vecino nuevo | Hablas con alguien que acaba de mudarse.
+> How long have you lived here? | ¿Cuánto tiempo has vivido aquí? | I have lived here for five years. | For five years.
+! \bsince five years\b | for five years | Para una duración se usa «for»: «FOR five years». «Since» va con un punto de inicio.
+> Have you unpacked yet? | ¿Ya desempacaste? | No, I haven't unpacked yet. | Not yet.
+> I've just made some coffee. Do you want some? | Acabo de hacer café. ¿Quieres? | Yes, please. I've already had breakfast, but I'd love some. | Yes, please.
+> Welcome to the neighborhood! | ¡Bienvenido al barrio! | Thank you! | Thanks a lot!
+# 🎸 | Tu pasatiempo | Un amigo pregunta desde cuándo tocas guitarra.
+> How long have you played the guitar? | ¿Cuánto tiempo has tocado la guitarra? | I have played it since 2020. | Since I was eight.
+! \bfor 2020\b|\bfor two thousand\b | since 2020 | Con un año o momento de inicio se usa «since».
+> Have you played in a concert yet? | ¿Ya has tocado en un concierto? | Yes, I have already played in two concerts. | Not yet.
+> Have you just learned a new song? | ¿Acabas de aprender una canción nueva? | Yes, I have just learned one. | Yes, I've just learned it.
+> Play it for me! | ¡Tócala para mí! | OK, listen! | Sure!
+# ✈️ | En el aeropuerto | Tu amiga llama mientras esperas tu vuelo.
+> Has your flight left yet? | ¿Ya salió tu vuelo? | No, it hasn't left yet. | Not yet.
+> How long have you been at the airport? | ¿Cuánto tiempo has estado en el aeropuerto? | I have been here for two hours. | Since three o'clock.
+> Have you eaten? | ¿Has comido? | Yes, I have just eaten a sandwich. | Yes, I've already eaten.
+> Oh, they've just called my flight! | ¡Oh, acaban de llamar a mi vuelo! | Have a good trip! | Bye, good luck!
+
+@ eng-b1-w1-c4
+# 🗽 | ¿Cuándo fuiste? | Hablas de tus viajes con un colega.
+> Have you ever been to New York? | ¿Alguna vez has estado en Nueva York? | Yes, I have. | Yes, I've been there.
+> When did you go? | ¿Cuándo fuiste? | I went there in 2019. | In 2019.
+! \bi have gone there in\b|\bi have been there in\b | I went there in 2019. | Con un momento concreto del pasado se usa el pasado simple: «I WENT there in 2019».
+> What did you do there? | ¿Qué hiciste allí? | I visited the Statue of Liberty. | I saw Times Square.
+> Have you been back since then? | ¿Has vuelto desde entonces? | No, I haven't been back. | No, not yet.
+# 📚 | Logros del año | Tu tutora conversa sobre tus logros.
+> What have you achieved this year? | ¿Qué has logrado este año? | I have improved my English a lot. | I've won a prize.
+> When did you win the prize? | ¿Cuándo ganaste el premio? | I won it last month. | Last month.
+! \bi have won it last month\b | I won it last month. | «Last month» es un momento terminado: pasado simple, «I WON».
+> Have you read many books? | ¿Has leído muchos libros? | Yes, I have read ten books. | Yes, I have.
+> Which one did you like most? | ¿Cuál te gustó más? | I liked The Hobbit the most. | The Hobbit.
+# 🏥 | En la consulta | El doctor pregunta tu historial.
+> Have you ever broken a bone? | ¿Alguna vez te has roto un hueso? | Yes, I have broken my arm. | Yes, I have.
+> When did it happen? | ¿Cuándo pasó? | It happened when I was ten. | Two years ago.
+> Have you taken any medicine today? | ¿Has tomado alguna medicina hoy? | No, I haven't. | Yes, I took an aspirin this morning.
+> OK, let's check you. | Bien, vamos a revisarte. | Thank you, doctor. | OK.
+
+@ eng-b1-w2
+# 🚨 | Testigo | Un policía te pregunta qué estabas haciendo durante un robo.
+> What were you doing at eight o'clock last night? | ¿Qué estabas haciendo anoche a las ocho? | I was watching TV at home. | I was having dinner.
+! \bi was watch\b | I was watching TV. | Pasado continuo: «was + -ing», «was WATCHING».
+> Who were you with? | ¿Con quién estabas? | I was with my sister. | My parents.
+> Was it raining? | ¿Estaba lloviendo? | Yes, it was raining a lot. | No, it wasn't.
+> Thank you for your help. | Gracias por tu ayuda. | You're welcome. | No problem.
+# 📸 | Una foto antigua | Miras una foto de un paseo con tu abuela.
+> What were you doing in this photo? | ¿Qué estabas haciendo en esta foto? | I was building a sandcastle. | I was playing on the beach.
+> What was your dad doing? | ¿Qué estaba haciendo tu papá? | He was reading a newspaper. | He was sleeping.
+> Were your cousins swimming? | ¿Tus primos estaban nadando? | Yes, they were swimming in the sea. | Yes, they were.
+> What a nice day! | ¡Qué lindo día! | Yes, it was perfect. | It was!
+# 📞 | No contestaste | Tu amigo te llamó y no contestaste.
+> I called you at nine. What were you doing? | Te llamé a las nueve. ¿Qué estabas haciendo? | I was taking a shower. | I was sleeping.
+> And at ten? | ¿Y a las diez? | I was doing my homework. | I was studying.
+> Were you listening to music? | ¿Estabas escuchando música? | Yes, I was, so I didn't hear the phone. | Yes, I was.
+> OK, no problem! | Bien, ¡no hay problema! | Sorry! | Sorry about that!
+
+@ eng-b1-w2-c2
+# ⚡ | El apagón | Cuentas qué pasó cuando se fue la luz.
+> What were you doing when the lights went out? | ¿Qué hacías cuando se fue la luz? | I was cooking dinner when the lights went out. | I was cooking.
+> What did you do? | ¿Qué hiciste? | I looked for a flashlight. | I lit a candle.
+> What was your family doing while you were looking? | ¿Qué hacía tu familia mientras buscabas? | They were laughing in the dark. | My brother was screaming.
+> When did the lights come back? | ¿Cuándo volvió la luz? | They came back after an hour. | An hour later.
+# 🐕 | El perro perdido | Cuentas cómo encontraste un perro.
+> Where were you going when you saw the dog? | ¿A dónde ibas cuando viste al perro? | I was walking to school when I saw it. | I was going to the park.
+> What was the dog doing? | ¿Qué estaba haciendo el perro? | It was sitting under a tree. | It was crying.
+> What did you do? | ¿Qué hiciste? | I called the number on its collar. | I gave it water.
+> Did the owner come? | ¿Vino el dueño? | Yes, while I was waiting, she arrived. | Yes, she did.
+# 🎤 | Un momento vergonzoso | Cuentas una anécdota graciosa.
+> Tell me an embarrassing story. | Cuéntame una historia vergonzosa. | While I was singing in class, my voice broke. | I fell while I was dancing.
+> What were the others doing? | ¿Qué estaban haciendo los demás? | They were laughing. | Everyone was looking at me.
+> What did the teacher say? | ¿Qué dijo la profesora? | She said "Don't worry!" | She laughed too.
+> Ha ha, poor you! | ¡Ja, ja, pobrecito! | It was funny! | Yes, but now I laugh too.
+
+@ eng-b1-w2-c3
+# 👴 | La infancia del abuelo | Entrevistas a tu abuelo sobre su infancia.
+> Ask him where he used to live. | Pregúntale dónde solía vivir. | Where did you use to live? | Where did you live when you were a child?
+! \bwhere did you used to\b | Where did you use to live? | En preguntas con «did» se usa «use to» (sin -d).
+> In a small village. Ask what he used to do after school. | En un pueblito. Pregunta qué solía hacer después del colegio. | What did you use to do after school? | What did you do after school?
+> I used to help on the farm. Ask if he used to have a TV. | Solía ayudar en la granja. Pregunta si tenía tele. | Did you use to have a TV? | Did you have a TV?
+> No, we didn't! We used to listen to the radio. | ¡No! Solíamos escuchar la radio. | Wow, that's interesting! | Really?
+# 🧒 | Cuando eras pequeño | Tu amiga pregunta por tu infancia.
+> What did you use to play when you were little? | ¿A qué solías jugar de pequeño? | I used to play with toy cars. | I used to play hide and seek.
+> Did you use to be shy? | ¿Solías ser tímido? | Yes, I used to be very shy. | No, I didn't.
+> What food didn't you use to like? | ¿Qué comida no te gustaba? | I didn't use to like vegetables. | Fish.
+> And now? | ¿Y ahora? | Now I love them! | Now I like them.
+# 🏙️ | Tu ciudad antes | Hablas de cómo era tu barrio.
+> How was your neighborhood ten years ago? | ¿Cómo era tu barrio hace diez años? | There used to be a big park. | It used to be quieter.
+> Did there use to be many cars? | ¿Solía haber muchos autos? | No, there didn't use to be many cars. | No, there weren't many.
+> What has changed? | ¿Qué ha cambiado? | Now there are many buildings. | There is a new mall.
+> Do you prefer it now or before? | ¿Lo prefieres ahora o antes? | I preferred it before. | I prefer it now.
+
+@ eng-b1-w3
+# 🍽️ | En el restaurante | Decides en el momento qué pedir.
+> What would you like? | ¿Qué desea? | I'll have the fish, please. | I'll have the chicken.
+! \bi have the fish\b | I'll have the fish. | Para una decisión en el momento se usa «I'LL have».
+> Would you like a drink? | ¿Desea una bebida? | I'll have an orange juice. | Yes, I'll have water.
+> We don't have orange juice, sorry. | No tenemos jugo de naranja, disculpe. | Then I'll have lemonade. | OK, I'll have a lemonade.
+> Perfect. | Perfecto. | Thank you. | Thanks.
+# 🤞 | Promesas | Tu mamá te presta su laptop.
+> Can I trust you with my laptop? | ¿Puedo confiarte mi laptop? | Yes, I promise I will be careful. | I'll be very careful.
+> Will you give it back tonight? | ¿Me la devolverás esta noche? | Yes, I will give it back before dinner. | Yes, I will.
+> Won't you eat near it? | ¿No comerás cerca? | No, I won't eat near it. | I won't, I promise.
+> OK, here you are. | Bien, aquí tienes. | Thanks, Mom! I'll take care of it. | Thank you!
+# 🔮 | Predicciones del partido | Predices el resultado de la final.
+> Who will win the final? | ¿Quién ganará la final? | I think Peru will win. | Peru will win.
+> Will it be an easy game? | ¿Será un partido fácil? | No, I don't think it will be easy. | No, it won't.
+> How many goals will they score? | ¿Cuántos goles meterán? | They'll probably score two goals. | Two.
+> I hope you're right! | ¡Espero que tengas razón! | Me too! | We'll see!
+
+@ eng-b1-w3-c2
+# 📅 | La agenda | Tu amiga quiere quedar contigo.
+> Are you free on Saturday? | ¿Estás libre el sábado? | No, I'm visiting my grandparents on Saturday. | No, I'm going to a wedding.
+> What about Sunday? | ¿Y el domingo? | On Sunday I'm going to study for the exam. | I'm going to clean my room.
+> Oh! The phone is ringing. | ¡Oh! Suena el teléfono. | I'll answer it. | I'll get it!
+> Let's meet next week then. | Veámonos la próxima semana entonces. | OK, I'll call you. | Sure!
+# ✈️ | Planes de viaje | Hablas de tu viaje ya organizado.
+> When are you leaving? | ¿Cuándo te vas? | I'm leaving on Friday morning. | On Friday.
+> What are you going to do there? | ¿Qué vas a hacer allí? | I'm going to visit museums. | I'm going to see my aunt.
+> Look at the sky. What's going to happen? | Mira el cielo. ¿Qué va a pasar? | It's going to rain. | I think it's going to rain.
+> Do you need a ride to the airport? | ¿Necesitas que te lleve al aeropuerto? | Thanks! I'll take a taxi. | Yes, that would be great.
+# 🎓 | Después del colegio | Hablas del futuro con un profesor.
+> What are you doing after graduation? | ¿Qué harás después de graduarte? | I'm going to study engineering. | I'm going to travel.
+> Have you applied yet? | ¿Ya postulaste? | Yes, I'm taking the exam next month. | Not yet.
+> Do you think you'll pass? | ¿Crees que aprobarás? | I think I will pass if I study. | I hope so.
+> I'll help you if you need it. | Te ayudaré si lo necesitas. | Thank you, I'll ask you. | Thanks a lot!
+
+@ eng-b1-w3-c3
+# ☔ | Planes con lluvia | Planeas un paseo con tu amigo.
+> What will we do if it rains? | ¿Qué haremos si llueve? | If it rains, we will go to the cinema. | We'll go to the cinema.
+! \bif it will rain\b | If it rains, we will go… | Después de «if» va presente: «If it RAINS», no «if it will rain».
+> And if it's sunny? | ¿Y si hace sol? | If it's sunny, we'll go to the beach. | We'll go to the beach.
+> What will happen if we are late? | ¿Qué pasará si llegamos tarde? | If we are late, we will miss the bus. | We'll miss the bus.
+> Then let's leave early. | Entonces salgamos temprano. | Good idea. | OK!
+# 📚 | Consecuencias | Tu papá habla de tus estudios.
+> What will happen if you don't study? | ¿Qué pasará si no estudias? | If I don't study, I will fail the exam. | I'll fail.
+> And if you study hard? | ¿Y si estudias mucho? | If I study hard, I will get a good grade. | I'll pass.
+> When will you start? | ¿Cuándo empezarás? | I will start as soon as I finish dinner. | After dinner.
+! \bas soon as i will\b | as soon as I finish | Después de «as soon as / when» va presente.
+> Good plan! | ¡Buen plan! | Thanks, Dad. | Thank you!
+# 🌱 | Cuidar el planeta | Debate escolar sobre el medio ambiente.
+> What will happen if we cut down the forests? | ¿Qué pasará si talamos los bosques? | If we cut down the forests, animals will die. | Many animals will die.
+> What will happen if we use less plastic? | ¿Qué pasará si usamos menos plástico? | If we use less plastic, the oceans will be cleaner. | The sea will be cleaner.
+> What will you do before you leave school today? | ¿Qué harás antes de salir del colegio hoy? | Before I leave, I will turn off the lights. | I'll recycle my bottle.
+> Great ideas! | ¡Grandes ideas! | Thank you! | Thanks!
+
+@ eng-b1-w4
+# 📱 | ¿Los celulares en clase? | Tu profesora pide tu opinión.
+> What do you think about phones in class? | ¿Qué opinas de los celulares en clase? | In my opinion, they are distracting. | I think they can be useful.
+> Why do you think that? | ¿Por qué lo piensas? | Because students play games instead of studying. | Because we can look things up.
+> What's your opinion about homework? | ¿Qué opinas de las tareas? | Personally, I think there's too much homework. | I think it's necessary.
+> Interesting point! | ¡Punto interesante! | Thank you. | Thanks.
+# 🍔 | Comida rápida | Un amigo pregunta tu opinión sobre comida rápida.
+> Do you think fast food is bad? | ¿Crees que la comida rápida es mala? | I think it's bad if you eat it every day. | In my view, it's unhealthy.
+> Should schools sell it? | ¿Los colegios deberían venderla? | No, I don't think they should. | I don't think so.
+> What's your favorite healthy food? | ¿Cuál es tu comida sana favorita? | As far as I'm concerned, quinoa is the best. | I love salads.
+> Good choice! | ¡Buena elección! | Thanks! | I agree!
+# 🎬 | Crítica de una película | Comentas una película con tu primo.
+> What did you think of the movie? | ¿Qué te pareció la película? | I thought it was amazing. | In my opinion, it was boring.
+> What did you like most? | ¿Qué te gustó más? | I liked the special effects. | The actors were great.
+> Would you recommend it? | ¿La recomendarías? | Yes, I'd recommend it. | No, I wouldn't.
+> I think so too. | Yo también lo creo. | Great minds think alike! | Exactly!
+
+@ eng-b1-w4-c2
+# 🏫 | ¿Uniforme sí o no? | Debates con un compañero.
+> I think school uniforms are a good idea. | Creo que los uniformes son buena idea. | I agree, because everyone looks equal. | I disagree, because we can't express ourselves.
+> But uniforms are expensive. | Pero los uniformes son caros. | That's true, but normal clothes are expensive too. | You have a point.
+> So, are you for or against? | Entonces, ¿estás a favor o en contra? | I'm for uniforms. | I'm against them.
+> Let's agree to disagree. | Aceptemos que no coincidimos. | OK, fair enough. | Sure.
+# 🐕 | ¿Mascotas en departamentos? | Debatís en una reunión de vecinos.
+> Pets shouldn't live in apartments. | Las mascotas no deberían vivir en departamentos. | I'm not sure about that. Small pets are fine. | I see your point, but I disagree.
+> They make too much noise. | Hacen mucho ruido. | That's partly true, but children make noise too. | Some do, but not all.
+> What do you suggest? | ¿Qué sugieres? | I suggest some rules for pet owners. | We should make rules.
+> That's a good idea. | Es buena idea. | Thank you. | I'm glad you agree.
+# 🎮 | ¿Los videojuegos son buenos? | Debate con tu papá.
+> Video games are a waste of time. | Los videojuegos son una pérdida de tiempo. | I don't agree. Some games teach us things. | I partly agree.
+> Like what? | ¿Como qué? | Like strategy and teamwork. | They teach English, for example.
+> But you play too much. | Pero juegas demasiado. | You're right, I should play less. | That's true.
+> OK, one hour a day. | Bien, una hora al día. | Deal! | That's fair.
+
+@ eng-b1-w4-c3
+# 🏛️ | Guía en Lima | Eres guía turístico en el centro de Lima.
+> What is this place? | ¿Qué es este lugar? | This is the Plaza de Armas, the main square of Lima. | This is the main square.
+> When was it built? | ¿Cuándo se construyó? | It was built in the sixteenth century. | A long time ago, in 1535.
+> What can we do here? | ¿Qué podemos hacer aquí? | You can visit the cathedral and see the palace. | You can take photos.
+> Is it safe at night? | ¿Es seguro de noche? | Yes, but you should be careful. | It's quite safe.
+# 🏔️ | Guía en Machu Picchu | Explicas Machu Picchu a turistas.
+> Why is Machu Picchu famous? | ¿Por qué es famoso Machu Picchu? | It is a famous Inca city in the mountains. | It's an ancient Inca city.
+> How do we get there? | ¿Cómo llegamos? | You can take a train and then a bus. | By train.
+> What's the best time to visit? | ¿Cuál es la mejor época para visitar? | The best time is from May to September. | In the dry season.
+> What's the view like? | ¿Cómo es la vista? | It's breathtaking! | It's amazing.
+# 🏝️ | Tu lugar favorito | Describes un lugar como si fueras guía.
+> Where would you take a tourist? | ¿A dónde llevarías a un turista? | I would take them to Paracas. | To Arequipa.
+> What is special about it? | ¿Qué tiene de especial? | It has beautiful beaches and wildlife. | It has amazing food.
+> What should they not miss? | ¿Qué no deberían perderse? | They shouldn't miss the boat trip. | The desert.
+> Sounds wonderful! | ¡Suena maravilloso! | It really is! | You'll love it.
+
+@ eng-b1-w5
+# 🌦️ | Planes inciertos | Tu amiga pregunta tus planes del fin de semana.
+> What are you doing this weekend? | ¿Qué harás este fin de semana? | I might go to the beach. | I'm not sure. I may visit my aunt.
+> Will you come to the party? | ¿Vendrás a la fiesta? | I might, but I'm not sure. | Maybe.
+! \bi might to\b | I might go… | Después de «might» va el verbo sin «to».
+> Could it rain? | ¿Podría llover? | It could rain, so take an umbrella. | It may rain.
+> Let me know! | ¡Avísame! | I will! | Sure.
+# 🔍 | ¿Dónde están mis llaves? | No encuentras tus llaves.
+> Where are your keys? | ¿Dónde están tus llaves? | They might be in my jacket. | They may be in the car.
+> Did you check the kitchen? | ¿Revisaste la cocina? | No. They could be there. | Not yet.
+> Here they are, next to the fridge! | ¡Aquí están, junto a la refri! | Thank you so much! | Phew, thanks!
+> You might need a key ring. | Quizá necesites un llavero. | You might be right! | Good idea.
+# 🧪 | El experimento | Predices el resultado de un experimento.
+> What will happen to the ice? | ¿Qué pasará con el hielo? | It might melt in the sun. | It may melt.
+> Could the bottle explode? | ¿Podría explotar la botella? | It could, so be careful. | It might.
+> What may change the result? | ¿Qué podría cambiar el resultado? | The temperature may change it. | The weather.
+> Let's try it! | ¡Probemos! | OK, let's see! | Let's go!
+
+@ eng-b1-w5-c2
+# 🏢 | Primer día en la oficina | Preguntas reglas en tu nuevo trabajo.
+> Do you have any questions? | ¿Tienes preguntas? | Am I allowed to work from home? | Can I work from home?
+> Yes, on Fridays. You have to wear a badge. | Sí, los viernes. Tienes que usar tu fotocheck. | Do I need to wear a suit? | OK, I understand.
+> No, you don't need to. But you mustn't smoke inside. | No hace falta. Pero no debes fumar adentro. | OK, I won't. | Understood.
+> Welcome to the team! | ¡Bienvenido al equipo! | Thank you! | Thanks!
+# 🎡 | En el parque de diversiones | Preguntas en la entrada de un juego.
+> Are you allowed to ride this? | ¿Te permiten subir a este? | Yes, I'm over 1.40 meters. | I think so.
+> You must wear the seatbelt. | Debes usar el cinturón. | Do I have to leave my bag? | OK.
+> Yes, you have to leave it here. | Sí, tienes que dejarla aquí. | May I take my phone? | OK, here it is.
+> You mustn't take photos during the ride. | No debes tomar fotos durante el juego. | OK, I won't. | Understood.
+# 🏥 | Visitar a un amigo en el hospital | Hablas con la recepcionista.
+> Can I help you? | ¿Le ayudo? | May I visit my friend in room 12? | Can I visit room 12?
+> Yes. You need to sign here. | Sí. Necesita firmar aquí. | Sure. Can I bring flowers? | OK.
+> No, you can't bring flowers. You have to wash your hands. | No puede traer flores. Tiene que lavarse las manos. | OK, I'll wash them. | Understood.
+> Visits must finish at six. | Las visitas deben terminar a las seis. | Thank you. | OK, thanks.
+
+@ eng-b1-w5-c3
+# 🎯 | Metas y gustos | Una consejera vocacional te pregunta.
+> What do you enjoy doing? | ¿Qué disfrutas hacer? | I enjoy working with people. | I enjoy drawing.
+! \bi enjoy to\b | I enjoy working… | «Enjoy» va con -ing: «enjoy WORKING».
+> What do you want to study? | ¿Qué quieres estudiar? | I want to study psychology. | I'd like to study design.
+! \bi want studying\b | I want to study… | «Want» va con «to»: «want TO study».
+> What do you avoid doing? | ¿Qué evitas hacer? | I avoid speaking in public. | I avoid working alone.
+> Have you considered taking a course? | ¿Has considerado llevar un curso? | Yes, I'm thinking of taking a course. | I'd like to try.
+# 🏋️ | Hábitos | Tu entrenador habla de hábitos.
+> Do you remember to drink water? | ¿Te acuerdas de tomar agua? | Yes, I remember to drink water every hour. | Not always.
+> Have you stopped eating junk food? | ¿Dejaste de comer comida chatarra? | Yes, I stopped eating it last month. | I'm trying.
+> Do you want to train on Saturday? | ¿Quieres entrenar el sábado? | Yes, I'd love to train on Saturday. | Sure.
+> Keep going! | ¡Sigue así! | I promise to keep going. | Thanks, coach!
+# 🗓️ | Planes de vacaciones | Hablas con tu amigo.
+> Where are you planning to go? | ¿A dónde planeas ir? | I'm planning to go to Cusco. | To the beach.
+> Do you mind traveling by bus? | ¿Te molesta viajar en bus? | No, I don't mind traveling by bus. | Not at all.
+> Do you hope to see snow? | ¿Esperas ver nieve? | Yes, I hope to see snow. | I hope so.
+> I can't wait to hear about it! | ¡Me muero por saber cómo te fue! | I'll send you photos! | Thanks!
+
+@ eng-b1-w6
+# 🏠 | Mañana en casa | Tu mamá da instrucciones.
+> It's late! Wake up! | ¡Es tarde! ¡Despierta! | OK, I'm getting up. | I'm up!
+> Put on your jacket, it's cold. | Ponte la casaca, hace frío. | OK, I'll put it on. | OK, Mom.
+> Turn off the lights before you leave. | Apaga las luces antes de salir. | Sure, I'll turn them off. | OK.
+> Pick up your sister at four. | Recoge a tu hermana a las cuatro. | No problem, I'll pick her up. | OK, I will.
+# 📱 | Problemas con el celular | Ayudas a tu abuela con su celular.
+> My phone doesn't work. | Mi celular no funciona. | Turn it off and turn it on again. | Did you turn it on?
+> How do I find a contact? | ¿Cómo encuentro un contacto? | Look it up in the contacts list. | Look up the name here.
+> I can't hear well. | No escucho bien. | Turn up the volume. | Turn the volume up.
+> Thank you! You figured it out! | ¡Gracias! ¡Lo resolviste! | You're welcome, Grandma. | No problem!
+# 🏃 | Hábitos nuevos | Un amigo te cuenta que quiere cambiar.
+> I want to give up sugar. | Quiero dejar el azúcar. | Good idea! Don't give up! | You can do it.
+> Should I work out every day? | ¿Debería hacer ejercicio todos los días? | Start with three days and go on from there. | Work out three times a week.
+> I always put it off. | Siempre lo pospongo. | Don't put it off. Start today! | Start tomorrow morning.
+> OK, I'll try. | Bien, lo intentaré. | I'll help you out. | Good luck!
+
+@ eng-b1-w6-c2
+# 🤔 | Ganar tiempo para pensar | Te hacen una pregunta difícil en una entrevista.
+> What is your biggest weakness? | ¿Cuál es tu mayor debilidad? | Well, let me think... I'm sometimes impatient. | That's a good question. I think I'm too shy.
+> Can you give an example? | ¿Puedes dar un ejemplo? | For instance, I don't like waiting in lines. | For example, I talk too fast.
+> How are you improving? | ¿Cómo estás mejorando? | Basically, I'm trying to relax more. | I'm working on it.
+> Good answer. | Buena respuesta. | Thank you. | Thanks.
+# 🔁 | Pedir aclaración | No entiendes al recepcionista de un hotel.
+> Your check-out is at eleven and breakfast is included until ten-thirty. | Tu salida es a las once y el desayuno está incluido hasta las diez y media. | Sorry, what do you mean by "included"? | Could you repeat that, please?
+> It means you don't pay for it. | Significa que no lo pagas. | Oh, I see. So breakfast is free? | Got it, thanks.
+> Exactly. | Exacto. | And what time is check-out again? | Thanks for explaining.
+> At eleven. | A las once. | Perfect, thank you. | Thanks!
+# 💬 | Mantener la conversación | Conversas con alguien nuevo en una fiesta.
+> I've just come back from Japan. | Acabo de regresar de Japón. | Really? How was it? | Oh, really? Tell me more!
+> It was amazing, but very expensive. | Fue increíble, pero muy caro. | I see. What did you like the most? | That makes sense.
+> The food, definitely. And you, have you traveled recently? | La comida, sin duda. ¿Y tú, has viajado hace poco? | Not really, but I'd love to go to Japan. | Yes, I went to Chile.
+> You should go! | ¡Deberías ir! | Maybe next year! | I will!
+
+@ eng-b1-w6-c3
+# ☎️ | Hacer planes por teléfono | Llamas a tu amiga para quedar.
+> Hello? | ¿Aló? | Hi, it's Ana. Are you free tonight? | Hi! Do you want to go out tonight?
+> Yes! What do you want to do? | ¡Sí! ¿Qué quieres hacer? | How about going to the cinema? | Shall we see a movie?
+> Great idea. What time? | Buena idea. ¿A qué hora? | Let's meet at seven. | At seven, outside the cinema.
+> See you then! | ¡Nos vemos entonces! | See you! | Bye!
+# 📵 | Cancelar un plan | Llamas para cancelar.
+> Hi! Ready for tonight? | ¡Hola! ¿Lista para esta noche? | I'm really sorry, but I can't make it. | Sorry, I can't come tonight.
+> Oh no, what happened? | ¡Ay no! ¿Qué pasó? | I have to look after my brother. | I'm not feeling well.
+> Can we do it another day? | ¿Lo hacemos otro día? | Sure, how about Saturday? | Yes, what about tomorrow?
+> Saturday works for me! | ¡El sábado me queda bien! | Great, see you then! | Perfect!
+# 🎂 | Organizar un cumpleaños | Llamas a un restaurante para reservar.
+> Good afternoon, Bella Pizza. | Buenas tardes, Bella Pizza. | Hi, I'd like to book a table, please. | I'd like to make a reservation.
+> For how many people? | ¿Para cuántas personas? | For eight people. | Eight, please.
+> What day and time? | ¿Qué día y hora? | Saturday at eight p.m. | This Saturday at eight.
+> Under what name? | ¿A nombre de quién? | Under the name García. | García, please.
+
+@ eng-b1-w7
+# 👥 | ¿Quién es quién? | Describes a personas en una foto de grupo.
+> Who is the girl with the red hat? | ¿Quién es la chica del sombrero rojo? | She's the girl who won the contest. | She's my cousin who lives in Chile.
+> And the man next to her? | ¿Y el hombre a su lado? | He's the teacher who taught me math. | He's my uncle.
+> What is that building behind them? | ¿Qué es ese edificio detrás? | It's the school where I studied. | It's the hotel where we stayed.
+> And whose dog is that? | ¿Y de quién es ese perro? | That's the dog whose owner is my neighbor. | It's my neighbor's.
+# 🔍 | Adivina la palabra | Juego de definiciones.
+> What do you call a person who fixes cars? | ¿Cómo se llama una persona que arregla autos? | A mechanic is a person who fixes cars. | A mechanic.
+> What is a place where you borrow books? | ¿Qué es un lugar donde prestas libros? | It's a library. | A library.
+> What is a thing which you use to cut paper? | ¿Qué es una cosa que usas para cortar papel? | Scissors are a thing which cuts paper. | Scissors.
+> Great! You're good at this! | ¡Genial! ¡Eres bueno en esto! | Thanks! | Thank you!
+# 🎬 | Recomendar una película | Recomiendas una película a un amigo.
+> What movie do you recommend? | ¿Qué película recomiendas? | The movie that I saw yesterday is great. | Coco is a movie that everyone loves.
+> What's it about? | ¿De qué trata? | It's about a boy who wants to be a musician. | It's about a family.
+> Where does it take place? | ¿Dónde ocurre? | In a town where everyone loves music. | In Mexico.
+> I'll watch it tonight! | ¡La veré esta noche! | You'll love it! | Enjoy it!
+
+@ eng-b1-w7-c2
+# ✍️ | Corrige mi texto | Tu compañero te pide ayuda con su párrafo.
+> I wrote "I did a mistake". Is it correct? | Escribí «I did a mistake». ¿Está bien? | No, we say "I made a mistake". | It should be "made a mistake".
+> And "make homework"? | ¿Y «make homework»? | No, it's "do homework". | We say "do homework".
+> Is "take a photo" OK? | ¿«Take a photo» está bien? | Yes, "take a photo" is correct. | Yes, that's right.
+> Thanks for your help! | ¡Gracias por tu ayuda! | You're welcome! | No problem.
+# 📰 | Un párrafo sobre tu ciudad | Organizas un párrafo con tu profesora.
+> How do you start your paragraph? | ¿Cómo empiezas tu párrafo? | I start with a topic sentence. | With a main idea.
+> What comes next? | ¿Qué viene después? | Then I give examples and details. | Supporting details.
+> How do you finish? | ¿Cómo terminas? | I finish with a concluding sentence. | With a conclusion.
+> Perfect structure! | ¡Estructura perfecta! | Thank you! | Thanks!
+# 🗣️ | Collocations en la oficina | Tu jefa usa expresiones comunes.
+> Did you make a decision? | ¿Tomaste una decisión? | Yes, I made a decision yesterday. | Not yet.
+> Can you pay attention to the details? | ¿Puedes prestar atención a los detalles? | Sure, I'll pay attention. | Of course.
+> Let's take a break. | Tomemos un descanso. | Good idea, let's take a break. | Great!
+> Have a good time! | ¡Que la pases bien! | You too! | Thanks!
+
+@ eng-b1-w7-c3
+# 🧳 | Tu primer viaje solo | Una amiga te pregunta por tu primer viaje solo.
+> Where did you go on your first trip alone? | ¿A dónde fuiste en tu primer viaje solo? | I went to Arequipa. | I traveled to Cusco.
+> How did you feel before leaving? | ¿Cómo te sentiste antes de salir? | I felt nervous but excited. | I was nervous.
+> What was the hardest part? | ¿Qué fue lo más difícil? | Finding my hostel at night. | Eating alone.
+> Would you do it again? | ¿Lo harías otra vez? | Definitely, it made me more confident. | Yes, I would.
+# 🗺️ | Perdido en la ciudad | Cuentas cuando te perdiste en tu viaje.
+> What happened when you got lost? | ¿Qué pasó cuando te perdiste? | My phone died and I didn't have a map. | I took the wrong bus.
+> What did you do? | ¿Qué hiciste? | I asked a woman for directions. | I asked for help.
+> Was she helpful? | ¿Te ayudó? | Yes, she walked with me to the hostel. | Yes, very.
+> What did you learn? | ¿Qué aprendiste? | I learned to always carry a map. | People are kind.
+# 💬 | Recomendar viajar solo | Un primo duda si viajar solo.
+> Should I travel alone? | ¿Debería viajar solo? | Yes, I think you should try it. | Yes, it's a great experience.
+> What should I take? | ¿Qué debería llevar? | You should take a power bank and a map. | A good backpack.
+> Is it dangerous? | ¿Es peligroso? | Not if you're careful. | It can be, so be careful.
+> Thanks for the advice! | ¡Gracias por el consejo! | Have a great trip! | You're welcome!
+
+@ eng-b1-w8
+# 🎤 | Habla de un lugar | Hablas dos minutos sobre tu lugar favorito.
+> Tell me about your favorite place. | Háblame de tu lugar favorito. | My favorite place is my grandparents' farm. | It's a beach in the north.
+> Why is it special? | ¿Por qué es especial? | Because I spent every summer there. | Because it's very peaceful.
+> When did you last go? | ¿Cuándo fuiste por última vez? | I went last December. | Two months ago.
+> Will you go back soon? | ¿Volverás pronto? | I hope I'll go back next summer. | Yes, I will.
+# 👤 | Habla de una persona | Hablas de alguien que admiras.
+> Who do you admire? | ¿A quién admiras? | I admire my mother. | My grandfather.
+> What is she like? | ¿Cómo es ella? | She is hard-working and kind. | She's very patient.
+> What has she taught you? | ¿Qué te ha enseñado? | She has taught me to never give up. | To be honest.
+> That's beautiful. | Qué bonito. | Thank you. | Thanks.
+# 📅 | Habla de un evento | Hablas de un evento importante en tu vida.
+> Tell me about an important day in your life. | Cuéntame de un día importante en tu vida. | My graduation day was very important. | The day I won a tournament.
+> What happened that day? | ¿Qué pasó ese día? | My whole family came and we celebrated. | We played the final and won.
+> How did you feel? | ¿Cómo te sentiste? | I felt proud and happy. | Very happy.
+> Thanks for sharing. | Gracias por compartir. | My pleasure. | You're welcome.
+
+@ eng-b1-w8-c2
+# 📧 | Email de queja | Dictas un correo para quejarte de un producto.
+> How do you start a formal email? | ¿Cómo empiezas un correo formal? | Dear Sir or Madam, | Dear Customer Service,
+> State the problem. | Explica el problema. | I am writing to complain about the headphones I bought. | I'm writing about a broken product.
+> What do you want them to do? | ¿Qué quieres que hagan? | I would like a refund, please. | I'd like a replacement.
+> How do you finish? | ¿Cómo terminas? | I look forward to hearing from you. Yours faithfully, | Kind regards,
+# ⭐ | Reseña de un restaurante | Escribes una reseña con ayuda.
+> What restaurant are you reviewing? | ¿Qué restaurante reseñas? | I'm reviewing La Casona in Miraflores. | A café near my house.
+> What was good? | ¿Qué estuvo bien? | The food was delicious and the staff were friendly. | The food was excellent.
+> What was not so good? | ¿Qué no estuvo tan bien? | However, it was a bit expensive. | The service was slow.
+> Would you recommend it? | ¿Lo recomendarías? | Overall, I would recommend it. | Yes, definitely.
+# 📨 | Email a un amigo | Escribes un correo informal sobre tus noticias.
+> How do you start? | ¿Cómo empiezas? | Hi Sam, how are you? | Hey Sam!
+> What news do you share? | ¿Qué noticias compartes? | I've just started a new job. | I've moved to a new house.
+> Ask about his life. | Pregunta por su vida. | How's everything with you? | What have you been up to?
+> How do you finish? | ¿Cómo terminas? | Write back soon! Best, Ana | Take care, Ana
