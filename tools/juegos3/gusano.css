@@ -1,0 +1,9 @@
+        .gusano { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 3px; margin-top: 10px; padding: 12px 6px; border-radius: 20px; background: #dcfce7; }
+        .cabeza { font-size: 46px; line-height: 1; }
+        .bolita { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; font-size: 26px; box-shadow: inset -4px -5px 0 #0002; }
+        .bolita.hueco { background: #fff; border: 4px dashed #94a3b8; box-shadow: none; }
+        .opciones { display: flex; justify-content: center; gap: 16px; margin-top: 18px; padding: 12px; border-radius: 20px; background: #fef9c3; }
+        .opciones .bolita { width: 62px; height: 62px; font-size: 32px; cursor: grab; }
+        .bolita.mal { animation: sacude .4s; }
+        @keyframes sacude { 0%,100% { transform: translateX(0) } 25% { transform: translateX(-8px) } 75% { transform: translateX(8px) } }
+        @media (max-width: 480px) { .gusano { gap: 2px; padding: 10px 2px; } .bolita { width: 30px; height: 30px; font-size: 16px; } .bolita.hueco { border-width: 3px; } .cabeza { font-size: 30px; } }

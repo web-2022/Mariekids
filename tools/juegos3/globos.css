@@ -1,0 +1,12 @@
+        .sky { position: relative; height: 420px; margin-top: 6px; border-radius: 26px; overflow: hidden; background: linear-gradient(180deg, #bae6fd, #e0f2fe); }
+        .sky::after { content: "☁️      ☁️"; position: absolute; top: 20px; left: 10%; font-size: 40px; opacity: .8; pointer-events: none; }
+        .globo { position: absolute; bottom: -130px; width: 74px; cursor: pointer; animation: sube var(--t) linear infinite; animation-delay: var(--d); }
+        .globo .bola { width: 74px; height: 88px; border-radius: 50% 50% 46% 46%; background: radial-gradient(circle at 30% 28%, #fff8 0 10%, var(--c) 11%); display: grid; place-items: center; font: 800 36px "Baloo 2", sans-serif; color: #fff; text-shadow: 0 2px 0 #0004; box-shadow: inset -6px -8px 0 #0002; }
+        .globo .hilo { width: 2px; height: 40px; margin: 0 auto; background: #64748b; }
+        .globo.pum { animation: none; }
+        .globo.pum .bola { animation: pum .35s forwards; }
+        .globo.pum .hilo { opacity: 0; }
+        .globo.mal .bola { animation: sacude .4s; }
+        @keyframes sube { from { transform: translateY(0); } to { transform: translateY(-560px); } }
+        @keyframes pum { 60% { transform: scale(1.5); opacity: .6 } 100% { transform: scale(0); opacity: 0 } }
+        @keyframes sacude { 0%,100% { transform: translateX(0) } 25% { transform: translateX(-8px) } 75% { transform: translateX(8px) } }

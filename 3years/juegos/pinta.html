@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <title>MK Pinta por número · 3 años</title>
+    <meta name="theme-color" content="#0b73ff" />
+    <meta name="apple-mobile-web-app-title" content="MK" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../icons/icon-192.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/mk-juegos.css" />
+    <link rel="stylesheet" href="../../assets/mk-peques.css?v=1" />
+    <style>
+        body { background: #fdf4ff; }
+        .lienzo { max-width: 420px; margin: 4px auto 0; }
+        .lienzo svg { width: 100%; height: auto; display: block; }
+        .lienzo [data-drop] { cursor: pointer; stroke: #334155; stroke-width: 3; transition: fill .3s; }
+        .lienzo text { font: 800 22px "Baloo 2", sans-serif; fill: #334155; pointer-events: none; text-anchor: middle; dominant-baseline: middle; }
+        .lienzo .mal { animation: parpadea .5s; }
+        @keyframes parpadea { 50% { opacity: .3 } }
+        .paleta { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+        .tinta { width: 62px; height: 62px; border-radius: 50%; border: 5px solid #fff; box-shadow: 0 4px 0 #0003, 0 0 0 2px #cbd5e1; display: grid; place-items: center; font: 800 28px "Baloo 2", sans-serif; color: #fff; text-shadow: 0 2px 0 #0007; cursor: grab; }
+        .tinta.on { box-shadow: 0 0 0 5px #0f172a, 0 4px 0 #0003; transform: scale(1.08); }
+
+    </style>
+</head>
+<body>
+    <!-- GENERADO por tools/juegos3/build.py — edita tools/juegos3/pinta.css / pinta.js -->
+    <div class="bar">
+        <a class="pill" href="../juegos3Y.html" aria-label="Volver a los juegos">⬅<span class="txt"> Juegos</span></a>
+        <h1>🎨 Pinta por número</h1>
+        <button class="pill" id="soundBtn" type="button" aria-label="Sonido">🔊</button>
+    </div>
+    <div class="hud" aria-live="polite"><span id="hudLevel">Nivel 1</span><span id="hudQ"></span><span id="hudOk">⭐ 0</span></div>
+    <main class="stage"><div class="card" id="card"></div></main>
+    <div class="overlay show" id="startScreen">
+        <div class="panel">
+            <h2>🎨 Pinta por número</h2>
+            <p>Pinta cada parte del dibujo con el color de su número.</p>
+            <div class="levels" id="levels"></div>
+        </div>
+    </div>
+    <div class="overlay" id="endScreen">
+        <div class="panel">
+            <h2>¡Muy bien! 🎉</h2>
+            <div class="stars-big" id="endStars">⭐⭐⭐</div>
+            <p id="endText"></p>
+            <div class="row">
+                <button class="big-btn alt" id="menuBtn" type="button">📋 Niveles</button>
+                <button class="big-btn" id="nextBtn" type="button">▶ Siguiente</button>
+            </div>
+        </div>
+    </div>
+    <script src="../../assets/mk-juegos.js?v=2"></script>
+    <script src="../../assets/mk-peques.js?v=1"></script>
+    <script>
+        /* 🎨 PINTA POR NÚMERO: número ↔ color. Elige un color (o arrástralo) y pinta las partes con ese número. */
+        const TINTAS = ["", "#ef4444", "#3b82f6", "#22c55e", "#eab308", "#a855f7"];
+        const NOMBRE = ["", "rojo", "azul", "verde", "amarillo", "morado"];
+        // cada dibujo: [forma svg (sin cerrar), número, x, y] — viewBox 0 0 300 260
+        const DIBUJOS = [
+            [['<rect x="60" y="110" width="180" height="120"', 4, 150, 200], ['<polygon points="40,115 150,30 260,115"', 1, 150, 85], ['<rect x="128" y="160" width="44" height="70"', 2, 150, 195], ['<rect x="80" y="135" width="36" height="36"', 3, 98, 153], ['<circle cx="262" cy="36" r="24"', 5, 262, 36]],
+            [['<ellipse cx="140" cy="130" rx="95" ry="60"', 4, 120, 130], ['<polygon points="230,130 290,80 290,180"', 1, 268, 130], ['<circle cx="85" cy="115" r="14"', 2, 85, 115], ['<polygon points="130,72 175,40 175,80"', 3, 160, 63], ['<circle cx="40" cy="60" r="16"', 5, 40, 60]],
+            [['<circle cx="150" cy="80" r="26"', 4, 150, 80], ['<circle cx="150" cy="35" r="24"', 1, 150, 35], ['<circle cx="198" cy="80" r="24"', 1, 198, 80], ['<circle cx="102" cy="80" r="24"', 1, 102, 80], ['<circle cx="150" cy="126" r="24"', 1, 150, 126], ['<rect x="144" y="150" width="12" height="60"', 3, 150, 180], ['<polygon points="105,240 195,240 210,205 90,205"', 5, 150, 222], ['<ellipse cx="185" cy="175" rx="26" ry="12"', 2, 185, 175]],
+            [['<rect x="132" y="140" width="36" height="80"', 5, 150, 185], ['<circle cx="150" cy="95" r="70"', 3, 150, 70], ['<circle cx="120" cy="110" r="14"', 1, 120, 110], ['<circle cx="178" cy="100" r="14"', 1, 178, 100], ['<rect x="0" y="220" width="300" height="40"', 2, 40, 240], ['<circle cx="262" cy="36" r="24"', 4, 262, 36]]
+        ];
+        let tinta = 1, faltan = 0, primera = true, listoFn = null, orden = [];
+        MKP.juego({
+            clave: "pinta3a", rondas: 3, icono: "🎨", pausa: 2200,
+            niveles: [
+                { n: 1, name: "Nivel 1", desc: "Colores 1, 2 y 3", cls: "lv1", k: 3 },
+                { n: 2, name: "Nivel 2", desc: "Colores del 1 al 4", cls: "lv2", k: 4 },
+                { n: 3, name: "Nivel 3", desc: "Colores del 1 al 5", cls: "lv3", k: 5 }
+            ],
+            ronda(nv, i, listo) {
+                if (i === 0) orden = MKJ.shuffle([0, 1, 2, 3]);
+                primera = true; listoFn = listo; tinta = 1;
+                const partes = DIBUJOS[orden[i % 4]];
+                faltan = partes.filter(p => p[1] <= nv.k).length;
+                const svg = `<svg viewBox="0 0 300 260">${partes.map(p => p[1] <= nv.k ? `${p[0]} data-drop="parte" data-c="${p[1]}" fill="#fff"/>` : `${p[0]} fill="${TINTAS[p[1]]}" stroke="#334155" stroke-width="3"/>`).join("")}${partes.filter(p => p[1] <= nv.k).map(p => `<text x="${p[2]}" y="${p[3]}">${p[1]}</text>`).join("")}</svg>`;
+                document.getElementById("card").innerHTML = `<p class="task">Pinta cada parte con su número <button class="again" id="oir" type="button">🔊</button></p>
+                    <p class="sub">Toca un color y luego la parte del dibujo. ¡O arrastra el color!</p>
+                    <div class="lienzo">${svg}</div>
+                    <div class="paleta">${Array.from({ length: nv.k }, (_, k) => `<div class="tinta${k === 0 ? " on" : ""}" data-t="${k + 1}" style="background:${TINTAS[k + 1]}">${k + 1}</div>`).join("")}</div>`;
+                document.querySelectorAll(".tinta").forEach(t => MKP.arrastrar(t, { alTocar: () => elegir(+t.dataset.t), alSoltar: d => { elegir(+t.dataset.t); pintar(d); return false; } }));
+                document.querySelectorAll(".lienzo [data-drop]").forEach(p => p.addEventListener("click", () => pintar(p)));
+                const txt = "Pinta cada parte con el color de su número. " + Array.from({ length: nv.k }, (_, k) => (k + 1) + " es " + NOMBRE[k + 1]).join(", ");
+                document.getElementById("oir").onclick = () => MKP.decir(txt); MKP.decir(txt);
+            }
+        });
+        function elegir(t) {
+            tinta = t; MKJ.sound("salto"); MKP.decir(t + ", " + NOMBRE[t]);
+            document.querySelectorAll(".tinta").forEach(x => x.classList.toggle("on", +x.dataset.t === t));
+        }
+        function pintar(p) {
+            if (p.dataset.ok) return;
+            if (+p.dataset.c !== tinta) {
+                primera = false; MKJ.sound("error"); p.classList.remove("mal"); void p.getBBox(); p.classList.add("mal");
+                MKP.decir("Esa parte tiene el " + p.dataset.c + ". Usa el " + NOMBRE[+p.dataset.c]); return;
+            }
+            p.dataset.ok = 1; p.setAttribute("fill", TINTAS[tinta]); MKJ.sound("moneda"); faltan--;
+            if (faltan === 0) { MKJ.sound("ok"); MKP.aviso("¡Qué lindo!", true); MKP.decir("¡Qué lindo te quedó!"); listoFn(primera); }
+        }
+        window.__juego = { elegir, pintar };
+
+    </script>
+</body>
+</html>

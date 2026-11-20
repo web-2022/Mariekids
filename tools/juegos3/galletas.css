@@ -1,0 +1,7 @@
+        .plates { display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: 12px; margin-top: 10px; }
+        .plate { border: 0; border-radius: 50%; aspect-ratio: 1; background: radial-gradient(circle, #fff 55%, #e2e8f0 56%, #fff 70%, #cbd5e1 72%); box-shadow: 0 8px 0 #94a3b8; display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 0; padding: 18%; font-size: clamp(22px, 6vw, 36px); cursor: pointer; }
+        .plate:active { transform: translateY(4px); box-shadow: 0 4px 0 #94a3b8; }
+        .plate.bien { box-shadow: 0 0 0 6px #22c55e, 0 8px 0 #94a3b8; }
+        .plate.mal { animation: sacude .4s; }
+        @keyframes sacude { 0%,100% { transform: translateX(0) } 25% { transform: translateX(-8px) } 75% { transform: translateX(8px) } }
+        .cnts { display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: 12px; font: 800 34px "Baloo 2", sans-serif; color: #92400e; min-height: 46px; }

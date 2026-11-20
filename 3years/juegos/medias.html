@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <title>MK Parejas de medias · 3 años</title>
+    <meta name="theme-color" content="#0b73ff" />
+    <meta name="apple-mobile-web-app-title" content="MK" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../icons/icon-192.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/mk-juegos.css" />
+    <link rel="stylesheet" href="../../assets/mk-peques.css?v=1" />
+    <style>
+        body { background: #f5f3ff; }
+        .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 8px; }
+        .col { display: flex; flex-direction: column; gap: 10px; align-items: center; padding: 10px; border-radius: 20px; background: #f1f5f9; }
+        .sock { width: 96px; height: 84px; position: relative; cursor: grab; display: grid; place-items: center; }
+        .sock svg { width: 100%; height: 100%; }
+        .sock b { position: absolute; top: 18px; left: 22px; font: 800 26px "Baloo 2", sans-serif; color: #fff; text-shadow: 0 2px 0 #0006; }
+        .sock .dots { position: absolute; top: 10px; left: 30px; width: 40px; justify-content: center; display: flex; flex-wrap: wrap; gap: 3px; }
+        .sock .dots i { width: 9px; height: 9px; border-radius: 50%; background: #fff; box-shadow: 0 1px 0 #0005; }
+        .sock.hecho { opacity: .35; pointer-events: none; }
+        .sock.mal { animation: sacude .4s; }
+        .tend { min-height: 40px; margin-top: 12px; font-size: 30px; }
+        @keyframes sacude { 0%,100% { transform: translateX(0) } 25% { transform: translateX(-8px) } 75% { transform: translateX(8px) } }
+
+    </style>
+</head>
+<body>
+    <!-- GENERADO por tools/juegos3/build.py — edita tools/juegos3/medias.css / medias.js -->
+    <div class="bar">
+        <a class="pill" href="../juegos3Y.html" aria-label="Volver a los juegos">⬅<span class="txt"> Juegos</span></a>
+        <h1>🧦 Parejas de medias</h1>
+        <button class="pill" id="soundBtn" type="button" aria-label="Sonido">🔊</button>
+    </div>
+    <div class="hud" aria-live="polite"><span id="hudLevel">Nivel 1</span><span id="hudQ"></span><span id="hudOk">⭐ 0</span></div>
+    <main class="stage"><div class="card" id="card"></div></main>
+    <div class="overlay show" id="startScreen">
+        <div class="panel">
+            <h2>🧦 Parejas de medias</h2>
+            <p>Junta cada media con su pareja.</p>
+            <div class="levels" id="levels"></div>
+        </div>
+    </div>
+    <div class="overlay" id="endScreen">
+        <div class="panel">
+            <h2>¡Muy bien! 🎉</h2>
+            <div class="stars-big" id="endStars">⭐⭐⭐</div>
+            <p id="endText"></p>
+            <div class="row">
+                <button class="big-btn alt" id="menuBtn" type="button">📋 Niveles</button>
+                <button class="big-btn" id="nextBtn" type="button">▶ Siguiente</button>
+            </div>
+        </div>
+    </div>
+    <script src="../../assets/mk-juegos.js?v=2"></script>
+    <script src="../../assets/mk-peques.js?v=1"></script>
+    <script>
+        /* 🧦 PAREJAS DE MEDIAS: correspondencia. Arrastra cada media de la izquierda a su pareja. */
+        const R = MKJ.rnd;
+        const COL = ["#ef4444", "#3b82f6", "#22c55e", "#eab308", "#a855f7", "#f97316", "#ec4899"];
+        let quedan = 0, primera = true, listoFn = null, nivelAct = null;
+        function svgMedia(c, raya) {
+            return `<svg viewBox="0 0 100 90" aria-hidden="true"><path d="M30 4h34v46c0 4 2 6 6 8l16 8c8 4 8 20-4 20H40C26 86 18 76 22 62l8-22z" fill="${c}" stroke="#0003" stroke-width="3"/><rect x="30" y="4" width="34" height="12" fill="#fff8"/>${raya ? `<rect x="28" y="28" width="38" height="7" fill="#fff9"/>` : ""}</svg>`;
+        }
+        MKP.juego({
+            clave: "medias3a", rondas: 4, icono: "🧦",
+            niveles: [
+                { n: 1, name: "Nivel 1", desc: "3 parejas por color", cls: "lv1", p: 3, modo: "color" },
+                { n: 2, name: "Nivel 2", desc: "4 parejas: número y número", cls: "lv2", p: 4, modo: "num", max: 6 },
+                { n: 3, name: "Nivel 3", desc: "Número con sus puntitos (hasta 10)", cls: "lv3", p: 4, modo: "puntos", max: 10 }
+            ],
+            ronda(nv, i, listo) {
+                primera = true; listoFn = listo; nivelAct = nv; quedan = nv.p;
+                const cols = MKJ.shuffle(COL.slice()).slice(0, nv.p);
+                const nums = nv.modo === "color" ? cols.map((_, k) => k) : MKJ.shuffle([...Array(nv.max).keys()].map(x => x + 1)).slice(0, nv.p);
+                const izq = nums.map((n, k) => ({ id: k, c: cols[k], n })), der = MKJ.shuffle(izq.map(x => ({ ...x, c: nv.modo === "color" ? x.c : COL[(x.id + 3) % COL.length] })));
+                const cara = (m, lado) => {
+                    let extra = "";
+                    if (nv.modo === "num") extra = `<b>${m.n}</b>`;
+                    if (nv.modo === "puntos") extra = lado === "i" ? `<b>${m.n}</b>` : `<span class="dots">${"<i></i>".repeat(m.n)}</span>`;
+                    return `<div class="sock" data-id="${m.id}" ${lado === "d" ? 'data-drop="media"' : ""}>${svgMedia(m.c, lado === "d")}${extra}</div>`;
+                };
+                document.getElementById("card").innerHTML = `<p class="task">${nv.modo === "color" ? "Junta cada media con su pareja" : nv.modo === "num" ? "Junta las medias con el mismo número" : "Junta el número con sus puntitos"} <button class="again" id="oir" type="button">🔊</button></p>
+                    <p class="sub">Arrastra una media de la izquierda hasta su pareja.</p>
+                    <div class="cols"><div class="col">${izq.map(m => cara(m, "i")).join("")}</div><div class="col">${der.map(m => cara(m, "d")).join("")}</div></div><div class="tend" id="tend"></div>`;
+                document.querySelectorAll(".col:first-child .sock").forEach(s => MKP.arrastrar(s, { alSoltar: d => juntar(s, d) }));
+                const txt = nv.modo === "color" ? "Junta cada media con su pareja del mismo color" : nv.modo === "num" ? "Junta las medias que tienen el mismo número" : "Junta cada número con la media que tiene esos puntitos";
+                document.getElementById("oir").onclick = () => MKP.decir(txt); MKP.decir(txt);
+            }
+        });
+        function juntar(s, d) {
+            if (d.dataset.id === s.dataset.id && !d.classList.contains("hecho")) {
+                s.classList.add("hecho"); d.classList.add("hecho"); s.dataset.bloqueado = 1;
+                document.getElementById("tend").textContent += "🧦";
+                MKJ.sound("ok"); quedan--;
+                if (quedan === 0) { MKP.aviso("¡Todas!", true); MKP.decir("¡Muy bien! Todas las medias tienen pareja"); listoFn(primera); }
+                return true;
+            }
+            primera = false; MKJ.sound("error"); d.classList.remove("mal"); void d.offsetWidth; d.classList.add("mal"); MKP.decir("Esa no es su pareja");
+            return false;
+        }
+
+    </script>
+</body>
+</html>

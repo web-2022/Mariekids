@@ -1,0 +1,8 @@
+        .nests { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-top: 8px; }
+        .nest { border-radius: 22px; padding: 8px; background: #fef9c3; }
+        .hen { font-size: 46px; line-height: 1; }
+        .hen b { display: inline-block; min-width: 46px; margin-left: 4px; border-radius: 14px; background: #fde68a; color: #92400e; font: 800 34px/46px "Baloo 2", sans-serif; vertical-align: middle; }
+        .bowl { min-height: 90px; margin-top: 6px; padding: 10px 6px 16px; border-radius: 16px 16px 50% 50%; background: repeating-linear-gradient(-30deg, #d6a36a 0 6px, #b7834a 6px 12px); display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 2px; }
+        .bowl .chick { font-size: 30px; cursor: pointer; }
+        .yard { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 14px; padding: 12px; border-radius: 20px; background: #dcfce7; min-height: 70px; }
+        .chick { font-size: 40px; line-height: 1; cursor: grab; user-select: none; }

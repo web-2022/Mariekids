@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <title>MK Revienta globos · 3 años</title>
+    <meta name="theme-color" content="#0b73ff" />
+    <meta name="apple-mobile-web-app-title" content="MK" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../icons/icon-192.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/mk-juegos.css" />
+    <link rel="stylesheet" href="../../assets/mk-peques.css?v=1" />
+    <style>
+        body { background: #e0f2fe; }
+        .sky { position: relative; height: 420px; margin-top: 6px; border-radius: 26px; overflow: hidden; background: linear-gradient(180deg, #bae6fd, #e0f2fe); }
+        .sky::after { content: "☁️      ☁️"; position: absolute; top: 20px; left: 10%; font-size: 40px; opacity: .8; pointer-events: none; }
+        .globo { position: absolute; bottom: -130px; width: 74px; cursor: pointer; animation: sube var(--t) linear infinite; animation-delay: var(--d); }
+        .globo .bola { width: 74px; height: 88px; border-radius: 50% 50% 46% 46%; background: radial-gradient(circle at 30% 28%, #fff8 0 10%, var(--c) 11%); display: grid; place-items: center; font: 800 36px "Baloo 2", sans-serif; color: #fff; text-shadow: 0 2px 0 #0004; box-shadow: inset -6px -8px 0 #0002; }
+        .globo .hilo { width: 2px; height: 40px; margin: 0 auto; background: #64748b; }
+        .globo.pum { animation: none; }
+        .globo.pum .bola { animation: pum .35s forwards; }
+        .globo.pum .hilo { opacity: 0; }
+        .globo.mal .bola { animation: sacude .4s; }
+        @keyframes sube { from { transform: translateY(0); } to { transform: translateY(-560px); } }
+        @keyframes pum { 60% { transform: scale(1.5); opacity: .6 } 100% { transform: scale(0); opacity: 0 } }
+        @keyframes sacude { 0%,100% { transform: translateX(0) } 25% { transform: translateX(-8px) } 75% { transform: translateX(8px) } }
+
+    </style>
+</head>
+<body>
+    <!-- GENERADO por tools/juegos3/build.py — edita tools/juegos3/globos.css / globos.js -->
+    <div class="bar">
+        <a class="pill" href="../juegos3Y.html" aria-label="Volver a los juegos">⬅<span class="txt"> Juegos</span></a>
+        <h1>🎈 Revienta globos</h1>
+        <button class="pill" id="soundBtn" type="button" aria-label="Sonido">🔊</button>
+    </div>
+    <div class="hud" aria-live="polite"><span id="hudLevel">Nivel 1</span><span id="hudQ"></span><span id="hudOk">⭐ 0</span></div>
+    <main class="stage"><div class="card" id="card"></div></main>
+    <div class="overlay show" id="startScreen">
+        <div class="panel">
+            <h2>🎈 Revienta globos</h2>
+            <p>Revienta el globo con el número que escuchas.</p>
+            <div class="levels" id="levels"></div>
+        </div>
+    </div>
+    <div class="overlay" id="endScreen">
+        <div class="panel">
+            <h2>¡Muy bien! 🎉</h2>
+            <div class="stars-big" id="endStars">⭐⭐⭐</div>
+            <p id="endText"></p>
+            <div class="row">
+                <button class="big-btn alt" id="menuBtn" type="button">📋 Niveles</button>
+                <button class="big-btn" id="nextBtn" type="button">▶ Siguiente</button>
+            </div>
+        </div>
+    </div>
+    <script src="../../assets/mk-juegos.js?v=2"></script>
+    <script src="../../assets/mk-peques.js?v=1"></script>
+    <script>
+        /* 🎈 REVIENTA GLOBOS: reconocer números. Revienta el globo con el número que dice la voz. */
+        const R = MKJ.rnd, P = MKJ.pick;
+        const COL = ["#ef4444", "#f97316", "#eab308", "#22c55e", "#06b6d4", "#3b82f6", "#8b5cf6", "#ec4899"];
+        let obj = 0, primera = true, hecho = false, listoFn = null;
+        MKP.juego({
+            clave: "globos3a", rondas: 8, icono: "🎈",
+            niveles: [
+                { n: 1, name: "Nivel 1", desc: "Números del 1 al 5", cls: "lv1", max: 5, g: 4, t: 9 },
+                { n: 2, name: "Nivel 2", desc: "Números del 1 al 6", cls: "lv2", max: 6, g: 5, t: 8 },
+                { n: 3, name: "Nivel 3", desc: "Números del 1 al 10", cls: "lv3", max: 10, g: 6, t: 7 }
+            ],
+            ronda(nv, i, listo) {
+                obj = R(1, nv.max); primera = true; hecho = false; listoFn = listo;
+                const otros = MKJ.shuffle([...Array(nv.max).keys()].map(x => x + 1).filter(x => x !== obj)).slice(0, nv.g - 1);
+                const nums = MKJ.shuffle(otros.concat(obj, obj));   // el correcto sale dos veces
+                document.getElementById("card").innerHTML = `<p class="task">Revienta el globo <span class="big">${obj}</span> <button class="again" id="oir" type="button">🔊</button></p><div class="sky" id="sky"></div>`;
+                const sky = document.getElementById("sky"), W = sky.clientWidth, paso = (W - 80) / Math.max(1, nums.length - 1);
+                nums.forEach((n, k) => {
+                    const g = document.createElement("div");
+                    g.className = "globo"; g.dataset.n = n;
+                    g.style.cssText = `left:${Math.round(k * paso)}px;--c:${P(COL)};--t:${nv.t + Math.random() * 3}s;--d:-${(Math.random() * nv.t).toFixed(2)}s`;
+                    g.innerHTML = `<div class="bola">${n}</div><div class="hilo"></div>`;
+                    g.addEventListener("pointerdown", e => { e.preventDefault(); tocar(g); });
+                    sky.appendChild(g);
+                });
+                document.getElementById("oir").onclick = () => MKP.decir("Revienta el globo " + obj);
+                MKP.decir("Revienta el globo " + obj);
+            }
+        });
+        function tocar(g) {
+            if (hecho || g.classList.contains("pum")) return;
+            const n = +g.dataset.n;
+            if (n === obj) {
+                hecho = true; g.style.transform = getComputedStyle(g).transform; g.classList.add("pum");
+                MKJ.sound("ok"); MKP.aviso("¡PUM! " + n, true); MKP.decir("¡Muy bien! El " + n); listoFn(primera);
+            } else {
+                primera = false; g.classList.remove("mal"); void g.offsetWidth; g.classList.add("mal");
+                MKJ.sound("error"); MKP.decir("Ese es el " + n + ". Busca el " + obj);
+            }
+        }
+        window.__juego = { get obj() { return obj; } };
+
+    </script>
+</body>
+</html>

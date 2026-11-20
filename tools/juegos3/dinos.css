@@ -1,0 +1,9 @@
+        .fila { display: flex; justify-content: center; align-items: flex-end; gap: 6px; margin-top: 8px; min-height: 120px; padding: 10px 6px; border-radius: 20px; background: #ecfccb; }
+        .hueco { width: 64px; height: 110px; border: 4px dashed #a3a3a3; border-radius: 14px; display: flex; align-items: flex-end; justify-content: center; }
+        .hueco.lleno { border-color: transparent; }
+        .flecha { margin: 6px 0 0; font: 800 18px "Nunito", sans-serif; color: #4d7c0f; }
+        .pasto { display: flex; justify-content: center; align-items: flex-end; flex-wrap: wrap; gap: 14px; margin-top: 16px; min-height: 120px; padding: 10px; border-radius: 20px; background: #fef3c7; }
+        .dino { line-height: 1; cursor: grab; user-select: none; }
+        .dino.mal { animation: sacude .4s; }
+        @keyframes sacude { 0%,100% { transform: translateX(0) } 25% { transform: translateX(-8px) } 75% { transform: translateX(8px) } }
+        @media (max-width: 480px) { .hueco { width: 54px; } }

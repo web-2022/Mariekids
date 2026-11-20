@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <title>MK Gusano de patrones · 3 años</title>
+    <meta name="theme-color" content="#0b73ff" />
+    <meta name="apple-mobile-web-app-title" content="MK" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../icons/icon-192.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/mk-juegos.css" />
+    <link rel="stylesheet" href="../../assets/mk-peques.css?v=1" />
+    <style>
+        body { background: #f0fdf4; }
+        .gusano { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 3px; margin-top: 10px; padding: 12px 6px; border-radius: 20px; background: #dcfce7; }
+        .cabeza { font-size: 46px; line-height: 1; }
+        .bolita { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; font-size: 26px; box-shadow: inset -4px -5px 0 #0002; }
+        .bolita.hueco { background: #fff; border: 4px dashed #94a3b8; box-shadow: none; }
+        .opciones { display: flex; justify-content: center; gap: 16px; margin-top: 18px; padding: 12px; border-radius: 20px; background: #fef9c3; }
+        .opciones .bolita { width: 62px; height: 62px; font-size: 32px; cursor: grab; }
+        .bolita.mal { animation: sacude .4s; }
+        @keyframes sacude { 0%,100% { transform: translateX(0) } 25% { transform: translateX(-8px) } 75% { transform: translateX(8px) } }
+        @media (max-width: 480px) { .gusano { gap: 2px; padding: 10px 2px; } .bolita { width: 30px; height: 30px; font-size: 16px; } .bolita.hueco { border-width: 3px; } .cabeza { font-size: 30px; } }
+
+    </style>
+</head>
+<body>
+    <!-- GENERADO por tools/juegos3/build.py — edita tools/juegos3/gusano.css / gusano.js -->
+    <div class="bar">
+        <a class="pill" href="../juegos3Y.html" aria-label="Volver a los juegos">⬅<span class="txt"> Juegos</span></a>
+        <h1>🐛 Gusano de patrones</h1>
+        <button class="pill" id="soundBtn" type="button" aria-label="Sonido">🔊</button>
+    </div>
+    <div class="hud" aria-live="polite"><span id="hudLevel">Nivel 1</span><span id="hudQ"></span><span id="hudOk">⭐ 0</span></div>
+    <main class="stage"><div class="card" id="card"></div></main>
+    <div class="overlay show" id="startScreen">
+        <div class="panel">
+            <h2>🐛 Gusano de patrones</h2>
+            <p>Completa el patrón del gusano.</p>
+            <div class="levels" id="levels"></div>
+        </div>
+    </div>
+    <div class="overlay" id="endScreen">
+        <div class="panel">
+            <h2>¡Muy bien! 🎉</h2>
+            <div class="stars-big" id="endStars">⭐⭐⭐</div>
+            <p id="endText"></p>
+            <div class="row">
+                <button class="big-btn alt" id="menuBtn" type="button">📋 Niveles</button>
+                <button class="big-btn" id="nextBtn" type="button">▶ Siguiente</button>
+            </div>
+        </div>
+    </div>
+    <script src="../../assets/mk-juegos.js?v=2"></script>
+    <script src="../../assets/mk-peques.js?v=1"></script>
+    <script>
+        /* 🐛 GUSANO DE PATRONES: lógica. Completa el patrón arrastrando la bolita que sigue. */
+        const P = MKJ.pick;
+        const PIEZAS = [["#ef4444", ""], ["#3b82f6", ""], ["#eab308", ""], ["#22c55e", ""], ["#a855f7", ""]];
+        const CON = ["⭐", "❤️", "🌙"];
+        let serie = [], huecos = [], sig = 0, primera = true, listoFn = null, juegos = [];
+        MKP.juego({
+            clave: "gusano3a", rondas: 6, icono: "🐛",
+            niveles: [
+                { n: 1, name: "Nivel 1", desc: "Patrón de 2 colores: 🔴🔵🔴🔵", cls: "lv1", pats: ["AB"], vacios: 1 },
+                { n: 2, name: "Nivel 2", desc: "Patrones AAB, ABB y ABC", cls: "lv2", pats: ["AAB", "ABB", "ABC", "AB"], vacios: 1 },
+                { n: 3, name: "Nivel 3", desc: "Patrones largos, 2 que faltan", cls: "lv3", pats: ["AABB", "ABC", "ABBC", "AAB"], vacios: 2 }
+            ],
+            ronda(nv, i, listo) {
+                primera = true; listoFn = listo; sig = 0;
+                const pat = P(nv.pats), letras = [...new Set(pat)];
+                const cols = MKJ.shuffle(PIEZAS.slice()).slice(0, letras.length);
+                const usaIcono = nv.n === 3 && Math.random() < .5;
+                const pieza = l => { const k = letras.indexOf(l); return { c: cols[k][0], t: usaIcono ? CON[k % 3] : "", id: l }; };
+                const largo = Math.max(7, pat.length * 2 + nv.vacios);
+                serie = Array.from({ length: largo }, (_, k) => pieza(pat[k % pat.length]));
+                huecos = Array.from({ length: nv.vacios }, (_, k) => largo - nv.vacios + k);
+                const opc = letras.map(pieza);
+                const bol = (p, extra) => `<span class="bolita ${extra || ""}" data-id="${p.id}" style="background:${p.c}">${p.t}</span>`;
+                document.getElementById("card").innerHTML = `<p class="task">¿Qué sigue en el gusano? <button class="again" id="oir" type="button">🔊</button></p>
+                    <p class="sub">Mira el patrón y arrastra la bolita que falta.</p>
+                    <div class="gusano">${serie.map((p, k) => huecos.includes(k) ? `<span class="bolita hueco" data-drop="hueco" data-k="${k}"></span>` : bol(p)).join("")}<span class="cabeza">🐛</span></div>
+                    <div class="opciones">${MKJ.shuffle(opc.slice()).map(p => bol(p)).join("")}</div>`;
+                document.querySelectorAll(".opciones .bolita").forEach(b => MKP.arrastrar(b, { alSoltar: h => poner(b, h) }));
+                document.getElementById("oir").onclick = () => MKP.decir("¿Qué sigue en el gusano?"); MKP.decir("¿Qué sigue en el gusano?");
+            }
+        });
+        function poner(b, h) {
+            const k = +h.dataset.k;
+            if (!h.classList.contains("hueco") || k !== huecos[sig]) { MKJ.sound("error"); MKP.decir("Primero llena el primer espacio"); return false; }
+            if (serie[k].id !== b.dataset.id) {
+                primera = false; MKJ.sound("error"); b.classList.remove("mal"); void b.offsetWidth; b.classList.add("mal"); MKP.decir("Mira el patrón otra vez"); return false;
+            }
+            h.className = "bolita"; h.style.background = serie[k].c; h.textContent = serie[k].t; h.removeAttribute("data-drop");
+            MKJ.sound("moneda"); sig++;
+            if (sig === huecos.length) { MKJ.sound("ok"); MKP.aviso("¡Bien!", true); MKP.decir("¡Muy bien! El gusano está completo"); listoFn(primera); }
+            return false;   // la bolita de opciones vuelve (se puede reutilizar)
+        }
+        window.__juego = { get serie() { return serie; }, get huecos() { return huecos; } };
+
+    </script>
+</body>
+</html>

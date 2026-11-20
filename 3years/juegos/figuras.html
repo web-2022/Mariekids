@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <title>MK Clasifica figuras · 3 años</title>
+    <meta name="theme-color" content="#0b73ff" />
+    <meta name="apple-mobile-web-app-title" content="MK" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../icons/icon-192.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/mk-juegos.css" />
+    <link rel="stylesheet" href="../../assets/mk-peques.css?v=1" />
+    <style>
+        body { background: #eff6ff; }
+        .cajas { display: grid; grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); gap: 10px; margin-top: 8px; }
+        .caja { min-height: 110px; border-radius: 18px; padding: 6px; background: #f1f5f9; border: 3px solid #cbd5e1; display: flex; flex-direction: column; align-items: center; }
+        .caja .rot { font: 800 15px "Nunito", sans-serif; color: #475569; }
+        .caja .dentro { display: flex; flex-wrap: wrap; justify-content: center; gap: 3px; }
+        .caja .dentro svg { width: 30px; height: 30px; }
+        .mesa { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 16px; padding: 12px; border-radius: 20px; background: #fef9c3; min-height: 80px; }
+        .fig { width: 66px; height: 66px; cursor: grab; }
+        .fig svg { width: 100%; height: 100%; }
+        .fig.mal { animation: sacude .4s; }
+        @keyframes sacude { 0%,100% { transform: translateX(0) } 25% { transform: translateX(-8px) } 75% { transform: translateX(8px) } }
+
+    </style>
+</head>
+<body>
+    <!-- GENERADO por tools/juegos3/build.py — edita tools/juegos3/figuras.css / figuras.js -->
+    <div class="bar">
+        <a class="pill" href="../juegos3Y.html" aria-label="Volver a los juegos">⬅<span class="txt"> Juegos</span></a>
+        <h1>🔷 Clasifica figuras</h1>
+        <button class="pill" id="soundBtn" type="button" aria-label="Sonido">🔊</button>
+    </div>
+    <div class="hud" aria-live="polite"><span id="hudLevel">Nivel 1</span><span id="hudQ"></span><span id="hudOk">⭐ 0</span></div>
+    <main class="stage"><div class="card" id="card"></div></main>
+    <div class="overlay show" id="startScreen">
+        <div class="panel">
+            <h2>🔷 Clasifica figuras</h2>
+            <p>Guarda cada figura en su caja.</p>
+            <div class="levels" id="levels"></div>
+        </div>
+    </div>
+    <div class="overlay" id="endScreen">
+        <div class="panel">
+            <h2>¡Muy bien! 🎉</h2>
+            <div class="stars-big" id="endStars">⭐⭐⭐</div>
+            <p id="endText"></p>
+            <div class="row">
+                <button class="big-btn alt" id="menuBtn" type="button">📋 Niveles</button>
+                <button class="big-btn" id="nextBtn" type="button">▶ Siguiente</button>
+            </div>
+        </div>
+    </div>
+    <script src="../../assets/mk-juegos.js?v=2"></script>
+    <script src="../../assets/mk-peques.js?v=1"></script>
+    <script>
+        /* 🔷 CLASIFICA FIGURAS: geometría. Arrastra cada figura a su caja. */
+        const R = MKJ.rnd, P = MKJ.pick;
+        const COL = ["#ef4444", "#3b82f6", "#22c55e", "#eab308", "#a855f7", "#f97316"];
+        const FIG = {
+            circulo: ["círculo", c => `<circle cx="50" cy="50" r="40" fill="${c}"/>`],
+            cuadrado: ["cuadrado", c => `<rect x="12" y="12" width="76" height="76" fill="${c}"/>`],
+            triangulo: ["triángulo", c => `<polygon points="50,8 92,88 8,88" fill="${c}"/>`],
+            rectangulo: ["rectángulo", c => `<rect x="4" y="26" width="92" height="48" fill="${c}"/>`],
+            estrella: ["estrella", c => `<polygon points="50,5 61,38 96,38 68,58 79,92 50,72 21,92 32,58 4,38 39,38" fill="${c}"/>`],
+            corazon: ["corazón", c => `<path d="M50 88 C10 60 4 34 22 20 C36 10 48 18 50 28 C52 18 64 10 78 20 C96 34 90 60 50 88Z" fill="${c}"/>`]
+        };
+        const svg = (f, c) => `<svg viewBox="0 0 100 100" aria-hidden="true">${FIG[f][1](c)}</svg>`;
+        let quedan = 0, primera = true, listoFn = null;
+        MKP.juego({
+            clave: "figuras3a", rondas: 4, icono: "🔷",
+            niveles: [
+                { n: 1, name: "Nivel 1", desc: "Círculo, cuadrado y triángulo", cls: "lv1", f: ["circulo", "cuadrado", "triangulo"], k: 6 },
+                { n: 2, name: "Nivel 2", desc: "Más el rectángulo", cls: "lv2", f: ["circulo", "cuadrado", "triangulo", "rectangulo"], k: 7 },
+                { n: 3, name: "Nivel 3", desc: "Más estrella y corazón", cls: "lv3", f: ["circulo", "cuadrado", "triangulo", "rectangulo", "estrella", "corazon"], k: 8 }
+            ],
+            ronda(nv, i, listo) {
+                primera = true; listoFn = listo;
+                const piezas = nv.f.concat(Array.from({ length: nv.k - nv.f.length }, () => P(nv.f)));
+                quedan = piezas.length;
+                document.getElementById("card").innerHTML = `<p class="task">Guarda cada figura en su caja <button class="again" id="oir" type="button">🔊</button></p>
+                    <div class="cajas">${nv.f.map(f => `<div class="caja" data-drop="caja" data-f="${f}">${svg(f, "#94a3b8")}<span class="rot">${FIG[f][0]}</span><div class="dentro"></div></div>`).join("").replace(/<svg /g, '<svg style="width:40px;height:40px" ')}</div>
+                    <div class="mesa">${MKJ.shuffle(piezas).map(f => `<div class="fig" data-f="${f}" style="transform:scale(${(.75 + Math.random() * .35).toFixed(2)}) rotate(${f === "circulo" ? 0 : R(-20, 20)}deg)">${svg(f, P(COL))}</div>`).join("")}</div>`;
+                document.querySelectorAll(".fig").forEach(g => MKP.arrastrar(g, { alTocar: () => MKP.decir(FIG[g.dataset.f][0]), alSoltar: c => guardar(g, c) }));
+                const txt = "Guarda cada figura en su caja";
+                document.getElementById("oir").onclick = () => MKP.decir(txt); MKP.decir(txt);
+            }
+        });
+        function guardar(g, c) {
+            const f = g.dataset.f;
+            if (c.dataset.f !== f) {
+                primera = false; MKJ.sound("error"); g.classList.remove("mal"); void g.offsetWidth; g.classList.add("mal");
+                MKP.decir("Eso es un " + FIG[f][0].replace("estrella", "una estrella")); return false;
+            }
+            const s = g.querySelector("svg").cloneNode(true); c.querySelector(".dentro").appendChild(s); g.remove();
+            MKJ.sound("moneda"); MKP.decir(FIG[f][0]); quedan--;
+            if (quedan === 0) { MKJ.sound("ok"); MKP.aviso("¡Ordenado!", true); MKP.decir("¡Muy bien! Todo está ordenado"); listoFn(primera); }
+            return true;
+        }
+
+    </script>
+</body>
+</html>

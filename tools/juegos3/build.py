@@ -10,6 +10,14 @@ JUEGOS = [
     ("canasta", "🧺", "Llena la canasta", "Arrastra con el dedo tantas frutas como dice el número.", "#e3f8d4"),
     ("tren", "🚂", "El tren ordenado", "Arrastra los vagones y ordénalos: 1, 2, 3…", "#fff1d6"),
     ("rana", "🐸", "La rana saltarina", "Haz saltar a la rana por los números.", "#d7f5e8"),
+    ("globos", "🎈", "Revienta globos", "Revienta el globo con el número que escuchas.", "#e0f2fe"),
+    ("nido", "🐣", "Nido de pollitos", "Lleva a cada mamá gallina tantos pollitos como dice su número.", "#fefce8"),
+    ("medias", "🧦", "Parejas de medias", "Junta cada media con su pareja.", "#f5f3ff"),
+    ("galletas", "🍪", "¿Dónde hay más?", "Mira los platos y toca donde hay más (o menos).", "#fff7ed"),
+    ("pinta", "🎨", "Pinta por número", "Pinta cada parte del dibujo con el color de su número.", "#fdf4ff"),
+    ("dinos", "🦖", "Dinosaurios por tamaño", "Ordena los dinosaurios de pequeño a grande.", "#f7fee7"),
+    ("figuras", "🔷", "Clasifica figuras", "Guarda cada figura en su caja.", "#eff6ff"),
+    ("gusano", "🐛", "Gusano de patrones", "Completa el patrón del gusano.", "#f0fdf4"),
 ]
 PLANTILLA = """<!DOCTYPE html>
 <html lang="es">

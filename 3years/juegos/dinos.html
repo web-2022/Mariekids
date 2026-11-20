@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <title>MK Dinosaurios por tamaño · 3 años</title>
+    <meta name="theme-color" content="#0b73ff" />
+    <meta name="apple-mobile-web-app-title" content="MK" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../icons/icon-192.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/mk-juegos.css" />
+    <link rel="stylesheet" href="../../assets/mk-peques.css?v=1" />
+    <style>
+        body { background: #f7fee7; }
+        .fila { display: flex; justify-content: center; align-items: flex-end; gap: 6px; margin-top: 8px; min-height: 120px; padding: 10px 6px; border-radius: 20px; background: #ecfccb; }
+        .hueco { width: 64px; height: 110px; border: 4px dashed #a3a3a3; border-radius: 14px; display: flex; align-items: flex-end; justify-content: center; }
+        .hueco.lleno { border-color: transparent; }
+        .flecha { margin: 6px 0 0; font: 800 18px "Nunito", sans-serif; color: #4d7c0f; }
+        .pasto { display: flex; justify-content: center; align-items: flex-end; flex-wrap: wrap; gap: 14px; margin-top: 16px; min-height: 120px; padding: 10px; border-radius: 20px; background: #fef3c7; }
+        .dino { line-height: 1; cursor: grab; user-select: none; }
+        .dino.mal { animation: sacude .4s; }
+        @keyframes sacude { 0%,100% { transform: translateX(0) } 25% { transform: translateX(-8px) } 75% { transform: translateX(8px) } }
+        @media (max-width: 480px) { .hueco { width: 54px; } }
+
+    </style>
+</head>
+<body>
+    <!-- GENERADO por tools/juegos3/build.py — edita tools/juegos3/dinos.css / dinos.js -->
+    <div class="bar">
+        <a class="pill" href="../juegos3Y.html" aria-label="Volver a los juegos">⬅<span class="txt"> Juegos</span></a>
+        <h1>🦖 Dinosaurios por tamaño</h1>
+        <button class="pill" id="soundBtn" type="button" aria-label="Sonido">🔊</button>
+    </div>
+    <div class="hud" aria-live="polite"><span id="hudLevel">Nivel 1</span><span id="hudQ"></span><span id="hudOk">⭐ 0</span></div>
+    <main class="stage"><div class="card" id="card"></div></main>
+    <div class="overlay show" id="startScreen">
+        <div class="panel">
+            <h2>🦖 Dinosaurios por tamaño</h2>
+            <p>Ordena los dinosaurios de pequeño a grande.</p>
+            <div class="levels" id="levels"></div>
+        </div>
+    </div>
+    <div class="overlay" id="endScreen">
+        <div class="panel">
+            <h2>¡Muy bien! 🎉</h2>
+            <div class="stars-big" id="endStars">⭐⭐⭐</div>
+            <p id="endText"></p>
+            <div class="row">
+                <button class="big-btn alt" id="menuBtn" type="button">📋 Niveles</button>
+                <button class="big-btn" id="nextBtn" type="button">▶ Siguiente</button>
+            </div>
+        </div>
+    </div>
+    <script src="../../assets/mk-juegos.js?v=2"></script>
+    <script src="../../assets/mk-peques.js?v=1"></script>
+    <script>
+        /* 🦖 DINOSAURIOS POR TAMAÑO: seriación. Ordena de pequeño a grande (o al revés). */
+        const TAM = [22, 32, 44, 56, 70];
+        let orden = [], puestos = 0, primera = true, listoFn = null, alReves = false;
+        MKP.juego({
+            clave: "dinos3a", rondas: 5, icono: "🦖",
+            niveles: [
+                { n: 1, name: "Nivel 1", desc: "3 dinos: de pequeño a grande", cls: "lv1", k: 3, reves: false },
+                { n: 2, name: "Nivel 2", desc: "4 dinos: de pequeño a grande", cls: "lv2", k: 4, reves: false },
+                { n: 3, name: "Nivel 3", desc: "5 dinos: también de grande a pequeño", cls: "lv3", k: 5, reves: true }
+            ],
+            ronda(nv, i, listo) {
+                primera = true; listoFn = listo; puestos = 0; alReves = nv.reves && i % 2 === 1;
+                const tams = nv.k === 5 ? TAM : nv.k === 4 ? [22, 36, 52, 70] : [24, 44, 70];
+                orden = alReves ? tams.slice().reverse() : tams.slice();
+                const e = MKJ.pick(["🦕", "🦖"]);
+                document.getElementById("card").innerHTML = `<p class="task">Ordena de <span class="big">${alReves ? "grande" : "pequeño"}</span> a ${alReves ? "pequeño" : "grande"} <button class="again" id="oir" type="button">🔊</button></p>
+                    <div class="fila">${orden.map((t, k) => `<div class="hueco" data-drop="hueco" data-k="${k}"></div>`).join("")}</div>
+                    <p class="flecha">${alReves ? "GRANDE ➡️ pequeño" : "pequeño ➡️ GRANDE"}</p>
+                    <div class="pasto" id="pasto">${MKJ.shuffle(tams.slice()).map(t => `<span class="dino" data-t="${t}" style="font-size:${t + 18}px">${e}</span>`).join("")}</div>`;
+                document.querySelectorAll(".dino").forEach(d => MKP.arrastrar(d, { alSoltar: h => poner(d, h) }));
+                const txt = alReves ? "Ordena los dinosaurios de grande a pequeño" : "Ordena los dinosaurios de pequeño a grande";
+                document.getElementById("oir").onclick = () => MKP.decir(txt); MKP.decir(txt);
+            }
+        });
+        function poner(d, h) {
+            if (h.classList.contains("lleno")) return false;
+            if (orden[+h.dataset.k] !== +d.dataset.t) {
+                primera = false; MKJ.sound("error"); d.classList.remove("mal"); void d.offsetWidth; d.classList.add("mal");
+                MKP.decir(+h.dataset.k === 0 ? (alReves ? "Primero va el más grande" : "Primero va el más pequeño") : "Ese no va ahí"); return false;
+            }
+            h.classList.add("lleno"); d.dataset.bloqueado = 1; d.style.opacity = ""; h.appendChild(d); puestos++; MKJ.sound("moneda");
+            if (puestos === orden.length) { MKJ.sound("ok"); MKP.aviso("¡Rooar!", true); MKP.decir("¡Muy bien! Están en orden"); listoFn(primera); }
+            return true;
+        }
+        window.__juego = { get orden() { return orden; } };
+
+    </script>
+</body>
+</html>

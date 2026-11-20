@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <title>MK ¿Dónde hay más? · 3 años</title>
+    <meta name="theme-color" content="#0b73ff" />
+    <meta name="apple-mobile-web-app-title" content="MK" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../icons/icon-192.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/mk-juegos.css" />
+    <link rel="stylesheet" href="../../assets/mk-peques.css?v=1" />
+    <style>
+        body { background: #fff7ed; }
+        .plates { display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: 12px; margin-top: 10px; }
+        .plate { border: 0; border-radius: 50%; aspect-ratio: 1; background: radial-gradient(circle, #fff 55%, #e2e8f0 56%, #fff 70%, #cbd5e1 72%); box-shadow: 0 8px 0 #94a3b8; display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 0; padding: 18%; font-size: clamp(22px, 6vw, 36px); cursor: pointer; }
+        .plate:active { transform: translateY(4px); box-shadow: 0 4px 0 #94a3b8; }
+        .plate.bien { box-shadow: 0 0 0 6px #22c55e, 0 8px 0 #94a3b8; }
+        .plate.mal { animation: sacude .4s; }
+        @keyframes sacude { 0%,100% { transform: translateX(0) } 25% { transform: translateX(-8px) } 75% { transform: translateX(8px) } }
+        .cnts { display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: 12px; font: 800 34px "Baloo 2", sans-serif; color: #92400e; min-height: 46px; }
+
+    </style>
+</head>
+<body>
+    <!-- GENERADO por tools/juegos3/build.py — edita tools/juegos3/galletas.css / galletas.js -->
+    <div class="bar">
+        <a class="pill" href="../juegos3Y.html" aria-label="Volver a los juegos">⬅<span class="txt"> Juegos</span></a>
+        <h1>🍪 ¿Dónde hay más?</h1>
+        <button class="pill" id="soundBtn" type="button" aria-label="Sonido">🔊</button>
+    </div>
+    <div class="hud" aria-live="polite"><span id="hudLevel">Nivel 1</span><span id="hudQ"></span><span id="hudOk">⭐ 0</span></div>
+    <main class="stage"><div class="card" id="card"></div></main>
+    <div class="overlay show" id="startScreen">
+        <div class="panel">
+            <h2>🍪 ¿Dónde hay más?</h2>
+            <p>Mira los platos y toca donde hay más (o menos).</p>
+            <div class="levels" id="levels"></div>
+        </div>
+    </div>
+    <div class="overlay" id="endScreen">
+        <div class="panel">
+            <h2>¡Muy bien! 🎉</h2>
+            <div class="stars-big" id="endStars">⭐⭐⭐</div>
+            <p id="endText"></p>
+            <div class="row">
+                <button class="big-btn alt" id="menuBtn" type="button">📋 Niveles</button>
+                <button class="big-btn" id="nextBtn" type="button">▶ Siguiente</button>
+            </div>
+        </div>
+    </div>
+    <script src="../../assets/mk-juegos.js?v=2"></script>
+    <script src="../../assets/mk-peques.js?v=1"></script>
+    <script>
+        /* 🍪 ¿DÓNDE HAY MÁS?: comparar cantidades (más / menos). */
+        const R = MKJ.rnd, P = MKJ.pick;
+        let cant = [], pide = "mas", primera = true, hecho = false, listoFn = null;
+        MKP.juego({
+            clave: "galletas3a", rondas: 8, icono: "🍪",
+            niveles: [
+                { n: 1, name: "Nivel 1", desc: "¿Dónde hay más? (hasta 5)", cls: "lv1", max: 5, platos: 2, menos: false },
+                { n: 2, name: "Nivel 2", desc: "Más y menos (hasta 6)", cls: "lv2", max: 6, platos: 2, menos: true },
+                { n: 3, name: "Nivel 3", desc: "3 platos, más y menos (hasta 10)", cls: "lv3", max: 10, platos: 3, menos: true }
+            ],
+            ronda(nv, i, listo) {
+                primera = true; hecho = false; listoFn = listo;
+                pide = nv.menos && i % 2 ? "menos" : "mas";
+                do { cant = Array.from({ length: nv.platos }, () => R(1, nv.max)); } while (new Set(cant).size < nv.platos || (nv.n === 1 && Math.abs(cant[0] - cant[1]) < 2));
+                const e = P(["🍪", "🍩", "🧁", "🍬", "🍓"]);
+                document.getElementById("card").innerHTML = `<p class="task">¿Dónde hay <span class="big">${pide === "mas" ? "MÁS" : "MENOS"}</span> ${e}? <button class="again" id="oir" type="button">🔊</button></p>
+                    <div class="plates" style="--n:${nv.platos}">${cant.map((c, k) => `<button class="plate" data-k="${k}" type="button">${e.repeat(c)}</button>`).join("")}</div>
+                    <div class="cnts" id="cnts" style="--n:${nv.platos}"></div>`;
+                document.querySelectorAll(".plate").forEach(p => p.onclick = () => elegir(p));
+                const t = `¿Dónde hay ${pide === "mas" ? "más" : "menos"}?`;
+                document.getElementById("oir").onclick = () => MKP.decir(t); MKP.decir(t);
+            }
+        });
+        function elegir(p) {
+            if (hecho) return;
+            const k = +p.dataset.k, mejor = pide === "mas" ? Math.max(...cant) : Math.min(...cant);
+            if (cant[k] === mejor) {
+                hecho = true; p.classList.add("bien");
+                document.getElementById("cnts").innerHTML = cant.map(c => `<span>${c}</span>`).join("");
+                MKJ.sound("ok"); MKP.aviso("¡Sí!", true);
+                MKP.decir(`¡Muy bien! Aquí hay ${MKP.NUM[cant[k]]}, ${pide === "mas" ? "es más" : "es menos"}`); listoFn(primera);
+            } else {
+                primera = false; p.classList.remove("mal"); void p.offsetWidth; p.classList.add("mal");
+                MKJ.sound("error"); MKP.decir("Cuenta otra vez");
+            }
+        }
+        window.__juego = { get cant() { return cant; }, get pide() { return pide; } };
+
+    </script>
+</body>
+</html>

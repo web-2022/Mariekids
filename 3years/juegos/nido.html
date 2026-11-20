@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <title>MK Nido de pollitos · 3 años</title>
+    <meta name="theme-color" content="#0b73ff" />
+    <meta name="apple-mobile-web-app-title" content="MK" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../icons/icon-192.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/mk-juegos.css" />
+    <link rel="stylesheet" href="../../assets/mk-peques.css?v=1" />
+    <style>
+        body { background: #fefce8; }
+        .nests { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-top: 8px; }
+        .nest { border-radius: 22px; padding: 8px; background: #fef9c3; }
+        .hen { font-size: 46px; line-height: 1; }
+        .hen b { display: inline-block; min-width: 46px; margin-left: 4px; border-radius: 14px; background: #fde68a; color: #92400e; font: 800 34px/46px "Baloo 2", sans-serif; vertical-align: middle; }
+        .bowl { min-height: 90px; margin-top: 6px; padding: 10px 6px 16px; border-radius: 16px 16px 50% 50%; background: repeating-linear-gradient(-30deg, #d6a36a 0 6px, #b7834a 6px 12px); display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 2px; }
+        .bowl .chick { font-size: 30px; cursor: pointer; }
+        .yard { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 14px; padding: 12px; border-radius: 20px; background: #dcfce7; min-height: 70px; }
+        .chick { font-size: 40px; line-height: 1; cursor: grab; user-select: none; }
+
+    </style>
+</head>
+<body>
+    <!-- GENERADO por tools/juegos3/build.py — edita tools/juegos3/nido.css / nido.js -->
+    <div class="bar">
+        <a class="pill" href="../juegos3Y.html" aria-label="Volver a los juegos">⬅<span class="txt"> Juegos</span></a>
+        <h1>🐣 Nido de pollitos</h1>
+        <button class="pill" id="soundBtn" type="button" aria-label="Sonido">🔊</button>
+    </div>
+    <div class="hud" aria-live="polite"><span id="hudLevel">Nivel 1</span><span id="hudQ"></span><span id="hudOk">⭐ 0</span></div>
+    <main class="stage"><div class="card" id="card"></div></main>
+    <div class="overlay show" id="startScreen">
+        <div class="panel">
+            <h2>🐣 Nido de pollitos</h2>
+            <p>Lleva a cada mamá gallina tantos pollitos como dice su número.</p>
+            <div class="levels" id="levels"></div>
+        </div>
+    </div>
+    <div class="overlay" id="endScreen">
+        <div class="panel">
+            <h2>¡Muy bien! 🎉</h2>
+            <div class="stars-big" id="endStars">⭐⭐⭐</div>
+            <p id="endText"></p>
+            <div class="row">
+                <button class="big-btn alt" id="menuBtn" type="button">📋 Niveles</button>
+                <button class="big-btn" id="nextBtn" type="button">▶ Siguiente</button>
+            </div>
+        </div>
+    </div>
+    <script src="../../assets/mk-juegos.js?v=2"></script>
+    <script src="../../assets/mk-peques.js?v=1"></script>
+    <script>
+        /* 🐣 NIDO DE POLLITOS: cantidad ↔ número con dos o tres nidos. */
+        const R = MKJ.rnd;
+        let metas = [], primera = true, fin = false, listoFn = null;
+        MKP.juego({
+            clave: "nido3a", rondas: 5, icono: "🐣",
+            niveles: [
+                { n: 1, name: "Nivel 1", desc: "2 nidos, hasta 5 pollitos", cls: "lv1", max: 5, nidos: 2 },
+                { n: 2, name: "Nivel 2", desc: "2 nidos, hasta 6 pollitos", cls: "lv2", max: 6, nidos: 2 },
+                { n: 3, name: "Nivel 3", desc: "3 nidos, hasta 10 pollitos", cls: "lv3", max: 10, nidos: 3 }
+            ],
+            ronda(nv, i, listo) {
+                primera = true; fin = false; listoFn = listo;
+                do { metas = Array.from({ length: nv.nidos }, () => R(1, nv.nidos === 3 ? 4 : 3)); } while (metas.reduce((a, b) => a + b) > nv.max);
+                const total = metas.reduce((a, b) => a + b) + R(1, 2);
+                document.getElementById("card").innerHTML = `<p class="task">Lleva los pollitos a su mamá <button class="again" id="oir" type="button">🔊</button></p>
+                    <p class="sub">Cada gallina quiere tantos pollitos como dice su número. Arrástralos con el dedo.</p>
+                    <div class="nests">${metas.map((m, k) => `<div class="nest"><div class="hen">🐔<b>${m}</b></div><div class="bowl" data-drop="nido" data-k="${k}"></div></div>`).join("")}</div>
+                    <div class="yard" id="yard" data-drop="patio"></div>
+                    <div class="tools"><button class="big-btn" id="ok" type="button">✅ ¡Listo!</button></div>`;
+                for (let k = 0; k < total; k++) nuevo(document.getElementById("yard"));
+                document.getElementById("ok").onclick = revisar;
+                document.getElementById("oir").onclick = decir;
+                decir();
+            }
+        });
+        function decir() { MKP.decir("Lleva los pollitos. " + metas.map((m, k) => "Gallina " + (k + 1) + ": " + MKP.NUM[m]).join(". ")); }
+        function nuevo(dest) {
+            const c = document.createElement("span"); c.className = "chick"; c.textContent = "🐥";
+            dest.appendChild(c);
+            if (dest.id === "yard") MKP.arrastrar(c, { alSoltar: d => mover(c, d) });
+            else c.onclick = () => { c.remove(); nuevo(document.getElementById("yard")); MKJ.sound("salto"); };
+        }
+        function mover(c, d) {
+            if (fin || !d.classList.contains("bowl")) return false;
+            c.remove(); nuevo(d); MKJ.sound("moneda"); MKP.contar(d.children.length);
+            return true;
+        }
+        function revisar() {
+            if (fin) return;
+            const malos = [...document.querySelectorAll(".bowl")].filter((b, k) => b.children.length !== metas[k]);
+            if (!malos.length) { fin = true; MKJ.sound("ok"); MKP.aviso("¡Pío pío!", true); MKP.decir("¡Muy bien! Todas las mamás están felices"); listoFn(primera); return; }
+            primera = false; MKJ.sound("error"); MKP.aviso("¡Cuenta otra vez!", false);
+            const k = [...document.querySelectorAll(".bowl")].indexOf(malos[0]), n = malos[0].children.length;
+            MKP.decir(`La gallina ${k + 1} quiere ${MKP.NUM[metas[k]]} y tiene ${MKP.NUM[n]}`);
+        }
+        window.__juego = { get metas() { return metas; } };
+
+    </script>
+</body>
+</html>
