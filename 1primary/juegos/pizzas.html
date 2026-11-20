@@ -20,6 +20,7 @@
         .task { font-family: "Baloo 2", sans-serif; font-size: 26px; font-weight: 800; line-height: 1.15; color: #7a3d00; margin: 4px 0 2px; }
         .sub { font-weight: 800; color: #8a6a4a; margin: 0 0 8px; font-size: 16px; }
         .pile { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; min-height: 52px; padding: 8px; border-radius: 18px; background: #fff7e8; border: 3px dashed #f3c27a; }
+        .pile .slice { cursor: grab; }
         .slice { font-size: 34px; line-height: 1; transition: transform .25s; }
         .friends { display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 10px; margin-top: 12px; }
         .friend { border: 0; border-radius: 22px; padding: 8px 6px 10px; background: linear-gradient(180deg, #e9f6ff, #cfeaff); box-shadow: 0 6px 0 #9cc9ee; font: inherit; cursor: pointer; }
@@ -78,6 +79,7 @@
     </div>
 
     <script src="../../assets/mk-juegos.js?v=2"></script>
+    <script src="../../assets/mk-peques.js?v=1"></script>
     <script>
         /* =========================================================
            MK BLOQUES: REPARTIR PIZZAS — la división como reparto
@@ -124,11 +126,11 @@
             const sobra = level.tipo === "sobra";
             card.innerHTML = `
                 <p class="task">Reparte ${c.t} 🍕 entre ${c.a} amigos</p>
-                <p class="sub">Toca a un amigo para darle una porción.${sobra ? " Si ya no alcanza para todos, guarda lo que sobra en la caja 📦." : " ¡Todos deben tener lo mismo!"}</p>
+                <p class="sub">👆 Arrastra con el dedo una porción hasta un amigo (o toca al amigo).${sobra ? " Si ya no alcanza para todos, guarda lo que sobra en la caja 📦." : " ¡Todos deben tener lo mismo!"}</p>
                 <div class="pile" aria-label="Porciones por repartir">${"<span class='slice'>🍕</span>".repeat(c.quedan) || "<span class='sub'>¡Ya no quedan porciones!</span>"}</div>
                 <div class="friends">
-                    ${c.caras.map((f, i) => `<button class="friend" data-i="${i}" type="button" aria-label="Amigo ${i + 1}"><div class="face">${f}</div><div class="plate">${"<span class='slice'>🍕</span>".repeat(c.platos[i])}</div><div class="cnt">${c.platos[i]}</div></button>`).join("")}
-                    ${sobra ? `<button class="friend box" data-i="box" type="button" aria-label="Caja de lo que sobra"><div class="face">📦</div><div class="plate">${"<span class='slice'>🍕</span>".repeat(c.caja)}</div><div class="cnt">${c.caja}</div></button>` : ""}
+                    ${c.caras.map((f, i) => `<button class="friend" data-drop="amigo" data-i="${i}" type="button" aria-label="Amigo ${i + 1}"><div class="face">${f}</div><div class="plate">${"<span class='slice'>🍕</span>".repeat(c.platos[i])}</div><div class="cnt">${c.platos[i]}</div></button>`).join("")}
+                    ${sobra ? `<button class="friend box" data-drop="amigo" data-i="box" type="button" aria-label="Caja de lo que sobra"><div class="face">📦</div><div class="plate">${"<span class='slice'>🍕</span>".repeat(c.caja)}</div><div class="cnt">${c.caja}</div></button>` : ""}
                 </div>
                 <div class="tools">
                     <button class="big-btn alt" id="undo" type="button">↩ Empezar de nuevo</button>
@@ -136,6 +138,7 @@
                 </div>
                 <div class="fb ${cls || ""}" id="fb">${msg || ""}</div>`;
             card.querySelectorAll(".friend").forEach(b => b.onclick = () => dar(b.dataset.i));
+            card.querySelectorAll(".pile .slice").forEach(sl => MKP.arrastrar(sl, { alSoltar: d => { dar(d.dataset.i); return true; } }));
             $("undo").onclick = () => { c.quedan = c.t; c.platos.fill(0); c.caja = 0; MKJ.sound("salto"); pintarReparto(); };
             $("check").onclick = revisar;
         }

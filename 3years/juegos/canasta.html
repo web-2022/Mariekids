@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <title>MK Llena la canasta · 3 años</title>
+    <meta name="theme-color" content="#0b73ff" />
+    <meta name="apple-mobile-web-app-title" content="MK" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../icons/icon-192.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/mk-juegos.css" />
+    <link rel="stylesheet" href="../../assets/mk-peques.css?v=1" />
+    <style>
+        body { background: #e3f8d4; }
+        .tree { position: relative; min-height: 150px; padding: 18px 10px 10px; border-radius: 50% 50% 24px 24px / 60% 60% 24px 24px; background: radial-gradient(circle at 50% 30%, #86efac, #22c55e); display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 6px; }
+        .fruit { width: 58px; height: 58px; display: grid; place-items: center; font-size: 46px; cursor: grab; border-radius: 50%; user-select: none; }
+        .fruit:active { cursor: grabbing; }
+        .trunk { width: 40px; height: 34px; margin: 0 auto; background: #92400e; border-radius: 0 0 8px 8px; }
+        .basket { margin: 10px auto 0; max-width: 420px; min-height: 120px; padding: 12px 10px 18px; border-radius: 20px 20px 60px 60px; background: repeating-linear-gradient(45deg, #d97706 0 10px, #b45309 10px 20px); box-shadow: 0 8px 0 #78350f; display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 4px; position: relative; }
+        .basket .fruit { width: 46px; height: 46px; font-size: 38px; background: rgba(255,255,255,.25); }
+        .basket .empty { color: #fff; font: 800 18px "Nunito", sans-serif; }
+        .cnt { font: 800 46px "Baloo 2", sans-serif; color: #b45309; margin: 6px 0 0; }
+        @media (max-width: 480px) { .fruit { width: 50px; height: 50px; font-size: 40px; } }
+
+    </style>
+</head>
+<body>
+    <!-- GENERADO por tools/juegos3/build.py — edita tools/juegos3/canasta.css / canasta.js -->
+    <div class="bar">
+        <a class="pill" href="../juegos3Y.html" aria-label="Volver a los juegos">⬅<span class="txt"> Juegos</span></a>
+        <h1>🧺 Llena la canasta</h1>
+        <button class="pill" id="soundBtn" type="button" aria-label="Sonido">🔊</button>
+    </div>
+    <div class="hud" aria-live="polite"><span id="hudLevel">Nivel 1</span><span id="hudQ"></span><span id="hudOk">⭐ 0</span></div>
+    <main class="stage"><div class="card" id="card"></div></main>
+    <div class="overlay show" id="startScreen">
+        <div class="panel">
+            <h2>🧺 Llena la canasta</h2>
+            <p>Arrastra con el dedo tantas frutas como dice el número.</p>
+            <div class="levels" id="levels"></div>
+        </div>
+    </div>
+    <div class="overlay" id="endScreen">
+        <div class="panel">
+            <h2>¡Muy bien! 🎉</h2>
+            <div class="stars-big" id="endStars">⭐⭐⭐</div>
+            <p id="endText"></p>
+            <div class="row">
+                <button class="big-btn alt" id="menuBtn" type="button">📋 Niveles</button>
+                <button class="big-btn" id="nextBtn" type="button">▶ Siguiente</button>
+            </div>
+        </div>
+    </div>
+    <script src="../../assets/mk-juegos.js?v=2"></script>
+    <script src="../../assets/mk-peques.js?v=1"></script>
+    <script>
+        /* 🧺 LLENA LA CANASTA: cantidad ↔ número. Arrastra frutas a la canasta; cuenta en voz alta. */
+        const R = MKJ.rnd, P = MKJ.pick;
+        const FRUTAS = ["🍎", "🍊", "🍓", "🍌", "🍐", "🍇", "🥭", "🍑"];
+        let meta = 0, dentro = 0, primera = true, fin = false, fruta = "🍎", listoFn = null;
+        const J = MKP.juego({
+            clave: "canasta3a", rondas: 6, icono: "🧺",
+            niveles: [
+                { n: 1, name: "Nivel 1", desc: "Pon de 1 a 5 frutas", cls: "lv1", max: 5 },
+                { n: 2, name: "Nivel 2", desc: "Pon de 1 a 6 frutas", cls: "lv2", max: 6 },
+                { n: 3, name: "Nivel 3", desc: "Pon de 1 a 10 frutas", cls: "lv3", max: 10 }
+            ],
+            ronda(nv, i, listo) {
+                meta = R(nv.max > 5 ? 3 : 1, nv.max); dentro = 0; primera = true; fin = false; fruta = P(FRUTAS); listoFn = listo;
+                const enArbol = Math.min(12, nv.max + 2);
+                document.getElementById("card").innerHTML = `<p class="task">Pon <span class="big">${meta}</span> ${fruta} en la canasta <button class="again" id="oir" type="button">🔊</button></p>
+                    <p class="sub">Arrastra las frutas con el dedo. Si pones de más, toca una fruta de la canasta para sacarla.</p>
+                    <div class="tree" id="tree"></div><div class="trunk"></div>
+                    <div class="basket" id="basket" data-drop="canasta"><span class="empty">🧺 Canasta</span></div>
+                    <div class="cnt" id="cnt">0</div>
+                    <div class="tools"><button class="big-btn" id="ok" type="button">✅ ¡Listo!</button></div>`;
+                const tree = document.getElementById("tree");
+                for (let k = 0; k < enArbol; k++) {
+                    const f = document.createElement("div"); f.className = "fruit"; f.textContent = fruta; tree.appendChild(f);
+                    MKP.arrastrar(f, { alTocar: () => meter(f), alSoltar: d => { if (d.id === "basket") { meter(f); return true; } return false; } });
+                }
+                document.getElementById("oir").onclick = decirMeta;
+                document.getElementById("ok").onclick = revisar;
+                decirMeta();
+            }
+        });
+        function decirMeta() { MKP.decir("Pon " + MKP.NUM[meta] + " frutas en la canasta"); }
+        function meter(f) {
+            if (fin) return;
+            const b = document.getElementById("basket");
+            const e = b.querySelector(".empty"); if (e) e.remove();
+            f.remove();
+            const g = document.createElement("div"); g.className = "fruit"; g.textContent = fruta; b.appendChild(g);
+            g.onclick = () => sacar(g);
+            dentro++; pintar(); MKJ.sound("moneda"); MKP.contar(dentro);
+        }
+        function sacar(g) {
+            if (fin) return;
+            g.remove(); dentro--; pintar(); MKJ.sound("salto");
+            const f = document.createElement("div"); f.className = "fruit"; f.textContent = fruta; document.getElementById("tree").appendChild(f);
+            MKP.arrastrar(f, { alTocar: () => meter(f), alSoltar: d => { if (d.id === "basket") { meter(f); return true; } return false; } });
+        }
+        function pintar() { document.getElementById("cnt").textContent = dentro; }
+        function revisar() {
+            if (fin) return;
+            if (dentro === meta) { fin = true; MKJ.sound("ok"); MKP.aviso("¡" + meta + "!", true); MKP.decir("¡Muy bien! Hay " + MKP.NUM[meta] + " frutas"); listoFn(primera); }
+            else { primera = false; MKJ.sound("error"); MKP.aviso(dentro < meta ? "¡Faltan!" : "¡Sobran!", false); MKP.decir(dentro < meta ? "Faltan frutas. Hay " + MKP.NUM[dentro] + ". Pon " + MKP.NUM[meta] : "Hay muchas. Saca algunas. Necesitas " + MKP.NUM[meta]); }
+        }
+        window.__juego = { get meta() { return meta; }, get dentro() { return dentro; }, J };
+
+    </script>
+</body>
+</html>

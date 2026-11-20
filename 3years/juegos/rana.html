@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <title>MK La rana saltarina · 3 años</title>
+    <meta name="theme-color" content="#0b73ff" />
+    <meta name="apple-mobile-web-app-title" content="MK" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../icons/icon-192.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/mk-juegos.css" />
+    <link rel="stylesheet" href="../../assets/mk-peques.css?v=1" />
+    <style>
+        body { background: #d7f5e8; }
+        .lake { position: relative; margin-top: 10px; padding: 70px 6px 16px; border-radius: 24px; background: linear-gradient(180deg, #67e8f9, #0891b2); }
+        .pads { display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: 4px; }
+        .pad { aspect-ratio: 1; max-width: 70px; margin: 0 auto; width: 100%; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle at 40% 35%, #86efac, #16a34a); font: 800 clamp(16px, 4.5vw, 28px) "Baloo 2", sans-serif; color: #fff; border: 3px solid #14532d; text-shadow: 0 2px 0 #14532d; }
+        .pad.meta { box-shadow: 0 0 0 4px #fde047; }
+        .frog { position: absolute; top: 8px; font-size: clamp(36px, 9vw, 58px); line-height: 1; cursor: grab; transition: left .35s cubic-bezier(.3,1.5,.6,1); transform: translateX(-50%); z-index: 2; }
+        .frog.salta { animation: hop .35s; }
+        @keyframes hop { 50% { top: -24px; } }
+        .dirs { display: flex; justify-content: center; gap: 14px; margin-top: 12px; }
+        .dirs button { width: 76px; height: 64px; border: 0; border-radius: 18px; font-size: 34px; color: #fff; background: linear-gradient(180deg, #17aaff, #087fe9); box-shadow: 0 6px 0 #0864b5; }
+
+    </style>
+</head>
+<body>
+    <!-- GENERADO por tools/juegos3/build.py — edita tools/juegos3/rana.css / rana.js -->
+    <div class="bar">
+        <a class="pill" href="../juegos3Y.html" aria-label="Volver a los juegos">⬅<span class="txt"> Juegos</span></a>
+        <h1>🐸 La rana saltarina</h1>
+        <button class="pill" id="soundBtn" type="button" aria-label="Sonido">🔊</button>
+    </div>
+    <div class="hud" aria-live="polite"><span id="hudLevel">Nivel 1</span><span id="hudQ"></span><span id="hudOk">⭐ 0</span></div>
+    <main class="stage"><div class="card" id="card"></div></main>
+    <div class="overlay show" id="startScreen">
+        <div class="panel">
+            <h2>🐸 La rana saltarina</h2>
+            <p>Haz saltar a la rana por los números.</p>
+            <div class="levels" id="levels"></div>
+        </div>
+    </div>
+    <div class="overlay" id="endScreen">
+        <div class="panel">
+            <h2>¡Muy bien! 🎉</h2>
+            <div class="stars-big" id="endStars">⭐⭐⭐</div>
+            <p id="endText"></p>
+            <div class="row">
+                <button class="big-btn alt" id="menuBtn" type="button">📋 Niveles</button>
+                <button class="big-btn" id="nextBtn" type="button">▶ Siguiente</button>
+            </div>
+        </div>
+    </div>
+    <script src="../../assets/mk-juegos.js?v=2"></script>
+    <script src="../../assets/mk-peques.js?v=1"></script>
+    <script>
+        /* 🐸 LA RANA SALTARINA: recta numérica, contar saltos (base de la suma y la resta).
+           Toca la rana (o las flechas) para saltar, o arrástrala a una hoja. */
+        const R = MKJ.rnd;
+        let pos = 0, inicio = 0, meta = 0, saltos = 0, dir = 1, max = 5, primera = true, fin = false, listoFn = null;
+        const J = MKP.juego({
+            clave: "rana3a", rondas: 6, icono: "🐸",
+            niveles: [
+                { n: 1, name: "Nivel 1", desc: "Salta hacia adelante hasta el 5", cls: "lv1", max: 5, s: 2, atras: false },
+                { n: 2, name: "Nivel 2", desc: "Salta hacia adelante hasta el 6", cls: "lv2", max: 6, s: 3, atras: false },
+                { n: 3, name: "Nivel 3", desc: "Adelante y atrás hasta el 10", cls: "lv3", max: 10, s: 4, atras: true }
+            ],
+            ronda(nv, i, listo) {
+                max = nv.max; primera = true; fin = false; listoFn = listo;
+                dir = nv.atras && i % 2 === 1 ? -1 : 1;
+                saltos = R(1, nv.s);
+                inicio = dir > 0 ? R(0, max - saltos) : R(saltos, max);
+                meta = inicio + dir * saltos; pos = inicio;
+                const txt = `Salta ${saltos} ${dir > 0 ? "hacia adelante ➡️" : "hacia atrás ⬅️"}`;
+                document.getElementById("card").innerHTML = `<p class="task">La rana está en el <span class="big">${inicio}</span><br>${txt.replace(String(saltos), `<span class="big">${saltos}</span>`)} <button class="again" id="oir" type="button">🔊</button></p>
+                    <p class="sub">Toca la rana para que salte. ¿En qué número cae?</p>
+                    <div class="lake" id="lake"><span class="frog" id="frog">🐸</span>
+                        <div class="pads" style="--n:${max + 1}">${Array.from({ length: max + 1 }, (_, k) => `<div class="pad" data-drop="pad" data-k="${k}">${k}</div>`).join("")}</div></div>
+                    <div class="dirs"><button type="button" id="atras" aria-label="Saltar hacia atrás">⬅️</button><button type="button" id="adelante" aria-label="Saltar hacia adelante">➡️</button></div>
+                    <div class="tools"><button class="big-btn alt" id="otra" type="button">↩ Empezar de nuevo</button><button class="big-btn" id="ok" type="button">✅ ¡Llegué!</button></div>`;
+                const frog = document.getElementById("frog");
+                MKP.arrastrar(frog, { alTocar: () => saltar(dir), alSoltar: d => { mover(+d.dataset.k, true); return false; } });
+                document.getElementById("adelante").onclick = () => saltar(1);
+                document.getElementById("atras").onclick = () => saltar(-1);
+                document.getElementById("otra").onclick = () => { if (!fin) { pos = inicio; contados = 0; mover(pos); } };
+                document.getElementById("ok").onclick = revisar;
+                document.getElementById("oir").onclick = decir;
+                contados = 0;
+                requestAnimationFrame(() => mover(pos));
+                window.onresize = () => mover(pos);
+                decir();
+            }
+        });
+        let contados = 0;
+        function decir() { MKP.decir(`La rana está en el ${inicio}. Salta ${saltos} ${dir > 0 ? "hacia adelante" : "hacia atrás"}`); }
+        function mover(k, arrastre) {
+            const pad = document.querySelector(`.pad[data-k="${k}"]`), lake = document.getElementById("lake"), frog = document.getElementById("frog");
+            if (!pad || !frog) return;
+            const pr = pad.getBoundingClientRect(), lr = lake.getBoundingClientRect();
+            frog.style.left = (pr.left - lr.left + pr.width / 2) + "px";
+            frog.style.top = (pr.top - lr.top - frog.offsetHeight + 12) + "px";
+            if (arrastre) { pos = k; contados = Math.abs(k - inicio); MKJ.sound("salto"); MKP.decir(String(k)); }
+        }
+        function saltar(d) {
+            if (fin) return;
+            const n = pos + d;
+            if (n < 0 || n > max) { MKJ.sound("error"); return; }
+            pos = n; contados++;
+            const frog = document.getElementById("frog");
+            frog.classList.remove("salta"); void frog.offsetWidth; frog.classList.add("salta");
+            mover(pos); MKJ.sound("salto"); MKP.contar(contados);
+        }
+        function revisar() {
+            if (fin) return;
+            if (pos === meta) {
+                fin = true; MKJ.sound("ok"); MKP.aviso("¡" + meta + "!", true);
+                document.querySelector(`.pad[data-k="${meta}"]`).classList.add("meta");
+                MKP.decir(`¡Muy bien! ${inicio} ${dir > 0 ? "más" : "menos"} ${saltos} es ${meta}`);
+                listoFn(primera);
+            } else {
+                primera = false; MKJ.sound("error"); MKP.aviso("¡Otra vez!", false);
+                MKP.decir(`Estás en el ${pos}. Empieza en el ${inicio} y salta ${saltos}`);
+                pos = inicio; contados = 0; setTimeout(() => mover(pos), 700);
+            }
+        }
+        window.__juego = { get meta() { return meta; }, get pos() { return pos; }, saltar, revisar, J };
+
+    </script>
+</body>
+</html>

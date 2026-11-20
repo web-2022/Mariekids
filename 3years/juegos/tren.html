@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <title>MK El tren ordenado · 3 años</title>
+    <meta name="theme-color" content="#0b73ff" />
+    <meta name="apple-mobile-web-app-title" content="MK" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../icons/icon-192.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/mk-juegos.css" />
+    <link rel="stylesheet" href="../../assets/mk-peques.css?v=1" />
+    <style>
+        body { background: #fff1d6; }
+        .rail { position: relative; display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-end; gap: 6px; padding: 10px 6px 18px; margin-top: 6px; border-bottom: 8px solid #78716c; transition: transform 2.2s ease-in; }
+        .rail.va { transform: translateX(120vw); }
+        .loco { font-size: 64px; line-height: 1; transform: scaleX(-1); }
+        .slot { width: 64px; height: 60px; border-radius: 12px; border: 4px dashed #cbd5e1; display: grid; place-items: center; font: 800 26px "Baloo 2", sans-serif; color: #cbd5e1; position: relative; }
+        .slot.lleno { border: 0; }
+        .wagon { width: 64px; height: 60px; border-radius: 12px; display: grid; place-items: center; font: 800 32px "Baloo 2", sans-serif; color: #fff; cursor: grab; box-shadow: inset 0 -6px 0 rgba(0,0,0,.2); position: relative; }
+        .wagon::before, .wagon::after { content: ""; position: absolute; bottom: -10px; width: 16px; height: 16px; border-radius: 50%; background: #334155; border: 3px solid #94a3b8; }
+        .wagon::before { left: 8px; } .wagon::after { right: 8px; }
+        .yard { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 22px; padding: 14px; border-radius: 20px; background: #fef3c7; min-height: 90px; }
+        .wagon.mal { animation: sacude .4s; }
+        @keyframes sacude { 0%,100% { transform: translateX(0) } 25% { transform: translateX(-10px) } 75% { transform: translateX(10px) } }
+        @media (max-width: 480px) { .rail { gap: 4px; padding: 10px 0 18px; } .slot, .wagon { width: 44px; height: 44px; font-size: 24px; border-radius: 10px; } .slot { border-width: 3px; } .wagon::before, .wagon::after { width: 12px; height: 12px; bottom: -8px; } .loco { font-size: 40px; } }
+
+    </style>
+</head>
+<body>
+    <!-- GENERADO por tools/juegos3/build.py — edita tools/juegos3/tren.css / tren.js -->
+    <div class="bar">
+        <a class="pill" href="../juegos3Y.html" aria-label="Volver a los juegos">⬅<span class="txt"> Juegos</span></a>
+        <h1>🚂 El tren ordenado</h1>
+        <button class="pill" id="soundBtn" type="button" aria-label="Sonido">🔊</button>
+    </div>
+    <div class="hud" aria-live="polite"><span id="hudLevel">Nivel 1</span><span id="hudQ"></span><span id="hudOk">⭐ 0</span></div>
+    <main class="stage"><div class="card" id="card"></div></main>
+    <div class="overlay show" id="startScreen">
+        <div class="panel">
+            <h2>🚂 El tren ordenado</h2>
+            <p>Arrastra los vagones y ordénalos: 1, 2, 3…</p>
+            <div class="levels" id="levels"></div>
+        </div>
+    </div>
+    <div class="overlay" id="endScreen">
+        <div class="panel">
+            <h2>¡Muy bien! 🎉</h2>
+            <div class="stars-big" id="endStars">⭐⭐⭐</div>
+            <p id="endText"></p>
+            <div class="row">
+                <button class="big-btn alt" id="menuBtn" type="button">📋 Niveles</button>
+                <button class="big-btn" id="nextBtn" type="button">▶ Siguiente</button>
+            </div>
+        </div>
+    </div>
+    <script src="../../assets/mk-juegos.js?v=2"></script>
+    <script src="../../assets/mk-peques.js?v=1"></script>
+    <script>
+        /* 🚂 EL TREN ORDENADO: secuencia numérica. Arrastra cada vagón a su lugar en el tren. */
+        const R = MKJ.rnd;
+        const COLORES = ["#ef4444", "#f97316", "#eab308", "#22c55e", "#06b6d4", "#3b82f6", "#8b5cf6", "#ec4899", "#14b8a6", "#f43f5e"];
+        let nums = [], puestos = 0, primera = true, listoFn = null;
+        const J = MKP.juego({
+            clave: "tren3a", rondas: 4, icono: "🚂", pausa: 2600,
+            niveles: [
+                { n: 1, name: "Nivel 1", desc: "Ordena del 1 al 5 (con ayuda)", cls: "lv1", desde: [1, 1], largo: 5, guia: "todo" },
+                { n: 2, name: "Nivel 2", desc: "Ordena del 1 al 6", cls: "lv2", desde: [1, 1], largo: 6, guia: "primero" },
+                { n: 3, name: "Nivel 3", desc: "Ordena números hasta el 10", cls: "lv3", desde: [1, 5], largo: 6, guia: "primero" }
+            ],
+            ronda(nv, i, listo) {
+                const a = R(nv.desde[0], nv.desde[1]);
+                nums = Array.from({ length: nv.largo }, (_, k) => a + k); puestos = 0; primera = true; listoFn = listo;
+                const card = document.getElementById("card");
+                card.innerHTML = `<p class="task">Ordena el tren: ${nums[0]}, ${nums[1]}, ${nums[2]}… <button class="again" id="oir" type="button">🔊</button></p>
+                    <p class="sub">Arrastra cada vagón a su lugar.</p>
+                    <div class="rail" id="rail"><span class="loco">🚂</span>${nums.map((n, k) => `<div class="slot" data-drop="slot" data-n="${n}">${nv.guia === "todo" || k === 0 ? n : ""}</div>`).join("")}</div>
+                    <div class="yard" id="yard"></div>`;
+                const yard = document.getElementById("yard");
+                MKJ.shuffle(nums.slice()).forEach(n => {
+                    const w = document.createElement("div"); w.className = "wagon"; w.textContent = n; w.dataset.n = n;
+                    w.style.background = COLORES[(n - 1) % COLORES.length];
+                    yard.appendChild(w);
+                    MKP.arrastrar(w, { alTocar: () => MKP.contar(n), alSoltar: d => poner(w, d) });
+                });
+                document.getElementById("oir").onclick = () => MKP.decir("Ordena el tren. " + nums.slice(0, 3).join(", "));
+                MKP.decir("Ordena el tren: " + nums.slice(0, 3).join(", ") + "…");
+            }
+        });
+        function poner(w, slot) {
+            if (slot.classList.contains("lleno")) return false;
+            if (+slot.dataset.n !== +w.dataset.n) {
+                primera = false; MKJ.sound("error"); MKP.decir("El " + w.dataset.n + " va en otro lugar");
+                w.classList.remove("mal"); void w.offsetWidth; w.classList.add("mal");
+                return false;
+            }
+            slot.textContent = ""; slot.classList.add("lleno"); w.dataset.bloqueado = 1; w.style.opacity = ""; slot.appendChild(w);
+            puestos++; MKJ.sound("moneda"); MKP.contar(+w.dataset.n);
+            if (puestos === nums.length) {
+                setTimeout(() => {
+                    MKJ.sound("gana"); MKP.decir("¡Chu chu! " + nums.join(", "));
+                    document.getElementById("rail").classList.add("va");
+                    listoFn(primera);
+                }, 600);
+            }
+            return true;
+        }
+        window.__juego = { get nums() { return nums; }, poner, J };
+
+    </script>
+</body>
+</html>

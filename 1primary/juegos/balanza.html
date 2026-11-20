@@ -36,6 +36,12 @@
         .picker { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
         .picker .val { min-width: 92px; padding: 6px 10px; border-radius: 16px; background: #fdf2f8; border: 3px solid #f9a8d4; font: 800 38px/1 "Baloo 2", sans-serif; color: #be185d; }
         .round { width: 62px; height: 62px; border: 0; border-radius: 50%; font: 900 32px/1 "Nunito", sans-serif; color: #fff; background: linear-gradient(180deg, #17aaff, #087fe9); box-shadow: 0 6px 0 #0864b5; }
+        [hidden] { display: none !important; }
+        .bolsa { display: inline-flex; flex-wrap: wrap; justify-content: center; align-content: flex-end; gap: 2px; min-width: 64px; min-height: 52px; padding: 18px 4px 4px; border-radius: 12px; background: linear-gradient(180deg, #fbcfe8, #f472b6); position: relative; }
+        .bolsa i { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); font-style: normal; font-size: 26px; }
+        .bolsa .cube { cursor: pointer; }
+        .tray { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; min-height: 60px; padding: 12px; border-radius: 18px; background: #e0f2fe; margin-top: 6px; }
+        .cube.big { width: 44px; height: 44px; border-radius: 9px; cursor: grab; }
         .round.sm { width: 52px; height: 52px; font-size: 18px; }
         .round:active { transform: translateY(3px); box-shadow: 0 3px 0 #0864b5; }
         .tools { display: flex; justify-content: center; gap: 10px; margin-top: 12px; }
@@ -81,6 +87,7 @@
     </div>
 
     <script src="../../assets/mk-juegos.js?v=2"></script>
+    <script src="../../assets/mk-peques.js?v=1"></script>
     <script>
         /* =========================================================
            MK BLOQUES: BALANZA MÁGICA — ecuaciones como equilibrio
@@ -129,7 +136,7 @@
 
         function nueva() {
             cur = level.gen(); val = 0; intentos = 0; listo = false;
-            pintar(null);
+            pintar(PEQ ? 0 : null);
             MKJ.say(cur.dx ? "Hay cajas mágicas en los dos lados. Todas pesan lo mismo. ¿Cuánto pesa cada una?" : (cur.cx > 1 ? "Las cajas mágicas pesan lo mismo. ¿Cuánto pesa cada una?" : "¿Cuánto pesa la caja mágica para que la balanza quede derechita?"));
         }
         function pintar(probado, msg, cls) {
@@ -142,24 +149,38 @@
                 <div class="scale" aria-hidden="true">
                     <div class="post"></div><div class="base"></div>
                     <div class="beam" style="transform:rotate(${ang}deg)">
-                        <div class="pan l" style="transform:rotate(${-ang}deg)"><div class="str"></div><div class="dish">${cajas(c.cx, abierta)}${pesas(c.a, c.cubos)}</div></div>
+                        <div class="pan l" style="transform:rotate(${-ang}deg)"><div class="str"></div><div class="dish">${PEQ ? `<span class="bolsa" data-drop="bolsa" id="bolsa"><i>🎁</i>${"<span class='cube'></span>".repeat(val)}</span>` : cajas(c.cx, abierta)}${pesas(c.a, c.cubos)}</div></div>
                         <div class="pan r" style="transform:rotate(${-ang}deg)"><div class="str"></div><div class="dish">${cajas(c.dx, abierta)}${pesas(c.b, c.cubos)}</div></div>
                     </div>
                 </div>
-                <div class="picker">
+                ${PEQ ? `<p class="sub">👆 Arrastra cubitos a la caja 🎁 hasta que la balanza quede derechita. Toca un cubito de la caja para sacarlo.</p><div class="tray" id="tray" data-drop="tray">${"<span class='cube big'></span>".repeat(Math.max(0, c.max - val))}</div>` : ""}
+                <div class="picker"${PEQ ? " hidden" : ""}>
                     <button class="round sm" id="m10" type="button" aria-label="Restar 10">−10</button>
                     <button class="round" id="m1" type="button" aria-label="Restar 1">−</button>
                     <div class="val" id="val" aria-live="polite">${val}</div>
                     <button class="round" id="p1" type="button" aria-label="Sumar 1">+</button>
                     <button class="round sm" id="p10" type="button" aria-label="Sumar 10">+10</button>
                 </div>
-                <div class="tools"><button class="big-btn" id="probar" type="button">⚖️ ¡Probar!</button></div>
+                <div class="tools"${PEQ ? " hidden" : ""}><button class="big-btn" id="probar" type="button">⚖️ ¡Probar!</button></div>
                 <div class="fb ${cls || ""}" id="fb">${msg || ""}</div>`;
             const set = v => { if (listo) return; val = Math.max(0, Math.min(c.max, v)); $("val").textContent = val; MKJ.sound("salto"); };
             $("m1").onclick = () => set(val - 1); $("p1").onclick = () => set(val + 1);
             $("m10").onclick = () => set(val - 10); $("p10").onclick = () => set(val + 10);
             if (c.max <= 10) { $("m10").hidden = true; $("p10").hidden = true; }
             $("probar").onclick = probar;
+            if (PEQ && !listo) {
+                document.querySelectorAll("#tray .cube").forEach(cu => MKP.arrastrar(cu, { alTocar: () => cambiar(1), alSoltar: d => { if (d.id === "bolsa") { cambiar(1); return true; } return false; } }));
+                document.querySelectorAll("#bolsa .cube").forEach(cu => cu.onclick = ev => { ev.stopPropagation(); cambiar(-1); });
+            }
+        }
+        // 3 años: la balanza se mueve con cada cubito y avisa sola al equilibrarse
+        function cambiar(d) {
+            if (listo) return;
+            val = Math.max(0, Math.min(cur.max, val + d));
+            MKJ.sound(d > 0 ? "moneda" : "salto");
+            if (cur.cx * val + suma(cur.a) === cur.dx * val + suma(cur.b)) { probar(); return; }
+            intentos = 0;   // probar a mano no cuenta como error
+            pintar(val); MKP.contar(val);
         }
         function probar() {
             if (listo) return;

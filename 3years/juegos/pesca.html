@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <title>MK Pesca de números · 3 años</title>
+    <meta name="theme-color" content="#0b73ff" />
+    <meta name="apple-mobile-web-app-title" content="MK" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../icons/icon-192.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/mk-juegos.css" />
+    <link rel="stylesheet" href="../../assets/mk-peques.css?v=1" />
+    <style>
+        body { background: #bdeaff; }
+        .pond { position: relative; height: 330px; margin-top: 8px; border-radius: 28px; overflow: hidden; background: linear-gradient(180deg, #7dd3fc, #0ea5e9 70%, #0369a1); box-shadow: inset 0 8px 0 rgba(255,255,255,.35); }
+        .pond::after { content: "🌿 🪸 🌿 🪨 🌿"; position: absolute; left: 0; right: 0; bottom: 2px; font-size: 30px; letter-spacing: 18px; pointer-events: none; }
+        .fish { position: absolute; width: 96px; height: 70px; display: grid; place-items: center; cursor: pointer; animation: nada var(--t) ease-in-out infinite alternate; }
+        .fish .e { font-size: 60px; line-height: 1; display: block; transform: scaleX(var(--f)); }
+        .fish b { position: absolute; top: 2px; right: 6px; min-width: 38px; height: 38px; border-radius: 50%; background: #fff; color: #0c4a6e; font: 800 28px/38px "Baloo 2", sans-serif; box-shadow: 0 3px 0 rgba(0,0,0,.2); }
+        .fish.mal { animation: sacude .4s; }
+        .fish.pescado { animation: none; transition: transform .6s, top .6s, opacity .6s; top: -90px !important; transform: rotate(-20deg) scale(1.2); }
+        @keyframes nada { from { transform: translateX(calc(var(--dx) * -1)); } to { transform: translateX(var(--dx)); } }
+        @keyframes sacude { 0%,100% { transform: translateX(0) } 25% { transform: translateX(-10px) } 75% { transform: translateX(10px) } }
+        .bucket { display: inline-grid; place-items: center; width: 120px; height: 90px; margin-top: 10px; border-radius: 18px 18px 36px 36px; background: linear-gradient(180deg, #fde68a, #f59e0b); font-size: 40px; box-shadow: 0 6px 0 #b45309; }
+        .bucket small { display: block; font: 800 14px "Nunito", sans-serif; color: #78350f; }
+        @media (max-width: 480px) { .pond { height: 300px; } .fish { width: 80px; } .fish .e { font-size: 50px; } }
+
+    </style>
+</head>
+<body>
+    <!-- GENERADO por tools/juegos3/build.py — edita tools/juegos3/pesca.css / pesca.js -->
+    <div class="bar">
+        <a class="pill" href="../juegos3Y.html" aria-label="Volver a los juegos">⬅<span class="txt"> Juegos</span></a>
+        <h1>🐟 Pesca de números</h1>
+        <button class="pill" id="soundBtn" type="button" aria-label="Sonido">🔊</button>
+    </div>
+    <div class="hud" aria-live="polite"><span id="hudLevel">Nivel 1</span><span id="hudQ"></span><span id="hudOk">⭐ 0</span></div>
+    <main class="stage"><div class="card" id="card"></div></main>
+    <div class="overlay show" id="startScreen">
+        <div class="panel">
+            <h2>🐟 Pesca de números</h2>
+            <p>Toca o arrastra el pez que tiene el número que escuchas.</p>
+            <div class="levels" id="levels"></div>
+        </div>
+    </div>
+    <div class="overlay" id="endScreen">
+        <div class="panel">
+            <h2>¡Muy bien! 🎉</h2>
+            <div class="stars-big" id="endStars">⭐⭐⭐</div>
+            <p id="endText"></p>
+            <div class="row">
+                <button class="big-btn alt" id="menuBtn" type="button">📋 Niveles</button>
+                <button class="big-btn" id="nextBtn" type="button">▶ Siguiente</button>
+            </div>
+        </div>
+    </div>
+    <script src="../../assets/mk-juegos.js?v=2"></script>
+    <script src="../../assets/mk-peques.js?v=1"></script>
+    <script>
+        /* 🐟 PESCA DE NÚMEROS: reconoce el número que escucha. Toca el pez o arrástralo al balde. */
+        const R = MKJ.rnd, P = MKJ.pick;
+        const PECES = ["🐟", "🐠", "🐡"];
+        let objetivo = 0, primera = true, hecho = false;
+        const J = MKP.juego({
+            clave: "pesca3a", rondas: 8, icono: "🐟",
+            niveles: [
+                { n: 1, name: "Nivel 1", desc: "Números del 1 al 5", cls: "lv1", max: 5, peces: 3 },
+                { n: 2, name: "Nivel 2", desc: "Números del 1 al 6", cls: "lv2", max: 6, peces: 4 },
+                { n: 3, name: "Nivel 3", desc: "Números del 1 al 10", cls: "lv3", max: 10, peces: 5 }
+            ],
+            ronda(nv, i, listo) {
+                objetivo = R(1, nv.max); primera = true; hecho = false;
+                const nums = MKJ.shuffle([...Array(nv.max).keys()].map(x => x + 1).filter(x => x !== objetivo)).slice(0, nv.peces - 1).concat(objetivo);
+                MKJ.shuffle(nums);
+                const card = document.getElementById("card");
+                card.innerHTML = `<p class="task">Pesca el número <span class="big">${objetivo}</span> <button class="again" id="oir" type="button">🔊</button></p>
+                    <div class="pond" id="pond"></div>
+                    <div class="bucket" data-drop="balde">🪣<small>Balde</small></div>`;
+                const pond = document.getElementById("pond"), W = pond.clientWidth, filas = nums.length;
+                nums.forEach((n, k) => {
+                    const f = document.createElement("div");
+                    const izq = Math.random() < .5;
+                    f.className = "fish"; f.dataset.n = n;
+                    f.style.cssText = `top:${12 + k * ((pond.clientHeight - 110) / Math.max(1, filas - 1))}px;left:${R(10, Math.max(12, W - 120))}px;--t:${(2.5 + Math.random() * 2.5).toFixed(2)}s;--dx:${R(20, 60)}px;--f:${izq ? 1 : -1};animation-delay:-${Math.random() * 3}s`;
+                    f.innerHTML = `<span class="e">${P(PECES)}</span><b>${n}</b>`;
+                    pond.appendChild(f);
+                    MKP.arrastrar(f, { alTocar: () => intentar(f, listo), alSoltar: d => { intentar(f, listo); return false; } });
+                });
+                document.getElementById("oir").onclick = () => MKP.decir("Pesca el número " + objetivo);
+                MKP.decir("Pesca el número " + objetivo);
+            }
+        });
+        function intentar(f, listo) {
+            if (hecho) return;
+            const n = +f.dataset.n;
+            if (n === objetivo) {
+                hecho = true; f.classList.add("pescado"); f.dataset.bloqueado = 1;
+                MKJ.sound("ok"); MKP.aviso("¡" + n + "!", true); MKP.decir("¡Muy bien! Es el " + n);
+                listo(primera);
+            } else {
+                primera = false; f.classList.remove("mal"); void f.offsetWidth; f.classList.add("mal");
+                MKJ.sound("error"); MKP.decir("Ese es el " + n + ". Busca el " + objetivo);
+            }
+        }
+        window.__juego = { get objetivo() { return objetivo; }, J };
+
+    </script>
+</body>
+</html>

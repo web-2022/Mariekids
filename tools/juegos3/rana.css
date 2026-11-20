@@ -1,0 +1,9 @@
+        .lake { position: relative; margin-top: 10px; padding: 70px 6px 16px; border-radius: 24px; background: linear-gradient(180deg, #67e8f9, #0891b2); }
+        .pads { display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: 4px; }
+        .pad { aspect-ratio: 1; max-width: 70px; margin: 0 auto; width: 100%; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle at 40% 35%, #86efac, #16a34a); font: 800 clamp(16px, 4.5vw, 28px) "Baloo 2", sans-serif; color: #fff; border: 3px solid #14532d; text-shadow: 0 2px 0 #14532d; }
+        .pad.meta { box-shadow: 0 0 0 4px #fde047; }
+        .frog { position: absolute; top: 8px; font-size: clamp(36px, 9vw, 58px); line-height: 1; cursor: grab; transition: left .35s cubic-bezier(.3,1.5,.6,1); transform: translateX(-50%); z-index: 2; }
+        .frog.salta { animation: hop .35s; }
+        @keyframes hop { 50% { top: -24px; } }
+        .dirs { display: flex; justify-content: center; gap: 14px; margin-top: 12px; }
+        .dirs button { width: 76px; height: 64px; border: 0; border-radius: 18px; font-size: 34px; color: #fff; background: linear-gradient(180deg, #17aaff, #087fe9); box-shadow: 0 6px 0 #0864b5; }
