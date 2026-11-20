@@ -129,7 +129,7 @@
         </div>
     </div>
 
-    <script src="../../assets/mk-juegos.js"></script>
+    <script src="../../assets/mk-juegos.js?v=2"></script>
     <script>
         /* =========================================================
            MK BLOQUES: MUNDO 3D
@@ -149,13 +149,17 @@
         const LEVELS = [
             { n: 1, name: "Nivel 1", desc: "Sumas y restas hasta 10 · Contar", cls: "lv1", q: 1, speed: 7.5, sky: ["#8fd8ff", "#dff5ff"] },
             { n: 2, name: "Nivel 2", desc: "Sumas y restas hasta 20", cls: "lv2", q: 2, speed: 8.5, sky: ["#ffc98f", "#fff0d9"] },
-            { n: 3, name: "Nivel 3", desc: "Completa · Decenas y unidades", cls: "lv3", q: 3, speed: 9.5, sky: ["#b9a6ff", "#efe9ff"] }
+            { n: 3, name: "Nivel 3", desc: "Completa · Decenas y unidades", cls: "lv3", q: 3, speed: 9.5, sky: ["#b9a6ff", "#efe9ff"] },
+            { n: 4, name: "Nivel 4", desc: "Sumas y restas hasta 50", cls: "lv1", q: 4, speed: 8.5, sky: ["#a8f0c0", "#e9fff0"] },
+            { n: 5, name: "Nivel 5", desc: "Hasta 100 · Llevando y prestando", cls: "lv2", q: 5, speed: 8.5, sky: ["#ffc0d9", "#fff0f6"] },
+            { n: 6, name: "Nivel 6", desc: "Tres cifras · Centenas", cls: "lv3", q: 6, speed: 8.5, sky: ["#ffe28a", "#fffae0"] },
+            { n: 7, name: "Nivel 7", desc: "Tres cifras · Llevando y prestando", cls: "lv1", q: 7, speed: 8.5, sky: ["#9fe3ff", "#e6f8ff"] }
         ];
 
         /* ---------- Versión 3 años (mundo3d.html?edad=3): solo sumas pequeñas, con dibujitos y más lento ---------- */
         const PEQ = new URLSearchParams(location.search).get("edad") === "3";
         if (PEQ) {
-            LEVELS.splice(0, 3,
+            LEVELS.splice(0, LEVELS.length,
                 { n: 1, name: "Nivel 1", desc: "Sumas hasta 5", cls: "lv1", max: 5, speed: 5, sky: ["#8fd8ff", "#dff5ff"] },
                 { n: 2, name: "Nivel 2", desc: "Sumas hasta 6", cls: "lv2", max: 6, speed: 5.5, sky: ["#ffc98f", "#fff0d9"] },
                 { n: 3, name: "Nivel 3", desc: "Sumas hasta 10", cls: "lv3", max: 10, speed: 6, sky: ["#b9a6ff", "#efe9ff"] });

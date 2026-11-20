@@ -32,6 +32,13 @@
         return shuffle(set);
     }
 
+    // Opciones para tres cifras: errores típicos (±1, ±10, ±100)
+    function optionsBig(answer) {
+        var set = [answer], k = 0;
+        while (set.length < 3 && k < 50) { k++; var o = answer + pick([-100, -10, -1, 1, 10, 100]); if (o > 0 && o <= 999 && set.indexOf(o) < 0) set.push(o); }
+        return shuffle(set);
+    }
+
     var EMOJIS = ["🍎", "⭐", "🐟", "🎈", "🍓", "🐞", "⚽", "🌸", "🧁", "🚗"];
 
     /* ---------- Tipos de pregunta ---------- */
@@ -90,17 +97,55 @@
         }
     };
 
+    // niveles 4–7: dos y tres cifras
+    function sinLlevar(a, b) { while (a || b) { if (a % 10 + b % 10 > 9) return false; a = Math.floor(a / 10); b = Math.floor(b / 10); } return true; }
+    function sinPrestar(a, b) { while (b) { if (a % 10 < b % 10) return false; a = Math.floor(a / 10); b = Math.floor(b / 10); } return true; }
+    function sumaR(minA, maxA, minB, maxB, tope, llevar) {
+        var a, b, k = 0;
+        do { a = rnd(minA, maxA); b = rnd(minB, maxB); k++; } while ((a + b > tope || (llevar === false && !sinLlevar(a, b)) || (llevar === true && sinLlevar(a, b))) && k < 300);
+        return { text: a + " + " + b + " = ?", speak: a + " más " + b, answer: a + b };
+    }
+    function restaR(minA, maxA, minB, maxB, prestar) {
+        var a, b, k = 0;
+        do { a = rnd(minA, maxA); b = rnd(minB, Math.min(maxB, a - 1)); k++; } while (((prestar === false && !sinPrestar(a, b)) || (prestar === true && sinPrestar(a, b))) && k < 300);
+        return { text: a + " − " + b + " = ?", speak: a + " menos " + b, answer: a - b };
+    }
+    TYPES.suma50 = function () { return sumaR(11, 39, 10, 30, 50, false); };
+    TYPES.resta50 = function () { return restaR(21, 50, 10, 30, false); };
+    TYPES.suma100 = function () { return sumaR(15, 70, 8, 40, 100, true); };
+    TYPES.resta100 = function () { return restaR(30, 99, 8, 40, true); };
+    TYPES.decenas100 = function () {
+        var d = rnd(2, 9), u = rnd(0, 9);
+        return { text: d + " decenas y " + u + " unidad" + (u === 1 ? "" : "es") + " = ?", speak: d + " decenas y " + u + " unidades", answer: d * 10 + u };
+    };
+    TYPES.centenas = function () {
+        var c = rnd(1, 9), d = rnd(0, 9), u = rnd(0, 9);
+        return { text: c + "C " + d + "D " + u + "U = ?", speak: c + " centenas, " + d + " decenas y " + u + " unidades", answer: c * 100 + d * 10 + u };
+    };
+    TYPES.suma3 = function () { return sumaR(100, 600, 100, 300, 999, false); };
+    TYPES.resta3 = function () { return restaR(300, 999, 100, 400, false); };
+    TYPES.suma3L = function () { return sumaR(120, 680, 50, 300, 999, true); };
+    TYPES.resta3L = function () { return restaR(300, 999, 50, 400, true); };
+    TYPES.completar3 = function () {
+        var a = rnd(100, 500), r = a + rnd(1, 4) * 100 + rnd(0, 9) * 10;
+        return { text: a + " + ▢ = " + r, speak: a + " más cuánto es " + r, answer: r - a };
+    };
+
     var LEVELS = {
         1: ["suma10", "suma10", "resta10", "contar", "despues", "antes"],
         2: ["suma20", "suma20", "resta20", "resta10", "mayor", "despues"],
-        3: ["completar", "decenas", "suma20", "resta20", "completar", "mayor"]
+        3: ["completar", "decenas", "suma20", "resta20", "completar", "mayor"],
+        4: ["suma50", "suma50", "resta50", "resta50", "decenas100"],
+        5: ["suma100", "suma100", "resta100", "resta100", "decenas100"],
+        6: ["centenas", "suma3", "suma3", "resta3", "resta3", "completar3"],
+        7: ["suma3L", "suma3L", "resta3L", "resta3L", "completar3"]
     };
 
     function question(level) {
-        var type = pick(LEVELS[Math.min(3, Math.max(1, level || 1))]);
+        var type = pick(LEVELS[Math.min(7, Math.max(1, level || 1))]);
         var q = TYPES[type]();
         q.type = type;
-        q.options = q.opts || options(q.answer, 20);
+        q.options = q.opts || (level >= 6 ? optionsBig(q.answer) : options(q.answer, level >= 4 ? 100 : 20));
         return q;
     }
 
