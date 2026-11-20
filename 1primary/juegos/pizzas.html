@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <title>MK Bloques: Repartir pizzas · 1.º de Primaria</title>
+    <meta name="theme-color" content="#0b73ff" />
+    <meta name="apple-mobile-web-app-title" content="MK" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../icons/icon-192.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/mk-juegos.css" />
+    <style>
+        body { background: linear-gradient(180deg, #fff3d6, #ffe2b8); }
+        .stage { position: fixed; inset: calc(118px + env(safe-area-inset-top)) 0 0 0; overflow: auto; padding: 8px 12px 24px; touch-action: pan-y; }
+        .card { max-width: 760px; margin: 0 auto; background: #fff; border-radius: 26px; padding: 14px 14px 18px; box-shadow: 0 8px 0 rgba(150, 90, 20, .15), 0 18px 40px rgba(0, 0, 0, .12); text-align: center; }
+        .task { font-family: "Baloo 2", sans-serif; font-size: 26px; font-weight: 800; line-height: 1.15; color: #7a3d00; margin: 4px 0 2px; }
+        .sub { font-weight: 800; color: #8a6a4a; margin: 0 0 8px; font-size: 16px; }
+        .pile { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; min-height: 52px; padding: 8px; border-radius: 18px; background: #fff7e8; border: 3px dashed #f3c27a; }
+        .slice { font-size: 34px; line-height: 1; transition: transform .25s; }
+        .friends { display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 10px; margin-top: 12px; }
+        .friend { border: 0; border-radius: 22px; padding: 8px 6px 10px; background: linear-gradient(180deg, #e9f6ff, #cfeaff); box-shadow: 0 6px 0 #9cc9ee; font: inherit; cursor: pointer; }
+        .friend:active { transform: translateY(3px); box-shadow: 0 3px 0 #9cc9ee; }
+        .friend .face { font-size: 40px; }
+        .friend .plate { min-height: 44px; display: flex; flex-wrap: wrap; justify-content: center; gap: 2px; padding: 4px; margin-top: 4px; border-radius: 50%; background: #fff; }
+        .friend .plate .slice { font-size: 22px; }
+        .friend .cnt { font-family: "Baloo 2", sans-serif; font-weight: 800; font-size: 22px; color: #0864b5; }
+        .friend.box { background: linear-gradient(180deg, #f1ecff, #ddd2ff); box-shadow: 0 6px 0 #b7a6f0; }
+        .friend.box .cnt { color: #6d28d9; }
+        .tools { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 14px; }
+        .tools .big-btn { min-width: 140px; }
+        .fb { min-height: 28px; margin-top: 10px; font-weight: 900; font-size: 19px; }
+        .fb.ok { color: #16a34a; } .fb.bad { color: #dc2626; }
+        .eq { font-family: "Baloo 2", sans-serif; font-size: 34px; font-weight: 800; color: #0f5132; margin: 6px 0; }
+        .pizza-svg { width: 190px; height: 190px; margin: 4px auto; display: block; }
+        .answers { max-width: 520px; margin: 10px auto 0; }
+        .answer.frac { font-size: 30px; }
+        .lv4 { background: linear-gradient(180deg, #ff9f43, #f07f12); box-shadow: 0 7px 0 #c25f00; }
+        .lv5 { background: linear-gradient(180deg, #ff6aa9, #e83f86); box-shadow: 0 7px 0 #b3245f; }
+        @media (max-width: 480px) { .task { font-size: 22px; } .slice { font-size: 28px; } .friend .face { font-size: 32px; } }
+    </style>
+</head>
+
+<body>
+    <div class="bar">
+        <a class="pill" href="../juegos1P.html" aria-label="Volver a los juegos">⬅<span class="txt"> Juegos</span></a>
+        <h1>🍕 MK Bloques: Repartir pizzas</h1>
+        <button class="pill" id="soundBtn" type="button" aria-label="Sonido">🔊</button>
+    </div>
+    <div class="hud" aria-live="polite">
+        <span id="hudLevel">Nivel 1</span>
+        <span id="hudQ">🍕 1/6</span>
+        <span id="hudOk">⭐ 0</span>
+    </div>
+
+    <main class="stage"><div class="card" id="card"></div></main>
+
+    <div class="overlay show" id="startScreen">
+        <div class="panel">
+            <h2>🍕 Repartir pizzas</h2>
+            <p>Reparte las porciones en partes iguales entre los amigos. ¡Así se aprende a dividir!</p>
+            <div class="levels" id="levels"></div>
+        </div>
+    </div>
+    <div class="overlay" id="endScreen">
+        <div class="panel">
+            <h2>¡Fiesta de pizzas! 🎉</h2>
+            <div class="stars-big" id="endStars">⭐⭐⭐</div>
+            <p id="endText"></p>
+            <div class="row">
+                <button class="big-btn alt" id="menuBtn" type="button">📋 Niveles</button>
+                <button class="big-btn" id="nextBtn" type="button">▶ Siguiente</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../assets/mk-juegos.js?v=2"></script>
+    <script>
+        /* =========================================================
+           MK BLOQUES: REPARTIR PIZZAS — la división como reparto
+           1–2: repartir tocando a cada amigo (sin sobrante)
+           3: con sobrante (va a la caja) · 4: división mental · 5: fracciones
+        ========================================================= */
+        const $ = id => document.getElementById(id);
+        const R = MKJ.rnd, P = MKJ.pick;
+        const ROUNDS = 6;
+        const CARAS = ["🧒", "👧", "👦", "🧑", "👩", "👨", "🐻", "🐼"];
+        const LEVELS = [
+            { n: 1, name: "Nivel 1", desc: "Reparte hasta 12 entre 2 o 3", cls: "lv1", tipo: "reparto", tot: [4, 12], am: [2, 3] },
+            { n: 2, name: "Nivel 2", desc: "Reparte hasta 20 entre 2 a 5", cls: "lv2", tipo: "reparto", tot: [6, 20], am: [2, 5] },
+            { n: 3, name: "Nivel 3", desc: "¿Y lo que sobra? El residuo", cls: "lv3", tipo: "sobra", tot: [7, 23], am: [2, 5] },
+            { n: 4, name: "Nivel 4", desc: "División mental hasta 100", cls: "lv4", tipo: "mental" },
+            { n: 5, name: "Nivel 5", desc: "Fracciones: ½, ⅓, ¼…", cls: "lv5", tipo: "fraccion" }
+        ];
+        let level = LEVELS[0], qi = 0, ok = 0, fails = 0, cur = null;
+
+        function plural(n, s, p) { return n === 1 ? s : p; }
+
+        /* ---------- Niveles 1–3: repartir tocando ---------- */
+        function nuevoReparto() {
+            let a, t, k = 0;
+            do {
+                a = R(level.am[0], level.am[1]);
+                t = level.tipo === "sobra" ? R(level.tot[0], level.tot[1]) : a * R(2, Math.floor(level.tot[1] / a));
+                k++;
+            } while ((t < level.tot[0] || t > level.tot[1] || (level.tipo === "sobra" && (t % a === 0 || t < a))) && k < 200);
+            const caras = MKJ.shuffle(CARAS.slice()).slice(0, a);
+            cur = { t, a, caras, quedan: t, platos: new Array(a).fill(0), caja: 0, fase: "repartir" };
+            pintarReparto();
+            MKJ.say(`Reparte ${t} porciones de pizza entre ${a} amigos, en partes iguales.` + (level.tipo === "sobra" ? " Lo que sobre va a la caja." : ""));
+        }
+        function pintarReparto(msg, cls) {
+            const c = cur, card = $("card");
+            const sobra = level.tipo === "sobra";
+            card.innerHTML = `
+                <p class="task">Reparte ${c.t} 🍕 entre ${c.a} amigos</p>
+                <p class="sub">Toca a un amigo para darle una porción.${sobra ? " Si ya no alcanza para todos, guarda lo que sobra en la caja 📦." : " ¡Todos deben tener lo mismo!"}</p>
+                <div class="pile" aria-label="Porciones por repartir">${"<span class='slice'>🍕</span>".repeat(c.quedan) || "<span class='sub'>¡Ya no quedan porciones!</span>"}</div>
+                <div class="friends">
+                    ${c.caras.map((f, i) => `<button class="friend" data-i="${i}" type="button" aria-label="Amigo ${i + 1}"><div class="face">${f}</div><div class="plate">${"<span class='slice'>🍕</span>".repeat(c.platos[i])}</div><div class="cnt">${c.platos[i]}</div></button>`).join("")}
+                    ${sobra ? `<button class="friend box" data-i="box" type="button" aria-label="Caja de lo que sobra"><div class="face">📦</div><div class="plate">${"<span class='slice'>🍕</span>".repeat(c.caja)}</div><div class="cnt">${c.caja}</div></button>` : ""}
+                </div>
+                <div class="tools">
+                    <button class="big-btn alt" id="undo" type="button">↩ Empezar de nuevo</button>
+                    <button class="big-btn" id="check" type="button">✅ ¡Listo!</button>
+                </div>
+                <div class="fb ${cls || ""}" id="fb">${msg || ""}</div>`;
+            card.querySelectorAll(".friend").forEach(b => b.onclick = () => dar(b.dataset.i));
+            $("undo").onclick = () => { c.quedan = c.t; c.platos.fill(0); c.caja = 0; MKJ.sound("salto"); pintarReparto(); };
+            $("check").onclick = revisar;
+        }
+        function dar(i) {
+            const c = cur;
+            if (c.quedan <= 0) { MKJ.sound("error"); pintarReparto("Ya repartiste todo. Toca ✅ ¡Listo!", "bad"); return; }
+            c.quedan--;
+            if (i === "box") c.caja++; else c.platos[+i]++;
+            MKJ.sound("moneda");
+            pintarReparto();
+        }
+        function revisar() {
+            const c = cur, q = Math.floor(c.t / c.a), r = c.t % c.a;
+            const iguales = c.platos.every(x => x === c.platos[0]);
+            if (c.quedan > 0) { error("Todavía quedan porciones. ¡Sigue repartiendo!"); return; }
+            if (!iguales) { error("¡Ojo! No todos tienen lo mismo. Cuenta los platos."); return; }
+            if (level.tipo === "sobra" && c.caja >= c.a) { error(`En la caja hay ${c.caja}: ¡alcanza para darle una más a cada amigo!`); return; }
+            if (level.tipo === "sobra" && c.platos[0] !== q) { error("Reparte primero a los amigos y guarda solo lo que no alcanza."); return; }
+            // ✔ reparto correcto → preguntar el resultado
+            preguntar(`¿Cuántas porciones le tocaron a cada amigo?`, q, [q, q + 1, q > 1 ? q - 1 : q + 2],
+                () => {
+                    const eq = r ? `${c.t} ÷ ${c.a} = ${q} <small>y sobra ${r}</small>` : `${c.t} ÷ ${c.a} = ${q}`;
+                    return { html: `<div class="eq">${eq}</div>`, voz: r ? `${c.t} entre ${c.a} es ${q}, y sobra ${r}` : `${c.t} entre ${c.a} es ${q}` };
+                });
+        }
+        function error(t) { fails++; MKJ.sound("error"); pintarReparto("❌ " + t, "bad"); MKJ.say(t); }
+
+        /* ---------- Pregunta de opción múltiple (común) ---------- */
+        function preguntar(texto, resp, opts, despues, extraHtml) {
+            if (opts.indexOf(resp) < 0) opts[0] = resp;
+            opts = MKJ.shuffle(opts.slice());
+            const card = $("card");
+            const zona = document.createElement("div");
+            zona.innerHTML = `${extraHtml || ""}<p class="task">${texto}</p><div class="answers">${opts.map(o => `<button class="answer${String(o).includes("/") ? " frac" : ""}" type="button">${o}</button>`).join("")}</div><div class="fb" id="fb2"></div>`;
+            if (level.tipo === "reparto" || level.tipo === "sobra") { card.querySelector(".tools").remove(); card.querySelectorAll(".friend").forEach(b => b.disabled = true); card.querySelector("#fb").remove(); }
+            else card.innerHTML = "";
+            card.appendChild(zona);
+            zona.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            MKJ.say(texto.replace(/<[^>]+>/g, ""));
+            let primera = true;
+            zona.querySelectorAll(".answer").forEach(b => b.onclick = () => {
+                if (b.dataset.done) return;
+                if (String(b.textContent) === String(resp)) {
+                    b.classList.add("right"); MKJ.sound("ok");
+                    zona.querySelectorAll(".answer").forEach(x => x.dataset.done = 1);
+                    if (primera) ok++;
+                    const d = despues();
+                    $("fb2").className = "fb ok"; $("fb2").innerHTML = "✔ ¡Muy bien!" + d.html;
+                    MKJ.say("¡Muy bien! " + d.voz);
+                    hud();
+                    setTimeout(siguiente, 2600);
+                } else {
+                    primera = false; fails++;
+                    b.classList.add("wrong"); MKJ.sound("error");
+                    $("fb2").className = "fb bad"; $("fb2").textContent = "Intenta otra vez 💪";
+                }
+            });
+        }
+
+        /* ---------- Nivel 4: división mental ---------- */
+        function nuevoMental() {
+            const d = R(2, 10), q = R(2, 10), t = d * q;
+            const e = P(["🍕", "🍪", "🧁", "🍓"]);
+            const opts = [...new Set([q, q + 1, q - 1, q + 2, d].filter(x => x > 0))].slice(0, 3);
+            preguntar(`${t} ${e} entre ${d} amigos.<br>¿Cuánto le toca a cada uno?<br><span class="eq">${t} ÷ ${d} = ?</span>`, q, opts,
+                () => ({ html: `<div class="eq">porque ${d} × ${q} = ${t}</div>`, voz: `porque ${d} por ${q} es ${t}` }));
+        }
+
+        /* ---------- Nivel 5: fracciones ---------- */
+        function pizzaSVG(n, marcadas) {
+            let s = `<svg class="pizza-svg" viewBox="-110 -110 220 220" aria-hidden="true"><circle r="104" fill="#e9a23b"/><circle r="94" fill="#ffd166"/>`;
+            for (let i = 0; i < n; i++) {
+                const a1 = (i / n) * 2 * Math.PI - Math.PI / 2, a2 = ((i + 1) / n) * 2 * Math.PI - Math.PI / 2;
+                const x1 = 94 * Math.cos(a1), y1 = 94 * Math.sin(a1), x2 = 94 * Math.cos(a2), y2 = 94 * Math.sin(a2);
+                const big = n === 1 ? 1 : 0;
+                const path = n === 1 ? `<circle r="94"` : `<path d="M0 0 L${x1} ${y1} A94 94 0 ${big} 1 ${x2} ${y2} Z"`;
+                s += `${path} fill="${i < marcadas ? "#ef4444" : "#ffd166"}" stroke="#b45309" stroke-width="3"/>`;
+                const am = (a1 + a2) / 2;
+                if (i < marcadas) s += `<circle cx="${55 * Math.cos(am)}" cy="${55 * Math.sin(am)}" r="9" fill="#7f1d1d"/>`;
+            }
+            return s + `</svg>`;
+        }
+        function nuevoFraccion() {
+            const tipo = qi % 3;
+            if (tipo === 0) { // repartir una pizza entre n
+                const n = P([2, 3, 4, 6, 8]);
+                preguntar(`Una pizza para ${n} amigos.<br>¿Qué parte le toca a cada uno?`, `1/${n}`, [`1/${n}`, `1/${n === 2 ? 3 : n - 1}`, `${n}/1`],
+                    () => ({ html: `<div class="eq">1 ÷ ${n} = 1/${n}</div>`, voz: `un ${nombre(n)}` }), pizzaSVG(n, 1));
+            } else if (tipo === 1) { // ¿qué fracción está pintada?
+                const n = P([3, 4, 5, 6, 8]), m = R(1, n - 1);
+                preguntar(`¿Qué fracción de la pizza tiene salsa 🍅?`, `${m}/${n}`, [`${m}/${n}`, `${n}/${m}`, `${m}/${n === 8 ? 6 : n + 1}`],
+                    () => ({ html: `<div class="eq">${m} de ${n} partes</div>`, voz: `${m} de ${n} partes` }), pizzaSVG(n, m));
+            } else { // ¿cuál es más grande?
+                const [a, b] = MKJ.shuffle([2, 3, 4, 6, 8]).slice(0, 2), big = Math.min(a, b);
+                preguntar(`¿Qué porción es más grande?`, `1/${big}`, [`1/${a}`, `1/${b}`],
+                    () => ({ html: `<div class="eq">1/${big} es mayor: ¡entre menos amigos, más pizza!</div>`, voz: `un ${nombre(big)} es mayor` }),
+                    `<div style="display:flex;justify-content:center;gap:8px">${pizzaSVG(a, 1)}${pizzaSVG(b, 1)}</div>`);
+            }
+        }
+        function nombre(n) { return ({ 2: "medio", 3: "tercio", 4: "cuarto", 5: "quinto", 6: "sexto", 8: "octavo" })[n] || n; }
+
+        /* ---------- Flujo ---------- */
+        function siguiente() {
+            qi++;
+            if (qi >= ROUNDS) { fin(); return; }
+            ronda();
+        }
+        function ronda() {
+            hud();
+            if (level.tipo === "mental") nuevoMental();
+            else if (level.tipo === "fraccion") nuevoFraccion();
+            else nuevoReparto();
+        }
+        function empezar(lv) { level = lv; qi = 0; ok = 0; fails = 0; hide("startScreen"); hide("endScreen"); ronda(); }
+        function fin() {
+            const st = fails <= 1 ? 3 : fails <= 3 ? 2 : 1;
+            MKJ.stars("pizzas-" + level.n, st);
+            $("endStars").textContent = "⭐".repeat(st) + "☆".repeat(3 - st);
+            $("endText").textContent = `Acertaste ${ok} de ${ROUNDS} a la primera.`;
+            $("nextBtn").textContent = LEVELS[level.n] ? "▶ Siguiente nivel" : "🔁 Jugar otra vez";
+            show("endScreen"); MKJ.sound("gana"); MKJ.confetti();
+        }
+        function hud() { $("hudLevel").textContent = level.name; $("hudQ").textContent = `🍕 ${Math.min(qi + 1, ROUNDS)}/${ROUNDS}`; $("hudOk").textContent = `⭐ ${ok}`; }
+        function menu() {
+            const box = $("levels"); box.innerHTML = "";
+            LEVELS.forEach(lv => {
+                const st = MKJ.stars("pizzas-" + lv.n), b = document.createElement("button");
+                b.type = "button"; b.className = "level-btn " + lv.cls;
+                b.innerHTML = `<span class="num">${lv.n}</span><span><b>${lv.name}</b><small>${lv.desc}</small></span><span class="st">${"⭐".repeat(st)}${"☆".repeat(3 - st)}</span>`;
+                b.onclick = () => { MKJ.sound("ok"); empezar(lv); };
+                box.appendChild(b);
+            });
+            show("startScreen");
+        }
+        function show(id) { $(id).classList.add("show"); }
+        function hide(id) { $(id).classList.remove("show"); }
+        $("nextBtn").onclick = () => empezar(LEVELS[level.n] || LEVELS[0]);
+        $("menuBtn").onclick = () => { hide("endScreen"); menu(); };
+        const soundBtn = $("soundBtn"), paint = () => soundBtn.textContent = MKJ.soundOn ? "🔊" : "🔇";
+        soundBtn.onclick = () => { MKJ.setSound(!MKJ.soundOn); paint(); }; paint();
+        window.__pizzas = { get cur() { return cur; }, get level() { return level; }, get qi() { return qi; }, dar, revisar };
+        menu();
+    </script>
+</body>
+
+</html>

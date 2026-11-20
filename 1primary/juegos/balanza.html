@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <title>MK Bloques: Balanza mágica · 1.º de Primaria</title>
+    <meta name="theme-color" content="#0b73ff" />
+    <meta name="apple-mobile-web-app-title" content="MK" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../icons/icon-192.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/mk-juegos.css" />
+    <style>
+        body { background: linear-gradient(180deg, #e7f0ff, #d7e6ff); }
+        .stage { position: fixed; inset: calc(118px + env(safe-area-inset-top)) 0 0 0; overflow: auto; padding: 8px 12px 24px; touch-action: pan-y; }
+        .card { max-width: 760px; margin: 0 auto; background: #fff; border-radius: 26px; padding: 14px 14px 18px; box-shadow: 0 8px 0 rgba(30, 60, 140, .14), 0 18px 40px rgba(0, 0, 0, .12); text-align: center; }
+        .task { font-family: "Baloo 2", sans-serif; font-size: 24px; font-weight: 800; color: #1e3a8a; margin: 2px 0 6px; line-height: 1.15; }
+        .scale { position: relative; height: 250px; max-width: 620px; margin: 0 auto; }
+        .post { position: absolute; left: 50%; bottom: 0; width: 18px; height: 150px; margin-left: -9px; background: linear-gradient(90deg, #8b5a2b, #a9713b); border-radius: 8px; }
+        .base { position: absolute; left: 50%; bottom: 0; width: 140px; height: 18px; margin-left: -70px; background: #6b4220; border-radius: 10px; }
+        .beam { position: absolute; left: 6%; right: 6%; top: 82px; height: 14px; background: linear-gradient(180deg, #c58b4d, #9a6430); border-radius: 8px; transform-origin: 50% 50%; transition: transform .9s cubic-bezier(.3, 1.6, .5, 1); }
+        .beam::after { content: ""; position: absolute; left: 50%; top: -8px; width: 26px; height: 26px; margin-left: -13px; border-radius: 50%; background: #ffc800; box-shadow: 0 0 0 4px #fff inset; }
+        .pan { position: absolute; top: 14px; width: 44%; transform-origin: 50% 0; transition: transform .9s cubic-bezier(.3, 1.6, .5, 1); }
+        .pan.l { left: -4%; } .pan.r { right: -4%; }
+        .pan .str { height: 44px; border-left: 2px solid #94a3b8; border-right: 2px solid #94a3b8; margin: 0 22%; }
+        .pan .dish { min-height: 64px; display: flex; flex-wrap: wrap-reverse; align-content: flex-start; justify-content: center; gap: 3px; padding: 6px 6px 10px; border-bottom: 8px solid #64748b; border-radius: 0 0 50% 50% / 0 0 30px 30px; background: rgba(148, 163, 184, .18); }
+        .cube { width: 22px; height: 22px; border-radius: 5px; background: linear-gradient(180deg, #38bdf8, #0284c7); box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .2); }
+        .wt { min-width: 38px; height: 34px; padding: 0 6px; border-radius: 8px 8px 12px 12px; background: linear-gradient(180deg, #64748b, #334155); color: #fff; font: 800 18px/34px "Baloo 2", sans-serif; }
+        .box { min-width: 42px; height: 42px; padding: 0 4px; border-radius: 9px; background: linear-gradient(180deg, #f472b6, #db2777); color: #fff; font: 800 24px/42px "Baloo 2", sans-serif; box-shadow: inset 0 -4px 0 rgba(0, 0, 0, .2); }
+        .box.open { background: linear-gradient(180deg, #fde68a, #f59e0b); color: #78350f; }
+        .eqline { font-family: "Baloo 2", sans-serif; font-size: 30px; font-weight: 800; color: #0f172a; margin: 8px 0 2px; }
+        .eqline .x { color: #db2777; }
+        .picker { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+        .picker .val { min-width: 92px; padding: 6px 10px; border-radius: 16px; background: #fdf2f8; border: 3px solid #f9a8d4; font: 800 38px/1 "Baloo 2", sans-serif; color: #be185d; }
+        .round { width: 62px; height: 62px; border: 0; border-radius: 50%; font: 900 32px/1 "Nunito", sans-serif; color: #fff; background: linear-gradient(180deg, #17aaff, #087fe9); box-shadow: 0 6px 0 #0864b5; }
+        .round.sm { width: 52px; height: 52px; font-size: 18px; }
+        .round:active { transform: translateY(3px); box-shadow: 0 3px 0 #0864b5; }
+        .tools { display: flex; justify-content: center; gap: 10px; margin-top: 12px; }
+        .fb { min-height: 28px; margin-top: 10px; font-weight: 900; font-size: 19px; }
+        .fb.ok { color: #16a34a; } .fb.bad { color: #dc2626; }
+        .lv4 { background: linear-gradient(180deg, #ff9f43, #f07f12); box-shadow: 0 7px 0 #c25f00; }
+        .lv5 { background: linear-gradient(180deg, #ff6aa9, #e83f86); box-shadow: 0 7px 0 #b3245f; }
+        @media (max-width: 480px) { .picker { gap: 6px; } .round { width: 54px; height: 54px; font-size: 28px; } .round.sm { width: 46px; height: 46px; font-size: 15px; } .picker .val { min-width: 72px; font-size: 32px; } .scale { height: 230px; } .cube { width: 16px; height: 16px; } .task { font-size: 20px; } .eqline { font-size: 24px; } .wt { min-width: 32px; font-size: 16px; } }
+    </style>
+</head>
+
+<body>
+    <div class="bar">
+        <a class="pill" href="../juegos1P.html" aria-label="Volver a los juegos">⬅<span class="txt"> Juegos</span></a>
+        <h1>⚖️ MK Bloques: Balanza mágica</h1>
+        <button class="pill" id="soundBtn" type="button" aria-label="Sonido">🔊</button>
+    </div>
+    <div class="hud" aria-live="polite">
+        <span id="hudLevel">Nivel 1</span>
+        <span id="hudQ">⚖️ 1/6</span>
+        <span id="hudOk">⭐ 0</span>
+    </div>
+
+    <main class="stage"><div class="card" id="card"></div></main>
+
+    <div class="overlay show" id="startScreen">
+        <div class="panel">
+            <h2>⚖️ Balanza mágica</h2>
+            <p>¿Cuánto pesa la caja mágica 🎁? Prueba números hasta que la balanza quede derechita. ¡Así se resuelven ecuaciones!</p>
+            <div class="levels" id="levels"></div>
+        </div>
+    </div>
+    <div class="overlay" id="endScreen">
+        <div class="panel">
+            <h2>¡Balanza equilibrada! 🎉</h2>
+            <div class="stars-big" id="endStars">⭐⭐⭐</div>
+            <p id="endText"></p>
+            <div class="row">
+                <button class="big-btn alt" id="menuBtn" type="button">📋 Niveles</button>
+                <button class="big-btn" id="nextBtn" type="button">▶ Siguiente</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../assets/mk-juegos.js?v=2"></script>
+    <script>
+        /* =========================================================
+           MK BLOQUES: BALANZA MÁGICA — ecuaciones como equilibrio
+           Izquierda: cajas mágicas (x) + pesas · Derecha: pesas
+           El niño elige el valor de x y prueba: la balanza se inclina
+           hacia el lado más pesado hasta que queda equilibrada.
+        ========================================================= */
+        const $ = id => document.getElementById(id);
+        const R = MKJ.rnd;
+        const ROUNDS = 6;
+        const LEVELS = [
+            { n: 1, name: "Nivel 1", desc: "▢ + 3 = 7 · con cubitos hasta 10", cls: "lv1", gen: () => { const x = R(1, 8), a = R(1, 10 - x); return { cx: 1, a, dx: 0, b: x + a, x, cubos: true, max: 10 }; } },
+            { n: 2, name: "Nivel 2", desc: "▢ + 8 = 15 · hasta 20", cls: "lv2", gen: () => { const x = R(2, 15), a = R(2, 20 - x); return { cx: 1, a, dx: 0, b: x + a, x, cubos: true, max: 20 }; } },
+            { n: 3, name: "Nivel 3", desc: "▢ + 12 = 30 + 5 · hasta 50", cls: "lv3", gen: () => { const x = R(3, 30), a = R(2, 20), t = x + a, c = R(1, Math.min(9, t - 1)); return { cx: 1, a, dx: 0, b: [t - c, c], x, max: 50 }; } },
+            { n: 4, name: "Nivel 4", desc: "2 cajas iguales: 2x + 3 = 11", cls: "lv4", gen: () => { const k = R(2, 3), x = R(1, 9), a = R(0, 9); return { cx: k, a, dx: 0, b: k * x + a, x, max: 20 }; } },
+            { n: 5, name: "Nivel 5", desc: "Cajas a los dos lados: 3x + 2 = x + 10", cls: "lv5", gen: () => { const dx = R(1, 2), cx = dx + R(1, 2), x = R(1, 9), a = R(0, 8); return { cx, a, dx, b: (cx - dx) * x + a, x, max: 20 }; } }
+        ];
+        let level = LEVELS[0], qi = 0, ok = 0, fails = 0, cur = null, val = 0, intentos = 0, listo = false;
+
+        const suma = b => Array.isArray(b) ? b.reduce((s, v) => s + v, 0) : b;
+        function pesas(n, cubos) {
+            if (!n) return "";
+            if (cubos) return "<span class='cube'></span>".repeat(n);
+            return (Array.isArray(n) ? n : [n]).map(v => `<span class="wt">${v}</span>`).join("");
+        }
+        function cajas(k, abierta) { return new Array(k).fill(`<span class="box${abierta !== null ? " open" : ""}">${abierta !== null ? abierta : "?"}</span>`).join(""); }
+        function ecuacion(c, mostrarX) {
+            const X = mostrarX != null ? `<span class="x">${mostrarX}</span>` : `<span class="x">x</span>`;
+            const term = (k, a) => {
+                const t = [];
+                if (k) t.push((k > 1 ? (mostrarX != null ? k + "·" : k) : "") + X);
+                const av = Array.isArray(a) ? a.filter(Boolean) : (a ? [a] : []);
+                av.forEach(v => t.push(v));
+                return t.join(" + ") || "0";
+            };
+            return `${term(c.cx, c.a)} = ${term(c.dx, c.b)}`;
+        }
+
+        function nueva() {
+            cur = level.gen(); val = 0; intentos = 0; listo = false;
+            pintar(null);
+            MKJ.say(cur.dx ? "Hay cajas mágicas en los dos lados. Todas pesan lo mismo. ¿Cuánto pesa cada una?" : (cur.cx > 1 ? "Las cajas mágicas pesan lo mismo. ¿Cuánto pesa cada una?" : "¿Cuánto pesa la caja mágica para que la balanza quede derechita?"));
+        }
+        function pintar(probado, msg, cls) {
+            const c = cur, abierta = probado;
+            const L = c.cx * (probado ?? 0) + suma(c.a), Rt = c.dx * (probado ?? 0) + suma(c.b);
+            const ang = probado === null ? 0 : Math.max(-14, Math.min(14, (Rt - L) * 3));   // lado más pesado baja
+            $("card").innerHTML = `
+                <p class="task">${c.cx + c.dx > 1 ? "Todas las cajas 🎁 pesan lo mismo." : "¿Cuánto pesa la caja 🎁?"}</p>
+                <div class="eqline">${ecuacion(c)}</div>
+                <div class="scale" aria-hidden="true">
+                    <div class="post"></div><div class="base"></div>
+                    <div class="beam" style="transform:rotate(${ang}deg)">
+                        <div class="pan l" style="transform:rotate(${-ang}deg)"><div class="str"></div><div class="dish">${cajas(c.cx, abierta)}${pesas(c.a, c.cubos)}</div></div>
+                        <div class="pan r" style="transform:rotate(${-ang}deg)"><div class="str"></div><div class="dish">${cajas(c.dx, abierta)}${pesas(c.b, c.cubos)}</div></div>
+                    </div>
+                </div>
+                <div class="picker">
+                    <button class="round sm" id="m10" type="button" aria-label="Restar 10">−10</button>
+                    <button class="round" id="m1" type="button" aria-label="Restar 1">−</button>
+                    <div class="val" id="val" aria-live="polite">${val}</div>
+                    <button class="round" id="p1" type="button" aria-label="Sumar 1">+</button>
+                    <button class="round sm" id="p10" type="button" aria-label="Sumar 10">+10</button>
+                </div>
+                <div class="tools"><button class="big-btn" id="probar" type="button">⚖️ ¡Probar!</button></div>
+                <div class="fb ${cls || ""}" id="fb">${msg || ""}</div>`;
+            const set = v => { if (listo) return; val = Math.max(0, Math.min(c.max, v)); $("val").textContent = val; MKJ.sound("salto"); };
+            $("m1").onclick = () => set(val - 1); $("p1").onclick = () => set(val + 1);
+            $("m10").onclick = () => set(val - 10); $("p10").onclick = () => set(val + 10);
+            if (c.max <= 10) { $("m10").hidden = true; $("p10").hidden = true; }
+            $("probar").onclick = probar;
+        }
+        function probar() {
+            if (listo) return;
+            const c = cur; intentos++;
+            const L = c.cx * val + suma(c.a), Rt = c.dx * val + suma(c.b);
+            if (L === Rt) {
+                listo = true;
+                if (intentos <= 2) ok++; else fails++;
+                pintar(val, `✔ ¡Equilibrada! La caja pesa ${val}.<div class="eqline">${ecuacion(c, val)} → ${L} = ${Rt}</div>`, "ok");
+                MKJ.sound("ok"); MKJ.say(`¡Equilibrada! La caja pesa ${val}`);
+                hud(); setTimeout(siguiente, 2800);
+            } else {
+                if (intentos > 2) fails++;
+                const pista = L > Rt ? "⬇️ La izquierda pesa más: la caja debe pesar MENOS." : "⬆️ La derecha pesa más: la caja debe pesar MÁS.";
+                pintar(val, pista + (intentos >= 3 ? `<br><small>Pista: ${pistaExtra(c)}</small>` : ""), "bad");
+                MKJ.sound("error"); MKJ.say(L > Rt ? "La izquierda pesa más. Prueba un número más pequeño." : "La derecha pesa más. Prueba un número más grande.");
+            }
+        }
+        function pistaExtra(c) {
+            const a = suma(c.a), b = suma(c.b);
+            if (c.dx) return `quita ${c.dx} caja${c.dx > 1 ? "s" : ""} de cada lado y ${a} de cada lado.`;
+            if (c.cx > 1) return `quita ${a} de cada lado: ${c.cx} cajas pesan ${b - a}.`;
+            return `${b} − ${a} = ?`;
+        }
+
+        function siguiente() { qi++; if (qi >= ROUNDS) fin(); else { hud(); nueva(); } }
+        function empezar(lv) { level = lv; qi = 0; ok = 0; fails = 0; hide("startScreen"); hide("endScreen"); hud(); nueva(); }
+        function fin() {
+            const st = fails <= 1 ? 3 : fails <= 3 ? 2 : 1;
+            MKJ.stars("balanza-" + level.n, st);
+            $("endStars").textContent = "⭐".repeat(st) + "☆".repeat(3 - st);
+            $("endText").textContent = `Equilibraste ${ok} de ${ROUNDS} balanzas en 1 o 2 intentos.`;
+            $("nextBtn").textContent = LEVELS[level.n] ? "▶ Siguiente nivel" : "🔁 Jugar otra vez";
+            show("endScreen"); MKJ.sound("gana"); MKJ.confetti();
+        }
+        function hud() { $("hudLevel").textContent = level.name; $("hudQ").textContent = `⚖️ ${Math.min(qi + 1, ROUNDS)}/${ROUNDS}`; $("hudOk").textContent = `⭐ ${ok}`; }
+        function menu() {
+            const box = $("levels"); box.innerHTML = "";
+            LEVELS.forEach(lv => {
+                const st = MKJ.stars("balanza-" + lv.n), b = document.createElement("button");
+                b.type = "button"; b.className = "level-btn " + lv.cls;
+                b.innerHTML = `<span class="num">${lv.n}</span><span><b>${lv.name}</b><small>${lv.desc}</small></span><span class="st">${"⭐".repeat(st)}${"☆".repeat(3 - st)}</span>`;
+                b.onclick = () => { MKJ.sound("ok"); empezar(lv); };
+                box.appendChild(b);
+            });
+            show("startScreen");
+        }
+        function show(id) { $(id).classList.add("show"); }
+        function hide(id) { $(id).classList.remove("show"); }
+        $("nextBtn").onclick = () => empezar(LEVELS[level.n] || LEVELS[0]);
+        $("menuBtn").onclick = () => { hide("endScreen"); menu(); };
+        const soundBtn = $("soundBtn"), paint = () => soundBtn.textContent = MKJ.soundOn ? "🔊" : "🔇";
+        soundBtn.onclick = () => { MKJ.setSound(!MKJ.soundOn); paint(); }; paint();
+        window.__balanza = { get cur() { return cur; }, setVal: v => { val = v; }, probar, get qi() { return qi; }, LEVELS };
+        menu();
+    </script>
+</body>
+
+</html>
