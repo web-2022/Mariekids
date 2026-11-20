@@ -11,3 +11,4 @@
         .comp .hueco { width: 80px; height: 80px; border-radius: 20px; border: 4px dashed #22c55e; display: grid; place-items: center; font: 800 52px "Baloo 2", sans-serif; color: #15803d; }
         .signos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; max-width: 360px; margin: 0 auto; }
         .signos .sg { aspect-ratio: auto; height: 90px; border-radius: 22px; font: 800 52px "Baloo 2", sans-serif; color: #15803d; background: #dcfce7; padding: 0; }
+        .numgr { font-size: clamp(30px, 9vw, 56px) !important; }

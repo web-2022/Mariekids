@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../assets/mk-juegos.css" />
-    <link rel="stylesheet" href="../../assets/mk-peques.css?v=3" />
+    <link rel="stylesheet" href="../../assets/mk-peques.css?v=4" />
     <style>
         body { background: #fff7ed; }
         .plates { display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: 12px; margin-top: 10px; }
@@ -28,6 +28,7 @@
         .comp .hueco { width: 80px; height: 80px; border-radius: 20px; border: 4px dashed #22c55e; display: grid; place-items: center; font: 800 52px "Baloo 2", sans-serif; color: #15803d; }
         .signos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; max-width: 360px; margin: 0 auto; }
         .signos .sg { aspect-ratio: auto; height: 90px; border-radius: 22px; font: 800 52px "Baloo 2", sans-serif; color: #15803d; background: #dcfce7; padding: 0; }
+        .numgr { font-size: clamp(30px, 9vw, 56px) !important; }
 
     </style>
 </head>
@@ -59,7 +60,7 @@
         </div>
     </div>
     <script src="../../assets/mk-juegos.js?v=2"></script>
-    <script src="../../assets/mk-peques.js?v=3"></script>
+    <script src="../../assets/mk-peques.js?v=4"></script>
     <script>
         /* 🍪 ¿DÓNDE HAY MÁS?: comparar cantidades (más / menos). */
         const R = MKJ.rnd, P = MKJ.pick;
@@ -70,6 +71,11 @@
                 { n: 1, name: "Nivel 1", desc: "¿Dónde hay más? (hasta 5)", cls: "lv1", max: 5, platos: 2, menos: false },
                 { n: 2, name: "Nivel 2", desc: "Más y menos (hasta 6)", cls: "lv2", max: 6, platos: 2, menos: true },
                 { n: 3, name: "Nivel 3", desc: "3 platos, más y menos (hasta 10)", cls: "lv3", max: 10, platos: 3, menos: true }
+            ],
+            niveles6: [
+                { n: 1, name: "Nivel 1", desc: "¿Qué número es mayor o menor? (hasta 999)", cls: "lv1", max: 999, platos: 3, menos: true, num: true },
+                { n: 2, name: "Nivel 2", desc: "Cocodrilo hasta 999", cls: "lv2", max: 999, signo: true },
+                { n: 3, name: "Nivel 3", desc: "Cocodrilo con sumas hasta 20", cls: "lv3", max: 20, signo: true, ops: true }
             ],
             niveles5: [
                 { n: 1, name: "Nivel 1", desc: "¿Qué número es mayor o menor? (hasta 100)", cls: "lv1", max: 100, platos: 3, menos: true, num: true },

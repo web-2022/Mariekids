@@ -1284,11 +1284,27 @@ const kid = (name, mood = "feliz") => `<span class="kid">${MKChar(name, mood)}</
 const NAME = n => MKChar.names[n];
 
 /* ---------- Final de la lección: enlace al siguiente tema ---------- */
+// 🎮 Juego para practicar cada tema (1primary/juegos/… o los de Inicial con ?edad=6)
+const P3 = "../../3years/juegos/", PJ = "../juegos/";
+const JUEGO_TEMA = (() => {
+  const m = {}, set = (rango, url) => rango.forEach(t => { m[t] = url; });
+  const r = (a, b) => Array.from({ length: b - a + 1 }, (_, i) => a + i);
+  set(r(1, 6), PJ + "conjuntos.html"); set([7, 8], P3 + "galletas.html?edad=6"); set([9], P3 + "dinos.html?edad=6");
+  set([10, 11], P3 + "pesca.html?edad=6"); set([12, 13, 17], P3 + "decenas.html?edad=6"); set([14, 15], P3 + "tren.html?edad=6"); set([16], P3 + "globos.html?edad=6");
+  set([18, 19, 21, 22], PJ + "mundo3d.html"); set([20, 23], P3 + "medias.html?edad=6"); set([24, 25, 26], P3 + "canasta.html?edad=6");
+  set(r(27, 32), PJ + "granja.html"); set([29], PJ + "pizzas.html"); set(r(33, 35), PJ + "cohete.html");
+  set(r(36, 40), P3 + "gusano.html?edad=6"); set([41, 42, 43], PJ + "analogias.html"); set([44], PJ + "piramide.html"); set([45, 62, 64], PJ + "balanza.html");
+  set([46], PJ + "reto.html"); set([47, 48, 50, 51], P3 + "tangram.html?edad=6"); set([49, 63, 66, 55], P3 + "medidas.html?edad=6"); set([52, 53], PJ + "robot.html");
+  set([54], P3 + "rutina.html?edad=6"); set([56], P3 + "monedas.html?edad=6"); set([57, 58], PJ + "encuesta.html"); set(r(59, 61), PJ + "reto.html");
+  set([65], PJ + "pizzas.html"); set([67, 69], PJ + "caja.html"); set([68], PJ + "trazo.html");
+  return m;
+})();
 function nextTopic(n) {
   return (level, passed, stars, box) => {
-    if (!passed || n > 69) return;
+    const juego = JUEGO_TEMA[n - 1] ? `<a class="btn next-topic" href="${JUEGO_TEMA[n - 1]}">🎮 Practicar jugando</a>` : "";
+    if (!passed || n > 70) { box.innerHTML = juego; return; }
     const href = `mate1p-${String(n).padStart(2, "0")}.html`;
-    box.innerHTML = `<a class="btn alt next-topic" href="${href}">➡️ Siguiente tema</a>`;
+    box.innerHTML = (n <= 69 ? `<a class="btn alt next-topic" href="${href}">➡️ Siguiente tema</a>` : "") + juego;
   };
 }
 

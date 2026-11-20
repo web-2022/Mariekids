@@ -9,6 +9,11 @@
                 { n: 2, name: "Nivel 2", desc: "4 dinos: de pequeño a grande", cls: "lv2", k: 4, reves: false },
                 { n: 3, name: "Nivel 3", desc: "5 dinos: también de grande a pequeño", cls: "lv3", k: 5, reves: true }
             ],
+            niveles6: [
+                { n: 1, name: "Nivel 1", desc: "Números hasta 100", cls: "lv1", k: 5, reves: true, tipo: "num", max: 100 },
+                { n: 2, name: "Nivel 2", desc: "Números hasta 999", cls: "lv2", k: 5, reves: true, tipo: "num", max: 999 },
+                { n: 3, name: "Nivel 3", desc: "Números parecidos", cls: "lv3", k: 5, reves: true, tipo: "num", max: 99, cerca: true }
+            ],
             niveles5: [
                 { n: 1, name: "Nivel 1", desc: "Números hasta 50", cls: "lv1", k: 5, reves: true, tipo: "num", max: 50 },
                 { n: 2, name: "Nivel 2", desc: "Números hasta 100", cls: "lv2", k: 5, reves: true, tipo: "num", max: 100 },

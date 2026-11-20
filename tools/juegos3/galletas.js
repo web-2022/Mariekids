@@ -8,6 +8,11 @@
                 { n: 2, name: "Nivel 2", desc: "Más y menos (hasta 6)", cls: "lv2", max: 6, platos: 2, menos: true },
                 { n: 3, name: "Nivel 3", desc: "3 platos, más y menos (hasta 10)", cls: "lv3", max: 10, platos: 3, menos: true }
             ],
+            niveles6: [
+                { n: 1, name: "Nivel 1", desc: "¿Qué número es mayor o menor? (hasta 999)", cls: "lv1", max: 999, platos: 3, menos: true, num: true },
+                { n: 2, name: "Nivel 2", desc: "Cocodrilo hasta 999", cls: "lv2", max: 999, signo: true },
+                { n: 3, name: "Nivel 3", desc: "Cocodrilo con sumas hasta 20", cls: "lv3", max: 20, signo: true, ops: true }
+            ],
             niveles5: [
                 { n: 1, name: "Nivel 1", desc: "¿Qué número es mayor o menor? (hasta 100)", cls: "lv1", max: 100, platos: 3, menos: true, num: true },
                 { n: 2, name: "Nivel 2", desc: "Cocodrilo hasta 100", cls: "lv2", max: 100, signo: true },

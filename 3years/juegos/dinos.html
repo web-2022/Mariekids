@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../assets/mk-juegos.css" />
-    <link rel="stylesheet" href="../../assets/mk-peques.css?v=3" />
+    <link rel="stylesheet" href="../../assets/mk-peques.css?v=4" />
     <style>
         body { background: #f7fee7; }
         .fila { display: flex; justify-content: center; align-items: flex-end; gap: 6px; margin-top: 8px; min-height: 120px; padding: 10px 6px; border-radius: 20px; background: #ecfccb; }
@@ -26,7 +26,7 @@
         @media (max-width: 480px) { .hueco { width: 54px; } }
         .torre { display: flex; flex-direction: column-reverse; gap: 2px; align-items: center; }
         .torre i { width: 30px; height: 14px; border-radius: 3px; background: linear-gradient(180deg, #fb923c, #ea580c); }
-        .numc { min-width: 50px; padding: 8px 6px; border-radius: 14px; background: #fde68a; font: 800 32px "Baloo 2", sans-serif; color: #92400e; text-align: center; }
+        .numc { min-width: 50px; font-size: 26px !important; padding: 8px 6px; border-radius: 14px; background: #fde68a; font: 800 32px "Baloo 2", sans-serif; color: #92400e; text-align: center; }
 
     </style>
 </head>
@@ -58,7 +58,7 @@
         </div>
     </div>
     <script src="../../assets/mk-juegos.js?v=2"></script>
-    <script src="../../assets/mk-peques.js?v=3"></script>
+    <script src="../../assets/mk-peques.js?v=4"></script>
     <script>
         /* 🦖 DINOSAURIOS POR TAMAÑO: seriación. Ordena de pequeño a grande (o al revés). */
         const R = MKJ.rnd;
@@ -70,6 +70,11 @@
                 { n: 1, name: "Nivel 1", desc: "3 dinos: de pequeño a grande", cls: "lv1", k: 3, reves: false },
                 { n: 2, name: "Nivel 2", desc: "4 dinos: de pequeño a grande", cls: "lv2", k: 4, reves: false },
                 { n: 3, name: "Nivel 3", desc: "5 dinos: también de grande a pequeño", cls: "lv3", k: 5, reves: true }
+            ],
+            niveles6: [
+                { n: 1, name: "Nivel 1", desc: "Números hasta 100", cls: "lv1", k: 5, reves: true, tipo: "num", max: 100 },
+                { n: 2, name: "Nivel 2", desc: "Números hasta 999", cls: "lv2", k: 5, reves: true, tipo: "num", max: 999 },
+                { n: 3, name: "Nivel 3", desc: "Números parecidos", cls: "lv3", k: 5, reves: true, tipo: "num", max: 99, cerca: true }
             ],
             niveles5: [
                 { n: 1, name: "Nivel 1", desc: "Números hasta 50", cls: "lv1", k: 5, reves: true, tipo: "num", max: 50 },

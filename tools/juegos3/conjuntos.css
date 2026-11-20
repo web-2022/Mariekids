@@ -1,0 +1,10 @@
+        .zonas { display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: 8px; margin-top: 8px; }
+        .zona { min-height: 130px; border-radius: 50%/40%; border: 4px solid var(--c); background: color-mix(in srgb, var(--c) 12%, white); padding: 10px 6px; display: flex; flex-direction: column; align-items: center; }
+        .zona.fuera { border-radius: 18px; border-style: dashed; }
+        .zona h3 { margin: 0; font: 800 15px "Nunito", sans-serif; color: #334155; }
+        .zona .dentro { display: flex; flex-wrap: wrap; justify-content: center; gap: 2px; font-size: 26px; }
+        .bandeja { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 14px; padding: 12px; border-radius: 20px; background: #fef3c7; min-height: 70px; }
+        .item { font-size: 40px; line-height: 1; cursor: grab; user-select: none; }
+        .item.mal { animation: sacude .4s; }
+        @keyframes sacude { 0%,100% { transform: translateX(0) } 25% { transform: translateX(-8px) } 75% { transform: translateX(8px) } }
+        .answers { max-width: 420px; margin: 12px auto 0; }

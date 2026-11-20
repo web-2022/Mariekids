@@ -4,7 +4,7 @@ Plantilla común: barra, HUD, menú de niveles y pantalla final (assets/mk-peque
 import os
 AQUI = os.path.dirname(os.path.abspath(__file__))
 RAIZ = os.path.abspath(os.path.join(AQUI, "..", ".."))
-V = "3"
+V = "4"
 JUEGOS = [
     ("pesca", "🐟", "Pesca de números", "Toca o arrastra el pez que tiene el número que escuchas.", "#bdeaff"),
     ("canasta", "🧺", "Llena la canasta", "Arrastra con el dedo tantas frutas como dice el número.", "#e3f8d4"),
@@ -23,6 +23,16 @@ JUEGOS = [
     ("decenas", "🏗️", "Fábrica de decenas", "Junta 10 cubitos y se vuelven una barra: ¡una decena!", "#eff6ff"),
     ("tangram", "🧩", "Arma la figura", "Arrastra cada pieza a su silueta.", "#fdf4ff"),
     ("reloj", "⏰", "El reloj", "Lee la hora y pon el reloj.", "#ecfeff"),
+    ("conjuntos", "🧺", "Conjuntos", "Clasifica, encuentra el intruso y descubre la intersección.", "#eff6ff", "1primary"),
+    ("granja", "🌾", "La granja", "Doble, mitad, grupos iguales y multiplicación.", "#fefce8", "1primary"),
+    ("cohete", "🚀", "Cohete del 10", "Junta los números amigos para llenar el tanque.", "#eef2ff", "1primary"),
+    ("analogias", "🔤", "Analogías y operadores", "Descubre la regla secreta.", "#f5f3ff", "1primary"),
+    ("piramide", "🧱", "Pirámide de sumas", "Cada bloque es la suma de los dos de abajo.", "#fff7ed", "1primary"),
+    ("robot", "🤖", "Robot en la cuadrícula", "Programa al robot con flechas para llegar a la meta.", "#ecfeff", "1primary"),
+    ("trazo", "✏️", "Un solo trazo", "Dibuja la figura sin levantar el dedo.", "#faf5ff", "1primary"),
+    ("encuesta", "📊", "Encuesta de la clase", "Arma y lee gráficos de barras y tablas.", "#f0fdf4", "1primary"),
+    ("reto", "🏆", "Reto olímpico", "Preguntas olímpicas con tiempo y el reto del día.", "#fffbeb", "1primary"),
+    ("caja", "🔐", "Caja fuerte", "Halla x, cifras ocultas e inecuaciones.", "#f1f5f9", "1primary"),
     ("medidas", "📏", "¿Cuánto mide?", "Mide con clips y compara qué es más largo.", "#fefce8"),
 ]
 PLANTILLA = """<!DOCTYPE html>
@@ -30,7 +40,7 @@ PLANTILLA = """<!DOCTYPE html>
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
-    <title>MK {titulo} · 3 años</title>
+    <title>MK {titulo} · {grado}</title>
     <meta name="theme-color" content="#0b73ff" />
     <meta name="apple-mobile-web-app-title" content="MK" />
     <link rel="manifest" href="../../manifest.json" />
@@ -48,7 +58,7 @@ PLANTILLA = """<!DOCTYPE html>
 <body>
     <!-- GENERADO por tools/juegos3/build.py — edita tools/juegos3/{id}.css / {id}.js -->
     <div class="bar">
-        <a class="pill" href="../juegos3Y.html" aria-label="Volver a los juegos">⬅<span class="txt"> Juegos</span></a>
+        <a class="pill" href="{volver}" aria-label="Volver a los juegos">⬅<span class="txt"> Juegos</span></a>
         <h1>{emoji} {titulo}</h1>
         <button class="pill" id="soundBtn" type="button" aria-label="Sonido">🔊</button>
     </div>
@@ -80,9 +90,12 @@ PLANTILLA = """<!DOCTYPE html>
 </body>
 </html>
 """
-for jid, emoji, titulo, intro, fondo in JUEGOS:
+for j in JUEGOS:
+    jid, emoji, titulo, intro, fondo = j[:5]
+    carpeta = j[5] if len(j) > 5 else "3years"
+    volver, grado = ("../juegos1P.html", "1.º de Primaria") if carpeta == "1primary" else ("../juegos3Y.html", "3 años")
     css = open(os.path.join(AQUI, jid + ".css"), encoding="utf-8").read()
     js = open(os.path.join(AQUI, jid + ".js"), encoding="utf-8").read()
-    html = PLANTILLA.format(titulo=titulo, emoji=emoji, intro=intro, fondo=fondo, css=css, js=js, id=jid, v=V)
-    open(os.path.join(RAIZ, "3years", "juegos", jid + ".html"), "w", encoding="utf-8").write(html)
+    html = PLANTILLA.format(volver=volver, grado=grado, titulo=titulo, emoji=emoji, intro=intro, fondo=fondo, css=css, js=js, id=jid, v=V)
+    open(os.path.join(RAIZ, carpeta, "juegos", jid + ".html"), "w", encoding="utf-8").write(html)
     print("ok", jid)

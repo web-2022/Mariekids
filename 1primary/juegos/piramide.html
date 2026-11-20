@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <title>MK Pirámide de sumas · 1.º de Primaria</title>
+    <meta name="theme-color" content="#0b73ff" />
+    <meta name="apple-mobile-web-app-title" content="MK" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../icons/icon-192.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/mk-juegos.css" />
+    <link rel="stylesheet" href="../../assets/mk-peques.css?v=4" />
+    <style>
+        body { background: #fff7ed; }
+        .pira { display: flex; flex-direction: column; align-items: center; gap: 6px; margin: 10px 0; }
+        .piso { display: flex; gap: 6px; }
+        .bloq { width: 64px; height: 52px; border-radius: 10px; display: grid; place-items: center; font: 800 26px "Baloo 2", sans-serif; color: #7c2d12; background: linear-gradient(180deg, #fdba74, #f97316); box-shadow: inset 0 -5px 0 #0002; }
+        .bloq.hueco { background: #fff; border: 4px dashed #f97316; color: #f97316; cursor: pointer; }
+        .bloq.hueco.sel { background: #fef3c7; }
+        .bloq.ok { background: linear-gradient(180deg, #86efac, #22c55e); color: #14532d; }
+        .teclado { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; max-width: 360px; margin: 10px auto 0; }
+        .teclado button { height: 52px; border: 0; border-radius: 14px; font: 800 24px "Baloo 2", sans-serif; background: #e0f2fe; color: #0c4a6e; box-shadow: 0 4px 0 #7dd3fc; }
+        @media (max-width: 480px) { .bloq { width: 52px; height: 46px; font-size: 22px; } }
+
+    </style>
+</head>
+<body>
+    <!-- GENERADO por tools/juegos3/build.py — edita tools/juegos3/piramide.css / piramide.js -->
+    <div class="bar">
+        <a class="pill" href="../juegos1P.html" aria-label="Volver a los juegos">⬅<span class="txt"> Juegos</span></a>
+        <h1>🧱 Pirámide de sumas</h1>
+        <button class="pill" id="soundBtn" type="button" aria-label="Sonido">🔊</button>
+    </div>
+    <div class="hud" aria-live="polite"><span id="hudLevel">Nivel 1</span><span id="hudQ"></span><span id="hudOk">⭐ 0</span></div>
+    <main class="stage"><div class="card" id="card"></div></main>
+    <div class="overlay show" id="startScreen">
+        <div class="panel">
+            <h2>🧱 Pirámide de sumas</h2>
+            <p>Cada bloque es la suma de los dos de abajo.</p>
+            <div class="levels" id="levels"></div>
+        </div>
+    </div>
+    <div class="overlay" id="endScreen">
+        <div class="panel">
+            <h2>¡Muy bien! 🎉</h2>
+            <div class="stars-big" id="endStars">⭐⭐⭐</div>
+            <p id="endText"></p>
+            <div class="row">
+                <button class="big-btn alt" id="menuBtn" type="button">📋 Niveles</button>
+                <button class="big-btn" id="nextBtn" type="button">▶ Siguiente</button>
+            </div>
+        </div>
+    </div>
+    <script src="../../assets/mk-juegos.js?v=2"></script>
+    <script src="../../assets/mk-peques.js?v=4"></script>
+    <script>
+        /* 🧱 PIRÁMIDE DE SUMAS: cada bloque es la suma de los dos de abajo. Temas 44–45. */
+        const R = MKJ.rnd;
+        let pira = [], huecos = [], sel = null, escrito = "", primera = true, listoFn = null;
+        const NIV = [
+            { n: 1, name: "Nivel 1", desc: "Pirámide de 2 pisos", cls: "lv1", pisos: 2, base: 9, ocultar: "arriba" },
+            { n: 2, name: "Nivel 2", desc: "Pirámide de 3 pisos", cls: "lv2", pisos: 3, base: 8, ocultar: "arriba" },
+            { n: 3, name: "Nivel 3", desc: "Faltan números abajo: ¡piensa al revés!", cls: "lv3", pisos: 3, base: 9, ocultar: "mezcla" }
+        ];
+        MKP.juego({
+            clave: "piramide1p", rondas: 5, icono: "🧱", niveles: NIV,
+            ronda(nv, i, listo) {
+                primera = true; listoFn = listo; sel = null; escrito = "";
+                const base = Array.from({ length: nv.pisos }, () => R(1, nv.base));
+                pira = [base];
+                while (pira[0].length > 1) { const a = pira[0]; pira.unshift(a.slice(1).map((v, k) => a[k] + v)); }
+                // pira[0] = cima … pira[n-1] = base
+                huecos = [];
+                if (nv.ocultar === "arriba") pira.forEach((piso, f) => { if (f < pira.length - 1) piso.forEach((v, c) => huecos.push(f + "-" + c)); });
+                else { const k = R(0, 2), j = k === 0 ? 1 : k === 2 ? 0 : R(0, 1); huecos = ["2-" + k, "1-" + j]; }
+                document.getElementById("card").innerHTML = `<p class="task">Cada bloque es la suma de los dos de abajo <button class="again" id="oir" type="button">🔊</button></p>
+                    <p class="sub">Toca un bloque vacío y escribe el número.</p>
+                    <div class="pira">${pira.map((p, f) => `<div class="piso">${p.map((v, c) => huecos.includes(f + "-" + c) ? `<span class="bloq hueco" data-p="${f}-${c}">?</span>` : `<span class="bloq">${v}</span>`).join("")}</div>`).join("")}</div>
+                    <div class="teclado">${[1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map(n => `<button type="button" data-n="${n}">${n}</button>`).join("")}<button type="button" data-n="b" style="grid-column:span 2">⌫ Borrar</button><button type="button" data-n="ok" style="grid-column:span 3;background:#bbf7d0;box-shadow:0 4px 0 #22c55e">✅ Comprobar</button></div>`;
+                document.querySelectorAll(".hueco").forEach(h => h.onclick = () => elegir(h));
+                document.querySelectorAll(".teclado button").forEach(b => b.onclick = () => tecla(b.dataset.n));
+                elegir(document.querySelector(".hueco"));
+                const t = "Cada bloque es la suma de los dos bloques de abajo"; document.getElementById("oir").onclick = () => MKP.decir(t); MKP.decir(t);
+            }
+        });
+        function elegir(h) { if (!h || h.classList.contains("ok")) return; document.querySelectorAll(".hueco").forEach(x => x.classList.remove("sel")); sel = h; escrito = ""; h.classList.add("sel"); }
+        function tecla(n) {
+            if (!sel) return;
+            if (n === "b") { escrito = escrito.slice(0, -1); sel.textContent = escrito || "?"; return; }
+            if (n === "ok") {
+                const [f, c] = sel.dataset.p.split("-").map(Number);
+                if (+escrito === pira[f][c] && escrito !== "") {
+                    sel.classList.add("ok"); sel.classList.remove("sel", "hueco"); MKJ.sound("moneda");
+                    const sig = document.querySelector(".hueco:not(.ok)");
+                    if (!sig) { MKJ.sound("ok"); MKP.aviso("¡Pirámide lista!", true); MKP.decir("¡Muy bien! La pirámide está completa"); listoFn(primera); sel = null; } else elegir(sig);
+                } else { primera = false; MKJ.sound("error"); MKP.decir("Revisa: suma los dos de abajo, o resta si te falta uno de abajo"); escrito = ""; sel.textContent = "?"; }
+                return;
+            }
+            if (escrito.length >= 3) return;
+            escrito += n; sel.textContent = escrito; MKJ.sound("salto");
+        }
+        window.__juego = { get pira() { return pira; }, tecla, elegir };
+
+    </script>
+</body>
+</html>

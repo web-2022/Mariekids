@@ -9,6 +9,11 @@
                 { n: 2, name: "Nivel 2", desc: "Ordena del 1 al 6", cls: "lv2", desde: [1, 1], largo: 6, guia: "primero" },
                 { n: 3, name: "Nivel 3", desc: "Ordena números hasta el 10", cls: "lv3", desde: [1, 5], largo: 6, guia: "primero" }
             ],
+            niveles6: [
+                { n: 1, name: "Nivel 1", desc: "Cuenta de 2 en 2 hasta 100", cls: "lv1", desde: [0, 0], largo: 6, guia: "primero", paso: 2, ini: [10, 80] },
+                { n: 2, name: "Nivel 2", desc: "De 10 en 10 desde cualquier número", cls: "lv2", desde: [0, 0], largo: 6, guia: "primero", paso: 10, ini: [1, 39] },
+                { n: 3, name: "Nivel 3", desc: "De 50 en 50 y de 100 en 100", cls: "lv3", desde: [0, 0], largo: 6, guia: "primero", paso: [50, 100], ini: [0, 0] }
+            ],
             niveles5: [
                 { n: 1, name: "Nivel 1", desc: "Ordena números hasta 50", cls: "lv1", desde: [10, 40], largo: 6, guia: "primero" },
                 { n: 2, name: "Nivel 2", desc: "Cuenta de 2 en 2", cls: "lv2", desde: [0, 10], largo: 6, guia: "primero", paso: 2 },
@@ -21,7 +26,7 @@
             ],
             ronda(nv, i, listo) {
                 const a = R(nv.desde[0], nv.desde[1]);
-                const paso = Array.isArray(nv.paso) ? MKJ.pick(nv.paso) : nv.paso || 1, a1 = paso > 2 ? paso * R(0, 2) : paso === 2 ? 2 * R(0, 5) : a;
+                const paso = Array.isArray(nv.paso) ? MKJ.pick(nv.paso) : nv.paso || 1, a1 = nv.ini ? (paso >= 50 ? paso * R(0, 3) : R(nv.ini[0], nv.ini[1])) : paso > 2 ? paso * R(0, 2) : paso === 2 ? 2 * R(0, 5) : a;
                 nums = Array.from({ length: nv.largo }, (_, k) => a1 + k * paso); puestos = 0; primera = true; listoFn = listo;
                 const card = document.getElementById("card");
                 card.innerHTML = `<p class="task">Ordena el tren: ${nums[0]}, ${nums[1]}, ${nums[2]}… <button class="again" id="oir" type="button">🔊</button></p>

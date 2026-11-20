@@ -1,0 +1,11 @@
+        .caja-f { display: inline-flex; flex-direction: column; align-items: center; gap: 6px; padding: 14px 18px; border-radius: 22px; background: linear-gradient(180deg, #64748b, #334155); color: #fff; box-shadow: 0 8px 0 #1e293b; }
+        .caja-f .cand { font-size: 44px; transition: transform .5s; }
+        .caja-f.abierta .cand { transform: rotate(-30deg) translateY(-6px); }
+        .eqc { font: 800 34px "Baloo 2", sans-serif; color: #fff; letter-spacing: 1px; }
+        .eqc .h { display: inline-block; min-width: 36px; padding: 0 4px; border-radius: 8px; background: #facc15; color: #713f12; }
+        .cripto { display: inline-grid; grid-template-columns: auto auto auto; gap: 2px 8px; font: 800 38px "Baloo 2", sans-serif; text-align: right; }
+        .cripto .ln { grid-column: 1 / -1; border-top: 4px solid #fff; }
+        .num { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; max-width: 420px; margin: 14px auto 0; }
+        .num button { height: 56px; border: 0; border-radius: 14px; font: 800 26px "Baloo 2", sans-serif; background: #e0f2fe; color: #0c4a6e; box-shadow: 0 4px 0 #7dd3fc; }
+        .num button.on { background: #fde68a; box-shadow: 0 4px 0 #f59e0b; }
+        .num button.mal { background: #fecaca; }

@@ -1,0 +1,14 @@
+        .votos { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; padding: 8px; border-radius: 16px; background: #f1f5f9; font-size: 26px; }
+        .votos span.tachado { opacity: .25; }
+        .graf { display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: 10px; align-items: end; height: 230px; margin-top: 10px; padding: 8px; border-left: 3px solid #475569; border-bottom: 3px solid #475569; }
+        .col { display: flex; flex-direction: column-reverse; align-items: center; gap: 2px; height: 100%; border-radius: 10px; }
+        .col i { width: 70%; height: 18px; border-radius: 4px; background: var(--c); }
+        .col.drop { background: #f8fafc; outline: 2px dashed #cbd5e1; }
+        .etq { display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: 10px; font-size: 30px; text-align: center; padding-left: 11px; }
+        .etq b { display: block; font: 800 18px "Baloo 2", sans-serif; color: #334155; }
+        .bloqs { display: flex; justify-content: center; gap: 12px; margin-top: 10px; }
+        .bloqs .src { width: 46px; height: 30px; border-radius: 6px; background: var(--c); cursor: grab; box-shadow: 0 4px 0 #0002; }
+        .tabla { margin: 8px auto; border-collapse: separate; border-spacing: 4px; font: 800 22px "Baloo 2", sans-serif; }
+        .tabla td, .tabla th { padding: 8px 12px; border-radius: 10px; background: #f1f5f9; text-align: center; }
+        .tabla th { background: #e0e7ff; }
+        .answers { max-width: 460px; margin: 10px auto 0; }

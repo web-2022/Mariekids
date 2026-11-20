@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../assets/mk-juegos.css" />
-    <link rel="stylesheet" href="../../assets/mk-peques.css?v=3" />
+    <link rel="stylesheet" href="../../assets/mk-peques.css?v=4" />
     <style>
         body { background: #f5f3ff; }
         .linea { display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: 8px; margin-top: 8px; }
@@ -56,7 +56,7 @@
         </div>
     </div>
     <script src="../../assets/mk-juegos.js?v=2"></script>
-    <script src="../../assets/mk-peques.js?v=3"></script>
+    <script src="../../assets/mk-peques.js?v=4"></script>
     <script>
         /* 🌅 MI DÍA: secuencia temporal (mañana, tarde, noche y la rutina del día) y días de la semana. */
         const SEC = {
@@ -76,10 +76,16 @@
             { n: 2, name: "Nivel 2", desc: "Días de la semana (5)", cls: "lv2", sec: "dias", k: 5 },
             { n: 3, name: "Nivel 3", desc: "Meses del año", cls: "lv3", sec: "meses", k: 4 }
         ];
+        const NIV6 = [
+            { n: 1, name: "Nivel 1", desc: "Días de la semana (7)", cls: "lv1", sec: "dias", k: 5 },
+            { n: 2, name: "Nivel 2", desc: "Meses del año", cls: "lv2", sec: "meses", k: 5 },
+            { n: 3, name: "Nivel 3", desc: "Calendario: ¿qué día será?", cls: "lv3", sec: "calendario" }
+        ];
         MKP.juego({
-            clave: "rutina", rondas: 4, icono: "🌅", niveles: NIV, niveles4: NIV, niveles5: NIV5,
+            clave: "rutina", rondas: 4, icono: "🌅", niveles: NIV, niveles4: NIV, niveles5: NIV5, niveles6: NIV6,
             ronda(nv, i, listo) {
                 primera = true; listoFn = listo; puestos = 0;
+                if (nv.sec === "calendario") { calendario(i); return; }
                 const todo = SEC[nv.sec];
                 if (nv.sec === "momentos") orden = todo.slice();
                 else if (nv.sec === "dias" || nv.sec === "meses") { const a = MKJ.rnd(0, todo.length - nv.k); orden = todo.slice(a, a + nv.k); }
@@ -93,6 +99,21 @@
                 document.getElementById("oir").onclick = () => MKP.decir(t); MKP.decir(t);
             }
         });
+        const DIAS = ["lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"];
+        function calendario(i) {
+            const hoy = MKJ.rnd(0, 6), n = MKJ.rnd(1, 9), atras = i % 3 === 2, r = ((hoy + (atras ? -n : n)) % 7 + 7) % 7;
+            const opts = MKJ.shuffle([r, (r + 1) % 7, (r + 6) % 7]);
+            const t = atras ? `Hoy es ${DIAS[hoy]}. ¿Qué día fue hace ${n} días?` : `Hoy es ${DIAS[hoy]}. ¿Qué día será en ${n} días?`;
+            document.getElementById("card").innerHTML = `<p class="task">${t.replace(DIAS[hoy], `<span class="big">${DIAS[hoy]}</span>`)} <button class="again" id="oir" type="button">🔊</button></p>
+                <p class="sub">${DIAS.map((d, k) => k === hoy ? `<b>${d}</b>` : d).join(" · ")}</p>
+                <div class="monton">${opts.map(o => `<button class="tarjeta" data-r="${o}" type="button" style="cursor:pointer;border:0"><span class="e">📅</span><small>${DIAS[o]}</small></button>`).join("")}</div>`;
+            document.querySelectorAll("[data-r]").forEach(b => b.onclick = () => {
+                if (b.dataset.done) return;
+                if (+b.dataset.r === r) { document.querySelectorAll("[data-r]").forEach(x => x.dataset.done = 1); MKJ.sound("ok"); MKP.aviso("¡Sí!", true); MKP.decir("¡Muy bien! " + DIAS[r]); listoFn(primera); }
+                else { primera = false; MKJ.sound("error"); b.classList.remove("mal"); void b.offsetWidth; b.classList.add("mal"); MKP.decir("Cuenta los días uno por uno"); }
+            });
+            document.getElementById("oir").onclick = () => MKP.decir(t); MKP.decir(t);
+        }
         function poner(c, d) {
             if (d.querySelector(".tarjeta")) return false;
             if (c.dataset.k !== d.dataset.k) { primera = false; MKJ.sound("error"); c.classList.remove("mal"); void c.offsetWidth; c.classList.add("mal"); MKP.decir(+d.dataset.k === 0 ? "¿Qué va primero?" : "Eso va en otro lugar"); return false; }

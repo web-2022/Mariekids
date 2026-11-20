@@ -1,0 +1,10 @@
+        .grid { display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: 3px; max-width: 330px; margin: 6px auto 0; }
+        .celda { aspect-ratio: 1; border-radius: 8px; background: #e0f2fe; display: grid; place-items: center; font-size: clamp(20px, 6vw, 34px); position: relative; }
+        .celda.muro { background: #475569; }
+        .celda.paso { background: #bbf7d0; }
+        .celda .co { position: absolute; top: 1px; left: 3px; font: 800 10px "Nunito", sans-serif; color: #64748b; }
+        .prog { min-height: 46px; display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; margin-top: 10px; padding: 6px; border-radius: 14px; background: #f1f5f9; font-size: 26px; }
+        .flechas { display: flex; justify-content: center; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+        .flechas button { width: 60px; height: 56px; border: 0; border-radius: 14px; font-size: 28px; background: linear-gradient(180deg, #17aaff, #087fe9); box-shadow: 0 5px 0 #0864b5; color: #fff; }
+        .flechas .x { background: #fee2e2; box-shadow: 0 5px 0 #fca5a5; color: #991b1b; font-size: 18px; width: auto; padding: 0 12px; }
+        .flechas .go { background: linear-gradient(180deg, #69d900, #4eb700); box-shadow: 0 5px 0 #378f00; font-size: 18px; width: auto; padding: 0 16px; }

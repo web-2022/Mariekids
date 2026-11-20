@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../assets/mk-juegos.css" />
-    <link rel="stylesheet" href="../../assets/mk-peques.css?v=3" />
+    <link rel="stylesheet" href="../../assets/mk-peques.css?v=4" />
     <style>
         body { background: #ecfeff; }
         .reloj { width: 260px; max-width: 80vw; margin: 4px auto 0; display: block; }
@@ -54,7 +54,7 @@
         </div>
     </div>
     <script src="../../assets/mk-juegos.js?v=2"></script>
-    <script src="../../assets/mk-peques.js?v=3"></script>
+    <script src="../../assets/mk-peques.js?v=4"></script>
     <script>
         /* ⏰ EL RELOJ: leer la hora en punto e y media; poner la hora tocando el número. */
         const R = MKJ.rnd;
@@ -72,17 +72,22 @@
             s += `<g class="aguja" id="aM" style="transform:rotate(${am}deg)"><line x1="100" y1="100" x2="100" y2="24" stroke="#1e3a8a" stroke-width="5" stroke-linecap="round"/></g>`;
             return s + `<circle cx="100" cy="100" r="7" fill="#0f172a"/></svg>`;
         }
-        const txtHora = (hh, mm) => mm ? `${hh} y media` : `${hh} en punto`;
+        const txtHora = (hh, mm) => mm === 30 ? `${hh} y media` : mm === 15 ? `${hh} y cuarto` : mm === 45 ? `${hh % 12 + 1} menos cuarto` : `${hh} en punto`;
         const NIV = [
             { n: 1, name: "Nivel 1", desc: "¿Qué hora es? (en punto)", cls: "lv1", modo: "leer", media: false },
             { n: 2, name: "Nivel 2", desc: "Pon la hora: toca el número", cls: "lv2", modo: "poner" },
             { n: 3, name: "Nivel 3", desc: "En punto e y media", cls: "lv3", modo: "leer", media: true }
         ];
+        const NIV6 = [
+            { n: 1, name: "Nivel 1", desc: "En punto e y media", cls: "lv1", modo: "leer", media: true },
+            { n: 2, name: "Nivel 2", desc: "Pon la hora: toca el número", cls: "lv2", modo: "poner" },
+            { n: 3, name: "Nivel 3", desc: "Y cuarto, y media y menos cuarto", cls: "lv3", modo: "leer", cuartos: true }
+        ];
         MKP.juego({
-            clave: "reloj", rondas: 6, icono: "⏰", niveles: NIV, niveles4: NIV, niveles5: NIV,
+            clave: "reloj", rondas: 6, icono: "⏰", niveles: NIV, niveles4: NIV, niveles5: NIV, niveles6: NIV6,
             ronda(nv, i, listo) {
                 primera = true; fin = false; listoFn = listo;
-                h = R(1, 12); m = nv.media && i % 2 ? 30 : 0;
+                h = R(1, 12); m = nv.cuartos ? MKJ.pick([0, 15, 30, 45]) : nv.media && i % 2 ? 30 : 0;
                 if (nv.modo === "poner") {
                     puesta = 12;
                     document.getElementById("card").innerHTML = `<p class="task">Pon el reloj a las <span class="big">${h}</span> en punto <button class="again" id="oir" type="button">🔊</button></p>
@@ -97,11 +102,11 @@
                     const t = `Pon el reloj a las ${h} en punto`;
                     document.getElementById("oir").onclick = () => MKP.decir(t); MKP.decir(t); return;
                 }
-                const otras = MKJ.shuffle([[h % 12 + 1, m], [(h + 10) % 12 + 1, m], [h, m ? 0 : 30], [(h + 5) % 12 + 1, m ? 0 : 30]].filter(x => nv.media || !x[1])).slice(0, 2);
+                const otras = nv.cuartos ? MKJ.shuffle([[h, (m + 15) % 60], [h % 12 + 1, m], [h, (m + 30) % 60]]).slice(0, 2) : MKJ.shuffle([[h % 12 + 1, m], [(h + 10) % 12 + 1, m], [h, m ? 0 : 30], [(h + 5) % 12 + 1, m ? 0 : 30]].filter(x => nv.media || !x[1])).slice(0, 2);
                 const opts = MKJ.shuffle([[h, m], ...otras]);
                 document.getElementById("card").innerHTML = `<p class="task">¿Qué hora es? <button class="again" id="oir" type="button">🔊</button></p>
                     ${reloj(h, m)}
-                    <div class="answers">${opts.map(o => `<button class="answer hora" data-h="${o[0]}" data-m="${o[1]}" type="button">${o[0]}:${o[1] ? "30" : "00"}</button>`).join("")}</div>`;
+                    <div class="answers">${opts.map(o => `<button class="answer hora" data-h="${o[0]}" data-m="${o[1]}" type="button">${o[0]}:${String(o[1]).padStart(2, "0")}</button>`).join("")}</div>`;
                 document.querySelectorAll(".answer").forEach(b => b.onclick = () => {
                     if (fin) return;
                     if (+b.dataset.h === h && +b.dataset.m === m) { fin = true; b.classList.add("right"); MKJ.sound("ok"); MKP.decir(`¡Muy bien! Son las ${txtHora(h, m)}`); listoFn(primera); }

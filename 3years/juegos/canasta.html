@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../assets/mk-juegos.css" />
-    <link rel="stylesheet" href="../../assets/mk-peques.css?v=3" />
+    <link rel="stylesheet" href="../../assets/mk-peques.css?v=4" />
     <style>
         body { background: #e3f8d4; }
         .tree { position: relative; min-height: 150px; padding: 18px 10px 10px; border-radius: 50% 50% 24px 24px / 60% 60% 24px 24px; background: radial-gradient(circle at 50% 30%, #86efac, #22c55e); display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 6px; }
@@ -55,7 +55,7 @@
         </div>
     </div>
     <script src="../../assets/mk-juegos.js?v=2"></script>
-    <script src="../../assets/mk-peques.js?v=3"></script>
+    <script src="../../assets/mk-peques.js?v=4"></script>
     <script>
         /* 🧺 LLENA LA CANASTA: cantidad ↔ número. Arrastra frutas a la canasta; cuenta en voz alta. */
         const R = MKJ.rnd, P = MKJ.pick;
@@ -67,6 +67,11 @@
                 { n: 1, name: "Nivel 1", desc: "Pon de 1 a 5 frutas", cls: "lv1", max: 5 },
                 { n: 2, name: "Nivel 2", desc: "Pon de 1 a 6 frutas", cls: "lv2", max: 6 },
                 { n: 3, name: "Nivel 3", desc: "Pon de 1 a 10 frutas", cls: "lv3", max: 10 }
+            ],
+            niveles6: [
+                { n: 1, name: "Nivel 1", desc: "Sumas hasta 20", cls: "lv1", max: 20, modo: "suma" },
+                { n: 2, name: "Nivel 2", desc: "Restas hasta 20", cls: "lv2", max: 20, modo: "resta" },
+                { n: 3, name: "Nivel 3", desc: "Problemas para escuchar hasta 20", cls: "lv3", max: 20, modo: "oral" }
             ],
             niveles5: [
                 { n: 1, name: "Nivel 1", desc: "Sumas hasta 15", cls: "lv1", max: 15, modo: "suma" },

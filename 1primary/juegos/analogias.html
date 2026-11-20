@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <title>MK Analogías y operadores · 1.º de Primaria</title>
+    <meta name="theme-color" content="#0b73ff" />
+    <meta name="apple-mobile-web-app-title" content="MK" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../icons/icon-192.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/mk-juegos.css" />
+    <link rel="stylesheet" href="../../assets/mk-peques.css?v=4" />
+    <style>
+        body { background: #f5f3ff; }
+        .filas { display: grid; gap: 8px; max-width: 420px; margin: 8px auto 0; }
+        .fila { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 10px; padding: 8px; border-radius: 16px; background: #f1f5f9; font: 800 34px "Baloo 2", sans-serif; color: #1e3a8a; }
+        .fila .fl { font-size: 26px; color: #64748b; }
+        .fila.preg { background: #fef3c7; }
+        .op { margin: 8px auto; padding: 8px 14px; max-width: 420px; border-radius: 16px; background: #ede9fe; font: 800 24px "Baloo 2", sans-serif; color: #5b21b6; }
+        .answers { max-width: 460px; margin: 12px auto 0; }
+
+    </style>
+</head>
+<body>
+    <!-- GENERADO por tools/juegos3/build.py — edita tools/juegos3/analogias.css / analogias.js -->
+    <div class="bar">
+        <a class="pill" href="../juegos1P.html" aria-label="Volver a los juegos">⬅<span class="txt"> Juegos</span></a>
+        <h1>🔤 Analogías y operadores</h1>
+        <button class="pill" id="soundBtn" type="button" aria-label="Sonido">🔊</button>
+    </div>
+    <div class="hud" aria-live="polite"><span id="hudLevel">Nivel 1</span><span id="hudQ"></span><span id="hudOk">⭐ 0</span></div>
+    <main class="stage"><div class="card" id="card"></div></main>
+    <div class="overlay show" id="startScreen">
+        <div class="panel">
+            <h2>🔤 Analogías y operadores</h2>
+            <p>Descubre la regla secreta.</p>
+            <div class="levels" id="levels"></div>
+        </div>
+    </div>
+    <div class="overlay" id="endScreen">
+        <div class="panel">
+            <h2>¡Muy bien! 🎉</h2>
+            <div class="stars-big" id="endStars">⭐⭐⭐</div>
+            <p id="endText"></p>
+            <div class="row">
+                <button class="big-btn alt" id="menuBtn" type="button">📋 Niveles</button>
+                <button class="big-btn" id="nextBtn" type="button">▶ Siguiente</button>
+            </div>
+        </div>
+    </div>
+    <script src="../../assets/mk-juegos.js?v=2"></script>
+    <script src="../../assets/mk-peques.js?v=4"></script>
+    <script>
+        /* 🔤 ANALOGÍAS Y OPERADORES: descubre la regla. 2 → 4, 3 → 6, 5 → ? · a ★ b = a + b + 1. Temas 41–43. */
+        const R = MKJ.rnd, P = MKJ.pick;
+        let resp = 0, primera = true, listoFn = null;
+        const REGLAS1 = [["+1", x => x + 1], ["+2", x => x + 2], ["+3", x => x + 3], ["−1", x => x - 1], ["+10", x => x + 10]];
+        const REGLAS2 = [["el doble", x => 2 * x], ["el doble más 1", x => 2 * x + 1], ["+5", x => x + 5], ["−2", x => x - 2], ["×3", x => 3 * x], ["+ sí mismo y −1", x => 2 * x - 1]];
+        const OPS = [["a ★ b = a + b + 1", (a, b) => a + b + 1], ["a ■ b = a + a + b", (a, b) => 2 * a + b], ["a ▲ b = a × b", (a, b) => a * b], ["a ● b = a + b − 2", (a, b) => a + b - 2], ["a ♦ b = a × 2 − b", (a, b) => 2 * a - b]];
+        const NIV = [
+            { n: 1, name: "Nivel 1", desc: "Descubre la regla: 2 → 3, 5 → 6", cls: "lv1", reglas: REGLAS1 },
+            { n: 2, name: "Nivel 2", desc: "Reglas difíciles: el doble, ×3…", cls: "lv2", reglas: REGLAS2 },
+            { n: 3, name: "Nivel 3", desc: "Operadores especiales ★ ■ ▲", cls: "lv3", ops: true }
+        ];
+        MKP.juego({
+            clave: "analogias1p", rondas: 6, icono: "🔤", niveles: NIV,
+            ronda(nv, i, listo) {
+                primera = true; listoFn = listo;
+                let html, t;
+                if (nv.ops) {
+                    const [txt, f] = P(OPS), a = R(2, 6), b = R(1, Math.min(a, 5)), e1 = [R(1, 5), R(1, 4)];
+                    resp = f(a, b);
+                    const s = txt[2];
+                    html = `<p class="task">Descubre el operador <button class="again" id="oir" type="button">🔊</button></p><div class="op">${txt}</div>
+                        <div class="filas"><div class="fila"><span>${e1[0]} ${s} ${e1[1]}</span><span class="fl">=</span><span>${f(e1[0], e1[1])}</span></div><div class="fila preg"><span>${a} ${s} ${b}</span><span class="fl">=</span><span>?</span></div></div>`;
+                    t = `Mira la regla del operador. ¿Cuánto es ${a} ${s === "★" ? "estrella" : s === "■" ? "cuadrado" : s === "▲" ? "triángulo" : s === "●" ? "círculo" : "rombo"} ${b}?`;
+                } else {
+                    const [nom, f] = P(nv.reglas), xs = MKJ.shuffle([2, 3, 4, 5, 6, 7, 8, 9]).slice(0, 3);
+                    resp = f(xs[2]);
+                    html = `<p class="task">¿Qué número sigue la regla? <button class="again" id="oir" type="button">🔊</button></p>
+                        <div class="filas">${xs.map((x, k) => `<div class="fila${k === 2 ? " preg" : ""}"><span>${x}</span><span class="fl">➡️</span><span>${k === 2 ? "?" : f(x)}</span></div>`).join("")}</div>`;
+                    t = `${xs[0]} se convierte en ${f(xs[0])}, ${xs[1]} en ${f(xs[1])}. ¿${xs[2]} en cuánto?`;
+                }
+                const opts = MKJ.shuffle([...new Set([resp, resp + 1, resp - 1, resp + 2])].slice(0, 3));
+                document.getElementById("card").innerHTML = html + `<div class="answers">${opts.map(o => `<button class="answer" type="button">${o}</button>`).join("")}</div>`;
+                document.querySelectorAll(".answer").forEach(b => b.onclick = () => {
+                    if (b.dataset.done) return;
+                    if (+b.textContent === resp) { document.querySelectorAll(".answer").forEach(x => x.dataset.done = 1); b.classList.add("right"); MKJ.sound("ok"); MKP.decir("¡Muy bien! Es " + resp); listoFn(primera); }
+                    else { primera = false; b.classList.add("wrong"); MKJ.sound("error"); MKP.decir("Mira qué le pasa al primer número"); }
+                });
+                document.getElementById("oir").onclick = () => MKP.decir(t); MKP.decir(t);
+            }
+        });
+        window.__juego = { get resp() { return resp; } };
+
+    </script>
+</body>
+</html>

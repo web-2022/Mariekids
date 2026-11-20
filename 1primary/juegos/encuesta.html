@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <title>MK Encuesta de la clase · 1.º de Primaria</title>
+    <meta name="theme-color" content="#0b73ff" />
+    <meta name="apple-mobile-web-app-title" content="MK" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../icons/icon-192.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/mk-juegos.css" />
+    <link rel="stylesheet" href="../../assets/mk-peques.css?v=4" />
+    <style>
+        body { background: #f0fdf4; }
+        .votos { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; padding: 8px; border-radius: 16px; background: #f1f5f9; font-size: 26px; }
+        .votos span.tachado { opacity: .25; }
+        .graf { display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: 10px; align-items: end; height: 230px; margin-top: 10px; padding: 8px; border-left: 3px solid #475569; border-bottom: 3px solid #475569; }
+        .col { display: flex; flex-direction: column-reverse; align-items: center; gap: 2px; height: 100%; border-radius: 10px; }
+        .col i { width: 70%; height: 18px; border-radius: 4px; background: var(--c); }
+        .col.drop { background: #f8fafc; outline: 2px dashed #cbd5e1; }
+        .etq { display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: 10px; font-size: 30px; text-align: center; padding-left: 11px; }
+        .etq b { display: block; font: 800 18px "Baloo 2", sans-serif; color: #334155; }
+        .bloqs { display: flex; justify-content: center; gap: 12px; margin-top: 10px; }
+        .bloqs .src { width: 46px; height: 30px; border-radius: 6px; background: var(--c); cursor: grab; box-shadow: 0 4px 0 #0002; }
+        .tabla { margin: 8px auto; border-collapse: separate; border-spacing: 4px; font: 800 22px "Baloo 2", sans-serif; }
+        .tabla td, .tabla th { padding: 8px 12px; border-radius: 10px; background: #f1f5f9; text-align: center; }
+        .tabla th { background: #e0e7ff; }
+        .answers { max-width: 460px; margin: 10px auto 0; }
+
+    </style>
+</head>
+<body>
+    <!-- GENERADO por tools/juegos3/build.py — edita tools/juegos3/encuesta.css / encuesta.js -->
+    <div class="bar">
+        <a class="pill" href="../juegos1P.html" aria-label="Volver a los juegos">⬅<span class="txt"> Juegos</span></a>
+        <h1>📊 Encuesta de la clase</h1>
+        <button class="pill" id="soundBtn" type="button" aria-label="Sonido">🔊</button>
+    </div>
+    <div class="hud" aria-live="polite"><span id="hudLevel">Nivel 1</span><span id="hudQ"></span><span id="hudOk">⭐ 0</span></div>
+    <main class="stage"><div class="card" id="card"></div></main>
+    <div class="overlay show" id="startScreen">
+        <div class="panel">
+            <h2>📊 Encuesta de la clase</h2>
+            <p>Arma y lee gráficos de barras y tablas.</p>
+            <div class="levels" id="levels"></div>
+        </div>
+    </div>
+    <div class="overlay" id="endScreen">
+        <div class="panel">
+            <h2>¡Muy bien! 🎉</h2>
+            <div class="stars-big" id="endStars">⭐⭐⭐</div>
+            <p id="endText"></p>
+            <div class="row">
+                <button class="big-btn alt" id="menuBtn" type="button">📋 Niveles</button>
+                <button class="big-btn" id="nextBtn" type="button">▶ Siguiente</button>
+            </div>
+        </div>
+    </div>
+    <script src="../../assets/mk-juegos.js?v=2"></script>
+    <script src="../../assets/mk-peques.js?v=4"></script>
+    <script>
+        /* 📊 ENCUESTA DE LA CLASE: organizar datos, gráficos de barras y tablas de doble entrada. Temas 57–58. */
+        const R = MKJ.rnd, P = MKJ.pick;
+        const TEMAS = [["🍎", "🍌", "🍇", "🍓"], ["⚽", "🏀", "🏐", "🎾"], ["🐶", "🐱", "🐰", "🐢"], ["🍦", "🍫", "🍰", "🍪"]];
+        const COL = ["#ef4444", "#eab308", "#8b5cf6", "#22c55e"];
+        let cats = [], cuenta = [], hechos = [], primera = true, listoFn = null, fase = "";
+        const NIV = [
+            { n: 1, name: "Nivel 1", desc: "Arma el gráfico de barras", cls: "lv1", modo: "armar", k: 3 },
+            { n: 2, name: "Nivel 2", desc: "Lee el gráfico: ¿cuántos más?", cls: "lv2", modo: "leer", k: 4 },
+            { n: 3, name: "Nivel 3", desc: "Tablas de doble entrada", cls: "lv3", modo: "tabla" }
+        ];
+        MKP.juego({
+            clave: "encuesta1p", rondas: 4, icono: "📊", pausa: 2200, niveles: NIV,
+            ronda(nv, i, listo) {
+                primera = true; listoFn = listo;
+                if (nv.modo === "tabla") { tabla(); return; }
+                cats = P(TEMAS).slice(0, nv.k);
+                do { cuenta = cats.map(() => R(1, nv.modo === "armar" ? 6 : 9)); } while (new Set(cuenta).size < cats.length);
+                if (nv.modo === "armar") { hechos = cats.map(() => 0); armar(); } else leer();
+            }
+        });
+        function grafico(vals, drop) {
+            return `<div class="graf" style="--n:${cats.length}">${cats.map((c, k) => `<div class="col${drop ? " drop" : ""}" ${drop ? `data-drop="col" data-k="${k}"` : ""} style="--c:${COL[k]}">${"<i></i>".repeat(vals[k])}</div>`).join("")}</div>
+                <div class="etq" style="--n:${cats.length}">${cats.map((c, k) => `<span>${c}${drop ? "" : `<b>${vals[k]}</b>`}</span>`).join("")}</div>`;
+        }
+        function armar() {
+            const votos = MKJ.shuffle(cats.flatMap((c, k) => Array(cuenta[k]).fill(c)));
+            document.getElementById("card").innerHTML = `<p class="task">Los niños votaron por su favorito. ¡Arma el gráfico! <button class="again" id="oir" type="button">🔊</button></p>
+                <div class="votos">${votos.map(v => `<span>${v}</span>`).join("")}</div>
+                ${grafico(hechos, true)}
+                <div class="bloqs">${cats.map((c, k) => `<span class="src" data-k="${k}" style="--c:${COL[k]}" title="${c}"></span>`).join("")}</div>
+                <p class="sub">Arrastra un bloque de color a su columna por cada voto. Toca una columna para quitar un bloque.</p>
+                <div class="tools"><button class="big-btn" id="ok" type="button">✅ ¡Listo!</button></div>`;
+            document.querySelectorAll(".src").forEach(s => MKP.arrastrar(s, { alSoltar: d => { if (+d.dataset.k !== +s.dataset.k) { MKJ.sound("error"); MKP.decir("Ese color va en otra columna"); return false; } hechos[+s.dataset.k]++; MKJ.sound("moneda"); MKP.contar(hechos[+s.dataset.k]); armar(); return true; } }));
+            document.querySelectorAll(".col").forEach(c => c.onclick = () => { const k = +c.dataset.k; if (hechos[k] > 0) { hechos[k]--; armar(); } });
+            document.getElementById("ok").onclick = () => {
+                if (hechos.every((h, k) => h === cuenta[k])) {
+                    const max = Math.max(...cuenta), gana = cats[cuenta.indexOf(max)];
+                    MKJ.sound("ok"); pregunta(`¡Gráfico listo! ¿Cuál ganó?`, gana, cats, `Ganó ${gana} con ${max} votos`);
+                } else { primera = false; MKJ.sound("error"); MKP.decir("Cuenta otra vez los votos de cada uno"); }
+            };
+            const t = "Cuenta los votos y arma el gráfico de barras"; document.getElementById("oir").onclick = () => MKP.decir(t);
+            if (!hechos.some(Boolean)) MKP.decir(t);
+        }
+        function leer() {
+            let [a, b] = MKJ.shuffle([0, 1, 2, 3].slice(0, cats.length)).slice(0, 2);
+            if (cuenta[a] < cuenta[b]) [a, b] = [b, a];
+            const dif = cuenta[a] - cuenta[b];
+            document.getElementById("card").innerHTML = `<p class="task">¿Cuántos más eligieron ${cats[a]} que ${cats[b]}? <button class="again" id="oir" type="button">🔊</button></p>${grafico(cuenta, false)}<div id="preg"></div>`;
+            const t = "Mira el gráfico. ¿Cuántos más eligieron el primero que el segundo?"; document.getElementById("oir").onclick = () => MKP.decir(t); MKP.decir(t);
+            opciones(dif, [dif, dif + 1, dif + 2, Math.max(0, dif - 1)], `${cuenta[a]} menos ${cuenta[b]} es ${dif}`);
+        }
+        function tabla() {
+            const fr = P(TEMAS).slice(0, 3), filas = [["👦", "Niños"], ["👧", "Niñas"]], d = filas.map(() => fr.map(() => R(1, 9)));
+            const f = R(0, 1), c = R(0, 2), tipo = R(0, 2);
+            let preg, resp;
+            if (tipo === 0) { preg = `¿Cuántos ${filas[f][1].toLowerCase()} prefieren ${fr[c]}?`; resp = d[f][c]; }
+            else if (tipo === 1) { preg = `¿Cuántos niños y niñas en total prefieren ${fr[c]}?`; resp = d[0][c] + d[1][c]; }
+            else { preg = `¿Cuántos ${filas[f][1].toLowerCase()} votaron en total?`; resp = d[f].reduce((a, b) => a + b); }
+            document.getElementById("card").innerHTML = `<p class="task">${preg} <button class="again" id="oir" type="button">🔊</button></p>
+                <table class="tabla"><tr><th></th>${fr.map(x => `<th>${x}</th>`).join("")}</tr>${filas.map((r, j) => `<tr><th>${r[0]} ${r[1]}</th>${d[j].map(v => `<td>${v}</td>`).join("")}</tr>`).join("")}</table><div id="preg"></div>`;
+            document.getElementById("oir").onclick = () => MKP.decir(preg); MKP.decir(preg);
+            opciones(resp, [resp, resp + 1, resp - 1 || resp + 2, resp + 3], "La respuesta es " + resp);
+        }
+        function pregunta(t, resp, ops, voz) {
+            document.getElementById("card").insertAdjacentHTML("beforeend", `<p class="task" style="margin-top:12px">${t}</p><div class="answers" id="ans">${MKJ.shuffle(ops.slice()).map(o => `<button class="answer" type="button" style="font-size:40px">${o}</button>`).join("")}</div>`);
+            document.querySelector(".tools").remove();
+            MKP.decir(t); enlazar(resp, voz);
+        }
+        function opciones(resp, ops, voz) {
+            document.getElementById("preg").innerHTML = `<div class="answers">${MKJ.shuffle([...new Set(ops)].slice(0, 3)).map(o => `<button class="answer" type="button">${o}</button>`).join("")}</div>`;
+            enlazar(resp, voz);
+        }
+        function enlazar(resp, voz) {
+            document.querySelectorAll(".answer").forEach(b => b.onclick = () => {
+                if (b.dataset.done) return;
+                if (b.textContent === String(resp)) { document.querySelectorAll(".answer").forEach(x => x.dataset.done = 1); b.classList.add("right"); MKJ.sound("ok"); MKP.decir("¡Muy bien! " + voz); listoFn(primera); }
+                else { primera = false; b.classList.add("wrong"); MKJ.sound("error"); MKP.decir("Mira bien los datos"); }
+            });
+        }
+        window.__juego = { get cuenta() { return cuenta; }, get hechos() { return hechos; } };
+
+    </script>
+</body>
+</html>

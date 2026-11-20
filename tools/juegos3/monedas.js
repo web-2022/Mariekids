@@ -8,8 +8,8 @@
             { n: 3, name: "Nivel 3", desc: "Paga con monedas de 1, 2 y 5 soles", cls: "lv3", modo: "paga", vals: [1, 2, 5], max: 10 }
         ];
         const moneda = v => v >= 10 ? `<div class="moneda billete b${v}" data-v="${v}"><span><b>${v}</b>soles</span></div>` : `<div class="moneda m${v}" data-v="${v}"><span><b>${v}</b>${v === 1 ? "sol" : "soles"}</span></div>`;
-        function vuelto() {
-            const pago = MKJ.pick([5, 10, 10, 20]), precio = R(1, pago - 1), v = pago - precio, prod = P(PROD);
+        function vuelto(pagos) {
+            const pago = MKJ.pick(pagos || [5, 10, 10, 20]), precio = R(1, pago - 1), v = pago - precio, prod = P(PROD);
             meta = v;
             const opts = MKJ.shuffle([...new Set([v, v + 1, Math.max(0, v - 1), v + 2])].slice(0, 3));
             document.getElementById("card").innerHTML = `<p class="task">¿Cuánto es el vuelto? <button class="again" id="oir" type="button">🔊</button></p>
@@ -29,8 +29,13 @@
             { n: 2, name: "Nivel 2", desc: "Con billetes de 10 y 20 (hasta 40)", cls: "lv2", modo: "paga", vals: [1, 2, 5, 10, 20], max: 40 },
             { n: 3, name: "Nivel 3", desc: "¿Cuánto es el vuelto?", cls: "lv3", modo: "vuelto" }
         ];
+        const NIV6 = [
+            { n: 1, name: "Nivel 1", desc: "Paga hasta S/ 50 con monedas y billetes", cls: "lv1", modo: "paga", vals: [1, 2, 5, 10, 20], max: 50 },
+            { n: 2, name: "Nivel 2", desc: "Vuelto con 10 y 20 soles", cls: "lv2", modo: "vuelto", pagos: [10, 20] },
+            { n: 3, name: "Nivel 3", desc: "Vuelto con 50 soles", cls: "lv3", modo: "vuelto", pagos: [20, 50] }
+        ];
         MKP.juego({
-            clave: "monedas", rondas: 6, icono: "💰", niveles: NIV, niveles4: NIV, niveles5: NIV5,
+            clave: "monedas", rondas: 6, icono: "💰", niveles: NIV, niveles4: NIV, niveles5: NIV5, niveles6: NIV6,
             ronda(nv, i, listo) {
                 modo = nv.modo; primera = true; fin = false; listoFn = listo; total = 0;
                 if (modo === "conoce") {
@@ -41,7 +46,7 @@
                     const t = `Toca la moneda de ${MKP.NUM[meta]} ${meta === 1 ? "sol" : "soles"}`;
                     document.getElementById("oir").onclick = () => MKP.decir(t); MKP.decir(t); return;
                 }
-                if (modo === "vuelto") { vuelto(); return; }
+                if (modo === "vuelto") { vuelto(nv.pagos); return; }
                 valores = nv.vals; meta = R(nv.max > 20 ? 12 : 2, nv.max);
                 const prod = P(PROD);
                 document.getElementById("card").innerHTML = `<p class="task">Paga justo <button class="again" id="oir" type="button">🔊</button></p>

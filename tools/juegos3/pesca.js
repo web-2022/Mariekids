@@ -9,6 +9,11 @@
                 { n: 2, name: "Nivel 2", desc: "Números del 1 al 6", cls: "lv2", max: 6, peces: 4 },
                 { n: 3, name: "Nivel 3", desc: "Números del 1 al 10", cls: "lv3", max: 10, peces: 5 }
             ],
+            niveles6: [
+                { n: 1, name: "Nivel 1", desc: "Números hasta 200 (parecidos)", cls: "lv1", max: 200, peces: 5, cerca: true },
+                { n: 2, name: "Nivel 2", desc: "Hasta 500 (parecidos)", cls: "lv2", max: 500, peces: 6, cerca: true },
+                { n: 3, name: "Nivel 3", desc: "Hasta 999 (parecidos)", cls: "lv3", max: 999, peces: 6, cerca: true }
+            ],
             niveles5: [
                 { n: 1, name: "Nivel 1", desc: "Números hasta 30", cls: "lv1", max: 30, peces: 5 },
                 { n: 2, name: "Nivel 2", desc: "Números hasta 50 (parecidos)", cls: "lv2", max: 50, peces: 5, cerca: true },
@@ -22,7 +27,7 @@
             ronda(nv, i, listo) {
                 objetivo = R(1, nv.max); primera = true; hecho = false;
                 if (nv.cerca) objetivo = R(10, nv.max);
-                const pool = nv.cerca ? [...new Set([objetivo + 1, objetivo - 1, objetivo + 10, objetivo - 10, +(String(objetivo).split("").reverse().join("")), objetivo + 2, objetivo - 2, objetivo + 11])].filter(x => x !== objetivo && x >= 1 && x <= nv.max) : [...Array(nv.max).keys()].map(x => x + 1).filter(x => x !== objetivo);
+                const pool = nv.cerca ? [...new Set([objetivo + 1, objetivo - 1, objetivo + 10, objetivo - 10, +(String(objetivo).split("").reverse().join("")), objetivo + 2, objetivo - 2, objetivo + 11, objetivo + 100, objetivo - 100])].filter(x => x !== objetivo && x >= 1 && x <= nv.max) : [...Array(nv.max).keys()].map(x => x + 1).filter(x => x !== objetivo);
                 const nums = MKJ.shuffle(pool).slice(0, nv.peces - 1).concat(objetivo);
                 MKJ.shuffle(nums);
                 const card = document.getElementById("card");

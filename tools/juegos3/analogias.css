@@ -1,0 +1,6 @@
+        .filas { display: grid; gap: 8px; max-width: 420px; margin: 8px auto 0; }
+        .fila { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 10px; padding: 8px; border-radius: 16px; background: #f1f5f9; font: 800 34px "Baloo 2", sans-serif; color: #1e3a8a; }
+        .fila .fl { font-size: 26px; color: #64748b; }
+        .fila.preg { background: #fef3c7; }
+        .op { margin: 8px auto; padding: 8px 14px; max-width: 420px; border-radius: 16px; background: #ede9fe; font: 800 24px "Baloo 2", sans-serif; color: #5b21b6; }
+        .answers { max-width: 460px; margin: 12px auto 0; }

@@ -1,0 +1,12 @@
+        .rocket { display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .rocket .r { font-size: 56px; transition: transform 1.5s ease-in; }
+        .rocket .r.sube { transform: translateY(-400px) rotate(-10deg); }
+        .tanque { width: 160px; height: 22px; border-radius: 11px; background: #e2e8f0; overflow: hidden; }
+        .tanque i { display: block; height: 100%; background: linear-gradient(90deg, #f97316, #facc15); transition: width .4s; }
+        .fichas { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; max-width: 440px; margin: 12px auto 0; }
+        .ficha { aspect-ratio: 1; border: 0; border-radius: 18px; font: 800 34px "Baloo 2", sans-serif; color: #1e3a8a; background: #dbeafe; box-shadow: 0 5px 0 #93c5fd; cursor: pointer; }
+        .ficha.sel { background: #fde68a; box-shadow: 0 5px 0 #f59e0b; }
+        .ficha.usada { visibility: hidden; }
+        .ficha.mal { animation: sacude .4s; }
+        @keyframes sacude { 0%,100% { transform: translateX(0) } 25% { transform: translateX(-8px) } 75% { transform: translateX(8px) } }
+        .reloj { font: 800 20px "Nunito", sans-serif; color: #b91c1c; }

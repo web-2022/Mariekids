@@ -10,7 +10,7 @@
 (function () {
     "use strict";
     var $ = function (id) { return document.getElementById(id); };
-    var NUM = ["cero", "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve", "diez", "once", "doce", "trece", "catorce", "quince", "dieciséis", "diecisiete", "dieciocho", "diecinueve", "veinte"]; for (var _n = 21; _n <= 100; _n++) NUM[_n] = String(_n);
+    var NUM = ["cero", "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve", "diez", "once", "doce", "trece", "catorce", "quince", "dieciséis", "diecisiete", "dieciocho", "diecinueve", "veinte"]; for (var _n = 21; _n <= 999; _n++) NUM[_n] = String(_n);
     var _x;
 
     function decir(t) { MKJ.say(t); }
@@ -55,22 +55,24 @@
 
     /* ---------- Edad: ?edad=4 usa cfg.niveles4 y vuelve a «Juegos de 4 años» ---------- */
     var EDAD = +(new URLSearchParams(location.search).get("edad") || 3);
-    if (EDAD === 4 || EDAD === 5) {
+    if (EDAD >= 4) {
         document.addEventListener("DOMContentLoaded", fijarVolver); fijarVolver();
     }
     function fijarVolver() {
-        var a = document.querySelector('a.pill'); if (a) a.href = "../../" + EDAD + "years/juegos" + EDAD + "Y.html";
-        document.title = document.title.replace("3 años", EDAD + " años");
+        var a = document.querySelector('a.pill'); if (a) a.href = EDAD === 6 ? "../../1primary/juegos1P.html" : "../../" + EDAD + "years/juegos" + EDAD + "Y.html";
+        document.title = document.title.replace("3 años", EDAD === 6 ? "1.º de Primaria" : EDAD + " años");
     }
 
     /* ---------- Marco del juego ---------- */
     function juego(cfg) {
-        if (EDAD === 5 && cfg.niveles5) { cfg.niveles = cfg.niveles5; cfg.clave += "-5"; if (cfg.rondas5) cfg.rondas = cfg.rondas5; }
+        if (EDAD === 6 && cfg.niveles6) { cfg.niveles = cfg.niveles6; cfg.clave += "-6"; if (cfg.rondas6) cfg.rondas = cfg.rondas6; }
+        else if (EDAD >= 5 && cfg.niveles5) { cfg.niveles = cfg.niveles5; cfg.clave += "-5"; if (cfg.rondas5) cfg.rondas = cfg.rondas5; }
         else if (EDAD >= 4 && cfg.niveles4) { cfg.niveles = cfg.niveles4; cfg.clave += "-4"; if (cfg.rondas4) cfg.rondas = cfg.rondas4; }
-        var nivel = cfg.niveles[0], i = 0, ok = 0, fallos = 0, enCurso = false;
+        var nivel = cfg.niveles[0], i = 0, ok = 0, fallos = 0, enCurso = false, base = cfg.rondas;
+        function rondas() { return nivel.rondas || base; }
         function hud() {
             $("hudLevel").textContent = nivel.name;
-            $("hudQ").textContent = (cfg.icono || "⭐") + " " + Math.min(i + 1, cfg.rondas) + "/" + cfg.rondas;
+            $("hudQ").textContent = (cfg.icono || "⭐") + " " + Math.min(i + 1, rondas()) + "/" + rondas();
             $("hudOk").textContent = "⭐ " + ok;
         }
         function ronda() { hud(); cfg.ronda(nivel, i, listo); }
@@ -78,7 +80,7 @@
             if (!enCurso) return;
             if (primera) ok++; else fallos++;
             hud(); i++;
-            setTimeout(function () { if (!enCurso) return; if (i >= cfg.rondas) fin(); else ronda(); }, cfg.pausa || 1600);
+            setTimeout(function () { if (!enCurso) return; if (i >= rondas()) fin(); else ronda(); }, cfg.pausa || 1600);
         }
         function empezar(lv) { nivel = lv; i = 0; ok = 0; fallos = 0; enCurso = true; ocultar("startScreen"); ocultar("endScreen"); ronda(); }
         function fin() {
@@ -86,7 +88,7 @@
             var st = fallos <= 1 ? 3 : fallos <= 3 ? 2 : 1;
             MKJ.stars(cfg.clave + "-" + nivel.n, st);
             $("endStars").textContent = "⭐".repeat(st) + "☆".repeat(3 - st);
-            $("endText").textContent = "¡Lo hiciste muy bien! " + ok + " de " + cfg.rondas + " a la primera.";
+            $("endText").textContent = "¡Lo hiciste muy bien! " + ok + " de " + rondas() + " a la primera.";
             $("nextBtn").textContent = cfg.niveles[nivel.n] ? "▶ Siguiente nivel" : "🔁 Jugar otra vez";
             mostrar("endScreen"); MKJ.sound("gana"); MKJ.confetti(); decir("¡Muy bien! ¡Lo lograste!");
         }

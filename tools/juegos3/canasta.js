@@ -9,6 +9,11 @@
                 { n: 2, name: "Nivel 2", desc: "Pon de 1 a 6 frutas", cls: "lv2", max: 6 },
                 { n: 3, name: "Nivel 3", desc: "Pon de 1 a 10 frutas", cls: "lv3", max: 10 }
             ],
+            niveles6: [
+                { n: 1, name: "Nivel 1", desc: "Sumas hasta 20", cls: "lv1", max: 20, modo: "suma" },
+                { n: 2, name: "Nivel 2", desc: "Restas hasta 20", cls: "lv2", max: 20, modo: "resta" },
+                { n: 3, name: "Nivel 3", desc: "Problemas para escuchar hasta 20", cls: "lv3", max: 20, modo: "oral" }
+            ],
             niveles5: [
                 { n: 1, name: "Nivel 1", desc: "Sumas hasta 15", cls: "lv1", max: 15, modo: "suma" },
                 { n: 2, name: "Nivel 2", desc: "Restas hasta 15", cls: "lv2", max: 15, modo: "resta" },

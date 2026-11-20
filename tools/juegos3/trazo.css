@@ -1,0 +1,7 @@
+        .lienzo { max-width: 340px; margin: 6px auto 0; touch-action: none; }
+        .lienzo svg { width: 100%; height: auto; display: block; }
+        .lienzo .e { stroke: #cbd5e1; stroke-width: 6; stroke-dasharray: 10 8; stroke-linecap: round; }
+        .lienzo .e.us { stroke: #8b5cf6; stroke-dasharray: none; stroke-width: 9; }
+        .lienzo .v { fill: #fff; stroke: #334155; stroke-width: 4; cursor: pointer; }
+        .lienzo .v.act { fill: #f59e0b; }
+        .lienzo .v.ini { fill: #22c55e; }

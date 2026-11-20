@@ -12,6 +12,11 @@
                 { n: 2, name: "Nivel 2", desc: "4 parejas: número y número", cls: "lv2", p: 4, modo: "num", max: 6 },
                 { n: 3, name: "Nivel 3", desc: "Número con sus puntitos (hasta 10)", cls: "lv3", p: 4, modo: "puntos", max: 10 }
             ],
+            niveles6: [
+                { n: 1, name: "Nivel 1", desc: "Suma con su resultado (hasta 20)", cls: "lv1", p: 4, modo: "suma", max: 20 },
+                { n: 2, name: "Nivel 2", desc: "Sumas que valen lo mismo (hasta 20)", cls: "lv2", p: 4, modo: "igual", max: 20 },
+                { n: 3, name: "Nivel 3", desc: "Decenas y unidades", cls: "lv3", p: 4, modo: "decena", max: 99 }
+            ],
             niveles5: [
                 { n: 1, name: "Nivel 1", desc: "Resta con su resultado: 7 − 2 y 5", cls: "lv1", p: 4, modo: "resta", max: 10 },
                 { n: 2, name: "Nivel 2", desc: "Sumas que valen lo mismo: 3+4 y 5+2", cls: "lv2", p: 4, modo: "igual", max: 12 },

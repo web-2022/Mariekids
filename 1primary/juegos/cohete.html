@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <title>MK Cohete del 10 · 1.º de Primaria</title>
+    <meta name="theme-color" content="#0b73ff" />
+    <meta name="apple-mobile-web-app-title" content="MK" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../icons/icon-192.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/mk-juegos.css" />
+    <link rel="stylesheet" href="../../assets/mk-peques.css?v=4" />
+    <style>
+        body { background: #eef2ff; }
+        .rocket { display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .rocket .r { font-size: 56px; transition: transform 1.5s ease-in; }
+        .rocket .r.sube { transform: translateY(-400px) rotate(-10deg); }
+        .tanque { width: 160px; height: 22px; border-radius: 11px; background: #e2e8f0; overflow: hidden; }
+        .tanque i { display: block; height: 100%; background: linear-gradient(90deg, #f97316, #facc15); transition: width .4s; }
+        .fichas { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; max-width: 440px; margin: 12px auto 0; }
+        .ficha { aspect-ratio: 1; border: 0; border-radius: 18px; font: 800 34px "Baloo 2", sans-serif; color: #1e3a8a; background: #dbeafe; box-shadow: 0 5px 0 #93c5fd; cursor: pointer; }
+        .ficha.sel { background: #fde68a; box-shadow: 0 5px 0 #f59e0b; }
+        .ficha.usada { visibility: hidden; }
+        .ficha.mal { animation: sacude .4s; }
+        @keyframes sacude { 0%,100% { transform: translateX(0) } 25% { transform: translateX(-8px) } 75% { transform: translateX(8px) } }
+        .reloj { font: 800 20px "Nunito", sans-serif; color: #b91c1c; }
+
+    </style>
+</head>
+<body>
+    <!-- GENERADO por tools/juegos3/build.py — edita tools/juegos3/cohete.css / cohete.js -->
+    <div class="bar">
+        <a class="pill" href="../juegos1P.html" aria-label="Volver a los juegos">⬅<span class="txt"> Juegos</span></a>
+        <h1>🚀 Cohete del 10</h1>
+        <button class="pill" id="soundBtn" type="button" aria-label="Sonido">🔊</button>
+    </div>
+    <div class="hud" aria-live="polite"><span id="hudLevel">Nivel 1</span><span id="hudQ"></span><span id="hudOk">⭐ 0</span></div>
+    <main class="stage"><div class="card" id="card"></div></main>
+    <div class="overlay show" id="startScreen">
+        <div class="panel">
+            <h2>🚀 Cohete del 10</h2>
+            <p>Junta los números amigos para llenar el tanque.</p>
+            <div class="levels" id="levels"></div>
+        </div>
+    </div>
+    <div class="overlay" id="endScreen">
+        <div class="panel">
+            <h2>¡Muy bien! 🎉</h2>
+            <div class="stars-big" id="endStars">⭐⭐⭐</div>
+            <p id="endText"></p>
+            <div class="row">
+                <button class="big-btn alt" id="menuBtn" type="button">📋 Niveles</button>
+                <button class="big-btn" id="nextBtn" type="button">▶ Siguiente</button>
+            </div>
+        </div>
+    </div>
+    <script src="../../assets/mk-juegos.js?v=2"></script>
+    <script src="../../assets/mk-peques.js?v=4"></script>
+    <script>
+        /* 🚀 COHETE DEL 10: complementos (amigos del 10, 12, 15, 20, 30). Toca dos números que suman la meta. Temas 33–35. */
+        const R = MKJ.rnd, P = MKJ.pick;
+        let meta = 10, sel = null, pares = 0, primera = true, listoFn = null, nivelAct = null, tiempo = null;
+        const NIV = [
+            { n: 1, name: "Nivel 1", desc: "Amigos del 10", cls: "lv1", metas: [10] },
+            { n: 2, name: "Nivel 2", desc: "Amigos del 12 y del 15", cls: "lv2", metas: [12, 15] },
+            { n: 3, name: "Nivel 3", desc: "Amigos del 20 y del 30, ¡contra reloj!", cls: "lv3", metas: [20, 30], reloj: 40 }
+        ];
+        MKP.juego({
+            clave: "cohete1p", rondas: 4, icono: "🚀", pausa: 2200, niveles: NIV,
+            ronda(nv, i, listo) {
+                primera = true; listoFn = listo; sel = null; pares = 0; nivelAct = nv; clearInterval(tiempo);
+                meta = P(nv.metas);
+                const nums = [];
+                while (nums.length < 8) { const a = R(meta > 15 ? 3 : 1, meta - 1); nums.push(a, meta - a); }
+                document.getElementById("card").innerHTML = `<p class="task">Junta dos números que sumen <span class="big">${meta}</span> <button class="again" id="oir" type="button">🔊</button></p>
+                    <div class="rocket"><span class="r" id="r">🚀</span><div class="tanque"><i id="gas" style="width:0%"></i></div>${nv.reloj ? `<span class="reloj" id="seg">⏱️ ${nv.reloj}</span>` : ""}</div>
+                    <div class="fichas">${MKJ.shuffle(nums).map(n => `<button class="ficha" type="button">${n}</button>`).join("")}</div>`;
+                document.querySelectorAll(".ficha").forEach(f => f.onclick = () => tocar(f));
+                if (nv.reloj) { let s = nv.reloj; tiempo = setInterval(() => { s--; const e = document.getElementById("seg"); if (!e) { clearInterval(tiempo); return; } e.textContent = "⏱️ " + s; if (s <= 0) { clearInterval(tiempo); primera = false; MKP.decir("¡Se acabó el tiempo! Sigue intentando"); e.textContent = "⏱️ ¡tiempo!"; } }, 1000); }
+                const t = `Junta dos números que sumen ${meta}`; document.getElementById("oir").onclick = () => MKP.decir(t); MKP.decir(t);
+            }
+        });
+        function tocar(f) {
+            if (f.classList.contains("usada")) return;
+            if (!sel) { sel = f; f.classList.add("sel"); MKJ.sound("salto"); return; }
+            if (sel === f) { f.classList.remove("sel"); sel = null; return; }
+            const a = +sel.textContent, b = +f.textContent;
+            if (a + b === meta) {
+                sel.classList.add("usada"); f.classList.add("usada"); sel = null; pares++;
+                document.getElementById("gas").style.width = (pares * 25) + "%"; MKJ.sound("moneda"); MKP.decir(`${a} más ${b} es ${meta}`);
+                if (pares === 4) { clearInterval(tiempo); document.getElementById("r").classList.add("sube"); MKJ.sound("ok"); MKP.aviso("¡Despegue!", true); listoFn(primera); }
+            } else {
+                primera = false; MKJ.sound("error"); f.classList.add("mal"); setTimeout(() => f.classList.remove("mal"), 400);
+                sel.classList.remove("sel"); sel = null; MKP.decir(`${a} más ${b} es ${a + b}, no ${meta}`);
+            }
+        }
+        window.__juego = { get meta() { return meta; }, tocar };
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <title>MK La granja · 1.º de Primaria</title>
+    <meta name="theme-color" content="#0b73ff" />
+    <meta name="apple-mobile-web-app-title" content="MK" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../icons/icon-192.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/mk-juegos.css" />
+    <link rel="stylesheet" href="../../assets/mk-peques.css?v=4" />
+    <style>
+        body { background: #fefce8; }
+        .corrales { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 8px; }
+        .corral { min-width: 92px; padding: 8px; border-radius: 14px; border: 5px solid #a16207; background: #fef9c3; display: flex; flex-wrap: wrap; justify-content: center; gap: 2px; font-size: 24px; max-width: 120px; }
+        .eq { font: 800 28px "Baloo 2", sans-serif; color: #166534; margin: 8px 0; }
+        .answers { max-width: 460px; margin: 10px auto 0; }
+        .espejo { display: flex; justify-content: center; align-items: center; gap: 6px; font-size: 30px; }
+        .espejo .linea { width: 4px; align-self: stretch; background: #38bdf8; border-radius: 2px; }
+
+    </style>
+</head>
+<body>
+    <!-- GENERADO por tools/juegos3/build.py — edita tools/juegos3/granja.css / granja.js -->
+    <div class="bar">
+        <a class="pill" href="../juegos1P.html" aria-label="Volver a los juegos">⬅<span class="txt"> Juegos</span></a>
+        <h1>🌾 La granja</h1>
+        <button class="pill" id="soundBtn" type="button" aria-label="Sonido">🔊</button>
+    </div>
+    <div class="hud" aria-live="polite"><span id="hudLevel">Nivel 1</span><span id="hudQ"></span><span id="hudOk">⭐ 0</span></div>
+    <main class="stage"><div class="card" id="card"></div></main>
+    <div class="overlay show" id="startScreen">
+        <div class="panel">
+            <h2>🌾 La granja</h2>
+            <p>Doble, mitad, grupos iguales y multiplicación.</p>
+            <div class="levels" id="levels"></div>
+        </div>
+    </div>
+    <div class="overlay" id="endScreen">
+        <div class="panel">
+            <h2>¡Muy bien! 🎉</h2>
+            <div class="stars-big" id="endStars">⭐⭐⭐</div>
+            <p id="endText"></p>
+            <div class="row">
+                <button class="big-btn alt" id="menuBtn" type="button">📋 Niveles</button>
+                <button class="big-btn" id="nextBtn" type="button">▶ Siguiente</button>
+            </div>
+        </div>
+    </div>
+    <script src="../../assets/mk-juegos.js?v=2"></script>
+    <script src="../../assets/mk-peques.js?v=4"></script>
+    <script>
+        /* 🌾 LA GRANJA: doble, mitad, grupos iguales, suma repetida y multiplicación. Temas 27–32. */
+        const R = MKJ.rnd, P = MKJ.pick;
+        let resp = 0, primera = true, listoFn = null;
+        const NIV = [
+            { n: 1, name: "Nivel 1", desc: "El doble y la mitad", cls: "lv1", modo: "doble" },
+            { n: 2, name: "Nivel 2", desc: "Grupos iguales: 4 + 4 + 4", cls: "lv2", modo: "suma" },
+            { n: 3, name: "Nivel 3", desc: "Multiplica: 3 × 4", cls: "lv3", modo: "mult" }
+        ];
+        MKP.juego({
+            clave: "granja1p", rondas: 6, icono: "🌾", niveles: NIV,
+            ronda(nv, i, listo) {
+                primera = true; listoFn = listo;
+                const a = P(["🐔", "🐷", "🐮", "🐑", "🐰", "🦆"]);
+                let html, t;
+                if (nv.modo === "doble") {
+                    const n = R(1, 10), mitad = i % 2 === 1;
+                    if (mitad) { resp = n; html = `<p class="task">¿Cuál es la <span class="big">MITAD</span> de ${2 * n}?</p><div class="espejo"><span>${a.repeat(n)}</span><span class="linea"></span><span>${a.repeat(n)}</span></div>`; t = `¿Cuál es la mitad de ${2 * n}?`; }
+                    else { resp = 2 * n; html = `<p class="task">¿Cuál es el <span class="big">DOBLE</span> de ${n}?</p><div class="espejo"><span>${a.repeat(n)}</span><span class="linea"></span><span style="opacity:.35">${a.repeat(n)}</span></div>`; t = `¿Cuál es el doble de ${n}?`; }
+                } else {
+                    const g = R(2, 5), n = R(2, nv.modo === "mult" ? 6 : 5); resp = g * n;
+                    html = `<p class="task">${g} corrales con ${n} ${a} cada uno. ¿Cuántos hay?</p>
+                        <div class="corrales">${`<div class="corral">${a.repeat(n)}</div>`.repeat(g)}</div>
+                        <div class="eq">${nv.modo === "mult" ? `${g} × ${n} = ?` : Array(g).fill(n).join(" + ") + " = ?"}</div>`;
+                    t = nv.modo === "mult" ? `${g} por ${n}. ¿Cuántos hay?` : `${g} corrales con ${n} animales cada uno. ¿Cuántos hay?`;
+                }
+                const opts = MKJ.shuffle([...new Set([resp, resp + 1, resp - 1 || resp + 2, resp + (resp > 5 ? -2 : 3)])].slice(0, 3));
+                document.getElementById("card").innerHTML = html + `<div class="answers">${opts.map(o => `<button class="answer" type="button">${o}</button>`).join("")}</div>`;
+                document.querySelectorAll(".answer").forEach(b => b.onclick = () => {
+                    if (b.dataset.done) return;
+                    if (+b.textContent === resp) { document.querySelectorAll(".answer").forEach(x => x.dataset.done = 1); b.classList.add("right"); MKJ.sound("ok"); MKP.decir("¡Muy bien! Son " + resp); listoFn(primera); }
+                    else { primera = false; b.classList.add("wrong"); MKJ.sound("error"); MKP.decir("Cuenta los grupos otra vez"); }
+                });
+                MKP.decir(t);
+            }
+        });
+        window.__juego = { get resp() { return resp; } };
+
+    </script>
+</body>
+</html>

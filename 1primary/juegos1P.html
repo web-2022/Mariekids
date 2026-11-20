@@ -1235,6 +1235,9 @@
                 font-size: 16px;
             }
         }
+            .bloque-h { grid-column: 1 / -1; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin: 18px 4px 0; font-family: "Baloo 2", sans-serif; font-size: 22px; color: #1e3a8a; }
+        .bloque-h:first-child { margin-top: 0; }
+        .bloque-h small { font: 800 14px "Nunito", sans-serif; color: #64748b; }
     </style>
 </head>
 
@@ -1273,7 +1276,7 @@
         <section class="intro">
             <div class="intro-copy">
                 <h1>Elige tu juego <span class="wave" aria-hidden="true">🎮</span></h1>
-                <p>Juegos de bloques para practicar matemáticas</p>
+                <p>Un juego para cada bloque del temario de Matemáticas</p>
             </div>
             <div class="grade-actions">
                 <span class="grade-chip grade-primaria"><span aria-hidden="true">🎒</span> 1.º de Primaria</span>
@@ -1301,43 +1304,323 @@
         const courses = [
             {
                 "id": 1,
-                "emoji": "🏃",
-                "title": "MK Bloques: Carrera",
-                "desc": "Salta plataformas y abre puertas resolviendo sumas y restas.",
-                "href": "juegos/carrera.html",
+                "bloque": "1. Conteo y conjuntos",
+                "temas": "Temas 1–6",
+                "emoji": "🧺",
+                "title": "MK Conjuntos",
+                "desc": "Clasifica, intruso e intersección.",
+                "href": "juegos/conjuntos.html",
                 "className": "course-math"
             },
             {
                 "id": 2,
-                "emoji": "🧱",
-                "title": "MK Bloques: Constructor",
-                "desc": "Construye con bloques: cuenta, suma, patrones, decenas y unidades.",
-                "href": "juegos/constructor.html",
-                "className": "course-stories"
+                "bloque": "1. Conteo y conjuntos",
+                "temas": "Temas 1–6",
+                "emoji": "🐣",
+                "title": "MK Nido de pollitos",
+                "desc": "Las gallinas piden sumas y restas.",
+                "href": "../3years/juegos/nido.html?edad=6",
+                "className": "course-games"
             },
             {
                 "id": 3,
-                "emoji": "🌍",
-                "title": "MK Bloques: Mundo 3D",
-                "desc": "Corre en 3D y elige la puerta con la respuesta correcta.",
-                "href": "juegos/mundo3d.html",
-                "className": "course-brain"
+                "bloque": "1. Conteo y conjuntos",
+                "temas": "Temas 1–6",
+                "emoji": "🔷",
+                "title": "MK Clasifica figuras",
+                "desc": "Por forma, por color y por número de lados.",
+                "href": "../3years/juegos/figuras.html?edad=6",
+                "className": "course-stories"
             },
             {
                 "id": 4,
-                "emoji": "🍕",
-                "title": "MK Bloques: Repartir pizzas",
-                "desc": "Reparte en partes iguales: división, residuo y fracciones.",
-                "href": "juegos/pizzas.html",
+                "bloque": "2. Números",
+                "temas": "Temas 7–17",
+                "emoji": "🐟",
+                "title": "MK Pesca de números",
+                "desc": "Números hasta 999, ¡ojo con los parecidos!",
+                "href": "../3years/juegos/pesca.html?edad=6",
                 "className": "course-math"
             },
             {
                 "id": 5,
+                "bloque": "2. Números",
+                "temas": "Temas 7–17",
+                "emoji": "🎈",
+                "title": "MK Revienta globos",
+                "desc": "Antes, después, entre y números pares.",
+                "href": "../3years/juegos/globos.html?edad=6",
+                "className": "course-games"
+            },
+            {
+                "id": 6,
+                "bloque": "2. Números",
+                "temas": "Temas 7–17",
+                "emoji": "🦖",
+                "title": "MK Ordena los números",
+                "desc": "De menor a mayor hasta 999.",
+                "href": "../3years/juegos/dinos.html?edad=6",
+                "className": "course-stories"
+            },
+            {
+                "id": 7,
+                "bloque": "2. Números",
+                "temas": "Temas 7–17",
+                "emoji": "🍪",
+                "title": "MK El cocodrilo",
+                "desc": "Mayor, menor e igual hasta 999.",
+                "href": "../3years/juegos/galletas.html?edad=6",
+                "className": "course-brain"
+            },
+            {
+                "id": 8,
+                "bloque": "2. Números",
+                "temas": "Temas 7–17",
+                "emoji": "🏗️",
+                "title": "MK Fábrica de decenas",
+                "desc": "Unidades, decenas y centenas.",
+                "href": "../3years/juegos/decenas.html?edad=6",
+                "className": "course-math"
+            },
+            {
+                "id": 9,
+                "bloque": "2. Números",
+                "temas": "Temas 7–17",
+                "emoji": "🚂",
+                "title": "MK El tren ordenado",
+                "desc": "Cuenta de 2 en 2, de 10 en 10 y de 100 en 100.",
+                "href": "../3years/juegos/tren.html?edad=6",
+                "className": "course-games"
+            },
+            {
+                "id": 10,
+                "bloque": "2. Números",
+                "temas": "Temas 7–17",
+                "emoji": "🧱",
+                "title": "MK Bloques: Constructor",
+                "desc": "Cuenta, suma, patrones, decenas y unidades con bloques.",
+                "href": "juegos/constructor.html",
+                "className": "course-stories"
+            },
+            {
+                "id": 11,
+                "bloque": "3. Suma y resta",
+                "temas": "Temas 18–26",
+                "emoji": "🌍",
+                "title": "MK Bloques: Mundo 3D",
+                "desc": "Corre en 3D: hasta 3 cifras llevando y prestando.",
+                "href": "juegos/mundo3d.html",
+                "className": "course-brain"
+            },
+            {
+                "id": 12,
+                "bloque": "3. Suma y resta",
+                "temas": "Temas 18–26",
+                "emoji": "🏃",
+                "title": "MK Bloques: Carrera",
+                "desc": "Salta y abre puertas resolviendo operaciones.",
+                "href": "juegos/carrera.html",
+                "className": "course-math"
+            },
+            {
+                "id": 13,
+                "bloque": "3. Suma y resta",
+                "temas": "Temas 18–26",
+                "emoji": "🧺",
+                "title": "MK Llena la canasta",
+                "desc": "Sumas, restas y problemas para escuchar.",
+                "href": "../3years/juegos/canasta.html?edad=6",
+                "className": "course-games"
+            },
+            {
+                "id": 14,
+                "bloque": "3. Suma y resta",
+                "temas": "Temas 18–26",
+                "emoji": "🐸",
+                "title": "MK La rana saltarina",
+                "desc": "Sumas y restas en la recta numérica.",
+                "href": "../3years/juegos/rana.html?edad=6",
+                "className": "course-stories"
+            },
+            {
+                "id": 15,
+                "bloque": "3. Suma y resta",
+                "temas": "Temas 18–26",
+                "emoji": "🧦",
+                "title": "MK Parejas de medias",
+                "desc": "Operaciones con su resultado y sumas iguales.",
+                "href": "../3years/juegos/medias.html?edad=6",
+                "className": "course-brain"
+            },
+            {
+                "id": 16,
+                "bloque": "4. Doble, mitad y multiplicación",
+                "temas": "Temas 27–32",
+                "emoji": "🌾",
+                "title": "MK La granja",
+                "desc": "Doble, mitad, grupos iguales y multiplicación.",
+                "href": "juegos/granja.html",
+                "className": "course-math"
+            },
+            {
+                "id": 17,
+                "bloque": "4. Doble, mitad y multiplicación",
+                "temas": "Temas 27–32",
+                "emoji": "🍕",
+                "title": "MK Repartir pizzas",
+                "desc": "Reparto, residuo y fracciones.",
+                "href": "juegos/pizzas.html",
+                "className": "course-games"
+            },
+            {
+                "id": 18,
+                "bloque": "5. Cálculo mental",
+                "temas": "Temas 33–35",
+                "emoji": "🚀",
+                "title": "MK Cohete del 10",
+                "desc": "Amigos del 10, 12, 15, 20 y 30 contra reloj.",
+                "href": "juegos/cohete.html",
+                "className": "course-stories"
+            },
+            {
+                "id": 19,
+                "bloque": "6. Secuencias y patrones",
+                "temas": "Temas 36–42",
+                "emoji": "🐛",
+                "title": "MK Gusano de patrones",
+                "desc": "Series de números y de letras.",
+                "href": "../3years/juegos/gusano.html?edad=6",
+                "className": "course-brain"
+            },
+            {
+                "id": 20,
+                "bloque": "6. Secuencias y patrones",
+                "temas": "Temas 36–42",
+                "emoji": "🔤",
+                "title": "MK Analogías",
+                "desc": "Descubre la regla secreta.",
+                "href": "juegos/analogias.html",
+                "className": "course-math"
+            },
+            {
+                "id": 21,
+                "bloque": "7. Razonamiento",
+                "temas": "Temas 43–46",
+                "emoji": "🧱",
+                "title": "MK Pirámide de sumas",
+                "desc": "Completa la pirámide hacia arriba y hacia abajo.",
+                "href": "juegos/piramide.html",
+                "className": "course-games"
+            },
+            {
+                "id": 22,
+                "bloque": "7. Razonamiento",
+                "temas": "Temas 43–46",
                 "emoji": "⚖️",
                 "title": "MK Bloques: Balanza mágica",
-                "desc": "Equilibra la balanza y descubre cuánto pesa la caja: ¡ecuaciones jugando!",
+                "desc": "Valores ocultos y ecuaciones.",
                 "href": "juegos/balanza.html",
                 "className": "course-stories"
+            },
+            {
+                "id": 23,
+                "bloque": "8. Geometría",
+                "temas": "Temas 47–53, 63, 66 y 68",
+                "emoji": "🧩",
+                "title": "MK Arma la figura",
+                "desc": "Arma figuras con piezas geométricas.",
+                "href": "../3years/juegos/tangram.html?edad=6",
+                "className": "course-brain"
+            },
+            {
+                "id": 24,
+                "bloque": "8. Geometría",
+                "temas": "Temas 47–53, 63, 66 y 68",
+                "emoji": "📏",
+                "title": "MK ¿Cuánto mide?",
+                "desc": "Mide y compara longitudes.",
+                "href": "../3years/juegos/medidas.html?edad=6",
+                "className": "course-math"
+            },
+            {
+                "id": 25,
+                "bloque": "8. Geometría",
+                "temas": "Temas 47–53, 63, 66 y 68",
+                "emoji": "🤖",
+                "title": "MK Robot en la cuadrícula",
+                "desc": "Programa recorridos y llega a la coordenada.",
+                "href": "juegos/robot.html",
+                "className": "course-games"
+            },
+            {
+                "id": 26,
+                "bloque": "8. Geometría",
+                "temas": "Temas 47–53, 63, 66 y 68",
+                "emoji": "✏️",
+                "title": "MK Un solo trazo",
+                "desc": "Dibuja sin levantar el dedo.",
+                "href": "juegos/trazo.html",
+                "className": "course-stories"
+            },
+            {
+                "id": 27,
+                "bloque": "9. Medidas, tiempo y dinero",
+                "temas": "Temas 54–56",
+                "emoji": "⏰",
+                "title": "MK El reloj",
+                "desc": "En punto, y media, y cuarto y menos cuarto.",
+                "href": "../3years/juegos/reloj.html?edad=6",
+                "className": "course-brain"
+            },
+            {
+                "id": 28,
+                "bloque": "9. Medidas, tiempo y dinero",
+                "temas": "Temas 54–56",
+                "emoji": "📅",
+                "title": "MK Calendario",
+                "desc": "Días, meses y ¿qué día será?",
+                "href": "../3years/juegos/rutina.html?edad=6",
+                "className": "course-math"
+            },
+            {
+                "id": 29,
+                "bloque": "9. Medidas, tiempo y dinero",
+                "temas": "Temas 54–56",
+                "emoji": "💰",
+                "title": "MK Monedas",
+                "desc": "Paga con soles y calcula el vuelto.",
+                "href": "../3years/juegos/monedas.html?edad=6",
+                "className": "course-games"
+            },
+            {
+                "id": 30,
+                "bloque": "10. Datos",
+                "temas": "Temas 57–58",
+                "emoji": "📊",
+                "title": "MK Encuesta de la clase",
+                "desc": "Gráficos de barras y tablas de doble entrada.",
+                "href": "juegos/encuesta.html",
+                "className": "course-stories"
+            },
+            {
+                "id": 31,
+                "bloque": "11. Olimpiadas",
+                "temas": "Temas 59–61",
+                "emoji": "🏆",
+                "title": "MK Reto olímpico",
+                "desc": "El reto del día 🔥 y simulacros con tiempo.",
+                "href": "juegos/reto.html",
+                "className": "course-brain"
+            },
+            {
+                "id": 32,
+                "bloque": "12. Temas avanzados",
+                "temas": "Temas 62, 64, 65, 67 y 69",
+                "emoji": "🔐",
+                "title": "MK Caja fuerte",
+                "desc": "Halla x, cifras ocultas e inecuaciones.",
+                "href": "juegos/caja.html",
+                "className": "course-math"
             }
         ];
 
@@ -1421,7 +1704,13 @@
                 </article>`;
         }
 
-        el.grid.innerHTML = courses.map(cardHtml).join("");
+        // Juegos agrupados por los bloques del temario de Matemáticas
+        let ultimo = "";
+        el.grid.innerHTML = courses.map(c => {
+            const cab = c.bloque !== ultimo ? `<h2 class="bloque-h"><span>${escapeHtml(c.bloque)}</span><small>${escapeHtml(c.temas)}</small></h2>` : "";
+            ultimo = c.bloque;
+            return cab + cardHtml(c);
+        }).join("");
 
         el.grid.addEventListener("click", event => {
             const shareBtn = event.target.closest("[data-share]");
