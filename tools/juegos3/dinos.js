@@ -1,4 +1,5 @@
         /* 🦖 DINOSAURIOS POR TAMAÑO: seriación. Ordena de pequeño a grande (o al revés). */
+        const R = MKJ.rnd;
         const TAM = [22, 32, 44, 56, 70];
         let orden = [], puestos = 0, primera = true, listoFn = null, alReves = false;
         MKP.juego({
@@ -7,6 +8,11 @@
                 { n: 1, name: "Nivel 1", desc: "3 dinos: de pequeño a grande", cls: "lv1", k: 3, reves: false },
                 { n: 2, name: "Nivel 2", desc: "4 dinos: de pequeño a grande", cls: "lv2", k: 4, reves: false },
                 { n: 3, name: "Nivel 3", desc: "5 dinos: también de grande a pequeño", cls: "lv3", k: 5, reves: true }
+            ],
+            niveles5: [
+                { n: 1, name: "Nivel 1", desc: "Números hasta 50", cls: "lv1", k: 5, reves: true, tipo: "num", max: 50 },
+                { n: 2, name: "Nivel 2", desc: "Números hasta 100", cls: "lv2", k: 5, reves: true, tipo: "num", max: 100 },
+                { n: 3, name: "Nivel 3", desc: "Números parecidos: 41, 14, 44…", cls: "lv3", k: 5, reves: true, tipo: "num", max: 99, cerca: true }
             ],
             niveles4: [
                 { n: 1, name: "Nivel 1", desc: "5 dinos: pequeño ↔ grande", cls: "lv1", k: 5, reves: true },
@@ -17,7 +23,10 @@
                 primera = true; listoFn = listo; puestos = 0; alReves = nv.reves && i % 2 === 1;
                 let tams = nv.k === 5 ? TAM : nv.k === 4 ? [22, 36, 52, 70] : [24, 44, 70];
                 if (nv.tipo === "torre") tams = MKJ.shuffle([1, 2, 3, 4, 5, 6, 7]).slice(0, nv.k).sort((a, b) => a - b);
-                if (nv.tipo === "num") tams = MKJ.shuffle([...Array(20).keys()].map(x => x + 1)).slice(0, nv.k).sort((a, b) => a - b);
+                if (nv.tipo === "num") {
+                    if (nv.cerca) { const d1 = R(1, 8), d2 = R(1, 9); tams = [...new Set([d1 * 10 + d2, d2 * 10 + d1, d1 * 10 + d1, d1 * 10, d2 * 10 + d2, (d1 + 1) * 10 + d2, d1 * 10 + d2 + 1])].filter(x => x > 0 && x < 100).slice(0, nv.k).sort((a, b) => a - b); }
+                    else tams = MKJ.shuffle([...Array(nv.max || 20).keys()].map(x => x + 1)).slice(0, nv.k).sort((a, b) => a - b);
+                }
                 orden = alReves ? tams.slice().reverse() : tams.slice();
                 const e = MKJ.pick(["🦕", "🦖"]);
                 document.getElementById("card").innerHTML = `<p class="task">${nv.tipo === "num" ? `Ordena de <span class="big">${alReves ? "mayor" : "menor"}</span> a ${alReves ? "menor" : "mayor"}` : nv.tipo === "torre" ? `Ordena de <span class="big">${alReves ? "más" : "menos"}</span> a ${alReves ? "menos" : "más"} bloques` : `Ordena de <span class="big">${alReves ? "grande" : "pequeño"}</span> a ${alReves ? "pequeño" : "grande"}`} <button class="again" id="oir" type="button">🔊</button></p>

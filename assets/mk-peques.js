@@ -10,7 +10,8 @@
 (function () {
     "use strict";
     var $ = function (id) { return document.getElementById(id); };
-    var NUM = ["cero", "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve", "diez", "once", "doce", "trece", "catorce", "quince", "dieciséis", "diecisiete", "dieciocho", "diecinueve", "veinte"];
+    var NUM = ["cero", "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve", "diez", "once", "doce", "trece", "catorce", "quince", "dieciséis", "diecisiete", "dieciocho", "diecinueve", "veinte"]; for (var _n = 21; _n <= 100; _n++) NUM[_n] = String(_n);
+    var _x;
 
     function decir(t) { MKJ.say(t); }
     function contar(n) { decir(NUM[n] || String(n)); }
@@ -54,17 +55,18 @@
 
     /* ---------- Edad: ?edad=4 usa cfg.niveles4 y vuelve a «Juegos de 4 años» ---------- */
     var EDAD = +(new URLSearchParams(location.search).get("edad") || 3);
-    if (EDAD === 4) {
+    if (EDAD === 4 || EDAD === 5) {
         document.addEventListener("DOMContentLoaded", fijarVolver); fijarVolver();
     }
     function fijarVolver() {
-        var a = document.querySelector('a.pill'); if (a) a.href = "../../4years/juegos4Y.html";
-        document.title = document.title.replace("3 años", "4 años");
+        var a = document.querySelector('a.pill'); if (a) a.href = "../../" + EDAD + "years/juegos" + EDAD + "Y.html";
+        document.title = document.title.replace("3 años", EDAD + " años");
     }
 
     /* ---------- Marco del juego ---------- */
     function juego(cfg) {
-        if (EDAD === 4 && cfg.niveles4) { cfg.niveles = cfg.niveles4; cfg.clave += "-4"; if (cfg.rondas4) cfg.rondas = cfg.rondas4; }
+        if (EDAD === 5 && cfg.niveles5) { cfg.niveles = cfg.niveles5; cfg.clave += "-5"; if (cfg.rondas5) cfg.rondas = cfg.rondas5; }
+        else if (EDAD >= 4 && cfg.niveles4) { cfg.niveles = cfg.niveles4; cfg.clave += "-4"; if (cfg.rondas4) cfg.rondas = cfg.rondas4; }
         var nivel = cfg.niveles[0], i = 0, ok = 0, fallos = 0, enCurso = false;
         function hud() {
             $("hudLevel").textContent = nivel.name;

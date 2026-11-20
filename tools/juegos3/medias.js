@@ -12,6 +12,11 @@
                 { n: 2, name: "Nivel 2", desc: "4 parejas: número y número", cls: "lv2", p: 4, modo: "num", max: 6 },
                 { n: 3, name: "Nivel 3", desc: "Número con sus puntitos (hasta 10)", cls: "lv3", p: 4, modo: "puntos", max: 10 }
             ],
+            niveles5: [
+                { n: 1, name: "Nivel 1", desc: "Resta con su resultado: 7 − 2 y 5", cls: "lv1", p: 4, modo: "resta", max: 10 },
+                { n: 2, name: "Nivel 2", desc: "Sumas que valen lo mismo: 3+4 y 5+2", cls: "lv2", p: 4, modo: "igual", max: 12 },
+                { n: 3, name: "Nivel 3", desc: "Decenas y unidades: 3D 4U y 34", cls: "lv3", p: 4, modo: "decena", max: 99 }
+            ],
             niveles4: [
                 { n: 1, name: "Nivel 1", desc: "Mismo número (hasta 10)", cls: "lv1", p: 4, modo: "num", max: 10 },
                 { n: 2, name: "Nivel 2", desc: "Número con sus puntitos (hasta 10)", cls: "lv2", p: 5, modo: "puntos", max: 10 },
@@ -20,20 +25,23 @@
             ronda(nv, i, listo) {
                 primera = true; listoFn = listo; nivelAct = nv; quedan = nv.p;
                 const cols = MKJ.shuffle(COL.slice()).slice(0, nv.p);
-                const nums = nv.modo === "color" ? cols.map((_, k) => k) : MKJ.shuffle([...Array(nv.max).keys()].map(x => x + 1).filter(x => nv.modo !== "suma" || x > 1)).slice(0, nv.p);
+                const nums = nv.modo === "color" ? cols.map((_, k) => k) : MKJ.shuffle([...Array(nv.max).keys()].map(x => x + 1).filter(x => (nv.modo !== "suma" && nv.modo !== "igual") || x > 2).filter(x => nv.modo !== "decena" || x >= 11)).slice(0, nv.p);
                 const izq = nums.map((n, k) => ({ id: k, c: cols[k], n })), der = MKJ.shuffle(izq.map(x => ({ ...x, c: nv.modo === "color" ? x.c : COL[(x.id + 3) % COL.length] })));
                 const cara = (m, lado) => {
                     let extra = "";
                     if (nv.modo === "num") extra = `<b>${m.n}</b>`;
+                    if (nv.modo === "resta") { const b = (m.b = m.b || R(1, 5)); extra = lado === "i" ? `<b style="font-size:19px;left:28px">${m.n + b}−${b}</b>` : `<b>${m.n}</b>`; }
+                    if (nv.modo === "igual") { const a = (m.a = m.a || R(1, m.n - 1)); let c = (m.c = m.c || (m.n > 2 ? R(1, m.n - 1) : a)); if (c === a && m.n > 2) c = m.c = (a % (m.n - 1)) + 1; extra = `<b style="font-size:19px;left:28px">${lado === "i" ? a + "+" + (m.n - a) : c + "+" + (m.n - c)}</b>`; }
+                    if (nv.modo === "decena") { extra = lado === "i" ? `<b style="font-size:17px;left:14px">${Math.floor(m.n / 10)}D ${m.n % 10}U</b>` : `<b>${m.n}</b>`; }
                     if (nv.modo === "suma") { const a = (m.a = m.a || R(1, m.n - 1)); extra = lado === "i" ? `<b style="font-size:19px;left:30px">${a}+${m.n - a}</b>` : `<b>${m.n}</b>`; }
                     if (nv.modo === "puntos") extra = lado === "i" ? `<b>${m.n}</b>` : `<span class="dots">${"<i></i>".repeat(m.n)}</span>`;
                     return `<div class="sock" data-id="${m.id}" ${lado === "d" ? 'data-drop="media"' : ""}>${svgMedia(m.c, lado === "d")}${extra}</div>`;
                 };
-                document.getElementById("card").innerHTML = `<p class="task">${nv.modo === "color" ? "Junta cada media con su pareja" : nv.modo === "num" ? "Junta las medias con el mismo número" : nv.modo === "suma" ? "Junta cada suma con su resultado" : "Junta el número con sus puntitos"} <button class="again" id="oir" type="button">🔊</button></p>
+                document.getElementById("card").innerHTML = `<p class="task">${nv.modo === "color" ? "Junta cada media con su pareja" : nv.modo === "num" ? "Junta las medias con el mismo número" : nv.modo === "suma" || nv.modo === "resta" ? "Junta cada operación con su resultado" : nv.modo === "igual" ? "Junta las sumas que valen lo mismo" : nv.modo === "decena" ? "Junta las decenas y unidades con su número" : "Junta el número con sus puntitos"} <button class="again" id="oir" type="button">🔊</button></p>
                     <p class="sub">Arrastra una media de la izquierda hasta su pareja.</p>
                     <div class="cols"><div class="col">${izq.map(m => cara(m, "i")).join("")}</div><div class="col">${der.map(m => cara(m, "d")).join("")}</div></div><div class="tend" id="tend"></div>`;
                 document.querySelectorAll(".col:first-child .sock").forEach(s => MKP.arrastrar(s, { alSoltar: d => juntar(s, d) }));
-                const txt = nv.modo === "color" ? "Junta cada media con su pareja del mismo color" : nv.modo === "num" ? "Junta las medias que tienen el mismo número" : nv.modo === "suma" ? "Junta cada suma con su resultado" : "Junta cada número con la media que tiene esos puntitos";
+                const txt = nv.modo === "color" ? "Junta cada media con su pareja del mismo color" : nv.modo === "num" ? "Junta las medias que tienen el mismo número" : nv.modo === "suma" || nv.modo === "resta" ? "Junta cada operación con su resultado" : nv.modo === "igual" ? "Junta las sumas que valen lo mismo" : nv.modo === "decena" ? "Junta las decenas y unidades con su número" : "Junta cada número con la media que tiene esos puntitos";
                 document.getElementById("oir").onclick = () => MKP.decir(txt); MKP.decir(txt);
             }
         });

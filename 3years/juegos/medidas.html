@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <title>MK ¿Cuánto mide? · 3 años</title>
+    <meta name="theme-color" content="#0b73ff" />
+    <meta name="apple-mobile-web-app-title" content="MK" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../icons/icon-192.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/mk-juegos.css" />
+    <link rel="stylesheet" href="../../assets/mk-peques.css?v=3" />
+    <style>
+        body { background: #fefce8; }
+        .regla { position: relative; margin: 10px auto 0; max-width: 560px; padding: 10px; border-radius: 18px; background: #f8fafc; text-align: left; }
+        .obj { display: flex; align-items: center; height: 56px; }
+        .obj .barra { height: 34px; border-radius: 17px; display: flex; align-items: center; justify-content: flex-end; padding-right: 4px; font-size: 28px; }
+        .clips { display: flex; height: 36px; margin-top: 4px; min-height: 36px; border-radius: 8px; }
+        .clips.drop { outline: 3px dashed #93c5fd; outline-offset: 2px; }
+        .clip { flex: none; width: var(--u); height: 30px; display: grid; place-items: center; font-size: 22px; border-right: 1px dashed #cbd5e1; }
+        .fuente { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; padding: 8px 14px; border-radius: 16px; background: #fef3c7; font: 800 16px "Nunito", sans-serif; color: #92400e; }
+        .fuente .clip { cursor: grab; width: 44px; border: 0; font-size: 30px; }
+        .dos { display: grid; gap: 12px; margin-top: 10px; }
+        .dos button { border: 0; border-radius: 18px; padding: 8px; background: #f1f5f9; text-align: left; cursor: pointer; }
+        .dos button.bien { box-shadow: 0 0 0 5px #22c55e; } .dos button.mal { animation: sacude .4s; }
+        @keyframes sacude { 0%,100% { transform: translateX(0) } 25% { transform: translateX(-8px) } 75% { transform: translateX(8px) } }
+        .answers { max-width: 420px; margin: 12px auto 0; }
+
+    </style>
+</head>
+<body>
+    <!-- GENERADO por tools/juegos3/build.py — edita tools/juegos3/medidas.css / medidas.js -->
+    <div class="bar">
+        <a class="pill" href="../juegos3Y.html" aria-label="Volver a los juegos">⬅<span class="txt"> Juegos</span></a>
+        <h1>📏 ¿Cuánto mide?</h1>
+        <button class="pill" id="soundBtn" type="button" aria-label="Sonido">🔊</button>
+    </div>
+    <div class="hud" aria-live="polite"><span id="hudLevel">Nivel 1</span><span id="hudQ"></span><span id="hudOk">⭐ 0</span></div>
+    <main class="stage"><div class="card" id="card"></div></main>
+    <div class="overlay show" id="startScreen">
+        <div class="panel">
+            <h2>📏 ¿Cuánto mide?</h2>
+            <p>Mide con clips y compara qué es más largo.</p>
+            <div class="levels" id="levels"></div>
+        </div>
+    </div>
+    <div class="overlay" id="endScreen">
+        <div class="panel">
+            <h2>¡Muy bien! 🎉</h2>
+            <div class="stars-big" id="endStars">⭐⭐⭐</div>
+            <p id="endText"></p>
+            <div class="row">
+                <button class="big-btn alt" id="menuBtn" type="button">📋 Niveles</button>
+                <button class="big-btn" id="nextBtn" type="button">▶ Siguiente</button>
+            </div>
+        </div>
+    </div>
+    <script src="../../assets/mk-juegos.js?v=2"></script>
+    <script src="../../assets/mk-peques.js?v=3"></script>
+    <script>
+        /* 📏 ¿CUÁNTO MIDE?: medir con unidades no convencionales (clips) y comparar longitudes. */
+        const R = MKJ.rnd, P = MKJ.pick;
+        const OBJ = [["✏️", "el lápiz", "#facc15"], ["🐛", "el gusano", "#4ade80"], ["🥄", "la cuchara", "#cbd5e1"], ["🖍️", "el crayón", "#f87171"], ["🐍", "la serpiente", "#a3e635"], ["🌭", "el hot dog", "#fb923c"], ["🖌️", "el pincel", "#c084fc"]];
+        let largo = 0, puestos = 0, primera = true, fin = false, listoFn = null, U = 40;
+        const NIV = [
+            { n: 1, name: "Nivel 1", desc: "¿Cuántos clips mide?", cls: "lv1", modo: "contar", max: 6 },
+            { n: 2, name: "Nivel 2", desc: "¿Cuál es más largo o más corto?", cls: "lv2", modo: "comparar", max: 8 },
+            { n: 3, name: "Nivel 3", desc: "Mide tú: pon los clips", cls: "lv3", modo: "medir", max: 8 }
+        ];
+        const barra = (o, n) => `<div class="obj"><div class="barra" style="width:calc(var(--u) * ${n});background:${o[2]}">${o[0]}</div></div>`;
+        MKP.juego({
+            clave: "medidas", rondas: 6, icono: "📏", niveles: NIV, niveles4: NIV, niveles5: NIV,
+            ronda(nv, i, listo) {
+                primera = true; fin = false; listoFn = listo; puestos = 0;
+                U = Math.max(26, Math.min(48, Math.floor((document.getElementById("card").clientWidth - 60) / nv.max)));
+                document.getElementById("card").style.setProperty("--u", U + "px");
+                const o = P(OBJ);
+                largo = R(2, nv.max);
+                if (nv.modo === "comparar") {
+                    const o2 = P(OBJ.filter(x => x !== o)); let l2 = R(2, nv.max); while (l2 === largo) l2 = R(2, nv.max);
+                    const pide = i % 2 ? "corto" : "largo", gana = pide === "largo" ? (largo > l2 ? 0 : 1) : (largo < l2 ? 0 : 1);
+                    document.getElementById("card").innerHTML = `<p class="task">¿Cuál es más <span class="big">${pide.toUpperCase()}</span>? <button class="again" id="oir" type="button">🔊</button></p>
+                        <div class="dos"><button type="button" data-k="0">${barra(o, largo)}</button><button type="button" data-k="1">${barra(o2, l2)}</button></div>`;
+                    document.querySelectorAll(".dos button").forEach(b => b.onclick = () => {
+                        if (fin) return;
+                        if (+b.dataset.k === gana) { fin = true; b.classList.add("bien"); MKJ.sound("ok"); MKP.decir(`¡Muy bien! ${[o, o2][gana][1]} es más ${pide}`); listoFn(primera); }
+                        else { primera = false; b.classList.remove("mal"); void b.offsetWidth; b.classList.add("mal"); MKJ.sound("error"); MKP.decir("Mira bien dónde termina cada uno"); }
+                    });
+                    const t = `¿Cuál es más ${pide}?`; document.getElementById("oir").onclick = () => MKP.decir(t); MKP.decir(t); return;
+                }
+                const clips = nv.modo === "contar" ? "<span class='clip'>📎</span>".repeat(largo) : "";
+                document.getElementById("card").innerHTML = `<p class="task">¿Cuántos 📎 mide ${o[1]}? <button class="again" id="oir" type="button">🔊</button></p>
+                    ${nv.modo === "medir" ? `<p class="sub">Arrastra clips debajo hasta que lleguen al final. Toca un clip para sacarlo.</p>` : ""}
+                    <div class="regla">${barra(o, largo)}<div class="clips${nv.modo === "medir" ? " drop" : ""}" id="clips" data-drop="clips">${clips}</div></div>
+                    ${nv.modo === "medir" ? `<div class="fuente"><span class="clip" id="src">📎</span>Clips</div><div class="tools"><button class="big-btn" id="ok" type="button">✅ ¡Listo!</button></div>` :
+                    `<div class="answers">${MKJ.shuffle([...new Set([largo, largo + 1, largo - 1 || largo + 2])]).map(v => `<button class="answer" type="button">${v}</button>`).join("")}</div>`}`;
+                if (nv.modo === "medir") {
+                    MKP.arrastrar(document.getElementById("src"), { alTocar: agregar, alSoltar: d => { if (d.id === "clips") agregar(); return false; } });
+                    document.getElementById("ok").onclick = () => {
+                        if (fin) return;
+                        if (puestos === largo) { fin = true; MKJ.sound("ok"); MKP.aviso(largo + " 📎", true); MKP.decir(`¡Muy bien! ${o[1]} mide ${largo} clips`); listoFn(primera); }
+                        else { primera = false; MKJ.sound("error"); MKP.decir(puestos < largo ? "Faltan clips. Llega hasta el final" : "Te pasaste. Saca un clip"); }
+                    };
+                } else document.querySelectorAll(".answer").forEach(b => b.onclick = () => {
+                    if (fin) return;
+                    if (+b.textContent === largo) { fin = true; b.classList.add("right"); MKJ.sound("ok"); MKP.decir(`¡Muy bien! Mide ${largo} clips`); listoFn(primera); }
+                    else { primera = false; b.classList.add("wrong"); MKJ.sound("error"); MKP.decir("Cuenta los clips uno por uno"); }
+                });
+                const t = `¿Cuántos clips mide ${o[1]}?`; document.getElementById("oir").onclick = () => MKP.decir(t); MKP.decir(t);
+            }
+        });
+        function agregar() {
+            if (fin) return;
+            const c = document.getElementById("clips"), s = document.createElement("span");
+            s.className = "clip"; s.textContent = "📎"; s.onclick = () => { if (fin) return; s.remove(); puestos--; MKJ.sound("salto"); };
+            c.appendChild(s); puestos++; MKJ.sound("moneda"); MKP.contar(puestos);
+        }
+        window.__juego = { get largo() { return largo; }, agregar };
+
+    </script>
+</body>
+</html>

@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../assets/mk-juegos.css" />
-    <link rel="stylesheet" href="../../assets/mk-peques.css?v=2" />
+    <link rel="stylesheet" href="../../assets/mk-peques.css?v=3" />
     <style>
         body { background: #bdeaff; }
         .pond { position: relative; height: 330px; margin-top: 8px; border-radius: 28px; overflow: hidden; background: linear-gradient(180deg, #7dd3fc, #0ea5e9 70%, #0369a1); box-shadow: inset 0 8px 0 rgba(255,255,255,.35); }
@@ -58,7 +58,7 @@
         </div>
     </div>
     <script src="../../assets/mk-juegos.js?v=2"></script>
-    <script src="../../assets/mk-peques.js?v=2"></script>
+    <script src="../../assets/mk-peques.js?v=3"></script>
     <script>
         /* 🐟 PESCA DE NÚMEROS: reconoce el número que escucha. Toca el pez o arrástralo al balde. */
         const R = MKJ.rnd, P = MKJ.pick;
@@ -71,6 +71,11 @@
                 { n: 2, name: "Nivel 2", desc: "Números del 1 al 6", cls: "lv2", max: 6, peces: 4 },
                 { n: 3, name: "Nivel 3", desc: "Números del 1 al 10", cls: "lv3", max: 10, peces: 5 }
             ],
+            niveles5: [
+                { n: 1, name: "Nivel 1", desc: "Números hasta 30", cls: "lv1", max: 30, peces: 5 },
+                { n: 2, name: "Nivel 2", desc: "Números hasta 50 (parecidos)", cls: "lv2", max: 50, peces: 5, cerca: true },
+                { n: 3, name: "Nivel 3", desc: "Números hasta 100 (parecidos)", cls: "lv3", max: 100, peces: 6, cerca: true }
+            ],
             niveles4: [
                 { n: 1, name: "Nivel 1", desc: "Números del 1 al 10", cls: "lv1", max: 10, peces: 4 },
                 { n: 2, name: "Nivel 2", desc: "Números del 1 al 15", cls: "lv2", max: 15, peces: 5 },
@@ -78,7 +83,9 @@
             ],
             ronda(nv, i, listo) {
                 objetivo = R(1, nv.max); primera = true; hecho = false;
-                const nums = MKJ.shuffle([...Array(nv.max).keys()].map(x => x + 1).filter(x => x !== objetivo)).slice(0, nv.peces - 1).concat(objetivo);
+                if (nv.cerca) objetivo = R(10, nv.max);
+                const pool = nv.cerca ? [...new Set([objetivo + 1, objetivo - 1, objetivo + 10, objetivo - 10, +(String(objetivo).split("").reverse().join("")), objetivo + 2, objetivo - 2, objetivo + 11])].filter(x => x !== objetivo && x >= 1 && x <= nv.max) : [...Array(nv.max).keys()].map(x => x + 1).filter(x => x !== objetivo);
+                const nums = MKJ.shuffle(pool).slice(0, nv.peces - 1).concat(objetivo);
                 MKJ.shuffle(nums);
                 const card = document.getElementById("card");
                 card.innerHTML = `<p class="task">Pesca el número <span class="big">${objetivo}</span> <button class="again" id="oir" type="button">🔊</button></p>

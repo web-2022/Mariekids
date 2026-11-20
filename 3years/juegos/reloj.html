@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <title>MK El reloj · 3 años</title>
+    <meta name="theme-color" content="#0b73ff" />
+    <meta name="apple-mobile-web-app-title" content="MK" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../icons/icon-192.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/mk-juegos.css" />
+    <link rel="stylesheet" href="../../assets/mk-peques.css?v=3" />
+    <style>
+        body { background: #ecfeff; }
+        .reloj { width: 260px; max-width: 80vw; margin: 4px auto 0; display: block; }
+        .reloj .num { font: 800 15px "Baloo 2", sans-serif; fill: #1e3a8a; text-anchor: middle; dominant-baseline: middle; cursor: pointer; }
+        .reloj .zona { fill: transparent; cursor: pointer; }
+        .reloj .zona:hover { fill: #fde68a88; }
+        .aguja { transition: transform .5s cubic-bezier(.3,1.5,.6,1); transform-origin: 100px 100px; }
+        .answers { max-width: 520px; margin: 12px auto 0; }
+        .answer.hora { font-size: 26px; }
+        .digital { display: inline-block; margin-top: 6px; padding: 4px 14px; border-radius: 12px; background: #0f172a; color: #4ade80; font: 800 30px "Courier New", monospace; }
+
+    </style>
+</head>
+<body>
+    <!-- GENERADO por tools/juegos3/build.py — edita tools/juegos3/reloj.css / reloj.js -->
+    <div class="bar">
+        <a class="pill" href="../juegos3Y.html" aria-label="Volver a los juegos">⬅<span class="txt"> Juegos</span></a>
+        <h1>⏰ El reloj</h1>
+        <button class="pill" id="soundBtn" type="button" aria-label="Sonido">🔊</button>
+    </div>
+    <div class="hud" aria-live="polite"><span id="hudLevel">Nivel 1</span><span id="hudQ"></span><span id="hudOk">⭐ 0</span></div>
+    <main class="stage"><div class="card" id="card"></div></main>
+    <div class="overlay show" id="startScreen">
+        <div class="panel">
+            <h2>⏰ El reloj</h2>
+            <p>Lee la hora y pon el reloj.</p>
+            <div class="levels" id="levels"></div>
+        </div>
+    </div>
+    <div class="overlay" id="endScreen">
+        <div class="panel">
+            <h2>¡Muy bien! 🎉</h2>
+            <div class="stars-big" id="endStars">⭐⭐⭐</div>
+            <p id="endText"></p>
+            <div class="row">
+                <button class="big-btn alt" id="menuBtn" type="button">📋 Niveles</button>
+                <button class="big-btn" id="nextBtn" type="button">▶ Siguiente</button>
+            </div>
+        </div>
+    </div>
+    <script src="../../assets/mk-juegos.js?v=2"></script>
+    <script src="../../assets/mk-peques.js?v=3"></script>
+    <script>
+        /* ⏰ EL RELOJ: leer la hora en punto e y media; poner la hora tocando el número. */
+        const R = MKJ.rnd;
+        let h = 3, m = 0, puesta = 12, primera = true, fin = false, listoFn = null;
+        function reloj(hh, mm, tocable) {
+            let s = `<svg class="reloj" viewBox="0 0 200 200"><circle cx="100" cy="100" r="96" fill="#fff" stroke="#3b82f6" stroke-width="8"/>`;
+            for (let k = 1; k <= 12; k++) {
+                const a = k * Math.PI / 6, x = 100 + 76 * Math.sin(a), y = 100 - 76 * Math.cos(a);
+                if (tocable) s += `<circle class="zona" data-h="${k}" cx="${x}" cy="${y}" r="15"/>`;
+                s += `<text class="num" data-h="${k}" x="${x}" y="${y}">${k}</text>`;
+            }
+            for (let k = 0; k < 60; k++) { const a = k * Math.PI / 30, r1 = k % 5 ? 90 : 86; s += `<line x1="${100 + r1 * Math.sin(a)}" y1="${100 - r1 * Math.cos(a)}" x2="${100 + 93 * Math.sin(a)}" y2="${100 - 93 * Math.cos(a)}" stroke="#94a3b8" stroke-width="${k % 5 ? 1 : 3}"/>`; }
+            const ah = (hh % 12) * 30 + mm / 2, am = mm * 6;
+            s += `<g class="aguja" id="aH" style="transform:rotate(${ah}deg)"><line x1="100" y1="100" x2="100" y2="52" stroke="#ef4444" stroke-width="9" stroke-linecap="round"/></g>`;
+            s += `<g class="aguja" id="aM" style="transform:rotate(${am}deg)"><line x1="100" y1="100" x2="100" y2="24" stroke="#1e3a8a" stroke-width="5" stroke-linecap="round"/></g>`;
+            return s + `<circle cx="100" cy="100" r="7" fill="#0f172a"/></svg>`;
+        }
+        const txtHora = (hh, mm) => mm ? `${hh} y media` : `${hh} en punto`;
+        const NIV = [
+            { n: 1, name: "Nivel 1", desc: "¿Qué hora es? (en punto)", cls: "lv1", modo: "leer", media: false },
+            { n: 2, name: "Nivel 2", desc: "Pon la hora: toca el número", cls: "lv2", modo: "poner" },
+            { n: 3, name: "Nivel 3", desc: "En punto e y media", cls: "lv3", modo: "leer", media: true }
+        ];
+        MKP.juego({
+            clave: "reloj", rondas: 6, icono: "⏰", niveles: NIV, niveles4: NIV, niveles5: NIV,
+            ronda(nv, i, listo) {
+                primera = true; fin = false; listoFn = listo;
+                h = R(1, 12); m = nv.media && i % 2 ? 30 : 0;
+                if (nv.modo === "poner") {
+                    puesta = 12;
+                    document.getElementById("card").innerHTML = `<p class="task">Pon el reloj a las <span class="big">${h}</span> en punto <button class="again" id="oir" type="button">🔊</button></p>
+                        <p class="sub">La aguja larga ya está en el 12. Toca un número para mover la aguja corta 🔴.</p>
+                        ${reloj(12, 0, true)}<div class="tools"><button class="big-btn" id="ok" type="button">✅ ¡Listo!</button></div>`;
+                    document.querySelectorAll("[data-h]").forEach(z => z.addEventListener("click", () => { if (fin) return; puesta = +z.dataset.h; document.getElementById("aH").style.transform = `rotate(${(puesta % 12) * 30}deg)`; MKJ.sound("salto"); MKP.decir(String(puesta)); }));
+                    document.getElementById("ok").onclick = () => {
+                        if (fin) return;
+                        if (puesta === h) { fin = true; MKJ.sound("ok"); MKP.aviso("¡" + h + " en punto!", true); MKP.decir(`¡Muy bien! Son las ${h} en punto`); listoFn(primera); }
+                        else { primera = false; MKJ.sound("error"); MKP.decir(`La aguja corta está en el ${puesta}. Ponla en el ${h}`); }
+                    };
+                    const t = `Pon el reloj a las ${h} en punto`;
+                    document.getElementById("oir").onclick = () => MKP.decir(t); MKP.decir(t); return;
+                }
+                const otras = MKJ.shuffle([[h % 12 + 1, m], [(h + 10) % 12 + 1, m], [h, m ? 0 : 30], [(h + 5) % 12 + 1, m ? 0 : 30]].filter(x => nv.media || !x[1])).slice(0, 2);
+                const opts = MKJ.shuffle([[h, m], ...otras]);
+                document.getElementById("card").innerHTML = `<p class="task">¿Qué hora es? <button class="again" id="oir" type="button">🔊</button></p>
+                    ${reloj(h, m)}
+                    <div class="answers">${opts.map(o => `<button class="answer hora" data-h="${o[0]}" data-m="${o[1]}" type="button">${o[0]}:${o[1] ? "30" : "00"}</button>`).join("")}</div>`;
+                document.querySelectorAll(".answer").forEach(b => b.onclick = () => {
+                    if (fin) return;
+                    if (+b.dataset.h === h && +b.dataset.m === m) { fin = true; b.classList.add("right"); MKJ.sound("ok"); MKP.decir(`¡Muy bien! Son las ${txtHora(h, m)}`); listoFn(primera); }
+                    else { primera = false; b.classList.add("wrong"); MKJ.sound("error"); MKP.decir(m ? "Mira la aguja corta: está entre dos números. La larga en el 6 es y media" : "Mira la aguja corta, la roja"); }
+                });
+                const t = "¿Qué hora es?";
+                document.getElementById("oir").onclick = () => MKP.decir(t); MKP.decir(t);
+            }
+        });
+        window.__juego = { get h() { return h; }, get m() { return m; } };
+
+    </script>
+</body>
+</html>

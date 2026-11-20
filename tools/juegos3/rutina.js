@@ -2,6 +2,7 @@
         const SEC = {
             momentos: [["🌅", "mañana"], ["☀️", "tarde"], ["🌙", "noche"]],
             rutina: [["⏰", "despertar"], ["🪥", "lavarse"], ["🥣", "desayunar"], ["🎒", "colegio"], ["🍲", "almorzar"], ["⚽", "jugar"], ["🛁", "bañarse"], ["😴", "dormir"]],
+            meses: ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "setiembre", "octubre", "noviembre", "diciembre"].map((m, k) => [["☀️", "☀️", "🍂", "🍂", "🍂", "❄️", "❄️", "❄️", "🌸", "🌸", "🌸", "☀️"][k], m]),
             dias: [["📅", "lunes"], ["📅", "martes"], ["📅", "miércoles"], ["📅", "jueves"], ["📅", "viernes"], ["🎉", "sábado"], ["🏡", "domingo"]]
         };
         let orden = [], puestos = 0, primera = true, listoFn = null;
@@ -10,15 +11,20 @@
             { n: 2, name: "Nivel 2", desc: "Ordena tu día (4 cosas)", cls: "lv2", sec: "rutina", k: 4 },
             { n: 3, name: "Nivel 3", desc: "Días de la semana", cls: "lv3", sec: "dias", k: 4 }
         ];
+        const NIV5 = [
+            { n: 1, name: "Nivel 1", desc: "Ordena tu día (5 cosas)", cls: "lv1", sec: "rutina", k: 5 },
+            { n: 2, name: "Nivel 2", desc: "Días de la semana (5)", cls: "lv2", sec: "dias", k: 5 },
+            { n: 3, name: "Nivel 3", desc: "Meses del año", cls: "lv3", sec: "meses", k: 4 }
+        ];
         MKP.juego({
-            clave: "rutina", rondas: 4, icono: "🌅", niveles: NIV, niveles4: NIV,
+            clave: "rutina", rondas: 4, icono: "🌅", niveles: NIV, niveles4: NIV, niveles5: NIV5,
             ronda(nv, i, listo) {
                 primera = true; listoFn = listo; puestos = 0;
                 const todo = SEC[nv.sec];
                 if (nv.sec === "momentos") orden = todo.slice();
-                else if (nv.sec === "dias") { const a = MKJ.rnd(0, todo.length - nv.k); orden = todo.slice(a, a + nv.k); }
+                else if (nv.sec === "dias" || nv.sec === "meses") { const a = MKJ.rnd(0, todo.length - nv.k); orden = todo.slice(a, a + nv.k); }
                 else { const idx = MKJ.shuffle([...todo.keys()]).slice(0, nv.k).sort((a, b) => a - b); orden = idx.map(k => todo[k]); }
-                const t = nv.sec === "dias" ? "Ordena los días de la semana" : nv.sec === "momentos" ? "Ordena: ¿qué va primero?" : "Ordena tu día: ¿qué haces primero?";
+                const t = nv.sec === "meses" ? "Ordena los meses del año" : nv.sec === "dias" ? "Ordena los días de la semana" : nv.sec === "momentos" ? "Ordena: ¿qué va primero?" : "Ordena tu día: ¿qué haces primero?";
                 document.getElementById("card").innerHTML = `<p class="task">${t} <button class="again" id="oir" type="button">🔊</button></p>
                     <p class="sub">Arrastra cada tarjeta a su lugar: 1, 2, 3…</p>
                     <div class="linea" style="--n:${orden.length}">${orden.map((o, k) => `<div class="casilla" data-drop="casilla" data-k="${k}"><span class="num">${k + 1}</span></div>`).join("")}</div>

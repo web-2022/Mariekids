@@ -20,6 +20,11 @@
                 { n: 2, name: "Nivel 2", desc: "Más el rectángulo", cls: "lv2", f: ["circulo", "cuadrado", "triangulo", "rectangulo"], k: 7 },
                 { n: 3, name: "Nivel 3", desc: "Más estrella y corazón", cls: "lv3", f: ["circulo", "cuadrado", "triangulo", "rectangulo", "estrella", "corazon"], k: 8 }
             ],
+            niveles5: [
+                { n: 1, name: "Nivel 1", desc: "8 figuras", cls: "lv1", todas: true, cajas: 6, k: 10 },
+                { n: 2, name: "Nivel 2", desc: "Clasifica por color", cls: "lv2", color: true, k: 10 },
+                { n: 3, name: "Nivel 3", desc: "Cuenta los lados: 0, 3 o 4", cls: "lv3", lados: true, k: 9 }
+            ],
             niveles4: [
                 { n: 1, name: "Nivel 1", desc: "6 figuras", cls: "lv1", f: ["circulo", "cuadrado", "triangulo", "rectangulo", "estrella", "corazon"], k: 8 },
                 { n: 2, name: "Nivel 2", desc: "Más rombo y óvalo", cls: "lv2", todas: true, cajas: 5, k: 9 },
@@ -28,6 +33,7 @@
             ronda(nv, i, listo) {
                 primera = true; listoFn = listo; porColor = !!nv.color;
                 if (nv.color) { colorRonda(nv); return; }
+                if (nv.lados) { ladosRonda(nv); return; }
                 const fs = nv.todas ? MKJ.shuffle(Object.keys(FIG)).slice(0, nv.cajas) : nv.f;
                 nv = { ...nv, f: fs };
                 const piezas = nv.f.concat(Array.from({ length: nv.k - nv.f.length }, () => P(nv.f)));
@@ -42,6 +48,19 @@
         });
         let porColor = false;
         const COLN = [["#ef4444", "rojo"], ["#3b82f6", "azul"], ["#eab308", "amarillo"]];
+        const LADOS = { circulo: 0, ovalo: 0, triangulo: 3, cuadrado: 4, rectangulo: 4, rombo: 4 };
+        function ladosRonda(nv) {
+            porColor = true;
+            const fs = Object.keys(LADOS), piezas = Array.from({ length: nv.k }, (_, k) => fs[k % fs.length]);
+            quedan = piezas.length;
+            const nom = n => n === 0 ? "sin lados (redondas)" : n + " lados";
+            document.getElementById("card").innerHTML = `<p class="task">¿Cuántos <span class="big">LADOS</span> tiene? <button class="again" id="oir" type="button">🔊</button></p>
+                <div class="cajas">${[0, 3, 4].map(n => `<div class="caja" data-drop="caja" data-f="${nom(n)}"><span class="rot" style="font-size:18px">${n === 0 ? "⭕ " : n === 3 ? "🔺 " : "🟦 "}${nom(n)}</span><div class="dentro"></div></div>`).join("")}</div>
+                <div class="mesa">${MKJ.shuffle(piezas).map(f => `<div class="fig" data-f="${nom(LADOS[f])}" data-forma="${f}" style="transform:rotate(${R(-25, 25)}deg) scale(.85)">${svg(f, P(COL))}</div>`).join("")}</div>`;
+            document.querySelectorAll(".fig").forEach(g => MKP.arrastrar(g, { alTocar: () => MKP.decir(FIG[g.dataset.forma][0] + ": " + g.dataset.f), alSoltar: c => guardar(g, c) }));
+            const txt = "Cuenta los lados de cada figura y guárdala en su caja";
+            document.getElementById("oir").onclick = () => MKP.decir(txt); MKP.decir(txt);
+        }
         function colorRonda(nv) {
             const piezas = Array.from({ length: nv.k }, (_, k) => ({ f: P(Object.keys(FIG)), c: COLN[k % 3] }));
             quedan = piezas.length;

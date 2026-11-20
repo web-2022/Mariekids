@@ -10,6 +10,11 @@
                 { n: 2, name: "Nivel 2", desc: "Patrones AAB, ABB y ABC", cls: "lv2", pats: ["AAB", "ABB", "ABC", "AB"], vacios: 1 },
                 { n: 3, name: "Nivel 3", desc: "Patrones largos, 2 que faltan", cls: "lv3", pats: ["AABB", "ABC", "ABBC", "AAB"], vacios: 2 }
             ],
+            niveles5: [
+                { n: 1, name: "Nivel 1", desc: "Cuenta de 2 en 2, de 5 en 5 y de 10 en 10", cls: "lv1", serie: true, vacios: 2, pasos: [[0, 2], [2, 2], [0, 5], [5, 5], [0, 10], [10, 10]] },
+                { n: 2, name: "Nivel 2", desc: "Series hacia atrás", cls: "lv2", serie: true, vacios: 2, pasos: [[20, -2], [30, -5], [100, -10], [15, -1], [50, -5]] },
+                { n: 3, name: "Nivel 3", desc: "Series grandes", cls: "lv3", serie: true, vacios: 2, pasos: [[23, 2], [35, 5], [40, 10], [61, 1], [90, -10], [45, -5], [11, 3]] }
+            ],
             niveles4: [
                 { n: 1, name: "Nivel 1", desc: "Patrones ABC y AABC, 2 que faltan", cls: "lv1", pats: ["ABC", "AABC", "ABCC", "AABB"], vacios: 2 },
                 { n: 2, name: "Nivel 2", desc: "Patrones de números: 1 2 1 2", cls: "lv2", pats: ["AB", "ABC", "AAB", "ABB"], vacios: 2, numeros: true },
@@ -19,12 +24,12 @@
                 primera = true; listoFn = listo; sig = 0;
                 let opc;
                 if (nv.serie) {
-                    const [ini, paso] = P([[1, 1], [2, 2], [1, 2], [5, 5], [10, -1], [20, -2], [3, 1], [0, 3]]);
+                    const [ini, paso] = P(nv.pasos || [[1, 1], [2, 2], [1, 2], [5, 5], [10, -1], [20, -2], [3, 1], [0, 3]]);
                     const largo = 7;
                     serie = Array.from({ length: largo }, (_, k) => { const v = ini + paso * k; return { c: "#fde68a", t: String(v), id: String(v) }; });
                     huecos = [largo - 2, largo - 1];
                     const sigv = ini + paso * (largo - 2);
-                    opc = [...new Set([sigv, sigv + paso, sigv + paso + 1, sigv - 1].filter(v => v >= 0))].slice(0, 4).map(v => ({ c: "#fde68a", t: String(v), id: String(v) }));
+                    opc = [...new Set([sigv, sigv + paso, sigv + paso + 1, sigv - 1, sigv + 2 * paso].filter(v => v >= 0))].slice(0, 4).map(v => ({ c: "#fde68a", t: String(v), id: String(v) }));
                 } else {
                 const pat = P(nv.pats), letras = [...new Set(pat)];
                 const cols = MKJ.shuffle(PIEZAS.slice()).slice(0, letras.length);

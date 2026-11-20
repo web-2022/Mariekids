@@ -16,6 +16,11 @@
                 { n: 2, name: "Nivel 2", desc: "Colores del 1 al 4", cls: "lv2", k: 4 },
                 { n: 3, name: "Nivel 3", desc: "Colores del 1 al 5", cls: "lv3", k: 5 }
             ],
+            niveles5: [
+                { n: 1, name: "Nivel 1", desc: "Pinta por suma (hasta 5)", cls: "lv1", k: 5, suma: true },
+                { n: 2, name: "Nivel 2", desc: "Pinta por resta: 7 − 3", cls: "lv2", k: 5, resta: true },
+                { n: 3, name: "Nivel 3", desc: "Sumas y restas mezcladas", cls: "lv3", k: 5, mix: true }
+            ],
             niveles4: [
                 { n: 1, name: "Nivel 1", desc: "Colores del 1 al 5", cls: "lv1", k: 5 },
                 { n: 2, name: "Nivel 2", desc: "Pinta por suma (hasta 4)", cls: "lv2", k: 4, suma: true },
@@ -26,7 +31,7 @@
                 primera = true; listoFn = listo; tinta = 1;
                 const partes = DIBUJOS[orden[i % 4]];
                 faltan = partes.filter(p => p[1] <= nv.k).length;
-                const svg = `<svg viewBox="0 0 300 260">${partes.map(p => p[1] <= nv.k ? `${p[0]} data-drop="parte" data-c="${p[1]}" fill="#fff"/>` : `${p[0]} fill="${TINTAS[p[1]]}" stroke="#334155" stroke-width="3"/>`).join("")}${partes.filter(p => p[1] <= nv.k).map(p => `<text x="${p[2]}" y="${p[3]}"${nv.suma ? ' style="font-size:17px"' : ""}>${nv.suma ? suma(p[1]) : p[1]}</text>`).join("")}</svg>`;
+                const svg = `<svg viewBox="0 0 300 260">${partes.map(p => p[1] <= nv.k ? `${p[0]} data-drop="parte" data-c="${p[1]}" fill="#fff"/>` : `${p[0]} fill="${TINTAS[p[1]]}" stroke="#334155" stroke-width="3"/>`).join("")}${partes.filter(p => p[1] <= nv.k).map(p => `<text x="${p[2]}" y="${p[3]}"${nv.suma || nv.resta || nv.mix ? ' style="font-size:17px"' : ""}>${nv.suma ? suma(p[1]) : nv.resta ? resta(p[1]) : nv.mix ? (Math.random() < .5 ? suma(p[1]) : resta(p[1])) : p[1]}</text>`).join("")}</svg>`;
                 document.getElementById("card").innerHTML = `<p class="task">Pinta cada parte con su número <button class="again" id="oir" type="button">🔊</button></p>
                     <p class="sub">Toca un color y luego la parte del dibujo. ¡O arrastra el color!</p>
                     <div class="lienzo">${svg}</div>
@@ -37,6 +42,7 @@
                 document.getElementById("oir").onclick = () => MKP.decir(txt); MKP.decir(txt);
             }
         });
+        function resta(c) { const b = MKJ.rnd(1, 4); return (c + b) + "−" + b; }
         function suma(c) { if (c === 1) return "1"; const a = MKJ.rnd(1, c - 1); return a + "+" + (c - a); }
         function elegir(t) {
             tinta = t; MKJ.sound("salto"); MKP.decir(t + ", " + NOMBRE[t]);

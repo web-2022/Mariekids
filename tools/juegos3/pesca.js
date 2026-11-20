@@ -9,6 +9,11 @@
                 { n: 2, name: "Nivel 2", desc: "Números del 1 al 6", cls: "lv2", max: 6, peces: 4 },
                 { n: 3, name: "Nivel 3", desc: "Números del 1 al 10", cls: "lv3", max: 10, peces: 5 }
             ],
+            niveles5: [
+                { n: 1, name: "Nivel 1", desc: "Números hasta 30", cls: "lv1", max: 30, peces: 5 },
+                { n: 2, name: "Nivel 2", desc: "Números hasta 50 (parecidos)", cls: "lv2", max: 50, peces: 5, cerca: true },
+                { n: 3, name: "Nivel 3", desc: "Números hasta 100 (parecidos)", cls: "lv3", max: 100, peces: 6, cerca: true }
+            ],
             niveles4: [
                 { n: 1, name: "Nivel 1", desc: "Números del 1 al 10", cls: "lv1", max: 10, peces: 4 },
                 { n: 2, name: "Nivel 2", desc: "Números del 1 al 15", cls: "lv2", max: 15, peces: 5 },
@@ -16,7 +21,9 @@
             ],
             ronda(nv, i, listo) {
                 objetivo = R(1, nv.max); primera = true; hecho = false;
-                const nums = MKJ.shuffle([...Array(nv.max).keys()].map(x => x + 1).filter(x => x !== objetivo)).slice(0, nv.peces - 1).concat(objetivo);
+                if (nv.cerca) objetivo = R(10, nv.max);
+                const pool = nv.cerca ? [...new Set([objetivo + 1, objetivo - 1, objetivo + 10, objetivo - 10, +(String(objetivo).split("").reverse().join("")), objetivo + 2, objetivo - 2, objetivo + 11])].filter(x => x !== objetivo && x >= 1 && x <= nv.max) : [...Array(nv.max).keys()].map(x => x + 1).filter(x => x !== objetivo);
+                const nums = MKJ.shuffle(pool).slice(0, nv.peces - 1).concat(objetivo);
                 MKJ.shuffle(nums);
                 const card = document.getElementById("card");
                 card.innerHTML = `<p class="task">Pesca el número <span class="big">${objetivo}</span> <button class="again" id="oir" type="button">🔊</button></p>

@@ -158,7 +158,12 @@
 
         /* ---------- Versión 3 años (mundo3d.html?edad=3): solo sumas pequeñas, con dibujitos y más lento ---------- */
         const EDAD = +(new URLSearchParams(location.search).get("edad") || 0), E4 = EDAD === 4;
-        const PEQ = EDAD === 3 || E4;
+        const PEQ = EDAD === 3 || E4, E5 = EDAD === 5;
+        if (E5) {
+            LEVELS.splice(3);
+            LEVELS.forEach((l, k) => { l.speed = 6 + k * 0.5; });
+            const bk5 = document.querySelector('a.pill[href="../juegos1P.html"]'); if (bk5) bk5.href = "../../5years/juegos5Y.html";
+        }
         if (PEQ) {
             if (E4) LEVELS.splice(0, LEVELS.length,
                 { n: 1, name: "Nivel 1", desc: "Sumas hasta 10", cls: "lv1", max: 10, speed: 6, sky: ["#8fd8ff", "#dff5ff"] },
@@ -171,7 +176,7 @@
             const back = document.querySelector('a.pill[href="../juegos1P.html"]');
             if (back) back.href = E4 ? "../../4years/juegos4Y.html" : "../../3years/juegos3Y.html";
         }
-        const STAR_KEY = E4 ? "mundo3d4a-" : PEQ ? "mundo3d3a-" : "mundo3d-";
+        const STAR_KEY = E5 ? "mundo3d5a-" : E4 ? "mundo3d4a-" : PEQ ? "mundo3d3a-" : "mundo3d-";
         const DIBUJOS = ["🍎", "⭐", "🐥", "🍓", "🎈", "🐟", "🌸", "🍪"];
         function sumaPeque(max, resta) {
             if (resta) {

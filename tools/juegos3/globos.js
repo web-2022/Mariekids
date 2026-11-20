@@ -9,6 +9,11 @@
                 { n: 2, name: "Nivel 2", desc: "Números del 1 al 6", cls: "lv2", max: 6, g: 5, t: 8 },
                 { n: 3, name: "Nivel 3", desc: "Números del 1 al 10", cls: "lv3", max: 10, g: 6, t: 7 }
             ],
+            niveles5: [
+                { n: 1, name: "Nivel 1", desc: "Números hasta 50", cls: "lv1", max: 50, g: 5, t: 8 },
+                { n: 2, name: "Nivel 2", desc: "Antes y después hasta 100", cls: "lv2", max: 100, g: 5, t: 8, ad: true },
+                { n: 3, name: "Nivel 3", desc: "¿Qué número va entre…? (hasta 100)", cls: "lv3", max: 100, g: 5, t: 8, entre: true }
+            ],
             niveles4: [
                 { n: 1, name: "Nivel 1", desc: "Números del 1 al 10", cls: "lv1", max: 10, g: 5, t: 8 },
                 { n: 2, name: "Nivel 2", desc: "Números del 1 al 20", cls: "lv2", max: 20, g: 6, t: 8 },
@@ -16,11 +21,13 @@
             ],
             ronda(nv, i, listo) {
                 obj = nv.ad ? R(2, nv.max - 1) : R(1, nv.max); primera = true; hecho = false; listoFn = listo;
-                const otros = MKJ.shuffle([...Array(nv.max).keys()].map(x => x + 1).filter(x => x !== obj)).slice(0, nv.g - 1);
+                if (nv.entre) obj = R(2, nv.max - 1);
+                const cand = nv.max > 20 ? [obj - 1, obj + 1, obj + 10, obj - 10, obj + 2, obj - 2, +(String(obj).split("").reverse().join(""))] : [...Array(nv.max).keys()].map(x => x + 1);
+                const otros = MKJ.shuffle([...new Set(cand)].filter(x => x !== obj && x >= 1 && x <= nv.max)).slice(0, nv.g - 1);
                 const nums = MKJ.shuffle(otros.concat(obj, obj));   // el correcto sale dos veces
                 const despues = i % 2 === 0, ref = despues ? obj - 1 : obj + 1;
-                const texto = nv.ad ? `¿Qué número va ${despues ? "después" : "antes"} del <span class="big">${despues ? obj - 1 : obj + 1}</span>?` : `Revienta el globo <span class="big">${obj}</span>`;
-                frase = nv.ad ? `¿Qué número va ${despues ? "después" : "antes"} del ${despues ? obj - 1 : obj + 1}?` : "Revienta el globo " + obj;
+                const texto = nv.entre ? `¿Qué número va entre el <span class="big">${obj - 1}</span> y el <span class="big">${obj + 1}</span>?` : nv.ad ? `¿Qué número va ${despues ? "después" : "antes"} del <span class="big">${despues ? obj - 1 : obj + 1}</span>?` : `Revienta el globo <span class="big">${obj}</span>`;
+                frase = nv.entre ? `¿Qué número va entre el ${obj - 1} y el ${obj + 1}?` : nv.ad ? `¿Qué número va ${despues ? "después" : "antes"} del ${despues ? obj - 1 : obj + 1}?` : "Revienta el globo " + obj;
                 document.getElementById("card").innerHTML = `<p class="task">${texto} <button class="again" id="oir" type="button">🔊</button></p><div class="sky" id="sky"></div>`;
                 const sky = document.getElementById("sky"), W = sky.clientWidth, paso = (W - 80) / Math.max(1, nums.length - 1);
                 nums.forEach((n, k) => {

@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../assets/mk-juegos.css" />
-    <link rel="stylesheet" href="../../assets/mk-peques.css?v=2" />
+    <link rel="stylesheet" href="../../assets/mk-peques.css?v=3" />
     <style>
         body { background: #fefce8; }
         .moneda { width: 74px; height: 74px; border-radius: 50%; display: grid; place-items: center; font: 800 20px/1 "Baloo 2", sans-serif; color: #713f12; cursor: grab; user-select: none; box-shadow: inset 0 -6px 0 #0002, 0 4px 0 #0003; border: 4px solid #0001; }
@@ -30,6 +30,10 @@
         .total { font: 800 30px "Baloo 2", sans-serif; color: #15803d; margin-top: 6px; }
         .moneda.mal { animation: sacude .4s; }
         @keyframes sacude { 0%,100% { transform: translateX(0) } 25% { transform: translateX(-8px) } 75% { transform: translateX(8px) } }
+        .billete { width: 110px; height: 60px; border-radius: 10px; }
+        .b10 { background: linear-gradient(135deg, #bbf7d0, #22c55e); color: #14532d; }
+        .b20 { background: linear-gradient(135deg, #fed7aa, #f97316); color: #7c2d12; }
+        .bandeja .billete { width: 74px; height: 42px; }
 
     </style>
 </head>
@@ -61,7 +65,7 @@
         </div>
     </div>
     <script src="../../assets/mk-juegos.js?v=2"></script>
-    <script src="../../assets/mk-peques.js?v=2"></script>
+    <script src="../../assets/mk-peques.js?v=3"></script>
     <script>
         /* 💰 MONEDAS: reconocer monedas peruanas (S/ 1, 2 y 5) y pagar el precio justo. */
         const R = MKJ.rnd, P = MKJ.pick;
@@ -72,9 +76,30 @@
             { n: 2, name: "Nivel 2", desc: "Paga con monedas de 1 sol (hasta 10)", cls: "lv2", modo: "paga", vals: [1], max: 10 },
             { n: 3, name: "Nivel 3", desc: "Paga con monedas de 1, 2 y 5 soles", cls: "lv3", modo: "paga", vals: [1, 2, 5], max: 10 }
         ];
-        const moneda = v => `<div class="moneda m${v}" data-v="${v}"><span><b>${v}</b>${v === 1 ? "sol" : "soles"}</span></div>`;
+        const moneda = v => v >= 10 ? `<div class="moneda billete b${v}" data-v="${v}"><span><b>${v}</b>soles</span></div>` : `<div class="moneda m${v}" data-v="${v}"><span><b>${v}</b>${v === 1 ? "sol" : "soles"}</span></div>`;
+        function vuelto() {
+            const pago = MKJ.pick([5, 10, 10, 20]), precio = R(1, pago - 1), v = pago - precio, prod = P(PROD);
+            meta = v;
+            const opts = MKJ.shuffle([...new Set([v, v + 1, Math.max(0, v - 1), v + 2])].slice(0, 3));
+            document.getElementById("card").innerHTML = `<p class="task">¿Cuánto es el vuelto? <button class="again" id="oir" type="button">🔊</button></p>
+                <div class="tienda"><span class="prod">${prod}</span><span class="precio">S/ ${precio}</span></div>
+                <p class="sub" style="font-size:20px">Pagas con ${moneda(pago).replace('class="moneda', 'style="display:inline-grid;vertical-align:middle" class="moneda')}</p>
+                <div class="bolsa">${opts.map(o => `<button class="big-btn vto" data-v="${o}" type="button" style="font-size:30px;min-width:90px">S/ ${o}</button>`).join("")}</div>`;
+            document.querySelectorAll(".vto").forEach(b => b.onclick = () => {
+                if (fin) return;
+                if (+b.dataset.v === v) { fin = true; MKJ.sound("ok"); MKP.aviso("¡Sí!", true); MKP.decir(`¡Muy bien! ${pago} menos ${precio} es ${v}`); listoFn(primera); }
+                else { primera = false; MKJ.sound("error"); MKP.decir(`Cuenta desde ${precio} hasta ${pago}`); }
+            });
+            const t = `Cuesta ${precio} soles y pagas con ${pago}. ¿Cuánto es el vuelto?`;
+            document.getElementById("oir").onclick = () => MKP.decir(t); MKP.decir(t);
+        }
+        const NIV5 = [
+            { n: 1, name: "Nivel 1", desc: "Paga con 1, 2 y 5 soles (hasta 15)", cls: "lv1", modo: "paga", vals: [1, 2, 5], max: 15 },
+            { n: 2, name: "Nivel 2", desc: "Con billetes de 10 y 20 (hasta 40)", cls: "lv2", modo: "paga", vals: [1, 2, 5, 10, 20], max: 40 },
+            { n: 3, name: "Nivel 3", desc: "¿Cuánto es el vuelto?", cls: "lv3", modo: "vuelto" }
+        ];
         MKP.juego({
-            clave: "monedas", rondas: 6, icono: "💰", niveles: NIV, niveles4: NIV,
+            clave: "monedas", rondas: 6, icono: "💰", niveles: NIV, niveles4: NIV, niveles5: NIV5,
             ronda(nv, i, listo) {
                 modo = nv.modo; primera = true; fin = false; listoFn = listo; total = 0;
                 if (modo === "conoce") {
@@ -85,7 +110,8 @@
                     const t = `Toca la moneda de ${MKP.NUM[meta]} ${meta === 1 ? "sol" : "soles"}`;
                     document.getElementById("oir").onclick = () => MKP.decir(t); MKP.decir(t); return;
                 }
-                valores = nv.vals; meta = R(2, nv.max);
+                if (modo === "vuelto") { vuelto(); return; }
+                valores = nv.vals; meta = R(nv.max > 20 ? 12 : 2, nv.max);
                 const prod = P(PROD);
                 document.getElementById("card").innerHTML = `<p class="task">Paga justo <button class="again" id="oir" type="button">🔊</button></p>
                     <div class="tienda"><span class="prod">${prod}</span><span class="precio">S/ ${meta}</span></div>

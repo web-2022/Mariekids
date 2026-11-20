@@ -87,7 +87,7 @@
     </div>
 
     <script src="../../assets/mk-juegos.js?v=2"></script>
-    <script src="../../assets/mk-peques.js?v=2"></script>
+    <script src="../../assets/mk-peques.js?v=3"></script>
     <script>
         /* =========================================================
            MK BLOQUES: BALANZA MÁGICA — ecuaciones como equilibrio
@@ -106,10 +106,18 @@
             { n: 5, name: "Nivel 5", desc: "Cajas a los dos lados: 3x + 2 = x + 10", cls: "lv5", gen: () => { const dx = R(1, 2), cx = dx + R(1, 2), x = R(1, 9), a = R(0, 8); return { cx, a, dx, b: (cx - dx) * x + a, x, max: 20 }; } }
         ];
         const EDAD = +(new URLSearchParams(location.search).get("edad") || 0), E4 = EDAD === 4;
-        const PEQ = EDAD === 3 || E4;
+        const PEQ = EDAD === 3 || E4 || EDAD === 5;
         if (PEQ) { const bk = document.querySelector('a.pill[href="../juegos1P.html"]'); if (bk) bk.href = E4 ? "../../4years/juegos4Y.html" : "../../3years/juegos3Y.html"; }
         const peque = (max, cubos = true) => () => { const x = R(1, max - 1), a = R(1, max - x); return { cx: 1, a, dx: 0, b: x + a, x, cubos, max }; };
-        if (E4) LEVELS.splice(0, LEVELS.length,
+        const E5 = EDAD === 5;
+        if (E5) {
+            LEVELS.splice(0, LEVELS.length,
+                { n: 1, name: "Nivel 1", desc: "▢ + 5 = 12 con cubitos (hasta 15)", cls: "lv1", gen: peque(15) },
+                { n: 2, name: "Nivel 2", desc: "Pesas con números hasta 20", cls: "lv2", gen: peque(20, false) },
+                { n: 3, name: "Nivel 3", desc: "▢ + 8 = 14 + 3 (hasta 25)", cls: "lv3", gen: () => { const x = R(2, 12), a = R(2, 10), t = x + a, c = R(1, Math.min(6, t - 1)); return { cx: 1, a, dx: 0, b: [t - c, c], x, max: 25 }; } });
+            const bk5 = document.querySelector('a.pill[href="../juegos1P.html"]'); if (bk5) bk5.href = "../../5years/juegos5Y.html";
+        }
+        else if (E4) LEVELS.splice(0, LEVELS.length,
             { n: 1, name: "Nivel 1", desc: "Equilibra con cubitos hasta 10", cls: "lv1", gen: peque(10) },
             { n: 2, name: "Nivel 2", desc: "Pesas con números hasta 12", cls: "lv2", gen: peque(12, false) },
             { n: 3, name: "Nivel 3", desc: "Pesas con números hasta 15", cls: "lv3", gen: peque(15, false) });
@@ -117,7 +125,7 @@
             { n: 1, name: "Nivel 1", desc: "Equilibra con cubitos hasta 5", cls: "lv1", gen: peque(5) },
             { n: 2, name: "Nivel 2", desc: "Equilibra con cubitos hasta 6", cls: "lv2", gen: peque(6) },
             { n: 3, name: "Nivel 3", desc: "Equilibra con cubitos hasta 10", cls: "lv3", gen: peque(10) });
-        const SK = E4 ? "balanza4a-" : PEQ ? "balanza3a-" : "balanza-";
+        const SK = E5 ? "balanza5a-" : E4 ? "balanza4a-" : PEQ ? "balanza3a-" : "balanza-";
         let level = LEVELS[0], qi = 0, ok = 0, fails = 0, cur = null, val = 0, intentos = 0, listo = false;
 
         const suma = b => Array.isArray(b) ? b.reduce((s, v) => s + v, 0) : b;

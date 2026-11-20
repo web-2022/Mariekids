@@ -9,6 +9,11 @@
                 { n: 2, name: "Nivel 2", desc: "Salta hacia adelante hasta el 6", cls: "lv2", max: 6, s: 3, atras: false },
                 { n: 3, name: "Nivel 3", desc: "Adelante y atrás hasta el 10", cls: "lv3", max: 10, s: 4, atras: true }
             ],
+            niveles5: [
+                { n: 1, name: "Nivel 1", desc: "Sumas hasta 15", cls: "lv1", max: 15, s: 7, atras: false },
+                { n: 2, name: "Nivel 2", desc: "Sumas y restas hasta 15", cls: "lv2", max: 15, s: 7, atras: true },
+                { n: 3, name: "Nivel 3", desc: "Sumas y restas grandes hasta 15", cls: "lv3", max: 15, s: 9, atras: true, min: 4 }
+            ],
             niveles4: [
                 { n: 1, name: "Nivel 1", desc: "Sumas saltando hasta el 10", cls: "lv1", max: 10, s: 5, atras: false },
                 { n: 2, name: "Nivel 2", desc: "Sumas y restas hasta el 10", cls: "lv2", max: 10, s: 5, atras: true },
@@ -17,7 +22,7 @@
             ronda(nv, i, listo) {
                 max = nv.max; primera = true; fin = false; listoFn = listo;
                 dir = nv.atras && i % 2 === 1 ? -1 : 1;
-                saltos = R(1, nv.s);
+                saltos = R(nv.min || 1, nv.s);
                 inicio = dir > 0 ? R(0, max - saltos) : R(saltos, max);
                 meta = inicio + dir * saltos; pos = inicio;
                 const txt = `Salta ${saltos} ${dir > 0 ? "hacia adelante ➡️" : "hacia atrás ⬅️"}`;

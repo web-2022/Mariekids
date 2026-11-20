@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../assets/mk-juegos.css" />
-    <link rel="stylesheet" href="../../assets/mk-peques.css?v=2" />
+    <link rel="stylesheet" href="../../assets/mk-peques.css?v=3" />
     <style>
         body { background: #d7f5e8; }
         .lake { position: relative; margin-top: 10px; padding: 70px 6px 16px; border-radius: 24px; background: linear-gradient(180deg, #67e8f9, #0891b2); }
@@ -55,7 +55,7 @@
         </div>
     </div>
     <script src="../../assets/mk-juegos.js?v=2"></script>
-    <script src="../../assets/mk-peques.js?v=2"></script>
+    <script src="../../assets/mk-peques.js?v=3"></script>
     <script>
         /* 🐸 LA RANA SALTARINA: recta numérica, contar saltos (base de la suma y la resta).
            Toca la rana (o las flechas) para saltar, o arrástrala a una hoja. */
@@ -68,6 +68,11 @@
                 { n: 2, name: "Nivel 2", desc: "Salta hacia adelante hasta el 6", cls: "lv2", max: 6, s: 3, atras: false },
                 { n: 3, name: "Nivel 3", desc: "Adelante y atrás hasta el 10", cls: "lv3", max: 10, s: 4, atras: true }
             ],
+            niveles5: [
+                { n: 1, name: "Nivel 1", desc: "Sumas hasta 15", cls: "lv1", max: 15, s: 7, atras: false },
+                { n: 2, name: "Nivel 2", desc: "Sumas y restas hasta 15", cls: "lv2", max: 15, s: 7, atras: true },
+                { n: 3, name: "Nivel 3", desc: "Sumas y restas grandes hasta 15", cls: "lv3", max: 15, s: 9, atras: true, min: 4 }
+            ],
             niveles4: [
                 { n: 1, name: "Nivel 1", desc: "Sumas saltando hasta el 10", cls: "lv1", max: 10, s: 5, atras: false },
                 { n: 2, name: "Nivel 2", desc: "Sumas y restas hasta el 10", cls: "lv2", max: 10, s: 5, atras: true },
@@ -76,7 +81,7 @@
             ronda(nv, i, listo) {
                 max = nv.max; primera = true; fin = false; listoFn = listo;
                 dir = nv.atras && i % 2 === 1 ? -1 : 1;
-                saltos = R(1, nv.s);
+                saltos = R(nv.min || 1, nv.s);
                 inicio = dir > 0 ? R(0, max - saltos) : R(saltos, max);
                 meta = inicio + dir * saltos; pos = inicio;
                 const txt = `Salta ${saltos} ${dir > 0 ? "hacia adelante ➡️" : "hacia atrás ⬅️"}`;

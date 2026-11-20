@@ -1,0 +1,13 @@
+        .regla { position: relative; margin: 10px auto 0; max-width: 560px; padding: 10px; border-radius: 18px; background: #f8fafc; text-align: left; }
+        .obj { display: flex; align-items: center; height: 56px; }
+        .obj .barra { height: 34px; border-radius: 17px; display: flex; align-items: center; justify-content: flex-end; padding-right: 4px; font-size: 28px; }
+        .clips { display: flex; height: 36px; margin-top: 4px; min-height: 36px; border-radius: 8px; }
+        .clips.drop { outline: 3px dashed #93c5fd; outline-offset: 2px; }
+        .clip { flex: none; width: var(--u); height: 30px; display: grid; place-items: center; font-size: 22px; border-right: 1px dashed #cbd5e1; }
+        .fuente { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; padding: 8px 14px; border-radius: 16px; background: #fef3c7; font: 800 16px "Nunito", sans-serif; color: #92400e; }
+        .fuente .clip { cursor: grab; width: 44px; border: 0; font-size: 30px; }
+        .dos { display: grid; gap: 12px; margin-top: 10px; }
+        .dos button { border: 0; border-radius: 18px; padding: 8px; background: #f1f5f9; text-align: left; cursor: pointer; }
+        .dos button.bien { box-shadow: 0 0 0 5px #22c55e; } .dos button.mal { animation: sacude .4s; }
+        @keyframes sacude { 0%,100% { transform: translateX(0) } 25% { transform: translateX(-8px) } 75% { transform: translateX(8px) } }
+        .answers { max-width: 420px; margin: 12px auto 0; }
