@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../assets/mk-juegos.css" />
-    <link rel="stylesheet" href="../../assets/mk-peques.css?v=1" />
+    <link rel="stylesheet" href="../../assets/mk-peques.css?v=2" />
     <style>
         body { background: #eff6ff; }
         .cajas { display: grid; grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); gap: 10px; margin-top: 8px; }
@@ -56,7 +56,7 @@
         </div>
     </div>
     <script src="../../assets/mk-juegos.js?v=2"></script>
-    <script src="../../assets/mk-peques.js?v=1"></script>
+    <script src="../../assets/mk-peques.js?v=2"></script>
     <script>
         /* 🔷 CLASIFICA FIGURAS: geometría. Arrastra cada figura a su caja. */
         const R = MKJ.rnd, P = MKJ.pick;
@@ -67,6 +67,8 @@
             triangulo: ["triángulo", c => `<polygon points="50,8 92,88 8,88" fill="${c}"/>`],
             rectangulo: ["rectángulo", c => `<rect x="4" y="26" width="92" height="48" fill="${c}"/>`],
             estrella: ["estrella", c => `<polygon points="50,5 61,38 96,38 68,58 79,92 50,72 21,92 32,58 4,38 39,38" fill="${c}"/>`],
+            rombo: ["rombo", c => `<polygon points="50,4 90,50 50,96 10,50" fill="${c}"/>`],
+            ovalo: ["óvalo", c => `<ellipse cx="50" cy="50" rx="46" ry="28" fill="${c}"/>`],
             corazon: ["corazón", c => `<path d="M50 88 C10 60 4 34 22 20 C36 10 48 18 50 28 C52 18 64 10 78 20 C96 34 90 60 50 88Z" fill="${c}"/>`]
         };
         const svg = (f, c) => `<svg viewBox="0 0 100 100" aria-hidden="true">${FIG[f][1](c)}</svg>`;
@@ -78,8 +80,16 @@
                 { n: 2, name: "Nivel 2", desc: "Más el rectángulo", cls: "lv2", f: ["circulo", "cuadrado", "triangulo", "rectangulo"], k: 7 },
                 { n: 3, name: "Nivel 3", desc: "Más estrella y corazón", cls: "lv3", f: ["circulo", "cuadrado", "triangulo", "rectangulo", "estrella", "corazon"], k: 8 }
             ],
+            niveles4: [
+                { n: 1, name: "Nivel 1", desc: "6 figuras", cls: "lv1", f: ["circulo", "cuadrado", "triangulo", "rectangulo", "estrella", "corazon"], k: 8 },
+                { n: 2, name: "Nivel 2", desc: "Más rombo y óvalo", cls: "lv2", todas: true, cajas: 5, k: 9 },
+                { n: 3, name: "Nivel 3", desc: "Ahora clasifica por COLOR", cls: "lv3", color: true, k: 9 }
+            ],
             ronda(nv, i, listo) {
-                primera = true; listoFn = listo;
+                primera = true; listoFn = listo; porColor = !!nv.color;
+                if (nv.color) { colorRonda(nv); return; }
+                const fs = nv.todas ? MKJ.shuffle(Object.keys(FIG)).slice(0, nv.cajas) : nv.f;
+                nv = { ...nv, f: fs };
                 const piezas = nv.f.concat(Array.from({ length: nv.k - nv.f.length }, () => P(nv.f)));
                 quedan = piezas.length;
                 document.getElementById("card").innerHTML = `<p class="task">Guarda cada figura en su caja <button class="again" id="oir" type="button">🔊</button></p>
@@ -90,8 +100,22 @@
                 document.getElementById("oir").onclick = () => MKP.decir(txt); MKP.decir(txt);
             }
         });
+        let porColor = false;
+        const COLN = [["#ef4444", "rojo"], ["#3b82f6", "azul"], ["#eab308", "amarillo"]];
+        function colorRonda(nv) {
+            const piezas = Array.from({ length: nv.k }, (_, k) => ({ f: P(Object.keys(FIG)), c: COLN[k % 3] }));
+            quedan = piezas.length;
+            document.getElementById("card").innerHTML = `<p class="task">Guarda cada figura en la caja de su <span class="big">COLOR</span> <button class="again" id="oir" type="button">🔊</button></p>
+                <div class="cajas">${COLN.map(c => `<div class="caja" data-drop="caja" data-f="${c[1]}" style="background:${c[0]}22;border-color:${c[0]}"><span class="rot" style="font-size:18px;color:${c[0]}">${c[1]}</span><div class="dentro"></div></div>`).join("")}</div>
+                <div class="mesa">${MKJ.shuffle(piezas).map(x => `<div class="fig" data-f="${x.c[1]}" data-forma="${x.f}" style="transform:scale(${(.75 + Math.random() * .3).toFixed(2)})">${svg(x.f, x.c[0])}</div>`).join("")}</div>`;
+            document.querySelectorAll(".fig").forEach(g => MKP.arrastrar(g, { alTocar: () => MKP.decir(FIG[g.dataset.forma][0] + " " + g.dataset.f), alSoltar: c => guardar(g, c) }));
+            const txt = "Ahora guarda cada figura en la caja de su color";
+            document.getElementById("oir").onclick = () => MKP.decir(txt); MKP.decir(txt);
+        }
         function guardar(g, c) {
             const f = g.dataset.f;
+            if (porColor && c.dataset.f !== f) { primera = false; MKJ.sound("error"); g.classList.remove("mal"); void g.offsetWidth; g.classList.add("mal"); MKP.decir("Mira el color: es " + f); return false; }
+            if (porColor) { const s2 = g.querySelector("svg").cloneNode(true); c.querySelector(".dentro").appendChild(s2); g.remove(); MKJ.sound("moneda"); MKP.decir(f); quedan--; if (quedan === 0) { MKJ.sound("ok"); MKP.aviso("¡Ordenado!", true); MKP.decir("¡Muy bien! Todo está ordenado por colores"); listoFn(primera); } return true; }
             if (c.dataset.f !== f) {
                 primera = false; MKJ.sound("error"); g.classList.remove("mal"); void g.offsetWidth; g.classList.add("mal");
                 MKP.decir("Eso es un " + FIG[f][0].replace("estrella", "una estrella")); return false;

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <title>MK Mi día · 3 años</title>
+    <meta name="theme-color" content="#0b73ff" />
+    <meta name="apple-mobile-web-app-title" content="MK" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../icons/icon-192.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/mk-juegos.css" />
+    <link rel="stylesheet" href="../../assets/mk-peques.css?v=2" />
+    <style>
+        body { background: #f5f3ff; }
+        .linea { display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: 8px; margin-top: 8px; }
+        .casilla { min-height: 110px; border-radius: 18px; border: 4px dashed #c4b5fd; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 4px; background: #faf5ff; }
+        .casilla .num { font: 800 22px "Baloo 2", sans-serif; color: #7c3aed; }
+        .tarjeta { width: 100%; max-width: 96px; border-radius: 16px; background: #fff; box-shadow: 0 4px 0 #ddd6fe, 0 0 0 2px #ede9fe; padding: 6px 2px; cursor: grab; user-select: none; text-align: center; }
+        .tarjeta .e { font-size: 42px; line-height: 1; display: block; }
+        .tarjeta small { font: 800 12px "Nunito", sans-serif; color: #4c1d95; }
+        .monton { display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 10px; margin-top: 16px; padding: 12px; border-radius: 20px; background: #fef3c7; justify-items: center; min-height: 100px; }
+        .tarjeta.mal { animation: sacude .4s; }
+        @keyframes sacude { 0%,100% { transform: translateX(0) } 25% { transform: translateX(-8px) } 75% { transform: translateX(8px) } }
+        @media (max-width: 480px) { .tarjeta .e { font-size: 32px; } .casilla { min-height: 96px; } }
+
+    </style>
+</head>
+<body>
+    <!-- GENERADO por tools/juegos3/build.py — edita tools/juegos3/rutina.css / rutina.js -->
+    <div class="bar">
+        <a class="pill" href="../juegos3Y.html" aria-label="Volver a los juegos">⬅<span class="txt"> Juegos</span></a>
+        <h1>🌅 Mi día</h1>
+        <button class="pill" id="soundBtn" type="button" aria-label="Sonido">🔊</button>
+    </div>
+    <div class="hud" aria-live="polite"><span id="hudLevel">Nivel 1</span><span id="hudQ"></span><span id="hudOk">⭐ 0</span></div>
+    <main class="stage"><div class="card" id="card"></div></main>
+    <div class="overlay show" id="startScreen">
+        <div class="panel">
+            <h2>🌅 Mi día</h2>
+            <p>Ordena lo que pasa primero, después y al final.</p>
+            <div class="levels" id="levels"></div>
+        </div>
+    </div>
+    <div class="overlay" id="endScreen">
+        <div class="panel">
+            <h2>¡Muy bien! 🎉</h2>
+            <div class="stars-big" id="endStars">⭐⭐⭐</div>
+            <p id="endText"></p>
+            <div class="row">
+                <button class="big-btn alt" id="menuBtn" type="button">📋 Niveles</button>
+                <button class="big-btn" id="nextBtn" type="button">▶ Siguiente</button>
+            </div>
+        </div>
+    </div>
+    <script src="../../assets/mk-juegos.js?v=2"></script>
+    <script src="../../assets/mk-peques.js?v=2"></script>
+    <script>
+        /* 🌅 MI DÍA: secuencia temporal (mañana, tarde, noche y la rutina del día) y días de la semana. */
+        const SEC = {
+            momentos: [["🌅", "mañana"], ["☀️", "tarde"], ["🌙", "noche"]],
+            rutina: [["⏰", "despertar"], ["🪥", "lavarse"], ["🥣", "desayunar"], ["🎒", "colegio"], ["🍲", "almorzar"], ["⚽", "jugar"], ["🛁", "bañarse"], ["😴", "dormir"]],
+            dias: [["📅", "lunes"], ["📅", "martes"], ["📅", "miércoles"], ["📅", "jueves"], ["📅", "viernes"], ["🎉", "sábado"], ["🏡", "domingo"]]
+        };
+        let orden = [], puestos = 0, primera = true, listoFn = null;
+        const NIV = [
+            { n: 1, name: "Nivel 1", desc: "Mañana, tarde y noche", cls: "lv1", sec: "momentos", k: 3 },
+            { n: 2, name: "Nivel 2", desc: "Ordena tu día (4 cosas)", cls: "lv2", sec: "rutina", k: 4 },
+            { n: 3, name: "Nivel 3", desc: "Días de la semana", cls: "lv3", sec: "dias", k: 4 }
+        ];
+        MKP.juego({
+            clave: "rutina", rondas: 4, icono: "🌅", niveles: NIV, niveles4: NIV,
+            ronda(nv, i, listo) {
+                primera = true; listoFn = listo; puestos = 0;
+                const todo = SEC[nv.sec];
+                if (nv.sec === "momentos") orden = todo.slice();
+                else if (nv.sec === "dias") { const a = MKJ.rnd(0, todo.length - nv.k); orden = todo.slice(a, a + nv.k); }
+                else { const idx = MKJ.shuffle([...todo.keys()]).slice(0, nv.k).sort((a, b) => a - b); orden = idx.map(k => todo[k]); }
+                const t = nv.sec === "dias" ? "Ordena los días de la semana" : nv.sec === "momentos" ? "Ordena: ¿qué va primero?" : "Ordena tu día: ¿qué haces primero?";
+                document.getElementById("card").innerHTML = `<p class="task">${t} <button class="again" id="oir" type="button">🔊</button></p>
+                    <p class="sub">Arrastra cada tarjeta a su lugar: 1, 2, 3…</p>
+                    <div class="linea" style="--n:${orden.length}">${orden.map((o, k) => `<div class="casilla" data-drop="casilla" data-k="${k}"><span class="num">${k + 1}</span></div>`).join("")}</div>
+                    <div class="monton">${MKJ.shuffle(orden.map((o, k) => ({ o, k }))).map(x => `<div class="tarjeta" data-k="${x.k}"><span class="e">${x.o[0]}</span><small>${x.o[1]}</small></div>`).join("")}</div>`;
+                document.querySelectorAll(".tarjeta").forEach(c => MKP.arrastrar(c, { alTocar: () => MKP.decir(orden[+c.dataset.k][1]), alSoltar: d => poner(c, d) }));
+                document.getElementById("oir").onclick = () => MKP.decir(t); MKP.decir(t);
+            }
+        });
+        function poner(c, d) {
+            if (d.querySelector(".tarjeta")) return false;
+            if (c.dataset.k !== d.dataset.k) { primera = false; MKJ.sound("error"); c.classList.remove("mal"); void c.offsetWidth; c.classList.add("mal"); MKP.decir(+d.dataset.k === 0 ? "¿Qué va primero?" : "Eso va en otro lugar"); return false; }
+            c.dataset.bloqueado = 1; c.style.opacity = ""; d.appendChild(c); puestos++; MKJ.sound("moneda"); MKP.decir(orden[+c.dataset.k][1]);
+            if (puestos === orden.length) { MKJ.sound("ok"); MKP.aviso("¡En orden!", true); MKP.decir("¡Muy bien! " + orden.map(o => o[1]).join(", ")); listoFn(primera); }
+            return true;
+        }
+        window.__juego = { get orden() { return orden; } };
+
+    </script>
+</body>
+</html>

@@ -10,3 +10,4 @@
         .wagon.mal { animation: sacude .4s; }
         @keyframes sacude { 0%,100% { transform: translateX(0) } 25% { transform: translateX(-10px) } 75% { transform: translateX(10px) } }
         @media (max-width: 480px) { .rail { gap: 4px; padding: 10px 0 18px; } .slot, .wagon { width: 44px; height: 44px; font-size: 24px; border-radius: 10px; } .slot { border-width: 3px; } .wagon::before, .wagon::after { width: 12px; height: 12px; bottom: -8px; } .loco { font-size: 40px; } }
+        @media (max-width: 480px) { .rail.l8 { gap: 3px; } .rail.l8 .slot, .rail.l8 .wagon { width: 34px; height: 40px; font-size: 20px; border-radius: 8px; } .rail.l8 .loco { font-size: 32px; } .rail.l8 .wagon::before, .rail.l8 .wagon::after { width: 9px; height: 9px; bottom: -7px; left: 4px; } .rail.l8 .wagon::after { left: auto; right: 4px; } }

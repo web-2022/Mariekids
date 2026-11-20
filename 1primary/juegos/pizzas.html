@@ -79,7 +79,7 @@
     </div>
 
     <script src="../../assets/mk-juegos.js?v=2"></script>
-    <script src="../../assets/mk-peques.js?v=1"></script>
+    <script src="../../assets/mk-peques.js?v=2"></script>
     <script>
         /* =========================================================
            MK BLOQUES: REPARTIR PIZZAS — la división como reparto
@@ -97,13 +97,18 @@
             { n: 4, name: "Nivel 4", desc: "División mental hasta 100", cls: "lv4", tipo: "mental" },
             { n: 5, name: "Nivel 5", desc: "Fracciones: ½, ⅓, ¼…", cls: "lv5", tipo: "fraccion" }
         ];
-        const PEQ = new URLSearchParams(location.search).get("edad") === "3";
-        if (PEQ) { const bk = document.querySelector('a.pill[href="../juegos1P.html"]'); if (bk) bk.href = "../../3years/juegos3Y.html"; }
-        if (PEQ) LEVELS.splice(0, LEVELS.length,
+        const EDAD = +(new URLSearchParams(location.search).get("edad") || 0), E4 = EDAD === 4;
+        const PEQ = EDAD === 3 || E4;
+        if (PEQ) { const bk = document.querySelector('a.pill[href="../juegos1P.html"]'); if (bk) bk.href = E4 ? "../../4years/juegos4Y.html" : "../../3years/juegos3Y.html"; }
+        if (E4) LEVELS.splice(0, LEVELS.length,
+            { n: 1, name: "Nivel 1", desc: "Reparte hasta 12 entre 2 o 3", cls: "lv1", tipo: "reparto", tot: [4, 12], am: [2, 3] },
+            { n: 2, name: "Nivel 2", desc: "Reparte hasta 16 entre 2 a 4", cls: "lv2", tipo: "reparto", tot: [6, 16], am: [2, 4] },
+            { n: 3, name: "Nivel 3", desc: "¿Y lo que sobra? (hasta 13)", cls: "lv3", tipo: "sobra", tot: [5, 13], am: [2, 3] });
+        else if (PEQ) LEVELS.splice(0, LEVELS.length,
             { n: 1, name: "Nivel 1", desc: "Reparte hasta 4 entre 2 amigos", cls: "lv1", tipo: "reparto", tot: [2, 4], am: [2, 2] },
             { n: 2, name: "Nivel 2", desc: "Reparte hasta 6 entre 2 o 3", cls: "lv2", tipo: "reparto", tot: [4, 6], am: [2, 3] },
             { n: 3, name: "Nivel 3", desc: "Reparte hasta 10 entre 2 o 3", cls: "lv3", tipo: "reparto", tot: [4, 10], am: [2, 3] });
-        const SK = PEQ ? "pizzas3a-" : "pizzas-";
+        const SK = E4 ? "pizzas4a-" : PEQ ? "pizzas3a-" : "pizzas-";
         let level = LEVELS[0], qi = 0, ok = 0, fails = 0, cur = null;
 
         function plural(n, s, p) { return n === 1 ? s : p; }

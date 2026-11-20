@@ -7,3 +7,6 @@
         .dino.mal { animation: sacude .4s; }
         @keyframes sacude { 0%,100% { transform: translateX(0) } 25% { transform: translateX(-8px) } 75% { transform: translateX(8px) } }
         @media (max-width: 480px) { .hueco { width: 54px; } }
+        .torre { display: flex; flex-direction: column-reverse; gap: 2px; align-items: center; }
+        .torre i { width: 30px; height: 14px; border-radius: 3px; background: linear-gradient(180deg, #fb923c, #ea580c); }
+        .numc { min-width: 50px; padding: 8px 6px; border-radius: 14px; background: #fde68a; font: 800 32px "Baloo 2", sans-serif; color: #92400e; text-align: center; }

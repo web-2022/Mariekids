@@ -5,3 +5,9 @@
         .plate.mal { animation: sacude .4s; }
         @keyframes sacude { 0%,100% { transform: translateX(0) } 25% { transform: translateX(-8px) } 75% { transform: translateX(8px) } }
         .cnts { display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: 12px; font: 800 34px "Baloo 2", sans-serif; color: #92400e; min-height: 46px; }
+        .numgr { font: 800 clamp(40px, 12vw, 64px) "Baloo 2", sans-serif; color: #92400e; }
+        .comp { display: flex; justify-content: center; align-items: center; gap: 14px; margin: 14px 0; }
+        .comp .nb { min-width: 84px; padding: 6px 10px; border-radius: 20px; background: #fef3c7; font: 800 54px "Baloo 2", sans-serif; color: #92400e; }
+        .comp .hueco { width: 80px; height: 80px; border-radius: 20px; border: 4px dashed #22c55e; display: grid; place-items: center; font: 800 52px "Baloo 2", sans-serif; color: #15803d; }
+        .signos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; max-width: 360px; margin: 0 auto; }
+        .signos .sg { aspect-ratio: auto; height: 90px; border-radius: 22px; font: 800 52px "Baloo 2", sans-serif; color: #15803d; background: #dcfce7; padding: 0; }

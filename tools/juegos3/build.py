@@ -4,7 +4,7 @@ Plantilla común: barra, HUD, menú de niveles y pantalla final (assets/mk-peque
 import os
 AQUI = os.path.dirname(os.path.abspath(__file__))
 RAIZ = os.path.abspath(os.path.join(AQUI, "..", ".."))
-V = "1"
+V = "2"
 JUEGOS = [
     ("pesca", "🐟", "Pesca de números", "Toca o arrastra el pez que tiene el número que escuchas.", "#bdeaff"),
     ("canasta", "🧺", "Llena la canasta", "Arrastra con el dedo tantas frutas como dice el número.", "#e3f8d4"),
@@ -18,6 +18,8 @@ JUEGOS = [
     ("dinos", "🦖", "Dinosaurios por tamaño", "Ordena los dinosaurios de pequeño a grande.", "#f7fee7"),
     ("figuras", "🔷", "Clasifica figuras", "Guarda cada figura en su caja.", "#eff6ff"),
     ("gusano", "🐛", "Gusano de patrones", "Completa el patrón del gusano.", "#f0fdf4"),
+    ("monedas", "💰", "Monedas", "Conoce las monedas y paga el precio justo.", "#fefce8"),
+    ("rutina", "🌅", "Mi día", "Ordena lo que pasa primero, después y al final.", "#f5f3ff"),
 ]
 PLANTILLA = """<!DOCTYPE html>
 <html lang="es">

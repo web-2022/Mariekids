@@ -9,6 +9,11 @@
                 { n: 2, name: "Nivel 2", desc: "Números del 1 al 6", cls: "lv2", max: 6, peces: 4 },
                 { n: 3, name: "Nivel 3", desc: "Números del 1 al 10", cls: "lv3", max: 10, peces: 5 }
             ],
+            niveles4: [
+                { n: 1, name: "Nivel 1", desc: "Números del 1 al 10", cls: "lv1", max: 10, peces: 4 },
+                { n: 2, name: "Nivel 2", desc: "Números del 1 al 15", cls: "lv2", max: 15, peces: 5 },
+                { n: 3, name: "Nivel 3", desc: "Números del 1 al 20", cls: "lv3", max: 20, peces: 6 }
+            ],
             ronda(nv, i, listo) {
                 objetivo = R(1, nv.max); primera = true; hecho = false;
                 const nums = MKJ.shuffle([...Array(nv.max).keys()].map(x => x + 1).filter(x => x !== objetivo)).slice(0, nv.peces - 1).concat(objetivo);

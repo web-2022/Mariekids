@@ -157,22 +157,32 @@
         ];
 
         /* ---------- Versión 3 años (mundo3d.html?edad=3): solo sumas pequeñas, con dibujitos y más lento ---------- */
-        const PEQ = new URLSearchParams(location.search).get("edad") === "3";
+        const EDAD = +(new URLSearchParams(location.search).get("edad") || 0), E4 = EDAD === 4;
+        const PEQ = EDAD === 3 || E4;
         if (PEQ) {
-            LEVELS.splice(0, LEVELS.length,
+            if (E4) LEVELS.splice(0, LEVELS.length,
+                { n: 1, name: "Nivel 1", desc: "Sumas hasta 10", cls: "lv1", max: 10, speed: 6, sky: ["#8fd8ff", "#dff5ff"] },
+                { n: 2, name: "Nivel 2", desc: "Restas hasta 10", cls: "lv2", max: 10, resta: true, speed: 6, sky: ["#ffc98f", "#fff0d9"] },
+                { n: 3, name: "Nivel 3", desc: "Sumas hasta 20", cls: "lv3", max: 20, speed: 6.5, sky: ["#b9a6ff", "#efe9ff"] });
+            else LEVELS.splice(0, LEVELS.length,
                 { n: 1, name: "Nivel 1", desc: "Sumas hasta 5", cls: "lv1", max: 5, speed: 5, sky: ["#8fd8ff", "#dff5ff"] },
                 { n: 2, name: "Nivel 2", desc: "Sumas hasta 6", cls: "lv2", max: 6, speed: 5.5, sky: ["#ffc98f", "#fff0d9"] },
                 { n: 3, name: "Nivel 3", desc: "Sumas hasta 10", cls: "lv3", max: 10, speed: 6, sky: ["#b9a6ff", "#efe9ff"] });
             const back = document.querySelector('a.pill[href="../juegos1P.html"]');
-            if (back) back.href = "../../3years/juegos3Y.html";
+            if (back) back.href = E4 ? "../../4years/juegos4Y.html" : "../../3years/juegos3Y.html";
         }
-        const STAR_KEY = PEQ ? "mundo3d3a-" : "mundo3d-";
+        const STAR_KEY = E4 ? "mundo3d4a-" : PEQ ? "mundo3d3a-" : "mundo3d-";
         const DIBUJOS = ["🍎", "⭐", "🐥", "🍓", "🎈", "🐟", "🌸", "🍪"];
-        function sumaPeque(max) {
+        function sumaPeque(max, resta) {
+            if (resta) {
+                const a = MKJ.rnd(2, max), b = MKJ.rnd(1, a - 1), r = a - b, e = MKJ.pick(DIBUJOS), set = new Set([r]);
+                while (set.size < 3) { const x = r + MKJ.pick([-2, -1, 1, 2]); if (x >= 0 && x <= max) set.add(x); }
+                return { text: a + " − " + b + " = ?", visual: e.repeat(a) + " ➖ " + b, speak: a + " menos " + b, answer: r, options: MKJ.shuffle([...set]) };
+            }
             const a = MKJ.rnd(1, max - 1), b = MKJ.rnd(1, max - a), r = a + b, e = MKJ.pick(DIBUJOS);
             const set = new Set([r]);
             while (set.size < 3) { const x = r + MKJ.pick([-2, -1, 1, 2]); if (x >= 1 && x <= max + 1) set.add(x); }
-            return { text: a + " + " + b + " = ?", visual: e.repeat(a) + " ➕ " + e.repeat(b), speak: a + " más " + b, answer: r, options: MKJ.shuffle([...set]) };
+            return { text: a + " + " + b + " = ?", visual: max > 10 ? "" : e.repeat(a) + " ➕ " + e.repeat(b), speak: a + " más " + b, answer: r, options: MKJ.shuffle([...set]) };
         }
 
         let W = 0, H = 0, dpr = 1, F = 1, HORIZON = 0;
@@ -258,7 +268,7 @@
         }
 
         function newGate() {
-            const q = PEQ ? sumaPeque(level.max) : MKJ.question(level.q);
+            const q = PEQ ? sumaPeque(level.max, level.resta) : MKJ.question(level.q);
             gate = { z: z + GATE_DIST, q, passed: false, opts: q.options.slice(0, 3) };
             $("qText").textContent = q.text;
             $("qVisual").textContent = q.visual || "";

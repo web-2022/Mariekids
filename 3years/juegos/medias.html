@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../assets/mk-juegos.css" />
-    <link rel="stylesheet" href="../../assets/mk-peques.css?v=1" />
+    <link rel="stylesheet" href="../../assets/mk-peques.css?v=2" />
     <style>
         body { background: #f5f3ff; }
         .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 8px; }
@@ -57,7 +57,7 @@
         </div>
     </div>
     <script src="../../assets/mk-juegos.js?v=2"></script>
-    <script src="../../assets/mk-peques.js?v=1"></script>
+    <script src="../../assets/mk-peques.js?v=2"></script>
     <script>
         /* 🧦 PAREJAS DE MEDIAS: correspondencia. Arrastra cada media de la izquierda a su pareja. */
         const R = MKJ.rnd;
@@ -73,22 +73,28 @@
                 { n: 2, name: "Nivel 2", desc: "4 parejas: número y número", cls: "lv2", p: 4, modo: "num", max: 6 },
                 { n: 3, name: "Nivel 3", desc: "Número con sus puntitos (hasta 10)", cls: "lv3", p: 4, modo: "puntos", max: 10 }
             ],
+            niveles4: [
+                { n: 1, name: "Nivel 1", desc: "Mismo número (hasta 10)", cls: "lv1", p: 4, modo: "num", max: 10 },
+                { n: 2, name: "Nivel 2", desc: "Número con sus puntitos (hasta 10)", cls: "lv2", p: 5, modo: "puntos", max: 10 },
+                { n: 3, name: "Nivel 3", desc: "Suma con su resultado: 2 + 3 y 5", cls: "lv3", p: 4, modo: "suma", max: 10 }
+            ],
             ronda(nv, i, listo) {
                 primera = true; listoFn = listo; nivelAct = nv; quedan = nv.p;
                 const cols = MKJ.shuffle(COL.slice()).slice(0, nv.p);
-                const nums = nv.modo === "color" ? cols.map((_, k) => k) : MKJ.shuffle([...Array(nv.max).keys()].map(x => x + 1)).slice(0, nv.p);
+                const nums = nv.modo === "color" ? cols.map((_, k) => k) : MKJ.shuffle([...Array(nv.max).keys()].map(x => x + 1).filter(x => nv.modo !== "suma" || x > 1)).slice(0, nv.p);
                 const izq = nums.map((n, k) => ({ id: k, c: cols[k], n })), der = MKJ.shuffle(izq.map(x => ({ ...x, c: nv.modo === "color" ? x.c : COL[(x.id + 3) % COL.length] })));
                 const cara = (m, lado) => {
                     let extra = "";
                     if (nv.modo === "num") extra = `<b>${m.n}</b>`;
+                    if (nv.modo === "suma") { const a = (m.a = m.a || R(1, m.n - 1)); extra = lado === "i" ? `<b style="font-size:19px;left:30px">${a}+${m.n - a}</b>` : `<b>${m.n}</b>`; }
                     if (nv.modo === "puntos") extra = lado === "i" ? `<b>${m.n}</b>` : `<span class="dots">${"<i></i>".repeat(m.n)}</span>`;
                     return `<div class="sock" data-id="${m.id}" ${lado === "d" ? 'data-drop="media"' : ""}>${svgMedia(m.c, lado === "d")}${extra}</div>`;
                 };
-                document.getElementById("card").innerHTML = `<p class="task">${nv.modo === "color" ? "Junta cada media con su pareja" : nv.modo === "num" ? "Junta las medias con el mismo número" : "Junta el número con sus puntitos"} <button class="again" id="oir" type="button">🔊</button></p>
+                document.getElementById("card").innerHTML = `<p class="task">${nv.modo === "color" ? "Junta cada media con su pareja" : nv.modo === "num" ? "Junta las medias con el mismo número" : nv.modo === "suma" ? "Junta cada suma con su resultado" : "Junta el número con sus puntitos"} <button class="again" id="oir" type="button">🔊</button></p>
                     <p class="sub">Arrastra una media de la izquierda hasta su pareja.</p>
                     <div class="cols"><div class="col">${izq.map(m => cara(m, "i")).join("")}</div><div class="col">${der.map(m => cara(m, "d")).join("")}</div></div><div class="tend" id="tend"></div>`;
                 document.querySelectorAll(".col:first-child .sock").forEach(s => MKP.arrastrar(s, { alSoltar: d => juntar(s, d) }));
-                const txt = nv.modo === "color" ? "Junta cada media con su pareja del mismo color" : nv.modo === "num" ? "Junta las medias que tienen el mismo número" : "Junta cada número con la media que tiene esos puntitos";
+                const txt = nv.modo === "color" ? "Junta cada media con su pareja del mismo color" : nv.modo === "num" ? "Junta las medias que tienen el mismo número" : nv.modo === "suma" ? "Junta cada suma con su resultado" : "Junta cada número con la media que tiene esos puntitos";
                 document.getElementById("oir").onclick = () => MKP.decir(txt); MKP.decir(txt);
             }
         });

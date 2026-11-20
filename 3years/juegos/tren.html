@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../assets/mk-juegos.css" />
-    <link rel="stylesheet" href="../../assets/mk-peques.css?v=1" />
+    <link rel="stylesheet" href="../../assets/mk-peques.css?v=2" />
     <style>
         body { background: #fff1d6; }
         .rail { position: relative; display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-end; gap: 6px; padding: 10px 6px 18px; margin-top: 6px; border-bottom: 8px solid #78716c; transition: transform 2.2s ease-in; }
@@ -27,6 +27,7 @@
         .wagon.mal { animation: sacude .4s; }
         @keyframes sacude { 0%,100% { transform: translateX(0) } 25% { transform: translateX(-10px) } 75% { transform: translateX(10px) } }
         @media (max-width: 480px) { .rail { gap: 4px; padding: 10px 0 18px; } .slot, .wagon { width: 44px; height: 44px; font-size: 24px; border-radius: 10px; } .slot { border-width: 3px; } .wagon::before, .wagon::after { width: 12px; height: 12px; bottom: -8px; } .loco { font-size: 40px; } }
+        @media (max-width: 480px) { .rail.l8 { gap: 3px; } .rail.l8 .slot, .rail.l8 .wagon { width: 34px; height: 40px; font-size: 20px; border-radius: 8px; } .rail.l8 .loco { font-size: 32px; } .rail.l8 .wagon::before, .rail.l8 .wagon::after { width: 9px; height: 9px; bottom: -7px; left: 4px; } .rail.l8 .wagon::after { left: auto; right: 4px; } }
 
     </style>
 </head>
@@ -58,7 +59,7 @@
         </div>
     </div>
     <script src="../../assets/mk-juegos.js?v=2"></script>
-    <script src="../../assets/mk-peques.js?v=1"></script>
+    <script src="../../assets/mk-peques.js?v=2"></script>
     <script>
         /* 🚂 EL TREN ORDENADO: secuencia numérica. Arrastra cada vagón a su lugar en el tren. */
         const R = MKJ.rnd;
@@ -71,16 +72,23 @@
                 { n: 2, name: "Nivel 2", desc: "Ordena del 1 al 6", cls: "lv2", desde: [1, 1], largo: 6, guia: "primero" },
                 { n: 3, name: "Nivel 3", desc: "Ordena números hasta el 10", cls: "lv3", desde: [1, 5], largo: 6, guia: "primero" }
             ],
+            niveles4: [
+                { n: 1, name: "Nivel 1", desc: "Ordena números hasta el 10", cls: "lv1", desde: [1, 5], largo: 6, guia: "primero" },
+                { n: 2, name: "Nivel 2", desc: "Ordena números hasta el 20", cls: "lv2", desde: [5, 15], largo: 6, guia: "primero" },
+                { n: 3, name: "Nivel 3", desc: "¿Qué vagones faltan? (hasta 20)", cls: "lv3", desde: [1, 13], largo: 8, guia: "no", faltan: 3 }
+            ],
             ronda(nv, i, listo) {
                 const a = R(nv.desde[0], nv.desde[1]);
                 nums = Array.from({ length: nv.largo }, (_, k) => a + k); puestos = 0; primera = true; listoFn = listo;
                 const card = document.getElementById("card");
                 card.innerHTML = `<p class="task">Ordena el tren: ${nums[0]}, ${nums[1]}, ${nums[2]}… <button class="again" id="oir" type="button">🔊</button></p>
                     <p class="sub">Arrastra cada vagón a su lugar.</p>
-                    <div class="rail" id="rail"><span class="loco">🚂</span>${nums.map((n, k) => `<div class="slot" data-drop="slot" data-n="${n}">${nv.guia === "todo" || k === 0 ? n : ""}</div>`).join("")}</div>
+                    <div class="rail${nums.length > 6 ? " l8" : ""}" id="rail"><span class="loco">🚂</span>${nums.map((n, k) => `<div class="slot" data-drop="slot" data-n="${n}">${nv.guia === "todo" || k === 0 ? n : ""}</div>`).join("")}</div>
                     <div class="yard" id="yard"></div>`;
                 const yard = document.getElementById("yard");
-                MKJ.shuffle(nums.slice()).forEach(n => {
+                const falta = nv.faltan ? MKJ.shuffle(nums.slice(1)).slice(0, nv.faltan) : nums;
+                if (nv.faltan) nums.forEach(n => { if (!falta.includes(n)) { const sl = card.querySelector(`.slot[data-n="${n}"]`); sl.classList.add("lleno"); sl.textContent = ""; sl.innerHTML = `<div class="wagon" style="background:${COLORES[(n - 1) % COLORES.length]}">${n}</div>`; puestos++; } });
+                MKJ.shuffle(falta.slice()).forEach(n => {
                     const w = document.createElement("div"); w.className = "wagon"; w.textContent = n; w.dataset.n = n;
                     w.style.background = COLORES[(n - 1) % COLORES.length];
                     yard.appendChild(w);

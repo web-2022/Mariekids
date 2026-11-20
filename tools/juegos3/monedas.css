@@ -1,0 +1,15 @@
+        .moneda { width: 74px; height: 74px; border-radius: 50%; display: grid; place-items: center; font: 800 20px/1 "Baloo 2", sans-serif; color: #713f12; cursor: grab; user-select: none; box-shadow: inset 0 -6px 0 #0002, 0 4px 0 #0003; border: 4px solid #0001; }
+        .moneda b { display: block; font-size: 30px; }
+        .m1 { background: radial-gradient(circle at 35% 30%, #f1f5f9, #94a3b8); color: #334155; }
+        .m2 { background: radial-gradient(circle at 35% 30%, #fef3c7, #d4a017); }
+        .m5 { width: 86px; height: 86px; background: radial-gradient(circle at 35% 30%, #fde68a 0 30%, #cbd5e1 31% 100%); color: #422006; }
+        .tienda { display: flex; justify-content: center; align-items: center; gap: 12px; margin: 6px 0; }
+        .prod { font-size: 70px; line-height: 1; }
+        .precio { padding: 6px 14px; border-radius: 16px; background: #fde68a; font: 800 40px "Baloo 2", sans-serif; color: #92400e; }
+        .bandeja { min-height: 100px; margin-top: 8px; padding: 10px; border-radius: 22px; border: 4px dashed #f59e0b; background: #fffbeb; display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 6px; }
+        .bandeja .moneda { width: 54px; height: 54px; font-size: 14px; cursor: pointer; } .bandeja .moneda b { font-size: 22px; }
+        .bandeja .vacia { color: #b45309; font-weight: 800; }
+        .bolsa { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 14px; padding: 12px; border-radius: 20px; background: #f1f5f9; }
+        .total { font: 800 30px "Baloo 2", sans-serif; color: #15803d; margin-top: 6px; }
+        .moneda.mal { animation: sacude .4s; }
+        @keyframes sacude { 0%,100% { transform: translateX(0) } 25% { transform: translateX(-8px) } 75% { transform: translateX(8px) } }

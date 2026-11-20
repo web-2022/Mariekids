@@ -12,12 +12,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../assets/mk-juegos.css" />
-    <link rel="stylesheet" href="../../assets/mk-peques.css?v=1" />
+    <link rel="stylesheet" href="../../assets/mk-peques.css?v=2" />
     <style>
         body { background: #d7f5e8; }
         .lake { position: relative; margin-top: 10px; padding: 70px 6px 16px; border-radius: 24px; background: linear-gradient(180deg, #67e8f9, #0891b2); }
-        .pads { display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: 4px; }
-        .pad { aspect-ratio: 1; max-width: 70px; margin: 0 auto; width: 100%; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle at 40% 35%, #86efac, #16a34a); font: 800 clamp(16px, 4.5vw, 28px) "Baloo 2", sans-serif; color: #fff; border: 3px solid #14532d; text-shadow: 0 2px 0 #14532d; }
+        .pads { display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: 3px; }
+        .pad { min-width: 0; aspect-ratio: 1; max-width: 70px; margin: 0 auto; width: 100%; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle at 40% 35%, #86efac, #16a34a); font: 800 clamp(12px, 3.6vw, 28px) "Baloo 2", sans-serif; color: #fff; border: 2px solid #14532d; text-shadow: 0 2px 0 #14532d; }
         .pad.meta { box-shadow: 0 0 0 4px #fde047; }
         .frog { position: absolute; top: 8px; font-size: clamp(36px, 9vw, 58px); line-height: 1; cursor: grab; transition: left .35s cubic-bezier(.3,1.5,.6,1); transform: translateX(-50%); z-index: 2; }
         .frog.salta { animation: hop .35s; }
@@ -55,7 +55,7 @@
         </div>
     </div>
     <script src="../../assets/mk-juegos.js?v=2"></script>
-    <script src="../../assets/mk-peques.js?v=1"></script>
+    <script src="../../assets/mk-peques.js?v=2"></script>
     <script>
         /* 🐸 LA RANA SALTARINA: recta numérica, contar saltos (base de la suma y la resta).
            Toca la rana (o las flechas) para saltar, o arrástrala a una hoja. */
@@ -68,6 +68,11 @@
                 { n: 2, name: "Nivel 2", desc: "Salta hacia adelante hasta el 6", cls: "lv2", max: 6, s: 3, atras: false },
                 { n: 3, name: "Nivel 3", desc: "Adelante y atrás hasta el 10", cls: "lv3", max: 10, s: 4, atras: true }
             ],
+            niveles4: [
+                { n: 1, name: "Nivel 1", desc: "Sumas saltando hasta el 10", cls: "lv1", max: 10, s: 5, atras: false },
+                { n: 2, name: "Nivel 2", desc: "Sumas y restas hasta el 10", cls: "lv2", max: 10, s: 5, atras: true },
+                { n: 3, name: "Nivel 3", desc: "Sumas y restas hasta el 12", cls: "lv3", max: 12, s: 6, atras: true }
+            ],
             ronda(nv, i, listo) {
                 max = nv.max; primera = true; fin = false; listoFn = listo;
                 dir = nv.atras && i % 2 === 1 ? -1 : 1;
@@ -75,7 +80,7 @@
                 inicio = dir > 0 ? R(0, max - saltos) : R(saltos, max);
                 meta = inicio + dir * saltos; pos = inicio;
                 const txt = `Salta ${saltos} ${dir > 0 ? "hacia adelante ➡️" : "hacia atrás ⬅️"}`;
-                document.getElementById("card").innerHTML = `<p class="task">La rana está en el <span class="big">${inicio}</span><br>${txt.replace(String(saltos), `<span class="big">${saltos}</span>`)} <button class="again" id="oir" type="button">🔊</button></p>
+                document.getElementById("card").innerHTML = `<p class="task">La rana está en el <span class="big">${inicio}</span><br>${txt.replace(String(saltos), `<span class="big">${saltos}</span>`)} <button class="again" id="oir" type="button">🔊</button>${MKP.edad === 4 ? `<br><span class="big">${inicio} ${dir > 0 ? "+" : "−"} ${saltos} = ?</span>` : ""}</p>
                     <p class="sub">Toca la rana para que salte. ¿En qué número cae?</p>
                     <div class="lake" id="lake"><span class="frog" id="frog">🐸</span>
                         <div class="pads" style="--n:${max + 1}">${Array.from({ length: max + 1 }, (_, k) => `<div class="pad" data-drop="pad" data-k="${k}">${k}</div>`).join("")}</div></div>

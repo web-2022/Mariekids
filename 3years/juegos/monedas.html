@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <title>MK Monedas · 3 años</title>
+    <meta name="theme-color" content="#0b73ff" />
+    <meta name="apple-mobile-web-app-title" content="MK" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../icons/icon-192.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/mk-juegos.css" />
+    <link rel="stylesheet" href="../../assets/mk-peques.css?v=2" />
+    <style>
+        body { background: #fefce8; }
+        .moneda { width: 74px; height: 74px; border-radius: 50%; display: grid; place-items: center; font: 800 20px/1 "Baloo 2", sans-serif; color: #713f12; cursor: grab; user-select: none; box-shadow: inset 0 -6px 0 #0002, 0 4px 0 #0003; border: 4px solid #0001; }
+        .moneda b { display: block; font-size: 30px; }
+        .m1 { background: radial-gradient(circle at 35% 30%, #f1f5f9, #94a3b8); color: #334155; }
+        .m2 { background: radial-gradient(circle at 35% 30%, #fef3c7, #d4a017); }
+        .m5 { width: 86px; height: 86px; background: radial-gradient(circle at 35% 30%, #fde68a 0 30%, #cbd5e1 31% 100%); color: #422006; }
+        .tienda { display: flex; justify-content: center; align-items: center; gap: 12px; margin: 6px 0; }
+        .prod { font-size: 70px; line-height: 1; }
+        .precio { padding: 6px 14px; border-radius: 16px; background: #fde68a; font: 800 40px "Baloo 2", sans-serif; color: #92400e; }
+        .bandeja { min-height: 100px; margin-top: 8px; padding: 10px; border-radius: 22px; border: 4px dashed #f59e0b; background: #fffbeb; display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 6px; }
+        .bandeja .moneda { width: 54px; height: 54px; font-size: 14px; cursor: pointer; } .bandeja .moneda b { font-size: 22px; }
+        .bandeja .vacia { color: #b45309; font-weight: 800; }
+        .bolsa { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 14px; padding: 12px; border-radius: 20px; background: #f1f5f9; }
+        .total { font: 800 30px "Baloo 2", sans-serif; color: #15803d; margin-top: 6px; }
+        .moneda.mal { animation: sacude .4s; }
+        @keyframes sacude { 0%,100% { transform: translateX(0) } 25% { transform: translateX(-8px) } 75% { transform: translateX(8px) } }
+
+    </style>
+</head>
+<body>
+    <!-- GENERADO por tools/juegos3/build.py — edita tools/juegos3/monedas.css / monedas.js -->
+    <div class="bar">
+        <a class="pill" href="../juegos3Y.html" aria-label="Volver a los juegos">⬅<span class="txt"> Juegos</span></a>
+        <h1>💰 Monedas</h1>
+        <button class="pill" id="soundBtn" type="button" aria-label="Sonido">🔊</button>
+    </div>
+    <div class="hud" aria-live="polite"><span id="hudLevel">Nivel 1</span><span id="hudQ"></span><span id="hudOk">⭐ 0</span></div>
+    <main class="stage"><div class="card" id="card"></div></main>
+    <div class="overlay show" id="startScreen">
+        <div class="panel">
+            <h2>💰 Monedas</h2>
+            <p>Conoce las monedas y paga el precio justo.</p>
+            <div class="levels" id="levels"></div>
+        </div>
+    </div>
+    <div class="overlay" id="endScreen">
+        <div class="panel">
+            <h2>¡Muy bien! 🎉</h2>
+            <div class="stars-big" id="endStars">⭐⭐⭐</div>
+            <p id="endText"></p>
+            <div class="row">
+                <button class="big-btn alt" id="menuBtn" type="button">📋 Niveles</button>
+                <button class="big-btn" id="nextBtn" type="button">▶ Siguiente</button>
+            </div>
+        </div>
+    </div>
+    <script src="../../assets/mk-juegos.js?v=2"></script>
+    <script src="../../assets/mk-peques.js?v=2"></script>
+    <script>
+        /* 💰 MONEDAS: reconocer monedas peruanas (S/ 1, 2 y 5) y pagar el precio justo. */
+        const R = MKJ.rnd, P = MKJ.pick;
+        const PROD = ["🍭", "🧃", "🍌", "🧸", "🎈", "✏️", "🍪", "🪀", "🍞", "🥤"];
+        let modo = "", meta = 0, total = 0, primera = true, fin = false, listoFn = null, valores = [];
+        const NIV = [
+            { n: 1, name: "Nivel 1", desc: "Conoce las monedas de 1, 2 y 5 soles", cls: "lv1", modo: "conoce" },
+            { n: 2, name: "Nivel 2", desc: "Paga con monedas de 1 sol (hasta 10)", cls: "lv2", modo: "paga", vals: [1], max: 10 },
+            { n: 3, name: "Nivel 3", desc: "Paga con monedas de 1, 2 y 5 soles", cls: "lv3", modo: "paga", vals: [1, 2, 5], max: 10 }
+        ];
+        const moneda = v => `<div class="moneda m${v}" data-v="${v}"><span><b>${v}</b>${v === 1 ? "sol" : "soles"}</span></div>`;
+        MKP.juego({
+            clave: "monedas", rondas: 6, icono: "💰", niveles: NIV, niveles4: NIV,
+            ronda(nv, i, listo) {
+                modo = nv.modo; primera = true; fin = false; listoFn = listo; total = 0;
+                if (modo === "conoce") {
+                    meta = P([1, 2, 5]);
+                    document.getElementById("card").innerHTML = `<p class="task">Toca la moneda de <span class="big">${meta}</span> ${meta === 1 ? "sol" : "soles"} <button class="again" id="oir" type="button">🔊</button></p>
+                        <div class="bolsa">${MKJ.shuffle([1, 2, 5, 1, 2, 5]).map(moneda).join("")}</div>`;
+                    document.querySelectorAll(".bolsa .moneda").forEach(m => m.onclick = () => conoce(m));
+                    const t = `Toca la moneda de ${MKP.NUM[meta]} ${meta === 1 ? "sol" : "soles"}`;
+                    document.getElementById("oir").onclick = () => MKP.decir(t); MKP.decir(t); return;
+                }
+                valores = nv.vals; meta = R(2, nv.max);
+                const prod = P(PROD);
+                document.getElementById("card").innerHTML = `<p class="task">Paga justo <button class="again" id="oir" type="button">🔊</button></p>
+                    <div class="tienda"><span class="prod">${prod}</span><span class="precio">S/ ${meta}</span></div>
+                    <div class="bandeja" id="bandeja" data-drop="bandeja"><span class="vacia">Arrastra aquí tus monedas</span></div>
+                    <div class="total" id="total">Pusiste: S/ 0</div>
+                    <div class="bolsa">${valores.map(moneda).join("")}</div>
+                    <div class="tools"><button class="big-btn" id="ok" type="button">✅ ¡Pagar!</button></div>`;
+                document.querySelectorAll(".bolsa .moneda").forEach(m => MKP.arrastrar(m, { alTocar: () => poner(+m.dataset.v), alSoltar: d => { if (d.id === "bandeja") poner(+m.dataset.v); return false; } }));
+                document.getElementById("ok").onclick = pagar;
+                const t = `Cuesta ${MKP.NUM[meta]} ${meta === 1 ? "sol" : "soles"}. Paga justo`;
+                document.getElementById("oir").onclick = () => MKP.decir(t); MKP.decir(t);
+            }
+        });
+        function conoce(m) {
+            if (fin) return;
+            if (+m.dataset.v === meta) { fin = true; MKJ.sound("ok"); MKP.aviso("¡Sí!", true); MKP.decir(`¡Muy bien! Es la moneda de ${MKP.NUM[meta]}`); listoFn(primera); }
+            else { primera = false; MKJ.sound("error"); m.classList.remove("mal"); void m.offsetWidth; m.classList.add("mal"); MKP.decir(`Esa es de ${MKP.NUM[+m.dataset.v]}`); }
+        }
+        function poner(v) {
+            if (fin) return;
+            const b = document.getElementById("bandeja"), e = b.querySelector(".vacia"); if (e) e.remove();
+            const div = document.createElement("div"); div.innerHTML = moneda(v); const m = div.firstChild;
+            m.onclick = () => { if (fin) return; m.remove(); total -= v; pintar(); MKJ.sound("salto"); };
+            b.appendChild(m); total += v; pintar(); MKJ.sound("moneda"); MKP.decir(String(total));
+        }
+        function pintar() { document.getElementById("total").textContent = "Pusiste: S/ " + total; }
+        function pagar() {
+            if (fin) return;
+            if (total === meta) { fin = true; MKJ.sound("ok"); MKP.aviso("¡Gracias!", true); MKP.decir(`¡Muy bien! Pagaste ${MKP.NUM[meta]} soles justos`); listoFn(primera); }
+            else { primera = false; MKJ.sound("error"); MKP.aviso(total < meta ? "¡Falta!" : "¡Es mucho!", false); MKP.decir(total < meta ? `Falta dinero. Pusiste ${total}` : `Pusiste ${total}. Es mucho. Toca una moneda para sacarla`); }
+        }
+        window.__juego = { get meta() { return meta; }, get total() { return total; }, poner, pagar };
+
+    </script>
+</body>
+</html>

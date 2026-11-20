@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../assets/mk-juegos.css" />
-    <link rel="stylesheet" href="../../assets/mk-peques.css?v=1" />
+    <link rel="stylesheet" href="../../assets/mk-peques.css?v=2" />
     <style>
         body { background: #fefce8; }
         .nests { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-top: 8px; }
@@ -54,7 +54,7 @@
         </div>
     </div>
     <script src="../../assets/mk-juegos.js?v=2"></script>
-    <script src="../../assets/mk-peques.js?v=1"></script>
+    <script src="../../assets/mk-peques.js?v=2"></script>
     <script>
         /* 🐣 NIDO DE POLLITOS: cantidad ↔ número con dos o tres nidos. */
         const R = MKJ.rnd;
@@ -66,9 +66,14 @@
                 { n: 2, name: "Nivel 2", desc: "2 nidos, hasta 6 pollitos", cls: "lv2", max: 6, nidos: 2 },
                 { n: 3, name: "Nivel 3", desc: "3 nidos, hasta 10 pollitos", cls: "lv3", max: 10, nidos: 3 }
             ],
+            niveles4: [
+                { n: 1, name: "Nivel 1", desc: "2 nidos, hasta 10 pollitos", cls: "lv1", max: 10, nidos: 2, cada: 5 },
+                { n: 2, name: "Nivel 2", desc: "3 nidos, hasta 12 pollitos", cls: "lv2", max: 12, nidos: 3, cada: 5 },
+                { n: 3, name: "Nivel 3", desc: "3 nidos, hasta 15 pollitos", cls: "lv3", max: 15, nidos: 3, cada: 6 }
+            ],
             ronda(nv, i, listo) {
                 primera = true; fin = false; listoFn = listo;
-                do { metas = Array.from({ length: nv.nidos }, () => R(1, nv.nidos === 3 ? 4 : 3)); } while (metas.reduce((a, b) => a + b) > nv.max);
+                do { metas = Array.from({ length: nv.nidos }, () => R(1, nv.cada || (nv.nidos === 3 ? 4 : 3))); } while (metas.reduce((a, b) => a + b) > nv.max);
                 const total = metas.reduce((a, b) => a + b) + R(1, 2);
                 document.getElementById("card").innerHTML = `<p class="task">Lleva los pollitos a su mamá <button class="again" id="oir" type="button">🔊</button></p>
                     <p class="sub">Cada gallina quiere tantos pollitos como dice su número. Arrástralos con el dedo.</p>

@@ -9,16 +9,23 @@
                 { n: 2, name: "Nivel 2", desc: "Ordena del 1 al 6", cls: "lv2", desde: [1, 1], largo: 6, guia: "primero" },
                 { n: 3, name: "Nivel 3", desc: "Ordena números hasta el 10", cls: "lv3", desde: [1, 5], largo: 6, guia: "primero" }
             ],
+            niveles4: [
+                { n: 1, name: "Nivel 1", desc: "Ordena números hasta el 10", cls: "lv1", desde: [1, 5], largo: 6, guia: "primero" },
+                { n: 2, name: "Nivel 2", desc: "Ordena números hasta el 20", cls: "lv2", desde: [5, 15], largo: 6, guia: "primero" },
+                { n: 3, name: "Nivel 3", desc: "¿Qué vagones faltan? (hasta 20)", cls: "lv3", desde: [1, 13], largo: 8, guia: "no", faltan: 3 }
+            ],
             ronda(nv, i, listo) {
                 const a = R(nv.desde[0], nv.desde[1]);
                 nums = Array.from({ length: nv.largo }, (_, k) => a + k); puestos = 0; primera = true; listoFn = listo;
                 const card = document.getElementById("card");
                 card.innerHTML = `<p class="task">Ordena el tren: ${nums[0]}, ${nums[1]}, ${nums[2]}… <button class="again" id="oir" type="button">🔊</button></p>
                     <p class="sub">Arrastra cada vagón a su lugar.</p>
-                    <div class="rail" id="rail"><span class="loco">🚂</span>${nums.map((n, k) => `<div class="slot" data-drop="slot" data-n="${n}">${nv.guia === "todo" || k === 0 ? n : ""}</div>`).join("")}</div>
+                    <div class="rail${nums.length > 6 ? " l8" : ""}" id="rail"><span class="loco">🚂</span>${nums.map((n, k) => `<div class="slot" data-drop="slot" data-n="${n}">${nv.guia === "todo" || k === 0 ? n : ""}</div>`).join("")}</div>
                     <div class="yard" id="yard"></div>`;
                 const yard = document.getElementById("yard");
-                MKJ.shuffle(nums.slice()).forEach(n => {
+                const falta = nv.faltan ? MKJ.shuffle(nums.slice(1)).slice(0, nv.faltan) : nums;
+                if (nv.faltan) nums.forEach(n => { if (!falta.includes(n)) { const sl = card.querySelector(`.slot[data-n="${n}"]`); sl.classList.add("lleno"); sl.textContent = ""; sl.innerHTML = `<div class="wagon" style="background:${COLORES[(n - 1) % COLORES.length]}">${n}</div>`; puestos++; } });
+                MKJ.shuffle(falta.slice()).forEach(n => {
                     const w = document.createElement("div"); w.className = "wagon"; w.textContent = n; w.dataset.n = n;
                     w.style.background = COLORES[(n - 1) % COLORES.length];
                     yard.appendChild(w);

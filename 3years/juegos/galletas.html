@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../assets/mk-juegos.css" />
-    <link rel="stylesheet" href="../../assets/mk-peques.css?v=1" />
+    <link rel="stylesheet" href="../../assets/mk-peques.css?v=2" />
     <style>
         body { background: #fff7ed; }
         .plates { display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: 12px; margin-top: 10px; }
@@ -22,6 +22,12 @@
         .plate.mal { animation: sacude .4s; }
         @keyframes sacude { 0%,100% { transform: translateX(0) } 25% { transform: translateX(-8px) } 75% { transform: translateX(8px) } }
         .cnts { display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: 12px; font: 800 34px "Baloo 2", sans-serif; color: #92400e; min-height: 46px; }
+        .numgr { font: 800 clamp(40px, 12vw, 64px) "Baloo 2", sans-serif; color: #92400e; }
+        .comp { display: flex; justify-content: center; align-items: center; gap: 14px; margin: 14px 0; }
+        .comp .nb { min-width: 84px; padding: 6px 10px; border-radius: 20px; background: #fef3c7; font: 800 54px "Baloo 2", sans-serif; color: #92400e; }
+        .comp .hueco { width: 80px; height: 80px; border-radius: 20px; border: 4px dashed #22c55e; display: grid; place-items: center; font: 800 52px "Baloo 2", sans-serif; color: #15803d; }
+        .signos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; max-width: 360px; margin: 0 auto; }
+        .signos .sg { aspect-ratio: auto; height: 90px; border-radius: 22px; font: 800 52px "Baloo 2", sans-serif; color: #15803d; background: #dcfce7; padding: 0; }
 
     </style>
 </head>
@@ -53,7 +59,7 @@
         </div>
     </div>
     <script src="../../assets/mk-juegos.js?v=2"></script>
-    <script src="../../assets/mk-peques.js?v=1"></script>
+    <script src="../../assets/mk-peques.js?v=2"></script>
     <script>
         /* 🍪 ¿DÓNDE HAY MÁS?: comparar cantidades (más / menos). */
         const R = MKJ.rnd, P = MKJ.pick;
@@ -65,19 +71,45 @@
                 { n: 2, name: "Nivel 2", desc: "Más y menos (hasta 6)", cls: "lv2", max: 6, platos: 2, menos: true },
                 { n: 3, name: "Nivel 3", desc: "3 platos, más y menos (hasta 10)", cls: "lv3", max: 10, platos: 3, menos: true }
             ],
+            niveles4: [
+                { n: 1, name: "Nivel 1", desc: "3 platos, más y menos (hasta 10)", cls: "lv1", max: 10, platos: 3, menos: true },
+                { n: 2, name: "Nivel 2", desc: "¿Qué número es mayor o menor? (hasta 20)", cls: "lv2", max: 20, platos: 3, menos: true, num: true },
+                { n: 3, name: "Nivel 3", desc: "El cocodrilo: >, < e =", cls: "lv3", max: 20, signo: true }
+            ],
             ronda(nv, i, listo) {
                 primera = true; hecho = false; listoFn = listo;
+                if (nv.signo) { cocodrilo(nv, i); return; }
                 pide = nv.menos && i % 2 ? "menos" : "mas";
                 do { cant = Array.from({ length: nv.platos }, () => R(1, nv.max)); } while (new Set(cant).size < nv.platos || (nv.n === 1 && Math.abs(cant[0] - cant[1]) < 2));
                 const e = P(["🍪", "🍩", "🧁", "🍬", "🍓"]);
-                document.getElementById("card").innerHTML = `<p class="task">¿Dónde hay <span class="big">${pide === "mas" ? "MÁS" : "MENOS"}</span> ${e}? <button class="again" id="oir" type="button">🔊</button></p>
-                    <div class="plates" style="--n:${nv.platos}">${cant.map((c, k) => `<button class="plate" data-k="${k}" type="button">${e.repeat(c)}</button>`).join("")}</div>
+                document.getElementById("card").innerHTML = `<p class="task">${nv.num ? `¿Qué número es <span class="big">${pide === "mas" ? "MAYOR" : "MENOR"}</span>?` : `¿Dónde hay <span class="big">${pide === "mas" ? "MÁS" : "MENOS"}</span> ${e}?`} <button class="again" id="oir" type="button">🔊</button></p>
+                    <div class="plates" style="--n:${nv.platos}">${cant.map((c, k) => `<button class="plate" data-k="${k}" type="button">${nv.num ? `<span class="numgr">${c}</span>` : e.repeat(c)}</button>`).join("")}</div>
                     <div class="cnts" id="cnts" style="--n:${nv.platos}"></div>`;
                 document.querySelectorAll(".plate").forEach(p => p.onclick = () => elegir(p));
-                const t = `¿Dónde hay ${pide === "mas" ? "más" : "menos"}?`;
+                const t = nv.num ? `¿Qué número es ${pide === "mas" ? "mayor" : "menor"}?` : `¿Dónde hay ${pide === "mas" ? "más" : "menos"}?`;
                 document.getElementById("oir").onclick = () => MKP.decir(t); MKP.decir(t);
             }
         });
+        /* 🐊 El cocodrilo siempre abre la boca hacia el número más grande */
+        let sig = "";
+        function cocodrilo(nv, i) {
+            const a = R(1, nv.max); let b = i % 3 === 2 ? a : R(1, nv.max);
+            sig = a > b ? ">" : a < b ? "<" : "=";
+            document.getElementById("card").innerHTML = `<p class="task">¿Qué pone el cocodrilo? 🐊 <button class="again" id="oir" type="button">🔊</button></p>
+                <p class="sub">La boca del cocodrilo se abre hacia el número más grande. Si son iguales, pon =.</p>
+                <div class="comp"><span class="nb">${a}</span><span class="hueco" id="hueco">?</span><span class="nb">${b}</span></div>
+                <div class="signos">${[">", "<", "="].map(x => `<button class="plate sg" data-s="${x}" type="button">${x}</button>`).join("")}</div>`;
+            document.querySelectorAll(".sg").forEach(bt => bt.onclick = () => {
+                if (hecho) return;
+                if (bt.dataset.s === sig) {
+                    hecho = true; bt.classList.add("bien"); document.getElementById("hueco").textContent = sig;
+                    MKJ.sound("ok"); MKP.aviso("¡Ñam!", true);
+                    MKP.decir(sig === "=" ? `${a} es igual a ${b}` : sig === ">" ? `${a} es mayor que ${b}` : `${a} es menor que ${b}`); listoFn(primera);
+                } else { primera = false; bt.classList.remove("mal"); void bt.offsetWidth; bt.classList.add("mal"); MKJ.sound("error"); MKP.decir("¿Cuál número es más grande?"); }
+            });
+            const t = `¿Qué es más grande, ${a} o ${b}?`;
+            document.getElementById("oir").onclick = () => MKP.decir(t); MKP.decir(t);
+        }
         function elegir(p) {
             if (hecho) return;
             const k = +p.dataset.k, mejor = pide === "mas" ? Math.max(...cant) : Math.min(...cant);

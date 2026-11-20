@@ -9,6 +9,11 @@
                 { n: 2, name: "Nivel 2", desc: "Salta hacia adelante hasta el 6", cls: "lv2", max: 6, s: 3, atras: false },
                 { n: 3, name: "Nivel 3", desc: "Adelante y atrás hasta el 10", cls: "lv3", max: 10, s: 4, atras: true }
             ],
+            niveles4: [
+                { n: 1, name: "Nivel 1", desc: "Sumas saltando hasta el 10", cls: "lv1", max: 10, s: 5, atras: false },
+                { n: 2, name: "Nivel 2", desc: "Sumas y restas hasta el 10", cls: "lv2", max: 10, s: 5, atras: true },
+                { n: 3, name: "Nivel 3", desc: "Sumas y restas hasta el 12", cls: "lv3", max: 12, s: 6, atras: true }
+            ],
             ronda(nv, i, listo) {
                 max = nv.max; primera = true; fin = false; listoFn = listo;
                 dir = nv.atras && i % 2 === 1 ? -1 : 1;
@@ -16,7 +21,7 @@
                 inicio = dir > 0 ? R(0, max - saltos) : R(saltos, max);
                 meta = inicio + dir * saltos; pos = inicio;
                 const txt = `Salta ${saltos} ${dir > 0 ? "hacia adelante ➡️" : "hacia atrás ⬅️"}`;
-                document.getElementById("card").innerHTML = `<p class="task">La rana está en el <span class="big">${inicio}</span><br>${txt.replace(String(saltos), `<span class="big">${saltos}</span>`)} <button class="again" id="oir" type="button">🔊</button></p>
+                document.getElementById("card").innerHTML = `<p class="task">La rana está en el <span class="big">${inicio}</span><br>${txt.replace(String(saltos), `<span class="big">${saltos}</span>`)} <button class="again" id="oir" type="button">🔊</button>${MKP.edad === 4 ? `<br><span class="big">${inicio} ${dir > 0 ? "+" : "−"} ${saltos} = ?</span>` : ""}</p>
                     <p class="sub">Toca la rana para que salte. ¿En qué número cae?</p>
                     <div class="lake" id="lake"><span class="frog" id="frog">🐸</span>
                         <div class="pads" style="--n:${max + 1}">${Array.from({ length: max + 1 }, (_, k) => `<div class="pad" data-drop="pad" data-k="${k}">${k}</div>`).join("")}</div></div>

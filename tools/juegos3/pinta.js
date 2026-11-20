@@ -16,12 +16,17 @@
                 { n: 2, name: "Nivel 2", desc: "Colores del 1 al 4", cls: "lv2", k: 4 },
                 { n: 3, name: "Nivel 3", desc: "Colores del 1 al 5", cls: "lv3", k: 5 }
             ],
+            niveles4: [
+                { n: 1, name: "Nivel 1", desc: "Colores del 1 al 5", cls: "lv1", k: 5 },
+                { n: 2, name: "Nivel 2", desc: "Pinta por suma (hasta 4)", cls: "lv2", k: 4, suma: true },
+                { n: 3, name: "Nivel 3", desc: "Pinta por suma (hasta 5)", cls: "lv3", k: 5, suma: true }
+            ],
             ronda(nv, i, listo) {
                 if (i === 0) orden = MKJ.shuffle([0, 1, 2, 3]);
                 primera = true; listoFn = listo; tinta = 1;
                 const partes = DIBUJOS[orden[i % 4]];
                 faltan = partes.filter(p => p[1] <= nv.k).length;
-                const svg = `<svg viewBox="0 0 300 260">${partes.map(p => p[1] <= nv.k ? `${p[0]} data-drop="parte" data-c="${p[1]}" fill="#fff"/>` : `${p[0]} fill="${TINTAS[p[1]]}" stroke="#334155" stroke-width="3"/>`).join("")}${partes.filter(p => p[1] <= nv.k).map(p => `<text x="${p[2]}" y="${p[3]}">${p[1]}</text>`).join("")}</svg>`;
+                const svg = `<svg viewBox="0 0 300 260">${partes.map(p => p[1] <= nv.k ? `${p[0]} data-drop="parte" data-c="${p[1]}" fill="#fff"/>` : `${p[0]} fill="${TINTAS[p[1]]}" stroke="#334155" stroke-width="3"/>`).join("")}${partes.filter(p => p[1] <= nv.k).map(p => `<text x="${p[2]}" y="${p[3]}"${nv.suma ? ' style="font-size:17px"' : ""}>${nv.suma ? suma(p[1]) : p[1]}</text>`).join("")}</svg>`;
                 document.getElementById("card").innerHTML = `<p class="task">Pinta cada parte con su número <button class="again" id="oir" type="button">🔊</button></p>
                     <p class="sub">Toca un color y luego la parte del dibujo. ¡O arrastra el color!</p>
                     <div class="lienzo">${svg}</div>
@@ -32,6 +37,7 @@
                 document.getElementById("oir").onclick = () => MKP.decir(txt); MKP.decir(txt);
             }
         });
+        function suma(c) { if (c === 1) return "1"; const a = MKJ.rnd(1, c - 1); return a + "+" + (c - a); }
         function elegir(t) {
             tinta = t; MKJ.sound("salto"); MKP.decir(t + ", " + NOMBRE[t]);
             document.querySelectorAll(".tinta").forEach(x => x.classList.toggle("on", +x.dataset.t === t));
@@ -40,7 +46,7 @@
             if (p.dataset.ok) return;
             if (+p.dataset.c !== tinta) {
                 primera = false; MKJ.sound("error"); p.classList.remove("mal"); void p.getBBox(); p.classList.add("mal");
-                MKP.decir("Esa parte tiene el " + p.dataset.c + ". Usa el " + NOMBRE[+p.dataset.c]); return;
+                MKP.decir("Esa parte es " + p.dataset.c + ". Usa el " + NOMBRE[+p.dataset.c]); return;
             }
             p.dataset.ok = 1; p.setAttribute("fill", TINTAS[tinta]); MKJ.sound("moneda"); faltan--;
             if (faltan === 0) { MKJ.sound("ok"); MKP.aviso("¡Qué lindo!", true); MKP.decir("¡Qué lindo te quedó!"); listoFn(primera); }

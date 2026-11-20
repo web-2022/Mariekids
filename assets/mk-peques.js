@@ -10,7 +10,7 @@
 (function () {
     "use strict";
     var $ = function (id) { return document.getElementById(id); };
-    var NUM = ["cero", "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve", "diez", "once", "doce"];
+    var NUM = ["cero", "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve", "diez", "once", "doce", "trece", "catorce", "quince", "dieciséis", "diecisiete", "dieciocho", "diecinueve", "veinte"];
 
     function decir(t) { MKJ.say(t); }
     function contar(n) { decir(NUM[n] || String(n)); }
@@ -52,8 +52,19 @@
         return e ? e.closest("[data-drop]") : null;
     }
 
+    /* ---------- Edad: ?edad=4 usa cfg.niveles4 y vuelve a «Juegos de 4 años» ---------- */
+    var EDAD = +(new URLSearchParams(location.search).get("edad") || 3);
+    if (EDAD === 4) {
+        document.addEventListener("DOMContentLoaded", fijarVolver); fijarVolver();
+    }
+    function fijarVolver() {
+        var a = document.querySelector('a.pill'); if (a) a.href = "../../4years/juegos4Y.html";
+        document.title = document.title.replace("3 años", "4 años");
+    }
+
     /* ---------- Marco del juego ---------- */
     function juego(cfg) {
+        if (EDAD === 4 && cfg.niveles4) { cfg.niveles = cfg.niveles4; cfg.clave += "-4"; if (cfg.rondas4) cfg.rondas = cfg.rondas4; }
         var nivel = cfg.niveles[0], i = 0, ok = 0, fallos = 0, enCurso = false;
         function hud() {
             $("hudLevel").textContent = nivel.name;
@@ -107,5 +118,5 @@
         setTimeout(function () { a.remove(); }, 1300);
     }
 
-    window.MKP = { juego: juego, arrastrar: arrastrar, contar: contar, decir: decir, aviso: aviso, NUM: NUM };
+    window.MKP = { edad: EDAD, juego: juego, arrastrar: arrastrar, contar: contar, decir: decir, aviso: aviso, NUM: NUM };
 })();
