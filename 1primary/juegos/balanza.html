@@ -98,6 +98,14 @@
             { n: 4, name: "Nivel 4", desc: "2 cajas iguales: 2x + 3 = 11", cls: "lv4", gen: () => { const k = R(2, 3), x = R(1, 9), a = R(0, 9); return { cx: k, a, dx: 0, b: k * x + a, x, max: 20 }; } },
             { n: 5, name: "Nivel 5", desc: "Cajas a los dos lados: 3x + 2 = x + 10", cls: "lv5", gen: () => { const dx = R(1, 2), cx = dx + R(1, 2), x = R(1, 9), a = R(0, 8); return { cx, a, dx, b: (cx - dx) * x + a, x, max: 20 }; } }
         ];
+        const PEQ = new URLSearchParams(location.search).get("edad") === "3";
+        if (PEQ) { const bk = document.querySelector('a.pill[href="../juegos1P.html"]'); if (bk) bk.href = "../../3years/juegos3Y.html"; }
+        const peque = max => () => { const x = R(1, max - 1), a = R(1, max - x); return { cx: 1, a, dx: 0, b: x + a, x, cubos: true, max }; };
+        if (PEQ) LEVELS.splice(0, LEVELS.length,
+            { n: 1, name: "Nivel 1", desc: "Equilibra con cubitos hasta 5", cls: "lv1", gen: peque(5) },
+            { n: 2, name: "Nivel 2", desc: "Equilibra con cubitos hasta 6", cls: "lv2", gen: peque(6) },
+            { n: 3, name: "Nivel 3", desc: "Equilibra con cubitos hasta 10", cls: "lv3", gen: peque(10) });
+        const SK = PEQ ? "balanza3a-" : "balanza-";
         let level = LEVELS[0], qi = 0, ok = 0, fails = 0, cur = null, val = 0, intentos = 0, listo = false;
 
         const suma = b => Array.isArray(b) ? b.reduce((s, v) => s + v, 0) : b;
@@ -108,7 +116,7 @@
         }
         function cajas(k, abierta) { return new Array(k).fill(`<span class="box${abierta !== null ? " open" : ""}">${abierta !== null ? abierta : "?"}</span>`).join(""); }
         function ecuacion(c, mostrarX) {
-            const X = mostrarX != null ? `<span class="x">${mostrarX}</span>` : `<span class="x">x</span>`;
+            const X = mostrarX != null ? `<span class="x">${mostrarX}</span>` : `<span class="x">${PEQ ? "🎁" : "x"}</span>`;
             const term = (k, a) => {
                 const t = [];
                 if (k) t.push((k > 1 ? (mostrarX != null ? k + "·" : k) : "") + X);
@@ -181,7 +189,7 @@
         function empezar(lv) { level = lv; qi = 0; ok = 0; fails = 0; hide("startScreen"); hide("endScreen"); hud(); nueva(); }
         function fin() {
             const st = fails <= 1 ? 3 : fails <= 3 ? 2 : 1;
-            MKJ.stars("balanza-" + level.n, st);
+            MKJ.stars(SK + level.n, st);
             $("endStars").textContent = "⭐".repeat(st) + "☆".repeat(3 - st);
             $("endText").textContent = `Equilibraste ${ok} de ${ROUNDS} balanzas en 1 o 2 intentos.`;
             $("nextBtn").textContent = LEVELS[level.n] ? "▶ Siguiente nivel" : "🔁 Jugar otra vez";
@@ -191,7 +199,7 @@
         function menu() {
             const box = $("levels"); box.innerHTML = "";
             LEVELS.forEach(lv => {
-                const st = MKJ.stars("balanza-" + lv.n), b = document.createElement("button");
+                const st = MKJ.stars(SK + lv.n), b = document.createElement("button");
                 b.type = "button"; b.className = "level-btn " + lv.cls;
                 b.innerHTML = `<span class="num">${lv.n}</span><span><b>${lv.name}</b><small>${lv.desc}</small></span><span class="st">${"⭐".repeat(st)}${"☆".repeat(3 - st)}</span>`;
                 b.onclick = () => { MKJ.sound("ok"); empezar(lv); };

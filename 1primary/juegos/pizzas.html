@@ -95,6 +95,13 @@
             { n: 4, name: "Nivel 4", desc: "División mental hasta 100", cls: "lv4", tipo: "mental" },
             { n: 5, name: "Nivel 5", desc: "Fracciones: ½, ⅓, ¼…", cls: "lv5", tipo: "fraccion" }
         ];
+        const PEQ = new URLSearchParams(location.search).get("edad") === "3";
+        if (PEQ) { const bk = document.querySelector('a.pill[href="../juegos1P.html"]'); if (bk) bk.href = "../../3years/juegos3Y.html"; }
+        if (PEQ) LEVELS.splice(0, LEVELS.length,
+            { n: 1, name: "Nivel 1", desc: "Reparte hasta 4 entre 2 amigos", cls: "lv1", tipo: "reparto", tot: [2, 4], am: [2, 2] },
+            { n: 2, name: "Nivel 2", desc: "Reparte hasta 6 entre 2 o 3", cls: "lv2", tipo: "reparto", tot: [4, 6], am: [2, 3] },
+            { n: 3, name: "Nivel 3", desc: "Reparte hasta 10 entre 2 o 3", cls: "lv3", tipo: "reparto", tot: [4, 10], am: [2, 3] });
+        const SK = PEQ ? "pizzas3a-" : "pizzas-";
         let level = LEVELS[0], qi = 0, ok = 0, fails = 0, cur = null;
 
         function plural(n, s, p) { return n === 1 ? s : p; }
@@ -104,7 +111,7 @@
             let a, t, k = 0;
             do {
                 a = R(level.am[0], level.am[1]);
-                t = level.tipo === "sobra" ? R(level.tot[0], level.tot[1]) : a * R(2, Math.floor(level.tot[1] / a));
+                t = level.tipo === "sobra" ? R(level.tot[0], level.tot[1]) : a * R(PEQ ? 1 : 2, Math.floor(level.tot[1] / a));
                 k++;
             } while ((t < level.tot[0] || t > level.tot[1] || (level.tipo === "sobra" && (t % a === 0 || t < a))) && k < 200);
             const caras = MKJ.shuffle(CARAS.slice()).slice(0, a);
@@ -245,7 +252,7 @@
         function empezar(lv) { level = lv; qi = 0; ok = 0; fails = 0; hide("startScreen"); hide("endScreen"); ronda(); }
         function fin() {
             const st = fails <= 1 ? 3 : fails <= 3 ? 2 : 1;
-            MKJ.stars("pizzas-" + level.n, st);
+            MKJ.stars(SK + level.n, st);
             $("endStars").textContent = "⭐".repeat(st) + "☆".repeat(3 - st);
             $("endText").textContent = `Acertaste ${ok} de ${ROUNDS} a la primera.`;
             $("nextBtn").textContent = LEVELS[level.n] ? "▶ Siguiente nivel" : "🔁 Jugar otra vez";
@@ -255,7 +262,7 @@
         function menu() {
             const box = $("levels"); box.innerHTML = "";
             LEVELS.forEach(lv => {
-                const st = MKJ.stars("pizzas-" + lv.n), b = document.createElement("button");
+                const st = MKJ.stars(SK + lv.n), b = document.createElement("button");
                 b.type = "button"; b.className = "level-btn " + lv.cls;
                 b.innerHTML = `<span class="num">${lv.n}</span><span><b>${lv.name}</b><small>${lv.desc}</small></span><span class="st">${"⭐".repeat(st)}${"☆".repeat(3 - st)}</span>`;
                 b.onclick = () => { MKJ.sound("ok"); empezar(lv); };
