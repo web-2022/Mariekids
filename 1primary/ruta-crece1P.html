@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>MVG Learning • Crece 1.º de primaria</title>
+    <meta name="theme-color" content="#16a34a" />
+    <link rel="manifest" href="../manifest.json" />
+    <link rel="icon" type="image/png" sizes="192x192" href="../icons/icon-192.png" />
+    <link rel="apple-touch-icon" href="../icons/icon-192.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+        :root { --g1: #22c55e; --g2: #16a34a; --ink: #14532d; --soft: #f0fdf4; }
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: Nunito, system-ui, sans-serif; color: #1e293b; background: linear-gradient(160deg, #dcfce7, #fef9c3 55%, #fce7f3); min-height: 100vh; }
+        header { background: linear-gradient(120deg, var(--g1), #0ea5e9); color: #fff; padding: 10px max(14px, env(safe-area-inset-left)); display: flex; align-items: center; gap: 10px; position: sticky; top: 0; z-index: 5; box-shadow: 0 4px 14px rgba(0,0,0,.12); }
+        header a.back { color: #fff; text-decoration: none; font-weight: 900; background: rgba(255,255,255,.22); border-radius: 14px; min-width: 44px; min-height: 44px; display: grid; place-items: center; font-size: 1.2rem; }
+        header h1 { font-family: "Baloo 2", sans-serif; margin: 0; font-size: clamp(1.15rem, 4.5vw, 1.6rem); line-height: 1.1; }
+        header small { display: block; font-weight: 800; opacity: .9; font-size: .8rem; }
+        main { max-width: 1000px; margin: 0 auto; padding: 14px 16px 40px; }
+        .intro { background: #fff; border-radius: 22px; padding: 16px 18px; box-shadow: 0 6px 0 #bbf7d0; margin-bottom: 16px; }
+        .intro h2 { font-family: "Baloo 2", sans-serif; margin: 0 0 6px; color: var(--g2); font-size: 1.3rem; }
+        .intro p { margin: 6px 0; line-height: 1.45; }
+        .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; margin-top: 10px; }
+        .steps div { background: var(--soft); border-radius: 14px; padding: 8px 10px; font-weight: 800; font-size: .92rem; }
+        .count { font-weight: 900; color: var(--ink); }
+        .seed { margin: 22px 0 10px; display: flex; align-items: center; gap: 10px; }
+        .seed .ico { font-size: 1.9rem; }
+        .seed h3 { font-family: "Baloo 2", sans-serif; margin: 0; font-size: 1.25rem; color: var(--ink); line-height: 1.1; }
+        .seed small { display: block; color: #475569; font-weight: 700; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+        .card { background: #fff; border-radius: 20px; padding: 12px; text-align: center; box-shadow: 0 5px 0 #d9f99d; display: flex; flex-direction: column; gap: 6px; text-decoration: none; color: inherit; position: relative; min-height: 150px; }
+        .card img { width: 86px; height: 86px; border-radius: 50%; object-fit: cover; margin: 0 auto; border: 4px solid #fef08a; }
+        .card .em { font-size: 2.6rem; line-height: 86px; height: 86px; }
+        .card b { font-size: .95rem; line-height: 1.2; }
+        .card span.t { font-size: .78rem; color: #64748b; font-weight: 700; }
+        .card.on:active { transform: translateY(3px); box-shadow: 0 2px 0 #d9f99d; }
+        .card.off { opacity: .55; box-shadow: 0 5px 0 #e2e8f0; }
+        .badge { position: absolute; top: 8px; right: 8px; font-size: .72rem; font-weight: 900; border-radius: 999px; padding: 3px 8px; }
+        .badge.new { background: #fde68a; color: #92400e; }
+        .badge.done { background: #bbf7d0; color: #166534; }
+        .badge.soon { background: #e2e8f0; color: #475569; }
+        footer { text-align: center; color: #475569; font-weight: 700; font-size: .85rem; padding: 10px 16px 30px; }
+        @media (max-width: 380px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; } .card img { width: 70px; height: 70px; } .card .em { line-height: 70px; height: 70px; } }
+    </style>
+</head>
+<body>
+    <header>
+        <a class="back" href="index1Primary.html" aria-label="Volver a 1.º de primaria">←</a>
+        <div><h1>🌱 Crece · 1.º de primaria</h1><small>Cuentos para crecer felices, en familia</small></div>
+    </header>
+    <main>
+        <section class="intro">
+            <h2>👨‍👩‍👧 Para leer en familia</h2>
+            <p>Elijan un cuento y léanlo a su ritmo. Cuéntenle a alguien qué pasó en la historia, cómo se sintió el personaje y qué podría hacer después.</p>
+            <div class="steps">
+                <div>📖 1. Lean juntos un cuento breve</div>
+                <div>💬 2. Conversen con dos preguntas</div>
+                <div>🎯 3. Prueben una actividad en casa</div>
+                <div>👨‍👩‍👧 4. Lean la nota para el adulto</div>
+            </div>
+            <p class="count" id="count"></p>
+        </section>
+        <div id="seeds"></div>
+    </main>
+    <footer>MVG Learning · Crece · Aprender, jugar y crecer juntos cada día.</footer>
+    <script>
+        const sections = [
+            { icon: "💛", title: "Me siento querido y seguro", topics: "Reconocer fortalezas y sentir que pertenezco", items: [
+                {"icon":"💛","title":"El Equipo de los Talentos","theme":"Reconocer fortalezas y sentir que pertenezco"},
+                {"icon":"💛","title":"Un Lugar para Mí en el Mural","theme":"Reconocer fortalezas y sentir que pertenezco"},
+                {"icon":"💛","title":"Mía se Anima a Mostrar su Dibujo","theme":"Reconocer fortalezas y sentir que pertenezco"}
+            ] },
+            { icon: "😊", title: "Conozco lo que siento y me calmo", topics: "Nombrar preocupaciones, hacer una pausa y pedir compañía", items: [
+                {"icon":"😊","title":"La Mochila de las Piedritas","theme":"Contar una preocupación y pedir ayuda a mi maestra"},
+                {"icon":"😊","title":"Leo se Toma un Minuto","theme":"Nombrar preocupaciones, hacer una pausa y pedir compañía"},
+                {"icon":"😊","title":"Tito y los Nervios de Leer en Voz Alta","theme":"Nombrar preocupaciones, hacer una pausa y pedir compañía"}
+            ] },
+            { icon: "🤝", title: "Jugamos y convivimos", topics: "Incluir, acordar reglas y resolver desacuerdos", items: [
+                {"icon":"🤝","title":"El Recreo en el que Cabíamos Todos","theme":"Incluir, acordar reglas y resolver desacuerdos"},
+                {"icon":"🤝","title":"Dos Equipos, Una Cancha","theme":"Incluir, acordar reglas y resolver desacuerdos"},
+                {"icon":"🤝","title":"El Turno que Cambiamos Juntos","theme":"Incluir, acordar reglas y resolver desacuerdos"}
+            ] },
+            { icon: "🗣️", title: "Digo lo que necesito con palabras", topics: "Contar qué pasó, expresar un desacuerdo y pedir ayuda", items: [
+                {"icon":"🗣️","title":"Pato Cuenta su Versión","theme":"Contar qué pasó, expresar un desacuerdo y pedir ayuda"},
+                {"icon":"🗣️","title":"Mía Dice: «Necesito Más Tiempo»","theme":"Contar qué pasó, expresar un desacuerdo y pedir ayuda"},
+                {"icon":"🗣️","title":"Leo Pide que le Expliquen la Consigna","theme":"Contar qué pasó, expresar un desacuerdo y pedir ayuda"}
+            ] },
+            { icon: "🧭", title: "Digo la verdad, reparo y agradezco", topics: "Reconocer un error, ayudar a repararlo y agradecer gestos concretos", items: [
+                {"icon":"🧭","title":"La Ventana que Tembló","theme":"Reconocer un error, ayudar a repararlo y agradecer gestos concretos"},
+                {"icon":"🧭","title":"Un Libro con una Esquina Nueva","theme":"Reconocer un error, ayudar a repararlo y agradecer gestos concretos"},
+                {"icon":"🧭","title":"Gracias por Guardarme un Lugar","theme":"Reconocer un error, ayudar a repararlo y agradecer gestos concretos"}
+            ] },
+            { icon: "💪", title: "Lo intento de otra manera", topics: "Dividir una tarea, probar otra estrategia y pedir una pista", items: [
+                {"icon":"💪","title":"Tula y las Tres Formas de Llegar","theme":"Dividir una tarea, probar otra estrategia y pedir una pista"},
+                {"icon":"💪","title":"La Palabra que Armamos por Partes","theme":"Dividir una tarea, probar otra estrategia y pedir una pista"},
+                {"icon":"💪","title":"Pipo Pide una Pista","theme":"Dividir una tarea, probar otra estrategia y pedir una pista"}
+            ] },
+            { icon: "🏠", title: "Tengo buenos hábitos", topics: "Organizar materiales, descansar y colaborar en casa", items: [
+                {"icon":"🏠","title":"La Cartuchera de Leo","theme":"Organizar materiales, descansar y colaborar en casa"},
+                {"icon":"🏠","title":"El Despertador de Tito","theme":"Organizar materiales, descansar y colaborar en casa"},
+                {"icon":"🏠","title":"Mía Prepara su Mesa de Lectura","theme":"Organizar materiales, descansar y colaborar en casa"}
+            ] },
+            { icon: "🛡️", title: "Mi cuerpo y mi seguridad", topics: "Pedir permiso, respetar límites y hablar con un adulto de confianza", items: [
+                {"icon":"🛡️","title":"Leo Dice: «No Quiero Cosquillas»","theme":"Pedir permiso, respetar límites y hablar con un adulto de confianza"},
+                {"icon":"🛡️","title":"La Foto que Mía Prefirió No Compartir","theme":"Pedir permiso, respetar límites y hablar con un adulto de confianza"},
+                {"icon":"🛡️","title":"Tito Busca a su Maestra","theme":"Pedir permiso, respetar límites y hablar con un adulto de confianza"}
+            ] },
+            { icon: "🌿", title: "Cuido la naturaleza", topics: "Cuidar plantas, separar residuos y usar menos agua", items: [
+                {"icon":"🌿","title":"Las Plantas del Salón","theme":"Cuidar plantas, separar residuos y usar menos agua"},
+                {"icon":"🌿","title":"El Tacho de los Papeles","theme":"Cuidar plantas, separar residuos y usar menos agua"},
+                {"icon":"🌿","title":"Una Regadera para Todo el Huerto","theme":"Cuidar plantas, separar residuos y usar menos agua"}
+            ] },
+            { icon: "🎭", title: "Imagino, juego y río", topics: "Inventar personajes, jugar con palabras y compartir el humor", items: [
+                {"icon":"🎭","title":"Pepe Cambia el Final","theme":"Inventar personajes, jugar con palabras y compartir el humor"},
+                {"icon":"🎭","title":"La Caja que Hablaba en Rimas","theme":"Inventar personajes, jugar con palabras y compartir el humor"},
+                {"icon":"🎭","title":"El Detective de los Calcetines Perdidos","theme":"Inventar personajes, jugar con palabras y compartir el humor"}
+            ] },
+            { icon: "🔎", title: "Pregunto y descubro", topics: "Hacer predicciones, comparar pruebas y contar qué observé", items: [
+                {"icon":"🔎","title":"¿Qué Papel Hace el Mejor Puente?","theme":"Hacer predicciones, comparar pruebas y contar qué observé"},
+                {"icon":"🔎","title":"Mía y las Huellas del Patio","theme":"Hacer predicciones, comparar pruebas y contar qué observé"},
+                {"icon":"🔎","title":"La Carrera de las Gotas","theme":"Hacer predicciones, comparar pruebas y contar qué observé"}
+            ] },
+            { icon: "🍃", title: "Me adapto a los cambios", topics: "Prepararme para un cambio y buscar un plan con apoyo", items: [
+                {"icon":"🍃","title":"Hoy Cambiamos de Salón","theme":"Prepararme para un cambio y buscar un plan con apoyo"},
+                {"icon":"🍃","title":"El Amigo que se Mudó","theme":"Prepararme para un cambio y buscar un plan con apoyo"},
+                {"icon":"🍃","title":"El Recreo Bajo Techo","theme":"Prepararme para un cambio y buscar un plan con apoyo"}
+            ] },
+            { icon: "🎒", title: "Aprendo en primaria", topics: "Orientarme en la escuela, participar y saber a quién acudir", items: [
+                {"icon":"🎒","title":"El Mapa del Primer Día","theme":"Orientarme en la escuela, participar y saber a quién acudir"},
+                {"icon":"🎒","title":"Mía Levanta la Mano","theme":"Orientarme en la escuela, participar y saber a quién acudir"},
+                {"icon":"🎒","title":"¿A Quién le Pregunto?","theme":"Orientarme en la escuela, participar y saber a quién acudir"}
+            ] }
+        ];
+        const available = [
+            {"id":40,"title":"El Lápiz Mágico de Sofía","theme":"Sofía descubre que la verdadera magia es practicar.","href":"Cuentos/primaria-1/cuento40.html","thumb":"Cuentos/mini/c40-3d.webp"},
+            {"id":41,"title":"La Pelota del Vecino","theme":"Lucas rompe una ventana y elige decir la verdad.","href":"Cuentos/primaria-1/cuento41.html","thumb":"Cuentos/mini/c41-3d.webp"},
+            {"id":42,"title":"La Gota Viajera","theme":"El viaje de una gota de agua y por qué cuidarla.","href":"Cuentos/primaria-1/cuento42.html","thumb":"Cuentos/mini/c42-3d.webp"},
+            {"id":44,"title":"El Equipo de los Colores","theme":"Un equipo aprende que todos son importantes.","href":"Cuentos/primaria-1/cuento44.html","thumb":"Cuentos/mini/c44-3d.webp"},
+            {"id":46,"title":"El Búho que No Podía Dormir","theme":"Un búho aprende a calmar sus nervios el primer día de clases.","href":"Cuentos/primaria-1/cuento46.html","thumb":"Cuentos/mini/c46-3d.webp"},
+            {"id":48,"title":"La Semilla de Inti","theme":"La paciencia hace crecer una semilla… y a Inti.","href":"Cuentos/primaria-1/cuento48.html","thumb":"Cuentos/mini/c48-3d.webp"}
+        ];
+
+        let done = new Set();
+        try { done = new Set((JSON.parse(localStorage.getItem("mk_cuentos_leidos_v1")) || []).map(Number)); } catch (e) { }
+        const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+        const heading = (icon, title, topics) => `<div class="seed"><span class="ico" aria-hidden="true">${icon}</span><div><h3>${esc(title)}</h3><small>${esc(topics)}</small></div></div>`;
+
+        document.getElementById("seeds").innerHTML =
+            heading("📚", "Para leer hoy", "Cuentos del catálogo de 1.º de primaria") +
+            `<div class="grid">${available.map(story => {
+                const read = done.has(story.id);
+                return `<a class="card on" href="../${esc(story.href)}"><span class="badge ${read ? "done" : "new"}">${read ? "✅ Leído" : "Leer"}</span><img src="../${esc(story.thumb)}" alt="" loading="lazy"><b>${esc(story.title)}</b><span class="t">${esc(story.theme)}</span></a>`;
+            }).join("")}</div>` +
+            sections.map(section =>
+                heading(section.icon, section.title, section.topics) +
+                `<div class="grid">${section.items.map(story =>
+                    `<div class="card off"><span class="badge soon">Pronto</span><div class="em" aria-hidden="true">${story.icon}</div><b>${esc(story.title)}</b><span class="t">${esc(story.theme)}</span></div>`
+                ).join("")}</div>`
+            ).join("");
+
+        const planned = sections.reduce((total, section) => total + section.items.length, 0);
+        const read = available.filter(story => done.has(story.id)).length;
+        document.getElementById("count").textContent = `📚 ${available.length} cuentos para leer hoy · ✅ ${read} leídos · ${planned} títulos previstos`;
+        if ("serviceWorker" in navigator) navigator.serviceWorker.register("../service-worker.js").catch(() => { });
+    </script>
+</body>
+</html>
