@@ -1,14 +1,12 @@
 # Cuentos: cómo agregar uno nuevo
 
-## Carpetas (según la edad para la que se escribió el cuento)
+## Carpetas (según el grado para el que se escribió el cuento)
+Las carpetas antiguas (4-5-anios, primaria-1-2, primaria-3-4) solo tienen páginas que redirigen.
 ```
 Cuentos/
- ├── 3-anios/        cuentoNN.html + img/cNN-1..6.svg
- ├── 4-5-anios/
- ├── primaria-1-2/
- ├── primaria-3-4/
- ├── primaria-5-6/
- ├── secundaria/
+ ├── 3-anios/ 4-anios/ 5-anios/  cuentoNN.html + img/cNN-1..6.svg
+ ├── primaria-1/ … primaria-6/
+ ├── secundaria-1/ … secundaria-5/
  └── mini/           miniaturas cNN.webp (240×240) para los menús
 ```
 La carpeta solo ordena: Crece y el menú de cuentos de cada grado pueden mostrar cuentos de otras carpetas.

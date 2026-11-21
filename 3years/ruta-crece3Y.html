@@ -126,7 +126,8 @@
                 { n: 21, t: "El Zapato que se Escapaba", tema: "Humor" } ] },
         ];
         // carpeta de cada cuento (igual que tools/cuentos/carpetas.py)
-        const FOLDER = n => [13, 14, 20, 21, 36, 39].includes(n) ? "3-anios" : [11, 12, 23, 28].includes(n) ? "primaria-1-2" : [29, 30].includes(n) ? "primaria-3-4" : "4-5-anios";
+        const CARPETA = {"1": "5-anios", "2": "5-anios", "3": "4-anios", "4": "5-anios", "5": "4-anios", "6": "5-anios", "7": "4-anios", "8": "5-anios", "9": "5-anios", "10": "4-anios", "11": "primaria-2", "12": "primaria-2", "13": "3-anios", "14": "3-anios", "15": "5-anios", "16": "4-anios", "17": "primaria-1", "18": "primaria-1", "19": "primaria-1", "20": "3-anios", "21": "3-anios", "22": "5-anios", "23": "primaria-2", "24": "4-anios", "25": "4-anios", "26": "5-anios", "27": "4-anios", "28": "primaria-2", "29": "primaria-3", "30": "primaria-3", "31": "5-anios", "32": "4-anios", "33": "5-anios", "34": "4-anios", "35": "4-anios", "36": "3-anios", "37": "5-anios", "38": "5-anios", "39": "3-anios", "40": "primaria-1", "41": "primaria-1", "42": "primaria-1", "43": "primaria-1", "44": "primaria-1", "45": "primaria-1", "46": "primaria-1", "47": "primaria-1", "48": "primaria-1", "49": "primaria-1", "50": "primaria-3"};
+        const FOLDER = n => CARPETA[n] || "4-anios";
         let done = new Set();
         try { done = new Set((JSON.parse(localStorage.getItem("mk_cuentos_leidos_v1")) || []).map(Number)); } catch (e) { }
         const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
