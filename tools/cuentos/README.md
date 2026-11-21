@@ -15,7 +15,7 @@ La carpeta solo ordena: Crece y el menú de cuentos de cada grado pueden mostrar
 En la raíz quedan `cuentoNN.html` pequeños que redirigen a la carpeta (para no romper enlaces antiguos).
 
 ## Pasos
-1. Escribe la historia en `historias_f.py` (o un archivo nuevo, agregado a la lista de `build.py`):
+1. Escribe la historia en `historias_f.py` (o un archivo nuevo, agregado a la lista de `build.py`; 40–49 de 1.º primaria están en `historias_g.py`):
    `STORIES[NN] = {"title", "emoji", "category", "scenes": [{img, alt, p, d}], "msg", "extra": [(título, [líneas])]}`.
    `extra` son las tarjetas finales (Conversemos, Practiquemos en casa, Para papá y mamá).
    Los dibujos se arman con `ilustra.py` (fondos, personajes con emociones, globos de diálogo).

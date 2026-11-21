@@ -7,7 +7,7 @@ import sys, os, html, importlib
 
 sys.path.insert(0, os.path.dirname(__file__))
 STORIES = {}
-for mod in ("historias_a", "historias_b", "historias_c", "historias_d", "historias_e", "historias_f"):
+for mod in ("historias_a", "historias_b", "historias_c", "historias_d", "historias_e", "historias_f", "historias_g"):
     try:
         STORIES.update(importlib.import_module(mod).STORIES)
     except ModuleNotFoundError:
