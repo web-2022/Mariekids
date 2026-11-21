@@ -71,7 +71,7 @@
         const SEEDS = [
             { ico: "💛", t: "Me siento querido y seguro", d: "Autoestima y confianza", items: [
                 { n: 39, t: "Mamá Siempre Vuelve", tema: "Primer día en el nido" },
-                { e: "🤗", t: "Los Abrazos de Buenas Noches", tema: "Mi familia me quiere" },
+                { n: 51, t: "Los Abrazos de Buenas Noches", tema: "Mi familia me quiere", desde: "?desde=crece" },
                 { e: "⭐", t: "Nadie es Igual a Mí", tema: "Soy único y valioso" },
                 { e: "👶", t: "Ahora Soy Hermano Mayor", tema: "Un nuevo hermanito" } ] },
             { ico: "😊", t: "Conozco lo que siento y me calmo", d: "Emociones y calma", items: [
@@ -126,7 +126,7 @@
                 { n: 21, t: "El Zapato que se Escapaba", tema: "Humor" } ] },
         ];
         // carpeta de cada cuento (igual que tools/cuentos/carpetas.py)
-        const CARPETA = {"1": "5-anios", "2": "5-anios", "3": "4-anios", "4": "5-anios", "5": "4-anios", "6": "5-anios", "7": "4-anios", "8": "5-anios", "9": "5-anios", "10": "4-anios", "11": "primaria-2", "12": "primaria-2", "13": "3-anios", "14": "3-anios", "15": "5-anios", "16": "4-anios", "17": "primaria-1", "18": "primaria-1", "19": "primaria-1", "20": "3-anios", "21": "3-anios", "22": "5-anios", "23": "primaria-2", "24": "4-anios", "25": "4-anios", "26": "5-anios", "27": "4-anios", "28": "primaria-2", "29": "primaria-3", "30": "primaria-3", "31": "5-anios", "32": "4-anios", "33": "5-anios", "34": "4-anios", "35": "4-anios", "36": "3-anios", "37": "5-anios", "38": "5-anios", "39": "3-anios", "40": "primaria-1", "41": "primaria-1", "42": "primaria-1", "43": "primaria-1", "44": "primaria-1", "45": "primaria-1", "46": "primaria-1", "47": "primaria-1", "48": "primaria-1", "49": "primaria-1", "50": "primaria-3"};
+        const CARPETA = {"1": "5-anios", "2": "5-anios", "3": "4-anios", "4": "5-anios", "5": "4-anios", "6": "5-anios", "7": "4-anios", "8": "5-anios", "9": "5-anios", "10": "4-anios", "11": "primaria-2", "12": "primaria-2", "13": "3-anios", "14": "3-anios", "15": "5-anios", "16": "4-anios", "17": "primaria-1", "18": "primaria-1", "19": "primaria-1", "20": "3-anios", "21": "3-anios", "22": "5-anios", "23": "primaria-2", "24": "4-anios", "25": "4-anios", "26": "5-anios", "27": "4-anios", "28": "primaria-2", "29": "primaria-3", "30": "primaria-3", "31": "5-anios", "32": "4-anios", "33": "5-anios", "34": "4-anios", "35": "4-anios", "36": "3-anios", "37": "5-anios", "38": "5-anios", "39": "3-anios", "40": "primaria-1", "41": "primaria-1", "42": "primaria-1", "43": "primaria-1", "44": "primaria-1", "45": "primaria-1", "46": "primaria-1", "47": "primaria-1", "48": "primaria-1", "49": "primaria-1", "50": "primaria-3", "51": "3-anios"};
         const FOLDER = n => CARPETA[n] || "4-anios";
         let done = new Set();
         try { done = new Set((JSON.parse(localStorage.getItem("mk_cuentos_leidos_v1")) || []).map(Number)); } catch (e) { }
@@ -138,7 +138,7 @@
                 tot++;
                 if (!it.n) return `<div class="card off"><span class="badge soon">Pronto</span><div class="em">${it.e}</div><b>${esc(it.t)}</b><span class="t">${esc(it.tema)}</span></div>`;
                 pub++; const nn = String(it.n).padStart(2, "0"), ok = done.has(it.n); if (ok) read++;
-                return `<a class="card on" href="../Cuentos/${FOLDER(it.n)}/cuento${nn}.html"><span class="badge ${ok ? "done" : "new"}">${ok ? "✅ Leído" : "Leer"}</span><img src="../Cuentos/mini/c${nn}.webp" alt="" loading="lazy"><b>${esc(it.t)}</b><span class="t">${esc(it.tema)}</span></a>`;
+                return `<a class="card on" href="../Cuentos/${FOLDER(it.n)}/cuento${nn}.html${it.desde || ""}"><span class="badge ${ok ? "done" : "new"}">${ok ? "✅ Leído" : "Leer"}</span><img src="../Cuentos/mini/c${nn}.webp" alt="" loading="lazy"><b>${esc(it.t)}</b><span class="t">${esc(it.tema)}</span></a>`;
             }).join("")}</div>`).join("");
         document.getElementById("count").textContent = `📚 ${pub} cuentos listos de ${tot} · ✅ ${read} leídos`;
         if ("serviceWorker" in navigator) navigator.serviceWorker.register("../service-worker.js").catch(() => { });
